@@ -1,0 +1,25 @@
+version: "3.6"
+
+services:
+  ontoapi:
+    build:
+      context: .
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ".:/app"
+    environment:
+      - REDIS_TYPE=redis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+  
+  redis:
+    image: redis
+    ports:
+      - "11379:6379"
+networks:
+  default:
+    external:
+      name: scinet
