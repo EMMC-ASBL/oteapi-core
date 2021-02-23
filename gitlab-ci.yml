@@ -1,11 +1,8 @@
 image: python:3.8.3-slim-buster
-stages:
-  - build
-
-compile:
-  stage: build
+linting:
+  stage: test
   script:
-    - pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy
+    - pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety
     - bandit -r .
     - pylint .
     - safety check -r requirements.txt
