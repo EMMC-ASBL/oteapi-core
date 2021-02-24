@@ -14,7 +14,12 @@ services:
       - REDIS_TYPE=redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-  
+  tasks:
+    image: python:3.8.3-slim-buster
+    volumes:
+      - ".:/app"
+    command: sh -c "cd /app && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt && celery -A routers.test worker --loglevel=info"
+
   redis:
     image: redis
     ports:
