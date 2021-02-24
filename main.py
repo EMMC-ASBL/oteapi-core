@@ -20,7 +20,7 @@ class AppSettings(fastapi_plugins.RedisSettings):
 
 app = FastAPI()
 config = AppSettings()
-# app.include_router(test.router, prefix="/test")
+app.include_router(test.router, prefix="/test")
 app.include_router(dataresource.router, prefix="/dataresource")
 app.include_router(transformation.router, prefix="/transformation")
 app.include_router(mapping.router, prefix="/mapping")

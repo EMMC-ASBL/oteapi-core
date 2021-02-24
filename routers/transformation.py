@@ -16,7 +16,7 @@ import requests
 import pysftp
 import subprocess
 import os
-from routers.test import command
+from tasks import command
 
 router = APIRouter()
 
@@ -25,18 +25,8 @@ class TransformationConfig(BaseModel):
     applicationName: str
     applicationType: str
 
-
-# def backgroundprocess(applicationName):
-#     try:
-#         subprocess.call(['touch /app/test7'], shell=True)
-#     except Exception as e:
-#         print(e)
-    
-#     # proc.wait()
-#     # os.system(applicationName)
-#     # f= open("script.txt","w+")
-#     return None
-
+#run endpoint 
+#addon for pipeid 
 
 @router.post("/")
 async def create_transformation(config: TransformationConfig,
@@ -52,8 +42,7 @@ async def create_transformation(config: TransformationConfig,
     # to run
     await cache.set(transformation_id, json.dumps(transformation_info).encode('utf-8'))
     try:
-        # background_tasks.add_task(backgroundprocess(config.applicationName))
-        command.delay('heloo')
+        command.delay(config.applicationName)
     except Exception as e:
         print(e)
 
@@ -73,6 +62,15 @@ async def status_transformation():
     # return someoutput
     return ' '
 
+@router.post("/{transformation_id}/add")
+async def addPipe_transformation():
+    # return someoutput
+    return ' '
+
+@router.post("/{transformation_id}/run")
+async def run_transformation():
+    # command.delay(config.applicationName)
+    return ' '
 
 @router.delete("/{transformation_id}")
 async def delete_transformation():

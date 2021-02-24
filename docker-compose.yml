@@ -25,7 +25,7 @@ services:
     command: |
      sh -c 
      "cd /app && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip -r requirements.txt &&
-     celery -A routers.test worker --loglevel=info"
+     celery -A tasks worker --loglevel=info"
 
   redis:
     image: redis
