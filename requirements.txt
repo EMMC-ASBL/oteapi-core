@@ -7,3 +7,4 @@ requests
 aioredis
 fastapi-plugins
 soft7-pkg-quaat
+celery

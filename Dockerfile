@@ -25,9 +25,9 @@ RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r
 FROM base as development
 RUN pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy
 COPY . .
-RUN bandit -r . \
-  && pylint . \
-  && safety check -r requirements.txt 
+# RUN bandit -r . \
+#   && pylint . \
+#   && safety check -r requirements.txt 
 
 
 ################# PRODUCTION ####################################
