@@ -65,8 +65,7 @@ async def run_transformation(
     
     response = await client.get(pipe_url)
     transformationctx.write(response.text)
-    return response.text
-    # return 'Transformation complete'
+    return 'Transformation complete'
 
 # returns transformation details
 @ router.get("/{transformation_id}/ref")
