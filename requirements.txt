@@ -8,3 +8,4 @@ aioredis
 fastapi-plugins
 soft7-pkg-quaat
 celery
+http3

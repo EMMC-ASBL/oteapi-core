@@ -49,7 +49,7 @@ class HTTPStrategy(DownloadStrategy):
         o = urlparse(uri)
         
         # Download via http
-        cache = tempfile.TemporaryDirectory()
+        cache = '/tmp'
         r = requests.get(uri, allow_redirects=True)    
         open (f'{cache}/file.csv', 'wb').write(r.content)
         return f'{cache}/file.csv'
