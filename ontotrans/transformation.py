@@ -6,12 +6,35 @@ import tempfile
 import pandas as pd
 import requests
 import pysftp
+from tasks import command
 
 
 class CommandlineStrategy(ABC):
     """
     """
     @abstractmethod
-    def read(self, uri: str):
+    def write(self, applicationName: str):
         pass
 
+
+class writeStrategy(CommandlineStrategy):  # write to file
+    def write(self, applicationName: str):
+        command.delay(applicationName)
+
+
+class TransformationContext():
+    def __init__(self, applicationName: str, applicationType: str) -> None:
+        self._applicationName = applicationName
+        self._applicationType = applicationType
+        self._cmdlstrategy = writeStrategy()
+
+    @property
+    def strategy(self) -> CommandlineStrategy:
+        return self._cmdlstrategy
+
+    @strategy.setter
+    def strategy(self, strategy: CommandlineStrategy) -> None:
+        self._cmdlstrategy = strategy
+
+    def write(self) -> None:
+        return self._cmdlstrategy.write(self._applicationName)
