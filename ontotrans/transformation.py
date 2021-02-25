@@ -11,8 +11,8 @@ class CommandlineStrategy(ABC):
 
 
 class writeStrategy(CommandlineStrategy):  # write to file
-    def write(self, applicationName: str):
-        command.delay(applicationName)
+    def write(self, applicationName: str, url: str):
+        command.delay(url)
 
 
 class TransformationContext():
@@ -29,5 +29,5 @@ class TransformationContext():
     def strategy(self, strategy: CommandlineStrategy) -> None:
         self._cmdlstrategy = strategy
 
-    def write(self) -> None:
-        return self._cmdlstrategy.write(self._applicationName)
+    def write(self, url) -> None:
+        return self._cmdlstrategy.write(self._applicationName, url)

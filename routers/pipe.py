@@ -7,7 +7,7 @@ from uuid import uuid4
 import json
 import fastapi_plugins
 import aioredis
-from tasks import command, read
+from tasks import command
 import requests
 import http3
 
