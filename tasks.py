@@ -11,9 +11,4 @@ def command(url):
     f.write(url)
     f.close
     return ret
-
-# @app.task
-# def read(uri):
-#     # ret = run (["ls", "-al"])
-#     ret = requests.get(uri)
-#     return json.loads(ret)
+    

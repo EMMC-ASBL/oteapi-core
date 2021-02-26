@@ -9,10 +9,9 @@ import json
 import fastapi_plugins
 import aioredis
 import requests
-import http3
 import json
-client = http3.AsyncClient()
-
+import httpx
+client = httpx.AsyncClient()
 router = APIRouter()
 
 

@@ -9,11 +9,10 @@ import fastapi_plugins
 import aioredis
 from tasks import command
 import requests
-import http3
+import httpx
 
 router = APIRouter()
-client = http3.AsyncClient()
-
+client = httpx.AsyncClient()
 class PipeConfig(BaseModel):
     filterUrl: str
 
@@ -39,7 +38,6 @@ async def data_pipe(
     pipe_info = json.loads(await cache.get(pipe_id))
     
     filterUrl = pipe_info['filter_url']
-    # uri = f'http://ontoapi:8000/dataresource/{sourceId}/read'
 
     response = await client.get(filterUrl)
     return json.loads(response.text)
