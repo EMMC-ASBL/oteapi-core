@@ -36,7 +36,7 @@ async def create_transformation(
 
 
 # Add a pipe to get data/ info
-@router.post("/{transformation_id}/setpipe/{url}")
+@router.post("/{transformation_id}/setpipe")
 async def add_pipe_transformation(
     transformation_id: str,
     pipe_url: str,
@@ -48,8 +48,8 @@ async def add_pipe_transformation(
         'application_type':  transformation_info['application_type'],
         'pipe_url': pipe_url,
     }
-    cache.set(transformation_id, json.dumps(transformation_info).encode('utf-8'))
-    return 'pipe connection added'
+    await cache.set(transformation_id, json.dumps(transformation_info).encode('utf-8'))
+    return json.loads(await cache.get(transformation_id))
 
 # Run a transformation
 @router.post("/{transformation_id}/run")
