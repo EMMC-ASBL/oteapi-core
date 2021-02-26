@@ -49,7 +49,7 @@ async def add_pipe_transformation(
         'pipe_url': pipe_url,
     }
     await cache.set(transformation_id, json.dumps(transformation_info).encode('utf-8'))
-    return json.loads(await cache.get(transformation_id))
+    return 'pipe added'
 
 # Run a transformation
 @router.post("/{transformation_id}/run")
