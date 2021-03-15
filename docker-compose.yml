@@ -19,6 +19,18 @@ services:
     image: redis
     ports:
       - "11379:6379"
+
+  sftp:
+    image: "emberstack/sftp"
+    ports:
+      - "${SFTP_PORT}:22"
+    volumes:
+      - ./.sftp_conf.json:/app/config/sftp.json:ro
+      - sftp-data:/home/${SFTP_USER}
+
+volumes:
+  sftp-data:
+
 networks:
   default:
     external:
