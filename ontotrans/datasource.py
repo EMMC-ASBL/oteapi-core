@@ -41,8 +41,8 @@ class SFTPStrategy(DownloadStrategy):
         cnopts.hostkeys = None
 
         with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, port=o.port, cnopts=cnopts) as sftp:    
-            sftp.cwd('/upload')
-            sftp.get(o.path, f'{cache}/file.csv')
+            sftp.get(remotepath='./'+o.path, localpath=f"{cache.name}/file.csv")
+        return f"{cache.name}/file.csv", cache
 
 class HTTPStrategy(DownloadStrategy):
     def read(self, uri: str):
@@ -120,8 +120,9 @@ class DataSourceContext():
         self._dlstrategy = strategy
 
     def read(self) -> None:
-        file = self._dlstrategy.read(self._uri)
-        return self._parsestrategy.read(file)
+        filename, cache = self._dlstrategy.read(self._uri)
+        contents = self._parsestrategy.read(filename)
+        return contents
 
     def datamodel(self) -> None:
         file = self._dlstrategy.read(self._uri)
