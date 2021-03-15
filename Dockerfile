@@ -17,9 +17,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
     
 # Install requirements
-COPY ./requirements.txt . 
+COPY requirements requirements
 RUN pip install --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip
-RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements/prod.txt
 
 ################# DEVELOPMENT ####################################
 FROM base as development
