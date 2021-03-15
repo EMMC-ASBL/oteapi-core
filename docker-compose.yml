@@ -18,7 +18,7 @@ services:
   redis:
     image: redis
     ports:
-      - "11379:6379"
+      - "6379:6379"
 
   sftp:
     image: "emberstack/sftp"
