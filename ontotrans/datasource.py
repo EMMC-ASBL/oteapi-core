@@ -40,7 +40,7 @@ class SFTPStrategy(DownloadStrategy):
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
 
-        with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, cnopts=cnopts) as sftp:    
+        with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, port=o.port, cnopts=cnopts) as sftp:    
             sftp.cwd('/upload')
             sftp.get(o.path, f'{cache}/file.csv')
 
