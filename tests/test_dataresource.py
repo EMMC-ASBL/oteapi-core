@@ -69,7 +69,6 @@ def test_get_dataresource_sftp(client: TestClient) -> None:
     )
     assert response.status_code == 200
 
-@pytest.mark.xfail
 def test_sftp_roundtrip(client: TestClient, sftpconnection: pysftp.Connection) -> None:
     df = pd.DataFrame(dict(a=[1, 2], b=[3, 4]))
 
