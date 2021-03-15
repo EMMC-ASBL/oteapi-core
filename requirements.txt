@@ -1,9 +1,1 @@
-fastapi
-hypercorn
-typing
-pysftp
-pandas
-requests
-aioredis
-fastapi-plugins
-soft7-pkg-quaat
+-r requirements/dev.txt

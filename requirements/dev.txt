@@ -1,0 +1,10 @@
+-r prod.txt
+bandit
+docker-compose
+flake8
+m2r
+pytest
+pytest-cov
+tox
+uvicorn
+ipykernel
