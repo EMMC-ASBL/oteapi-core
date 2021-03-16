@@ -1,6 +1,7 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,python,vscode,visualstudio
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,python,vscode,visualstudio
+# See also: https://zzz.buzz/2018/05/23/differences-of-rules-between-gitignore-and-dockerignore/
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
