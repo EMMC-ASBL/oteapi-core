@@ -1,10 +1,13 @@
 -r prod.txt
-bandit
-docker-compose
-flake8
-m2r
-pytest
-pytest-cov
-tox
-uvicorn
-ipykernel
+pre-commit==2.11.0
+bandit==1.7.0
+pylint==2.7.2
+safety==1.10.3
+docker-compose==1.28.5
+flake8==3.9.0
+m2r==0.2.1
+pytest==6.2.2
+pytest-cov==2.11.1
+tox==3.23.0
+uvicorn==0.13.4
+ipykernel==5.5.0
