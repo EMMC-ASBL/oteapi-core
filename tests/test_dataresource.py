@@ -1,17 +1,14 @@
-import pytest
-import pysftp
-import pandas as pd
 import tempfile
 
-from ontotrans.datasource import DataSourceContext
-
-from main import app
-
-from routers.dataresource import ResourceConfig
+import pandas as pd
+import pysftp
+import pytest
+from environs import Env
 from fastapi.testclient import TestClient
 
-
-from environs import Env
+from main import app
+from ontotrans.datasource import DataSourceContext
+from routers.dataresource import ResourceConfig
 
 env = Env()
 env.read_env()
@@ -34,8 +31,8 @@ def test_post_dataresource(client: TestClient) -> None:
         "port": None,
     }
 
-    assert response.status_code == 200
-    assert response.json()["resource_info"] == resource_info
+    assert response.status_code == 200  # nosec
+    assert response.json()["resource_info"] == resource_info  # nosec
 
 
 def test_post_dataresource_sftp(client: TestClient) -> None:
@@ -45,7 +42,7 @@ def test_post_dataresource_sftp(client: TestClient) -> None:
             downloadUrl="sftp://foo:pass@localhost:22/file.csv", mediaType="text/csv"
         ),
     )
-    assert response.status_code == 200
+    assert response.status_code == 200  # nosec
 
 
 @pytest.mark.xfail
@@ -54,7 +51,7 @@ def test_post_dataresource_unsupported_mediatype(client: TestClient) -> None:
         "/dataresource/",
         json=dict(downloadUrl="http://example.com/2", mediaType="myformat"),
     )
-    assert response.status_code == 415
+    assert response.status_code == 415  # nosec
 
 
 def test_get_dataresource_sftp(client: TestClient) -> None:
@@ -67,7 +64,8 @@ def test_get_dataresource_sftp(client: TestClient) -> None:
     response = client.get(
         f"/dataresource/{response.json()['resource_id']}",
     )
-    assert response.status_code == 200
+    assert response.status_code == 200  # nosec
+
 
 def test_sftp_roundtrip(client: TestClient, sftpconnection: pysftp.Connection) -> None:
     df = pd.DataFrame(dict(a=[1, 2], b=[3, 4]))
@@ -77,29 +75,32 @@ def test_sftp_roundtrip(client: TestClient, sftpconnection: pysftp.Connection) -
         df.to_csv(filename, index=None)
         sftpconnection.put(localpath=filename)
 
-    assert "1.csv" in sftpconnection.listdir()
+    assert "1.csv" in sftpconnection.listdir()  # nosec
 
     # Post dataresource
-    host=env.str("SFTP_HOST")
-    username=env.str("SFTP_USER")
-    password=env.str("SFTP_PASSWORD")
-    port=env.int("SFTP_PORT")
+    host = env.str("SFTP_HOST")
+    username = env.str("SFTP_USER")
+    password = env.str("SFTP_PASSWORD")
+    port = env.int("SFTP_PORT")
 
     response = client.post(
         "/dataresource/",
         json=dict(
-            downloadUrl=f"sftp://{username}:{password}@{host}:{port}/1.csv", mediaType="text/csv"
+            downloadUrl=f"sftp://{username}:{password}@{host}:{port}/1.csv",
+            mediaType="text/csv",
         ),
     )
-    assert response.status_code == 200
+    assert response.status_code == 200  # nosec
 
     # get dataresource
     response = client.get(
         f"/dataresource/{response.json()['resource_id']}",
     )
-    assert response.status_code == 200
+    assert response.status_code == 200  # nosec
 
     # read dataresource
-    ds=DataSourceContext(uri=response.json()['uri'], mediaType=response.json()['media_type'])
-    
-    assert ds.read().to_csv() == df.to_csv()
+    ds = DataSourceContext(
+        uri=response.json()["uri"], mediaType=response.json()["media_type"]
+    )
+
+    assert ds.read().to_csv() == df.to_csv()  # nosec

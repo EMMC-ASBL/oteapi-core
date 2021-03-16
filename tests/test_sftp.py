@@ -1,7 +1,8 @@
-import pandas as pd
-import pytest
-import pysftp
 import tempfile
+
+import pandas as pd
+import pysftp
+import pytest
 
 
 def test_sftp_connection(sftpconnection: pysftp.Connection) -> None:
@@ -12,6 +13,4 @@ def test_sftp_connection(sftpconnection: pysftp.Connection) -> None:
         df.to_csv(filename)
         sftpconnection.put(localpath=filename)
 
-    assert "1.csv" in sftpconnection.listdir()
-
-
+    assert "1.csv" in sftpconnection.listdir()  # nosec
