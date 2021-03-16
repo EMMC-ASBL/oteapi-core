@@ -2,7 +2,7 @@ image: python:3.8.3-slim-buster
 linting:
   stage: test
   script:
-    - pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety
+    - pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit==1.5.0 pylint safety
     - bandit -r .
     - pylint .
     - safety check -r requirements.txt
