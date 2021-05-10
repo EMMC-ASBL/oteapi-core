@@ -23,12 +23,13 @@ RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r
 
 ################# DEVELOPMENT ####################################
 FROM base as development
+RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements/dev.txt
+
 RUN pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy
 COPY . .
 RUN bandit -r . \
   && pylint . \
-  && safety check -r requirements.txt 
-
+  && safety check -r requirements/prod.txt
 
 ################# PRODUCTION ####################################
 FROM base as production

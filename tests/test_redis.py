@@ -50,16 +50,14 @@ class RedisTest(unittest.TestCase):
     def test_connect_redis_url(self):
         async def _test():
             app = fastapi.FastAPI()
-            config = fastapi_plugins.RedisSettings(redis_url="redis://localhost:6379/1")
+            config = fastapi_plugins.RedisSettings(redis_url="redis://redis:6379/1")
             await fastapi_plugins.redis_plugin.init_app(app=app, config=config)
             await fastapi_plugins.redis_plugin.init()
             await fastapi_plugins.redis_plugin.terminate()
-
-        event_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(event_loop)
-        coro = asyncio.coroutine(_test)
-        event_loop.run_until_complete(coro())
-        event_loop.close()
+        
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(_test())
+        
 
     def test_connect(self):
         async def _test():
@@ -69,11 +67,8 @@ class RedisTest(unittest.TestCase):
             await fastapi_plugins.redis_plugin.init()
             await fastapi_plugins.redis_plugin.terminate()
 
-        event_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(event_loop)
-        coro = asyncio.coroutine(_test)
-        event_loop.run_until_complete(coro())
-        event_loop.close()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(_test())
 
     def test_ping(self):
         async def _test():
@@ -88,11 +83,9 @@ class RedisTest(unittest.TestCase):
             finally:
                 await fastapi_plugins.redis_plugin.terminate()
 
-        event_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(event_loop)
-        coro = asyncio.coroutine(_test)
-        event_loop.run_until_complete(coro())
-        event_loop.close()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(_test())
+        
 
     def test_get_set(self):
         async def _test():
@@ -110,11 +103,9 @@ class RedisTest(unittest.TestCase):
             finally:
                 await fastapi_plugins.redis_plugin.terminate()
 
-        event_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(event_loop)
-        coro = asyncio.coroutine(_test)
-        event_loop.run_until_complete(coro())
-        event_loop.close()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(_test())
+        
 
     def test_get_set_ttl(self):
         redis_ttl = 61
@@ -136,8 +127,5 @@ class RedisTest(unittest.TestCase):
             finally:
                 await fastapi_plugins.redis_plugin.terminate()
 
-        event_loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(event_loop)
-        coro = asyncio.coroutine(_test)
-        event_loop.run_until_complete(coro())
-        event_loop.close()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(_test())

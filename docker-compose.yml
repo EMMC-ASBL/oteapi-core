@@ -12,24 +12,17 @@ services:
       - REDIS_TYPE=redis
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-  
+    env_file:
+      - .env
+
   redis:
     image: redis
-    ports:
-      - "6379:6379"
 
   sftp:
-    image: "emberstack/sftp"
-    ports:
-      - "${SFTP_PORT}:22"
+    image: "emberstack/sftp"    
     volumes:
       - ./.sftp_conf.json:/app/config/sftp.json:ro
       - sftp-data:/home/${SFTP_USER}
 
 volumes:
   sftp-data:
-
-networks:
-  default:
-    external:
-      name: scinet

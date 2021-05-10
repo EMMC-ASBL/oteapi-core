@@ -4,7 +4,8 @@
 $ cp .env.example .env
 $ cp .sftp_conf_example.json .sftp_conf.json
 
-$ docker-compose up -d
+# Build and test the 
 
-Activate local environment
-$ pytest
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml build
+docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
+docker-compose exec ontoapi pytest

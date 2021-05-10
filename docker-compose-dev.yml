@@ -1,0 +1,8 @@
+version: "3.6"
+
+services:
+  ontoapi:
+    build:
+      target: development
+    command: hypercorn main:app --bind 0.0.0.0:8000 --reload
+    command: pytest
