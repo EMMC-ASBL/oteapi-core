@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 import pysftp
 
+cache='/app/data'
 
 class DownloadStrategy(ABC):
     """
@@ -36,7 +37,6 @@ class SFTPStrategy(DownloadStrategy):
         o = urlparse(uri)
 
         # Download via sftp
-        cache = tempfile.TemporaryDirectory()
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
 
@@ -49,7 +49,6 @@ class HTTPStrategy(DownloadStrategy):
         o = urlparse(uri)
         
         # Download via http
-        cache = tempfile.TemporaryDirectory()
         r = requests.get(uri, allow_redirects=True)    
         open (f'{cache}/file.csv', 'wb').write(r.content)
         return f'{cache}/file.csv'

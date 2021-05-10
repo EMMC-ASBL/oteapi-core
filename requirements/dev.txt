@@ -1,7 +1,5 @@
 -r prod.txt
 pre-commit==2.11.0
-bandit==1.5.0
-#bandit==1.7.0: https://github.com/PyCQA/bandit/issues/488
 pylint==2.7.2
 safety==1.10.3
 docker-compose==1.28.5
@@ -11,4 +9,3 @@ pytest==6.2.2
 pytest-cov==2.11.1
 tox==3.23.0
 uvicorn==0.13.4
-ipykernel==5.5.0

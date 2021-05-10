@@ -8,6 +8,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    volumes:
+      - ".:/app"
+      - datadirectory:/app/data
     environment:
       - REDIS_TYPE=redis
       - REDIS_HOST=redis
@@ -15,14 +18,23 @@ services:
     env_file:
       - .env
 
-  redis:
-    image: redis
-
   sftp:
     image: "emberstack/sftp"    
     volumes:
       - ./.sftp_conf.json:/app/config/sftp.json:ro
-      - sftp-data:/home/${SFTP_USER}
+      - datadirectory:/app/data
 
+  tasks:
+    image: python:3.8.3-slim-buster        
+    volumes:
+      - ".:/app"
+    command: |
+     sh -c 
+     "cd /app && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip -r requirements.txt &&
+     celery -A tasks worker --loglevel=info"
+
+  redis:
+    image: redis
+      
 volumes:
-  sftp-data:
+  datadirectory:
