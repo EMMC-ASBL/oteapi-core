@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+-r requirements/dev.txt
+=======
 fastapi
 hypercorn
 typing
@@ -7,3 +10,6 @@ requests
 aioredis
 fastapi-plugins
 soft7-pkg-quaat
+celery
+httpx
+>>>>>>> 00df01be9bf368aa7fb7003aae83b6fe27cff6c1

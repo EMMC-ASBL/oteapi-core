@@ -7,6 +7,7 @@ import pandas as pd
 import requests
 import pysftp
 
+cache='/app/data'
 
 class DownloadStrategy(ABC):
     """
@@ -36,20 +37,18 @@ class SFTPStrategy(DownloadStrategy):
         o = urlparse(uri)
 
         # Download via sftp
-        cache = tempfile.TemporaryDirectory()
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
 
-        with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, cnopts=cnopts) as sftp:    
-            sftp.cwd('/upload')
-            sftp.get(o.path, f'{cache}/file.csv')
+        with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, port=o.port, cnopts=cnopts) as sftp:    
+            sftp.get(remotepath='./'+o.path, localpath=f"{cache.name}/file.csv")
+        return f"{cache.name}/file.csv", cache
 
 class HTTPStrategy(DownloadStrategy):
     def read(self, uri: str):
         o = urlparse(uri)
         
         # Download via http
-        cache = tempfile.TemporaryDirectory()
         r = requests.get(uri, allow_redirects=True)    
         open (f'{cache}/file.csv', 'wb').write(r.content)
         return f'{cache}/file.csv'
@@ -120,8 +119,9 @@ class DataSourceContext():
         self._dlstrategy = strategy
 
     def read(self) -> None:
-        file = self._dlstrategy.read(self._uri)
-        return self._parsestrategy.read(file)
+        filename, cache = self._dlstrategy.read(self._uri)
+        contents = self._parsestrategy.read(filename)
+        return contents
 
     def datamodel(self) -> None:
         file = self._dlstrategy.read(self._uri)
