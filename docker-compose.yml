@@ -28,15 +28,14 @@ services:
     image: rabbitmq:3.8.12-alpine
 
   tasks:
-    image: python:3.8.3-slim-buster
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile_tasks
     volumes:
       - ".:/app"
     env_file:
       - .env
-    command: |
-     sh -c
-     "cd /app && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip -r requirements.txt &&
-     celery -A tasks worker --loglevel=info"
 
   redis:
     image: redis

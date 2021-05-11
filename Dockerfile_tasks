@@ -9,7 +9,6 @@ ENV PYTHONUNBUFFERED 1
 # Set working directory
 WORKDIR /app
 
-
 # Install requirements
 COPY requirements requirements
 RUN pip install --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip
@@ -17,17 +16,6 @@ RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r
 
 ################# DEVELOPMENT ####################################
 FROM base as development
-RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements/dev.txt
-
-RUN pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy
 COPY . .
-#RUN bandit -r . \
-#  && pylint . \
-#  && safety check -r requirements/prod.txt
 
-CMD hypercorn main:app --bind 0.0.0.0:8000 --reload
-
-################# PRODUCTION ####################################
-FROM base as production
-COPY . .
-CMD hypercorn main:app --bind 0.0.0.0:8000 --reload
+CMD celery -A tasks worker --loglevel=info
