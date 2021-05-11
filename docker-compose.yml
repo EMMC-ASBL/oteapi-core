@@ -4,7 +4,7 @@ services:
   ontoapi:
     build:
       context: .
-      target: production
+      target: development
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -19,22 +19,24 @@ services:
       - .env
 
   sftp:
-    image: "emberstack/sftp"    
+    image: "emberstack/sftp"
     volumes:
       - ./.sftp_conf.json:/app/config/sftp.json:ro
       - datadirectory:/app/data
 
   tasks:
-    image: python:3.8.3-slim-buster        
+    image: python:3.8.3-slim-buster
     volumes:
       - ".:/app"
+    env_file:
+      - .env
     command: |
-     sh -c 
+     sh -c
      "cd /app && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip -r requirements.txt &&
      celery -A tasks worker --loglevel=info"
 
   redis:
     image: redis
-      
+
 volumes:
   datadirectory:
