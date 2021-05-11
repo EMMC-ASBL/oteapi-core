@@ -24,6 +24,9 @@ services:
       - ./.sftp_conf.json:/app/config/sftp.json:ro
       - datadirectory:/app/data
 
+  broker:
+    image: rabbitmq:3.8.12-alpine
+
   tasks:
     image: python:3.8.3-slim-buster
     volumes:
