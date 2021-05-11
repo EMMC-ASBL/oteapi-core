@@ -21,9 +21,9 @@ RUN pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r
 
 RUN pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy
 COPY . .
-#RUN bandit -r . \
-#  && pylint . \
-#  && safety check -r requirements/prod.txt
+RUN bandit -r . \
+  && pylint . \
+  && safety check -r requirements/prod.txt
 
 CMD hypercorn main:app --bind 0.0.0.0:8000 --reload
 
