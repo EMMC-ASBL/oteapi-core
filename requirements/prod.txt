@@ -13,4 +13,3 @@ soft7-pkg-quaat==0.0.5
 environs==9.3.1
 celery==5.0.5
 httpx==0.18.1
-soft7-pkg-quaat
