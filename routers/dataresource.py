@@ -8,7 +8,6 @@ from pydantic import BaseModel
 from uuid import uuid4
 from ontotrans.datasource import DataSourceContext
 from routers import test
-
 import json
 import fastapi_plugins
 import aioredis
