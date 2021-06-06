@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/vscode,python,emacs
 # Edit at https://www.toptal.com/developers/gitignore?templates=vscode,python,emacs
 
+.docker
+
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
