@@ -1,0 +1,27 @@
+# To install the git pre-commit hook run:
+#   pre-commit install
+# To update the pre-commit hooks run:
+#   pre-commit install-hooks
+exclude: '^(\.tox|ci/templates|\.bumpversion\.cfg|env)(/|$)'
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: debug-statements
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.7.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
+  - repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+    - id: black
+      language_version: python3.7
+  #- repo: https://github.com/PyCQA/bandit
+  #  rev: 1.7.0
+  #  hooks:
+  #  - id: bandit
+  #    args: ["-r", ".", "-x", "env"]

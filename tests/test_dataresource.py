@@ -1,15 +1,14 @@
+import os
 import tempfile
 
 import pandas as pd
 import pysftp
 import pytest
-import os
 from fastapi.testclient import TestClient
 
 from main import app
 from ontotrans.datasource import DataSourceContext
 from routers.dataresource import ResourceConfig
-
 
 SFTP_HOST = os.environ["SFTP_HOST"]
 SFTP_USER = os.environ["SFTP_USER"]
@@ -42,7 +41,8 @@ def test_post_dataresource_sftp(client: TestClient) -> None:
     response = client.post(
         "/dataresource/",
         json=dict(
-            downloadUrl=f"sftp://{SFTP_USER}:{SFTP_PASSWORD}@{SFTP_HOST}:{SFTP_PORT}/file.csv", mediaType="text/csv"
+            downloadUrl=f"sftp://{SFTP_USER}:{SFTP_PASSWORD}@{SFTP_HOST}:{SFTP_PORT}/file.csv",
+            mediaType="text/csv",
         ),
     )
     assert response.status_code == 200  # nosec
@@ -61,7 +61,8 @@ def test_get_dataresource_sftp(client: TestClient) -> None:
     response = client.post(
         "/dataresource/",
         json=dict(
-            downloadUrl=f"sftp://{SFTP_USER}:{SFTP_PASSWORD}@{SFTP_HOST}:{SFTP_PORT}/file.csv", mediaType="text/csv"
+            downloadUrl=f"sftp://{SFTP_USER}:{SFTP_PASSWORD}@{SFTP_HOST}:{SFTP_PORT}/file.csv",
+            mediaType="text/csv",
         ),
     )
     response = client.get(
@@ -75,16 +76,19 @@ def test_sftp_roundtrip(client: TestClient) -> None:
 
     cnopts = pysftp.CnOpts()
     cnopts.hostkeys = None
-    
-
 
     with tempfile.TemporaryDirectory() as tmpdir:
         filename = tmpdir + "/1.csv"
         df.to_csv(filename, index=None)
-        with pysftp.Connection(host=SFTP_HOST, username=SFTP_USER, password=SFTP_PASSWORD, port=SFTP_PORT, cnopts=cnopts) as sftpconnection:
+        with pysftp.Connection(
+            host=SFTP_HOST,
+            username=SFTP_USER,
+            password=SFTP_PASSWORD,
+            port=SFTP_PORT,
+            cnopts=cnopts,
+        ) as sftpconnection:
             sftpconnection.put(localpath=filename)
-
-    assert "1.csv" in sftpconnection.listdir()  # nosec
+            assert "1.csv" in sftpconnection.listdir()  # nosec
 
     response = client.post(
         "/dataresource/",

@@ -1,109 +1,115 @@
+import tempfile
 from abc import ABC, abstractmethod
 from typing import Optional
 from urllib.parse import urlparse
 from uuid import uuid4
-import tempfile
-import pandas as pd
-import requests
-import pysftp
 
-cache='/app/data'
+import pandas as pd
+import pysftp
+import requests
+
+cache = "/app/data"
+
 
 class DownloadStrategy(ABC):
-    """
-    """
+    """"""
+
     @abstractmethod
     def read(self, uri: str):
         pass
 
-    
+
 class ParseStrategy(ABC):
-    """
-    """
+    """"""
+
     @abstractmethod
     def read(self, uri: str):
         pass
+
 
 class GenerateDataModelStrategy(ABC):
-    """
-    """
+    """"""
+
     @abstractmethod
     def generate(self, uri: str):
         pass
 
-    
+
 class SFTPStrategy(DownloadStrategy):
-    def read(self, uri : str):
+    def read(self, uri: str):
         o = urlparse(uri)
 
         # Download via sftp
         cnopts = pysftp.CnOpts()
         cnopts.hostkeys = None
 
-        with pysftp.Connection(host=o.hostname, username=o.username, password=o.password, port=o.port, cnopts=cnopts) as sftp:    
-            sftp.get(remotepath='./'+o.path, localpath=f"{cache.name}/file.csv")
-        return f"{cache.name}/file.csv", cache
+        with pysftp.Connection(
+            host=o.hostname,
+            username=o.username,
+            password=o.password,
+            port=o.port,
+            cnopts=cnopts,
+        ) as sftp:
+            sftp.get(remotepath="./" + o.path, localpath=f"{cache}/file.csv")
+        return f"{cache}/file.csv"
+
 
 class HTTPStrategy(DownloadStrategy):
     def read(self, uri: str):
         o = urlparse(uri)
-        
+
         # Download via http
-        r = requests.get(uri, allow_redirects=True)    
-        open (f'{cache}/file.csv', 'wb').write(r.content)
-        return f'{cache}/file.csv'
-        
+        r = requests.get(uri, allow_redirects=True)
+        open(f"{cache}/file.csv", "wb").write(r.content)
+        return f"{cache}/file.csv"
+
+
 class CSVParseStrategy(ParseStrategy):
     def read(self, file: str):
         df = pd.read_csv(file)
         # Move stuff into dataspace
         return df
-    
+
+
 class GenerateDataModelStrategyFromCSV(GenerateDataModelStrategy):
     def generate(self, file: str):
         df = pd.read_csv(file)
-        entity = {    
+        entity = {
             "uri": f"com.sintef.soft/ontology/v1/generated_from_csv{str(uuid4()).replace('-','_')}",
-            "dimensions": {"nrows":"Number of elements"},
-            "properties": {}
-        }    
-        for col in df.columns:                
-            entity['properties'][str(col)] = {
-                'type': str(df[col].dtype),
-                'label': str(col),
-                'description': '',
-                'unit': '',
-                'shape': ['nrows']}
-            
+            "dimensions": {"nrows": "Number of elements"},
+            "properties": {},
+        }
+        for col in df.columns:
+            entity["properties"][str(col)] = {
+                "type": str(df[col].dtype),
+                "label": str(col),
+                "description": "",
+                "unit": "",
+                "shape": ["nrows"],
+            }
+
         return entity
 
-    
-download_strategy = {
-    'sftp': SFTPStrategy,
-    'http': HTTPStrategy,
-    'https': HTTPStrategy
-}
 
-parser_strategy = {
-    'text/csv': CSVParseStrategy
-}
+download_strategy = {"sftp": SFTPStrategy, "http": HTTPStrategy, "https": HTTPStrategy}
 
-model_generation_strategy = {
-    'text/csv': GenerateDataModelStrategyFromCSV
-}
+parser_strategy = {"text/csv": CSVParseStrategy}
 
-class DataSourceContext():
+model_generation_strategy = {"text/csv": GenerateDataModelStrategyFromCSV}
+
+
+class DataSourceContext:
     def __init__(self, uri: str, mediaType: str) -> None:
         self._uri = uri
         self._mediaType = mediaType
         self._dlstrategy = None
         self._parsestrategy = None
         self._modelgenstrategy = None
-        
+
         o = urlparse(uri)
         if o.scheme in download_strategy:
             self._dlstrategy = download_strategy[o.scheme]()
-        
+
         if mediaType in parser_strategy:
             self._parsestrategy = parser_strategy[mediaType]()
 
@@ -119,12 +125,10 @@ class DataSourceContext():
         self._dlstrategy = strategy
 
     def read(self) -> None:
-        filename, cache = self._dlstrategy.read(self._uri)
+        filename = self._dlstrategy.read(self._uri)
         contents = self._parsestrategy.read(filename)
         return contents
 
     def datamodel(self) -> None:
         file = self._dlstrategy.read(self._uri)
         return self._modelgenstrategy.generate(file)
-        
-    
