@@ -2,10 +2,10 @@
 app init
 """
 from fastapi import FastAPI
-from fastapi_plugins import redis_plugin, RedisSettings
 from fastapi.openapi.utils import get_openapi
+from fastapi_plugins import redis_plugin, RedisSettings
 from yaml import safe_load
-from app.context import datasource, session, transformation, filter, mapping
+from app.context import datasource, session, transformation, datafilter, mapping
 from app import factory, loader
 
 
@@ -34,7 +34,7 @@ def create_app():
     app.include_router(session.router, prefix=f'{PREFIX}/session')
     app.include_router(datasource.router, prefix=f'{PREFIX}/datasource')
     app.include_router(transformation.router, prefix=f'{PREFIX}/transformation')
-    app.include_router(filter.router, prefix=f'{PREFIX}/filter')
+    app.include_router(datafilter.router, prefix=f'{PREFIX}/filter')
     app.include_router(mapping.router, prefix=f'{PREFIX}/mapping')
     print ("# Loading plugins")
     load_plugins()
@@ -46,6 +46,7 @@ _app = create_app()
 
 
 def custom_openapi():
+    """ Improve the default look&feel when rendering using redocs """
     if _app.openapi_schema:
         return _app.openapi_schema
     openapi_schema = get_openapi(
