@@ -7,7 +7,7 @@ services:
     - docker:20.10.8-dind
 
 variables:
-  IMAGE: $CI_REGISTRY_IMAGE/oteapi
+  IMAGE: $CI_REGISTRY_IMAGE
 
 
 docker-build:
