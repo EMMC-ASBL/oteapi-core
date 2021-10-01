@@ -21,6 +21,7 @@ pysftp==0.2.9
 python-dateutil==2.8.2
 pytz==2021.1
 PyYAML==5.4.1
+requests==2.26.0
 six==1.16.0
 SQLAlchemy==1.4.25
 starlette==0.14.2
@@ -28,4 +29,3 @@ tenacity==7.0.0
 toml==0.10.2
 typing-extensions==3.10.0.0
 wsproto==1.0.0
-
