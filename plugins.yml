@@ -1,0 +1,11 @@
+version: "1.0"
+
+plugins:
+    - "plugins.parse-strategy.image-jpeg"
+    - "plugins.parse-strategy.text-csv"
+    - "plugins.parse-strategy.text-json"
+    - "plugins.download-strategy.sftp"
+    - "plugins.download-strategy.https"
+#    - "plugins.download-strategy.file"
+    - "plugins.transformation-strategy.dummyplugin"
+    - "plugins.transformation-strategy.dlite-mapping"
