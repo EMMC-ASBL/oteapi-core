@@ -7,7 +7,7 @@ services:
     - docker:20.10.8-dind
 
 variables:
-  IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
 
 docker-build:
   stage: build
@@ -18,7 +18,7 @@ docker-build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     
   script:
-    - docker build --tag $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:latest .
+    - docker build -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:latest .
 
   after_script:
     - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
