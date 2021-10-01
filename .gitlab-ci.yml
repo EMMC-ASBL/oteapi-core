@@ -25,3 +25,4 @@ docker-build:
 
   only:
     - master
+    - merge_request
