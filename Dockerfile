@@ -24,6 +24,10 @@ COPY ./requirements.txt .
 RUN pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip
 RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
+ENV DLITE_ROOT=/usr
+ENV DLITE_STORAGES=/app/entities/*.json
+ENV PYTHONPATH=/usr/lib64/python3.9/site-packages
+RUN mkdir -p /app/entities
 
 ################# DEVELOPMENT ####################################
 FROM base as development
@@ -37,11 +41,6 @@ RUN bandit -r app \
 
 # Run pytest with code coverage
 #RUN pytest --cov app tests/
-
-ENV DLITE_ROOT=/usr
-ENV DLITE_STORAGES=/app/entities/*.json
-ENV PYTHONPATH=/usr/lib64/python3.9/site-packages
-RUN mkdir -p /app/entities
 
 # Run with reload option
 CMD hypercorn wsgi:app --bind 0.0.0.0:8080 --reload
