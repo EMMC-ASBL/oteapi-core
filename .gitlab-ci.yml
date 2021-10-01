@@ -20,6 +20,8 @@ docker-build:
     
   script:
     - docker build --cache-from $IMAGE:latest --tag $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:latest .
+
+  after_script:
     - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
     - docker push $IMAGE:latest
 
