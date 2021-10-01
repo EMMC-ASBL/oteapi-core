@@ -1,9 +1,27 @@
-image: python:3.8.3-slim-buster
-linting:
-  stage: test
+image: docker:20.10.8
+  
+stages:
+  - build
+
+services:
+    - docker:20.10.8-dind
+
+variables:
+  IMAGE: $CI_REGISTRY_IMAGE/oteapi
+
+
+docker-build:
+  stage: build
+  tags:
+    - docker
+
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    
   script:
-    - pip install  --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit==1.7.0 pylint safety
-    - bandit --version
-    - bandit -r . -x tests
-    - pylint .
-    - safety check -r requirements.txt
+    - docker build --target production --tag $IMAGE:$CI_COMMIT_SHA --t $IMAGE:latest .
+    - docker push $IMAGE:$CI_COMMIT_SHA
+    - docker push $IMAGE:latest
+
+  only:
+    - master
