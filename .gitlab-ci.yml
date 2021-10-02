@@ -18,7 +18,12 @@ docker-build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     
   script:
-    - docker build -t $IMAGE:$CI_COMMIT_SHORT_SHA -t $IMAGE:latest .
+    - docker build 
+      --label "git-commit=$(git rev-parse --short HEAD)"
+      --label "git-branch=$(git rev-parse --abbrev-ref HEAD)"
+      --label "git-timestamp=$(git log -1 --format=%ct)"
+      -t $IMAGE:$CI_COMMIT_SHORT_SHA 
+      -t $IMAGE:latest .
 
   after_script:
     - docker push $IMAGE:$CI_COMMIT_SHORT_SHA
