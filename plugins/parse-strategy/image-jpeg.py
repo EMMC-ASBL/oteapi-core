@@ -1,16 +1,19 @@
 """ Strategy class for image/jpg """
 
-from app import factory
+from dataclasses import dataclass
+from app.strategy import factory
 from typing import Dict
+from app.models.resourceconfig import ResourceConfig
 from PIL import Image
 
+@dataclass
 class JPEGDataParseStrategy:
-    def __init__(self, **kwargs):
-        self.localpath = '/app/data'
-        self.path = kwargs.get('path')
-        self.filename = filename = self.path.rsplit('/', 1)[-1]
-        self.conf = kwargs.get('configuration')
 
+    resource_config: ResourceConfig
+
+    def __post_init__(self, **kwargs):
+        self.localpath = '/app/data'        
+        self.filename = self.resource_config.accessUrl.path.rsplit('/', 1)[-1]
 
     def parse(self) -> Dict:
         if 'crop' in self.conf:

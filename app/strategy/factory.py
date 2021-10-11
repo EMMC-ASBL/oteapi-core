@@ -1,24 +1,36 @@
 """ Factory methods for managing strategy plugins """
 
 from typing import Callable, Any
-from app.idownloadstrategy import IDownloadStrategy
-from app.iparsestrategy import IParseStrategy
-from app.itransformationstrategy import ITransformationStrategy
-
+from .idownloadstrategy import IDownloadStrategy
+from .iparsestrategy import IParseStrategy
+from .itransformationstrategy import ITransformationStrategy
+from .ifilterstrategy import IFilterStrategy
+from app.models.transformationconfig import TransformationConfig
 
 # Maps of strategy plugin creation functions
-
 parse_strategy_creation_funcs: dict[str, Callable[..., IParseStrategy]] = {}
 downloadstrategy_creation_funcs: dict[str, Callable[..., IDownloadStrategy]] = {}
 transformation_strategy_func: dict[str, Callable[..., ITransformationStrategy]] = {}
+filter_strategy_creation_func: dict[str, Callable[..., IFilterStrategy]] = {}
+
 
 # Registration
+def register_filter_strategy(
+        filter_type: str,
+        create_function : Callable[..., ITransformationStrategy]
+    ) -> None:
+    """ Register new filter strategy """
+    name = getattr(create_function, '__name__', 'Unknown')
+    print (f'- Registering filter_type "{filter_type}" with plugin {name}')
+    filter_strategy_creation_func[filter_type] = create_function
+
 
 def register_transformation_strategy(
         app_type: str,
         create_function : Callable[..., ITransformationStrategy]
     ) -> None:
-    """ Register new transformation strategy """
+    """ Register new transformation strategy
+    """
     name = getattr(create_function, '__name__', 'Unknown')
     print (f'- Registering app_type "{app_type}" with plugin {name}')
     transformation_strategy_func[app_type] = create_function
@@ -47,6 +59,11 @@ def register_download_strategy(
 
 # Unregistration
 
+def unregister_filter_strategy(filter_type: str):
+    """ Unregister a filter strategy """
+    filter_strategy_creation_func.pop(filter_type, None)
+
+
 def unregister_transformation_strategy(app_type: str):
     """ Unregister a transformation strategy """
     downloadstrategy_creation_funcs.pop(app_type, None)
@@ -64,14 +81,24 @@ def unregister_download_strategy(scheme: str):
 
 # Creation
 
-def create_transformation_strategy(arguments: dict[str, Any]) -> ITransformationStrategy:
-    """ Create a transformation strategy """
+def create_filter_strategy(arguments: dict[str, Any]) -> IFilterStrategy:
+    """ Create a filter strategy """
     args_copy = arguments.copy()
-    app_type = args_copy.pop("app_type")
+    filter_type = args_copy.pop("filterType")
 
     try:
-        creation_func = transformation_strategy_func[app_type]
+        creation_func = filter_strategy_creation_func[filter_type]
         return creation_func(**args_copy)
+    except KeyError:
+        raise ValueError(f"Unknown filter_type {filter_type!r}") from None
+
+
+def create_transformation_strategy(config : TransformationConfig) -> ITransformationStrategy:
+    """ Create a transformation strategy """
+    app_type = config.transformation_type
+    try:
+        creation_func = transformation_strategy_func[app_type]
+        return creation_func(config)
     except KeyError:
         raise ValueError(f"Unknown app_type {app_type!r}") from None
 

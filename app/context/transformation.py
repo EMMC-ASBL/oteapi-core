@@ -9,23 +9,18 @@ from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
 from pydantic import BaseModel
-from app import factory
+from app.strategy import factory
+from app.models.transformationconfig import TransformationConfig
 from .session import _update_session, _update_session_list_item
-import dlite
-
 
 router = APIRouter()
 
 IDPREDIX = 'transformation-'
 
-class TranformationConfig(BaseModel):
-    app_type: str
-    configuration: Optional[Dict]
-
 
 @router.post('/')
 async def create_transformation(
-    config: TranformationConfig,
+    config: TransformationConfig,
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
@@ -40,6 +35,23 @@ async def create_transformation(
         await _update_session_list_item(session_id, 'transformation_info', [transformation_id], cache)
     return {'transformation_id': transformation_id}
 
+@router.get('/{transformation_id}')
+async def get_transformation(
+    transformation_id: str,
+    session_id: Optional[str] = None,
+    cache: Redis = Depends(depends_redis),
+) -> Dict:
+    # Fetch transformation info from cache
+    transformation_info = json.loads(await cache.get(transformation_id))
+
+    # Apply the appropriate transformation strategy (plugin) using the factory
+    transformation_strategy = factory.create_transformation_strategy(TransformationConfig(**transformation_info))
+
+    result = transformation_strategy.get(session_id)
+    if result and session_id:
+        await _update_session(session_id, result, cache)
+
+    return result
 
 @router.post('/{transformation_id}/execute')
 async def execute_transformation(
@@ -51,7 +63,7 @@ async def execute_transformation(
     transformation_info = json.loads(await cache.get(transformation_id))
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(transformation_info)
+    transformation_strategy = factory.create_transformation_strategy(TransformationConfig(**transformation_info))
 
     # If session id is given, pass the object to the strategy create function
     if session_id:

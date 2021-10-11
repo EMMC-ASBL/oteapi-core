@@ -31,7 +31,7 @@ RUN mkdir -p /app/entities
 
 ################# DEVELOPMENT ####################################
 FROM base as development
-RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy pytest pytest-cov
+RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy pytest pytest-cov 
 COPY . .
 
 # Run static security check and linters
@@ -41,7 +41,7 @@ RUN bandit -r app \
 
 # Run pytest with code coverage
 #RUN pytest --cov app tests/
-
+#RUN cd /app/docs && make html
 # Run with reload option
 CMD hypercorn wsgi:app --bind 0.0.0.0:8080 --reload
 EXPOSE 8080

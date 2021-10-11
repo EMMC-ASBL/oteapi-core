@@ -9,7 +9,8 @@ from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
 from pydantic import BaseModel
-from app import factory
+from app.strategy import factory
+from app.models.filterconfig import FilterConfig
 from .session import _update_session, _update_session_list_item
 import dlite
 
@@ -17,11 +18,6 @@ import dlite
 router = APIRouter()
 
 IDPREDIX = 'filter-'
-
-class FilterConfig(BaseModel):
-    filter_type: str
-    configuration: Optional[Dict]
-
 
 @router.post('/')
 async def create_filter(

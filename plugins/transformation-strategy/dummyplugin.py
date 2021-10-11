@@ -1,4 +1,4 @@
-from app import factory
+from app.strategy import factory
 from typing import Dict, Optional
 from dataclasses import dataclass
 

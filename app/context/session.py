@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from app import factory
+from app.strategy import factory
 from urllib.parse import urlparse
 import dlite
 

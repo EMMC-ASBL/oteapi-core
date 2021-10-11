@@ -4,12 +4,12 @@ Data Source context
 from uuid import uuid4
 import json
 
-from typing import Dict, Any, Optional, List, Set
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from pydantic import BaseModel
-from app import factory
+from typing import Optional, Dict
+from app.strategy import factory
+from app.models.mappingconfig import MappingConfig
 from .session import _update_session, _update_session_list_item
 import dlite
 
@@ -17,14 +17,6 @@ import dlite
 router = APIRouter()
 
 IDPREDIX = 'Mapping-'
-
-Prefix = tuple[str, str]
-Triple = tuple[str, str, str]
-class MappingConfig(BaseModel):
-    mapping_type: str
-    prefixes: Optional[Set[Prefix]]
-    mapping: Optional[Set[Triple]]
-    configuration: Optional[Dict]
 
 
 @router.post('/')

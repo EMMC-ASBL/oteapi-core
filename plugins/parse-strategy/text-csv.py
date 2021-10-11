@@ -1,6 +1,6 @@
 """ Strategy class for text/csv """
 
-from app import factory
+from app.strategy import factory
 from typing import Dict
 
 

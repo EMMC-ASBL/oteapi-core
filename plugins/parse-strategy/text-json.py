@@ -1,6 +1,6 @@
 """ Strategy class for text/json """
 
-from app import factory
+from app.strategy import factory
 from typing import Dict
 
 

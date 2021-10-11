@@ -25,6 +25,8 @@ requests==2.26.0
 six==1.16.0
 SQLAlchemy==1.4.25
 starlette==0.14.2
+Sphinx==4.2.0
+sphinx_rtd_theme==1.0.0
 tenacity==7.0.0
 toml==0.10.2
 typing-extensions==3.10.0.0
