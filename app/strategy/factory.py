@@ -1,11 +1,12 @@
 """ Factory methods for managing strategy plugins """
 
 from typing import Callable, Any
+from app.models.transformationconfig import TransformationConfig
 from .idownloadstrategy import IDownloadStrategy
 from .iparsestrategy import IParseStrategy
 from .itransformationstrategy import ITransformationStrategy
 from .ifilterstrategy import IFilterStrategy
-from app.models.transformationconfig import TransformationConfig
+
 
 # Maps of strategy plugin creation functions
 parse_strategy_creation_funcs: dict[str, Callable[..., IParseStrategy]] = {}
