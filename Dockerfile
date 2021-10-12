@@ -31,13 +31,14 @@ RUN mkdir -p /app/entities
 
 ################# DEVELOPMENT ####################################
 FROM base as development
-RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy pytest pytest-cov 
+RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy pytest pytest-cov
 COPY . .
 
 # Run static security check and linters
 RUN bandit -r app \
   && safety check -r requirements.txt --bare \
-  && pylint --extension-pkg-whitelist='pydantic' app
+  && pylint --extension-pkg-whitelist='pydantic' app \
+  && pylint --extension-pkg-whitelist='pydantic' --disable=R,C plugins
 
 # Run pytest with code coverage
 #RUN pytest --cov app tests/

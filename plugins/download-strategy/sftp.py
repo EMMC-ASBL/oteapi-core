@@ -1,11 +1,11 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from app.strategy import factory
-from typing import Dict
-from app.models.resourceconfig import ResourceConfig
+from typing import Dict, Optional
 import pysftp
-import os
+from app.strategy import factory
+from app.models.resourceconfig import ResourceConfig
+
 
 @dataclass
 class SFTPStrategy:
@@ -13,7 +13,7 @@ class SFTPStrategy:
 
     resource_config: ResourceConfig
 
-    def read(self) -> Dict:
+    def read(self, session_id: Optional[str] = None) -> Dict: #pylint: disable=W0613
         """ Download via sftp """
 
         # Setup connection options
@@ -28,7 +28,10 @@ class SFTPStrategy:
             port=self.resource_config.accessUrl.port,
             cnopts=cnopts,
         ) as sftp:
-            localpath=f'./data/{self._filename}'
+            # Here we just extract the filename and store the downloaded
+            # file to ./data/<filename>
+            filename = self.resource_config.accessUrl.path.split('/')[-1]
+            localpath=f'./data/{filename}'
             sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
             return dict(filename=localpath)
 

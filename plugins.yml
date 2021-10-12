@@ -1,11 +1,13 @@
 version: "1.0"
 
 plugins:
+    - "plugins.download-strategy.sftp"
+    - "plugins.download-strategy.https"
+    - "plugins.filter-strategy.demo-filter"
+    - "plugins.mapping-strategy.demo-mapping"
+    - "plugins.resource-strategy.demo-resource"
+    - "plugins.transformation-strategy.dlite-transformation"
+    - "plugins.transformation-strategy.dummyplugin"
     - "plugins.parse-strategy.image-jpeg"
     - "plugins.parse-strategy.text-csv"
     - "plugins.parse-strategy.text-json"
-    - "plugins.download-strategy.sftp"
-    - "plugins.download-strategy.https"
-#    - "plugins.download-strategy.file"
-    - "plugins.transformation-strategy.dummyplugin"
-    - "plugins.transformation-strategy.dlite-mapping"

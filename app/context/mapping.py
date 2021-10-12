@@ -16,7 +16,7 @@ import dlite
 
 router = APIRouter()
 
-IDPREDIX = 'Mapping-'
+IDPREDIX = 'mapping-'
 
 
 @router.post('/')
@@ -29,7 +29,12 @@ async def create_mapping(
     Mapping (ontology alignment), is the process of defining
     relationships between concepts in ontologies.
     """
-    return dict(status='ok')
+    mapping_id = IDPREDIX + str(uuid4())
+
+    await cache.set(mapping_id, config.json())
+    if session_id:
+        await _update_session_list_item(session_id, 'filter_info', [filter_id], cache)
+    return dict(mapping_id=mapping_id)
 
 
 @router.get('/{mapping_id}')
@@ -39,4 +44,12 @@ async def get_mapping(
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
     """ Run and return data """
-    return dict(status='ok')
+    mapping_info_json = json.loads(await cache.get(mapping_id))
+    mapping_info = MappingConfig(**mapping_info_json)
+
+    mapping_strategy = factory.create_mapping_strategy(mapping_info)
+    result = mapping_strategy.get(session_id)
+    if result and session_id:
+        await _update_session(session_id, result, cache)
+
+    return result

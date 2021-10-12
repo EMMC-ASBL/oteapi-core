@@ -1,11 +1,17 @@
 """ Factory methods for managing strategy plugins """
 
-from typing import Callable, Any
+from typing import Callable
+from app.models.mappingconfig import MappingConfig
 from app.models.transformationconfig import TransformationConfig
-from .idownloadstrategy import IDownloadStrategy
+from app.models.filterconfig import FilterConfig
+from app.models.resourceconfig import ResourceConfig
+
 from .iparsestrategy import IParseStrategy
+from .idownloadstrategy import IDownloadStrategy
 from .itransformationstrategy import ITransformationStrategy
 from .ifilterstrategy import IFilterStrategy
+from .imappingstrategy import IMappingStrategy
+from .irsourcestrategy import IResourceStrategy
 
 
 # Maps of strategy plugin creation functions
@@ -13,9 +19,31 @@ parse_strategy_creation_funcs: dict[str, Callable[..., IParseStrategy]] = {}
 downloadstrategy_creation_funcs: dict[str, Callable[..., IDownloadStrategy]] = {}
 transformation_strategy_func: dict[str, Callable[..., ITransformationStrategy]] = {}
 filter_strategy_creation_func: dict[str, Callable[..., IFilterStrategy]] = {}
-
+mapping_strategy_creation_func: dict[str, Callable[..., IMappingStrategy]] = {}
+resource_strategy_creation_func: dict[str, Callable[..., IResourceStrategy]] = {}
 
 # Registration
+
+def register_resource_strategy(
+        resource_type: str,
+        create_function : Callable[..., IResourceStrategy]
+    ) -> None:
+    """ Register new resource strategy """
+    name = getattr(create_function, '__name__', 'Unknown')
+    print (f'- Registering filter_type "{resource_type}" with plugin {name}')
+    resource_strategy_creation_func[resource_type] = create_function
+
+
+def register_mapping_strategy(
+        mapping_type: str,
+        create_function : Callable[..., IMappingStrategy]
+    ) -> None:
+    """ Register new mapping strategy """
+    name = getattr(create_function, '__name__', 'Unknown')
+    print (f'- Registering filter_type "{mapping_type}" with plugin {name}')
+    mapping_strategy_creation_func[mapping_type] = create_function
+
+
 def register_filter_strategy(
         filter_type: str,
         create_function : Callable[..., ITransformationStrategy]
@@ -60,6 +88,16 @@ def register_download_strategy(
 
 # Unregistration
 
+def unregister_resource_strategy(media_type: str):
+    """ Unregister a resource strategy """
+    resource_strategy_creation_func.pop(media_type, None)
+
+
+def unregister_mapping_strategy(mapping_type: str):
+    """ Unregister a mapping strategy """
+    mapping_strategy_creation_func.pop(mapping_type, None)
+
+
 def unregister_filter_strategy(filter_type: str):
     """ Unregister a filter strategy """
     filter_strategy_creation_func.pop(filter_type, None)
@@ -82,16 +120,40 @@ def unregister_download_strategy(scheme: str):
 
 # Creation
 
-def create_filter_strategy(arguments: dict[str, Any]) -> IFilterStrategy:
+def create_resource_strategy(config : ResourceConfig) -> IResourceStrategy:
+    """ Create a resource strategy """
+
+    media_type = config.mediaType
+
+    try:
+        creation_func = resource_strategy_creation_func[media_type]
+        return creation_func(config)
+    except KeyError:
+        raise ValueError(f"Unknown mediaType {media_type!r}") from None
+
+
+def create_mapping_strategy(config : MappingConfig) -> IMappingStrategy:
+    """ Create a mapping strategy """
+
+    mapping_type = config.mappingType
+
+    try:
+        creation_func = mapping_strategy_creation_func[mapping_type]
+        return creation_func(config)
+    except KeyError:
+        raise ValueError(f"Unknown mappingType {mapping_type!r}") from None
+
+
+def create_filter_strategy(config : FilterConfig) -> IFilterStrategy:
     """ Create a filter strategy """
-    args_copy = arguments.copy()
-    filter_type = args_copy.pop("filterType")
+
+    filter_type = config.filterType
 
     try:
         creation_func = filter_strategy_creation_func[filter_type]
-        return creation_func(**args_copy)
+        return creation_func(config)
     except KeyError:
-        raise ValueError(f"Unknown filter_type {filter_type!r}") from None
+        raise ValueError(f"Unknown filterType {filter_type!r}") from None
 
 
 def create_transformation_strategy(config : TransformationConfig) -> ITransformationStrategy:
@@ -104,27 +166,26 @@ def create_transformation_strategy(config : TransformationConfig) -> ITransforma
         raise ValueError(f"Unknown app_type {app_type!r}") from None
 
 
-def create_parse_strategy(arguments: dict[str, Any]) -> IParseStrategy:
+def create_parse_strategy(config : ResourceConfig) -> IParseStrategy:
     """ Create a parse strategy, given a dictionary of arguments """
 
-    args_copy = arguments.copy()
-    media_type = args_copy.pop("media_type")
+    media_type = config.mediaType
+
 
     try:
         creation_func = parse_strategy_creation_funcs[media_type]
-        return creation_func(**args_copy)
+        return creation_func(config)
     except KeyError:
         raise ValueError(f"Unknown media-type {media_type!r}") from None
 
 
-def create_download_strategy(arguments: dict[str, Any]) -> IDownloadStrategy:
+def create_download_strategy(config : ResourceConfig) -> IDownloadStrategy:
     """ Create a download strategy, given a dictionary of arguments """
 
-    args_copy = arguments.copy()
-    scheme = args_copy.pop("scheme")
+    scheme = config.downloadUrl.scheme
 
     try:
         creation_func = downloadstrategy_creation_funcs[scheme]
-        return creation_func(**args_copy)
+        return creation_func(config)
     except KeyError:
         raise ValueError(f"Unknown scheme {scheme!r}") from None

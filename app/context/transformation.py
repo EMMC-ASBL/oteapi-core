@@ -24,16 +24,28 @@ async def create_transformation(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
+    """ Create a new transformation configuration """
     transformation_id = IDPREDIX + str(uuid4())
-    transformation_info = {
-        'app_type': config.app_type,
-        'configuration': config.configuration
-    }
 
-    await cache.set(transformation_id, json.dumps(transformation_info).encode('utf-8'))
+    await cache.set(transformation_id, config.json())
     if session_id:
         await _update_session_list_item(session_id, 'transformation_info', [transformation_id], cache)
-    return {'transformation_id': transformation_id}
+    return dict(transformation_id=transformation_id)
+
+@router.get('/{transformation_id}/status')
+async def get_transformation_status(
+    transformation_id: str,
+    cache: Redis = Depends(depends_redis),
+) -> Dict:
+    # Fetch transformation info from cache and populate the pydantic model
+    transformation_info_json = json.loads(await cache.get(transformation_id))
+    transformation_info = TransformationConfig(**transformation_info_json)
+
+    # Apply the appropriate transformation strategy (plugin) using the factory
+    transformation_strategy = factory.create_transformation_strategy(transformation_info)
+
+    status = transformation_strategy.status()
+    return status
 
 @router.get('/{transformation_id}')
 async def get_transformation(
@@ -41,11 +53,12 @@ async def get_transformation(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    # Fetch transformation info from cache
-    transformation_info = json.loads(await cache.get(transformation_id))
+    # Fetch transformation info from cache and populate the pydantic model
+    transformation_info_json = json.loads(await cache.get(transformation_id))
+    transformation_info = TransformationConfig(**transformation_info_json)
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(TransformationConfig(**transformation_info))
+    transformation_strategy = factory.create_transformation_strategy(transformation_info)
 
     result = transformation_strategy.get(session_id)
     if result and session_id:

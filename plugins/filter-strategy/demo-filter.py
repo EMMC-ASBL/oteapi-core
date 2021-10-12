@@ -1,7 +1,8 @@
+# pylint: disable=W0511, W0613
 """
 Demo-filter strategy
 """
-from typing import Protocol, Dict, Optional
+from typing import Dict, Optional
 from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
 from app.strategy import factory
