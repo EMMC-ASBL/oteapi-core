@@ -17,10 +17,12 @@ class DemoResource:
     def get(self, session_id: Optional[str] = None) -> Dict:
         """ Manage mapping and return shared map """
 
-        # TODO: Add mapping actions
-
+        # Example of the plugin using the download strategy to fetch the data
+        download_strategy = factory.create_download_strategy(self.resource_config)
+        read_output = download_strategy.read({})
+        print (read_output)
         return dict()
 
 
 def initialize() -> None:
-    factory.register_resource_strategy("resource/demo", DemoResource)
+    factory.register_resource_strategy("image/jpeg", DemoResource)
