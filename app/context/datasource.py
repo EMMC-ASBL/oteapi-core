@@ -1,18 +1,15 @@
 """
 Data Source context
 """
-from typing import Dict, List, Optional, TypeVar
+from typing import Dict, Optional
 from uuid import uuid4
 import json
-from pydantic import BaseModel, AnyUrl
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
 from app.strategy import factory
-from urllib.parse import urlparse
-from .session import _update_session, _update_session_list_item
 from app.models.resourceconfig import ResourceConfig
-
+from .session import _update_session, _update_session_list_item
 
 router = APIRouter()
 
@@ -25,12 +22,18 @@ async def create_dataresource(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    """ Register an external data resource. If the resource is a service the <b>accessURL</b> must be specified. (For instance landing page, SPARQL endpoints, etc.)"""
+    """ Register an external data resource. If the resource is a
+    service the <b>accessURL</b> must be specified. (For instance
+    landing page, SPARQL endpoints, etc.)"""
     resource_id = IDPREDIX + str(uuid4())
 
     await cache.set(resource_id, config.json())
     if session_id:
-        await _update_session_list_item(session_id, 'resource_info', [resource_id], cache)
+        await _update_session_list_item(
+            session_id,
+            'resource_info',
+            [resource_id],
+            cache)
     return dict(resource_id=resource_id)
 
 

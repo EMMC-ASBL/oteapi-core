@@ -4,13 +4,10 @@ Microservice Session
 from typing import Any, Dict, List
 from uuid import uuid4
 import json
-from pydantic import BaseModel
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from app.strategy import factory
-from urllib.parse import urlparse
-import dlite
+
 
 router = APIRouter()
 
@@ -18,12 +15,12 @@ IDPREFIX = 'session-'
 
 @router.post('/')
 async def create_session(
-    session: Dict[str, Any] = {},
+    session: Dict[str, Any],
     cache: Redis = Depends(depends_redis),
 ) -> Dict[str,str]:
     """ Create a new session """
-    id = str(uuid4())
-    session_id = f'{IDPREFIX}{id}'
+
+    session_id = f'{IDPREFIX}{str(uuid4())}'
     new_session = session.copy()
     await cache.set(session_id, json.dumps(new_session).encode('utf-8'))
     return {'session_id': session_id}
@@ -53,12 +50,12 @@ async def delete_all_sessions(
 
 async def _update_session(
     session_id: str,
-    update_session: Dict[str, Any],
+    updated_session: Dict[str, Any],
     redis: Redis,
 ) -> Dict:
     """ Update an existing session (to be called internally). """
     session = json.loads(await redis.get(session_id))
-    session.update(update_session)
+    session.update(updated_session)
     await redis.set(session_id, json.dumps(session).encode('utf-8'))
     return session
 
@@ -81,12 +78,12 @@ async def _update_session_list_item(
 @router.put('/{session_id}')
 async def update_session(
     session_id: str,
-    update_session: Dict[str, Any] = {},
+    updatet_session: Dict[str, Any],
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
     """ Update session object """
     session = json.loads(await cache.get(session_id))
-    session.update(update_session)
+    session.update(updatet_session)
     await cache.set(session_id, json.dumps(session).encode('utf-8'))
     return session
 

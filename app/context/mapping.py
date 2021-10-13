@@ -3,15 +3,13 @@ Data Source context
 """
 from uuid import uuid4
 import json
-
+from typing import Optional, Dict
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from typing import Optional, Dict
 from app.strategy import factory
 from app.models.mappingconfig import MappingConfig
 from .session import _update_session, _update_session_list_item
-import dlite
 
 
 router = APIRouter()
@@ -33,7 +31,7 @@ async def create_mapping(
 
     await cache.set(mapping_id, config.json())
     if session_id:
-        await _update_session_list_item(session_id, 'filter_info', [filter_id], cache)
+        await _update_session_list_item(session_id, 'mapping_info', [mapping_id], cache)
     return dict(mapping_id=mapping_id)
 
 

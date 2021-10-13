@@ -4,11 +4,10 @@ Data Source context
 from uuid import uuid4
 import json
 
-from typing import Dict, Any, Optional
+from typing import Dict, Optional
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from pydantic import BaseModel
 from app.strategy import factory
 from app.models.filterconfig import FilterConfig
 from .session import _update_session, _update_session_list_item

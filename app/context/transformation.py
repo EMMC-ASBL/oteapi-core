@@ -4,11 +4,10 @@ Data Source context
 from uuid import uuid4
 import json
 
-from typing import Dict, Any, Optional
+from typing import Dict, Optional
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from pydantic import BaseModel
 from app.strategy import factory
 from app.models.transformationconfig import TransformationConfig
 from .session import _update_session, _update_session_list_item
@@ -29,7 +28,11 @@ async def create_transformation(
 
     await cache.set(transformation_id, config.json())
     if session_id:
-        await _update_session_list_item(session_id, 'transformation_info', [transformation_id], cache)
+        await _update_session_list_item(
+            session_id,
+            'transformation_info',
+            [transformation_id],
+            cache)
     return dict(transformation_id=transformation_id)
 
 @router.get('/{transformation_id}/status')
@@ -37,6 +40,7 @@ async def get_transformation_status(
     transformation_id: str,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
+    """ Get the current status of a defined transformation """
     # Fetch transformation info from cache and populate the pydantic model
     transformation_info_json = json.loads(await cache.get(transformation_id))
     transformation_info = TransformationConfig(**transformation_info_json)
@@ -53,6 +57,8 @@ async def get_transformation(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
+    """ Get transformation """
+
     # Fetch transformation info from cache and populate the pydantic model
     transformation_info_json = json.loads(await cache.get(transformation_id))
     transformation_info = TransformationConfig(**transformation_info_json)
@@ -72,11 +78,13 @@ async def execute_transformation(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
+    """ Execute (run) a transformation """
     # Fetch transformation info from cache
     transformation_info = json.loads(await cache.get(transformation_id))
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(TransformationConfig(**transformation_info))
+    transformation_strategy = factory.create_transformation_strategy(
+        TransformationConfig(**transformation_info))
 
     # If session id is given, pass the object to the strategy create function
     if session_id:

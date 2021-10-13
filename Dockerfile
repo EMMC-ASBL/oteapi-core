@@ -41,8 +41,8 @@ RUN bandit -r app \
   && pylint --extension-pkg-whitelist='pydantic' --disable=R,C plugins
 
 # Run pytest with code coverage
-#RUN pytest --cov app tests/
-#RUN cd /app/docs && make html
+# RUN pytest --cov app
+
 # Run with reload option
 CMD hypercorn wsgi:app --bind 0.0.0.0:8080 --reload
 EXPOSE 8080
