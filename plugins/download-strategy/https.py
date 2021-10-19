@@ -1,22 +1,23 @@
+ #pylint: disable=W0613, W0511
 """ Strategy class for image/jpg """
 
-#from dataclasses import dataclass
-from app import factory
-from typing import Dict
+from dataclasses import dataclass
+from app.strategy import factory
+from app.models.resourceconfig import ResourceConfig
+from typing import Dict, Optional
 import requests
 
-#@dataclass
+@dataclass
 class HTTPSStrategy:
-    def __init__(self, **kwargs):
-        self.uri = kwargs.get('url')
-        self.path = kwargs.get('path')
-        self.config = kwargs.get('configuration')
+
+    resource_config: ResourceConfig
 
 
-    def read(self) -> Dict:
+    def read(self, session_id: Optional[str] = None) -> Dict:
         """ Download via http/https and store on local cache """
-        req = requests.get(self.uri, allow_redirects=True)
-        filename = self.path.rsplit('/', 1)[-1] # Extract filename
+        req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
+        path = self.resource_config.downloadUrl.path
+        filename = path.rsplit('/', 1)[-1] # Extract filename
         filepath = f'/app/data/{filename}' # TODO: Use configurable cache storage location
         with open (filepath, 'wb') as output:
             output.write(req.content)

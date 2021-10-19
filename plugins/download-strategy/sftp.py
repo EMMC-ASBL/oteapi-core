@@ -1,26 +1,19 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from app import factory
-from typing import Dict
+from typing import Dict, Optional
 import pysftp
-import os
+from app.strategy import factory
+from app.models.resourceconfig import ResourceConfig
+
 
 @dataclass
 class SFTPStrategy:
     """ strategy for retrieving data via sftp """
 
-    def __init__(self, **kwargs):
-        self._configuration = kwargs.get('configuration')
-        self._uri = kwargs.get('url')
-        self._username= kwargs.get('username')
-        self._password= kwargs.get('password')
-        self._port = int(kwargs.get('port', '22'))
-        self._hostname = kwargs.get('hostname')
-        self._path = kwargs.get('path')
-        self._filename = os.path.basename(self._path)
+    resource_config: ResourceConfig
 
-    def read(self) -> Dict:
+    def read(self, session_id: Optional[str] = None) -> Dict: #pylint: disable=W0613
         """ Download via sftp """
 
         # Setup connection options
@@ -29,14 +22,17 @@ class SFTPStrategy:
 
         # open connection and store data locally
         with pysftp.Connection(
-            host=self._hostname,
-            username=self._username,
-            password=self._password,
-            port=self._port,
+            host=self.resource_config.accessUrl.host,
+            username=self.resource_config.accessUrl.user,
+            password=self.resource_config.accessUrl.password,
+            port=self.resource_config.accessUrl.port,
             cnopts=cnopts,
         ) as sftp:
-            localpath=f'./data/{self._filename}'
-            sftp.get(self._path, localpath=localpath)
+            # Here we just extract the filename and store the downloaded
+            # file to ./data/<filename>
+            filename = self.resource_config.accessUrl.path.split('/')[-1]
+            localpath=f'./data/{filename}'
+            sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
             return dict(filename=localpath)
 
         return dict()

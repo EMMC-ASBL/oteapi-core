@@ -17,7 +17,7 @@ The production target will not reload itself on code change and will run a predi
 
 	
 	docker build --rm -q -f Dockerfile \
-	  --label "ontotrans.oteapi=production" \	  
+	  --label "ontotrans.oteapi=production" \
 	  -t "ontotrans/oteapi:latest" .
 	
 	

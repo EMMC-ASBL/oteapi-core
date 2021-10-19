@@ -37,10 +37,11 @@ COPY . .
 # Run static security check and linters
 RUN bandit -r app \
   && safety check -r requirements.txt --bare \
-  && pylint --extension-pkg-whitelist='pydantic' app
+  && pylint --extension-pkg-whitelist='pydantic' app \
+  && pylint --extension-pkg-whitelist='pydantic' --disable=R,C plugins
 
 # Run pytest with code coverage
-#RUN pytest --cov app tests/
+RUN pytest --cov app
 
 # Run with reload option
 CMD hypercorn wsgi:app --bind 0.0.0.0:8080 --reload

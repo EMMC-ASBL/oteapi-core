@@ -1,14 +1,18 @@
 """ Strategy class for text/csv """
 
-from app import factory
-from typing import Dict
+from dataclasses import dataclass
+from app.strategy import factory
+from typing import Dict, Optional
+from app.models.resourceconfig import ResourceConfig
 
-
+@dataclass
 class CSVParseStrategy:
 
-    def parse(self) -> Dict:
+    resource_config: ResourceConfig
+
+    def parse(self, session_id: Optional[str] = None) -> Dict: #pylint: disable=W0613
         print ("CSV in action!")
-        return dict(status="ok")
+        return {}
 
 
 def initialize() -> None:

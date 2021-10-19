@@ -1,43 +1,19 @@
 """
 Data Source context
 """
-from typing import Dict, List, Optional, TypeVar
+from typing import Dict, Optional
 from uuid import uuid4
 import json
-from pydantic import BaseModel, AnyUrl
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from app import factory
-from urllib.parse import urlparse
+from app.strategy import factory
+from app.models.resourceconfig import ResourceConfig
 from .session import _update_session, _update_session_list_item
-import dlite
-
 
 router = APIRouter()
 
 IDPREDIX = 'dataresource-'
-
-class ResourceConfig(BaseModel):
-    downloadUrl: AnyUrl
-    mediaType: str
-    accessUrl: Optional[str] # doc
-    license: Optional[str]
-    accessRights: Optional [str]
-    description: Optional [str]
-    published: Optional [str]
-    configuration: Optional[Dict]
-
-class ResourceInfo(BaseModel):
-    url: AnyUrl
-    media_type: str
-    configuration: Dict
-    scheme: str
-    path: str
-    username: Optional[str] = None
-    password: Optional[str] = None
-    hostname: Optional[str] = None
-    port: Optional[int] = None
 
 
 @router.post('/')
@@ -46,24 +22,18 @@ async def create_dataresource(
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    """ Register an external data resource. If the resource is a service the <b>accessURL</b> must be specified. (For instance landing page, SPARQL endpoints, etc.)"""
+    """ Register an external data resource. If the resource is a
+    service the <b>accessURL</b> must be specified. (For instance
+    landing page, SPARQL endpoints, etc.)"""
     resource_id = IDPREDIX + str(uuid4())
 
-    resource_info = ResourceInfo(
-        url=config.downloadUrl,
-        media_type=config.mediaType,
-        configuration=config.configuration,
-        scheme=config.downloadUrl.scheme,
-        path=config.downloadUrl.path,
-        username=config.downloadUrl.user,
-        password=config.downloadUrl.password,
-        hostname=config.downloadUrl.host,
-        port=config.downloadUrl.port)
-    print (resource_info.dict())
-
-    await cache.set(resource_id, resource_info.json())
+    await cache.set(resource_id, config.json())
     if session_id:
-        await _update_session_list_item(session_id, 'resource_info', [resource_id], cache)
+        await _update_session_list_item(
+            session_id,
+            'resource_info',
+            [resource_id],
+            cache)
     return dict(resource_id=resource_id)
 
 
@@ -74,9 +44,25 @@ async def info_dataresource(
 ) -> Dict:
     """ Get data resource info """
     resource_info_json = json.loads(await cache.get(resource_id))
-    resource_info = ResourceInfo(**resource_info_json)
+    resource_info = ResourceConfig(**resource_info_json)
 
     return resource_info.dict() #resource_info = resource_info)
+
+@router.get('/{resource_id}')
+async def get_dataresource(
+    resource_id: str,
+    session_id: Optional[str] = None,
+    cache: Redis = Depends(depends_redis),
+) -> Dict:
+    """ Get data resource """
+    resource_info_json = json.loads(await cache.get(resource_id))
+    resource_config = ResourceConfig(**resource_info_json)
+    strategy = factory.create_resource_strategy(resource_config)
+    result = strategy.get(session_id)
+    if result and session_id:
+        await _update_session(session_id, result, cache)
+
+    return result
 
 
 @router.get('/{resource_id}/read')
@@ -89,17 +75,21 @@ async def read_dataresource(
     Read data from dataresource using the appropriate download strategy.
     Parse data information using the appropriate parser
     """
-    resource_info = json.loads(await cache.get(resource_id))
-
+    resource_info_json = json.loads(await cache.get(resource_id))
+    resource_config = ResourceConfig(**resource_info_json)
+    session_data = {}
+    if session_id:
+        session_data = json.loads(await cache.get(session_id))
     # Download
-    download_strategy = factory.create_download_strategy(resource_info)
-    read_output = download_strategy.read()
+
+    download_strategy = factory.create_download_strategy(resource_config)
+    read_output = download_strategy.read(session_data)
     if session_id:
         await _update_session(session_id, read_output, cache)
 
     # Parse
-    parse_strategy = factory.create_parse_strategy(resource_info)
-    parse_output = parse_strategy.parse()
+    parse_strategy = factory.create_parse_strategy(resource_config)
+    parse_output = parse_strategy.parse(session_data)
     if session_id:
         await _update_session(session_id, parse_output, cache)
 
