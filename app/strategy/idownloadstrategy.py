@@ -2,7 +2,7 @@
 Download Strategy Interface
 """
 from dataclasses import dataclass
-from typing import Protocol, Dict, Optional
+from typing import Protocol, Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
 
 @dataclass
@@ -11,5 +11,5 @@ class IDownloadStrategy(Protocol): # pylint: disable=R0903
 
     resource_config: ResourceConfig
 
-    def read(self, session_id: Optional[str] = None) -> Dict:
+    def read(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Dowload data from source """

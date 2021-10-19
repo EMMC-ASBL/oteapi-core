@@ -11,7 +11,7 @@ from .idownloadstrategy import IDownloadStrategy
 from .itransformationstrategy import ITransformationStrategy
 from .ifilterstrategy import IFilterStrategy
 from .imappingstrategy import IMappingStrategy
-from .irsourcestrategy import IResourceStrategy
+from .iresourcestrategy import IResourceStrategy
 
 
 # Maps of strategy plugin creation functions

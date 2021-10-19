@@ -4,6 +4,7 @@ plugins:
     - "plugins.download-strategy.sftp"
     - "plugins.download-strategy.https"
     - "plugins.filter-strategy.demo-filter"
+    - "plugins.filter-strategy.crop-filter"
     - "plugins.mapping-strategy.demo-mapping"
     - "plugins.resource-strategy.demo-resource"
     - "plugins.transformation-strategy.dlite-transformation"

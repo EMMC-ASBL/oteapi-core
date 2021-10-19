@@ -1,6 +1,6 @@
 #pylint: disable=W0613, W0511
 from app.strategy import factory
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from datetime import datetime
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
@@ -11,7 +11,7 @@ class DummyTransformationStrategy:
 
     transformation_config: TransformationConfig
 
-    def run(self, session_id: Optional[str] = None) -> str:
+    def run(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Run a job, return a jobid"""
         print ("Running sim...")
         return "a01d"
@@ -30,7 +30,7 @@ class DummyTransformationStrategy:
         )
         return ts
 
-    def get(self, session_id: Optional[str] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ get transformation """
 
         # TODO: update and return global state

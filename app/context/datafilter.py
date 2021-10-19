@@ -43,9 +43,9 @@ async def get_filter(
 
     filter_info_json = json.loads(await cache.get(filter_id))
     filter_info = FilterConfig(**filter_info_json)
-
     filter_strategy = factory.create_filter_strategy(filter_info)
-    result = filter_strategy.get(session_id)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = filter_strategy.get(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
 

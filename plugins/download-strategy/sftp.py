@@ -1,7 +1,7 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 import pysftp
 from app.strategy import factory
 from app.models.resourceconfig import ResourceConfig
@@ -13,7 +13,7 @@ class SFTPStrategy:
 
     resource_config: ResourceConfig
 
-    def read(self, session_id: Optional[str] = None) -> Dict: #pylint: disable=W0613
+    def read(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Download via sftp """
 
         # Setup connection options

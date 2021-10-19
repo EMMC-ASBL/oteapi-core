@@ -6,7 +6,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi_plugins import redis_plugin, RedisSettings
 from yaml import safe_load
 from app.context import datasource, session, transformation, datafilter, mapping
-from app.strategy import factory, loader
+from app.strategy import loader
 
 
 
