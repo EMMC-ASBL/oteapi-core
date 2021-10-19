@@ -66,7 +66,8 @@ async def get_transformation(
     # Apply the appropriate transformation strategy (plugin) using the factory
     transformation_strategy = factory.create_transformation_strategy(transformation_info)
 
-    result = transformation_strategy.get(session_id)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = transformation_strategy.get(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
 
@@ -87,14 +88,10 @@ async def execute_transformation(
         TransformationConfig(**transformation_info))
 
     # If session id is given, pass the object to the strategy create function
-    if session_id:
-        session_data = json.loads(await cache.get(session_id))
-        create_result = transformation_strategy.create(session_data)
-    else:
-        create_result = transformation_strategy.create()
-    await _update_session(session_id, create_result, cache)
-    jobid = transformation_strategy.run()
-    if session_id:
-        await _update_session_list_item(session_id, 'jobs', [(jobid, transformation_id)], cache)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    run_result = transformation_strategy.run(session_data)
 
-    return dict(jobid=jobid)
+    if session_id and run_result:
+        await _update_session(session_id, run_result, cache)
+
+    return run_result

@@ -2,7 +2,7 @@
 """
 Demo-mapping strategy
 """
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from app.models.mappingconfig import MappingConfig
 from app.strategy import factory
@@ -14,7 +14,7 @@ class DemoMapping:
 
     mapping_config: MappingConfig
 
-    def get(self, session_id: Optional[str] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Manage mapping and return shared map """
 
         # TODO: Add mapping actions

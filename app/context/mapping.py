@@ -46,7 +46,8 @@ async def get_mapping(
     mapping_info = MappingConfig(**mapping_info_json)
 
     mapping_strategy = factory.create_mapping_strategy(mapping_info)
-    result = mapping_strategy.get(session_id)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = mapping_strategy.get(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
 

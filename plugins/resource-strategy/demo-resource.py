@@ -2,7 +2,7 @@
 """
 Demo-mapping strategy
 """
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from app.models.resourceconfig import ResourceConfig
 from app.strategy import factory
@@ -14,7 +14,7 @@ class DemoResource:
 
     resource_config : ResourceConfig
 
-    def get(self, session_id: Optional[str] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Manage mapping and return shared map """
 
         # Example of the plugin using the download strategy to fetch the data

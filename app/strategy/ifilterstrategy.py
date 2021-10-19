@@ -2,7 +2,7 @@
 Resource Strategy Interface
 """
 
-from typing import Protocol, Dict, Optional
+from typing import Protocol, Dict, Optional, Any
 from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
 
@@ -12,5 +12,5 @@ class IFilterStrategy(Protocol):
 
     filter_config : FilterConfig
 
-    def get(self, session_id: Optional[str] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Execute strategy and return a dictionary """

@@ -58,7 +58,8 @@ async def get_dataresource(
     resource_info_json = json.loads(await cache.get(resource_id))
     resource_config = ResourceConfig(**resource_info_json)
     strategy = factory.create_resource_strategy(resource_config)
-    result = strategy.get(session_id)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = strategy.get(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
 
@@ -77,11 +78,9 @@ async def read_dataresource(
     """
     resource_info_json = json.loads(await cache.get(resource_id))
     resource_config = ResourceConfig(**resource_info_json)
-    session_data = {}
-    if session_id:
-        session_data = json.loads(await cache.get(session_id))
-    # Download
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
 
+    # Download
     download_strategy = factory.create_download_strategy(resource_config)
     read_output = download_strategy.read(session_data)
     if session_id:

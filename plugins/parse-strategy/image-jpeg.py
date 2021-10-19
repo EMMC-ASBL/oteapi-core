@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from app.strategy import factory
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
 from PIL import Image
 
@@ -19,10 +19,12 @@ class ImageDataParseStrategy:
         else:
             self.conf = {}
 
-    def parse(self, session_id: Optional[str] = None) -> Dict: #pylint: disable=W0613
-        if 'crop' in self.conf:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+        self.conf.update(session)
+        print ("### Updated", self.conf)
+        if 'imagecrop' in self.conf:
             im = Image.open(f'{self.localpath}/{self.filename}')
-            crop = self.conf['crop']
+            crop = self.conf['imagecrop']
             im_cropped = im.crop(tuple(crop))
             cropped_filename = f'{self.localpath}/cropped_{self.filename}'
             im_cropped = im_cropped.save(cropped_filename)
