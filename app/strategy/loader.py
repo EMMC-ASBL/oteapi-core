@@ -20,5 +20,6 @@ def import_module(name: str) -> PluginInterface:
 def load_plugins(plugins: list[str]) -> None:
     """ Load plugins from the plugins list """
     for plugin_name in plugins:
-        plugin = import_module(plugin_name)
-        plugin.initialize()
+        import_module(plugin_name)
+#        plugin = import_module(plugin_name)
+#        plugin.initialize()

@@ -2,14 +2,18 @@
 """
 Transformation example (dummy)
 """
-from app.strategy import factory
+
 from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from datetime import datetime
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
-
+from app.strategy.factory import StrategyFactory
+import dlite
 
 @dataclass
+@StrategyFactory.register(
+    ('transformation_type', 'dlite/transformation')
+)
 class DLiteTransformation:
     """ Testing the API """
 
@@ -18,9 +22,14 @@ class DLiteTransformation:
     def run(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Run a job, return jobid """
         print ("Running")
-        return "0"
+        return dict(result="0")
 
 
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+        """ Initialize a job"""
+        coll = dlite.Collection()
+        return dict(collection_id=coll.uuid)
+    
     def status(self) -> TransformationStatus:
         """ Get job status """
         ts = TransformationStatus(
@@ -40,6 +49,3 @@ class DLiteTransformation:
 
         # TODO: update and return global state
         return dict()
-
-def initialize() -> None:
-    factory.register_transformation_strategy("dlite/transformation", DLiteTransformation)
