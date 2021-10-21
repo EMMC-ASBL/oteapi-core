@@ -15,7 +15,7 @@ class ITransformationStrategy(Protocol):  # pylint: disable=R0903
     def run(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Run a job, return jobid """
 
-    def status(self) -> TransformationStatus:
+    def status(self, task_id: str) -> TransformationStatus:
         """ Get job status """
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:

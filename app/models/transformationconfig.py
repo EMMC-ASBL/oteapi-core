@@ -19,8 +19,8 @@ class TransformationConfig(BaseModel):
 class TransformationStatus(BaseModel):
     """ Return from transformation status """
     id: str
-    status: str
-    messages: List[str]
-    created: datetime
-    startTime: datetime
-    finishTime: datetime
+    status: Optional[str]
+    messages: Optional[List[str]]
+    created: Optional[datetime]
+    startTime: Optional[datetime]
+    finishTime: Optional[datetime]

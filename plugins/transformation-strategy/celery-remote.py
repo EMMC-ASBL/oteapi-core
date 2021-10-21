@@ -6,10 +6,10 @@ from app.strategy.factory import StrategyFactory
 from pydantic import BaseModel
 from typing import Any, Dict, Optional, List
 from dataclasses import dataclass
-from datetime import datetime
 from fastapi_plugins import RedisSettings
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from celery import Celery
+from celery.result import AsyncResult
 
 
 # Connect Celery to the currently running Reddis instance
@@ -33,25 +33,20 @@ class CeleryRemoteStrategy:
         """ Run a job, return a jobid"""
 
         config = self.transformation_config.configuration
-        print ("===", config)
         celeryConfig = CeleryConfig(**config)
         result = app.send_task(celeryConfig.taskName, celeryConfig.args)
-        return dict(result=result)
+        return dict(result=result.task_id)
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize a job"""
         return dict()
 
-    def status(self) -> TransformationStatus:
+    def status(self, task_id: str) -> TransformationStatus:
         """ Get job status """
+        result = AsyncResult(id=task_id, app=app)
         ts = TransformationStatus(
-            id='0',
-            status='wip',
-            messages=[],
-            created=datetime.utcnow(),
-            priority=0,
-            secret=None,
-            configuration={}
+            id=task_id,
+            status=result.state
         )
         return ts
 

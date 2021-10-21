@@ -25,10 +25,10 @@ class DummyTransformationStrategy:
         # TODO: update with necessary data
         return dict(result="collection id")
 
-    def status(self) -> TransformationStatus:
+    def status(self, task_id: str) -> TransformationStatus:
         """ Get job status """
         ts = TransformationStatus(
-            id='0',
+            id=task_id,
             status='wip',
             messages=[],
             created=datetime.utcnow(),
