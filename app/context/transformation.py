@@ -8,8 +8,8 @@ from typing import Dict, Optional
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from app.strategy import factory
 from app.models.transformationconfig import TransformationConfig
+from app.strategy.itransformationstrategy import create_transformation_strategy
 from .session import _update_session, _update_session_list_item
 
 router = APIRouter()
@@ -46,7 +46,7 @@ async def get_transformation_status(
     transformation_info = TransformationConfig(**transformation_info_json)
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(transformation_info)
+    transformation_strategy = create_transformation_strategy(transformation_info)
 
     status = transformation_strategy.status()
     return status
@@ -64,7 +64,7 @@ async def get_transformation(
     transformation_info = TransformationConfig(**transformation_info_json)
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(transformation_info)
+    transformation_strategy = create_transformation_strategy(transformation_info)
 
     session_data = None if not session_id else json.loads(await cache.get(session_id))
     result = transformation_strategy.get(session_data)
@@ -84,7 +84,7 @@ async def execute_transformation(
     transformation_info = json.loads(await cache.get(transformation_id))
 
     # Apply the appropriate transformation strategy (plugin) using the factory
-    transformation_strategy = factory.create_transformation_strategy(
+    transformation_strategy = create_transformation_strategy(
         TransformationConfig(**transformation_info))
 
     # If session id is given, pass the object to the strategy create function
@@ -95,3 +95,26 @@ async def execute_transformation(
         await _update_session(session_id, run_result, cache)
 
     return run_result
+
+@router.post('/{transformation_id}/initialize')
+async def initialize_transformation(
+    transformation_id: str,
+    session_id: Optional[str] = None,
+    cache: Redis = Depends(depends_redis),
+) -> Dict:
+    """ Initialize a transformation """
+    # Fetch transformation info from cache
+    transformation_info = json.loads(await cache.get(transformation_id))
+
+    # Apply the appropriate transformation strategy (plugin) using the factory
+    transformation_strategy = create_transformation_strategy(
+        TransformationConfig(**transformation_info))
+
+    # If session id is given, pass the object to the strategy create function
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    init_result = transformation_strategy.initialize(session_data)
+
+    if session_id and init_result:
+        await _update_session(session_id, init_result, cache)
+
+    return init_result

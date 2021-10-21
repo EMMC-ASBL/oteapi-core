@@ -6,15 +6,26 @@ from typing import Dict, Optional, Any, List
 from pydantic import BaseModel
 from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
-from app.strategy import factory
+from app.strategy.factory import StrategyFactory
+
 
 class CropDataModel(BaseModel):
     crop: List[int]
 
+
 @dataclass
+@StrategyFactory.register(
+    ('filterType', 'filter/crop')
+)
 class CropFilter:
 
-    filter_config : FilterConfig
+    filter_config: FilterConfig
+
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+        """ Initialize strategy and return a dictionary """
+
+        # TODO: Add logic
+        return dict(result='collectionid')
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Execute strategy and return a dictionary """
@@ -23,6 +34,3 @@ class CropFilter:
         retobj = dict(imagecrop=cropData.crop)
 
         return retobj
-
-def initialize() -> None:
-    factory.register_filter_strategy("filter/crop", CropFilter)

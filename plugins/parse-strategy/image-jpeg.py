@@ -1,12 +1,21 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from app.strategy import factory
+from app.strategy.factory import StrategyFactory
 from typing import Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
 from PIL import Image
 
 @dataclass
+@StrategyFactory.register(
+    ('mediaType', 'image/jpg'),
+    ('mediaType', 'image/jpeg'),
+    ('mediaType', 'image/j2p'),
+    ('mediaType', 'image/png'),
+    ('mediaType', 'image/gif'),
+    ('mediaType', 'image/tiff'),
+    ('mediaType', 'image/eps'),
+    )
 class ImageDataParseStrategy:
 
     resource_config: ResourceConfig
@@ -19,10 +28,15 @@ class ImageDataParseStrategy:
         else:
             self.conf = {}
 
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+        """ Initialize"""
+        return dict()
+    
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         self.conf.update(session)
         print ("### Updated", self.conf)
         if 'imagecrop' in self.conf:
+            print('cropping!')
             im = Image.open(f'{self.localpath}/{self.filename}')
             crop = self.conf['imagecrop']
             im_cropped = im.crop(tuple(crop))
@@ -30,12 +44,3 @@ class ImageDataParseStrategy:
             im_cropped = im_cropped.save(cropped_filename)
             return dict(filename=cropped_filename)
         return dict(status='ok')
-
-def initialize() -> None:
-    factory.register_parse_strategy("image/jpg", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/jpeg", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/j2p", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/png", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/gif", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/tiff", ImageDataParseStrategy)
-    factory.register_parse_strategy("image/eps", ImageDataParseStrategy)
