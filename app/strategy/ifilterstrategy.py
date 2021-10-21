@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
 
-
 @dataclass
 class IFilterStrategy(Protocol):
     """ Resource Interface """
@@ -23,4 +22,4 @@ class IFilterStrategy(Protocol):
 
 def create_filter_strategy(filter_config: FilterConfig) -> IFilterStrategy:
     """ Helper function to simplify creating a filter strategy """
-    return StrategyFactory.make_strategy(filter_config)
+    return StrategyFactory.make_strategy(filter_config, 'filterType')

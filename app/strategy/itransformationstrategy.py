@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from app.strategy.factory import StrategyFactory
 
-
 @dataclass
 class ITransformationStrategy(Protocol):  # pylint: disable=R0903
     """ Tranformation Strategy Interfaces """

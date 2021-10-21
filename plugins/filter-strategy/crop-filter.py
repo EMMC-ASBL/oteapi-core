@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
 
-
 class CropDataModel(BaseModel):
     crop: List[int]
 

@@ -17,7 +17,6 @@ router = APIRouter()
 
 IDPREDIX = 'dataresource-'
 
-
 @router.post('/')
 async def create_dataresource(
     config: ResourceConfig,
@@ -60,8 +59,7 @@ async def info_dataresource(
     resource_info_json = json.loads(await cache.get(resource_id))
     resource_info = ResourceConfig(**resource_info_json)
 
-    return resource_info.dict()  # resource_info = resource_info)
-
+    return resource_info.dict() #resource_info = resource_info)
 
 @router.get('/{resource_id}')
 async def get_dataresource(
@@ -74,19 +72,17 @@ async def get_dataresource(
     resource_info_json = json.loads(await cache.get(resource_id))
     resource_config = ResourceConfig(**resource_info_json)
 
-    if resource_config.accessUrl and resource_config.accessService:
-        strategy = create_resource_strategy(resource_config)
-        session_data = None if not session_id else json.loads(await cache.get(session_id))
-        result = strategy.get(session_data)
-    elif resource_config.downloadUrl and resource_config.mediaType:
-        strategy = create_download_strategy(resource_config)
-        session_data = None if not session_id else json.loads(await cache.get(session_id))
-        result = strategy.get(session_data)
-    else:
-        raise HTTPException(status_code=404,
-                detail="Missing downloadUrl/mediaType or accessUrl/accessService identifyer")
+    if not resource_config.downloadUrl or not resource_config.mediaType:
+        raise HTTPException(
+            status_code=404,
+            detail="Missing downloadUrl and/or mediaType identifyer")
+
+    strategy = create_resource_strategy(resource_config)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = strategy.get(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
+
     return result
 
 
@@ -104,48 +100,16 @@ async def read_dataresource(
     resource_config = ResourceConfig(**resource_info_json)
     session_data = None if not session_id else json.loads(await cache.get(session_id))
 
-    if resource_config.accessUrl and resource_config.accessService:
-        strategy = create_resource_strategy(resource_config)
-        session_data = None if not session_id else json.loads(await cache.get(session_id))
-        result = strategy.get(session_data)
-        if result and session_id:
-            await _update_session(session_id, result, cache)
-    elif resource_config.downloadUrl and resource_config.mediaType:
-        download_strategy = create_download_strategy(resource_config)
-        read_output = download_strategy.read(session_data)
-        if session_id:
-            await _update_session(session_id, read_output, cache)
-        # Parse
-        parse_strategy = create_parse_strategy(resource_config)
-        parse_output = parse_strategy.parse(session_data)
-        if session_id:
-            await _update_session(session_id, parse_output, cache)
-        return {"status": "ok"}
-    else:
-        raise HTTPException(status_code=404,
-                detail="Missing downloadUrl/mediaType or accessUrl/accessService identifyer")
 
+    download_strategy = create_download_strategy(resource_config)
+    read_output = download_strategy.read(session_data)
+    if session_id:
+        await _update_session(session_id, read_output, cache)
 
-@router.post('/{resource_id}/initialize')
-async def initialize_dataresource(
-    resource_id: str,
-    session_id: Optional[str] = None,
-    cache: Redis = Depends(depends_redis),
-) -> Dict:
-    """ Initialize data resource """
+    # Parse
+    parse_strategy = create_parse_strategy(resource_config)
+    parse_output = parse_strategy.parse(session_data)
+    if session_id:
+        await _update_session(session_id, parse_output, cache)
 
-    resource_info_json = json.loads(await cache.get(resource_id))
-    resource_config = ResourceConfig(**resource_info_json)
-
-    if resource_config.accessUrl and resource_config.accessService:
-        strategy = create_resource_strategy(resource_config)
-    elif resource_config.downloadUrl and resource_config.mediaType:
-        strategy = create_download_strategy(resource_config)
-    else:
-        raise HTTPException(status_code=404,
-                detail="Missing downloadUrl/mediaType or accessUrl/accessService identifyer")
-    session_data = None if not session_id else json.loads(await cache.get(session_id))
-    result = strategy.initialize(session_data)
-    if result and session_id:
-        await _update_session(session_id, result, cache)
-    return result
+    return {"status":"ok"}

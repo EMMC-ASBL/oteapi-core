@@ -29,7 +29,7 @@ class DLiteTransformation:
         """ Initialize a job"""
         coll = dlite.Collection()
         return dict(collection_id=coll.uuid)
-    
+
     def status(self) -> TransformationStatus:
         """ Get job status """
         ts = TransformationStatus(

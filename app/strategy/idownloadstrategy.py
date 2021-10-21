@@ -6,7 +6,6 @@ from typing import Protocol, Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
 
-
 @dataclass
 class IDownloadStrategy(Protocol):  # pylint: disable=R0903
     """ Data Storage Interfaces"""

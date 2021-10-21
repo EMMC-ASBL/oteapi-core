@@ -7,7 +7,6 @@ from typing import Protocol, Dict, Optional, Any
 from app.models.mappingconfig import MappingConfig
 from app.strategy.factory import StrategyFactory
 
-
 @dataclass
 class IMappingStrategy(Protocol):
     """ Mapping Interface """
