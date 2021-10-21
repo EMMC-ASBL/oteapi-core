@@ -16,7 +16,7 @@ class DemoMapping:
     """ Mapping Interface """
 
     mapping_config: MappingConfig
-    
+
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize mapping """
 
@@ -30,4 +30,4 @@ class DemoMapping:
         # TODO: Add mapping actions
 
         return {}
-    
+

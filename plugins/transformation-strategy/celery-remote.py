@@ -41,7 +41,7 @@ class CeleryRemoteStrategy:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize a job"""
         return dict()
-    
+
     def status(self) -> TransformationStatus:
         """ Get job status """
         ts = TransformationStatus(

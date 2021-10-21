@@ -18,7 +18,7 @@ class HTTPSStrategy:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize"""
         return dict()
-    
+
     def read(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Download via http/https and store on local cache """
         req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
@@ -31,7 +31,7 @@ class HTTPSStrategy:
             output.write(req.content)
             return dict(filename=filepath)
 
-    
+
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Download via http/https and store on local cache """
         req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)

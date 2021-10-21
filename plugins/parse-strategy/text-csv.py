@@ -16,8 +16,8 @@ class CSVParseStrategy:
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         print ("CSV in action!")
         return {}
-    
+
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Initialize"""
         return dict()
-    
+

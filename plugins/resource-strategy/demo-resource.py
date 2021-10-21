@@ -29,4 +29,4 @@ class DemoResource:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize"""
         return dict()
-    
+

@@ -20,4 +20,4 @@ class JSONDataParseStrategy:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Initialize"""
         return dict()
-    
+

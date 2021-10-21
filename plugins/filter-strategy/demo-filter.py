@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
 
-
 @dataclass
 @StrategyFactory.register(
     ('filterType', 'filter/demo')
