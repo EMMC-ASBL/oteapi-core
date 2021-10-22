@@ -9,9 +9,9 @@ from ase import Atoms
 
 @dataclass
 @StrategyFactory.register(
-    ('mediaType', 'structure/xyz'),
-    ('mediaType', 'structure/vasp'),
-    ('mediaType', 'structure/cif'),
+    ('mediaType', 'chemical/x-xyz'),
+    ('mediaType', 'chemical/x-cif'),
+    ('mediaType', 'chemical/x-vasp'),  # Not an official internet mediatype
     )
 class AtomisticStructureParseStrategy:
 
@@ -28,12 +28,36 @@ class AtomisticStructureParseStrategy:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Initialize"""
         return dict()
-    
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Atoms: #pylint: disable=W0613
+
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+        atoms = ase.io.read(f'{self.localpath}/{self.filename}')
+
+        # The Molecule.json contains metadata for energy. We should probably
+        # delete that
+        # Also, where should this metadata definition reside?
+        Molecule = dlite.Instance('json:Molecule.json')  # DLite Metadata  
+
+        atoms.calc = EMT()
+        basename = os.path.splitext(f'{self.filename'})[0]
+        inst = Molecule(dims=[len(atoms), 3], id=basename)  # DLite instance
+        inst.symbols = atoms.get_chemical_symbols()
+        inst.masses = atoms.get_masses()
+        inst.positions = atoms.positions
+
+        # This should be in a calculation
+        atoms.calc = EMT()
+        inst.energy = atoms.get_potential_energy()
+
+        # So we have read a molecule and linked it to the correct metadata (
+        # actually, we have made new instance of the metadata populated with
+        # values. We should probably just have the link between the Metadata
+        # and the file.
+        # How should we now make the collection?
+        coll = dlite.Collection('molecules')
+        coll.add(label=basename, inst=inst)
+        coll.save('json', 'atomscaledata.json', 'mode=w')
+
+
         # Q: Does it have to return a Dict?
         # Q: If it has to return a Dict, what are reqs of this dict?
-        # This should be able to read various atomistic structure formats with
-        # ase, start with .xyz, .cif and vasp/POSCAR files.
-        self.conf.update(session)
-        atoms = ase.io.read(f'{self.localpath}/{self.filename}')
-        return atoms
+        return Dict('I have no idea')
