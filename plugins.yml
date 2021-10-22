@@ -13,3 +13,4 @@ plugins:
     - "plugins.parse-strategy.image-jpeg"
     - "plugins.parse-strategy.text-csv"
     - "plugins.parse-strategy.text-json"
+    - "plugins.parse-strategy.atomistic-structures"
