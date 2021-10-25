@@ -34,7 +34,9 @@ class CeleryRemoteStrategy:
 
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig(**config)
-        result = app.send_task(celeryConfig.taskName, celeryConfig.args)
+        result = app.send_task(celeryConfig.taskName,
+                               celeryConfig.args,
+                               kwargs=session_id)
         return dict(result=result.task_id)
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
