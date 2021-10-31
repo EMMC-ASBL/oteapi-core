@@ -1,5 +1,5 @@
 from typing import Dict, List
-
+import json
 class DummyCache:
 
     obj = {}
@@ -12,7 +12,7 @@ class DummyCache:
             self.obj[id] = data
 
     async def get(self, id) -> Dict:
-        return self.obj[id]
+        return json.dumps(self.obj[id])
 
     async def keys(self, pattern: str) -> List[str]:
         return self.obj.keys()

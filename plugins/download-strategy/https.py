@@ -28,7 +28,7 @@ class HTTPSStrategy:
         filename = path.rsplit('/', 1)[-1]  # Extract filename
         print(f"-> PATH = {path}")
         # TODO: Use configurable cache storage location
-        filepath = f'/app/data/{filename}'
+        filepath = f'/ote-data/{filename}'
         print(f"-> STORING AT {filepath}")
         with open(filepath, 'wb') as output:
             output.write(req.content)
@@ -46,7 +46,7 @@ class HTTPSStrategy:
                 filename = val
         print(f"-> PATH = {path}")
         # TODO: Use configurable cache storage location
-        filepath = f'/app/data/{filename}'
+        filepath = f'/ote-data/{filename}'
         print(f"-> STORING AT {filepath}")
         with open(filepath, 'wb') as output:
             output.write(req.content)

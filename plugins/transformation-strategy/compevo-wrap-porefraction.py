@@ -33,11 +33,11 @@ class WrapPorefractionTransformation:
         dlite.storage_path.append(str('app/entities/*.json'))
 
         image = coll.get('pore_image')
-        imsave('/app/data/pore_image.tiff', image.data)
+        imsave('/ote-data/pore_image.tiff', image.data)
 
         args = [sys.executable,
                 '/app/cache/compevo/porefraction.py',
-                '/app/data/pore_image.tiff',
+                '/ote-data/pore_image.tiff',
                 ]
         output = subprocess.run(args, capture_output=True)
         pore_fraction = float((output.stdout))

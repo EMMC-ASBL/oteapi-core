@@ -20,7 +20,7 @@ class SFTPStrategy:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Initialize"""
         return dict()
-    
+
     def read(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Download via sftp """
 
@@ -37,9 +37,9 @@ class SFTPStrategy:
             cnopts=cnopts,
         ) as sftp:
             # Here we just extract the filename and store the downloaded
-            # file to ./data/<filename>
+            # file to /ote-data/<filename>
             filename = self.resource_config.accessUrl.path.split('/')[-1]
-            localpath=f'./data/{filename}'
+            localpath=f'/ote-data/{filename}'
             sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
             return dict(filename=localpath)
 
