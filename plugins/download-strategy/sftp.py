@@ -3,16 +3,24 @@
 from dataclasses import dataclass
 from typing import Dict, Optional, Any
 import pysftp
-from app.strategy import factory
+from app.strategy.factory import StrategyFactory
 from app.models.resourceconfig import ResourceConfig
 
 
 @dataclass
+@StrategyFactory.register(
+    ('scheme', 'sftp'),
+    ('scheme', 'ftp')
+)
 class SFTPStrategy:
     """ strategy for retrieving data via sftp """
 
     resource_config: ResourceConfig
 
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+        """ Initialize"""
+        return dict()
+    
     def read(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         """ Download via sftp """
 
@@ -36,9 +44,3 @@ class SFTPStrategy:
             return dict(filename=localpath)
 
         return dict()
-
-
-def initialize() -> None:
-    """ register download strategy """
-    factory.register_download_strategy("sftp", SFTPStrategy)
-    factory.register_download_strategy("ftp", SFTPStrategy)

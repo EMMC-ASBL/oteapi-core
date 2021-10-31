@@ -31,7 +31,6 @@ RUN mkdir -p /app/entities
 
 ################# DEVELOPMENT ####################################
 FROM base as development
-RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org bandit pylint safety mypy pytest pytest-cov
 COPY . .
 
 # Run static security check and linters

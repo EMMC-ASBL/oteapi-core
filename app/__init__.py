@@ -5,9 +5,15 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from fastapi_plugins import redis_plugin, RedisSettings
 from yaml import safe_load
-from app.context import datasource, session, transformation, datafilter, mapping
+from app.context import (
+    dataresource,
+    session,
+    transformation,
+    datafilter,
+    mapping,
+    redisadmin,
+    )
 from app.strategy import loader
-
 
 
 class AppSettings(RedisSettings):
@@ -30,12 +36,16 @@ def create_app():
     """
     Create the FastAPI app
     """
-    app = FastAPI()
+    app = FastAPI(
+
+
+    )
     app.include_router(session.router, prefix=f'{PREFIX}/session')
-    app.include_router(datasource.router, prefix=f'{PREFIX}/datasource')
+    app.include_router(dataresource.router, prefix=f'{PREFIX}/datasource')
     app.include_router(transformation.router, prefix=f'{PREFIX}/transformation')
     app.include_router(datafilter.router, prefix=f'{PREFIX}/filter')
     app.include_router(mapping.router, prefix=f'{PREFIX}/mapping')
+    app.include_router(redisadmin.router, prefix=f'{PREFIX}/redis')
     print ("# Loading plugins")
     load_plugins()
 
@@ -51,7 +61,7 @@ def custom_openapi():
         return _app.openapi_schema
     openapi_schema = get_openapi(
         title="OntoTrans Interfaces",
-        version="0.0.2-WiP",
+        version="0.0.3-WiP",
         description="""OntoTrans Interfaces OpenAPI schema.
         <p>
         The generic interfaces are implemented in dynamic plugins which
@@ -59,6 +69,7 @@ def custom_openapi():
         <ul>
         <li><b>Download strategy</b> (access data via different protocols, such as <i>https</i> and <i>sftp</i>)</li>
         <li><b>Parse strategy</b> (data type specific interpreters, such as <i>image/jpeg, text/csv, application/sql</i>)</li>
+        <li><b>Resource strategy</b> (Information resource, downloadables or services)</li>
         <li><b>Mapping strategy</b>) (define relations between business data and conceptual information)</li>
         <li><b>Filter operation strategy</b> (defines specify views/operations)</li>
         <li><b>Transformation strategy</b> (asyncronous operations) </li>

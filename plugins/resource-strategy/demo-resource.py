@@ -5,10 +5,13 @@ Demo-mapping strategy
 from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from app.models.resourceconfig import ResourceConfig
-from app.strategy import factory
+from app.strategy.factory import StrategyFactory
+from app.strategy.idownloadstrategy import create_download_strategy
 
 
 @dataclass
+@StrategyFactory.register(
+    ('accessService', 'demo-access-service'))
 class DemoResource:
     """ Mapping Interface """
 
@@ -18,11 +21,12 @@ class DemoResource:
         """ Manage mapping and return shared map """
 
         # Example of the plugin using the download strategy to fetch the data
-        download_strategy = factory.create_download_strategy(self.resource_config)
+        download_strategy = create_download_strategy(self.resource_config)
         read_output = download_strategy.read({})
         print (read_output)
         return dict()
 
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+        """ Initialize"""
+        return dict()
 
-def initialize() -> None:
-    factory.register_resource_strategy("image/jpeg", DemoResource)

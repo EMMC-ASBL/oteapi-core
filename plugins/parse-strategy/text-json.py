@@ -1,11 +1,14 @@
 """ Strategy class for text/json """
 
 from dataclasses import dataclass
-from app.strategy import factory
+from app.strategy.factory import StrategyFactory
 from typing import Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
 
 @dataclass
+@StrategyFactory.register(
+    ('mediaType','text/json')
+)
 class JSONDataParseStrategy:
 
     resource_config: ResourceConfig
@@ -14,5 +17,7 @@ class JSONDataParseStrategy:
         print ("JSON in action!")
         return {}
 
-def initialize() -> None:
-    factory.register_parse_strategy("text/json", JSONDataParseStrategy)
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+        """ Initialize"""
+        return dict()
+

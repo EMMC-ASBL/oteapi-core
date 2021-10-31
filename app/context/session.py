@@ -18,7 +18,28 @@ async def create_session(
     session: Dict[str, Any],
     cache: Redis = Depends(depends_redis),
 ) -> Dict[str,str]:
-    """ Create a new session """
+    """
+    Create a new session
+    --------------------
+
+    The session allows for storing keyword/value pairs of information
+    on the OTE server. The session can be shared between different OTE
+    microservices.
+
+    Attributes
+    ----------
+    - session : Dict[str,Any]
+        A key/value object to be created as a session object
+    - cache : Redis
+        The in-memory storage engine to be used (default Redis)
+
+
+    Return
+    ------
+    - session identifier : Dict[str,str]
+        Object containing the session identifier
+
+    """
 
     session_id = f'{IDPREFIX}{str(uuid4())}'
     new_session = session.copy()
@@ -41,12 +62,24 @@ async def list_sessions(
 async def delete_all_sessions(
     cache: Redis = Depends(depends_redis),
 ) -> Dict[str,str]:
-    """ Delete all session keys """
+    """ Delete all session keys
+
+    WARNING: Data stored in sessions cannot be recovered after
+    calling this endpoint.
+    """
     keylist = await cache.keys(pattern=f'{IDPREFIX}*')
 
     await cache.delete(*keylist)
     return dict(status='ok', number_of_deleted_rows=len(keylist))
 
+
+async def _get_session(
+    session_id: str,
+    redis: Redis = Depends(depends_redis),
+) -> Dict:
+    """ Return the session contents given a session_id """
+    session = json.loads(await redis.get(session_id))
+    return session
 
 async def _update_session(
     session_id: str,

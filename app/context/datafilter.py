@@ -8,8 +8,8 @@ from typing import Dict, Optional
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
 from aioredis import Redis
-from app.strategy import factory
 from app.models.filterconfig import FilterConfig
+from app.strategy.ifilterstrategy import create_filter_strategy
 from .session import _update_session, _update_session_list_item
 
 
@@ -43,9 +43,27 @@ async def get_filter(
 
     filter_info_json = json.loads(await cache.get(filter_id))
     filter_info = FilterConfig(**filter_info_json)
-    filter_strategy = factory.create_filter_strategy(filter_info)
+    filter_strategy = create_filter_strategy(filter_info)
     session_data = None if not session_id else json.loads(await cache.get(session_id))
     result = filter_strategy.get(session_data)
+    if result and session_id:
+        await _update_session(session_id, result, cache)
+
+    return result
+
+@router.post('/{filter_id}/initialize')
+async def initialize_filter(
+    filter_id: str,
+    session_id: Optional[str] = None,
+    cache: Redis = Depends(depends_redis),
+) -> Dict:
+    """ Initialize and return data to update session """
+
+    filter_info_json = json.loads(await cache.get(filter_id))
+    filter_info = FilterConfig(**filter_info_json)
+    filter_strategy = create_filter_strategy(filter_info)
+    session_data = None if not session_id else json.loads(await cache.get(session_id))
+    result = filter_strategy.initialize(session_data)
     if result and session_id:
         await _update_session(session_id, result, cache)
 
