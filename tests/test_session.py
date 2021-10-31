@@ -10,7 +10,7 @@ app.include_router(session.router, prefix='/session')
 client = TestClient(app)
 
 async def override_depends_redis() -> DummyCache:
-    return DummyCache()
+    return DummyCache({'1':{'foo':'bar'},'2':{'foo':'bar'}})
 
 app.dependency_overrides[session.depends_redis] = override_depends_redis
 
