@@ -25,16 +25,18 @@ class AtomisticStructureParseStrategy:
         else:
             self.conf = {}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """ Initialize"""
-        return dict()
+        coll = dlite.Collection()
+        dlite.get_collection(coll.uuid)
+        return dict(collection_id=coll.uuid)
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         atoms = ase.io.read(f'{self.localpath}/{self.filename}')
 
         # The Molecule.json contains metadata for energy which is not part of
         # the molecular structure files.
-        Molecule = dlite.Instance('json:Molecule.json')  # DLite Metadata  
+        Molecule = dlite.Instance('json:Molecule.json')  # DLite Metadata
 
         basename = os.path.splitext(f'{self.filename'})[0]
         inst = Molecule(dims=[len(atoms), 3], id=basename)  # DLite instance
@@ -49,11 +51,9 @@ class AtomisticStructureParseStrategy:
         # values. We should probably just have the link between the Metadata
         # and the file.
         # How should we now make the collection?
-        coll = dlite.Collection('molecules')
+        coll = dlite.get_collection(session['collection_id'])
         coll.add(label=basename, inst=inst)
-        coll.save('json', 'atomscaledata.json', 'mode=w')
 
-
-        # Q: Does it have to return a Dict?
-        # Q: If it has to return a Dict, what are reqs of this dict?
-        return Dict('I have no idea')
+        # Return uuid of the collection that now includes the new parsed
+        # molecule.
+        return dict(collection_id=coll.uuid)
