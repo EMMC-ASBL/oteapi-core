@@ -32,21 +32,17 @@ class AtomisticStructureParseStrategy:
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict: #pylint: disable=W0613
         atoms = ase.io.read(f'{self.localpath}/{self.filename}')
 
-        # The Molecule.json contains metadata for energy. We should probably
-        # delete that
-        # Also, where should this metadata definition reside?
+        # The Molecule.json contains metadata for energy which is not part of
+        # the molecular structure files.
         Molecule = dlite.Instance('json:Molecule.json')  # DLite Metadata  
 
-        atoms.calc = EMT()
         basename = os.path.splitext(f'{self.filename'})[0]
         inst = Molecule(dims=[len(atoms), 3], id=basename)  # DLite instance
         inst.symbols = atoms.get_chemical_symbols()
         inst.masses = atoms.get_masses()
         inst.positions = atoms.positions
 
-        # This should be in a calculation
-        atoms.calc = EMT()
-        inst.energy = atoms.get_potential_energy()
+        inst.groundstate_energy =  ""
 
         # So we have read a molecule and linked it to the correct metadata (
         # actually, we have made new instance of the metadata populated with
