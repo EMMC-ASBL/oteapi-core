@@ -24,4 +24,22 @@ repos:
     rev: 1.7.0
     hooks:
     - id: bandit
-      files: ^app/.*\.py$
+      files: ^app/.*$
+  - repo: local
+    hooks:
+    - id: pylint-app
+      name: pylint - app/
+      entry: pylint
+      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'"]
+      language: python
+      types: [python]
+      require_serial: true
+      files: ^app/.*$
+    - id: pylint-plugins
+      name: pylint - plugins/
+      entry: pylint
+      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=R,C"]
+      language: python
+      types: [python]
+      require_serial: true
+      files: ^plugins/.*$

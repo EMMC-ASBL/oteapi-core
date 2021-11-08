@@ -17,14 +17,14 @@ class SFTPStrategy:
     resource_config: ResourceConfig
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()
 
     def read(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Download via sftp"""
 
         # Setup connection options

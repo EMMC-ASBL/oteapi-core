@@ -32,14 +32,14 @@ class ImageDataParseStrategy:
             self.conf = {}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()
 
     def parse(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         self.conf.update(session)
         print("### Updated", self.conf)
         if "imagecrop" in self.conf:
