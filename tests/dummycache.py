@@ -1,10 +1,12 @@
-from typing import Dict, List
 import json
+from typing import Dict, List
+
+
 class DummyCache:
 
     obj = {}
 
-    def __init__(self, o = {}):
+    def __init__(self, o={}):
         self.obj = o
 
     async def set(self, id, data) -> None:
@@ -16,4 +18,3 @@ class DummyCache:
 
     async def keys(self, pattern: str) -> List[str]:
         return self.obj.keys()
-

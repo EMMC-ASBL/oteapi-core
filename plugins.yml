@@ -14,7 +14,7 @@ plugins:
     - "plugins.parse-strategy.text-csv"
     - "plugins.parse-strategy.text-json"
     - "plugins.transformation-strategy.compevo-result"
-    - "plugins.transformation-strategy.compevo-wrap-porefraction"    
+    - "plugins.transformation-strategy.compevo-wrap-porefraction"
     - "plugins.filter-strategy.compevo-crop-filter"
     - "plugins.mapping-strategy.compevo-map"
     - "plugins.filter-strategy.compevo-store-filter"
