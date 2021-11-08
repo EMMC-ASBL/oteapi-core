@@ -4,8 +4,9 @@ from dataclasses import dataclass
 from app.strategy.factory import StrategyFactory
 from typing import Dict, Optional, Any
 from app.models.resourceconfig import ResourceConfig
-import ase
-from ase import Atoms
+import ase.io
+import dlite
+import os
 
 @dataclass
 @StrategyFactory.register(
@@ -25,7 +26,7 @@ class AtomisticStructureParseStrategy:
         else:
             self.conf = {}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:  #pylint: disable=W0613
         """ Initialize"""
         coll = dlite.Collection()
         dlite.get_collection(coll.uuid)
@@ -38,7 +39,7 @@ class AtomisticStructureParseStrategy:
         # the molecular structure files.
         Molecule = dlite.Instance('json:Molecule.json')  # DLite Metadata
 
-        basename = os.path.splitext(f'{self.filename'})[0]
+        basename = os.path.splitext(f'{self.filename}')[0]
         inst = Molecule(dims=[len(atoms), 3], id=basename)  # DLite instance
         inst.symbols = atoms.get_chemical_symbols()
         inst.masses = atoms.get_masses()
