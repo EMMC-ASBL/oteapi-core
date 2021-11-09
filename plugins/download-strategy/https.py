@@ -2,10 +2,12 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from app.strategy.factory import StrategyFactory
-from app.models.resourceconfig import ResourceConfig
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
+
 import requests
+
+from app.models.resourceconfig import ResourceConfig
+from app.strategy.factory import StrategyFactory
 
 
 @dataclass

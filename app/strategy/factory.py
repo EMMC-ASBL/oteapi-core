@@ -3,7 +3,8 @@ Factory class for registering and creating strategy instances
 """
 from typing import Tuple, TypeVar
 from uuid import UUID
-from pydantic import BaseModel, AnyUrl
+
+from pydantic import AnyUrl, BaseModel
 
 ValueType = TypeVar("ValueType", int, str, AnyUrl, UUID)
 

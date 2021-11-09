@@ -1,12 +1,12 @@
 """
 Helper service for viewing redis objects
 """
-from typing import Dict, List
 import json
+from typing import Dict, List
+
+from aioredis import Redis
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
-from aioredis import Redis
-
 
 router = APIRouter()
 

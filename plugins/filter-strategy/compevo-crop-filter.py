@@ -2,12 +2,14 @@
 """
 Filter plugin for compevo usecase (cropping the image)
 """
-from typing import Dict, Optional, Any
-from pydantic import BaseModel
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+import dlite
+from pydantic import BaseModel
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
-import dlite
 
 
 class CropDataModel(BaseModel):

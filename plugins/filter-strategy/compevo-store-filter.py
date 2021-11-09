@@ -2,11 +2,13 @@
 """
 Filter plugin for compevo usecase (store the image in dlite)
 """
-from typing import Dict, Optional, Any
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+import dlite
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
-import dlite
 
 
 @dataclass

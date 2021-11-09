@@ -1,8 +1,9 @@
 """ Tranformation Strategy Interface
 """
 
-from typing import Protocol, Dict, Optional, Any
 from dataclasses import dataclass
+from typing import Any, Dict, Optional, Protocol
+
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from app.strategy.factory import StrategyFactory
 

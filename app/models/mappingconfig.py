@@ -2,7 +2,8 @@
 Pydantic Mapping Data Model
 """
 
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, List, Optional, Tuple
+
 from pydantic import BaseModel
 
 

@@ -1,17 +1,18 @@
 """
 Data Source context
 """
-from uuid import uuid4
 import json
-
 from typing import Dict, Optional
+from uuid import uuid4
+
+from aioredis import Redis
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
-from aioredis import Redis
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.ifilterstrategy import create_filter_strategy
-from .session import _update_session, _update_session_list_item
 
+from .session import _update_session, _update_session_list_item
 
 router = APIRouter()
 

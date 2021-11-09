@@ -1,13 +1,13 @@
 """
 Microservice Session
 """
+import json
 from typing import Any, Dict, List
 from uuid import uuid4
-import json
+
+from aioredis import Redis
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
-from aioredis import Redis
-
 
 router = APIRouter()
 

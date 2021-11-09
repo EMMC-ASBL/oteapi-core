@@ -2,9 +2,11 @@
 """
 Demo-filter strategy
 """
-from typing import Dict, Optional, Any, List
-from pydantic import BaseModel
 from dataclasses import dataclass
+from typing import Any, Dict, List, Optional
+
+from pydantic import BaseModel
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
 

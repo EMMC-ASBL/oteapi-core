@@ -3,7 +3,8 @@ Pydantic ResourceConfig Data Model
 """
 
 from typing import Dict, Optional
-from pydantic import BaseModel, AnyUrl
+
+from pydantic import AnyUrl, BaseModel
 
 
 class ResourceConfig(BaseModel):

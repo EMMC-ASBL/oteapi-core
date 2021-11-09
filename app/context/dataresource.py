@@ -1,16 +1,19 @@
 """
 Data Source context
 """
+import json
 from typing import Dict, Optional
 from uuid import uuid4
-import json
+
+from aioredis import Redis
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi_plugins import depends_redis
-from aioredis import Redis
+
+from app.models.resourceconfig import ResourceConfig
 from app.strategy.idownloadstrategy import create_download_strategy
 from app.strategy.iparsestrategy import create_parse_strategy
 from app.strategy.iresourcestrategy import create_resource_strategy
-from app.models.resourceconfig import ResourceConfig
+
 from .session import _update_session, _update_session_list_item
 
 router = APIRouter()

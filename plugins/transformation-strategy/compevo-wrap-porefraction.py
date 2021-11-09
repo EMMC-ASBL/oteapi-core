@@ -3,14 +3,16 @@
 Transformation plugin for compevo usecase (wrap porefraction)
 """
 
-from typing import Dict, Optional, Any
+import subprocess
+import sys
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+import dlite
+from matplotlib.pyplot import imsave
+
 from app.models.transformationconfig import TransformationConfig
 from app.strategy.factory import StrategyFactory
-import dlite
-import subprocess
-from matplotlib.pyplot import imsave
-import sys
 
 
 @dataclass

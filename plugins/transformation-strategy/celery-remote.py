@@ -1,16 +1,18 @@
 """
 Transformation Plugin that use the Celery framework to call remote workers
 """
-# pylint: disable=W0613, W0511
-from app.strategy.factory import StrategyFactory
-from pydantic import BaseModel
-from typing import Any, Dict, Optional, List
 from dataclasses import dataclass
-from fastapi_plugins import RedisSettings
-from app.models.transformationconfig import TransformationConfig, TransformationStatus
+from typing import Any, Dict, List, Optional
+
 from celery import Celery
+from fastapi_plugins import RedisSettings
+from pydantic import BaseModel
+
+from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from celery.result import AsyncResult
 
+# pylint: disable=W0613, W0511
+from app.strategy.factory import StrategyFactory
 
 # Connect Celery to the currently running Reddis instance
 app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)

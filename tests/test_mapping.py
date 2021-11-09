@@ -2,8 +2,9 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from app.context import mapping
-from .dummycache import DummyCache
 from app.strategy import loader
+
+from .dummycache import DummyCache
 
 app = FastAPI()
 

@@ -2,7 +2,8 @@
 Download Strategy Interface
 """
 from dataclasses import dataclass
-from typing import Protocol, Dict, Optional, Any
+from typing import Any, Dict, Optional, Protocol
+
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
 

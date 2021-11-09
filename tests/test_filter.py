@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.strategy import loader
 
 from app.context import datafilter
+from app.strategy import loader
+
 from .dummycache import DummyCache
 
 app = FastAPI()

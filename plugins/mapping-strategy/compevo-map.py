@@ -1,15 +1,18 @@
 # pylint: disable=W0511, W0613 , W0612
 """
-Mapping plugin for compevo usecase 
+Mapping plugin for compevo usecase
 """
-from typing import Dict, Optional, Any
+import tempfile
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+import dlite
+from matplotlib.pyplot import imread
 from pydantic.main import BaseModel
+
 from app.models.mappingconfig import MappingConfig
 from app.strategy.factory import StrategyFactory
-import dlite
-import tempfile
-from matplotlib.pyplot import imread
+
 
 
 class ConfigDataModel(BaseModel):

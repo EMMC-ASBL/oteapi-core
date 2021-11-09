@@ -1,9 +1,11 @@
 """ Strategy class for text/csv """
 
 from dataclasses import dataclass
-from app.strategy.factory import StrategyFactory
-from typing import Dict, Optional, Any
+from typing import Any, Dict, Optional
+
 from app.models.resourceconfig import ResourceConfig
+from app.strategy.factory import StrategyFactory
+
 
 
 @dataclass
@@ -13,13 +15,13 @@ class CSVParseStrategy:
     resource_config: ResourceConfig
 
     def parse(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         print("CSV in action!")
         return {}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()

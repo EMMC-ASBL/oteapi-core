@@ -2,8 +2,9 @@
 """
 Demo-mapping strategy
 """
-from typing import Dict, Optional, Any
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
 from app.models.mappingconfig import MappingConfig
 from app.strategy.factory import StrategyFactory
 

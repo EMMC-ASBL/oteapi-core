@@ -567,3 +567,6 @@ MigrationBackup/
 
 # Passwords for the sftp connection
 .sftp_conf.json
+
+# Git
+*.orig

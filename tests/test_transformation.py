@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from app.strategy import loader
-from app.models.transformationconfig import TransformationStatus
+
 from app.context import transformation
+from app.models.transformationconfig import TransformationStatus
+from app.strategy import loader
+
 from .dummycache import DummyCache
 
 app = FastAPI()

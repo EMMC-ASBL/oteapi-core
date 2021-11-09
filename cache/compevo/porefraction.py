@@ -9,13 +9,11 @@
 import argparse
 
 import numpy as np
-from matplotlib import pyplot as plt
-
 import skimage
-from skimage.io import imread
-from skimage.color import rgba2rgb, rgb2gray
+from matplotlib import pyplot as plt
+from skimage.color import rgb2gray, rgba2rgb
 from skimage.filters import try_all_threshold
-
+from skimage.io import imread
 
 class ImageProcessing:
     """Performs image processing.

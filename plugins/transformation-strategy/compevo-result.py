@@ -3,11 +3,14 @@
 Transformation plugin for compevo usecase (fetch output and print it)
 """
 
-from typing import Dict, Optional, Any
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
+import dlite
+
 from app.models.transformationconfig import TransformationConfig
 from app.strategy.factory import StrategyFactory
-import dlite
+
 
 
 @dataclass

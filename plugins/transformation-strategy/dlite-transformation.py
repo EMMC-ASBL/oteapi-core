@@ -3,12 +3,15 @@
 Transformation example (dummy)
 """
 
-from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any, Dict, Optional
+
+import dlite
+
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from app.strategy.factory import StrategyFactory
-import dlite
+
 
 
 @dataclass

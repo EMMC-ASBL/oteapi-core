@@ -2,8 +2,9 @@
 Resource Strategy Interface
 """
 
-from typing import Protocol, Dict, Optional, Any
 from dataclasses import dataclass
+from typing import Any, Dict, Optional, Protocol
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.factory import StrategyFactory
 

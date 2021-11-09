@@ -1,7 +1,8 @@
 # pylint: disable=W0613, W0511
-from typing import Dict, Optional, Any
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any, Dict, Optional
+
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
 from app.strategy.factory import StrategyFactory
 

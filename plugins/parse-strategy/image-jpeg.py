@@ -1,10 +1,12 @@
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
-from app.strategy.factory import StrategyFactory
-from typing import Dict, Optional, Any
-from app.models.resourceconfig import ResourceConfig
+from typing import Any, Dict, Optional
+
 from PIL import Image
+
+from app.models.resourceconfig import ResourceConfig
+from app.strategy.factory import StrategyFactory
 
 
 @dataclass
@@ -30,14 +32,14 @@ class ImageDataParseStrategy:
             self.conf = {}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()
 
     def parse(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         self.conf.update(session)
         print("### Updated", self.conf)
         if "imagecrop" in self.conf:
