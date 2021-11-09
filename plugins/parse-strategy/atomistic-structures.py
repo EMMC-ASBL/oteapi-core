@@ -30,19 +30,27 @@ class AtomisticStructureParseStrategy:
             self.conf = {}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         coll = dlite.Collection()
         dlite.get_collection(coll.uuid)
         return dict(collection_id=coll.uuid)
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def parse(
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         atoms = ase.io.read(f"{self.localpath}/{self.filename}")
 
         # The Molecule.json contains metadata for energy which is not part of
         # the molecular structure files.
-        Molecule = dlite.Instance("json:Molecule.json")  # DLite Metadata
+        # dlite.storage_path.append(str('app/entities/*.json'))
+        print(os.getcwd())
+        print(os.listdir("/app/entities"))
+        print(dlite.storage_path)
+        for d in [dlite.storage_path[0]]:
+            print(os.listdir(d))
+        Molecule = dlite.Instance("json://Molecule.json")  # DLite Metadata
 
         basename = os.path.splitext(f"{self.filename}")[0]
         inst = Molecule(dims=[len(atoms), 3], id=basename)  # DLite instance
