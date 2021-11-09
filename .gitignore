@@ -21,6 +21,9 @@ tramp
 *_archive
 ltximg/**
 
+# vi
+*.swp
+
 # flymake-mode
 *_flymake.*
 

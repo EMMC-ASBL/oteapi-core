@@ -51,7 +51,7 @@ def test_initialize_transformation():
 
 def test_get_transformation_status():
     response = client.get(
-        "/transformation/transformation-f752c613-fde0-4d43-a7f6-c50f68642daa/status/"
+        "/transformation/transformation-f752c613-fde0-4d43-a7f6-c50f68642daa/status?task_id="
     )
     tr = TransformationStatus(**response.json())
     print (response.json())
