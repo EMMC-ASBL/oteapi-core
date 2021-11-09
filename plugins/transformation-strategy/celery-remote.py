@@ -1,7 +1,7 @@
 """
 Transformation Plugin that use the Celery framework to call remote workers
 """
-#pylint: disable=W0613, W0511
+# pylint: disable=W0613, W0511
 from app.strategy.factory import StrategyFactory
 from pydantic import BaseModel
 from typing import Any, Dict, Optional, List
@@ -20,40 +20,36 @@ class CeleryConfig(BaseModel):
     taskName: str
     args: List[Any]
 
+
 @dataclass
-@StrategyFactory.register(
-    ('transformation_type', 'celery/remote')
-)
+@StrategyFactory.register(("transformation_type", "celery/remote"))
 class CeleryRemoteStrategy:
-    """ Submit job to remote runner """
+    """Submit job to remote runner"""
 
     transformation_config: TransformationConfig
 
     def run(self, session_id: Optional[str] = None) -> Dict:
-        """ Run a job, return a jobid"""
+        """Run a job, return a jobid"""
 
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig(**config)
-        result = app.send_task(celeryConfig.taskName,
-                               celeryConfig.args,
-                               kwargs=session_id)
+        result = app.send_task(
+            celeryConfig.taskName, celeryConfig.args, kwargs=session_id
+        )
         return dict(result=result.task_id)
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        """ Initialize a job"""
+        """Initialize a job"""
         return dict()
 
     def status(self, task_id: str) -> TransformationStatus:
-        """ Get job status """
+        """Get job status"""
         result = AsyncResult(id=task_id, app=app)
-        ts = TransformationStatus(
-            id=task_id,
-            status=result.state
-        )
+        ts = TransformationStatus(id=task_id, status=result.state)
         return ts
 
     def get(self, session_id: Optional[str] = None) -> Dict:
-        """ get transformation """
+        """get transformation"""
 
         # TODO: update and return global state
         return dict()
