@@ -2,12 +2,15 @@
 TransformationConfig data model definition
 """
 
-from typing import Dict, Optional, List
 from datetime import datetime
+from typing import Dict, List, Optional
+
 from pydantic import BaseModel
 
+
 class TransformationConfig(BaseModel):
-    """ Transformation data model """
+    """Transformation data model"""
+
     transformation_type: str
     name: Optional[str]
     description: Optional[str]
@@ -16,8 +19,10 @@ class TransformationConfig(BaseModel):
     secret: Optional[str]
     configuration: Optional[Dict]
 
+
 class TransformationStatus(BaseModel):
-    """ Return from transformation status """
+    """Return from transformation status"""
+
     id: str
     status: str
     messages: List[str]

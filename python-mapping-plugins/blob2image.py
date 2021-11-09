@@ -12,16 +12,16 @@ class blob2image(DLiteMappingBase):
     cost = 25
 
     def map(self, instances):
-        print('*** blob2image')
+        print("*** blob2image")
         blob_image = instances[0]
         with tempfile.NamedTemporaryFile(delete=False) as f:
             inst.save(f"blob:{f.name}")
             data = imread(f.name)
         dims = data.shape
         if len(dims) < 3:
-            dims = data.shape + (1, ) * (3 - len(dims))
-        print('*** dims:', dims)
+            dims = data.shape + (1,) * (3 - len(dims))
+        print("*** dims:", dims)
         image = dlite.Instance(output_uri, dims)
-        print('*** image:', image)
+        print("*** image:", image)
         image.data = data
         return image

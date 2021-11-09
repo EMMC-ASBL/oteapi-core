@@ -1,5 +1,6 @@
 from typing import Dict, List
 
+
 class DummyCache:
     async def set(self, id, data) -> None:
         pass
@@ -8,5 +9,4 @@ class DummyCache:
         return {}
 
     async def keys(self, pattern: str) -> List[str]:
-        return ['1','2']
-
+        return ["1", "2"]

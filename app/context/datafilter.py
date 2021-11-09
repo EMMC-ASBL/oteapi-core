@@ -1,45 +1,47 @@
 """
 Data Source context
 """
-from uuid import uuid4
 import json
-
 from typing import Dict, Optional
+from uuid import uuid4
+
+from aioredis import Redis
 from fastapi import APIRouter, Depends
 from fastapi_plugins import depends_redis
-from aioredis import Redis
+
 from app.models.filterconfig import FilterConfig
 from app.strategy.ifilterstrategy import create_filter_strategy
-from .session import _update_session, _update_session_list_item
 
+from .session import _update_session, _update_session_list_item
 
 router = APIRouter()
 
-IDPREDIX = 'filter-'
+IDPREDIX = "filter-"
 
-@router.post('/')
+
+@router.post("/")
 async def create_filter(
     config: FilterConfig,
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    """ Define a new filter configuration (data operation) """
+    """Define a new filter configuration (data operation)"""
 
     filter_id = IDPREDIX + str(uuid4())
 
     await cache.set(filter_id, config.json())
     if session_id:
-        await _update_session_list_item(session_id, 'filter_info', [filter_id], cache)
+        await _update_session_list_item(session_id, "filter_info", [filter_id], cache)
     return dict(filter_id=filter_id)
 
 
-@router.get('/{filter_id}')
+@router.get("/{filter_id}")
 async def get_filter(
     filter_id: str,
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    """ Run and return data from a   filter (data operation) """
+    """Run and return data from a   filter (data operation)"""
 
     filter_info_json = json.loads(await cache.get(filter_id))
     filter_info = FilterConfig(**filter_info_json)
@@ -51,13 +53,14 @@ async def get_filter(
 
     return result
 
-@router.post('/{filter_id}/initialize')
+
+@router.post("/{filter_id}/initialize")
 async def initialize_filter(
     filter_id: str,
     session_id: Optional[str] = None,
     cache: Redis = Depends(depends_redis),
 ) -> Dict:
-    """ Initialize and return data to update session """
+    """Initialize and return data to update session"""
 
     filter_info_json = json.loads(await cache.get(filter_id))
     filter_info = FilterConfig(**filter_info_json)
