@@ -17,14 +17,14 @@ class SFTPStrategy:
     resource_config: ResourceConfig
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()
 
     def read(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Download via sftp"""
 
         # Setup connection options
@@ -40,9 +40,9 @@ class SFTPStrategy:
             cnopts=cnopts,
         ) as sftp:
             # Here we just extract the filename and store the downloaded
-            # file to ./data/<filename>
+            # file to /ote-data/<filename>
             filename = self.resource_config.accessUrl.path.split("/")[-1]
-            localpath = f"./data/{filename}"
+            localpath = f"/ote-data/{filename}"
             sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
             return dict(filename=localpath)
 

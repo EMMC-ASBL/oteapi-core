@@ -24,7 +24,7 @@ class ImageDataParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        self.localpath = "/app/data"
+        self.localpath = "/ote-data"
         self.filename = self.resource_config.downloadUrl.path.rsplit("/", 1)[-1]
         if self.resource_config.configuration:
             self.conf = self.resource_config.configuration
@@ -32,14 +32,14 @@ class ImageDataParseStrategy:
             self.conf = {}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         """Initialize"""
         return dict()
 
     def parse(
-        self, session: Optional[Dict[str, Any]] = None
-    ) -> Dict:  # pylint: disable=W0613
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
         self.conf.update(session)
         print("### Updated", self.conf)
         if "imagecrop" in self.conf:

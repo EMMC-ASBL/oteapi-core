@@ -26,9 +26,8 @@ class HTTPSStrategy:
         path = self.resource_config.downloadUrl.path
         filename = path.rsplit("/", 1)[-1]  # Extract filename
         print(f"-> PATH = {path}")
-        filepath = (
-            f"/app/data/{filename}"  # TODO: Use configurable cache storage location
-        )
+        # TODO: Use configurable cache storage location
+        filepath = f"/ote-data/{filename}"
         print(f"-> STORING AT {filepath}")
         with open(filepath, "wb") as output:
             output.write(req.content)
@@ -37,12 +36,15 @@ class HTTPSStrategy:
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Download via http/https and store on local cache"""
         req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
+        mediatype = self.resource_config.mediaType.rsplit("/", 1)[-1]
         path = self.resource_config.downloadUrl.path
-        filename = path.rsplit("/", 1)[-1]  # Extract filename
+        splitlist = list(path.split("/"))  # Extract filename
+        for val in splitlist:
+            if mediatype in val:
+                filename = val
         print(f"-> PATH = {path}")
-        filepath = (
-            f"/app/data/{filename}"  # TODO: Use configurable cache storage location
-        )
+        # TODO: Use configurable cache storage location
+        filepath = f"/ote-data/{filename}"
         print(f"-> STORING AT {filepath}")
         with open(filepath, "wb") as output:
             output.write(req.content)

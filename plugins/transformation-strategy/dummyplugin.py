@@ -32,6 +32,8 @@ class DummyTransformationStrategy:
             status="wip",
             messages=[],
             created=datetime.utcnow(),
+            startTime=datetime.utcnow(),
+            finishTime=datetime.utcnow(),
             priority=0,
             secret=None,
             configuration={},

@@ -1,12 +1,21 @@
+import json
 from typing import Dict, List
 
 
 class DummyCache:
+
+    obj = {}
+
+    def __init__(self, o={}):
+        self.obj = o
+
     async def set(self, id, data) -> None:
-        pass
+        if data:
+            self.obj[id] = data
 
     async def get(self, id) -> Dict:
-        return {}
+        return json.dumps(self.obj[id])
 
     async def keys(self, pattern: str) -> List[str]:
-        return ["1", "2"]
+        return self.obj.keys()
+

@@ -43,7 +43,8 @@ async def get_transformation_status(
 ) -> Dict:
     """Get the current status of a defined transformation"""
     # Fetch transformation info from cache and populate the pydantic model
-    transformation_info_json = json.loads(await cache.get(transformation_id))
+    json_doc = await cache.get(transformation_id)
+    transformation_info_json = json.loads(json_doc)
     transformation_info = TransformationConfig(**transformation_info_json)
 
     # Apply the appropriate transformation strategy (plugin) using the factory
@@ -62,7 +63,8 @@ async def get_transformation(
     """Get transformation"""
 
     # Fetch transformation info from cache and populate the pydantic model
-    transformation_info_json = json.loads(await cache.get(transformation_id))
+    json_doc = await cache.get(transformation_id)
+    transformation_info_json = json.loads(json_doc)
     transformation_info = TransformationConfig(**transformation_info_json)
 
     # Apply the appropriate transformation strategy (plugin) using the factory

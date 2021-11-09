@@ -85,4 +85,10 @@ vine==5.0.0
 wcwidth==0.2.5
 wrapt==1.12.1
 wsproto==1.0.0
+
+# for dehydrogenation use case
 ase==3.22.0
+
+# for compevo usecase
+matplotlib==3.4.3
+scikit-image==0.18.1
