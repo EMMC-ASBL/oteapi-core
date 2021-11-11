@@ -1,7 +1,4 @@
-""" Plugin loader
-
-"""
-
+"""Plugin loader."""
 import importlib
 from typing import List
 
@@ -23,7 +20,3 @@ def load_plugins(plugins: List[str]) -> None:
     """Load plugins from the plugins list"""
     for plugin_name in plugins:
         import_module(plugin_name)
-
-
-#        plugin = import_module(plugin_name)
-#        plugin.initialize()
