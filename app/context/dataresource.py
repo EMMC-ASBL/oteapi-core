@@ -105,6 +105,7 @@ async def read_dataresource(
         )
     return output
 
+
 @router.post("/{resource_id}/initialize")
 async def initialize_dataresource(
     resource_id: str,
