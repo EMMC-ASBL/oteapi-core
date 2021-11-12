@@ -10,7 +10,7 @@ app = FastAPI()
 
 app.include_router(datafilter.router, prefix="/filter")
 client = TestClient(app)
-loader.load_plugins(["plugins.filter-strategy.demo-filter"])
+loader.load_plugins(["plugins.filter_strategy.demo_filter"])
 
 
 async def override_depends_redis() -> DummyCache:
