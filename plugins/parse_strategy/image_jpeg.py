@@ -1,3 +1,4 @@
+# pylint: disable=  W0613
 """ Strategy class for image/jpg """
 
 from dataclasses import dataclass
@@ -25,29 +26,27 @@ class ImageDataParseStrategy:
 
     def __post_init__(self):
         self.localpath = "/ote-data"
-        self.filename = self.resource_config.downloadUrl.path.rsplit("/", 1)[-1]
+        self.filename = self.resource_config.configuration["artifactName"]
         if self.resource_config.configuration:
             self.conf = self.resource_config.configuration
         else:
             self.conf = {}
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize"""
         return dict()
 
-    def parse(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
-        self.conf.update(session)
-        print("### Updated", self.conf)
-        if "imagecrop" in self.conf:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+        if session is not None:
+            self.conf.update(session)
+        parsedOutput = {}
+        if "crop" in self.conf:
             print("cropping!")
             im = Image.open(f"{self.localpath}/{self.filename}")
-            crop = self.conf["imagecrop"]
+            crop = self.conf["crop"]
             im_cropped = im.crop(tuple(crop))
             cropped_filename = f"{self.localpath}/cropped_{self.filename}"
-            im_cropped = im_cropped.save(cropped_filename)
-            return dict(filename=cropped_filename)
-        return dict(status="ok")
+            im_cropped.save(cropped_filename)
+            parsedOutput["cropped_filename"] = cropped_filename
+        parsedOutput["parseImage"] = "Done"
+        return parsedOutput

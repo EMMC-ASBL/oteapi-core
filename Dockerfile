@@ -12,7 +12,8 @@ RUN apt-get -qq update
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -qq -y --fix-missing \
     python3-dev \
     python3-pip \
-    curl
+    curl \
+    git
 
 RUN curl -L -o /tmp/dlite.deb https://github.com/SINTEF/dlite/releases/download/0.3.1/dlite-0.3.1-x86_64.deb
 
@@ -34,10 +35,8 @@ FROM base as development
 COPY . .
 
 # Run static security check and linters
-RUN bandit -r app \
-  && safety check -r requirements.txt --bare \
-  && pylint --extension-pkg-whitelist='pydantic' app \
-  && pylint --extension-pkg-whitelist='pydantic' --disable=R,C plugins
+RUN pre-commit run --all-files  \
+  && safety check -r requirements.txt --bare
 
 # Run pytest with code coverage
 RUN pytest --cov app

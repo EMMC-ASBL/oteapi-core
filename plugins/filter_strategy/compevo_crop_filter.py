@@ -3,9 +3,8 @@
 Filter plugin for compevo usecase (cropping the image)
 """
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
-import dlite
 from pydantic import BaseModel
 
 from app.models.filterconfig import FilterConfig
@@ -13,7 +12,7 @@ from app.strategy.factory import StrategyFactory
 
 
 class CropDataModel(BaseModel):
-    crop: str
+    crop: List
 
 
 @dataclass
@@ -32,14 +31,4 @@ class CompevoCropFilter:
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Crop the image"""
-        coll = dlite.get_collection(session["collection_id"])
-        image = coll.get("pore_image")
-        coll.remove("pore_image")
-        r = coll.find_first(s="pore_image", p="crop")
-        x1, x2, y1, y2 = [int(i) for i in r.o.split(",")]
-        data = image.data[y1:y2, x1:x2]
-        cropped = dlite.Instance(image.meta.uri, data.shape)
-        cropped.data = data
-        cropped.scale = image.scale
-        coll.add("pore_image", cropped)
-        return dict(FilterCropStep="compevo-crop")
+        return {}

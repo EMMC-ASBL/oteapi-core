@@ -5,9 +5,14 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import requests
+from pydantic.main import BaseModel
 
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
+
+
+class DataConfig(BaseModel):
+    artifactName: Optional[str]
 
 
 @dataclass
@@ -20,29 +25,15 @@ class HTTPSStrategy:
         """Initialize"""
         return dict()
 
-    def read(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        """Download via http/https and store on local cache"""
-        req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
-        path = self.resource_config.downloadUrl.path
-        filename = path.rsplit("/", 1)[-1]  # Extract filename
-        print(f"-> PATH = {path}")
-        # TODO: Use configurable cache storage location
-        filepath = f"/ote-data/{filename}"
-        print(f"-> STORING AT {filepath}")
-        with open(filepath, "wb") as output:
-            output.write(req.content)
-            return dict(filename=filepath)
-
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Download via http/https and store on local cache"""
         req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
-        mediatype = self.resource_config.mediaType.rsplit("/", 1)[-1]
-        path = self.resource_config.downloadUrl.path
-        splitlist = list(path.split("/"))  # Extract filename
-        for val in splitlist:
-            if mediatype in val:
-                filename = val
-        print(f"-> PATH = {path}")
+        if self.resource_config.configuration is not None:
+            dataConfig = DataConfig(**self.resource_config.configuration)
+            filename = dataConfig.artifactName
+        else:
+            filename = self.resource_config.downloadUrl.path.split("/")[-1]
+            self.resource_config.configuration = dict(artifactName=filename)
         # TODO: Use configurable cache storage location
         filepath = f"/ote-data/{filename}"
         print(f"-> STORING AT {filepath}")

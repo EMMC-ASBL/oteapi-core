@@ -1,8 +1,6 @@
-""" Plugin loader
-
-"""
-
+"""Plugin loader."""
 import importlib
+from typing import List
 
 
 class PluginInterface:  # pylint: disable=R0903
@@ -18,11 +16,7 @@ def import_module(name: str) -> PluginInterface:
     return importlib.import_module(name)  # type: ignore
 
 
-def load_plugins(plugins: list[str]) -> None:
+def load_plugins(plugins: List[str]) -> None:
     """Load plugins from the plugins list"""
     for plugin_name in plugins:
         import_module(plugin_name)
-
-
-#        plugin = import_module(plugin_name)
-#        plugin.initialize()
