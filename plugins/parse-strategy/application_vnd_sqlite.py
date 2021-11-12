@@ -1,13 +1,14 @@
 """ Strategy class for application/vnd.sqlite3 """
 
+import sqlite3
 from dataclasses import dataclass
+from sqlite3 import Error
 from typing import Any, Dict, Optional
+
+from fastapi import HTTPException
 
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
-import sqlite3
-from sqlite3 import Error
-from fastapi import HTTPException
 
 
 def create_connection(db_file):

@@ -4,8 +4,8 @@ SQL query filter strategy
 """
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
-from fastapi import HTTPException
 
+from fastapi import HTTPException
 from pydantic import BaseModel
 
 from app.models.filterconfig import FilterConfig
