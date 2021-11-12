@@ -7,7 +7,6 @@ from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
 
 
-
 @dataclass
 @StrategyFactory.register(("mediaType", "text/csv"))
 class CSVParseStrategy:

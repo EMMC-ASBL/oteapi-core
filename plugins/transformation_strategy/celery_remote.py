@@ -5,11 +5,11 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 from celery import Celery
+from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
 from pydantic import BaseModel
 
 from app.models.transformationconfig import TransformationConfig, TransformationStatus
-from celery.result import AsyncResult
 
 # pylint: disable=W0613, W0511
 from app.strategy.factory import StrategyFactory

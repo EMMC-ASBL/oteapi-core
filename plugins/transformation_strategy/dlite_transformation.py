@@ -13,7 +13,6 @@ from app.models.transformationconfig import TransformationConfig, Transformation
 from app.strategy.factory import StrategyFactory
 
 
-
 @dataclass
 @StrategyFactory.register(("transformation_type", "dlite/transformation"))
 class DLiteTransformation:

@@ -12,7 +12,6 @@ from app.models.transformationconfig import TransformationConfig
 from app.strategy.factory import StrategyFactory
 
 
-
 @dataclass
 @StrategyFactory.register(("transformation_type", "dlite/compevo-result"))
 class CompevoTransformation:

@@ -15,6 +15,7 @@ from skimage.color import rgb2gray, rgba2rgb
 from skimage.filters import try_all_threshold
 from skimage.io import imread
 
+
 class ImageProcessing:
     """Performs image processing.
 

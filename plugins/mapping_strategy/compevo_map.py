@@ -14,7 +14,6 @@ from app.models.mappingconfig import MappingConfig
 from app.strategy.factory import StrategyFactory
 
 
-
 class ConfigDataModel(BaseModel):
     use_case: str = None
     image_type: str = None
