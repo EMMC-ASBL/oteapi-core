@@ -2,9 +2,9 @@
 Pydantic ResourceConfig Data Model
 """
 
-from typing import Dict, Optional
+from typing import Any, Dict, Optional
 
-from pydantic import AnyUrl, BaseModel, Field
+from pydantic import AnyUrl, BaseModel, Field, root_validator
 
 
 class ResourceConfig(BaseModel):
@@ -86,3 +86,20 @@ class ResourceConfig(BaseModel):
         None,
         description="Resource-specific configuration options given as key/value-pairs.",
     )
+
+    @root_validator
+    def ensure_unique_url_pairs(  # pylint: disable=no-self-use
+        cls, values: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        """Ensure either downloadUrl/mediaType or accessUrl/accessService are
+        defined.
+        It's fine to define them all, but at least one complete pair MUST be
+        specified."""
+        if not all(values.get(_) for _ in ["downloadUrl", "mediaType"]) or not all(
+            values.get(_) for _ in ["accessUrl", "accessService"]
+        ):
+            raise ValueError(
+                "Either of the pairs of attributes downloadUrl/mediaType or "
+                "accessUrl/accessService MUST be specified."
+            )
+        return values
