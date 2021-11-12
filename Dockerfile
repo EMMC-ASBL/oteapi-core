@@ -35,7 +35,7 @@ FROM base as development
 COPY . .
 
 # Run static security check and linters
-RUN pre-commit run --all-files --show-diff-on-failure \
+RUN pre-commit run --all-files  \
   && safety check -r requirements.txt --bare
 
 # Run pytest with code coverage

@@ -89,7 +89,7 @@ async def read_dataresource(
             await _update_session(session_id, output, cache)
     elif resource_config.downloadUrl and resource_config.mediaType:
         download_strategy = create_download_strategy(resource_config)
-        output = download_strategy.read(session_data)
+        output = download_strategy.get(session_data)
         if session_id:
             await _update_session(session_id, output, cache)
             session_data = json.loads(await cache.get(session_id))
