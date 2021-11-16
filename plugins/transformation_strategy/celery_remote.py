@@ -2,10 +2,10 @@
 Transformation Plugin that use the Celery framework to call remote workers
 """
 from dataclasses import dataclass
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from celery import Celery
+from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
 from pydantic import BaseModel
 
@@ -34,26 +34,20 @@ class CeleryRemoteStrategy:
         """Run a job, return a jobid"""
 
         config = self.transformation_config.configuration
-        print("===", config)
         celeryConfig = CeleryConfig(**config)
-        result = app.send_task(celeryConfig.taskName, celeryConfig.args)
-        return dict(result=result)
+        result = app.send_task(
+            celeryConfig.taskName, celeryConfig.args, kwargs=session_id
+        )
+        return dict(result=result.task_id)
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize a job"""
         return dict()
 
-    def status(self) -> TransformationStatus:
+    def status(self, task_id: str) -> TransformationStatus:
         """Get job status"""
-        ts = TransformationStatus(
-            id="0",
-            status="wip",
-            messages=[],
-            created=datetime.utcnow(),
-            priority=0,
-            secret=None,
-            configuration={},
-        )
+        result = AsyncResult(id=task_id, app=app)
+        ts = TransformationStatus(id=task_id, status=result.state)
         return ts
 
     def get(self, session_id: Optional[str] = None) -> Dict:

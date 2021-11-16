@@ -21,6 +21,9 @@ tramp
 *_archive
 ltximg/**
 
+# vi
+*.swp
+
 # flymake-mode
 *_flymake.*
 
@@ -564,3 +567,6 @@ MigrationBackup/
 
 # Passwords for the sftp connection
 .sftp_conf.json
+
+# Git
+*.orig

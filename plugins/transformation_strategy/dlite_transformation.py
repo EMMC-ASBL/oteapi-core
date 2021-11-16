@@ -30,10 +30,10 @@ class DLiteTransformation:
         coll = dlite.Collection()
         return dict(collection_id=coll.uuid)
 
-    def status(self) -> TransformationStatus:
+    def status(self, task_id: str) -> TransformationStatus:
         """Get job status"""
         ts = TransformationStatus(
-            id="0",
+            id=task_id,
             status="WiP",
             messages=[],
             created=datetime.utcnow(),
