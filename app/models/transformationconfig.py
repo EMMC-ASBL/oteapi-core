@@ -42,7 +42,8 @@ class TransformationConfig(BaseModel):
         description="Define the process priority of the transformation execution.",
     )
     secret: Optional[str] = Field(
-        None, description="Authorization secret given when running a transformation."
+        None,
+        description="Authorization secret given when running a transformation.",
     )
     configuration: Optional[Dict] = Field(
         None,
