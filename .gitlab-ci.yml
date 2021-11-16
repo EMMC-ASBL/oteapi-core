@@ -19,9 +19,10 @@ docker-build:
 
   script:
     - docker build
-      --label "git-commit=$(git rev-parse --short HEAD)"
-      --label "git-branch=$(git rev-parse --abbrev-ref HEAD)"
-      --label "git-timestamp=$(git log -1 --format=%ct)"
+      --label "git-commit-sha=$CI_COMMIT_SHA"
+      --label "git-commit-branch=$CI_COMMIT_BRANCH"
+      --label "git-commit-timestamp=$CI_COMMIT_TIMESTAMP"
+      --label "git-commit-title=$CI_COMMIT_TITLE"
       -t $IMAGE:$CI_COMMIT_SHORT_SHA
       -t $IMAGE:latest .
 
