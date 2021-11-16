@@ -81,7 +81,10 @@ class ResourceConfig(BaseModel):
     description: Optional[str] = Field(
         None, description="A free-text account of the distribution."
     )
-    published: Optional[str] = Field(None, description="")
+    publisher: Optional[str] = Field(
+        None,
+        description="The entity responsible for making the resource/item available.",
+    )
     configuration: Optional[Dict] = Field(
         None,
         description="Resource-specific configuration options given as key/value-pairs.",

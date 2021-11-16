@@ -3,9 +3,18 @@ TransformationConfig data model definition
 """
 
 from datetime import datetime
+from enum import Enum
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
+
+
+class PriorityEnum(str, Enum):
+    """Defining process priority enumerators"""
+
+    LOW = "Low"
+    MEDIUM = "Medium"
+    HIGH = "High"
 
 
 class TransformationConfig(BaseModel):
@@ -21,9 +30,20 @@ class TransformationConfig(BaseModel):
     description: Optional[str] = Field(
         None, description="A free-text account of the transformation."
     )
-    due: Optional[datetime] = Field(None, description="")
-    priority: Optional[int] = Field(None, description="")
-    secret: Optional[str] = Field(None, description="")
+    due: Optional[datetime] = Field(
+        None,
+        description=(
+            "Optional field to indicate a due data/time for "
+            "when a transformation should finish."
+        ),
+    )
+    priority: Optional[PriorityEnum] = Field(
+        PriorityEnum.MEDIUM,
+        description="Define the process priority of the transformation execution.",
+    )
+    secret: Optional[str] = Field(
+        None, description="Authorization secret given when running a transformation."
+    )
     configuration: Optional[Dict] = Field(
         None,
         description="Transformation-specific configuration options given as key/value-pairs.",

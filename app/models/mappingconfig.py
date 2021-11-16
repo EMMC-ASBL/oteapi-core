@@ -13,7 +13,13 @@ class MappingConfig(BaseModel):
     mappingType: str = Field(
         ..., description="Type of registered mapping strategy. E.g., `mapping/demo`."
     )
-    prefixes: Optional[Dict[str, str]] = Field(None, description="")
+    prefixes: Optional[Dict[str, str]] = Field(
+        None,
+        description=(
+            "List of shortnames that expands to an IRI "
+            "given as localvalue/IRI-expansion-pairs"
+        ),
+    )
     triples: Optional[List[Tuple[str, str, str]]] = Field(
         None,
         description="List of semantic triples given as (subject, predicate, object).",
