@@ -38,6 +38,8 @@ async def create_transformation(
 
 @router.get("/{transformation_id}/status")
 async def get_transformation_status(
+    # transformation_id might be removed in the future
+    # but is needed to create the strategy
     transformation_id: str,
     task_id: str,
     cache: Redis = Depends(depends_redis),
