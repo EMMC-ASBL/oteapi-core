@@ -22,7 +22,9 @@ class TransformationConfig(BaseModel):
 
     transformation_type: str = Field(
         ...,
-        description="Type of registered transformation strategy. E.g., `dlite/transformation`.",
+        description=(
+            "Type of registered transformation strategy. E.g., `dlite/transformation`."
+        ),
     )
     name: Optional[str] = Field(
         None, description="Human-readable name of the transformation strategy."
@@ -33,8 +35,8 @@ class TransformationConfig(BaseModel):
     due: Optional[datetime] = Field(
         None,
         description=(
-            "Optional field to indicate a due data/time for "
-            "when a transformation should finish."
+            "Optional field to indicate a due data/time for when a transformation "
+            "should finish."
         ),
     )
     priority: Optional[PriorityEnum] = Field(
@@ -47,7 +49,9 @@ class TransformationConfig(BaseModel):
     )
     configuration: Optional[Dict] = Field(
         None,
-        description="Transformation-specific configuration options given as key/value-pairs.",
+        description=(
+            "Transformation-specific configuration options given as key/value-pairs."
+        ),
     )
 
 
