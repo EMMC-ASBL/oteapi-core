@@ -68,10 +68,12 @@ class CompevoMapping:
         coll.add_relation(img, "compevo:belongTo", config.use_case)
         coll.add_relation(img, "compevo:hasFormat", config.image_type)
         coll.add_relation(img, "dm:hasDescription", config.image_description)
-        coll.add_relation(img, "crop", session["crop"])
+        coll.add_relation(img, "crop", str(session["crop"]))
         s, p, o = find(mappings, s="image_file", p="rdf:type")
         coll.add_relation(img, "rdf:type", o)
 
+        coll.remove("pore_image")
+        coll.add("pore_image", image)
         return dict(MappingStep="compevo-map")
 
 

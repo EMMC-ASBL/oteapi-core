@@ -11,7 +11,7 @@ app = FastAPI()
 app.include_router(mapping.router, prefix="/mapping")
 client = TestClient(app)
 
-loader.load_plugins(["plugins.mapping-strategy.demo-mapping"])
+loader.load_plugins(["plugins.mapping_strategy.demo_mapping"])
 
 async def override_depends_redis() -> DummyCache:
     return DummyCache(
