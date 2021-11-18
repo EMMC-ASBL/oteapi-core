@@ -1,4 +1,4 @@
-""" Strategy class for image/jpg """
+""" Strategy class for atomisitc structures in xyz and poscar (vasp) format """
 
 import os
 from dataclasses import dataclass
@@ -34,10 +34,12 @@ class AtomisticStructureParseStrategy:
         session: Optional[Dict[str, Any]] = None,
     ) -> Dict:
         """Initialize"""
-        # coll = dlite.Collection()
-        # dlite.get_collection(coll.uuid)
-        print("initializes parser", session)
-        return dict()  # collection_id=coll.uuid)
+        if "collection_id" in session:
+            coll = dlite.get_collection(session["collection_id"])
+        else:
+            coll = dlite.Collection()
+            dlite.get_collection(coll.uuid)
+        return dict(collection_id=coll.uuid)
 
     def parse(
         self,
@@ -71,12 +73,10 @@ class AtomisticStructureParseStrategy:
         inst.symbols = atoms.get_chemical_symbols()
         inst.masses = atoms.get_masses()
         inst.positions = atoms.positions
-        print(coll)
 
         inst.groundstate_energy = 0.0
 
         coll.add(label=basename, inst=inst)
-        print(coll)
         # Return uuid of the collection that now includes the new parsed
         # molecule.
         # We are passing the data though, is that correct?

@@ -1,6 +1,5 @@
-# pylint: disable=W0613, W0511
 """
-Transformation plugin for compevo usecase (fetch output and print it)
+Transformation plugin for calculating molcular energies with ase.EMT
 """
 
 from dataclasses import dataclass
@@ -40,7 +39,6 @@ class ASEMoleculeCalculation:
         """Initialize a job"""
         if "collection_id" in session:
             coll = dlite.get_collection(session["collection_id"])
-            # print(session["collection_id"])
         else:
             coll = dlite.Collection()
             dlite.get_collection(coll.uuid)
@@ -68,9 +66,8 @@ class ASEMoleculeCalculation:
             atom = Atom(symbol=symbol, mass=mass, position=position)
             ase_molecule.append(atom)
 
-        # Calculate reaction energy and add value to molecule in collection
+        # Calculate reaction energy and update energy value in collection
         ase_molecule.calc = EMT()
         molecule.groundstate_energy = ase_molecule.get_potential_energy()
 
-        # Store back into a dlite Molecule
         return dict(collection_id=coll.uuid)

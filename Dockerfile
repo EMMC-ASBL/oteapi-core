@@ -25,7 +25,7 @@ RUN pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.p
 RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 ENV DLITE_ROOT=/usr
-ENV DLITE_STORAGES=/app/entities
+ENV DLITE_STORAGES=/app/entities/*.json
 ENV PYTHONPATH=/usr/lib64/python3.9/site-packages
 RUN mkdir -p /app/entities
 

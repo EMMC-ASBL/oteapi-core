@@ -1,6 +1,5 @@
-# pylint: disable=W0613, W0511
 """
-Transformation plugin for compevo usecase (fetch output and print it)
+Transformation plugin for calculating reaction energy for a given reaction.
 """
 
 from dataclasses import dataclass
@@ -52,7 +51,6 @@ class ReactionCalculation:
         """Initialize a job"""
         if "collection_id" in session:
             coll = dlite.get_collection(session["collection_id"])
-            # print(session["collection_id"])
         else:
             coll = dlite.Collection()
             dlite.get_collection(coll.uuid)
