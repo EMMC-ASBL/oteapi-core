@@ -39,6 +39,8 @@ class WrapPorefractionTransformation:
             sys.executable,
             "/app/cache/compevo/porefraction.py",
             "/ote-data/pore_image.tiff",
+            "-a",
+            "minimum",
         ]
         output = subprocess.run(args, capture_output=True)
         pore_fraction = float((output.stdout))
