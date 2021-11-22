@@ -79,6 +79,5 @@ class AtomisticStructureParseStrategy:
         coll.add(label=basename, inst=inst)
         # Return uuid of the collection that now includes the new parsed
         # molecule.
-        # We are passing the data though, is that correct?
 
         return dict(collection_id=coll.uuid, molecule_name=basename)
