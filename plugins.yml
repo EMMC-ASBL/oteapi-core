@@ -20,3 +20,6 @@ plugins:
     - "plugins.filter_strategy.compevo_crop_filter"
     - "plugins.mapping_strategy.compevo_map"
     - "plugins.parse_strategy.dlite_image_jpeg"
+    - "plugins.parse_strategy.atomistic_structures"
+    - "plugins.transformation_strategy.calculate_molecule_energy"
+    - "plugins.transformation_strategy.calculate_reaction_energy"
