@@ -18,4 +18,3 @@ class DummyCache:
 
     async def keys(self, pattern: str) -> List[str]:
         return self.obj.keys()
-

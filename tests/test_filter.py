@@ -13,7 +13,6 @@ client = TestClient(app)
 loader.load_plugins(["plugins.filter_strategy.demo_filter"])
 
 
-
 async def override_depends_redis() -> DummyCache:
     return DummyCache(
         {
@@ -23,7 +22,6 @@ async def override_depends_redis() -> DummyCache:
             }
         }
     )
-
 
 
 app.dependency_overrides[datafilter.depends_redis] = override_depends_redis
@@ -55,4 +53,3 @@ def test_initialize_filter():
         "/filter/filter-961f5314-9e8e-411e-a216-ba0eb8e8bc6e/initialize", json={}
     )
     assert response.status_code == 200
-

@@ -13,6 +13,7 @@ client = TestClient(app)
 
 loader.load_plugins(["plugins.mapping_strategy.demo_mapping"])
 
+
 async def override_depends_redis() -> DummyCache:
     return DummyCache(
         {
@@ -24,7 +25,6 @@ async def override_depends_redis() -> DummyCache:
             }
         }
     )
-
 
 
 app.dependency_overrides[mapping.depends_redis] = override_depends_redis
@@ -56,4 +56,3 @@ def test_initialize_mapping():
     )
     print("test_initialize_mapping response", response.text)
     assert response.status_code == 200
-
