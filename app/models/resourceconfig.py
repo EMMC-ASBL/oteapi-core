@@ -78,8 +78,9 @@ class ResourceConfig(BaseModel):
         defined.
         It's fine to define them all, but at least one complete pair MUST be
         specified."""
-        if not all(values.get(_) for _ in ["downloadUrl", "mediaType"]) or not all(
-            values.get(_) for _ in ["accessUrl", "accessService"]
+        if not (
+            all(values.get(_) for _ in ["downloadUrl", "mediaType"])
+            or all(values.get(_) for _ in ["accessUrl", "accessService"])
         ):
             raise ValueError(
                 "Either of the pairs of attributes downloadUrl/mediaType or "
