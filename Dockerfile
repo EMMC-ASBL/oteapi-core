@@ -36,7 +36,7 @@ COPY . .
 
 # Run static security check and linters
 RUN pre-commit run --all-files  \
-  && safety check -r requirements.txt --bare
+  && safety check -r requirements.txt
 
 # Run pytest with code coverage
 RUN pytest --cov app
