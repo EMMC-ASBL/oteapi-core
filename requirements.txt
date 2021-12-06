@@ -108,3 +108,6 @@ virtualenv==20.10.0
 wcwidth==0.2.5
 wrapt==1.13.3
 wsproto==1.0.0
+
+# for parse xlsx (excel) use case
+openpyxl==3.0.9
