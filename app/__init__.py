@@ -1,6 +1,8 @@
 """
 app init
 """
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from fastapi_plugins import RedisSettings, redis_plugin
@@ -30,7 +32,8 @@ PREFIX = "/api/v1"
 
 def load_plugins():
     """Load plugins as specified in the plugin.yml file"""
-    with open("./plugins.yml", "r", encoding="utf_8") as file:
+    plugins_file = Path(__file__).parent.parent / "plugins.yml"
+    with open(plugins_file, "r", encoding="utf_8") as file:
         data = safe_load(file)
         loader.load_plugins(data["plugins"])
 
