@@ -1,8 +1,8 @@
 # pylint: disable=W0613
 """ Strategy class for workbook/xlsx """
 import os
-from pathlib import Path
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from openpyxl import load_workbook
@@ -21,8 +21,8 @@ class XLSXParseDataModel(BaseModel):
     col_to: int = None
     header_positions: List = []
     downloadDir: DirectoryPath = (  # move to ResourceConfig??
-        os.environ['OTEAPI_downloadDir'] if  'OTEAPI_downloadDir' in os.environ
-        else '.')
+        os.environ["OTEAPI_downloadDir"] if "OTEAPI_downloadDir" in os.environ else "."
+    )
 
 
 def fetch_headers(model_object: XLSXParseDataModel, worksheet: Worksheet) -> List[str]:
@@ -46,7 +46,7 @@ class XLSXParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        if self.resource_config.downloadUrl.scheme == 'file':
+        if self.resource_config.downloadUrl.scheme == "file":
             # Workaround for strange behaviour (bug?) in "file" scheme for AnyUrl
             self.path = Path(self.resource_config.downloadUrl.host)
         else:
@@ -57,12 +57,10 @@ class XLSXParseStrategy:
         else:
             self.config = {}
 
-
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         xlsx_parse_data = XLSXParseDataModel(**self.config)
         filename = Path(xlsx_parse_data.downloadDir) / self.path.name
-        workbook = load_workbook(
-            filename=filename, read_only=True, data_only=True)
+        workbook = load_workbook(filename=filename, read_only=True, data_only=True)
         worksheet = workbook[xlsx_parse_data.worksheet]
 
         headers = fetch_headers(xlsx_parse_data, worksheet)
