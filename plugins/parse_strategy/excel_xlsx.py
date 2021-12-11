@@ -1,12 +1,13 @@
 # pylint: disable=W0613
 """ Strategy class for workbook/xlsx """
-
+import os
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
 from openpyxl import load_workbook
 from openpyxl.worksheet.worksheet import Worksheet
-from pydantic import BaseModel
+from pydantic import BaseModel, DirectoryPath
 
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
@@ -19,6 +20,9 @@ class XLSXParseDataModel(BaseModel):
     row_to: int = None
     col_to: int = None
     header_positions: List = []
+    downloadDir: DirectoryPath = (  # move to ResourceConfig??
+        os.environ['OTEAPI_downloadDir'] if  'OTEAPI_downloadDir' in os.environ
+        else '.')
 
 
 def fetch_headers(model_object: XLSXParseDataModel, worksheet: Worksheet) -> List[str]:
@@ -42,17 +46,23 @@ class XLSXParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        self.localpath = "/ote-data"
-        self.filename = self.resource_config.downloadUrl.path.rsplit("/", 1)[-1]
+        if self.resource_config.downloadUrl.scheme == 'file':
+            # Workaround for strange behaviour (bug?) in "file" scheme for AnyUrl
+            self.path = Path(self.resource_config.downloadUrl.host)
+        else:
+            self.path = Path(self.resource_config.downloadUrl.path)
+
         if self.resource_config.configuration:
             self.config = self.resource_config.configuration
         else:
             self.config = {}
 
+
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         xlsx_parse_data = XLSXParseDataModel(**self.config)
-        filename = f"{self.localpath}/{self.filename}"
-        workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+        filename = Path(xlsx_parse_data.downloadDir) / self.path.name
+        workbook = load_workbook(
+            filename=filename, read_only=True, data_only=True)
         worksheet = workbook[xlsx_parse_data.worksheet]
 
         headers = fetch_headers(xlsx_parse_data, worksheet)

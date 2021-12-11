@@ -51,5 +51,7 @@ FROM base as production
 COPY . .
 
 # Run app
+ENV OTEAPI_downloadDir /ote-data
+
 CMD hypercorn wsgi:app --bind 0.0.0.0:80
 EXPOSE 80
