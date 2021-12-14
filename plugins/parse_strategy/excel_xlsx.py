@@ -33,9 +33,9 @@ class XLSXParseDataModel(BaseModel):
           to return.  These names they should match cells in `headerRow`.
         newHeader: Optional list of new column names replacing `header`
           in the output.
-        downloadDir: Directory where we expect to find the (possible
+        download_dir: Directory where we expect to find the (possible
           downloaded) excel file.  Defaults to the current directory,
-          unless the 'OTEAPI_downloadDir' environment variable is set.
+          unless the 'OTEAPI_DOWNLOAD_DIR' environment variable is set.
     """
 
     worksheet: str
@@ -46,8 +46,10 @@ class XLSXParseDataModel(BaseModel):
     headerRow: int = None
     header: List[str] = None
     newHeader: List[str] = None
-    downloadDir: DirectoryPath = (  # move to ResourceConfig??
-        os.environ["OTEAPI_downloadDir"] if "OTEAPI_downloadDir" in os.environ else "."
+    download_dir: DirectoryPath = (
+        os.environ["OTEAPI_DOWNLOAD_DIR"]
+        if "OTEAPI_DOWNLOAD_DIR" in os.environ
+        else "."
     )
 
 
@@ -118,7 +120,7 @@ class XLSXParseStrategy:
         - data: cell values (as a list of lists, row-wise)
         """
         model = XLSXParseDataModel(**self.config)
-        filename = Path(model.downloadDir) / self.path.name
+        filename = Path(model.download_dir) / self.path.name
         workbook = load_workbook(filename=filename, read_only=True, data_only=True)
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
