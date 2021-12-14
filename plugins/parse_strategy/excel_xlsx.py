@@ -27,11 +27,11 @@ class XLSXParseDataModel(BaseModel):
           assigned row.
         col_to: Excel column number or label of last column.  Defaults
           to last assigned column.
-        headerRow: Row number with the headers. Defaults to 1 if
+        header_row: Row number with the headers. Defaults to 1 if
           header is given, otherwise None.
         header: Optional list of column names, specifying the columns
-          to return.  These names they should match cells in `headerRow`.
-        newHeader: Optional list of new column names replacing `header`
+          to return.  These names they should match cells in `header_row`.
+        new_header: Optional list of new column names replacing `header`
           in the output.
         download_dir: Directory where we expect to find the (possible
           downloaded) excel file.  Defaults to the current directory,
@@ -43,9 +43,9 @@ class XLSXParseDataModel(BaseModel):
     col_from: Union[int, str] = None
     row_to: int = None
     col_to: Union[int, str] = None
-    headerRow: int = None
+    header_row: int = None
     header: List[str] = None
-    newHeader: List[str] = None
+    new_header: List[str] = None
     download_dir: DirectoryPath = (
         os.environ["OTEAPI_DOWNLOAD_DIR"]
         if "OTEAPI_DOWNLOAD_DIR" in os.environ
@@ -58,7 +58,7 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet):
     if model.row_from is None:
         if model.header:
             # assume that data starts on the first row after the header
-            model.row_from = model.headerRow + 1
+            model.row_from = model.header_row + 1
         else:
             model.row_from = worksheet.min_row
 
@@ -75,15 +75,15 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet):
     elif isinstance(model.col_to, str):
         model.col_to = column_index_from_string(model.col_to)
 
-    if model.header and not model.headerRow:
-        model.headerRow = 1
+    if model.header and not model.header_row:
+        model.header_row = 1
 
 
 def get_column_indices(model: XLSXParseDataModel, worksheet: Worksheet) -> List[int]:
     """Helper function returning a list of column indices."""
     if model.header:
         header_dict = {
-            worksheet.cell(model.headerRow, col).value: col
+            worksheet.cell(model.header_row, col).value: col
             for col in range(model.col_from, model.col_to + 1)
         }
         indices = [header_dict[h] for h in model.header]
@@ -115,8 +115,8 @@ class XLSXParseStrategy:
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Parses selected region of an excel file.  The fields of the
         returned dict are as follows:
-        - header: list of column headers (read from `headerRow`).  Is None
-            if neither `headerRow` nor `header` configuration is given.
+        - header: list of column headers (read from `header_row`).  Is None
+            if neither `header_row` nor `header` configuration is given.
         - data: cell values (as a list of lists, row-wise)
         """
         model = XLSXParseDataModel(**self.config)
@@ -135,10 +135,10 @@ class XLSXParseStrategy:
         ):
             data.append([row[c - 1].value for c in columns])
 
-        if model.headerRow:
+        if model.header_row:
             row = worksheet.iter_rows(
-                min_row=model.headerRow,
-                max_row=model.headerRow,
+                min_row=model.header_row,
+                max_row=model.header_row,
                 min_col=min(columns),
                 max_col=max(columns),
             ).__next__()
@@ -146,19 +146,19 @@ class XLSXParseStrategy:
         else:
             header = None
 
-        if model.newHeader:
+        if model.new_header:
             nhead = len(header) if header else len(data[0]) if data else 0
-            if len(model.newHeader) != nhead:
+            if len(model.new_header) != nhead:
                 raise TypeError(
-                    f"length of `newHeader` (={len(model.newHeader)}) "
+                    f"length of `new_header` (={len(model.new_header)}) "
                     f"doesn't match number of columns (={len(header)})"
                 )
             if header:
-                for i, val in enumerate(model.newHeader):
+                for i, val in enumerate(model.new_header):
                     if val is not None:
                         header[i] = val
             elif data:
-                header = model.newHeader
+                header = model.new_header
 
         return {"header": header, "data": data}
 
