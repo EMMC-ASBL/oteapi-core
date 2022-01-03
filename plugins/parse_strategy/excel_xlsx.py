@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
-from openpyxl.utils import column_index_from_string
+from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 from pydantic import BaseModel
 
@@ -103,11 +103,9 @@ class XLSXParseStrategy:
             self.config = {}
 
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        """Parses selected region of an excel file.  The fields of the
-        returned dict are as follows:
-        - header: list of column headers (read from `header_row`).  Is None
-            if neither `header_row` nor `header` configuration is given.
-        - data: cell values (as a list of lists, row-wise)
+        """Parses selected region of an excel file.
+
+        Returns a dict with column-name/column-value pairs.  The values are lists.
         """
         model = XLSXParseDataModel(**self.config)
         workbook = load_workbook(filename=self.filename, read_only=True, data_only=True)
@@ -149,31 +147,8 @@ class XLSXParseStrategy:
             elif data:
                 header = model.new_header
 
-        return {"header": header, "data": data}
+        if header is None:
+            header = [get_column_letter(col + 1) for col in range(len(data))]
 
-    def parse_recarray(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        """Convenient method that works like `parse()`, but returns the data
-        as a numpy recarray.
-        """
-        import numpy as np
-
-        d = self.parse(session)
-        data = d["data"]
-        nhead = len(d["header"]) if d["header"] else 0
-        nrows = len(data)
-        ncols = len(data[0]) if nrows else nhead
-
-        # Set blank cells in numerical columns to NaN such that
-        # np.rec.fromrecords() will convert them to the correct
-        # numerical dtype
-        for col in range(ncols):
-            if all(
-                isinstance(data[row][col], (bool, int, float, complex, None.__class__))
-                for row in range(nrows)
-            ):
-                for row in range(nrows):
-                    if data[row][col] is None:
-                        data[row][col] = np.nan
-
-        d["data"] = np.rec.fromrecords(data, names=d["header"])
-        return d
+        transposed = list(map(list, zip(*data)))
+        return {k: v for k, v in zip(header, transposed)}
