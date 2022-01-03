@@ -1,14 +1,12 @@
 # pylint: disable=W0613
 """ Strategy class for workbook/xlsx """
-import os
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string
 from openpyxl.worksheet.worksheet import Worksheet
-from pydantic import BaseModel, DirectoryPath
+from pydantic import BaseModel
 
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
@@ -33,9 +31,6 @@ class XLSXParseDataModel(BaseModel):
           to return.  These names they should match cells in `header_row`.
         new_header: Optional list of new column names replacing `header`
           in the output.
-        download_dir: Directory where we expect to find the (possible
-          downloaded) excel file.  Defaults to the current directory,
-          unless the 'OTEAPI_DOWNLOAD_DIR' environment variable is set.
     """
 
     worksheet: str
@@ -46,11 +41,6 @@ class XLSXParseDataModel(BaseModel):
     header_row: int = None
     header: List[str] = None
     new_header: List[str] = None
-    download_dir: DirectoryPath = (
-        os.environ["OTEAPI_DOWNLOAD_DIR"]
-        if "OTEAPI_DOWNLOAD_DIR" in os.environ
-        else "."
-    )
 
 
 def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet):
@@ -101,11 +91,11 @@ class XLSXParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        if self.resource_config.downloadUrl.scheme == "file":
-            # Workaround for strange behaviour (bug?) in "file" scheme for AnyUrl
-            self.path = Path(self.resource_config.downloadUrl.host)
-        else:
-            self.path = Path(self.resource_config.downloadUrl.path)
+        # TODO: call the download stragegy to deliver a local (temporary) file.  # pylint: disable=W0511
+        # For now we just assume that the resource_config.downloadUrl is a full
+        # path to a local file.
+        assert self.resource_config.downloadUrl.scheme == "file", "ensure local file"
+        self.filename = self.resource_config.downloadUrl.host
 
         if self.resource_config.configuration:
             self.config = self.resource_config.configuration
@@ -120,8 +110,7 @@ class XLSXParseStrategy:
         - data: cell values (as a list of lists, row-wise)
         """
         model = XLSXParseDataModel(**self.config)
-        filename = Path(model.download_dir) / self.path.name
-        workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+        workbook = load_workbook(filename=self.filename, read_only=True, data_only=True)
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
         columns = get_column_indices(model, worksheet)
