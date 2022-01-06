@@ -3,6 +3,7 @@ version: "1.0"
 plugins:
     - "plugins.download_strategy.sftp"
     - "plugins.download_strategy.https"
+    - "plugins.download_strategy.file"
     - "plugins.filter_strategy.demo_filter"
     - "plugins.filter_strategy.crop_filter"
     - "plugins.filter_strategy.sql_query_filter"

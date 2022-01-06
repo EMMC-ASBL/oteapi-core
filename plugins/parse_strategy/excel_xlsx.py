@@ -10,6 +10,7 @@ from pydantic import BaseModel
 
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
+from app.strategy.idownloadstrategy import create_download_strategy
 
 
 class XLSXParseDataModel(BaseModel):
@@ -91,11 +92,9 @@ class XLSXParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        # TODO: call the download stragegy to deliver a local (temporary) file.  # pylint: disable=W0511
-        # For now we just assume that the resource_config.downloadUrl is a full
-        # path to a local file.
-        assert self.resource_config.downloadUrl.scheme == "file", "ensure local file"
-        self.filename = self.resource_config.downloadUrl.host
+        downloader = create_download_strategy(self.resource_config)
+        output = downloader.get()
+        self.filename = output["filename"]
 
         if self.resource_config.configuration:
             self.config = self.resource_config.configuration
