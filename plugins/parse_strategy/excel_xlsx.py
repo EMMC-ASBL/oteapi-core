@@ -1,10 +1,10 @@
 # pylint: disable=W0613
 """ Strategy class for workbook/xlsx """
-
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
+from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 from pydantic import BaseModel
 
@@ -13,31 +13,73 @@ from app.strategy.factory import StrategyFactory
 
 
 class XLSXParseDataModel(BaseModel):
+    """Data model for retrieving a rectangular section of an Excel sheet.
+
+    Fields:
+        worksheet: Name of worksheet to load.
+        row_from: Excel row number of first row.  Defaults to first
+          assigned row.
+        col_from: Excel column number or label of first column.
+          Defaults to first assigned column.
+        row_to: Excel row number of last row.  Defaults to last
+          assigned row.
+        col_to: Excel column number or label of last column.  Defaults
+          to last assigned column.
+        header_row: Row number with the headers. Defaults to 1 if
+          header is given, otherwise None.
+        header: Optional list of column names, specifying the columns
+          to return.  These names they should match cells in `header_row`.
+        new_header: Optional list of new column names replacing `header`
+          in the output.
+    """
+
     worksheet: str
     row_from: int = None
-    col_from: int = None
+    col_from: Union[int, str] = None
     row_to: int = None
-    col_to: int = None
-    header_positions: List = []
+    col_to: Union[int, str] = None
+    header_row: int = None
+    header: List[str] = None
+    new_header: List[str] = None
 
 
-def fetch_headers(model_object: XLSXParseDataModel, worksheet: Worksheet) -> List[str]:
-    """
-    Helper function returning the headers of the worksheet as a list of strings.
-    If the list of headers is empty we assume the first row contains the headers
-    """
-    if len(model_object.header_positions) == 0:
-        return [
-            worksheet.cell(worksheet.min_row, col).value
-            for col in range(worksheet.min_column, worksheet.max_column + 1)
-        ]
+def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet):
+    """Update datamodel `model` with default values obtained from `worksheet`."""
+    if model.row_from is None:
+        if model.header:
+            # assume that data starts on the first row after the header
+            model.row_from = model.header_row + 1
+        else:
+            model.row_from = worksheet.min_row
+
+    if model.row_to is None:
+        model.row_to = worksheet.max_row
+
+    if model.col_from is None:
+        model.col_from = worksheet.min_column
+    elif isinstance(model.col_from, str):
+        model.col_from = column_index_from_string(model.col_from)
+
+    if model.col_to is None:
+        model.col_to = worksheet.max_column
+    elif isinstance(model.col_to, str):
+        model.col_to = column_index_from_string(model.col_to)
+
+    if model.header and not model.header_row:
+        model.header_row = 1
+
+
+def get_column_indices(model: XLSXParseDataModel, worksheet: Worksheet) -> List[int]:
+    """Helper function returning a list of column indices."""
+    if model.header:
+        header_dict = {
+            worksheet.cell(model.header_row, col).value: col
+            for col in range(model.col_from, model.col_to + 1)
+        }
+        indices = [header_dict[h] for h in model.header]
     else:
-        uppercase_codes = []
-        for code in model_object.header_positions:
-            uppercase_codes.append(code.upper())
-
-        uppercase_codes.sort()
-        return [worksheet[code].value for code in uppercase_codes]
+        indices = range(model.col_from, model.col_to + 1)
+    return indices
 
 
 @dataclass
@@ -49,58 +91,64 @@ class XLSXParseStrategy:
     resource_config: ResourceConfig
 
     def __post_init__(self):
-        self.localpath = "/ote-data"
-        self.filename = self.resource_config.downloadUrl.path.rsplit("/", 1)[-1]
+        # TODO: call the download stragegy to deliver a local (temporary) file.  # pylint: disable=W0511
+        # For now we just assume that the resource_config.downloadUrl is a full
+        # path to a local file.
+        assert self.resource_config.downloadUrl.scheme == "file", "ensure local file"
+        self.filename = self.resource_config.downloadUrl.host
+
         if self.resource_config.configuration:
             self.config = self.resource_config.configuration
         else:
             self.config = {}
 
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        xlsx_parse_data = XLSXParseDataModel(**self.config)
-        filename = f"{self.localpath}/{self.filename}"
-        workbook = load_workbook(filename=filename, read_only=True, data_only=True)
-        worksheet = workbook[xlsx_parse_data.worksheet]
+        """Parses selected region of an excel file.
 
-        headers = fetch_headers(xlsx_parse_data, worksheet)
-        if xlsx_parse_data.row_from is None:
-            xlsx_parse_data.row_from = (
-                worksheet.min_row + 1
-            )  # We assume first row is headers
-        if xlsx_parse_data.row_to is None:
-            xlsx_parse_data.row_to = worksheet.max_row
-        if xlsx_parse_data.col_from is None:
-            xlsx_parse_data.col_from = worksheet.min_column
-        if xlsx_parse_data.col_to is None:
-            xlsx_parse_data.col_to = worksheet.max_column
-        json_data = {}
+        Returns a dict with column-name/column-value pairs.  The values are lists.
+        """
+        model = XLSXParseDataModel(**self.config)
+        workbook = load_workbook(filename=self.filename, read_only=True, data_only=True)
+        worksheet = workbook[model.worksheet]
+        set_model_defaults(model, worksheet)
+        columns = get_column_indices(model, worksheet)
+
+        data = []
         for row in worksheet.iter_rows(
-            min_row=xlsx_parse_data.row_from,
-            min_col=xlsx_parse_data.col_from,
-            max_row=xlsx_parse_data.row_to
-            if xlsx_parse_data.row_to
-            else worksheet.max_row,
-            max_col=xlsx_parse_data.col_to
-            if xlsx_parse_data.col_to
-            else worksheet.max_column,
+            min_row=model.row_from,
+            max_row=model.row_to,
+            min_col=min(columns),
+            max_col=max(columns),
         ):
+            data.append([row[c - 1].value for c in columns])
 
-            doc = {}
-            data = []
-            for cell in row:
-                data.append(cell.value)
+        if model.header_row:
+            row = worksheet.iter_rows(
+                min_row=model.header_row,
+                max_row=model.header_row,
+                min_col=min(columns),
+                max_col=max(columns),
+            ).__next__()
+            header = [row[c - 1].value for c in columns]
+        else:
+            header = None
 
-            if data[0] == None or data[-1] == None:
-                continue
+        if model.new_header:
+            nhead = len(header) if header else len(data[0]) if data else 0
+            if len(model.new_header) != nhead:
+                raise TypeError(
+                    f"length of `new_header` (={len(model.new_header)}) "
+                    f"doesn't match number of columns (={len(header)})"
+                )
+            if header:
+                for i, val in enumerate(model.new_header):
+                    if val is not None:
+                        header[i] = val
+            elif data:
+                header = model.new_header
 
-            for idx in range(1 + xlsx_parse_data.col_to - xlsx_parse_data.col_from):
-                doc[headers[idx]] = data[idx]
+        if header is None:
+            header = [get_column_letter(col + 1) for col in range(len(data))]
 
-            current_row = row[0].row
-            json_data["Row " + str(current_row)] = doc
-
-        return json_data
-
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
-        """Initialize"""
-        return {}
+        transposed = list(map(list, zip(*data)))
+        return {k: v for k, v in zip(header, transposed)}
