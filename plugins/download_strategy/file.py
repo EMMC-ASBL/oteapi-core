@@ -24,6 +24,7 @@ class FileStrategy:
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Read local file."""
         # pylint: disable=E1101
+        assert self.resource_config.downloadUrl
         assert self.resource_config.downloadUrl.scheme == "file"
         filename = self.resource_config.downloadUrl.host
         return dict(filename=filename)
