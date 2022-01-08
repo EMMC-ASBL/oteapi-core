@@ -15,12 +15,6 @@ class JSONDataParseStrategy:
 
     resource_config: ResourceConfig
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
-        """Initialize"""
-        return dict()
-
     def parse(
         self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
     ) -> Dict:

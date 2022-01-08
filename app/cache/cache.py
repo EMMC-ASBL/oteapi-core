@@ -121,11 +121,17 @@ class DataCache:
         self.add(value, key)
 
     def __delitem__(self, key):
-        del self.dc[key]
+        def deleter(key):
+            del self.dc[key]
+
+        asyncrun(deleter, key)
 
     def __del__(self):
-        self.dc.expire()
-        self.dc.close()
+        def closer():
+            self.dc.expire()
+            self.dc.close()
+
+        asyncrun(closer)
 
     def add(
         self,
@@ -238,8 +244,8 @@ class DataCache:
 
         Useful for cleaning up a session.
         """
-        self.dc.evict(tag)
+        asyncrun(self.dc.evict, tag)
 
     def clear(self):
         """Remove all items from cache."""
-        self.dc.clear()
+        asyncrun(self.dc.clear)
