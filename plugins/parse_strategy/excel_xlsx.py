@@ -6,8 +6,9 @@ from typing import Any, Dict, List, Optional, Union
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 
+from app.cache.cache import DataCache
 from app.models.resourceconfig import ResourceConfig
 from app.strategy.factory import StrategyFactory
 from app.strategy.idownloadstrategy import create_download_strategy
@@ -91,23 +92,21 @@ class XLSXParseStrategy:
 
     resource_config: ResourceConfig
 
-    def __post_init__(self):
-        downloader = create_download_strategy(self.resource_config)
-        output = downloader.get()
-        self.filename = output["filename"]
-
-        if self.resource_config.configuration:
-            self.config = self.resource_config.configuration
-        else:
-            self.config = {}
-
     def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Parses selected region of an excel file.
 
-        Returns a dict with column-name/column-value pairs.  The values are lists.
+        Returns a dict with column-name/column-value pairs.  The values are
+        lists.
         """
-        model = XLSXParseDataModel(**self.config)
-        workbook = load_workbook(filename=self.filename, read_only=True, data_only=True)
+        model = XLSXParseDataModel(
+            **self.resource_config.configuration, extra=Extra.ignore
+        )
+
+        downloader = create_download_strategy(self.resource_config)
+        output = downloader.get()
+        cache = DataCache(self.resource_config.configuration)
+        with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
+            workbook = load_workbook(filename=filename, read_only=True, data_only=True)
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
         columns = get_column_indices(model, worksheet)

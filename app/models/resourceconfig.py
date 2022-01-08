@@ -66,7 +66,7 @@ class ResourceConfig(BaseModel):
         description="The entity responsible for making the resource/item available.",
     )
     configuration: Optional[Dict] = Field(
-        None,
+        {},
         description="Resource-specific configuration options given as key/value-pairs.",
     )
 
