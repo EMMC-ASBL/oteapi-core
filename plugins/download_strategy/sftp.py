@@ -19,6 +19,12 @@ class SFTPStrategy:
 
     resource_config: ResourceConfig
 
+    def initialize(
+        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
+    ) -> Dict:
+        """Initialize"""
+        return {}
+
     def get(
         self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
     ) -> Dict:
