@@ -5,9 +5,8 @@ SQL query filter strategy
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from fastapi import HTTPException
-from oteapi.app.models.filterconfig import FilterConfig
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.models.filterconfig import FilterConfig
+from oteapi.strategy-interfaces.factory import StrategyFactory
 from pydantic import BaseModel
 
 

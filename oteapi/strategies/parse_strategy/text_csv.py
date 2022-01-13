@@ -3,8 +3,8 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from oteapi.app.models.resourceconfig import ResourceConfig
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.models.resourceconfig import ResourceConfig
+from oteapi.strategy-interfaces.factory import StrategyFactory
 
 
 @dataclass

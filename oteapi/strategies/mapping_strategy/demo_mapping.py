@@ -5,8 +5,8 @@ Demo-mapping strategy
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from oteapi.app.models.mappingconfig import MappingConfig
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.models.mappingconfig import MappingConfig
+from oteapi.strategy-interfaces.factory import StrategyFactory
 
 
 @dataclass
