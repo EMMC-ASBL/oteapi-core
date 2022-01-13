@@ -1,0 +1,145 @@
+name: CI - Tests
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
+
+jobs:
+
+  # pre-commit:
+  #   runs-on: ubuntu-latest
+  #   # timeout-minutes: 2
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: Set up Python 3.8
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install --upgrade pip
+  #       pip install -U setuptools wheel
+
+  #       while IFS="" read -r line || [ -n "${line}" ]; do
+  #         if [[ "${line}" =~ ^pre-commit.*$ ]]; then
+  #           pre_commit="${line}"
+  #         elif [[ "${line}" =~ ^invoke.*$ ]]; then
+  #           invoke="${line}"
+  #         fi
+  #       done < requirements_dev.txt
+
+  #       pip install ${pre_commit} ${invoke}
+
+  #   - name: Test with pre-commit
+  #     run: SKIP=pylint pre-commit run --all-files
+
+  # pylint-safety:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 2
+
+  #   - name: Set up Python 3.8
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install -U pip
+  #       pip install -U setuptools wheel
+  #       pip install -U -r requirements.txt -r requirements_dev.txt
+  #       pip install safety
+
+  #   - name: Run pylint
+  #     run: pylint --rcfile=pyproject.toml *.py oteapi
+
+  #   - name: Run safety
+  #     run: pip freeze | safety check --stdin
+
+  # pytest:
+  #   runs-on: ubuntu-latest
+  #   # timeout-minutes: 15
+
+  #   strategy:
+  #     matrix:
+  #       python-version: [3.8, 3.9]
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 2
+
+  #   - name: Set up Python ${{ matrix.python-version}}
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: ${{ matrix.python-version}}
+
+  #   - name: Install python dependencies
+  #     run: |
+  #       python -m pip install -U pip
+  #       pip install -U setuptools wheel
+  #       pip install -e .[dev]
+
+  #   - name: Test with pytest
+  #     run: pytest -vvv --cov-report=xml
+
+  #   - name: Upload coverage to Codecov
+  #     if: matrix.python-version == 3.8 && github.repository == 'EMMC-ASBL/oteapi-core'
+  #     uses: codecov/codecov-action@v2
+  #     with:
+  #       name: oteapi-core
+  #       files: ./coverage.xml
+  #       flags: pytest
+
+  build-package:
+    name: Build distribution package
+    runs-on: ubuntu-latest
+    # timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U pip
+          pip install -U setuptools wheel build
+
+      - name: Check building distribution
+        run: python -m build
+
+  # docs:
+  #   name: Documentation
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 2
+
+  #   - uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install -U pip
+  #       pip install -U setuptools wheel
+  #       pip install -e .[docs]
+
+  #   - name: Build
+  #     run: |
+  #       invoke create-api-reference-docs --pre-clean
+  #       invoke create-docs-index
+  #       mkdocs build --strict --verbose

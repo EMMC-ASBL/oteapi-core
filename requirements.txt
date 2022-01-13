@@ -2,6 +2,7 @@ celery==5.2.3
 coverage==6.2
 hiredis==2.0.0
 hpack==4.0.0
+invoke==1.6.0
 matplotlib==3.5.1
 numpy==1.21
 openpyxl==3.0.9
