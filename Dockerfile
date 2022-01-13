@@ -21,7 +21,7 @@ RUN apt-get install -y -f /tmp/dlite.deb \
   && rm -rf /var/lib/apt/lists/*
 
 # Install requirements
-COPY ./requirements.txt ./README.md ./plugins.yml ./
+COPY . .
 RUN pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip \
   && pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade setuptools wheel
 RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org .
@@ -33,7 +33,6 @@ RUN mkdir -p /app/entities
 
 ################# DEVELOPMENT ####################################
 FROM base as development
-COPY . .
 
 # Run static security check and linters
 RUN pre-commit run --all-files  \
@@ -49,7 +48,6 @@ EXPOSE 8080
 
 ################# PRODUCTION ####################################
 FROM base as production
-COPY . .
 
 # Run app
 CMD hypercorn wsgi:app --bind 0.0.0.0:80
