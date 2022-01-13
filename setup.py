@@ -12,15 +12,21 @@ BASE = [
 ]
 
 setup(
-    name="oteapi",
+    name="oteapi-core",
     version="0.0.1",
     author="TEAM 4.0 devs",
     author_email="team4.0@SINTEF.onmicrosoft.com",
-    url="https://github.com/EMMC-ASBL/oteapi",
+    url="https://github.com/EMMC-ASBL/oteapi-core",
     description="OTE-API (Open Translation Environment) API.",
     long_description=(TOP_DIR / "README.md").read_text(encoding="utf8"),
     long_description_content_type="text/markdown",
     packages=find_packages(),
     python_requires=">=3.8",
     install_requires=BASE,
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "License :: OSI Approved :: MIT License",
+    ],
 )
