@@ -100,7 +100,7 @@ jobs:
   #       flags: pytest
 
   build-package:
-    name: Build source distribution
+    name: Build distribution package
     runs-on: ubuntu-latest
     # timeout-minutes: 5
 
