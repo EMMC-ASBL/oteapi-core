@@ -25,7 +25,7 @@ Semantic interoperability is supported via mapping of data models describing the
 Transformations, mainly intended to transform data between representations, are also supported.  But transformations can also be used for running simulations in a simple workflow.
 
 OTEAPI Core include:
-- a small set of standard strategies
+- a set of standard strategies
 - a plugin system for loading the standard strategies as well as third party strategies
 - data models for configuring the strategies
 - a Python library through which the data can be accessed
