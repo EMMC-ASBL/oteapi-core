@@ -1,80 +1,82 @@
-# Open Translation Environment (OTE) API
+# Open Translation Environment (OTE) API Core
 
-## Run in Docker
+> Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
-### Development target
+## Content
 
-The development target will allow for automatic reloading when source code changes.
-This requires that the local directory is bind-mounted using the `-v` or `--volume` argument.
-To build and run the development target from the command line:
 
-```shell
-docker build --rm -q -f Dockerfile \
-    --label "ontotrans.oteapi=development" \
-    --target development \
-    -t "ontotrans/oteapi-development:latest" .
-```
+* [About OTEAPI Core](#about-oteapi-core)
+* [Types of strategies](#types-of-strategies)
+  * [Download strategy](#download-strategy)
+  * [Parse strategy](#parse-strategy)
+  * [Resource strategy](#resource-strategy)
+  * [Mapping strategy](#mappping-strategy)
+  * [Filter strategy](#filter-strategy)
+  * [Transformation strategy](#transformation-strategy)
+* [Entry points for plugins](#entry-points-for-plugins)
+* [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
+* [Installation](#installation)
+* [License](#license)
+* [Acknowledgment](#acknowledgement)
 
-### Production target
 
-The production target will not reload itself on code change and will run a predictable version of the code on port 80.
-Also you might want to use a named container with the `--restart=always` option to ensure that the container is restarted indefinitely regardless of the exit status.
-To build and run the production target from the command line:
+## About OTEAPI Core
 
-```shell
-docker build --rm -q -f Dockerfile \
-    --label "ontotrans.oteapi=production" \
-    -t "ontotrans/oteapi:latest" .
-```
 
-### Run redis
+OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
-Redis with persistance needs to run as a prerequisite to starting oteapi.
-Redis needs to share the same network as oteapi.
 
-```shell
-docker network create -d bridge otenet
-docker volume create redis-persist
-docker run \
-    --detach \
-    --name redis \
-    --volume redis-persist:/data \
-    --network otenet \
-    redis:latest
-```
+It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
+Semantic interoperability is supported via mapping of data models describing the data to ontologies.
+Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
-### Run oteapi (development)
+OTEAPI Core includes:
+- A set of standard strategies;
+- A plugin system for loading the standard strategies, as well as third party strategies;
+- Data models for configuring the strategies;
+- A Python library, through which the data can be accessed; and
+- An efficient data cache module that avoids downloading the same content several times.
 
-Run the services by attaching to the otenet network and set the environmental variables for connecting to Redis.
 
-```shell
-docker run \
-    --rm \
-    --network otenet \
-    --detach \
-    --volume ${PWD}:/app \
-    --publish 8080:8080 \
-    --env REDIS_TYPE=redis \
-    --env REDIS_HOST=redis \
-    --env REDIS_PORT=6379 \
-    ontotrans/oteapi-development:latest
-```
+## Types of strategies
 
-Open the following URL in a browser [http://localhost:8080/redoc](http://localhost:8080/redoc).
+### Download strategy
 
-### Run the Atmoz SFTP Server
 
-To test the data access via SFTP, the atmoz sftp-server can be run:
+Download strategy patterns use a given protocol to download content into the data cache.
+They are configured with the `ResourceConfig` data model, using the scheme of the `downloadUrl` field for strategy selection. 
+The `configuration` field can be used to configure how the downloaded content is stored in the cache using the `DownloadConfig` data model.
 
-```shell
-docker volume create sftpdrive
-docker run \
-    --detach \
-    --network=otenet \
-    --volume sftpdrive:/home/foo/upload \
-    --publish 2222:22 \
-    atmoz/sftp foo:pass:1001
-```
+Standard downloaded strategies: *file*, *https*, *http*, *sftp*, *ftp*
+
+
+### Parse strategy
+
+Parse strategy patterns convert content from the data cache to a Python dict.
+Like download strategies, they are configured with the `ResourceConfig` data model, using the `mediaType` field for strategy selection.
+Additional strategy-specific configurations can be provided via the `configuration` field.
+
+Standard parse strategies: *text_csv*, *text_json*, *image_jpeg*, *excel_xlsx*
+
+
+### Resource strategy
+
+Resource strategy patterns can retrieve/upload data to external data services.
+They are configured with the `ResourceConfig` data model, using the scheme of the `accessUrl` and `accessService` fields.
+The scheme of the `accessUrl` is used for strategy selection.
+
+### Mapping strategy
+
+Strategies for mapping fields/properties in data models to ontological concepts.
+
+### Filter strategy
+
+Filter strategies can update the configuration of other strategies.
+They can also update values in the data cache.
+
+### Transformation strategy
+
+Transformation strategies are a special form of a filter strategy intended for long-running transformations.
 
 ## Entry points for plugins
 
@@ -128,3 +130,25 @@ oteapi.download_strategy =
 ```
 
 The plugins will then automagically load all installed strategy module plugins, registering the strategies according to the `StrategyFactory` decorator.
+
+## Other OTEAPI-related repositories
+
+* [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
+* [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
+
+## Installation
+
+OTEAPI Core can be installed with:
+
+```console
+$ pip install oteapi-core
+
+## License
+
+OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE) with copyright &copy; SINTEF.
+
+## Acknowledgment
+
+OTEAPI Core has been supported by the following projects:
+
+* __OntoTrans__ (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.
