@@ -1,12 +1,9 @@
 """
 app init
 """
-from pathlib import Path
-
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
-# from fastapi_plugins import RedisSettings, redis_plugin
-from yaml import safe_load
+from fastapi_plugins import RedisSettings, redis_plugin
 
 from oteapi.app.context import (
     datafilter,
@@ -19,8 +16,7 @@ from oteapi.app.context import (
 from oteapi.app.strategy import loader
 
 
-# class AppSettings(RedisSettings):
-class AppSettings:
+class AppSettings(RedisSettings):
     """
     Redis settings
     """
@@ -89,18 +85,18 @@ def custom_openapi():
 _app.openapi = custom_openapi
 
 
-# @_app.on_event("startup")
-# async def on_startup() -> None:
-#     """
-#     initialization
-#     """
-#     await redis_plugin.init_app(_app, config=config)
-#     await redis_plugin.init()
+@_app.on_event("startup")
+async def on_startup() -> None:
+    """
+    initialization
+    """
+    await redis_plugin.init_app(_app, config=config)
+    await redis_plugin.init()
 
 
-# @_app.on_event("shutdown")
-# async def on_shutdown() -> None:
-#     """
-#     shutdown
-#     """
-#     await redis_plugin.terminate()
+@_app.on_event("shutdown")
+async def on_shutdown() -> None:
+    """
+    shutdown
+    """
+    await redis_plugin.terminate()
