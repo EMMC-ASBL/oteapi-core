@@ -1,130 +1,54 @@
-# Open Translation Environment (OTE) API
+# OTEAPI Core
+> Framework for accessing data resources, mapping data models describing the data to ontologies and perform data transformations
 
-## Run in Docker
+OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
-### Development target
 
-The development target will allow for automatic reloading when source code changes.
-This requires that the local directory is bind-mounted using the `-v` or `--volume` argument.
-To build and run the development target from the command line:
+It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
+Semantic interoperability is supported via mapping of data models describing the data to ontologies.
+Transformations, mainly intended to transform data between representations, are also supported.  But transformations can also be used for running simulations in a simple workflow.
 
-```shell
-docker build --rm -q -f Dockerfile \
-    --label "ontotrans.oteapi=development" \
-    --target development \
-    -t "ontotrans/oteapi-development:latest" .
-```
+OTEAPI Core include:
+- a small set of standard strategies
+- a plugin system for loading the standard strategies as well as third party strategies
+- data models for configuring the strategies
+- a Python library through which the data can be accessed
+- an efficient data cache module that avoids downloading the same content several times
 
-### Production target
 
-The production target will not reload itself on code change and will run a predictable version of the code on port 80.
-Also you might want to use a named container with the `--restart=always` option to ensure that the container is restarted indefinitely regardless of the exit status.
-To build and run the production target from the command line:
+## Types of strategies
 
-```shell
-docker build --rm -q -f Dockerfile \
-    --label "ontotrans.oteapi=production" \
-    -t "ontotrans/oteapi:latest" .
-```
+### Download strategy
+Download strategy patterns use a given protocol to download content into the data cache.  They are configured with the ResourceConfig data model, using the scheme of the
+`downloadUrl` field for strategy selection.  The `configuration` field can be used to configure how the downloaded content is stored in the cache using the DownloadConfig data model.
 
-### Run redis
+Standard downloaded strategies: file, https, sftp
 
-Redis with persistance needs to run as a prerequisite to starting oteapi.
-Redis needs to share the same network as oteapi.
 
-```shell
-docker network create -d bridge otenet
-docker volume create redis-persist
-docker run \
-    --detach \
-    --name redis \
-    --volume redis-persist:/data \
-    --network otenet \
-    redis:latest
-```
+### Parse strategy
+Parse strategy patterns convert content from the data cache to a Python dict. Like download strategies, they are configured with the ResourceConfig data model, using the
+`mediaType` field for strategy selection.  Additional strategy-specific configurations can be provided via the `configuration` field.
 
-### Run oteapi (development)
+Standard parse strategies: text_csv, text_json, image_jpeg, excel_xlsx
 
-Run the services by attaching to the otenet network and set the environmental variables for connecting to Redis.
 
-```shell
-docker run \
-    --rm \
-    --network otenet \
-    --detach \
-    --volume ${PWD}:/app \
-    --publish 8080:8080 \
-    --env REDIS_TYPE=redis \
-    --env REDIS_HOST=redis \
-    --env REDIS_PORT=6379 \
-    ontotrans/oteapi-development:latest
-```
+### Resource strategy
+Resource strategy patterns can retrieve/upload data to external data services.  They are configured with the ResourceConfig data model, using the scheme of the `accessUrl` and `accessService` fields.  The scheme of the `accessUrl` is used for strategy selection.
 
-Open the following URL in a browser [http://localhost:8080/redoc](http://localhost:8080/redoc).
 
-### Run the Atmoz SFTP Server
+### Mapping strategy
+Strategies for mapping fields/properties in data models to ontological concepts.
 
-To test the data access via SFTP, the atmoz sftp-server can be run:
 
-```shell
-docker volume create sftpdrive
-docker run \
-    --detach \
-    --network=otenet \
-    --volume sftpdrive:/home/foo/upload \
-    --publish 2222:22 \
-    atmoz/sftp foo:pass:1001
-```
+### Filter strategy
+Filter strategies can update the configuration of other strategies.  They can also update values in the data cache.
 
-## Entry points for plugins
 
-Suggestion: Use setuptools entry points to load plugins.
+### Transformation strategy
+Transformation strategies are a special form of a filter strategy intended for long-running transformations.
 
-The entry point groups could be named as something like this:
 
-- `"oteapi.download_strategy"`, `"oteapi.filter_strategy"`
-- `"oteapi.download"`, `"oteapi.filter"`
-- `"oteapi.interfaces.download"`, `"oteapi.interfaces.filter"`
 
-The value for an entrypoint should then be:
-
-```python
-setup(
-    # ...,
-    entry_points={
-        "oteapi.download_strategy": [
-            "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer",
-            "my_plugin.mongo = my_plugin.strategies.download.mongo_get",
-        ],
-    },
-)
-```
-
-or as part of a YAML/JSON/setup.cfg setup files as such:
-
-```yaml
-entry_points:
-  oteapi.download_strategy:
-  - "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer"
-  - "my_plugin.mongo = my_plugin.strategies.download.mongo_get"
-```
-
-```json
-{
-  "entry_points": {
-    "oteapi.download_strategy": [
-      "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer",
-      "my_plugin.mongo = my_plugin.strategies.download.mongo_get"
-    ]
-  }
-}
-```
-
-```ini
-[options.entry_points]
-oteapi.download_strategy =
-    my_plugin.p2p = my_plugin.strategies.download.peer_2_peer
-    my_plugin.mongo = my_plugin.strategies.download.mongo_get
-```
-
-The plugins will then automagically load all installed strategy module plugins, registering the strategies according to the `StrategyFactory` decorator.
+## Related projects
+* [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
+* [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
