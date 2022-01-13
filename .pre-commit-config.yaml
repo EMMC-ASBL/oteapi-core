@@ -23,7 +23,7 @@ repos:
     rev: 1.7.0
     hooks:
     - id: bandit
-      files: ^app/.*$
+      files: ^oteapi/app/.*$
   - repo: local
     hooks:
     - id: pylint-app
@@ -33,7 +33,7 @@ repos:
       language: python
       types: [python]
       require_serial: true
-      files: ^app/.*$
+      files: ^oteapi/app/.*$
     - id: pylint-plugins
       name: pylint - plugins/
       entry: pylint
@@ -41,4 +41,4 @@ repos:
       language: python
       types: [python]
       require_serial: true
-      files: ^plugins/.*$
+      files: ^oteapi/plugins/.*$
