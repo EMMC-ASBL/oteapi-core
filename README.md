@@ -139,4 +139,4 @@ OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/ote
 ## Acknowledgment
 OTEAPI Core has been supported by the following projects:
 
-* OntoTrans (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.
+* __OntoTrans__ (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.
