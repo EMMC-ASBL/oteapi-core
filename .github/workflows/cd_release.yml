@@ -51,6 +51,7 @@ jobs:
         sleep: 15
         force: true
         tags: true
+        unprotect_reviews: true
 
     - name: Get tagged versions
       run: echo "PREVIOUS_VERSION=$(git tag -l --sort -version:refname | sed -n 2p)" >> $GITHUB_ENV
