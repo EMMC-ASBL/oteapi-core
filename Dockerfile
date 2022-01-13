@@ -21,9 +21,10 @@ RUN apt-get install -y -f /tmp/dlite.deb \
   && rm -rf /var/lib/apt/lists/*
 
 # Install requirements
-COPY ./requirements.txt .
-RUN pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip
-RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
+COPY ./requirements.txt ./README.md ./
+RUN pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade pip \
+  && pip install -q --no-cache-dir --trusted-host pypi.org --trusted-host files.pythonhosted.org --upgrade setuptools wheel
+RUN pip install -q --trusted-host pypi.org --trusted-host files.pythonhosted.org .
 
 ENV DLITE_ROOT=/usr
 ENV DLITE_STORAGES=/app/entities/*.json

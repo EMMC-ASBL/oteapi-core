@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from app.context import mapping
-from app.strategy import loader
+from oteapi.app.context import mapping
+from oteapi.app.strategy import loader
 
 from .dummycache import DummyCache
 

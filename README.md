@@ -75,3 +75,56 @@ docker run \
     --publish 2222:22 \
     atmoz/sftp foo:pass:1001
 ```
+
+## Entry points for plugins
+
+Suggestion: Use setuptools entry points to load plugins.
+
+The entry point groups could be named as something like this:
+
+- `"oteapi.download_strategy"`, `"oteapi.filter_strategy"`
+- `"oteapi.download"`, `"oteapi.filter"`
+- `"oteapi.strategy.download"`, `"oteapi.strategy.filter"`
+
+The value for an entrypoint should then be:
+
+```python
+setup(
+    # ...,
+    entry_points={
+        "oteapi.download_strategy": [
+            "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer",
+            "my_plugin.mongo = my_plugin.strategies.download.mongo_get",
+        ],
+    },
+)
+```
+
+or as part of a YAML/JSON/setup.cfg setup files as such:
+
+```yaml
+entry_points:
+  oteapi.download_strategy:
+  - "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer"
+  - "my_plugin.mongo = my_plugin.strategies.download.mongo_get"
+```
+
+```json
+{
+  "entry_points": {
+    "oteapi.download_strategy": [
+      "my_plugin.p2p = my_plugin.strategies.download.peer_2_peer",
+      "my_plugin.mongo = my_plugin.strategies.download.mongo_get"
+    ]
+  }
+}
+```
+
+```ini
+[options.entry_points]
+oteapi.download_strategy =
+    my_plugin.p2p = my_plugin.strategies.download.peer_2_peer
+    my_plugin.mongo = my_plugin.strategies.download.mongo_get
+```
+
+The plugins will then automagically load all installed strategy module plugins, registering the strategies according to the `StrategyFactory` decorator.

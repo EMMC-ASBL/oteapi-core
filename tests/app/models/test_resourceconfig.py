@@ -6,7 +6,7 @@ def test_ensure_unique_url_pairs():
     """Test the root validator `ensure_unique_url_pairs` for `ResourceConfig`."""
     from pydantic import ValidationError
 
-    from app.models.resourceconfig import ResourceConfig
+    from oteapi.app.models.resourceconfig import ResourceConfig
 
     valid_parameters = {
         "downloadUrl": "http://example.org",

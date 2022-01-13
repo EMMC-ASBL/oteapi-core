@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from app.context import transformation
-from app.models.transformationconfig import TransformationStatus
-from app.strategy import loader
+from oteapi.app.context import transformation
+from oteapi.app.models.transformationconfig import TransformationStatus
+from oteapi.app.strategy import loader
 
 from .dummycache import DummyCache
 

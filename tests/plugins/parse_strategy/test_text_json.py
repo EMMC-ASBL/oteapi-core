@@ -4,8 +4,8 @@ from pathlib import Path
 thisdir = Path(__file__).absolute().parent
 sys.path.insert(1, str(thisdir.parent.parent.parent))
 
-from app.models.resourceconfig import ResourceConfig
-from app.strategy.iparsestrategy import create_parse_strategy
+from oteapi.app.models.resourceconfig import ResourceConfig
+from oteapi.app.strategy.iparsestrategy import create_parse_strategy
 
 
 def test_json():

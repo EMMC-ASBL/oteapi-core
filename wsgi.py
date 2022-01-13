@@ -1,1 +1,1 @@
-from app import _app as app
+from oteapi.app import _app as app

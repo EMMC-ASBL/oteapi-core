@@ -4,7 +4,7 @@ from pathlib import Path
 thisdir = Path(__file__).absolute().parent
 sys.path.insert(1, str(thisdir.parent.parent.parent))
 
-from app.cache.cache import DataCache
+from oteapi.app.cache.cache import DataCache
 
 
 def test_cache():
