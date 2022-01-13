@@ -10,7 +10,7 @@
   * [Mapping strategy](#mappping-strategy)
   * [Filter strategy](#filter-strategy)
   * [Transformation strategy](#transformation-strategy)
-* [Other OTEAPI-related repositories](#other-oteapi-related repositories)
+* [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
 * [License](#license)
 * [Acknowledgment](#acknowledgement)
 
