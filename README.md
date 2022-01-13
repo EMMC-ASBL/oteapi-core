@@ -127,4 +127,6 @@ oteapi.download_strategy =
     my_plugin.mongo = my_plugin.strategies.download.mongo_get
 ```
 
+Another example can be seen in the current repository, where the entry points are listed in [`plugins.yml`](plugins.yml) and are then loaded in [`setup.py`](setup.py) as the value for the `entry_points` parameter in `setuptools.setup()`.
+
 The plugins will then automagically load all installed strategy module plugins, registering the strategies according to the `StrategyFactory` decorator.
