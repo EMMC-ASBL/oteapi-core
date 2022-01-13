@@ -12,6 +12,7 @@
   * [Transformation strategy](#transformation-strategy)
 * [Entry points for plugins](#entry-points-for-plugins)
 * [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
+* [Installation](#installation)
 * [License](#license)
 * [Acknowledgment](#acknowledgement)
 
@@ -122,6 +123,12 @@ The plugins will then automagically load all installed strategy module plugins, 
 ## Other OTEAPI-related repositories
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
 * [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
+
+
+## Installation
+OTEAPI Core can be installed with
+
+    pip install oteapi-core
 
 
 ## License
