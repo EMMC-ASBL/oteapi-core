@@ -1,6 +1,12 @@
 """Setup for OTE-API."""
 from pathlib import Path
 from setuptools import setup, find_packages
+from typing import TYPE_CHECKING
+
+import yaml
+
+if TYPE_CHECKING:
+    from typing import Any, Dict
 
 TOP_DIR = Path(__file__).resolve().parent
 
@@ -9,6 +15,10 @@ BASE = [
     for _ in (TOP_DIR / "requirements.txt").read_text(encoding="utf8").splitlines()
     if not _.startswith("#") and "git+" not in _
 ]
+
+ENTRY_POINTS: "Dict[str, Any]" = yaml.safe_load(
+    (TOP_DIR / "plugins.yml").read_text(encoding="utf8")
+)
 
 setup(
     name="oteapi",
@@ -22,9 +32,5 @@ setup(
     packages=find_packages(),
     python_requires=">=3.8",
     install_requires=BASE,
-    entry_points={
-        "oteapi.download_strategy": [
-            "core.sftp = oteapi.plugins.download_strategy.sftp"
-        ]
-    }
+    entry_points=ENTRY_POINTS.get("entry_points", {}),
 )
