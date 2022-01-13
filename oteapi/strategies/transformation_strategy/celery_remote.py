@@ -7,13 +7,13 @@ from typing import Any, Dict, List, Optional
 from celery import Celery
 from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
-from oteapi.app.models.transformationconfig import (
+from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,
 )
 
 # pylint: disable=W0613, W0511
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.interfaces.factory import StrategyFactory
 from pydantic import BaseModel
 
 # Connect Celery to the currently running Reddis instance

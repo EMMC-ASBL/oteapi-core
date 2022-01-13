@@ -3,11 +3,11 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Dict, Optional
 
-from oteapi.app.models.transformationconfig import (
+from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,
 )
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass

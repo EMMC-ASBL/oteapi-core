@@ -6,8 +6,8 @@ from typing import Any, Dict, Optional
 
 import dlite
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.strategy-interfaces.factory import StrategyFactory
-from oteapi.strategy-interfaces.iparsestrategy import create_parse_strategy
+from oteapi.interfaces.factory import StrategyFactory
+from oteapi.interfaces.iparsestrategy import create_parse_strategy
 
 
 @dataclass

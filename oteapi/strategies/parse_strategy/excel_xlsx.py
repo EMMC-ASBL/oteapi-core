@@ -8,8 +8,8 @@ from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.strategy-interfaces.factory import StrategyFactory
-from oteapi.strategy-interfaces.idownloadstrategy import create_download_strategy
+from oteapi.interfaces.factory import StrategyFactory
+from oteapi.interfaces.idownloadstrategy import create_download_strategy
 from pydantic import BaseModel, Extra
 
 

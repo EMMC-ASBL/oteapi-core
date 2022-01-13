@@ -84,7 +84,7 @@ The entry point groups could be named as something like this:
 
 - `"oteapi.download_strategy"`, `"oteapi.filter_strategy"`
 - `"oteapi.download"`, `"oteapi.filter"`
-- `"oteapi.strategy.download"`, `"oteapi.strategy.filter"`
+- `"oteapi.interfaces.download"`, `"oteapi.interfaces.filter"`
 
 The value for an entrypoint should then be:
 
