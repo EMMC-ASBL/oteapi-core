@@ -4,7 +4,10 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
-from oteapi.app.models.transformationconfig import TransformationConfig, TransformationStatus
+from oteapi.app.models.transformationconfig import (
+    TransformationConfig,
+    TransformationStatus,
+)
 from oteapi.app.strategy.factory import StrategyFactory
 
 

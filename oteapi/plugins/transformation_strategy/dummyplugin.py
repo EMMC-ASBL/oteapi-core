@@ -3,7 +3,10 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Dict, Optional
 
-from oteapi.app.models.transformationconfig import TransformationConfig, TransformationStatus
+from oteapi.app.models.transformationconfig import (
+    TransformationConfig,
+    TransformationStatus,
+)
 from oteapi.app.strategy.factory import StrategyFactory
 
 

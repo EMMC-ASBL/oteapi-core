@@ -2,8 +2,8 @@
 from pathlib import Path
 from typing import TYPE_CHECKING
 
-from setuptools import setup, find_packages
 import yaml
+from setuptools import find_packages, setup
 
 if TYPE_CHECKING:
     from typing import Dict, List

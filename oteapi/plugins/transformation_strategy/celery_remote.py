@@ -9,7 +9,10 @@ from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
 from pydantic import BaseModel
 
-from oteapi.app.models.transformationconfig import TransformationConfig, TransformationStatus
+from oteapi.app.models.transformationconfig import (
+    TransformationConfig,
+    TransformationStatus,
+)
 
 # pylint: disable=W0613, W0511
 from oteapi.app.strategy.factory import StrategyFactory

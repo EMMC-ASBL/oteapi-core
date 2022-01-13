@@ -9,7 +9,10 @@ from typing import Any, Dict, Optional
 
 import dlite
 
-from oteapi.app.models.transformationconfig import TransformationConfig, TransformationStatus
+from oteapi.app.models.transformationconfig import (
+    TransformationConfig,
+    TransformationStatus,
+)
 from oteapi.app.strategy.factory import StrategyFactory
 
 
