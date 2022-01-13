@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches:
+      - 'master'
       - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
 
 jobs:
