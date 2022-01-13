@@ -15,7 +15,7 @@ setup(
     name="oteapi",
     version="0.0.1",
     author="TEAM 4.0 devs",
-    author_email="team40@SINTEF.onmicrosoft.com",
+    author_email="team4.0@SINTEF.onmicrosoft.com",
     url="https://github.com/EMMC-ASBL/oteapi",
     description="OTE-API (Open Translation Environment) API.",
     long_description=(TOP_DIR / "README.md").read_text(encoding="utf8"),
