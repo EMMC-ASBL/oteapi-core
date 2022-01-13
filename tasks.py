@@ -29,9 +29,9 @@ def update_file(filename: str, sub_line: "Tuple[str, str]", strip: str = None) -
         handle.write("\n")
 
 
-@task(help={"ver": "Deploy Onto! version to set"})
+@task(help={"ver": "oteapi-core version to set"})
 def setver(_, ver=""):
-    """Sets the Deploy Onto! version."""
+    """Sets the oteapi-core version."""
     match = re.fullmatch(
         (
             r"v?(?P<version>[0-9]+(\.[0-9]+){2}"  # Major.Minor.Patch
