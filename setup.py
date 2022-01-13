@@ -1,12 +1,7 @@
 """Setup for OTE-API."""
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-import yaml
 from setuptools import find_packages, setup
-
-if TYPE_CHECKING:
-    from typing import Dict, List
 
 TOP_DIR = Path(__file__).resolve().parent
 
@@ -15,10 +10,6 @@ BASE = [
     for _ in (TOP_DIR / "requirements.txt").read_text(encoding="utf8").splitlines()
     if not _.startswith("#") and "git+" not in _
 ]
-
-ENTRY_POINTS: "Dict[str, List[str]]" = yaml.safe_load(
-    (TOP_DIR / "plugins.yml").read_text(encoding="utf8")
-)
 
 setup(
     name="oteapi",
@@ -32,5 +23,4 @@ setup(
     packages=find_packages(),
     python_requires=">=3.8",
     install_requires=BASE,
-    entry_points=ENTRY_POINTS,
 )
