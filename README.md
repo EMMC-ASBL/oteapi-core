@@ -1,6 +1,21 @@
 # OTEAPI Core
 > Framework for accessing data resources, mapping data models describing the data to ontologies and perform data transformations
 
+## Content
+* [About OTEAPI Core](#about-oteapi-core)
+* [Types of strategies](#types-of-strategies)
+  * [Download strategy](#download-strategy)
+  * [Parse strategy](#parse-strategy)
+  * [Resource strategy](#resource-strategy)
+  * [Mapping strategy](#mappping-strategy)
+  * [Filter strategy](#filter-strategy)
+  * [Transformation strategy](#transformation-strategy)
+* [Other OTEAPI-related repositories](#other-oteapi-related repositories)
+* [License](#license)
+* [Acknowledgment](#acknowledgement)
+
+
+## About OTEAPI Core
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
 
@@ -49,6 +64,17 @@ Transformation strategies are a special form of a filter strategy intended for l
 
 
 
-## Related projects
+## Other OTEAPI-related repositories
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
 * [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
+
+
+## License
+OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE).
+
+
+
+## Acknowledgment
+OTEAPI Core has been supported by the following projects:
+
+* OntoTrans (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.
