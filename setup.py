@@ -8,7 +8,7 @@ TOP_DIR = Path(__file__).resolve().parent
 PACKAGE_NAME = "oteapi-core"
 
 with open(
-    TOP_DIR / PACKAGE_NAME.replace("-", "_") / "__init__.py", "r", encoding="utf8"
+    TOP_DIR / PACKAGE_NAME.split("-")[0] / "__init__.py", "r", encoding="utf8"
 ) as handle:
     VERSION = AUTHOR = AUTHOR_EMAIL = None
     for line in handle.readlines():
@@ -33,7 +33,7 @@ with open(
         if value is None:
             raise RuntimeError(
                 f"Could not determine {info} from "
-                f"{TOP_DIR / PACKAGE_NAME.replace('-', '_') / '__init__.py'} !"
+                f"{TOP_DIR / PACKAGE_NAME.split('-')[0] / '__init__.py'} !"
             )
     VERSION = VERSION.group("version")  # type: ignore[union-attr]
     AUTHOR = AUTHOR.group("author")  # type: ignore[union-attr]
