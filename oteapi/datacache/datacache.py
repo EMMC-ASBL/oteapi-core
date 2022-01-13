@@ -23,7 +23,7 @@ from contextlib import contextmanager
 from typing import Any, Union
 
 from diskcache import Cache as DiskCache
-from oteapi.app.models.downloadconfig import DownloadConfig  # pylint: disable=E0401
+from oteapi.models.downloadconfig import DownloadConfig  # pylint: disable=E0401
 from pydantic import Extra
 
 
