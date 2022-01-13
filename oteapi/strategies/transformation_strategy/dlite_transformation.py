@@ -8,7 +8,6 @@ from datetime import datetime
 from typing import Any, Dict, Optional
 
 import dlite
-
 from oteapi.app.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,

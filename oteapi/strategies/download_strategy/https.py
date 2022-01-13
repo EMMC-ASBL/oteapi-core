@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import requests
-
 from oteapi.app.cache.cache import DataCache
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory

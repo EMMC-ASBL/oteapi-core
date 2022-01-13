@@ -4,11 +4,10 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, Extra, Field
-
 from oteapi.app.cache.cache import DataCache
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from pydantic import BaseModel, Extra, Field
 
 
 class FileConfig(BaseModel):

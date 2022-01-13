@@ -4,10 +4,9 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from PIL import Image
-
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from PIL import Image
 
 
 @dataclass

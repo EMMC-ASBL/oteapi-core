@@ -6,10 +6,9 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from fastapi import HTTPException
-from pydantic import BaseModel
-
 from oteapi.app.models.filterconfig import FilterConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from pydantic import BaseModel
 
 
 class SqlQueryDataModel(BaseModel):

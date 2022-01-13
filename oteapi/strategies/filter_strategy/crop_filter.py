@@ -5,10 +5,9 @@ Demo-filter strategy
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
-
 from oteapi.app.models.filterconfig import FilterConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from pydantic import BaseModel
 
 
 class CropDataModel(BaseModel):

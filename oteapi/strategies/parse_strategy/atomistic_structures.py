@@ -6,7 +6,6 @@ from typing import Any, Dict, Optional
 
 import ase.io
 import dlite
-
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
 

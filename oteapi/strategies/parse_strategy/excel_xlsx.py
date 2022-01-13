@@ -6,12 +6,11 @@ from typing import Any, Dict, List, Optional, Union
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
-from pydantic import BaseModel, Extra
-
 from oteapi.app.cache.cache import DataCache
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
 from oteapi.app.strategy.idownloadstrategy import create_download_strategy
+from pydantic import BaseModel, Extra
 
 
 class XLSXParseDataModel(BaseModel):

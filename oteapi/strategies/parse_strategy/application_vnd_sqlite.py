@@ -6,7 +6,6 @@ from sqlite3 import Error
 from typing import Any, Dict, Optional
 
 from fastapi import HTTPException
-
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
 

@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import dlite
-
 from oteapi.app.models.resourceconfig import ResourceConfig
 from oteapi.app.strategy.factory import StrategyFactory
 from oteapi.app.strategy.iparsestrategy import create_parse_strategy

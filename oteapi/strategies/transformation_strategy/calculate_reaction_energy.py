@@ -6,10 +6,9 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import dlite
-from pydantic import BaseModel
-
 from oteapi.app.models.transformationconfig import TransformationConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from pydantic import BaseModel
 
 
 class ReactionDataModel(BaseModel):

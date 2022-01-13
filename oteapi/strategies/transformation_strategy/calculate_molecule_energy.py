@@ -8,10 +8,9 @@ from typing import Any, Dict, Optional
 import dlite
 from ase import Atom, Atoms
 from ase.calculators.emt import EMT
-from pydantic import BaseModel
-
 from oteapi.app.models.transformationconfig import TransformationConfig
 from oteapi.app.strategy.factory import StrategyFactory
+from pydantic import BaseModel
 
 
 class CalcMoleculeConfig(BaseModel):
