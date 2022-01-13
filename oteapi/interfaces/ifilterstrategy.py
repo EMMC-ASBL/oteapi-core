@@ -5,8 +5,8 @@ Resource Strategy Interface
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
-from oteapi.app.models.filterconfig import FilterConfig
-from oteapi.app.strategy.factory import StrategyFactory
+from oteapi.models.filterconfig import FilterConfig
+from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass

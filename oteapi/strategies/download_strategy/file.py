@@ -6,7 +6,7 @@ from typing import Any, Dict, Optional
 
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.strategy-interfaces.factory import StrategyFactory
+from oteapi.interfaces.factory import StrategyFactory
 from pydantic import BaseModel, Extra, Field
 
 

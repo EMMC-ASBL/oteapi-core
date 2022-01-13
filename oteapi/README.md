@@ -4,4 +4,4 @@ Subdirectories
 * models - generic data models used by the strategies
 * pluginlib - a library accessing the interfaces
 * strategies - implementation of the strategies
-* strategy-interfaces - implementation of generic interfaces to the strategies
+* interfaces - implementation of generic interfaces to the strategies

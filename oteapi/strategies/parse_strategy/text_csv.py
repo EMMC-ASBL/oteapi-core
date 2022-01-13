@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.strategy-interfaces.factory import StrategyFactory
+from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass
