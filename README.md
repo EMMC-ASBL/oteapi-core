@@ -1,5 +1,6 @@
 # OTEAPI Core
-> Framework for accessing data resources, mapping data models describing the data to ontologies and perform data transformations
+
+> Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
 ## Content
 * [About OTEAPI Core](#about-oteapi-core)
