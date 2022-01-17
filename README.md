@@ -3,6 +3,7 @@
 > Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
 ## Content
+
 * [About OTEAPI Core](#about-oteapi-core)
 * [Types of strategies](#types-of-strategies)
   * [Download strategy](#download-strategy)
