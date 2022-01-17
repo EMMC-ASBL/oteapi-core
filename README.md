@@ -53,7 +53,7 @@ Parse strategy patterns convert content from the data cache to a Python dict.
 Like download strategies, they are configured with the `ResourceConfig` data model, using the `mediaType` field for strategy selection.
 Additional strategy-specific configurations can be provided via the `configuration` field.
 
-Standard parse strategies: text_csv, text_json, image_jpeg, excel_xlsx
+Standard parse strategies: *text_csv*, *text_json*, *image_jpeg*, *excel_xlsx*
 
 
 ### Resource strategy
