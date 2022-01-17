@@ -39,6 +39,7 @@ OTEAPI Core includes:
 ## Types of strategies
 
 ### Download strategy
+
 Download strategy patterns use a given protocol to download content into the data cache.  They are configured with the ResourceConfig data model, using the scheme of the
 `downloadUrl` field for strategy selection.  The `configuration` field can be used to configure how the downloaded content is stored in the cache using the DownloadConfig data model.
 
