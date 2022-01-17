@@ -109,7 +109,6 @@ class DataCache:
             cache_dir = self.config.cacheDir
         if isinstance(cache_dir, str):
             cache_dir = Path(cache_dir)
-        cache_dir = cache_dir.resolve()
         if cache_dir.is_absolute():
             self.cache_dir = cache_dir
         else:
