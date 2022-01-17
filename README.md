@@ -17,7 +17,7 @@
 * [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
 * [Installation](#installation)
 * [License](#license)
-* [Acknowledgment](#Acknowledgment)
+* [Acknowledgment](#acknowledgment)
 
 ## About OTEAPI Core
 
