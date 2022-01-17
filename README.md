@@ -134,9 +134,8 @@ OTEAPI Core can be installed with:
 $ pip install oteapi-core
 
 ## License
-OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE).
 
-
+OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE) with copyright &copy; SINTEF.
 
 ## Acknowledgment
 OTEAPI Core has been supported by the following projects:
