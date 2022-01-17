@@ -20,6 +20,7 @@
 
 
 ## About OTEAPI Core
+
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
 
