@@ -1,1 +1,1 @@
-include requirements.txt README.md LICENSE setup.cfg pyproject.toml
+include requirements*.txt README.md LICENSE setup.cfg pyproject.toml

@@ -45,6 +45,12 @@ BASE = [
     if not _.startswith("#") and "git+" not in _
 ]
 
+DEV = [
+    f"{_.strip()}"
+    for _ in (TOP_DIR / "requirements_dev.txt").read_text(encoding="utf8").splitlines()
+    if not _.startswith("#") and "git+" not in _
+]
+
 setup(
     name=PACKAGE_NAME,
     version=VERSION,
@@ -57,6 +63,7 @@ setup(
     packages=find_packages(),
     python_requires=">=3.9",
     install_requires=BASE,
+    extras_require={"dev": DEV},
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
