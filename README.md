@@ -57,8 +57,10 @@ Standard parse strategies: *text_csv*, *text_json*, *image_jpeg*, *excel_xlsx*
 
 
 ### Resource strategy
-Resource strategy patterns can retrieve/upload data to external data services.  They are configured with the ResourceConfig data model, using the scheme of the `accessUrl` and `accessService` fields.  The scheme of the `accessUrl` is used for strategy selection.
 
+Resource strategy patterns can retrieve/upload data to external data services.
+They are configured with the `ResourceConfig` data model, using the scheme of the `accessUrl` and `accessService` fields.
+The scheme of the `accessUrl` is used for strategy selection.
 
 ### Mapping strategy
 Strategies for mapping fields/properties in data models to ontological concepts.
