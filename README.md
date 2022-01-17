@@ -19,36 +19,31 @@
 * [License](#license)
 * [Acknowledgment](#acknowledgement)
 
-
 ## About OTEAPI Core
 
-
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
-
 
 It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
 Semantic interoperability is supported via mapping of data models describing the data to ontologies.
 Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
 OTEAPI Core includes:
-- A set of standard strategies;
-- A plugin system for loading the standard strategies, as well as third party strategies;
-- Data models for configuring the strategies;
-- A Python library, through which the data can be accessed; and
-- An efficient data cache module that avoids downloading the same content several times.
 
+* A set of standard strategies;
+* A plugin system for loading the standard strategies, as well as third party strategies;
+* Data models for configuring the strategies;
+* A Python library, through which the data can be accessed; and
+* An efficient data cache module that avoids downloading the same content several times.
 
 ## Types of strategies
 
 ### Download strategy
-
 
 Download strategy patterns use a given protocol to download content into the data cache.
 They are configured with the `ResourceConfig` data model, using the scheme of the `downloadUrl` field for strategy selection. 
 The `configuration` field can be used to configure how the downloaded content is stored in the cache using the `DownloadConfig` data model.
 
 Standard downloaded strategies: *file*, *https*, *http*, *sftp*, *ftp*
-
 
 ### Parse strategy
 
@@ -57,7 +52,6 @@ Like download strategies, they are configured with the `ResourceConfig` data mod
 Additional strategy-specific configurations can be provided via the `configuration` field.
 
 Standard parse strategies: *text_csv*, *text_json*, *image_jpeg*, *excel_xlsx*
-
 
 ### Resource strategy
 
@@ -84,9 +78,9 @@ Suggestion: Use setuptools entry points to load plugins.
 
 The entry point groups could be named as something like this:
 
-- `"oteapi.download_strategy"`, `"oteapi.filter_strategy"`
-- `"oteapi.download"`, `"oteapi.filter"`
-- `"oteapi.interfaces.download"`, `"oteapi.interfaces.filter"`
+* `"oteapi.download_strategy"`, `"oteapi.filter_strategy"`
+* `"oteapi.download"`, `"oteapi.filter"`
+* `"oteapi.interfaces.download"`, `"oteapi.interfaces.filter"`
 
 The value for an entrypoint should then be:
 
@@ -134,7 +128,7 @@ The plugins will then automagically load all installed strategy module plugins, 
 ## Other OTEAPI-related repositories
 
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
-* [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
+* [OTELib](https://github.com/EMMC-ASBL/otelib) - a Python interface to OTEAPI Services
 
 ## Installation
 
@@ -142,6 +136,7 @@ OTEAPI Core can be installed with:
 
 ```console
 $ pip install oteapi-core
+```
 
 ## License
 
