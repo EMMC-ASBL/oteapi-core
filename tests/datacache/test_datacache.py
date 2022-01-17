@@ -1,14 +1,15 @@
-import sys
-from pathlib import Path
+"""Tests for `oteapi.datacache.datacache`."""
+from typing import TYPE_CHECKING
 
-thisdir = Path(__file__).absolute().parent
-sys.path.insert(1, str(thisdir.parent.parent.parent))
-
-from oteapi.datacache.datacache import DataCache
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
-def test_cache():
-    cache = DataCache(cache_dir="{tmp}/oteapi-test_cache")
+def test_cache(tmp_path: "Path") -> None:
+    """Simple tests for the `DataCache`."""
+    from oteapi.datacache import DataCache
+
+    cache = DataCache(cache_dir=tmp_path / "oteapi-test_cache")
 
     val1 = b"a binary blob..."
     val2 = 42
@@ -23,6 +24,7 @@ def test_cache():
     assert cache[key1] == val1
     assert cache.get(key2) == val2
     assert cache.get(key3) == val3
+    assert cache.get(key4) == val4
 
     assert len(cache) == 4
     del cache[key1]

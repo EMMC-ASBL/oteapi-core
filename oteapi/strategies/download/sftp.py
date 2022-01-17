@@ -1,4 +1,3 @@
-# pylint: disable=C0103
 """Strategy class for sftp/ftp"""
 import os
 from dataclasses import dataclass
@@ -6,9 +5,10 @@ from tempfile import NamedTemporaryFile
 from typing import Any, Dict, Optional
 
 import pysftp
+
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 
 
 @dataclass

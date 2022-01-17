@@ -9,11 +9,7 @@ from pydantic import BaseModel, Field
 class DownloadConfig(BaseModel):
     """Download Specific Data Configuration"""
 
-    cacheDir: Path = Field(
-        "{tmp}/oteapi",
-        description="Cache directory.  `{tmp}` is substituted with the "
-        "system temporary directory.",
-    )
+    cacheDir: Path = Field("oteapi", description="Cache directory.")
     accessKey: str = Field(
         None,
         description="Key with which the downloaded content can be accessed.  "

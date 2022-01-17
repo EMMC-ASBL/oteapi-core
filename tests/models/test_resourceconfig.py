@@ -1,8 +1,8 @@
-"""Tests for app.models.resourceconfig.py."""
+"""Tests for `oteapi.models.resourceconfig`"""
 import pytest
 
 
-def test_ensure_unique_url_pairs():
+def test_ensure_unique_url_pairs() -> None:
     """Test the root validator `ensure_unique_url_pairs` for `ResourceConfig`."""
     from pydantic import ValidationError
 

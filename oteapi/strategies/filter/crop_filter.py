@@ -1,13 +1,11 @@
-# pylint: disable=W0511, W0613
-"""
-Demo-filter strategy
-"""
+"""Demo-filter strategy"""
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
-from oteapi.models.filterconfig import FilterConfig
-from oteapi.interfaces.factory import StrategyFactory
 from pydantic import BaseModel
+
+from oteapi.models.filterconfig import FilterConfig
+from oteapi.plugins.factories import StrategyFactory
 
 
 class CropDataModel(BaseModel):

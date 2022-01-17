@@ -1,13 +1,10 @@
 """ Strategy class for application/vnd.sqlite3 """
-
-import sqlite3
 from dataclasses import dataclass
-from sqlite3 import Error
+import sqlite3
 from typing import Any, Dict, Optional
 
-from fastapi import HTTPException
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 
 
 def create_connection(db_file):
@@ -20,8 +17,8 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
         return conn
-    except Error as e:
-        print(e)
+    except sqlite3.Error as exc:
+        print(exc)
 
     return conn
 
@@ -37,10 +34,7 @@ class SqliteParseStrategy:
     ) -> Dict:
 
         if session is None:
-            raise HTTPException(
-                status_code=404,
-                detail="Missing session",
-            )
+            raise ValueError("Missing session")
         if "sqlquery" in session:
             cn = create_connection(session["filename"])
             cur = cn.cursor()

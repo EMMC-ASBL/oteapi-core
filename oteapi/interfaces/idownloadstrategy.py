@@ -5,7 +5,6 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass
@@ -22,10 +21,3 @@ class IDownloadStrategy(Protocol):  # pylint: disable=R0903
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize"""
-
-
-def create_download_strategy(resource_config: ResourceConfig) -> IDownloadStrategy:
-    """Helper function to simplify creating a download strategy"""
-    return StrategyFactory.make_strategy(
-        resource_config, index=("scheme", resource_config.downloadUrl.scheme)
-    )

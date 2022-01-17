@@ -1,7 +1,4 @@
-"""
-Pydantic Filter Configuration Data Model
-"""
-
+"""Pydantic Filter Configuration Data Model"""
 from typing import Dict, Optional
 
 from pydantic import BaseModel, Field
