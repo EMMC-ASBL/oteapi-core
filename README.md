@@ -48,6 +48,7 @@ Standard downloaded strategies: *file*, *https*, *http*, *sftp*, *ftp*
 
 
 ### Parse strategy
+
 Parse strategy patterns convert content from the data cache to a Python dict. Like download strategies, they are configured with the ResourceConfig data model, using the
 `mediaType` field for strategy selection.  Additional strategy-specific configurations can be provided via the `configuration` field.
 
