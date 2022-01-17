@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from oteapi.models.filterconfig import FilterConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 from pydantic import BaseModel
 
 

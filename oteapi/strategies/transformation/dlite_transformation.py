@@ -12,7 +12,7 @@ from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,
 )
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 
 
 @dataclass

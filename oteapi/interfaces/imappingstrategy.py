@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.mappingconfig import MappingConfig
-from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass
@@ -20,8 +19,3 @@ class IMappingStrategy(Protocol):
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize strategy and return a dictionary"""
-
-
-def create_mapping_strategy(mapping_config: MappingConfig) -> IMappingStrategy:
-    """Helper function to simplify creating a filter strategy"""
-    return StrategyFactory.make_strategy(mapping_config, "mappingType")

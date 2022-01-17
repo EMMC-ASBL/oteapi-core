@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass
@@ -20,8 +19,3 @@ class IParseStrategy(Protocol):  # pylint: disable=R0903
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize"""
-
-
-def create_parse_strategy(resource_config: ResourceConfig) -> IParseStrategy:
-    """Helper function to simplify creating a parse strategy"""
-    return StrategyFactory.make_strategy(resource_config, field="mediaType")

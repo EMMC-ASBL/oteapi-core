@@ -3,20 +3,15 @@
 Demo-filter strategy
 """
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 from oteapi.models.filterconfig import FilterConfig
-from oteapi.interfaces.factory import StrategyFactory
-from pydantic import BaseModel
-
-
-class CropDataModel(BaseModel):
-    crop: List[int]
+from oteapi.plugins.factories import StrategyFactory
 
 
 @dataclass
-@StrategyFactory.register(("filterType", "filter/crop"))
-class CropFilter:
+@StrategyFactory.register(("filterType", "filter/demo"))
+class DemoFilter:
 
     filter_config: FilterConfig
 
@@ -24,12 +19,11 @@ class CropFilter:
         """Initialize strategy and return a dictionary"""
 
         # TODO: Add logic
-        return dict(result="collectionid")
+        return dict()
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Execute strategy and return a dictionary"""
 
-        cropData = CropDataModel(**self.filter_config.configuration)
-        retobj = dict(imagecrop=cropData.crop)
-
-        return retobj
+        # TODO: Add logic
+        print("I GOT A SESSION!", session)
+        return dict(foo="bar")

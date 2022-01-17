@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 from PIL import Image
 
 

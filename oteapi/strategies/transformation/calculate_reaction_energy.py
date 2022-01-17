@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 
 import dlite
 from oteapi.models.transformationconfig import TransformationConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 from pydantic import BaseModel
 
 

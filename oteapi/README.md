@@ -1,7 +1,7 @@
-Subdirectories
---------------
-* datacache - a data cache for sharing data between strategies
-* interfaces - implementation of generic interfaces to the strategies
-* models - generic data models used by the strategies
-* pluginlib - a library accessing the interfaces
-* strategies - implementation of the strategies
+# Subdirectories
+
+* datacache - A data cache for sharing data between strategies.
+* interfaces - Implementation of generic interfaces to the strategies.
+* models - Generic configuration data models used by the strategies.
+* plugins - Module to implement the plugin and factory functionalities.
+* strategies - Implementation of the core strategies.

@@ -8,7 +8,6 @@ from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,
 )
-from oteapi.interfaces.factory import StrategyFactory
 
 
 @dataclass
@@ -28,10 +27,3 @@ class ITransformationStrategy(Protocol):  # pylint: disable=R0903
 
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """initialize transformation"""
-
-
-def create_transformation_strategy(
-    transformation_config: TransformationConfig,
-) -> ITransformationStrategy:
-    """Helper function to instanciate a transformation strategy"""
-    return StrategyFactory.make_strategy(transformation_config, "transformation_type")

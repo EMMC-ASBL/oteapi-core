@@ -9,7 +9,7 @@ import dlite
 from ase import Atom, Atoms
 from ase.calculators.emt import EMT
 from oteapi.models.transformationconfig import TransformationConfig
-from oteapi.interfaces.factory import StrategyFactory
+from oteapi.plugins.factories import StrategyFactory
 from pydantic import BaseModel
 
 
