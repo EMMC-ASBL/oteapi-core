@@ -1,4 +1,3 @@
-# pylint: disable=W0613
 """ Strategy class for workbook/xlsx """
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Union
@@ -6,11 +5,11 @@ from typing import Any, Dict, List, Optional, Union
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from openpyxl.worksheet.worksheet import Worksheet
+from pydantic import BaseModel, Extra
+
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
-from oteapi.interfaces.idownloadstrategy import create_download_strategy
-from pydantic import BaseModel, Extra
+from oteapi.plugins.factories import StrategyFactory, create_download_strategy
 
 
 class XLSXParseDataModel(BaseModel):

@@ -1,16 +1,14 @@
-"""
-Transformation plugin for calculating molcular energies with ase.EMT
-"""
-
+"""Transformation plugin for calculating molcular energies with ase.EMT"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-import dlite
 from ase import Atom, Atoms
 from ase.calculators.emt import EMT
+import dlite
+from pydantic import BaseModel
+
 from oteapi.models.transformationconfig import TransformationConfig
 from oteapi.plugins.factories import StrategyFactory
-from pydantic import BaseModel
 
 
 class CalcMoleculeConfig(BaseModel):

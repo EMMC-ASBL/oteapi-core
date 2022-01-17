@@ -1,14 +1,12 @@
-"""
-Transformation plugin for calculating reaction energy for a given reaction.
-"""
-
+"""Transformation plugin for calculating reaction energy for a given reaction."""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import dlite
+from pydantic import BaseModel
+
 from oteapi.models.transformationconfig import TransformationConfig
 from oteapi.plugins.factories import StrategyFactory
-from pydantic import BaseModel
 
 
 class ReactionDataModel(BaseModel):

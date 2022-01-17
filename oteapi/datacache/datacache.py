@@ -1,6 +1,4 @@
-# pylint: disable=R0913,W0613,C0103
-"""
-Data cache based on DiskCache
+"""Data cache based on DiskCache.
 See https://github.com/grantjenks/python-diskcache
 
 Features:
@@ -18,33 +16,38 @@ import asyncio
 import hashlib
 import json
 import os
+from pathlib import Path
 import tempfile
 from contextlib import contextmanager
-from typing import Any, Union
+from typing import TYPE_CHECKING
 
 from diskcache import Cache as DiskCache
-from oteapi.models.downloadconfig import DownloadConfig  # pylint: disable=E0401
+from oteapi.models import DownloadConfig
 from pydantic import Extra
+
+if TYPE_CHECKING:
+    from typing import Any, Optional, Union
 
 
 def gethash(
-    value: Any,
+    value: "Any",
     hashtype: str = "sha256",
-    encoding="utf-8",
-    json_encoder: json.JSONEncoder = None,
+    encoding: str = "utf-8",
+    json_encoder: "Optional[json.JSONEncoder]" = None,
 ) -> str:
     """Return a hash of `value`.
+
+    Can hash most python objects. Bytes and bytearrays are hashed directly.
+    Strings are converted to bytes with the given encoding.
+    All other objects are first serialised using json.
 
     Args:
         value: Value to hash.
         hashtype: Any of the hash algorithms supported by hashlib.
         encoding: Encoding used to convert strings to bytes before
-          calculating the hash.
+            calculating the hash.
         json_encoder: Customised json encoder for complex Python objects.
 
-    Can hash most python objects.  Bytes and bytearray's are hashed
-    directly.  Strings are converted to bytes with the given encoding.
-    All other objects are first serialised using json.
     """
     if isinstance(value, (bytes, bytearray)):
         data = value
@@ -64,7 +67,7 @@ def gethash(
     return h.hexdigest()
 
 
-def asyncrun(func, *args):
+def asyncrun(func, *args) -> "Any":
     """Runs `func` in a async thread-pool."""
     # Adds support for asyncio.
     # See http://www.grantjenks.com/docs/diskcache/tutorial.html#id13
@@ -86,12 +89,13 @@ class DataCache:
 
     Attributes:
         config: DownloadConfig instance.
-        cache_dir: Subdirectory used for teh Path to cache directory.
+        cache_dir: Subdirectory used for the Path to cache directory, e.g., `"my_oteapi"`.
+
     """
 
     def __init__(
-        self, config: Union[DownloadConfig, dict] = None, cache_dir: str = None
-    ):
+        self, config: "Union[DownloadConfig, dict]" = None, cache_dir: "Optional[Union[Path, str]]" = None
+    ) -> None:
         if config is None:
             self.config = DownloadConfig()
         elif isinstance(config, dict):
@@ -103,29 +107,35 @@ class DataCache:
 
         if not cache_dir:
             cache_dir = self.config.cacheDir
-        self.cache_dir = cache_dir.format(tmp=tempfile.gettempdir())
+        if isinstance(cache_dir, str):
+            cache_dir = Path(cache_dir)
+        cache_dir = cache_dir.resolve()
+        if cache_dir.is_absolute():
+            self.cache_dir = cache_dir
+        else:
+            self.cache_dir = Path(tempfile.gettempdir()).resolve() / cache_dir
 
         self.dc = DiskCache(directory=self.cache_dir)
 
-    def __contains__(self, key):
+    def __contains__(self, key) -> bool:
         return key in self.dc
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.dc)
 
-    def __getitem__(self, key):
+    def __getitem__(self, key) -> "Any":
         return self.get(key)
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key, value) -> None:
         self.add(value, key)
 
-    def __delitem__(self, key):
+    def __delitem__(self, key) -> None:
         def deleter(key):
             del self.dc[key]
 
         asyncrun(deleter, key)
 
-    def __del__(self):
+    def __del__(self) -> None:
         def closer():
             self.dc.expire()
             self.dc.close()
@@ -134,10 +144,10 @@ class DataCache:
 
     def add(
         self,
-        value: Any,
-        key: str = None,
-        expire: int = None,
-        tag: str = None,
+        value: "Any",
+        key: "Optional[str]" = None,
+        expire: "Optional[int]" = None,
+        tag: "Optional[str]" = None,
     ) -> str:
         """Add a value to cache.
 
@@ -147,15 +157,16 @@ class DataCache:
         Args:
             value: The value to add to the cache.
             key: If given, use this as the retrieval key.  Otherwise the key
-              is either taken from the `accessKey` configuration or generated
-              as a hash of `value`.
+                is either taken from the `accessKey` configuration or generated
+                as a hash of `value`.
             expire: If given, the number of seconds before the value expire.
-              Otherwise it is taken from the configuration.
+                Otherwise it is taken from the configuration.
             tag: Tag used with evict() for cleaning up a session.
 
         Returns:
             newkey: A key that can be used to retrieve `value` from cache
-              later.
+                later.
+
         """
         if not key:
             if self.config.accessKey:
@@ -173,7 +184,7 @@ class DataCache:
 
         return key
 
-    def get(self, key: str) -> Any:
+    def get(self, key: str) -> "Any":
         """Return the value corresponding to key."""
         if key not in self.dc:
             raise KeyError(key)
@@ -183,27 +194,13 @@ class DataCache:
     def getfile(
         self,
         key: str,
-        filename: str = None,
-        prefix: str = None,
-        suffix: str = None,
-        directory: str = None,
+        filename: "Optional[str]" = None,
+        prefix: "Optional[str]" = None,
+        suffix: "Optional[str]" = None,
+        directory: "Optional[str]" = None,
         delete: bool = True,
     ) -> str:
         """Write the value for `key` to file and return the filename.
-
-        Args:
-            key: key of value to write to file
-            filename: full path to created file.  If not given, a unique
-              filename will be created.
-            prefix: prefix to prepend to the returned file name (default
-              is "oteapi-download-").
-            suffix: suffix to append to the returned file name.
-            directory: file directory if `filename` is None.
-            delete: whether to automatically delete created file when
-              leaving the context.
-
-        Returns:
-            Name of the created file.
 
         The file is created in the default directory for temporary
         files (which can be controlled by the TEMPDIR, TEMP or TMP
@@ -214,11 +211,28 @@ class DataCache:
         automatically delete the file when leaving the context.
 
         Example:
-        >>> cache = DataCache()
-        >>> with cache.getfile('mykey') as filename:
-        ...     # do something with filename...
-        >>>
-        >>> # filename is deleted
+
+        ```python
+        cache = DataCache()
+        with cache.getfile('mykey') as filename:
+             # do something with filename...
+        # filename is deleted
+        ```
+
+        Args:
+            key: key of value to write to file
+            filename: full path to created file.  If not given, a unique
+                filename will be created.
+            prefix: prefix to prepend to the returned file name (default
+                is "oteapi-download-").
+            suffix: suffix to append to the returned file name.
+            directory: file directory if `filename` is None.
+            delete: whether to automatically delete created file when
+                leaving the context.
+
+        Returns:
+            Name of the created file.
+
         """
         if filename:
             with open(filename, "rb") as f:
@@ -238,13 +252,13 @@ class DataCache:
             if delete:
                 os.remove(filename)
 
-    def evict(self, tag: str):
+    def evict(self, tag: str) -> None:
         """Remove all cache items with the given tag.
 
         Useful for cleaning up a session.
         """
         asyncrun(self.dc.evict, tag)
 
-    def clear(self):
+    def clear(self) -> None:
         """Remove all items from cache."""
         asyncrun(self.dc.clear)

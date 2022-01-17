@@ -1,13 +1,13 @@
 # pylint: disable=W0613, C0103
 """Download strategy class for file"""
-
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
+
+from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
 from oteapi.plugins.factories import StrategyFactory
-from pydantic import BaseModel, Extra, Field
 
 
 class FileConfig(BaseModel):

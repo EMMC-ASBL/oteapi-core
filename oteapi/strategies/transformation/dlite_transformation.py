@@ -1,13 +1,10 @@
-# pylint: disable=W0613, W0511
-"""
-Transformation example (dummy)
-"""
-
+"""Transformation example (dummy)"""
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Dict, Optional
 
 import dlite
+
 from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,

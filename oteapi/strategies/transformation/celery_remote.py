@@ -7,16 +7,16 @@ from typing import Any, Dict, List, Optional
 from celery import Celery
 from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
+from pydantic import BaseModel
+
 from oteapi.models.transformationconfig import (
     TransformationConfig,
     TransformationStatus,
 )
-
-# pylint: disable=W0613, W0511
 from oteapi.plugins.factories import StrategyFactory
-from pydantic import BaseModel
 
-# Connect Celery to the currently running Reddis instance
+
+# Connect Celery to the currently running Redis instance
 app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)
 
 

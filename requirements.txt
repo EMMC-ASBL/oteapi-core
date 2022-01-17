@@ -1,5 +1,6 @@
 celery==5.2.3
 coverage==6.2
+diskcache==5.4.0
 hiredis==2.0.0
 hpack==4.0.0
 invoke==1.6.0

@@ -1,10 +1,9 @@
-# pylint: disable=W0613
 """Download strategy class for http/https"""
-
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import requests
+
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
 from oteapi.plugins.factories import StrategyFactory

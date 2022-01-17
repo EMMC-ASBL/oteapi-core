@@ -1,14 +1,11 @@
-import sys
-from pathlib import Path
-
-thisdir = Path(__file__).absolute().parent
-sys.path.insert(1, str(thisdir.parent.parent.parent))
-
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.interfaces.iparsestrategy import create_parse_strategy
+"""Test parse strategies."""
 
 
 def test_json():
+    """Test `text/json` parse strategy."""
+    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.strategies.parse.text_json import JSONDataParseStrategy
+
     data = {
         "firstName": "Joe",
         "lastName": "Jackson",
@@ -22,7 +19,7 @@ def test_json():
         downloadUrl="https://filesamples.com/samples/code/json/sample2.json",
         mediaType="text/json",
     )
-    parser = create_parse_strategy(config)
+    parser = JSONDataParseStrategy(config)
     json = parser.parse()
 
     assert json == data

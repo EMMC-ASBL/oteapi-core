@@ -1,4 +1,3 @@
-# pylint: disable=W0613, W0511
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Dict, Optional

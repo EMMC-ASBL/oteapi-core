@@ -1,13 +1,11 @@
-# pylint: disable=W0511, W0613
-"""
-SQL query filter strategy
-"""
+"""SQL query filter strategy"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
+from pydantic import BaseModel
+
 from oteapi.models.filterconfig import FilterConfig
 from oteapi.plugins.factories import StrategyFactory
-from pydantic import BaseModel
 
 
 class SqlQueryDataModel(BaseModel):
@@ -23,10 +21,7 @@ class QFilter:
     def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Initialize strategy and return a dictionary"""
         if session is None:
-            raise HTTPException(
-                status_code=404,
-                detail="Missing session",
-            )
+            raise ValueError("Missing session")
         queryData = SqlQueryDataModel(**{"query": self.filter_config.query})
         retobj = dict(sqlquery=queryData.query)
 

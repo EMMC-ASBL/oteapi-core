@@ -1,11 +1,11 @@
 """ Strategy class for atomisitc structures in xyz and poscar (vasp) format """
-
-import os
 from dataclasses import dataclass
+import os
 from typing import Any, Dict, Optional
 
 import ase.io
 import dlite
+
 from oteapi.models.resourceconfig import ResourceConfig
 from oteapi.plugins.factories import StrategyFactory
 

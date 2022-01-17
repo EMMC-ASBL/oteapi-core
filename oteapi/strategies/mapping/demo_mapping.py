@@ -1,7 +1,4 @@
-# pylint: disable=W0511, W0613
-"""
-Demo-mapping strategy
-"""
+"""Demo-mapping strategy"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 

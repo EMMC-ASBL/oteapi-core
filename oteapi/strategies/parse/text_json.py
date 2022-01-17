@@ -1,12 +1,11 @@
 """ Strategy class for text/json """
-import json
 from dataclasses import dataclass
+import json
 from typing import Any, Dict, Optional
 
 from oteapi.datacache.datacache import DataCache
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
-from oteapi.interfaces.idownloadstrategy import create_download_strategy
+from oteapi.plugins.factories import StrategyFactory, create_download_strategy
 
 
 @dataclass

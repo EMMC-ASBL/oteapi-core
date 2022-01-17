@@ -1,13 +1,11 @@
-# pylint: disable= W0613
 """ Strategy class for image/jpg """
-
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 import dlite
+
 from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
-from oteapi.interfaces.iparsestrategy import create_parse_strategy
+from oteapi.plugins.factories import StrategyFactory, create_parse_strategy
 
 
 @dataclass

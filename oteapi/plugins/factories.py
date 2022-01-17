@@ -37,7 +37,7 @@ class StrategyFactory:
 
     @classmethod
     def make_strategy(cls, model: "BaseModel", field: str = None, index=None) -> "BaseModel":
-        """Instanciate a strategy in a context class"""
+        """Instantiate a strategy in a context class"""
 
         try:
             if not index and field:
