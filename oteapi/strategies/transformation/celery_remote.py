@@ -1,6 +1,4 @@
-"""
-Transformation Plugin that use the Celery framework to call remote workers
-"""
+"""Transformation Plugin that use the Celery framework to call remote workers"""
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 

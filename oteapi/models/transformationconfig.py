@@ -22,7 +22,7 @@ class TransformationConfig(BaseModel):
     transformation_type: str = Field(
         ...,
         description=(
-            "Type of registered transformation strategy. E.g., `dlite/transformation`."
+            "Type of registered transformation strategy. E.g., `celery/remote`."
         ),
     )
     name: Optional[str] = Field(
