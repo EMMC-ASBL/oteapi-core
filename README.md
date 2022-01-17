@@ -121,9 +121,8 @@ oteapi.download_strategy =
 
 The plugins will then automagically load all installed strategy module plugins, registering the strategies according to the `StrategyFactory` decorator.
 
-
-
 ## Other OTEAPI-related repositories
+
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
 * [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
 
