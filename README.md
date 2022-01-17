@@ -65,8 +65,8 @@ Filter strategies can update the configuration of other strategies.  They can al
 
 
 ### Transformation strategy
-Transformation strategies are a special form of a filter strategy intended for long-running transformations.
 
+Transformation strategies are a special form of a filter strategy intended for long-running transformations.
 
 ## Entry points for plugins
 
