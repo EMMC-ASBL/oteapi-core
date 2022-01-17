@@ -26,7 +26,7 @@ OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Ope
 
 It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
 Semantic interoperability is supported via mapping of data models describing the data to ontologies.
-Transformations, mainly intended to transform data between representations, are also supported.  But transformations can also be used for running simulations in a simple workflow.
+Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
 OTEAPI Core include:
 - a set of standard strategies
