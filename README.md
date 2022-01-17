@@ -126,12 +126,12 @@ The plugins will then automagically load all installed strategy module plugins, 
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
 * [OTELib](https://github.com/EMMC-ASBL/oteapi-services) - a Python interface to OTEAPI Services
 
-
 ## Installation
-OTEAPI Core can be installed with
 
-    pip install oteapi-core
+OTEAPI Core can be installed with:
 
+```console
+$ pip install oteapi-core
 
 ## License
 OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE).
