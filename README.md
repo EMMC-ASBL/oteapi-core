@@ -4,6 +4,7 @@
 
 ## Content
 
+
 * [About OTEAPI Core](#about-oteapi-core)
 * [Types of strategies](#types-of-strategies)
   * [Download strategy](#download-strategy)
@@ -20,6 +21,7 @@
 
 
 ## About OTEAPI Core
+
 
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
@@ -39,6 +41,7 @@ OTEAPI Core includes:
 ## Types of strategies
 
 ### Download strategy
+
 
 Download strategy patterns use a given protocol to download content into the data cache.
 They are configured with the `ResourceConfig` data model, using the scheme of the `downloadUrl` field for strategy selection. 
@@ -67,8 +70,9 @@ The scheme of the `accessUrl` is used for strategy selection.
 Strategies for mapping fields/properties in data models to ontological concepts.
 
 ### Filter strategy
-Filter strategies can update the configuration of other strategies.  They can also update values in the data cache.
 
+Filter strategies can update the configuration of other strategies.
+They can also update values in the data cache.
 
 ### Transformation strategy
 
