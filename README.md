@@ -63,8 +63,8 @@ They are configured with the `ResourceConfig` data model, using the scheme of th
 The scheme of the `accessUrl` is used for strategy selection.
 
 ### Mapping strategy
-Strategies for mapping fields/properties in data models to ontological concepts.
 
+Strategies for mapping fields/properties in data models to ontological concepts.
 
 ### Filter strategy
 Filter strategies can update the configuration of other strategies.  They can also update values in the data cache.
