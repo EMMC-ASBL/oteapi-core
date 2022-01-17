@@ -129,6 +129,7 @@ The plugins will then automagically load all installed strategy module plugins, 
 
 * [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services) - a RESTful interface to OTEAPI Core
 * [OTELib](https://github.com/EMMC-ASBL/otelib) - a Python interface to OTEAPI Services
+* [OTEAPI Plugin Template](https://github.com/EMMC-ASBL/oteapi-plugin-template) - a [cookiecutter](https://cookiecutter.readthedocs.io/) template for OTEAPI Plugins
 
 ## Installation
 
