@@ -44,7 +44,7 @@ Download strategy patterns use a given protocol to download content into the dat
 They are configured with the `ResourceConfig` data model, using the scheme of the `downloadUrl` field for strategy selection. 
 The `configuration` field can be used to configure how the downloaded content is stored in the cache using the `DownloadConfig` data model.
 
-Standard downloaded strategies: file, https, sftp
+Standard downloaded strategies: *file*, *https*, *http*, *sftp*, *ftp*
 
 
 ### Parse strategy
