@@ -138,6 +138,7 @@ $ pip install oteapi-core
 OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE) with copyright &copy; SINTEF.
 
 ## Acknowledgment
+
 OTEAPI Core has been supported by the following projects:
 
 * __OntoTrans__ (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.
