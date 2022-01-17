@@ -1,4 +1,4 @@
-# OTEAPI Core
+# Open Translation Environment (OTE) API Core
 
 > Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
