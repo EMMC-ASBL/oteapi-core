@@ -10,14 +10,14 @@
   * [Download strategy](#download-strategy)
   * [Parse strategy](#parse-strategy)
   * [Resource strategy](#resource-strategy)
-  * [Mapping strategy](#mappping-strategy)
+  * [Mapping strategy](#mapping-strategy)
   * [Filter strategy](#filter-strategy)
   * [Transformation strategy](#transformation-strategy)
 * [Entry points for plugins](#entry-points-for-plugins)
 * [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
 * [Installation](#installation)
 * [License](#license)
-* [Acknowledgment](#acknowledgement)
+* [Acknowledgment](#acknowledgment)
 
 ## About OTEAPI Core
 
