@@ -1,0 +1,51 @@
+# To install the git pre-commit hook run:
+#   pre-commit install
+# To update the pre-commit hooks run:
+#   pre-commit autoupdate
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+    - id: end-of-file-fixer
+    - id: debug-statements
+    - id: check-yaml
+      name: Check YAML
+    - id: check-json
+      name: Check JSON
+    - id: check-toml
+      name: Check TOML
+    - id: check-symlinks
+    - id: destroyed-symlinks
+    - id: requirements-txt-fixer
+      name: Fix requirements*.txt
+      files: ^requirements.*\.txt$
+    - id: trailing-whitespace
+      args: [--markdown-linebreak-ext=md]
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.10.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
+
+  - repo: https://github.com/ambv/black
+    rev: 21.10b0
+    hooks:
+    - id: black
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.0
+    hooks:
+    - id: bandit
+      files: ^oteapi/app/.*$
+
+  - repo: local
+    hooks:
+    - id: pylint-app
+      name: pylint - app/
+      entry: pylint
+      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'"]
+      language: python
+      types: [python]
+      require_serial: true
+      files: ^oteapi/.*$
