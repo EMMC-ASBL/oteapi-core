@@ -46,15 +46,15 @@ repos:
 
   - repo: local
     hooks:
-    - id: pylint-oteapi
-      name: pylint - oteapi/[^strategies]
+    - id: pylint
+      name: pylint
       entry: pylint
       args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'"]
       language: python
       types: [python]
       require_serial: true
-      files: ^oteapi/.*$
-      exclude: ^oteapi/strategies/.*$
+      files: ^.*$
+      exclude: ^(tests|oteapi/strategies)/.*$
     - id: pylint-strategies
       name: pylint - oteapi/strategies/
       entry: pylint
@@ -63,3 +63,11 @@ repos:
       types: [python]
       require_serial: true
       files: ^oteapi/strategies/.*$
+    - id: pylint-tests
+      name: pylint - tests
+      entry: pylint
+      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621"]
+      language: python
+      types: [python]
+      require_serial: true
+      files: ^tests/.*$
