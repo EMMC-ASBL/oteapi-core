@@ -1,6 +1,6 @@
 """ Strategy class for application/vnd.sqlite3 """
-from dataclasses import dataclass
 import sqlite3
+from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from oteapi.models.resourceconfig import ResourceConfig

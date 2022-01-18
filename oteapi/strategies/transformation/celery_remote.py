@@ -13,7 +13,6 @@ from oteapi.models.transformationconfig import (
 )
 from oteapi.plugins.factories import StrategyFactory
 
-
 # Connect Celery to the currently running Redis instance
 app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)
 

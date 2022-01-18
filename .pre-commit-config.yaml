@@ -37,12 +37,12 @@ repos:
     rev: 1.7.1
     hooks:
     - id: bandit
-      files: ^oteapi/app/.*$
+      files: ^oteapi/.*$
 
   - repo: local
     hooks:
-    - id: pylint-app
-      name: pylint - app/
+    - id: pylint
+      name: pylint
       entry: pylint
       args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'"]
       language: python

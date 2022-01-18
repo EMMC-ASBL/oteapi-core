@@ -11,7 +11,6 @@ from .iparsestrategy import IParseStrategy
 from .iresourcestrategy import IResourceStrategy
 from .itransformationstrategy import ITransformationStrategy
 
-
 __all__ = (
     "IDownloadStrategy",
     "IFilterStrategy",

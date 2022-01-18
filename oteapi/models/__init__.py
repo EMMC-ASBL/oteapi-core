@@ -8,7 +8,6 @@ from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
 from .transformationconfig import TransformationConfig
 
-
 __all__ = (
     "DownloadConfig",
     "FilterConfig",

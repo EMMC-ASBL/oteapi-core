@@ -1,6 +1,6 @@
 """ Strategy class for text/json """
-from dataclasses import dataclass
 import json
+from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
 from oteapi.datacache.datacache import DataCache

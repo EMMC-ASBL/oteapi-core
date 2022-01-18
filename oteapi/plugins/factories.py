@@ -9,13 +9,6 @@ if TYPE_CHECKING:
 
     from pydantic import AnyUrl, BaseModel
 
-    from oteapi.models import (
-        DownloadConfig,
-        FilterConfig,
-        MappingConfig,
-        ResourceConfig,
-        TransformationConfig,
-    )
     from oteapi.interfaces import (
         IDownloadStrategy,
         IFilterStrategy,
@@ -23,6 +16,13 @@ if TYPE_CHECKING:
         IParseStrategy,
         IResourceStrategy,
         ITransformationStrategy,
+    )
+    from oteapi.models import (
+        DownloadConfig,
+        FilterConfig,
+        MappingConfig,
+        ResourceConfig,
+        TransformationConfig,
     )
 
     ValueType = TypeVar("ValueType", int, str, AnyUrl, UUID)
@@ -36,7 +36,9 @@ class StrategyFactory:
     strategy_create_func = {}
 
     @classmethod
-    def make_strategy(cls, model: "BaseModel", field: str = None, index=None) -> "BaseModel":
+    def make_strategy(
+        cls, model: "BaseModel", field: str = None, index=None
+    ) -> "BaseModel":
         """Instantiate a strategy in a context class"""
 
         try:

@@ -16,14 +16,15 @@ import asyncio
 import hashlib
 import json
 import os
-from pathlib import Path
 import tempfile
 from contextlib import contextmanager
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from diskcache import Cache as DiskCache
-from oteapi.models import DownloadConfig
 from pydantic import Extra
+
+from oteapi.models import DownloadConfig
 
 if TYPE_CHECKING:
     from typing import Any, Optional, Union
@@ -94,7 +95,9 @@ class DataCache:
     """
 
     def __init__(
-        self, config: "Union[DownloadConfig, dict]" = None, cache_dir: "Optional[Union[Path, str]]" = None
+        self,
+        config: "Union[DownloadConfig, dict]" = None,
+        cache_dir: "Optional[Union[Path, str]]" = None,
     ) -> None:
         if config is None:
             self.config = DownloadConfig()
