@@ -40,8 +40,14 @@ class FileStrategy:
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
         """Read local file."""
-        assert self.resource_config.downloadUrl
-        assert self.resource_config.downloadUrl.scheme == "file"
+        if (
+            self.resource_config.downloadUrl is None
+            or self.resource_config.downloadUrl.scheme != "file"
+        ):
+            raise ValueError(
+                "Expected 'downloadUrl' to have scheme 'file' in the configuration."
+            )
+
         filename = self.resource_config.downloadUrl.host
 
         cache = DataCache(self.resource_config.configuration)
