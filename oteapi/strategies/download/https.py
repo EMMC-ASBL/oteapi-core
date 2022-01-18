@@ -1,13 +1,17 @@
 """Download strategy class for http/https"""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING
 
 import requests
 
-from oteapi.datacache.datacache import DataCache
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.datacache import DataCache
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models import ResourceConfig
 
 
 @dataclass
@@ -15,13 +19,15 @@ from oteapi.plugins.factories import StrategyFactory
 class HTTPSStrategy:
     """Strategy for retrieving data via http."""
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Download via http/https and store on local cache."""
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:

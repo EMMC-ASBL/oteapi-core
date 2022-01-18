@@ -2,13 +2,17 @@
 # pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, Extra, Field
 
-from oteapi.datacache.datacache import DataCache
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.datacache import DataCache
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict
+
+    from oteapi.models import ResourceConfig
 
 
 class FileConfig(BaseModel):
@@ -17,7 +21,7 @@ class FileConfig(BaseModel):
     text: bool = Field(
         False, description="Whether the file should be opened in text mode."
     )
-    encoding: str = Field(
+    encoding: Optional[str] = Field(
         None,
         description=(
             "Encoding used when opening the file. Default is platform dependent."
@@ -32,13 +36,15 @@ class FileConfig(BaseModel):
 class FileStrategy:
     """Strategy for retrieving data via local file."""
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
         if (
             self.resource_config.downloadUrl is None

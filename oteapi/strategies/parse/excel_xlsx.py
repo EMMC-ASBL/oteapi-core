@@ -1,16 +1,21 @@
 """Strategy class for workbook/xlsx."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Optional, Union
+from typing import TYPE_CHECKING, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from openpyxl.worksheet.worksheet import Worksheet
 from pydantic import BaseModel, Extra
 
-from oteapi.datacache.datacache import DataCache
-from oteapi.models.resourceconfig import ResourceConfig
+from oteapi.datacache import DataCache
 from oteapi.plugins.factories import StrategyFactory, create_download_strategy
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Iterable
+
+    from openpyxl.worksheet.worksheet import Worksheet
+
+    from oteapi.models import ResourceConfig
 
 
 class XLSXParseDataModel(BaseModel):
@@ -44,7 +49,7 @@ class XLSXParseDataModel(BaseModel):
     new_header: Optional[List[str]] = None
 
 
-def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
+def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> None:
     """Update datamodel `model` with default values obtained from `worksheet`."""
     if model.row_from is None:
         if model.header:
@@ -71,8 +76,8 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
 
 
 def get_column_indices(
-    model: XLSXParseDataModel, worksheet: Worksheet
-) -> Iterable[int]:
+    model: XLSXParseDataModel, worksheet: "Worksheet"
+) -> "Iterable[int]":
     """Helper function returning a list of column indices."""
     if not isinstance(model.col_from, int) or not isinstance(model.col_to, int):
         raise TypeError("Expected `model.col_from` and `model.col_to` to be integers.")
@@ -92,13 +97,15 @@ def get_column_indices(
 )
 class XLSXParseStrategy:
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
         Returns a dict with column-name/column-value pairs. The values are lists.

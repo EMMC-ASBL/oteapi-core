@@ -1,7 +1,4 @@
-"""
-Pydantic ResourceConfig Data Model
-"""
-
+"""Pydantic ResourceConfig Data Model"""
 from typing import Any, Dict, Optional
 
 from pydantic import AnyUrl, BaseModel, Field, root_validator

@@ -2,10 +2,14 @@
 # pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING
 
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models import ResourceConfig
 
 
 def create_connection(db_file):
@@ -28,9 +32,9 @@ def create_connection(db_file):
 @StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         if session is None:
             raise ValueError("Missing session")
 
@@ -41,6 +45,8 @@ class SqliteParseStrategy:
             return {"result": rows}
         return {"result": "No query given"}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}

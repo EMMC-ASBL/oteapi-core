@@ -6,7 +6,7 @@ from .downloadconfig import DownloadConfig
 from .filterconfig import FilterConfig
 from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
-from .transformationconfig import TransformationConfig
+from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
     "DownloadConfig",
@@ -14,4 +14,5 @@ __all__ = (
     "MappingConfig",
     "ResourceConfig",
     "TransformationConfig",
+    "TransformationStatus",
 )
