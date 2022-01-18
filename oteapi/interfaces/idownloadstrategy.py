@@ -1,15 +1,13 @@
-"""
-Download Strategy Interface
-"""
+"""Download Strategy Interface"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.resourceconfig import ResourceConfig
 
 
-@dataclass
-class IDownloadStrategy(Protocol):  # pylint: disable=R0903
-    """Data Storage Interfaces"""
+@dataclass  # type: ignore[misc]
+class IDownloadStrategy(Protocol):
+    """Download Interfaces"""
 
     resource_config: ResourceConfig
 

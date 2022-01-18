@@ -1,7 +1,4 @@
-"""
-Pydantic Mapping Data Model
-"""
-
+"""Pydantic Mapping Data Model"""
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field, conlist
@@ -22,7 +19,7 @@ class MappingConfig(BaseModel):
             "given as localvalue/IRI-expansion-pairs"
         ),
     )
-    triples: Optional[List[SemanticTriple]] = Field(
+    triples: Optional[List[SemanticTriple]] = Field(  # type: ignore[valid-type]
         None,
         description="List of semantic triples given as (subject, predicate, object).",
     )

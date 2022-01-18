@@ -25,5 +25,9 @@ class CropFilter:
 
     def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Execute strategy and return a dictionary"""
-        cropData = CropDataModel(**self.filter_config.configuration)
+        cropData = (
+            CropDataModel(**self.filter_config.configuration)
+            if self.filter_config.configuration
+            else CropDataModel()
+        )
         return {"imagecrop": cropData.crop}

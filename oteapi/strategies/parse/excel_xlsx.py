@@ -1,7 +1,7 @@
 """Strategy class for workbook/xlsx."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
@@ -35,13 +35,13 @@ class XLSXParseDataModel(BaseModel):
     """
 
     worksheet: str
-    row_from: int = None
-    col_from: Union[int, str] = None
-    row_to: int = None
-    col_to: Union[int, str] = None
-    header_row: int = None
-    header: List[str] = None
-    new_header: List[str] = None
+    row_from: Optional[int] = None
+    col_from: Optional[Union[int, str]] = None
+    row_to: Optional[int] = None
+    col_to: Optional[Union[int, str]] = None
+    header_row: Optional[int] = None
+    header: Optional[List[str]] = None
+    new_header: Optional[List[str]] = None
 
 
 def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
@@ -49,7 +49,7 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
     if model.row_from is None:
         if model.header:
             # assume that data starts on the first row after the header
-            model.row_from = model.header_row + 1
+            model.row_from = model.header_row + 1 if model.header_row else 1
         else:
             model.row_from = worksheet.min_row
 
@@ -70,8 +70,13 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
         model.header_row = 1
 
 
-def get_column_indices(model: XLSXParseDataModel, worksheet: Worksheet) -> List[int]:
+def get_column_indices(
+    model: XLSXParseDataModel, worksheet: Worksheet
+) -> Iterable[int]:
     """Helper function returning a list of column indices."""
+    if not isinstance(model.col_from, int) or not isinstance(model.col_to, int):
+        raise TypeError("Expected `model.col_from` and `model.col_to` to be integers.")
+
     if model.header:
         header_dict = {
             worksheet.cell(model.header_row, col).value: col
@@ -136,7 +141,7 @@ class XLSXParseStrategy:
             if len(model.new_header) != nhead:
                 raise TypeError(
                     f"length of `new_header` (={len(model.new_header)}) "
-                    f"doesn't match number of columns (={len(header)})"
+                    f"doesn't match number of columns (={len(header) if header else 0})"
                 )
             if header:
                 for i, val in enumerate(model.new_header):

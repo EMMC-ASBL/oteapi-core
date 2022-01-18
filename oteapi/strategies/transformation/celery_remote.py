@@ -33,7 +33,7 @@ class CeleryRemoteStrategy:
     def run(self, session_id: Optional[str] = None) -> Dict[str, Any]:
         """Run a job, return a jobid"""
         config = self.transformation_config.configuration
-        celeryConfig = CeleryConfig(**config)
+        celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
         result = app.send_task(
             celeryConfig.taskName, celeryConfig.args, kwargs=session_id
         )

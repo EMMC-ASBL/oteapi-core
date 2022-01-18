@@ -1,16 +1,13 @@
-"""
-Data Storage Interface
-"""
-
+"""Resource Strategy Interface"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.resourceconfig import ResourceConfig
 
 
-@dataclass
-class IResourceStrategy(Protocol):  # pylint: disable=R0903
-    """Resource  Interfaces"""
+@dataclass  # type: ignore[misc]
+class IResourceStrategy(Protocol):
+    """Resource Interfaces"""
 
     resource_config: ResourceConfig
 

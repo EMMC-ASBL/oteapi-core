@@ -1,5 +1,4 @@
-""" Tranformation Strategy Interface
-"""
+"""Tranformation Strategy Interface"""
 
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
@@ -10,9 +9,9 @@ from oteapi.models.transformationconfig import (
 )
 
 
-@dataclass
-class ITransformationStrategy(Protocol):  # pylint: disable=R0903
-    """Tranformation Strategy Interfaces"""
+@dataclass  # type: ignore[misc]
+class ITransformationStrategy(Protocol):
+    """Tranformation Interfaces"""
 
     transformation_config: TransformationConfig
 

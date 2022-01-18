@@ -4,10 +4,11 @@ from importlib.metadata import entry_points
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from types import ModuleType
     from typing import List, Set
 
 
-class PluginInterface:  # pylint: disable=R0903
+class PluginInterface:
     """Call the plugin to be initialized"""
 
     @staticmethod
@@ -15,9 +16,9 @@ class PluginInterface:  # pylint: disable=R0903
         """Initialize the plugin"""
 
 
-def import_module(name: str) -> PluginInterface:
+def import_module(name: str) -> "ModuleType":
     """import modules"""
-    return importlib.import_module(name)  # type: ignore
+    return importlib.import_module(name)
 
 
 def get_all_entry_points() -> "List[str]":

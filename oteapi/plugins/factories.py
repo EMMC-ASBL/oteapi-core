@@ -4,7 +4,7 @@ Factory class for registering and creating strategy instances
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from typing import Tuple, TypeVar
+    from typing import Any, Callable, Dict, Tuple, Union
     from uuid import UUID
 
     from pydantic import AnyUrl, BaseModel
@@ -25,7 +25,7 @@ if TYPE_CHECKING:
         TransformationConfig,
     )
 
-    ValueType = TypeVar("ValueType", int, str, AnyUrl, UUID)
+    ValueType = Union[int, str, AnyUrl, UUID]
 
 
 class StrategyFactory:
@@ -33,7 +33,7 @@ class StrategyFactory:
     Decorator based Factory class
     """
 
-    strategy_create_func = {}
+    strategy_create_func: "Dict[Tuple[str, ValueType], Callable[[Any], Any]]" = {}
 
     @classmethod
     def make_strategy(
@@ -53,7 +53,7 @@ class StrategyFactory:
     def register(cls, *args: "Tuple[str, ValueType]"):
         """Register a strategy.
 
-        The identifyer for the strategy is defined by a set of key-value tuple pairs.
+        The identifier for the strategy is defined by a set of key-value tuple pairs.
         """
 
         def decorator(strategy_class):
@@ -68,9 +68,9 @@ class StrategyFactory:
         return decorator
 
     @classmethod
-    def unregister(cls, *kwargs: "Tuple[str, ValueType]") -> None:
+    def unregister(cls, *args: "Tuple[str, ValueType]") -> None:
         """Unregister a strategy"""
-        for index in kwargs:
+        for index in args:
             cls.strategy_create_func.pop(index, None)
 
 

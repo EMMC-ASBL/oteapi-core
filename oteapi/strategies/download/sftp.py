@@ -33,6 +33,9 @@ class SFTPStrategy:
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
 
+            if not self.resource_config.accessUrl:
+                raise ValueError("accessUrl is not defined in configuration.")
+
             # open connection and store data locally
             with pysftp.Connection(
                 host=self.resource_config.accessUrl.host,

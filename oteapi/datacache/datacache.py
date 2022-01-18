@@ -26,14 +26,14 @@ from pydantic import Extra
 from oteapi.models import DownloadConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Optional, Union
+    from typing import Any, Iterator, Optional, Type, Union
 
 
 def gethash(
     value: "Any",
     hashtype: str = "sha256",
     encoding: str = "utf-8",
-    json_encoder: "Optional[json.JSONEncoder]" = None,
+    json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
 ) -> str:
     """Return a hash of `value`.
 
@@ -200,7 +200,7 @@ class DataCache:
         suffix: "Optional[str]" = None,
         directory: "Optional[str]" = None,
         delete: bool = True,
-    ) -> Path:
+    ) -> "Iterator[Path]":
         """Write the value for `key` to file and return the filename.
 
         The file is created in the default directory for temporary

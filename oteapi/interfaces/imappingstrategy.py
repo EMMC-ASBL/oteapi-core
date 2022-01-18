@@ -1,6 +1,4 @@
-"""
-Mapping Strategy Interface
-"""
+"""Mapping Strategy Interface"""
 
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
@@ -8,7 +6,7 @@ from typing import Any, Dict, Optional, Protocol
 from oteapi.models.mappingconfig import MappingConfig
 
 
-@dataclass
+@dataclass  # type: ignore[misc]
 class IMappingStrategy(Protocol):
     """Mapping Interface"""
 

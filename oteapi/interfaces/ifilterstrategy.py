@@ -1,16 +1,13 @@
-"""
-Resource Strategy Interface
-"""
-
+"""Filter Strategy Interface"""
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Protocol
 
 from oteapi.models.filterconfig import FilterConfig
 
 
-@dataclass
+@dataclass  # type: ignore[misc]
 class IFilterStrategy(Protocol):
-    """Resource Interface"""
+    """Filter Interface"""
 
     filter_config: FilterConfig
 

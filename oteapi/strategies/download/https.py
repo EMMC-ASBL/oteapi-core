@@ -27,6 +27,8 @@ class HTTPSStrategy:
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
+            if not self.resource_config.downloadUrl:
+                raise ValueError("downloadUrl not defined in configuration.")
             req = requests.get(self.resource_config.downloadUrl, allow_redirects=True)
             key = cache.add(req.content)
 
