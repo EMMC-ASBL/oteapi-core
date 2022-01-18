@@ -4,7 +4,6 @@
 
 ## Content
 
-
 * [About OTEAPI Core](#about-oteapi-core)
 * [Types of strategies](#types-of-strategies)
   * [Download strategy](#download-strategy)
