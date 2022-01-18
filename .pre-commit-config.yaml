@@ -10,12 +10,8 @@ repos:
     - id: debug-statements
     - id: check-yaml
       name: Check YAML
-    - id: check-json
-      name: Check JSON
     - id: check-toml
       name: Check TOML
-    - id: check-symlinks
-    - id: destroyed-symlinks
     - id: requirements-txt-fixer
       name: Fix requirements*.txt
       files: ^requirements.*\.txt$
