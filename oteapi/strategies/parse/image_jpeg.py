@@ -41,12 +41,11 @@ class ImageDataParseStrategy:
     resource_config: "ResourceConfig"
 
     def __post_init__(self):
-        self.localpath = "/ote-data"
-        self.filename = self.resource_config.configuration["artifactName"]
-        if self.resource_config.configuration:
-            self.conf = self.resource_config.configuration
-        else:
-            self.conf = {}
+        self.localpath = "/ote-data" # Default
+        self.filename = self.resource_config.configuration["filename"]
+        self.conf = self.resource_config.configuration
+        if "localpath" in self.conf:
+            self.localpath = self.conf["localpath"]
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
