@@ -1,4 +1,5 @@
-""" Strategy class for text/json """
+"""Strategy class for text/json."""
+# pylint: disable=unused-argument
 import json
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
@@ -14,15 +15,11 @@ class JSONDataParseStrategy:
 
     resource_config: ResourceConfig
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
         return {}
 
-    def parse(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Parse json."""
         downloader = create_download_strategy(self.resource_config)
         output = downloader.get()
@@ -31,5 +28,4 @@ class JSONDataParseStrategy:
 
         if isinstance(content, dict):
             return content
-        else:
-            return json.loads(content)
+        return json.loads(content)

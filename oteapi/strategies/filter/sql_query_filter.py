@@ -1,4 +1,5 @@
 """SQL query filter strategy"""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -18,15 +19,11 @@ class QFilter:
 
     filter_config: FilterConfig
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize strategy and return a dictionary"""
-        if session is None:
-            raise ValueError("Missing session")
         queryData = SqlQueryDataModel(**{"query": self.filter_config.query})
-        retobj = dict(sqlquery=queryData.query)
+        return {"sqlquery": queryData.query}
 
-        return retobj
-
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Execute strategy and return a dictionary"""
-        return dict()
+        return {}

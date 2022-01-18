@@ -1,4 +1,5 @@
-""" Strategy class for text/csv """
+"""Strategy class for text/csv."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -12,14 +13,10 @@ class CSVParseStrategy:
 
     resource_config: ResourceConfig
 
-    def parse(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         print("CSV in action!")
         return {}
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
-        return dict()
+        return {}

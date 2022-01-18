@@ -1,4 +1,5 @@
 """Download strategy class for http/https"""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -16,13 +17,11 @@ class HTTPSStrategy:
 
     resource_config: ResourceConfig
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
         return {}
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Download via http/https and store on local cache."""
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:

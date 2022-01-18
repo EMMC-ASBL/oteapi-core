@@ -1,4 +1,5 @@
-""" Strategy class for application/vnd.sqlite3 """
+"""Strategy class for application/vnd.sqlite3."""
+# pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
@@ -29,22 +30,17 @@ class SqliteParseStrategy:
 
     resource_config: ResourceConfig
 
-    def parse(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
-
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         if session is None:
             raise ValueError("Missing session")
+
         if "sqlquery" in session:
             cn = create_connection(session["filename"])
             cur = cn.cursor()
             rows = cur.execute(session["sqlquery"]).fetchall()
-            return dict(result=rows)
-        else:
-            return dict(result="No query given")
+            return {"result": rows}
+        return {"result": "No query given"}
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
-        return dict()
+        return {}

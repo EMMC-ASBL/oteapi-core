@@ -1,4 +1,5 @@
 """Demo-filter strategy"""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
@@ -18,16 +19,11 @@ class CropFilter:
 
     filter_config: FilterConfig
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize strategy and return a dictionary"""
+        return {"result": "collectionid"}
 
-        # TODO: Add logic
-        return dict(result="collectionid")
-
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Execute strategy and return a dictionary"""
-
         cropData = CropDataModel(**self.filter_config.configuration)
-        retobj = dict(imagecrop=cropData.crop)
-
-        return retobj
+        return {"imagecrop": cropData.crop}

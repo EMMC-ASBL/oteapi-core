@@ -14,8 +14,8 @@ class IResourceStrategy(Protocol):  # pylint: disable=R0903
 
     resource_config: ResourceConfig
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Run get-method and return a dictionary"""
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""

@@ -1,5 +1,5 @@
-# pylint: disable=  W0613
-""" Strategy class for image/jpg """
+"""Strategy class for image/jpg."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
@@ -31,11 +31,11 @@ class ImageDataParseStrategy:
         else:
             self.conf = {}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
-        return dict()
+        return {}
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         if session is not None:
             self.conf.update(session)
         parsedOutput = {}

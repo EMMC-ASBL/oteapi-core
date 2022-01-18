@@ -14,8 +14,8 @@ class IMappingStrategy(Protocol):
 
     mapping_config: MappingConfig
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Execute strategy and return a dictionary"""
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize strategy and return a dictionary"""

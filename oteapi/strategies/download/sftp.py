@@ -1,6 +1,7 @@
 """Strategy class for sftp/ftp"""
-import os
+# pylint: disable=unused-argument
 from dataclasses import dataclass
+from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Any, Dict, Optional
 
@@ -18,15 +19,11 @@ class SFTPStrategy:
 
     resource_config: ResourceConfig
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
         return {}
 
-    def get(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Download via sftp"""
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -46,13 +43,12 @@ class SFTPStrategy:
             ) as sftp:
                 # Because of insane locking on Windows, we have to close
                 # the downloaded file before adding it to the cache
-                with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as f:
-                    localpath = f.name
+                with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as handle:
+                    localpath = Path(handle.name).resolve()
                 try:
                     sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
-                    with open(localpath, "rb") as f:
-                        key = cache.add(f.read())
+                    key = cache.add(localpath.read_bytes())
                 finally:
-                    os.remove(localpath)
+                    localpath.unlink()
 
         return {"key": key}

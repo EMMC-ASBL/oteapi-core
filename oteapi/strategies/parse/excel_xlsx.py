@@ -1,4 +1,5 @@
-""" Strategy class for workbook/xlsx """
+"""Strategy class for workbook/xlsx."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Union
 
@@ -43,7 +44,7 @@ class XLSXParseDataModel(BaseModel):
     new_header: List[str] = None
 
 
-def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet):
+def set_model_defaults(model: XLSXParseDataModel, worksheet: Worksheet) -> None:
     """Update datamodel `model` with default values obtained from `worksheet`."""
     if model.row_from is None:
         if model.header:
@@ -76,10 +77,8 @@ def get_column_indices(model: XLSXParseDataModel, worksheet: Worksheet) -> List[
             worksheet.cell(model.header_row, col).value: col
             for col in range(model.col_from, model.col_to + 1)
         }
-        indices = [header_dict[h] for h in model.header]
-    else:
-        indices = range(model.col_from, model.col_to + 1)
-    return indices
+        return [header_dict[h] for h in model.header]
+    return range(model.col_from, model.col_to + 1)
 
 
 @dataclass
@@ -90,17 +89,14 @@ class XLSXParseStrategy:
 
     resource_config: ResourceConfig
 
-    def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
         return {}
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Parses selected region of an excel file.
 
-        Returns a dict with column-name/column-value pairs.  The values are
-        lists.
+        Returns a dict with column-name/column-value pairs. The values are lists.
         """
         model = XLSXParseDataModel(
             **self.resource_config.configuration, extra=Extra.ignore

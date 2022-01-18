@@ -1,4 +1,5 @@
-"""Transformation Plugin that use the Celery framework to call remote workers"""
+"""Transformation Plugin that uses the Celery framework to call remote workers."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional
 
@@ -29,28 +30,25 @@ class CeleryRemoteStrategy:
 
     transformation_config: TransformationConfig
 
-    def run(self, session_id: Optional[str] = None) -> Dict:
+    def run(self, session_id: Optional[str] = None) -> Dict[str, Any]:
         """Run a job, return a jobid"""
-
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig(**config)
         result = app.send_task(
             celeryConfig.taskName, celeryConfig.args, kwargs=session_id
         )
-        return dict(result=result.task_id)
+        return {"result": result.task_id}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize a job"""
-        return dict()
+        return {}
 
     def status(self, task_id: str) -> TransformationStatus:
         """Get job status"""
         result = AsyncResult(id=task_id, app=app)
-        ts = TransformationStatus(id=task_id, status=result.state)
-        return ts
+        return TransformationStatus(id=task_id, status=result.state)
 
-    def get(self, session_id: Optional[str] = None) -> Dict:
-        """get transformation"""
-
-        # TODO: update and return global state
-        return dict()
+    def get(self, session_id: Optional[str] = None) -> Dict[str, Any]:
+        """Get transformation."""
+        # TODO: update and return global state  # pylint: disable=fixme
+        return {}

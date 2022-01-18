@@ -13,11 +13,11 @@ class IDownloadStrategy(Protocol):  # pylint: disable=R0903
 
     resource_config: ResourceConfig
 
-    def read(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def read(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Dowload data from source"""
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Dowload data from source"""
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""

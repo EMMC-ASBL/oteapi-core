@@ -14,8 +14,8 @@ class IParseStrategy(Protocol):  # pylint: disable=R0903
 
     resource_config: ResourceConfig
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """run parser and return a dictionary"""
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Initialize"""
