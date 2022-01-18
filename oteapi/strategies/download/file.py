@@ -1,13 +1,18 @@
-# pylint: disable=W0613, C0103
 """Download strategy class for file"""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from pathlib import Path
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, Extra, Field
 
-from oteapi.datacache.datacache import DataCache
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.datacache import DataCache
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict
+
+    from oteapi.models import ResourceConfig
 
 
 class FileConfig(BaseModel):
@@ -16,10 +21,11 @@ class FileConfig(BaseModel):
     text: bool = Field(
         False, description="Whether the file should be opened in text mode."
     )
-    encoding: str = Field(
+    encoding: Optional[str] = Field(
         None,
-        description="Encoding used when opening the file.  "
-        "Default is platform dependent.",
+        description=(
+            "Encoding used when opening the file. Default is platform dependent."
+        ),
     )
 
 
@@ -30,19 +36,25 @@ class FileConfig(BaseModel):
 class FileStrategy:
     """Strategy for retrieving data via local file."""
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
-        assert self.resource_config.downloadUrl
-        assert self.resource_config.downloadUrl.scheme == "file"
-        filename = self.resource_config.downloadUrl.host
+        if (
+            self.resource_config.downloadUrl is None
+            or self.resource_config.downloadUrl.scheme != "file"
+        ):
+            raise ValueError(
+                "Expected 'downloadUrl' to have scheme 'file' in the configuration."
+            )
+
+        filename = Path(self.resource_config.downloadUrl.host).resolve()
 
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -51,8 +63,10 @@ class FileStrategy:
             config = FileConfig(
                 **self.resource_config.configuration, extra=Extra.ignore
             )
-            mode = "rt" if config.text else "rb"
-            with open(filename, mode, encoding=config.encoding) as f:
-                key = cache.add(f.read())
+            key = cache.add(
+                filename.read_text(encoding=config.encoding)
+                if config.text
+                else filename.read_bytes()
+            )
 
         return {"key": key}

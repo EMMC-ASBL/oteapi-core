@@ -5,8 +5,8 @@ More information on `invoke` can be found at http://www.pyinvoke.org/.
 # pylint: disable=import-outside-toplevel,too-many-locals
 import re
 import sys
-from typing import TYPE_CHECKING
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from invoke import task
 

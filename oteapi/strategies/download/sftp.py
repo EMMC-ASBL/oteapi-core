@@ -1,14 +1,19 @@
 """Strategy class for sftp/ftp"""
-import os
+# pylint: disable=unused-argument
 from dataclasses import dataclass
+from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING
 
 import pysftp
 
-from oteapi.datacache.datacache import DataCache
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.datacache import DataCache
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models import ResourceConfig
 
 
 @dataclass
@@ -16,17 +21,15 @@ from oteapi.plugins.factories import StrategyFactory
 class SFTPStrategy:
     """Strategy for retrieving data via sftp."""
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
         return {}
 
-    def get(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Download via sftp"""
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -35,6 +38,9 @@ class SFTPStrategy:
             # Setup connection options
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
+
+            if not self.resource_config.accessUrl:
+                raise ValueError("accessUrl is not defined in configuration.")
 
             # open connection and store data locally
             with pysftp.Connection(
@@ -46,13 +52,12 @@ class SFTPStrategy:
             ) as sftp:
                 # Because of insane locking on Windows, we have to close
                 # the downloaded file before adding it to the cache
-                with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as f:
-                    localpath = f.name
+                with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as handle:
+                    localpath = Path(handle.name).resolve()
                 try:
                     sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
-                    with open(localpath, "rb") as f:
-                        key = cache.add(f.read())
+                    key = cache.add(localpath.read_bytes())
                 finally:
-                    os.remove(localpath)
+                    localpath.unlink()
 
         return {"key": key}

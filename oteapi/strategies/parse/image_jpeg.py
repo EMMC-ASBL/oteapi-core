@@ -1,12 +1,16 @@
-# pylint: disable=  W0613
-""" Strategy class for image/jpg """
+"""Strategy class for image/jpg."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING
 
 from PIL import Image
 
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models import ResourceConfig
 
 
 @dataclass
@@ -21,7 +25,7 @@ from oteapi.plugins.factories import StrategyFactory
 )
 class ImageDataParseStrategy:
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
     def __post_init__(self):
         self.localpath = "/ote-data"
@@ -31,11 +35,13 @@ class ImageDataParseStrategy:
         else:
             self.conf = {}
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
-        return dict()
+        return {}
 
-    def parse(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         if session is not None:
             self.conf.update(session)
         parsedOutput = {}

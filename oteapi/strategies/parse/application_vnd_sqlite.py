@@ -1,10 +1,15 @@
-""" Strategy class for application/vnd.sqlite3 """
-from dataclasses import dataclass
+"""Strategy class for application/vnd.sqlite3."""
+# pylint: disable=unused-argument
 import sqlite3
-from typing import Any, Dict, Optional
+from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from oteapi.models.resourceconfig import ResourceConfig
-from oteapi.plugins.factories import StrategyFactory
+from oteapi.plugins import StrategyFactory
+
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models import ResourceConfig
 
 
 def create_connection(db_file):
@@ -27,24 +32,21 @@ def create_connection(db_file):
 @StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
 
-    resource_config: ResourceConfig
+    resource_config: "ResourceConfig"
 
-    def parse(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
-
+    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         if session is None:
             raise ValueError("Missing session")
+
         if "sqlquery" in session:
             cn = create_connection(session["filename"])
             cur = cn.cursor()
             rows = cur.execute(session["sqlquery"]).fetchall()
-            return dict(result=rows)
-        else:
-            return dict(result="No query given")
+            return {"result": rows}
+        return {"result": "No query given"}
 
     def initialize(
-        self, session: Optional[Dict[str, Any]] = None  # pylint: disable=W0613
-    ) -> Dict:
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize"""
-        return dict()
+        return {}

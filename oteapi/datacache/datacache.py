@@ -15,25 +15,25 @@ Features:
 import asyncio
 import hashlib
 import json
-import os
-from pathlib import Path
 import tempfile
 from contextlib import contextmanager
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from diskcache import Cache as DiskCache
-from oteapi.models import DownloadConfig
 from pydantic import Extra
 
+from oteapi.models import DownloadConfig
+
 if TYPE_CHECKING:
-    from typing import Any, Optional, Union
+    from typing import Any, Iterator, Optional, Type, Union
 
 
 def gethash(
     value: "Any",
     hashtype: str = "sha256",
     encoding: str = "utf-8",
-    json_encoder: "Optional[json.JSONEncoder]" = None,
+    json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
 ) -> str:
     """Return a hash of `value`.
 
@@ -62,9 +62,9 @@ def gethash(
             sort_keys=True,
         ).encode(encoding)
 
-    h = hashlib.new(hashtype)
-    h.update(data)
-    return h.hexdigest()
+    hash_ = hashlib.new(hashtype)
+    hash_.update(data)
+    return hash_.hexdigest()
 
 
 def asyncrun(func, *args) -> "Any":
@@ -94,7 +94,9 @@ class DataCache:
     """
 
     def __init__(
-        self, config: "Union[DownloadConfig, dict]" = None, cache_dir: "Optional[Union[Path, str]]" = None
+        self,
+        config: "Union[DownloadConfig, dict]" = None,
+        cache_dir: "Optional[Union[Path, str]]" = None,
     ) -> None:
         if config is None:
             self.config = DownloadConfig()
@@ -114,13 +116,13 @@ class DataCache:
         else:
             self.cache_dir = Path(tempfile.gettempdir()).resolve() / cache_dir
 
-        self.dc = DiskCache(directory=self.cache_dir)
+        self.datacache = DiskCache(directory=self.cache_dir)
 
     def __contains__(self, key) -> bool:
-        return key in self.dc
+        return key in self.datacache
 
     def __len__(self) -> int:
-        return len(self.dc)
+        return len(self.datacache)
 
     def __getitem__(self, key) -> "Any":
         return self.get(key)
@@ -130,14 +132,14 @@ class DataCache:
 
     def __delitem__(self, key) -> None:
         def deleter(key):
-            del self.dc[key]
+            del self.datacache[key]
 
         asyncrun(deleter, key)
 
     def __del__(self) -> None:
         def closer():
-            self.dc.expire()
-            self.dc.close()
+            self.datacache.expire()
+            self.datacache.close()
 
         asyncrun(closer)
 
@@ -177,7 +179,7 @@ class DataCache:
 
         # Needed because asyncio.run() does not support keyword arguments
         def setter(key, value, expire, tag):
-            self.dc.set(key, value, expire=expire, tag=tag)
+            self.datacache.set(key, value, expire=expire, tag=tag)
 
         asyncrun(setter, key, value, expire, tag)
 
@@ -185,28 +187,28 @@ class DataCache:
 
     def get(self, key: str) -> "Any":
         """Return the value corresponding to key."""
-        if key not in self.dc:
+        if key not in self.datacache:
             raise KeyError(key)
-        return asyncrun(self.dc.get, key)
+        return asyncrun(self.datacache.get, key)
 
     @contextmanager
-    def getfile(
+    def getfile(  # pylint: disable=too-many-arguments
         self,
         key: str,
-        filename: "Optional[str]" = None,
+        filename: "Optional[Union[Path, str]]" = None,
         prefix: "Optional[str]" = None,
         suffix: "Optional[str]" = None,
         directory: "Optional[str]" = None,
         delete: bool = True,
-    ) -> str:
+    ) -> "Iterator[Path]":
         """Write the value for `key` to file and return the filename.
 
         The file is created in the default directory for temporary
         files (which can be controlled by the TEMPDIR, TEMP or TMP
-        environment variables).  It is readable and writable only for
+        environment variables). It is readable and writable only for
         the current user.
 
-        This method is intended to be used in a with statement, to
+        This method is intended to be used in a `with` statement, to
         automatically delete the file when leaving the context.
 
         Example:
@@ -214,50 +216,50 @@ class DataCache:
         ```python
         cache = DataCache()
         with cache.getfile('mykey') as filename:
-             # do something with filename...
+            # do something with filename...
         # filename is deleted
         ```
 
         Args:
-            key: key of value to write to file
-            filename: full path to created file.  If not given, a unique
+            key: Key of value to write to file
+            filename: Full path to created file. If not given, a unique
                 filename will be created.
-            prefix: prefix to prepend to the returned file name (default
+            prefix: Prefix to prepend to the returned file name (default
                 is "oteapi-download-").
-            suffix: suffix to append to the returned file name.
-            directory: file directory if `filename` is None.
-            delete: whether to automatically delete created file when
+            suffix: Suffix to append to the returned file name.
+            directory: File directory if `filename` is None.
+            delete: Whether to automatically delete created file when
                 leaving the context.
 
         Returns:
-            Name of the created file.
+            Path object of the created file.
 
         """
         if filename:
-            with open(filename, "rb") as f:
-                f.write(self.get(key))
+            filename = Path(filename).resolve()
+            filename.write_bytes(self.get(key))
         else:
             if prefix is None:
                 prefix = "oteapi-download-"
             with tempfile.NamedTemporaryFile(
                 prefix=prefix, suffix=suffix, dir=directory, delete=False
-            ) as f:
-                f.write(self.get(key))
-                filename = f.name
+            ) as handle:
+                handle.write(self.get(key))
+                filename = Path(handle.name).resolve()
 
         try:
             yield filename
         finally:
             if delete:
-                os.remove(filename)
+                filename.unlink()
 
     def evict(self, tag: str) -> None:
         """Remove all cache items with the given tag.
 
         Useful for cleaning up a session.
         """
-        asyncrun(self.dc.evict, tag)
+        asyncrun(self.datacache.evict, tag)
 
     def clear(self) -> None:
         """Remove all items from cache."""
-        asyncrun(self.dc.clear)
+        asyncrun(self.datacache.clear)

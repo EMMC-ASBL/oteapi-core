@@ -1,21 +1,23 @@
-"""
-Resource Strategy Interface
-"""
-
+"""Filter Strategy Interface"""
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, Protocol
+from typing import TYPE_CHECKING, Protocol
 
-from oteapi.models.filterconfig import FilterConfig
+if TYPE_CHECKING:
+    from typing import Any, Dict, Optional
+
+    from oteapi.models.filterconfig import FilterConfig
 
 
-@dataclass
+@dataclass  # type: ignore[misc]
 class IFilterStrategy(Protocol):
-    """Resource Interface"""
+    """Filter Interface"""
 
-    filter_config: FilterConfig
+    filter_config: "FilterConfig"
 
-    def get(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute strategy and return a dictionary"""
 
-    def initialize(self, session: Optional[Dict[str, Any]] = None) -> Dict:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize strategy and return a dictionary"""
