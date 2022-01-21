@@ -10,14 +10,35 @@ if TYPE_CHECKING:
 
 @dataclass  # type: ignore[misc]
 class IMappingStrategy(Protocol):
-    """Mapping Interface"""
+    """Mapping Strategy Interface."""
 
     mapping_config: "MappingConfig"
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Execute strategy and return a dictionary"""
+        """Execute the strategy.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize strategy and return a dictionary"""
+        """Initialize data class.
+
+        This method will be called through the `/initialize` endpoint of the OTE-API
+        Services.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """

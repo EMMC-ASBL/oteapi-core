@@ -10,17 +10,47 @@ if TYPE_CHECKING:
 
 @dataclass  # type: ignore[misc]
 class IDownloadStrategy(Protocol):
-    """Download Interfaces"""
+    """Download Strategy Interface."""
 
     resource_config: "ResourceConfig"
 
     def read(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Dowload data from source"""
+        """Read the downloaded data.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Dowload data from source"""
+        """Execute the strategy.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize data class.
+
+        This method will be called through the `/initialize` endpoint of the OTE-API
+        Services.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """

@@ -1,5 +1,4 @@
 """Strategy class for sftp/ftp"""
-# pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -11,7 +10,7 @@ from oteapi.datacache import DataCache
 from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from oteapi.models import ResourceConfig
 
@@ -19,17 +18,22 @@ if TYPE_CHECKING:
 @dataclass
 @StrategyFactory.register(("scheme", "sftp"), ("scheme", "ftp"))
 class SFTPStrategy:
-    """Strategy for retrieving data via sftp."""
+    """Strategy for retrieving data via sftp.
+
+    **Registers strategies**:
+
+    - `("scheme", "ftp")`
+    - `("scheme", "sftp")`
+
+    """
 
     resource_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize."""
         return {}
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, **_) -> "Dict[str, Any]":
         """Download via sftp"""
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:

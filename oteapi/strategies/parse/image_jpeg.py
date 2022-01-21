@@ -1,5 +1,4 @@
 """Strategy class for image/jpg."""
-# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -24,6 +23,19 @@ if TYPE_CHECKING:
     ("mediaType", "image/eps"),
 )
 class ImageDataParseStrategy:
+    """Parse strategy for images.
+
+    **Registers strategies**:
+
+    - `("mediaType", "image/jpg")`
+    - `("mediaType", "image/jpeg")`
+    - `("mediaType", "image/j2p")`
+    - `("mediaType", "image/png")`
+    - `("mediaType", "image/gif")`
+    - `("mediaType", "image/tiff")`
+    - `("mediaType", "image/eps")`
+
+    """
 
     resource_config: "ResourceConfig"
 
@@ -35,10 +47,8 @@ class ImageDataParseStrategy:
         else:
             self.conf = {}
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize."""
         return {}
 
     def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

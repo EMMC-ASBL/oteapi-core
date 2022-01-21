@@ -1,5 +1,4 @@
 """Demo-filter strategy"""
-# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
@@ -20,16 +19,21 @@ class CropDataModel(BaseModel):
 @dataclass
 @StrategyFactory.register(("filterType", "filter/crop"))
 class CropFilter:
+    """Strategy for cropping an image.
+
+    **Registers strategies**:
+
+    - `("filterType", "filter/crop")`
+
+    """
 
     filter_config: "FilterConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize strategy and return a dictionary"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize strategy and return a dictionary."""
         return {"result": "collectionid"}
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, **_) -> "Dict[str, Any]":
         """Execute strategy and return a dictionary"""
         cropData = (
             CropDataModel(**self.filter_config.configuration)

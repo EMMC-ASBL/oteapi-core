@@ -1,11 +1,13 @@
-"""Pydantic ResourceConfig Data Model"""
-from typing import Any, Dict, Optional
+"""Pydantic Resource Configuration Data Model."""
+from typing import Any, Dict, Optional, Union
 
 from pydantic import AnyUrl, BaseModel, Field, root_validator
 
+from oteapi.models.datacacheconfig import DataCacheConfig
+
 
 class ResourceConfig(BaseModel):
-    """Resource Configuration for Dataset Distributions"""
+    """Resource Strategy Data Configuration."""
 
     downloadUrl: Optional[AnyUrl] = Field(
         None,
@@ -62,7 +64,7 @@ class ResourceConfig(BaseModel):
         None,
         description="The entity responsible for making the resource/item available.",
     )
-    configuration: Dict[str, Any] = Field(
+    configuration: Union[DataCacheConfig, Dict[str, Any]] = Field(
         {},
         description="Resource-specific configuration options given as key/value-pairs.",
     )

@@ -1,4 +1,4 @@
-"""Pydantic Mapping Data Model"""
+"""Pydantic Mapping Configuration Data Model."""
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field, conlist
@@ -7,7 +7,7 @@ SemanticTriple = conlist(str, min_items=3, max_items=3)
 
 
 class MappingConfig(BaseModel):
-    """Mapping data model"""
+    """Mapping Strategy Data Configuration."""
 
     mappingType: str = Field(
         ..., description="Type of registered mapping strategy. E.g., `mapping/demo`."

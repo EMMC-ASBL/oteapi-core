@@ -1,5 +1,4 @@
 """Strategy class for text/json."""
-# pylint: disable=unused-argument
 import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -8,7 +7,7 @@ from oteapi.datacache import DataCache
 from oteapi.plugins.factories import StrategyFactory, create_download_strategy
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from oteapi.models import ResourceConfig
 
@@ -16,16 +15,21 @@ if TYPE_CHECKING:
 @dataclass
 @StrategyFactory.register(("mediaType", "text/json"))
 class JSONDataParseStrategy:
+    """Parse strategy for JSON.
+
+    **Registers strategies**:
+
+    - `("mediaType", "text/json")`
+
+    """
 
     resource_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize."""
         return {}
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def parse(self, **_) -> "Dict[str, Any]":
         """Parse json."""
         downloader = create_download_strategy(self.resource_config)
         output = downloader.get()

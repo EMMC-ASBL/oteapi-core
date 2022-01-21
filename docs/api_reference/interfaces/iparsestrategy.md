@@ -1,0 +1,3 @@
+# iparsestrategy
+
+::: oteapi.interfaces.iparsestrategy

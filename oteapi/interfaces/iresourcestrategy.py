@@ -10,14 +10,35 @@ if TYPE_CHECKING:
 
 @dataclass  # type: ignore[misc]
 class IResourceStrategy(Protocol):
-    """Resource Interfaces"""
+    """Resource Strategy Interface."""
 
     resource_config: "ResourceConfig"
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run get-method and return a dictionary"""
+        """Execute the strategy.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize data class.
+
+        This method will be called through the `/initialize` endpoint of the OTE-API
+        Services.
+
+        Parameters:
+            session: A session-specific dictionary context.
+
+        Returns:
+            Dictionary of key/value-pairs to be stored in the sessions-specific
+            dictionary context.
+
+        """

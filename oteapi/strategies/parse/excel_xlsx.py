@@ -1,5 +1,4 @@
 """Strategy class for workbook/xlsx."""
-# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List, Optional, Union
 
@@ -96,16 +95,21 @@ def get_column_indices(
     ("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 )
 class XLSXParseStrategy:
+    """Parse strategy for Excel XLSX files.
+
+    **Registers strategies**:
+
+    - `("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")`
+
+    """
 
     resource_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize."""
         return {}
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def parse(self, **_) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
         Returns a dict with column-name/column-value pairs. The values are lists.

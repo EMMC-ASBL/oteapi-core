@@ -1,5 +1,4 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
-# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, List
 
@@ -28,29 +27,33 @@ class CeleryConfig(BaseModel):
 @dataclass
 @StrategyFactory.register(("transformation_type", "celery/remote"))
 class CeleryRemoteStrategy:
-    """Submit job to remote runner"""
+    """Submit job to remote Celery runner.
+
+    **Registers strategies**:
+
+    - `("transformation_type", "celery/remote")`
+
+    """
 
     transformation_config: "TransformationConfig"
 
     def run(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run a job, return a jobid"""
+        """Run a job, return a job ID."""
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
         result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
         return {"result": result.task_id}
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize a job"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize a job."""
         return {}
 
     def status(self, task_id: str) -> TransformationStatus:
-        """Get job status"""
+        """Get job status."""
         result = AsyncResult(id=task_id, app=app)
         return TransformationStatus(id=task_id, status=result.state)
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, **_) -> "Dict[str, Any]":
         """Get transformation."""
         # TODO: update and return global state  # pylint: disable=fixme
         return {}

@@ -1,5 +1,4 @@
 """Strategy class for application/vnd.sqlite3."""
-# pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -31,6 +30,13 @@ def create_connection(db_file):
 @dataclass
 @StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
+    """Parse strategy for SQLite.
+
+    **Registers strategies**:
+
+    - `("mediaType", "application/vnd.sqlite3")`
+
+    """
 
     resource_config: "ResourceConfig"
 
@@ -45,8 +51,6 @@ class SqliteParseStrategy:
             return {"result": rows}
         return {"result": "No query given"}
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
-        """Initialize"""
+    def initialize(self, **_) -> "Dict[str, Any]":
+        """Initialize."""
         return {}

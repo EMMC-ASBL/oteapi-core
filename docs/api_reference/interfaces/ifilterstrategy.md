@@ -1,0 +1,3 @@
+# ifilterstrategy
+
+::: oteapi.interfaces.ifilterstrategy
