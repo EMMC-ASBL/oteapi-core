@@ -1,6 +1,32 @@
 # Changelog
 
-## [v0.0.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.2) (2022-01-13)
+## [v0.0.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.3) (2022-01-21)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.2...v0.0.3)
+
+**Implemented enhancements:**
+
+- Remove non-"standard" strategies [\#14](https://github.com/EMMC-ASBL/oteapi-core/issues/14)
+- Clean up the API [\#12](https://github.com/EMMC-ASBL/oteapi-core/issues/12)
+
+**Fixed bugs:**
+
+- Update CI/CD to only use Python 3.9 [\#25](https://github.com/EMMC-ASBL/oteapi-core/issues/25)
+- References in README are wrong [\#18](https://github.com/EMMC-ASBL/oteapi-core/issues/18)
+
+**Closed issues:**
+
+- Bring back `pre-commit` [\#16](https://github.com/EMMC-ASBL/oteapi-core/issues/16)
+- Publish docker image [\#15](https://github.com/EMMC-ASBL/oteapi-core/issues/15)
+
+**Merged pull requests:**
+
+- Updated cd\_release.yml to python 3.9 [\#28](https://github.com/EMMC-ASBL/oteapi-core/pull/28) ([kriwiik](https://github.com/kriwiik))
+- Add back `pre-commit` [\#22](https://github.com/EMMC-ASBL/oteapi-core/pull/22) ([CasperWA](https://github.com/CasperWA))
+- Fixed README.md References [\#20](https://github.com/EMMC-ASBL/oteapi-core/pull/20) ([anasayb](https://github.com/anasayb))
+- Clean up Python API [\#17](https://github.com/EMMC-ASBL/oteapi-core/pull/17) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.0.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.2) (2022-01-14)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/beaeac12453922f381a676df7876427fa62677fe...v0.0.2)
 
