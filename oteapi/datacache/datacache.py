@@ -74,18 +74,18 @@ def asyncrun(func, *args) -> "Any":
     async def async_func(args):
         loop = asyncio.get_running_loop()
         future = loop.run_in_executor(None, func, *args)
-        result = await future
-        return result
+        return await future
 
     try:
         # Will raise a RuntimeError if there is no event loop
-        asyncio.get_running_loop()
+        loop = asyncio.get_running_loop()
     except RuntimeError:
-        # no event loop
-        return asyncio.run(async_func(args))
-    else:
-        # within a running event loop
+        # no event loop - just return
         return func(*args)
+    else:
+        # within a running event loop - submit the async_func
+        # coroutine to the running event loop
+        return asyncio.run_coroutine_threadsafe(async_func(args), loop)
 
 
 class DataCache:
