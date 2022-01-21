@@ -2,6 +2,7 @@
 # pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
+from platform import system
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import BaseModel, Extra, Field
@@ -62,7 +63,12 @@ class FileStrategy:
                 "Expected 'downloadUrl' to have scheme 'file' in the configuration."
             )
 
-        filename = Path(self.resource_config.downloadUrl.host).resolve()
+        if system() == "Windows":
+            filename = Path(self.resource_config.downloadUrl.host + ":" \
+                + self.resource_config.downloadUrl.path).resolve()
+        else:
+            filename = Path(self.resource_config.downloadUrl.host \
+                + self.resource_config.downloadUrl.path).resolve()
 
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
