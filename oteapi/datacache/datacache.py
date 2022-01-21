@@ -85,7 +85,7 @@ def asyncrun(func, *args) -> "Any":
         return asyncio.run(async_func(args))
     else:
         # within a running event loop
-        return await func(*args)
+        return func(*args)
 
 
 class DataCache:
