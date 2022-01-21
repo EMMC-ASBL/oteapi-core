@@ -5,9 +5,9 @@ if TYPE_CHECKING:
     from pathlib import Path
 
 
-def test_cache(tmp_path: "Path") -> None:
+def test_cache(import_oteapi_modules, tmp_path: "Path") -> None:
     """Simple tests for the `DataCache`."""
-    from oteapi.datacache import DataCache
+    from oteapi.datacache.datacache import DataCache
 
     cache = DataCache(cache_dir=tmp_path / "oteapi-test_cache")
 

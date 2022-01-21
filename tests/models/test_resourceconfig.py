@@ -2,7 +2,7 @@
 import pytest
 
 
-def test_ensure_unique_url_pairs() -> None:
+def test_ensure_unique_url_pairs(import_oteapi_modules) -> None:
     """Test the root validator `ensure_unique_url_pairs` for `ResourceConfig`."""
     from pydantic import ValidationError
 
