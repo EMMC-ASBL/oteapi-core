@@ -1,7 +1,7 @@
 """Tranformation Strategy Interface"""
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol
+from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
@@ -10,6 +10,7 @@ if TYPE_CHECKING:
 
 
 @dataclass  # type: ignore[misc]
+@runtime_checkable
 class ITransformationStrategy(Protocol):
     """Transformation Strategy Interface."""
 
