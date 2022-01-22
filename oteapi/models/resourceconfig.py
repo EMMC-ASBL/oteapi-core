@@ -7,7 +7,39 @@ from oteapi.models.datacacheconfig import DataCacheConfig
 
 
 class ResourceConfig(BaseModel):
-    """Resource Strategy Data Configuration."""
+    """Resource Strategy Data Configuration.
+
+    Important:
+        Either of the pairs of attributes `downloadUrl`/`mediaType` or
+        `accessUrl`/`accessService` MUST be specified.
+
+    Attributes:
+        downloadUrl: The URL of the downloadable file in a given format. E.g. CSV file
+            or RDF file. Usage: `downloadURL` *SHOULD* be used for the URL at which
+            this distribution is available directly, typically through a HTTPS GET
+            request or SFTP.
+        mediaType: The media type of the distribution as defined by IANA
+            [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].
+            Usage: This property *SHOULD* be used when the media type of the
+            distribution is defined in IANA
+            [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].
+        accessUrl: A URL of the resource that gives access to a distribution of the
+            dataset. E.g. landing page, feed, SPARQL endpoint. Usage: `accessURL`
+            *SHOULD* be used for the URL of a service or location that can provide
+            access to this distribution, typically through a Web form, query or API
+            call. `downloadURL` is preferred for direct links to downloadable
+            resources.
+        accessService: A data service that gives access to the distribution of the
+            dataset.
+        license: A legal document under which the distribution is made available.
+        accessRights: A rights statement that concerns how the distribution is
+            accessed.
+        description: A free-text account of the distribution.
+        publisher: The entity responsible for making the resource/item available.
+        configuration: Resource-specific configuration options given as
+            key/value-pairs.
+
+    """
 
     downloadUrl: Optional[AnyUrl] = Field(
         None,
@@ -15,7 +47,7 @@ class ResourceConfig(BaseModel):
             "Definition: The URL of the downloadable file in a given format. E.g. CSV "
             "file or RDF file.\n\nUsage: `downloadURL` *SHOULD* be used for the URL at"
             " which this distribution is available directly, typically through a HTTPS"
-            " Get request or SFTP."
+            " GET request or SFTP."
         ),
     )
     mediaType: Optional[str] = Field(
@@ -36,7 +68,7 @@ class ResourceConfig(BaseModel):
             "`accessURL` *SHOULD* be used for the URL of a service or location that "
             "can provide access to this distribution, typically through a Web form, "
             "query or API call.\n`downloadURL` is preferred for direct links to "
-            "downloadable resources.\n"
+            "downloadable resources."
         ),
     )
     accessService: Optional[str] = Field(

@@ -16,7 +16,7 @@ from oteapi.interfaces import (
 )
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional, Tuple, Type, Union
+    from typing import Any, Callable, Dict, Optional, Tuple, Type, Union
     from uuid import UUID
 
     from pydantic import AnyUrl
@@ -34,7 +34,18 @@ if TYPE_CHECKING:
 
 
 class StrategyType(Enum):
-    """An enumeration of available strategy types."""
+    """An enumeration of available strategy types.
+
+    Available strategy types:
+
+    - download
+    - filter
+    - mapping
+    - parse
+    - resource
+    - transformation
+
+    """
 
     DOWNLOAD = "download"
     FILTER = "filter"
@@ -61,6 +72,9 @@ class StrategyType(Enum):
     def get_make_strategy_kwargs(self, config: "StrategyConfig") -> "Dict[str, Any]":
         """Get `make_strategy` kwargs.
 
+        Parameters:
+            config: A strategy configuration.
+
         Returns:
             The expected
             [`make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy]
@@ -82,7 +96,13 @@ class StrategyType(Enum):
 
 
 class StrategyFactory:
-    """Decorator-based Factory class."""
+    """Decorator-based Factory class.
+
+    Attributes:
+        strategy_create_func: A local cache of all registerred strategies with their
+            accompanying class.
+
+    """
 
     strategy_create_func: "Dict[Tuple[str, ValueType], Type[IStrategy]]" = {}
 
@@ -93,7 +113,19 @@ class StrategyFactory:
         field: "Optional[str]" = None,
         index: "Optional[Tuple[str, ValueType]]" = None,
     ) -> "IStrategy":
-        """Instantiate a strategy in a context class"""
+        """Instantiate a strategy in a context class.
+
+        Parameters:
+            model: A strategy configuration.
+            field: The strategy index type, e.g., `"scheme"`, `"mediaType"` or similar.
+            index: A tuple of the `field` and a unique strategy name for the strategy
+                index type/`field`.
+
+        Returns:
+            An instantiated strategy. The strategy is instantiated with the provided
+            configuration, through the `model` parameter.
+
+        """
 
         try:
             if not index and field:
@@ -106,13 +138,15 @@ class StrategyFactory:
         return retval(model)
 
     @classmethod
-    def register(cls, *args: "Tuple[str, ValueType]"):
+    def register(
+        cls, *args: "Tuple[str, ValueType]"
+    ) -> "Callable[[Type[IStrategy]], Type[IStrategy]]":
         """Register a strategy.
 
         The identifier for the strategy is defined by a set of key-value tuple pairs.
         """
 
-        def decorator(strategy_class: "Type[IStrategy]"):
+        def decorator(strategy_class: "Type[IStrategy]") -> "Type[IStrategy]":
             for index in args:
                 if index not in cls.strategy_create_func:
                     print(f"Registering {strategy_class.__name__} with {index}")
@@ -125,7 +159,7 @@ class StrategyFactory:
 
     @classmethod
     def unregister(cls, *args: "Tuple[str, ValueType]") -> None:
-        """Unregister a strategy"""
+        """Unregister a strategy."""
         for index in args:
             cls.strategy_create_func.pop(index, None)
 
@@ -156,7 +190,15 @@ def create_strategy(
 
 
 def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
-    """Helper function to simplify creating a download strategy."""
+    """Helper function to simplify creating a download strategy.
+
+    Parameters:
+        config: A download strategy configuration.
+
+    Returns:
+        The created download strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(
         config,
         index=(
@@ -164,7 +206,6 @@ def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
             config.downloadUrl.scheme if config.downloadUrl is not None else "",
         ),
     )
-    print(strategy)
     if not isinstance(strategy, IDownloadStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -174,7 +215,15 @@ def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
 
 
 def create_filter_strategy(config: "FilterConfig") -> IFilterStrategy:
-    """Helper function to simplify creating a filter strategy."""
+    """Helper function to simplify creating a filter strategy.
+
+    Parameters:
+        config: A filter strategy configuration.
+
+    Returns:
+        The created filter strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(config, field="filterType")
     if not isinstance(strategy, IFilterStrategy):
         raise TypeError(
@@ -185,7 +234,15 @@ def create_filter_strategy(config: "FilterConfig") -> IFilterStrategy:
 
 
 def create_mapping_strategy(config: "MappingConfig") -> IMappingStrategy:
-    """Helper function to simplify creating a filter strategy."""
+    """Helper function to simplify creating a filter strategy.
+
+    Parameters:
+        config: A mapping strategy configuration.
+
+    Returns:
+        The created mapping strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(config, field="mappingType")
     if not isinstance(strategy, IMappingStrategy):
         raise TypeError(
@@ -196,7 +253,15 @@ def create_mapping_strategy(config: "MappingConfig") -> IMappingStrategy:
 
 
 def create_parse_strategy(config: "ResourceConfig") -> IParseStrategy:
-    """Helper function to simplify creating a parse strategy."""
+    """Helper function to simplify creating a parse strategy.
+
+    Parameters:
+        config: A parse strategy configuration.
+
+    Returns:
+        The created parse strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(config, field="mediaType")
     if not isinstance(strategy, IParseStrategy):
         raise TypeError(
@@ -207,7 +272,15 @@ def create_parse_strategy(config: "ResourceConfig") -> IParseStrategy:
 
 
 def create_resource_strategy(config: "ResourceConfig") -> IResourceStrategy:
-    """Helper function to instanciate a resource strategy."""
+    """Helper function to instanciate a resource strategy.
+
+    Parameters:
+        config: A resource strategy configuration.
+
+    Returns:
+        The created resource strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(config, field="accessService")
     if not isinstance(strategy, IResourceStrategy):
         raise TypeError(
@@ -220,7 +293,15 @@ def create_resource_strategy(config: "ResourceConfig") -> IResourceStrategy:
 def create_transformation_strategy(
     config: "TransformationConfig",
 ) -> ITransformationStrategy:
-    """Helper function to instanciate a transformation strategy."""
+    """Helper function to instanciate a transformation strategy.
+
+    Parameters:
+        config: A transformation strategy configuration.
+
+    Returns:
+        The created transformation strategy.
+
+    """
     strategy = StrategyFactory.make_strategy(config, field="transformation_type")
     if not isinstance(strategy, ITransformationStrategy):
         raise TypeError(

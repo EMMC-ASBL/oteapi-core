@@ -5,7 +5,16 @@ from pydantic import BaseModel, Field
 
 
 class FilterConfig(BaseModel):
-    """Filter Strategy Data Configuration."""
+    """Filter Strategy Data Configuration.
+
+    Attributes:
+        filterType: Type of registered filter strategy. E.g., `filter/sql`.
+        query: Define a query operation.
+        condition: Logical statement indicating when a filter should be applied.
+        limit: Number of items remaining after a filter expression.
+        configuration: Filter-specific configuration options given as key/value-pairs.
+
+    """
 
     filterType: str = Field(
         ..., description="Type of registered filter strategy. E.g., `filter/sql`."
