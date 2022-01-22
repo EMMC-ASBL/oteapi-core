@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any, List
 from celery import Celery
 from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
 from oteapi.plugins import StrategyFactory
@@ -20,16 +20,10 @@ app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url
 
 
 class CeleryConfig(BaseModel):
-    """Celery configuration.
+    """Celery configuration."""
 
-    Attributes:
-        taskName: A task name.
-        args: List of arguments for the task.
-
-    """
-
-    taskName: str
-    args: List[Any]
+    taskName: str = Field(..., description="A task name.")
+    args: List[Any] = Field(..., description="List of arguments for the task.")
 
 
 @dataclass

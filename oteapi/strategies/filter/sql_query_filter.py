@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from oteapi.plugins import StrategyFactory
 
@@ -13,7 +13,9 @@ if TYPE_CHECKING:
 
 
 class SqlQueryDataModel(BaseModel):
-    query: str
+    """SQL Query data model."""
+
+    query: str = Field(..., description="A SQL query string.")
 
 
 @dataclass

@@ -2,7 +2,7 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from oteapi.plugins import StrategyFactory
 
@@ -13,7 +13,9 @@ if TYPE_CHECKING:
 
 
 class CropDataModel(BaseModel):
-    crop: List[int]
+    """Configuration model for crop data."""
+
+    crop: List[int] = Field(..., description="List of image cropping details.")
 
 
 @dataclass
