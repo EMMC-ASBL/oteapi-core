@@ -85,7 +85,7 @@ def create_api_reference_docs(context, pre_clean=False, pre_commit=False):
     unwanted_subdirs = ("__pycache__",)
     unwanted_files = ("__init__.py",)
 
-    pages_template = 'title: "{name}"'
+    pages_template = 'title: "{name}"\n'
     md_template = "# {name}\n\n::: {py_path}\n"
     models_template = (
         md_template + f"{' ' * 4}rendering:\n{' ' * 6}show_if_no_docstring: true\n"
