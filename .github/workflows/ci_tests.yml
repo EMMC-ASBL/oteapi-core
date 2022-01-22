@@ -155,4 +155,4 @@ jobs:
       run: |
         invoke create-api-reference-docs --pre-clean
         invoke create-docs-index
-        mkdocs build --strict --verbose
+        mkdocs build --strict
