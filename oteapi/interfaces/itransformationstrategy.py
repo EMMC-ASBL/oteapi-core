@@ -1,5 +1,4 @@
 """Tranformation Strategy Interface"""
-
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol, runtime_checkable
 
@@ -34,7 +33,6 @@ class ITransformationStrategy(Protocol):
 
         Parameters:
             task_id: The transformation job ID.
-            session: A session-specific dictionary context.
 
         Returns:
             An overview of the transformation job's status, including relevant

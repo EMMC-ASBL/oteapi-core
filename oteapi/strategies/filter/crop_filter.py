@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from oteapi.models import FilterConfig
 

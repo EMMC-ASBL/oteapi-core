@@ -20,22 +20,23 @@ if TYPE_CHECKING:
 class XLSXParseDataModel(BaseModel):
     """Data model for retrieving a rectangular section of an Excel sheet.
 
-    Fields:
+    Attributes:
         worksheet: Name of worksheet to load.
         row_from: Excel row number of first row.  Defaults to first
-          assigned row.
+            assigned row.
         col_from: Excel column number or label of first column.
-          Defaults to first assigned column.
+            Defaults to first assigned column.
         row_to: Excel row number of last row.  Defaults to last
-          assigned row.
+            assigned row.
         col_to: Excel column number or label of last column.  Defaults
-          to last assigned column.
+            to last assigned column.
         header_row: Row number with the headers. Defaults to 1 if
-          header is given, otherwise None.
+            header is given, otherwise None.
         header: Optional list of column names, specifying the columns
-          to return.  These names they should match cells in `header_row`.
+            to return.  These names they should match cells in `header_row`.
         new_header: Optional list of new column names replacing `header`
-          in the output.
+            in the output.
+
     """
 
     worksheet: str
