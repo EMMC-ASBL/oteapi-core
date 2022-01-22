@@ -164,6 +164,7 @@ def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
             config.downloadUrl.scheme if config.downloadUrl is not None else "",
         ),
     )
+    print(strategy)
     if not isinstance(strategy, IDownloadStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "

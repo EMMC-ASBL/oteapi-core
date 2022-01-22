@@ -15,18 +15,6 @@ class IDownloadStrategy(Protocol):
 
     resource_config: "ResourceConfig"
 
-    def read(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Read the downloaded data.
-
-        Parameters:
-            session: A session-specific dictionary context.
-
-        Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
-
-        """
-
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
 
