@@ -50,7 +50,13 @@ class XLSXParseDataModel(BaseModel):
 
 
 def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> None:
-    """Update datamodel `model` with default values obtained from `worksheet`."""
+    """Update data model `model` with default values obtained from `worksheet`.
+
+    Parameters:
+        model: The parsed data model.
+        worksheet: Excel worksheet, from which the default values will be obtained.
+
+    """
     if model.row_from is None:
         if model.header:
             # assume that data starts on the first row after the header
@@ -78,7 +84,16 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> Non
 def get_column_indices(
     model: XLSXParseDataModel, worksheet: "Worksheet"
 ) -> "Iterable[int]":
-    """Helper function returning a list of column indices."""
+    """Helper function returning a list of column indices.
+
+    Parameters:
+        model: The parsed data model.
+        worksheet: Excel worksheet, from which the header values will be retrieved.
+
+    Returns:
+        A list of column indices.
+
+    """
     if not isinstance(model.col_from, int) or not isinstance(model.col_to, int):
         raise TypeError("Expected `model.col_from` and `model.col_to` to be integers.")
 
@@ -113,7 +128,9 @@ class XLSXParseStrategy:
     def parse(self, **_) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
-        Returns a dict with column-name/column-value pairs. The values are lists.
+        Returns:
+            A dict with column-name/column-value pairs. The values are lists.
+
         """
         model = XLSXParseDataModel(
             **self.resource_config.configuration, extra=Extra.ignore

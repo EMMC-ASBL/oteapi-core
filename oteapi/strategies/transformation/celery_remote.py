@@ -20,6 +20,14 @@ app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url
 
 
 class CeleryConfig(BaseModel):
+    """Celery configuration.
+
+    Attributes:
+        taskName: A task name.
+        args: List of arguments for the task.
+
+    """
+
     taskName: str
     args: List[Any]
 

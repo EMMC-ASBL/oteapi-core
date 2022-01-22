@@ -140,7 +140,7 @@ class StrategyFactory:
     @classmethod
     def register(
         cls, *args: "Tuple[str, ValueType]"
-    ) -> "Callable[[Type[IStrategy]], Type[IStrategy]]":
+    ) -> "Callable[[Any], Type[IStrategy]]":
         """Register a strategy.
 
         The identifier for the strategy is defined by a set of key-value tuple pairs.
