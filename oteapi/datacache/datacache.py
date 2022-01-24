@@ -47,6 +47,9 @@ def gethash(
             calculating the hash.
         json_encoder: Customised json encoder for complex Python objects.
 
+    Returns:
+        A hash of the input `value`.
+
     """
     if isinstance(value, (bytes, bytearray)):
         data = value
@@ -146,12 +149,13 @@ class DataCache:
 
         Args:
             value: The value to add to the cache.
-            key: If given, use this as the retrieval key.  Otherwise the key
+            key: If given, use this as the retrieval key. Otherwise the key
                 is either taken from the `accessKey` configuration or generated
                 as a hash of `value`.
             expire: If given, the number of seconds before the value expire.
                 Otherwise it is taken from the configuration.
-            tag: Tag used with evict() for cleaning up a session.
+            tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]
+                for cleaning up a session.
 
         Returns:
             A key that can be used to retrieve `value` from cache later.
@@ -168,7 +172,7 @@ class DataCache:
         return key
 
     def get(self, key: str) -> "Any":
-        """Return the value corresponding to key.
+        """Return the value corresponding to `key`.
 
         Args:
             key: The requested cached object to retrieve a value for.
