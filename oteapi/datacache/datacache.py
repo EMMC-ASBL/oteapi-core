@@ -1,19 +1,17 @@
 """Data cache based on DiskCache.
-See [Python-DiskCache](https://github.com/grantjenks/python-diskcache).
+See https://github.com/grantjenks/python-diskcache
 
 Features:
-
-- Persistent cache between sessions.
-- Default keys are hashes of the stored data.
-- Works with [`asyncio`](https://docs.python.org/3/library/asyncio.html).
-- Automatic expiration of cached data.
-- Sessions can selectively be cleaned up via tags.
-- Store small values in SQLite database and large values in files.
-- Underlying library is actively developed and tested on Linux, Mac and Windows.
-- High performance.
+- persistent cache between sessions
+- default keys are hashes of the stored data
+- works with asyncio
+- automatic expiration of cached data
+- sessions can selectively be cleaned up via tags
+- store small values in SQLite database and large values in files
+- underlying library is actively developed and tested on Linux, Mac and Windows
+- high performance
 
 """
-import asyncio
 import hashlib
 import json
 import tempfile
@@ -27,7 +25,7 @@ from pydantic import Extra
 from oteapi.models import DataCacheConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Iterator, Optional, Type, Union
+    from typing import Any, Iterator, Optional, Type, Union
 
 
 def gethash(
@@ -49,9 +47,6 @@ def gethash(
             calculating the hash.
         json_encoder: Customised json encoder for complex Python objects.
 
-    Returns:
-        A hash of the input `value`.
-
     """
     if isinstance(value, (bytes, bytearray)):
         data = value
@@ -71,27 +66,8 @@ def gethash(
     return hash_.hexdigest()
 
 
-def _asyncrun(func, *args) -> "Any":
-    """Runs `func` in a async thread-pool."""
-    # Adds support for asyncio.
-    # See http://www.grantjenks.com/docs/diskcache/tutorial.html#id13
-    async def async_func(args):
-        loop = asyncio.get_running_loop()
-        future = loop.run_in_executor(None, func, *args)
-        result = await future
-        return result
-
-    return asyncio.run(async_func(args))
-
-
 class DataCache:
-    """Initialize a cache instance with the given download configuration.
-
-    This class is also available to import from `oteapi.datacache`, e.g.:
-
-    ```python
-    from oteapi.datacache import DataCache
-    ```
+    """Initialise a cache instance with the given download configuration.
 
     Args:
         config: Download configurations.
@@ -105,7 +81,7 @@ class DataCache:
 
     def __init__(
         self,
-        config: "Union[DataCacheConfig, Dict[str, Any]]" = None,
+        config: "Union[DataCacheConfig, dict]" = None,
         cache_dir: "Optional[Union[Path, str]]" = None,
     ) -> None:
         if config is None:
@@ -115,10 +91,7 @@ class DataCache:
         elif isinstance(config, DataCacheConfig):
             self.config = config
         else:
-            raise TypeError(
-                "config should be either a `DataCacheConfig` data model or a "
-                "dictionary."
-            )
+            raise TypeError(config)
 
         if not cache_dir:
             cache_dir = self.config.cacheDir
@@ -129,13 +102,13 @@ class DataCache:
         else:
             self.cache_dir = Path(tempfile.gettempdir()).resolve() / cache_dir
 
-        self.datacache = DiskCache(directory=self.cache_dir)
+        self.diskcache = DiskCache(directory=self.cache_dir)
 
     def __contains__(self, key) -> bool:
-        return key in self.datacache
+        return key in self.diskcache
 
     def __len__(self) -> int:
-        return len(self.datacache)
+        return len(self.diskcache)
 
     def __getitem__(self, key) -> "Any":
         return self.get(key)
@@ -144,17 +117,11 @@ class DataCache:
         self.add(value, key)
 
     def __delitem__(self, key) -> None:
-        def deleter(key):
-            del self.datacache[key]
-
-        _asyncrun(deleter, key)
+        del self.diskcache[key]
 
     def __del__(self) -> None:
-        def closer():
-            self.datacache.expire()
-            self.datacache.close()
-
-        _asyncrun(closer)
+        self.diskcache.expire()
+        self.diskcache.close()
 
     def add(
         self,
@@ -170,17 +137,16 @@ class DataCache:
 
         Args:
             value: The value to add to the cache.
-            key: If given, use this as the retrieval key. Otherwise the key
+            key: If given, use this as the retrieval key.  Otherwise the key
                 is either taken from the `accessKey` configuration or generated
                 as a hash of `value`.
             expire: If given, the number of seconds before the value expire.
                 Otherwise it is taken from the configuration.
-            tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]
-                for cleaning up a session.
+            tag: Tag used with evict() for cleaning up a session.
 
         Returns:
-            A key that can be used to retrieve `value` from cache later.
-
+            newkey: A key that can be used to retrieve `value` from cache
+                later.
         """
         if not key:
             if self.config.accessKey:
@@ -190,27 +156,14 @@ class DataCache:
         if not expire:
             expire = self.config.expireTime
 
-        # Needed because asyncio.run() does not support keyword arguments
-        def setter(key, value, expire, tag):
-            self.datacache.set(key, value, expire=expire, tag=tag)
-
-        _asyncrun(setter, key, value, expire, tag)
-
+        self.diskcache.set(key, value, expire=expire, tag=tag)
         return key
 
     def get(self, key: str) -> "Any":
-        """Return the value corresponding to `key`.
-
-        Args:
-            key: The requested cached object to retrieve a value for.
-
-        Returns:
-            The value corresponding to the `key` value.
-
-        """
-        if key not in self.datacache:
+        """Return the value corresponding to key."""
+        if key not in self.diskcache:
             raise KeyError(key)
-        return _asyncrun(self.datacache.get, key)
+        return self.diskcache.get(key)
 
     @contextmanager
     def getfile(  # pylint: disable=too-many-arguments
@@ -225,34 +178,35 @@ class DataCache:
         """Write the value for `key` to file and return the filename.
 
         The file is created in the default directory for temporary
-        files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`
+        files (which can be controlled by the TEMPDIR, TEMP or TMP
         environment variables). It is readable and writable only for
         the current user.
 
-        Example:
-            This method is intended to be used in a `with` statement, to
-            automatically delete the file when leaving the context:
+        This method is intended to be used in a `with` statement, to
+        automatically delete the file when leaving the context.
 
-            ```python
-            cache = DataCache()
-            with cache.getfile('mykey') as filename:
-                # do something with filename...
-            # filename is deleted
-            ```
+        Example:
+
+        ```python
+        cache = DataCache()
+        with cache.getfile('mykey') as filename:
+            # do something with filename...
+        # filename is deleted
+        ```
 
         Args:
-            key: Key of value to write to file.
+            key: Key of value to write to file
             filename: Full path to created file. If not given, a unique
                 filename will be created.
             prefix: Prefix to prepend to the returned file name (default
-                is `"oteapi-download-"`).
+                is "oteapi-download-").
             suffix: Suffix to append to the returned file name.
-            directory: File directory if `filename` is not provided (is `None`).
-            delete: Whether to automatically delete the created file when
+            directory: File directory if `filename` is None.
+            delete: Whether to automatically delete created file when
                 leaving the context.
 
-        Yields:
-            Path object, referencing and representing the created file.
+        Returns:
+            Path object of the created file.
 
         """
         if filename:
@@ -277,13 +231,9 @@ class DataCache:
         """Remove all cache items with the given tag.
 
         Useful for cleaning up a session.
-
-        Args:
-            tag: Tag identifying objects.
-
         """
-        _asyncrun(self.datacache.evict, tag)
+        self.diskcache.evict(tag)
 
     def clear(self) -> None:
         """Remove all items from cache."""
-        _asyncrun(self.datacache.clear)
+        self.diskcache.clear()
