@@ -5,7 +5,6 @@ Features:
 
 - Persistent cache between sessions.
 - Default keys are hashes of the stored data.
-- Works with [`asyncio`](https://docs.python.org/3/library/asyncio.html).
 - Automatic expiration of cached data.
 - Sessions can selectively be cleaned up via tags.
 - Store small values in SQLite database and large values in files.
@@ -13,7 +12,6 @@ Features:
 - High performance.
 
 """
-import asyncio
 import hashlib
 import json
 import tempfile
@@ -71,19 +69,6 @@ def gethash(
     return hash_.hexdigest()
 
 
-def _asyncrun(func, *args) -> "Any":
-    """Runs `func` in a async thread-pool."""
-    # Adds support for asyncio.
-    # See http://www.grantjenks.com/docs/diskcache/tutorial.html#id13
-    async def async_func(args):
-        loop = asyncio.get_running_loop()
-        future = loop.run_in_executor(None, func, *args)
-        result = await future
-        return result
-
-    return asyncio.run(async_func(args))
-
-
 class DataCache:
     """Initialize a cache instance with the given download configuration.
 
@@ -129,13 +114,13 @@ class DataCache:
         else:
             self.cache_dir = Path(tempfile.gettempdir()).resolve() / cache_dir
 
-        self.datacache = DiskCache(directory=self.cache_dir)
+        self.diskcache = DiskCache(directory=self.cache_dir)
 
     def __contains__(self, key) -> bool:
-        return key in self.datacache
+        return key in self.diskcache
 
     def __len__(self) -> int:
-        return len(self.datacache)
+        return len(self.diskcache)
 
     def __getitem__(self, key) -> "Any":
         return self.get(key)
@@ -144,17 +129,11 @@ class DataCache:
         self.add(value, key)
 
     def __delitem__(self, key) -> None:
-        def deleter(key):
-            del self.datacache[key]
-
-        _asyncrun(deleter, key)
+        del self.diskcache[key]
 
     def __del__(self) -> None:
-        def closer():
-            self.datacache.expire()
-            self.datacache.close()
-
-        _asyncrun(closer)
+        self.diskcache.expire()
+        self.diskcache.close()
 
     def add(
         self,
@@ -180,7 +159,6 @@ class DataCache:
 
         Returns:
             A key that can be used to retrieve `value` from cache later.
-
         """
         if not key:
             if self.config.accessKey:
@@ -190,12 +168,7 @@ class DataCache:
         if not expire:
             expire = self.config.expireTime
 
-        # Needed because asyncio.run() does not support keyword arguments
-        def setter(key, value, expire, tag):
-            self.datacache.set(key, value, expire=expire, tag=tag)
-
-        _asyncrun(setter, key, value, expire, tag)
-
+        self.diskcache.set(key, value, expire=expire, tag=tag)
         return key
 
     def get(self, key: str) -> "Any":
@@ -208,9 +181,9 @@ class DataCache:
             The value corresponding to the `key` value.
 
         """
-        if key not in self.datacache:
+        if key not in self.diskcache:
             raise KeyError(key)
-        return _asyncrun(self.datacache.get, key)
+        return self.diskcache.get(key)
 
     @contextmanager
     def getfile(  # pylint: disable=too-many-arguments
@@ -282,8 +255,8 @@ class DataCache:
             tag: Tag identifying objects.
 
         """
-        _asyncrun(self.datacache.evict, tag)
+        self.diskcache.evict(tag)
 
     def clear(self) -> None:
         """Remove all items from cache."""
-        _asyncrun(self.datacache.clear)
+        self.diskcache.clear()
