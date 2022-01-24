@@ -1,4 +1,5 @@
 """Strategy class for workbook/xlsx."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List, Optional, Union
 
@@ -136,11 +137,13 @@ class XLSXParseStrategy:
 
     resource_config: "ResourceConfig"
 
-    def initialize(self, **_) -> "Dict[str, Any]":
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize."""
         return {}
 
-    def parse(self, **_) -> "Dict[str, Any]":
+    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
         Returns:

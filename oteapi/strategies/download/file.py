@@ -1,4 +1,5 @@
 """Download strategy class for the `file` scheme."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
@@ -45,11 +46,13 @@ class FileStrategy:
 
     resource_config: "ResourceConfig"
 
-    def initialize(self, **_) -> "Dict[str, Any]":
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize."""
         return {}
 
-    def get(self, **_) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
         if (
             self.resource_config.downloadUrl is None

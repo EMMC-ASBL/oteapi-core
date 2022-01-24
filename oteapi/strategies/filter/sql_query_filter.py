@@ -1,4 +1,5 @@
-"""SQL query filter strategy"""
+"""SQL query filter strategy."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -7,7 +8,7 @@ from pydantic import BaseModel, Field
 from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
-    from typing import Any, Dict
+    from typing import Any, Dict, Optional
 
     from oteapi.models import FilterConfig
 
@@ -31,11 +32,13 @@ class SQLQueryFilter:
 
     filter_config: "FilterConfig"
 
-    def initialize(self, **_) -> "Dict[str, Any]":
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize strategy and return a dictionary"""
         queryData = SqlQueryDataModel(**{"query": self.filter_config.query})
         return {"sqlquery": queryData.query}
 
-    def get(self, **_) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute strategy and return a dictionary"""
         return {}

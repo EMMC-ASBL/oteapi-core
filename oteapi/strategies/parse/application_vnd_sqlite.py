@@ -1,4 +1,5 @@
 """Strategy class for application/vnd.sqlite3."""
+# pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -52,6 +53,8 @@ class SqliteParseStrategy:
             return {"result": rows}
         return {"result": "No query given"}
 
-    def initialize(self, **_) -> "Dict[str, Any]":
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize."""
         return {}

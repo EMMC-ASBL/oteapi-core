@@ -1,4 +1,5 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, List
 
@@ -46,7 +47,9 @@ class CeleryRemoteStrategy:
         result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
         return {"result": result.task_id}
 
-    def initialize(self, **_) -> "Dict[str, Any]":
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> "Dict[str, Any]":
         """Initialize a job."""
         return {}
 
@@ -55,7 +58,7 @@ class CeleryRemoteStrategy:
         result = AsyncResult(id=task_id, app=app)
         return TransformationStatus(id=task_id, status=result.state)
 
-    def get(self, **_) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Get transformation."""
         # TODO: update and return global state  # pylint: disable=fixme
         return {}
