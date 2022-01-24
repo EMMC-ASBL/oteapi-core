@@ -2,6 +2,8 @@
 
 > Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
+We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
+
 ## About OTEAPI Core
 
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
