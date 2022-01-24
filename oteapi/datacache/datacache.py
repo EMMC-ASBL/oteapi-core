@@ -25,7 +25,7 @@ from pydantic import Extra
 from oteapi.models import DataCacheConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Iterator, Optional, Type, Union
+    from typing import Any, Dict, Iterator, Optional, Type, Union
 
 
 def gethash(
@@ -81,7 +81,7 @@ class DataCache:
 
     def __init__(
         self,
-        config: "Union[DataCacheConfig, dict]" = None,
+        config: "Union[DataCacheConfig, Dict[str, Any]]" = None,
         cache_dir: "Optional[Union[Path, str]]" = None,
     ) -> None:
         if config is None:
@@ -91,7 +91,10 @@ class DataCache:
         elif isinstance(config, DataCacheConfig):
             self.config = config
         else:
-            raise TypeError(config)
+            raise TypeError(
+                "config should be either a `DataCacheConfig` data model or a "
+                "dictionary."
+            )
 
         if not cache_dir:
             cache_dir = self.config.cacheDir
@@ -145,8 +148,7 @@ class DataCache:
             tag: Tag used with evict() for cleaning up a session.
 
         Returns:
-            newkey: A key that can be used to retrieve `value` from cache
-                later.
+            A key that can be used to retrieve `value` from cache later.
         """
         if not key:
             if self.config.accessKey:
@@ -160,7 +162,15 @@ class DataCache:
         return key
 
     def get(self, key: str) -> "Any":
-        """Return the value corresponding to key."""
+        """Return the value corresponding to key.
+
+        Args:
+            key: The requested cached object to retrieve a value for.
+
+        Returns:
+            The value corresponding to the `key` value.
+
+        """
         if key not in self.diskcache:
             raise KeyError(key)
         return self.diskcache.get(key)
@@ -178,7 +188,7 @@ class DataCache:
         """Write the value for `key` to file and return the filename.
 
         The file is created in the default directory for temporary
-        files (which can be controlled by the TEMPDIR, TEMP or TMP
+        files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`
         environment variables). It is readable and writable only for
         the current user.
 
