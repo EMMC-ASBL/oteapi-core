@@ -1,0 +1,3 @@
+# imappingstrategy
+
+::: oteapi.interfaces.imappingstrategy

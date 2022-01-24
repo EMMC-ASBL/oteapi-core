@@ -2,17 +2,24 @@
 
 This module contains all the `pydantic` configuration models.
 """
-from .downloadconfig import DownloadConfig
+from typing import Union
+
+from .datacacheconfig import DataCacheConfig
 from .filterconfig import FilterConfig
 from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
 from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
-    "DownloadConfig",
+    "DataCacheConfig",
     "FilterConfig",
     "MappingConfig",
     "ResourceConfig",
+    "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
 )
+
+StrategyConfig = Union[
+    FilterConfig, MappingConfig, ResourceConfig, TransformationConfig
+]

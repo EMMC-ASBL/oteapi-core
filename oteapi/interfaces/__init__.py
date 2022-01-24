@@ -4,6 +4,8 @@ This module hosts the strategy interfaces.
 The strategy interfaces can be considered to be the abstract classes for the
 strategies.
 """
+from typing import Union
+
 from .idownloadstrategy import IDownloadStrategy
 from .ifilterstrategy import IFilterStrategy
 from .imappingstrategy import IMappingStrategy
@@ -17,5 +19,15 @@ __all__ = (
     "IMappingStrategy",
     "IParseStrategy",
     "IResourceStrategy",
+    "IStrategy",
     "ITransformationStrategy",
 )
+
+IStrategy = Union[
+    IDownloadStrategy,
+    IFilterStrategy,
+    IMappingStrategy,
+    IParseStrategy,
+    IResourceStrategy,
+    ITransformationStrategy,
+]

@@ -1,0 +1,3 @@
+# factories
+
+::: oteapi.plugins.factories

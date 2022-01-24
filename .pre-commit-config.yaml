@@ -71,3 +71,19 @@ repos:
       types: [python]
       require_serial: true
       files: ^tests/.*$
+    - id: update-docs-api-reference
+      name: Update API Reference in Documentation
+      entry: invoke
+      args: [create-api-reference-docs, --pre-clean, --pre-commit]
+      language: python
+      pass_filenames: false
+      files: ^oteapi/.*\.py$
+      description: Update the API Reference documentation, whenever a Python file is touched in the code base.
+    - id: update-docs-index
+      name: Update Landing Page for Documentation
+      entry: invoke
+      args: [create-docs-index]
+      language: python
+      pass_filenames: false
+      files: ^README.md$
+      description: Update the landing page for the documentation if the source file (README.md) is changed.

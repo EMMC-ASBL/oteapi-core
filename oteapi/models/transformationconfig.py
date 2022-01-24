@@ -1,4 +1,9 @@
-"""TransformationConfig data model definition"""
+"""Pydantic Transformation Configuration Data Model.
+
+A transformation status data model is provided as well.
+This data model represents what should be returned from the strategy's `status()`
+method.
+"""
 from datetime import datetime
 from enum import Enum
 from typing import Dict, List, Optional
@@ -7,7 +12,15 @@ from pydantic import BaseModel, Field
 
 
 class PriorityEnum(str, Enum):
-    """Defining process priority enumerators"""
+    """Defining process priority enumerators.
+
+    Process priorities:
+
+    - Low
+    - Medium
+    - High
+
+    """
 
     LOW = "Low"
     MEDIUM = "Medium"
@@ -15,7 +28,7 @@ class PriorityEnum(str, Enum):
 
 
 class TransformationConfig(BaseModel):
-    """Transformation data model"""
+    """Transformation Strategy Data Configuration."""
 
     transformation_type: str = Field(
         ...,
@@ -53,7 +66,7 @@ class TransformationConfig(BaseModel):
 
 
 class TransformationStatus(BaseModel):
-    """Return from transformation status"""
+    """Return from transformation status."""
 
     id: str = Field(..., description="ID for the given transformation process.")
     status: Optional[str] = Field(

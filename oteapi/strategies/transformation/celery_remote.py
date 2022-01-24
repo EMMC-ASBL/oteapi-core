@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, Any, List
 from celery import Celery
 from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
 from oteapi.plugins import StrategyFactory
@@ -21,19 +21,27 @@ app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url
 
 
 class CeleryConfig(BaseModel):
-    taskName: str
-    args: List[Any]
+    """Celery configuration."""
+
+    taskName: str = Field(..., description="A task name.")
+    args: List[Any] = Field(..., description="List of arguments for the task.")
 
 
 @dataclass
 @StrategyFactory.register(("transformation_type", "celery/remote"))
 class CeleryRemoteStrategy:
-    """Submit job to remote runner"""
+    """Submit job to remote Celery runner.
+
+    **Registers strategies**:
+
+    - `("transformation_type", "celery/remote")`
+
+    """
 
     transformation_config: "TransformationConfig"
 
     def run(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run a job, return a jobid"""
+        """Run a job, return a job ID."""
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
         result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
@@ -42,11 +50,11 @@ class CeleryRemoteStrategy:
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize a job"""
+        """Initialize a job."""
         return {}
 
     def status(self, task_id: str) -> TransformationStatus:
-        """Get job status"""
+        """Get job status."""
         result = AsyncResult(id=task_id, app=app)
         return TransformationStatus(id=task_id, status=result.state)
 

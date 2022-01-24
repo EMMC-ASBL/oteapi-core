@@ -1,0 +1,3 @@
+# idownloadstrategy
+
+::: oteapi.interfaces.idownloadstrategy

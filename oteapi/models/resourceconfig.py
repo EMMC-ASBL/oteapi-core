@@ -1,11 +1,19 @@
-"""Pydantic ResourceConfig Data Model"""
-from typing import Any, Dict, Optional
+"""Pydantic Resource Configuration Data Model."""
+from typing import Any, Dict, Optional, Union
 
 from pydantic import AnyUrl, BaseModel, Field, root_validator
 
+from oteapi.models.datacacheconfig import DataCacheConfig
+
 
 class ResourceConfig(BaseModel):
-    """Resource Configuration for Dataset Distributions"""
+    """Resource Strategy Data Configuration.
+
+    Important:
+        Either of the pairs of attributes `downloadUrl`/`mediaType` or
+        `accessUrl`/`accessService` MUST be specified.
+
+    """
 
     downloadUrl: Optional[AnyUrl] = Field(
         None,
@@ -13,7 +21,7 @@ class ResourceConfig(BaseModel):
             "Definition: The URL of the downloadable file in a given format. E.g. CSV "
             "file or RDF file.\n\nUsage: `downloadURL` *SHOULD* be used for the URL at"
             " which this distribution is available directly, typically through a HTTPS"
-            " Get request or SFTP."
+            " GET request or SFTP."
         ),
     )
     mediaType: Optional[str] = Field(
@@ -34,7 +42,7 @@ class ResourceConfig(BaseModel):
             "`accessURL` *SHOULD* be used for the URL of a service or location that "
             "can provide access to this distribution, typically through a Web form, "
             "query or API call.\n`downloadURL` is preferred for direct links to "
-            "downloadable resources.\n"
+            "downloadable resources."
         ),
     )
     accessService: Optional[str] = Field(
@@ -62,7 +70,7 @@ class ResourceConfig(BaseModel):
         None,
         description="The entity responsible for making the resource/item available.",
     )
-    configuration: Dict[str, Any] = Field(
+    configuration: Union[DataCacheConfig, Dict[str, Any]] = Field(
         {},
         description="Resource-specific configuration options given as key/value-pairs.",
     )

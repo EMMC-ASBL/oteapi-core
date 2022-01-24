@@ -1,0 +1,3 @@
+# itransformationstrategy
+
+::: oteapi.interfaces.itransformationstrategy

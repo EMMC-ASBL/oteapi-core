@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from oteapi.plugins import StrategyFactory
 
@@ -14,19 +14,28 @@ if TYPE_CHECKING:
 
 
 class CropDataModel(BaseModel):
-    crop: List[int]
+    """Configuration model for crop data."""
+
+    crop: List[int] = Field(..., description="List of image cropping details.")
 
 
 @dataclass
 @StrategyFactory.register(("filterType", "filter/crop"))
 class CropFilter:
+    """Strategy for cropping an image.
+
+    **Registers strategies**:
+
+    - `("filterType", "filter/crop")`
+
+    """
 
     filter_config: "FilterConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize strategy and return a dictionary"""
+        """Initialize strategy and return a dictionary."""
         return {"result": "collectionid"}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

@@ -19,14 +19,21 @@ if TYPE_CHECKING:
 @dataclass
 @StrategyFactory.register(("scheme", "sftp"), ("scheme", "ftp"))
 class SFTPStrategy:
-    """Strategy for retrieving data via sftp."""
+    """Strategy for retrieving data via sftp.
+
+    **Registers strategies**:
+
+    - `("scheme", "ftp")`
+    - `("scheme", "sftp")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

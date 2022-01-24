@@ -1,0 +1,96 @@
+site_name: OTE-API Core
+site_description: Documentation for the OTE-API Core package
+site_url: https://EMMC-ASBL.github.io/oteapi-core
+copyright: Copyright &copy; 2020-2022 SINTEF
+
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: brown
+    accent: amber
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/library-shelves
+  # logo: images/oteapi_logo.png
+  favicon: assets/images/favicon.png
+  language: en
+  features:
+    - navigation.instant
+    - navigation.top
+
+repo_name: oteapi-core
+repo_url: https://github.com/EMMC-ASBL/oteapi-core
+edit_uri: ""
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/EMMC-ASBL
+      name: EMMC-ASBL on GitHub
+  version:
+    provider: mike
+    default: latest
+
+extra_css:
+  - css/reference.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.keys
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      lang: en
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_root_heading: false
+            show_root_toc_entry: true
+            show_root_full_path: true
+            show_object_full_path: false
+            show_category_heading: false
+            show_if_no_docstring: false
+            show_source: true
+            show_bases: true
+            group_by_category: true
+            heading_level: 2
+          selection:
+            filters:
+              - "!^_"
+              - "^__init__$"
+              - "!__json_encoder__$"
+              - "!__all__$"
+              - "!__config__$"
+              - "!__str__$"
+              - "!__repr__$"
+            members: true
+            inherited_members: false
+            docstring_style: google
+            docstring_options:
+              replace_admonitions: true
+          setup_commands:
+            - import os
+            - os.environ["MKDOCS_BUILD"] = "1"
+      watch:
+        - oteapi
+  - awesome-pages
+
+nav:
+  - Home: index.md
+  - License: LICENSE.md
+  - Changelog: CHANGELOG.md
+  - all_models.md
+  - all_strategies.md
+  - ... | api_reference/**

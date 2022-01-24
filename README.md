@@ -2,21 +2,7 @@
 
 > Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
-## Content
-
-* [About OTEAPI Core](#about-oteapi-core)
-* [Types of strategies](#types-of-strategies)
-  * [Download strategy](#download-strategy)
-  * [Parse strategy](#parse-strategy)
-  * [Resource strategy](#resource-strategy)
-  * [Mapping strategy](#mapping-strategy)
-  * [Filter strategy](#filter-strategy)
-  * [Transformation strategy](#transformation-strategy)
-* [Entry points for plugins](#entry-points-for-plugins)
-* [Other OTEAPI-related repositories](#other-oteapi-related-repositories)
-* [Installation](#installation)
-* [License](#license)
-* [Acknowledgment](#acknowledgment)
+We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
 ## About OTEAPI Core
 
@@ -140,7 +126,7 @@ $ pip install oteapi-core
 
 ## License
 
-OTEAPI Core is released under the [MIT license](https://github.com/EMMC-ASBL/oteapi-core/blob/master/LICENSE) with copyright &copy; SINTEF.
+OTEAPI Core is released under the [MIT license](LICENSE) with copyright &copy; SINTEF.
 
 ## Acknowledgment
 

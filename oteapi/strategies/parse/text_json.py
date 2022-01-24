@@ -16,13 +16,20 @@ if TYPE_CHECKING:
 @dataclass
 @StrategyFactory.register(("mediaType", "text/json"))
 class JSONDataParseStrategy:
+    """Parse strategy for JSON.
+
+    **Registers strategies**:
+
+    - `("mediaType", "text/json")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

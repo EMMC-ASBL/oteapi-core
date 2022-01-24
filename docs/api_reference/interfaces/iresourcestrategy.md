@@ -1,0 +1,3 @@
+# iresourcestrategy
+
+::: oteapi.interfaces.iresourcestrategy

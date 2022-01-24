@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from pydantic import BaseModel, Extra
+from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
 from oteapi.plugins.factories import StrategyFactory, create_download_strategy
@@ -19,38 +19,60 @@ if TYPE_CHECKING:
 
 
 class XLSXParseDataModel(BaseModel):
-    """Data model for retrieving a rectangular section of an Excel sheet.
+    """Data model for retrieving a rectangular section of an Excel sheet."""
 
-    Fields:
-        worksheet: Name of worksheet to load.
-        row_from: Excel row number of first row.  Defaults to first
-          assigned row.
-        col_from: Excel column number or label of first column.
-          Defaults to first assigned column.
-        row_to: Excel row number of last row.  Defaults to last
-          assigned row.
-        col_to: Excel column number or label of last column.  Defaults
-          to last assigned column.
-        header_row: Row number with the headers. Defaults to 1 if
-          header is given, otherwise None.
-        header: Optional list of column names, specifying the columns
-          to return.  These names they should match cells in `header_row`.
-        new_header: Optional list of new column names replacing `header`
-          in the output.
-    """
-
-    worksheet: str
-    row_from: Optional[int] = None
-    col_from: Optional[Union[int, str]] = None
-    row_to: Optional[int] = None
-    col_to: Optional[Union[int, str]] = None
-    header_row: Optional[int] = None
-    header: Optional[List[str]] = None
-    new_header: Optional[List[str]] = None
+    worksheet: str = Field(..., description="Name of worksheet to load.")
+    row_from: Optional[int] = Field(
+        None,
+        description="Excel row number of first row. Defaults to first assigned row.",
+    )
+    col_from: Optional[Union[int, str]] = Field(
+        None,
+        description=(
+            "Excel column number or label of first column. Defaults to first assigned "
+            "column."
+        ),
+    )
+    row_to: Optional[int] = Field(
+        None, description="Excel row number of last row. Defaults to last assigned row."
+    )
+    col_to: Optional[Union[int, str]] = Field(
+        None,
+        description=(
+            "Excel column number or label of last column. Defaults to last assigned "
+            "column."
+        ),
+    )
+    header_row: Optional[int] = Field(
+        None,
+        description=(
+            "Row number with the headers. Defaults to `1` if header is given, "
+            "otherwise `None`."
+        ),
+    )
+    header: Optional[List[str]] = Field(
+        None,
+        description=(
+            "Optional list of column names, specifying the columns to return. "
+            "These names they should match cells in `header_row`."
+        ),
+    )
+    new_header: Optional[List[str]] = Field(
+        None,
+        description=(
+            "Optional list of new column names replacing `header` in the output."
+        ),
+    )
 
 
 def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> None:
-    """Update datamodel `model` with default values obtained from `worksheet`."""
+    """Update data model `model` with default values obtained from `worksheet`.
+
+    Parameters:
+        model: The parsed data model.
+        worksheet: Excel worksheet, from which the default values will be obtained.
+
+    """
     if model.row_from is None:
         if model.header:
             # assume that data starts on the first row after the header
@@ -78,7 +100,16 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> Non
 def get_column_indices(
     model: XLSXParseDataModel, worksheet: "Worksheet"
 ) -> "Iterable[int]":
-    """Helper function returning a list of column indices."""
+    """Helper function returning a list of column indices.
+
+    Parameters:
+        model: The parsed data model.
+        worksheet: Excel worksheet, from which the header values will be retrieved.
+
+    Returns:
+        A list of column indices.
+
+    """
     if not isinstance(model.col_from, int) or not isinstance(model.col_to, int):
         raise TypeError("Expected `model.col_from` and `model.col_to` to be integers.")
 
@@ -96,19 +127,28 @@ def get_column_indices(
     ("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 )
 class XLSXParseStrategy:
+    """Parse strategy for Excel XLSX files.
+
+    **Registers strategies**:
+
+    - `("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
-        Returns a dict with column-name/column-value pairs. The values are lists.
+        Returns:
+            A dict with column-name/column-value pairs. The values are lists.
+
         """
         model = XLSXParseDataModel(
             **self.resource_config.configuration, extra=Extra.ignore

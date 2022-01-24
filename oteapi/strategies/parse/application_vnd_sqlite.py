@@ -31,10 +31,18 @@ def create_connection(db_file):
 @dataclass
 @StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
+    """Parse strategy for SQLite.
+
+    **Registers strategies**:
+
+    - `("mediaType", "application/vnd.sqlite3")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+        """Parse SQLite query responses."""
         if session is None:
             raise ValueError("Missing session")
 
@@ -48,5 +56,5 @@ class SqliteParseStrategy:
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}

@@ -1,4 +1,4 @@
-"""Download strategy class for file"""
+"""Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
@@ -16,32 +16,40 @@ if TYPE_CHECKING:
 
 
 class FileConfig(BaseModel):
-    """File Specific Configuration"""
+    """File-specific Configuration Data Model."""
 
     text: bool = Field(
-        False, description="Whether the file should be opened in text mode."
+        False,
+        description=(
+            "Whether the file should be opened in text mode. If `False`, the file will"
+            " be opened in bytes mode."
+        ),
     )
     encoding: Optional[str] = Field(
         None,
         description=(
-            "Encoding used when opening the file. Default is platform dependent."
+            "Encoding used when opening the file. The default is platform dependent."
         ),
     )
 
 
 @dataclass
-@StrategyFactory.register(
-    ("scheme", "file"),
-)
+@StrategyFactory.register(("scheme", "file"))
 class FileStrategy:
-    """Strategy for retrieving data via local file."""
+    """Strategy for retrieving data from a local file.
+
+    **Registers strategies**:
+
+    - `("scheme", "file")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

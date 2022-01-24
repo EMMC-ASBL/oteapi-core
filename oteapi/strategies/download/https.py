@@ -17,14 +17,21 @@ if TYPE_CHECKING:
 @dataclass
 @StrategyFactory.register(("scheme", "http"), ("scheme", "https"))
 class HTTPSStrategy:
-    """Strategy for retrieving data via http."""
+    """Strategy for retrieving data via http.
+
+    **Registers strategies**:
+
+    - `("scheme", "http")`
+    - `("scheme", "https")`
+
+    """
 
     resource_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":

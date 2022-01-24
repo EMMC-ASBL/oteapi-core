@@ -24,6 +24,19 @@ if TYPE_CHECKING:
     ("mediaType", "image/eps"),
 )
 class ImageDataParseStrategy:
+    """Parse strategy for images.
+
+    **Registers strategies**:
+
+    - `("mediaType", "image/jpg")`
+    - `("mediaType", "image/jpeg")`
+    - `("mediaType", "image/j2p")`
+    - `("mediaType", "image/png")`
+    - `("mediaType", "image/gif")`
+    - `("mediaType", "image/tiff")`
+    - `("mediaType", "image/eps")`
+
+    """
 
     resource_config: "ResourceConfig"
 
@@ -38,7 +51,7 @@ class ImageDataParseStrategy:
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize"""
+        """Initialize."""
         return {}
 
     def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
