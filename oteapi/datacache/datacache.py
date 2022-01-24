@@ -198,17 +198,16 @@ class DataCache:
         environment variables). It is readable and writable only for
         the current user.
 
-        This method is intended to be used in a `with` statement, to
-        automatically delete the file when leaving the context.
-
         Example:
+            This method is intended to be used in a `with` statement, to
+            automatically delete the file when leaving the context:
 
-        ```python
-        cache = DataCache()
-        with cache.getfile('mykey') as filename:
-            # do something with filename...
-        # filename is deleted
-        ```
+            ```python
+            cache = DataCache()
+            with cache.getfile('mykey') as filename:
+                # do something with filename...
+            # filename is deleted
+            ```
 
         Args:
             key: Key of value to write to file.
