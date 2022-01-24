@@ -97,7 +97,7 @@ jobs:
         delete-branch: true
         title: "[Auto-generated] Update dependencies"
         body: ${{ steps.pr_body.outputs.result }}
-        labels: dependencies,github_actions
+        labels: CI/CD
 
     - name: Information
       run: 'echo "${{ steps.cpr.outputs.pull-request-operation }} PR #${{ steps.cpr.outputs.pull-request-number }}: ${{ steps.cpr.outputs.pull-request-url }}"'
