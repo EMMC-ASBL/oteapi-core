@@ -1,15 +1,15 @@
 """Data cache based on DiskCache.
-See https://github.com/grantjenks/python-diskcache
+See [Python-DiskCache](https://github.com/grantjenks/python-diskcache).
 
 Features:
-- persistent cache between sessions
-- default keys are hashes of the stored data
-- works with asyncio
-- automatic expiration of cached data
-- sessions can selectively be cleaned up via tags
-- store small values in SQLite database and large values in files
-- underlying library is actively developed and tested on Linux, Mac and Windows
-- high performance
+
+- Persistent cache between sessions.
+- Default keys are hashes of the stored data.
+- Automatic expiration of cached data.
+- Sessions can selectively be cleaned up via tags.
+- Store small values in SQLite database and large values in files.
+- Underlying library is actively developed and tested on Linux, Mac and Windows.
+- High performance.
 
 """
 import hashlib
@@ -67,7 +67,13 @@ def gethash(
 
 
 class DataCache:
-    """Initialise a cache instance with the given download configuration.
+    """Initialize a cache instance with the given download configuration.
+
+    This class is also available to import from `oteapi.datacache`, e.g.:
+
+    ```python
+    from oteapi.datacache import DataCache
+    ```
 
     Args:
         config: Download configurations.
@@ -205,18 +211,18 @@ class DataCache:
         ```
 
         Args:
-            key: Key of value to write to file
+            key: Key of value to write to file.
             filename: Full path to created file. If not given, a unique
                 filename will be created.
             prefix: Prefix to prepend to the returned file name (default
-                is "oteapi-download-").
+                is `"oteapi-download-"`).
             suffix: Suffix to append to the returned file name.
-            directory: File directory if `filename` is None.
-            delete: Whether to automatically delete created file when
+            directory: File directory if `filename` is not provided (is `None`).
+            delete: Whether to automatically delete the created file when
                 leaving the context.
 
-        Returns:
-            Path object of the created file.
+        Yields:
+            Path object, referencing and representing the created file.
 
         """
         if filename:
@@ -241,6 +247,10 @@ class DataCache:
         """Remove all cache items with the given tag.
 
         Useful for cleaning up a session.
+
+        Args:
+            tag: Tag identifying objects.
+
         """
         self.diskcache.evict(tag)
 
