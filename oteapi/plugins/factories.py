@@ -43,7 +43,9 @@ class StrategyType(Enum):
     - mapping
     - parse
     - resource
+    - serialise
     - transformation
+    - upload
 
     """
 
@@ -52,7 +54,9 @@ class StrategyType(Enum):
     MAPPING = "mapping"
     PARSE = "parse"
     RESOURCE = "resource"
+    SERIALISE = "serialise"
     TRANSFORMATION = "transformation"
+    UPLOAD = "upload"
 
     @lru_cache
     def map_to_field(self) -> str:
@@ -65,7 +69,9 @@ class StrategyType(Enum):
             "mapping": "mappingType",
             "parse": "mediaType",
             "resource": "accessService",
-            "transformation": "transformation_type",
+            "serialise": "serialiseType",
+            "transformation": "transformationType",
+            "upload": "uploadType",
         }[self.value]
 
     @lru_cache
@@ -302,7 +308,7 @@ def create_transformation_strategy(
         The created transformation strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="transformation_type")
+    strategy = StrategyFactory.make_strategy(config, field="transformationType")
     if not isinstance(strategy, ITransformationStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "

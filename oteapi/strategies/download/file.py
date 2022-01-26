@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Optional
 from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
+from oteapi.models import DataCacheConfig
 from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
@@ -18,11 +19,18 @@ if TYPE_CHECKING:
 class FileConfig(BaseModel):
     """File-specific Configuration Data Model."""
 
+    datacache: Optional[DataCacheConfig] = Field(
+        {},
+        description=(
+            "Configuration of the datacache entry that will be created "
+            "for the downloaded content."
+        ),
+    )
     text: bool = Field(
         False,
         description=(
-            "Whether the file should be opened in text mode. If `False`, the file will"
-            " be opened in bytes mode."
+            "Whether the file should be opened in text mode. If `False`, the file will "
+            "be opened in bytes mode."
         ),
     )
     encoding: Optional[str] = Field(
@@ -78,35 +86,3 @@ class FileStrategy:
             )
 
         return {"key": key}
-
-    def put(self, session: "Optional[Dict[str, Any]]" = None):
-        """Write local file.
-
-        The file content is obtained with the `accessKey` DataCache
-        configuration and the filename from the `accessUrl`
-        ResourceConfig configuration.
-        """
-        if (
-            self.resource_config.accessUrl is None
-            or self.resource_config.accessUrl.scheme != "file"
-        ):
-            raise ValueError(
-                "Expected 'accessUrl' to have scheme 'file' in the configuration."
-            )
-
-        cache = DataCache(self.resource_config.configuration)
-        if not cache.config.accessKey or cache.config.accessKey not in cache:
-            raise ValueError("Expected  a valid 'accessKey' in the configurations.")
-
-        config = FileConfig(**self.resource_config.configuration, extra=Extra.ignore)
-
-        raw = cache.get(cache.config.accessKey)
-        if config.encoding:
-            content = str(raw, encoding=config.encoding)
-        else:
-            content = str(raw)
-
-        filename = Path(self.resource_config.accessUrl.host).resolve()
-        mode = "wt" if config.text else "w"
-        with open(filename, mode) as handle:
-            handle.write(content)

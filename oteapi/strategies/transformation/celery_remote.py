@@ -28,13 +28,13 @@ class CeleryConfig(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("transformation_type", "celery/remote"))
+@StrategyFactory.register(("transformationType", "celery/remote"))
 class CeleryRemoteStrategy:
     """Submit job to remote Celery runner.
 
     **Registers strategies**:
 
-    - `("transformation_type", "celery/remote")`
+    - `("transformationType", "celery/remote")`
 
     """
 

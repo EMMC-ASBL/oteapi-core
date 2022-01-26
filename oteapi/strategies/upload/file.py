@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Extra, Field
+from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
 from oteapi.plugins import StrategyFactory
@@ -71,11 +71,10 @@ class FileStrategy:
                 "Expected 'accessUrl' to have scheme 'file' in the configuration."
             )
 
-        cache = DataCache(self.resource_config.configuration)
-        if not cache.config.accessKey or cache.config.accessKey not in cache:
-            raise ValueError("Expected  a valid 'accessKey' in the configurations.")
-
         config = FileConfig(**self.resource_config.configuration)
+        cache = DataCache()
+        if not config.accessKey or config.accessKey not in cache:
+            raise ValueError("Expected  a valid 'accessKey' in the configurations.")
 
         raw = cache.get(cache.config.accessKey)
         if config.encoding:
@@ -85,5 +84,5 @@ class FileStrategy:
 
         filename = Path(self.resource_config.accessUrl.host).resolve()
         mode = "wt" if config.text else "w"
-        with open(filename, mode) as handle:
+        with open(filename, mode, encoding="UTF-8") as handle:
             handle.write(content)

@@ -79,7 +79,7 @@ class DataCache:
     ```
 
     Args:
-        config: Download configurations.
+        config: Datacache configurations.
         cache_dir: Cache directory overriding the config.
 
     Attributes:
