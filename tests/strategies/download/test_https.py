@@ -35,8 +35,8 @@ def test_https(import_oteapi_modules, requests_mock):
     path = Path(__file__).resolve().parents[1]
     for n in range(len(tests)):
         rc = ResourceConfig(
-                downloadUrl=tests[n][0] + "://this.is.not/real.url",
-                mediaType=tests[n][1],
+            downloadUrl=tests[n][0] + "://this.is.not/real.url",
+            mediaType=tests[n][1],
         )
         params = {
             "url": rc.downloadUrl,

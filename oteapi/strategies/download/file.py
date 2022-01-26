@@ -64,11 +64,16 @@ class FileStrategy:
             )
 
         if system() == "Windows":
-            filename = Path(self.resource_config.downloadUrl.host + ":" \
-                + self.resource_config.downloadUrl.path).resolve()
+            filename = Path(
+                self.resource_config.downloadUrl.host
+                + ":"
+                + self.resource_config.downloadUrl.path
+            ).resolve()
         else:
-            filename = Path(self.resource_config.downloadUrl.host \
-                + self.resource_config.downloadUrl.path).resolve()
+            filename = Path(
+                self.resource_config.downloadUrl.host
+                + self.resource_config.downloadUrl.path
+            ).resolve()
 
         cache = DataCache(self.resource_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:

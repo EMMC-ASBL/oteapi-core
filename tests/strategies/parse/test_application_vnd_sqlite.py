@@ -7,16 +7,29 @@ def test_sqlite(import_oteapi_modules):
     downloaded as SQL source 'sample1.sql' from filesamples.com.
     """
     from oteapi.models.resourceconfig import ResourceConfig
-    from oteapi.strategies.parse.application_vnd_sqlite import \
-        SqliteParseStrategy
+    from oteapi.strategies.parse.application_vnd_sqlite import SqliteParseStrategy
 
     filename = str((Path(__file__).resolve().parent / "sample1.db"))
     query1 = "SELECT * FROM user_details WHERE user_details.user_id = 19;"
-    compare1 = (19, 'jenny0988', 'maria', 'morgan', 'Female', \
-        'ec9ed18ae2a13fef709964af24bb60e6', 1)
+    compare1 = (
+        19,
+        "jenny0988",
+        "maria",
+        "morgan",
+        "Female",
+        "ec9ed18ae2a13fef709964af24bb60e6",
+        1,
+    )
     query2 = "SELECT * FROM user_details WHERE user_details.user_id = 72;"
-    compare2 = (72, 'brown84', 'john', 'ross', 'Male', \
-        '738cb4da81a2790a9a845f902a811ea2', 1)
+    compare2 = (
+        72,
+        "brown84",
+        "john",
+        "ross",
+        "Male",
+        "738cb4da81a2790a9a845f902a811ea2",
+        1,
+    )
 
     config = ResourceConfig(
         downloadUrl="file://dummy",

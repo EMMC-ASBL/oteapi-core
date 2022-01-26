@@ -19,7 +19,7 @@ def test_jpeg(import_oteapi_modules):
             "localpath": str(parentDir),
             "filename": "sample_1280_853.jpeg",
             "crop": (200, 300, 900, 700),
-        }
+        },
     )
     parser = ImageDataParseStrategy(config)
     parser.parse()
