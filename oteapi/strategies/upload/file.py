@@ -1,4 +1,4 @@
-"""Download strategy class for the `file` scheme."""
+"""Upload strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,6 +18,10 @@ if TYPE_CHECKING:
 class FileConfig(BaseModel):
     """File-specific Configuration Data Model."""
 
+    accessKey: str = Field(
+        None,
+        description="Datacache key with which the content to upload can be accessed.",
+    )
     text: bool = Field(
         False,
         description=(
@@ -36,7 +40,7 @@ class FileConfig(BaseModel):
 @dataclass
 @StrategyFactory.register(("scheme", "file"))
 class FileStrategy:
-    """Strategy for retrieving data from a local file.
+    """Strategy for writing data from a local file.
 
     **Registers strategies**:
 
@@ -52,34 +56,7 @@ class FileStrategy:
         """Initialize."""
         return {}
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Read local file."""
-        if (
-            self.resource_config.downloadUrl is None
-            or self.resource_config.downloadUrl.scheme != "file"
-        ):
-            raise ValueError(
-                "Expected 'downloadUrl' to have scheme 'file' in the configuration."
-            )
-
-        filename = Path(self.resource_config.downloadUrl.host).resolve()
-
-        cache = DataCache(self.resource_config.configuration)
-        if cache.config.accessKey and cache.config.accessKey in cache:
-            key = cache.config.accessKey
-        else:
-            config = FileConfig(
-                **self.resource_config.configuration, extra=Extra.ignore
-            )
-            key = cache.add(
-                filename.read_text(encoding=config.encoding)
-                if config.text
-                else filename.read_bytes()
-            )
-
-        return {"key": key}
-
-    def put(self, session: "Optional[Dict[str, Any]]" = None):
+    def get(self, session: "Optional[Dict[str, Any]]" = None):
         """Write local file.
 
         The file content is obtained with the `accessKey` DataCache
@@ -98,7 +75,7 @@ class FileStrategy:
         if not cache.config.accessKey or cache.config.accessKey not in cache:
             raise ValueError("Expected  a valid 'accessKey' in the configurations.")
 
-        config = FileConfig(**self.resource_config.configuration, extra=Extra.ignore)
+        config = FileConfig(**self.resource_config.configuration)
 
         raw = cache.get(cache.config.accessKey)
         if config.encoding:
