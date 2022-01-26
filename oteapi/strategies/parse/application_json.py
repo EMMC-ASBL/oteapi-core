@@ -20,7 +20,7 @@ class JSONDataParseStrategy:
 
     **Registers strategies**:
 
-    - `("mediaType", "text/json")`
+    - `("mediaType", "application/json")`
 
     """
 
