@@ -8,7 +8,7 @@ on:
 env:
   PUBLISH_UPDATE_BRANCH: master
   GIT_USER_NAME: "TEAM 4.0[bot]"
-  GIT_USER_EMAIL: "Team4.0@SINTEF.onmicrosoft.com"
+  GIT_USER_EMAIL: "Team4.0@SINTEF.no"
 
 jobs:
 
