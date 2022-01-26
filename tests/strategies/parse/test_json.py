@@ -6,8 +6,8 @@ def test_json(import_oteapi_modules):
     """Test `application/json` parse strategy on 'sample2.json',
     downloaded from filesamples.com.
     """
-    from oteapi.strategies.download.file import FileStrategy
     from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.strategies.download.file import FileStrategy
     from oteapi.strategies.parse.application_json import JSONDataParseStrategy
 
     data = {

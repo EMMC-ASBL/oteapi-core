@@ -6,9 +6,9 @@ def test_file(import_oteapi_modules):
     """Test `file` download strategy on 'sample_1280_853.jpeg' and
     'sample2.json', downloaded from filesamples.com.
     """
-    from oteapi.strategies.download.file import FileStrategy
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.datacache.datacache import DataCache
+    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.strategies.download.file import FileStrategy
 
     path = Path(__file__).resolve().parents[1]
     binaryfile = path / "sample_1280_853.jpeg"

@@ -7,8 +7,8 @@ def test_sqlite(import_oteapi_modules):
     downloaded as SQL source 'sample1.sql' from filesamples.com.
     """
     from oteapi.models.resourceconfig import ResourceConfig
-    from oteapi.strategies.parse.application_vnd_sqlite \
-        import SqliteParseStrategy
+    from oteapi.strategies.parse.application_vnd_sqlite import \
+        SqliteParseStrategy
 
     filename = str((Path(__file__).resolve().parent / "sample1.db"))
     query1 = "SELECT * FROM user_details WHERE user_details.user_id = 19;"

@@ -20,10 +20,10 @@ def test_https(import_oteapi_modules, requests_mock):
     'sample_1280_853.jpeg' and 'sample2.json'
     with data obtained from simply opening them directly.
     """
-    from oteapi.strategies.download.https import HTTPSStrategy
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.datacache.datacache import DataCache
+    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.plugins.factories import create_download_strategy
+    from oteapi.strategies.download.https import HTTPSStrategy
 
     tests = (
         ("http", "image/jpeg", "sample_1280_853.jpeg"),
