@@ -74,8 +74,36 @@ class EntryPointStrategy:
         """The strategy name.
 
         One part of the (strategy type, strategy name)-tuple.
+
+        Note:
+            Single periods (`.`) in the entry point name will become forward slashes
+            (`/`). And double periods (`..`) will become single periods (`.`).
+
+            Conversions:
+
+            - `.` -> `/`
+            - `..` -> `.`
+
+            Example:
+                ```ini
+                oteapi.mediaType =
+                  oteapi.application.vnd..sqlite3 = ...
+                ```
+
+                Defines the *parse* strategy name: `application/vnd.sqlite`
+                From the `oteapi` package.
+
+        Note:
+            **For developers**.
+
+            The order of the `replace()` methods is important.
+
+            By first replacing all periods (`.`) with forward slashes (`/`) we can be
+            sure all double forward slashes (`//`) have come from double periods (`..`)
+            because a forward slash is not a valid character in the entry point name.
+
         """
-        return self._match.group("strategy_name").replace(".", "/")
+        return self._match.group("strategy_name").replace(".", "/").replace("//", ".")
 
     @property
     def strategy(self) -> "Tuple[OteapiStrategyType, str]":
