@@ -1,4 +1,5 @@
 """Tests the download strategy for 'file://'."""
+# pylint: disable=unused-argument
 from pathlib import Path
 
 
@@ -11,36 +12,26 @@ def test_file(import_oteapi_modules):
     from oteapi.strategies.download.file import FileStrategy
 
     path = Path(__file__).resolve().parents[1]
-    binaryfile = path / "sample_1280_853.jpeg"
-    binaryUri = binaryfile.as_uri()
-    textfile = path / "sample2.json"
-    textUri = textfile.as_uri()
-    # The uris now start with "file:///..." (incompatible with AnyUrl)
-    # On Windows, the drive is also present, e.g. "file:///C:/...",
-    # so the second ":" must be removed to produce valid AnyUrls
-    binaryUrl = binaryUri.replace(":", "").replace("///", "://")
-    textUrl = textUri.replace(":", "").replace("///", "://")
+    url = path.as_uri().replace(":", "").replace("///", "://")
 
     # Test binary file download
-    binaryConfig = ResourceConfig(
-        downloadUrl=binaryUrl,
+    binary_config = ResourceConfig(
+        downloadUrl=url + "/sample_1280_853.jpeg",
         mediaType="image/jpeg",
     )
-    binaryDownloader = FileStrategy(binaryConfig)
-    binaryOutput = binaryDownloader.get()
-    binaryContent = DataCache().get(binaryOutput["key"])
-    with open(binaryfile, "rb") as bf:
-        binaryTargetContent = bf.read()
-    assert binaryContent == binaryTargetContent
+    binary_output = FileStrategy(binary_config).get()
+    binary_content = DataCache().get(binary_output["key"])
+    with open(path / "sample_1280_853.jpeg", "rb") as binary_file:
+        assert binary_content == binary_file.read()
 
     # Test text file download
-    textConfig = ResourceConfig(
-        downloadUrl=textUrl,
+    text_config = ResourceConfig(
+        downloadUrl=url + "/sample2.json",
         mediaType="application/json",
     )
-    textDownloader = FileStrategy(textConfig)
-    textOutput = textDownloader.get()
-    textContent = DataCache().get(textOutput["key"]).decode()
-    with open(textfile, "rt", newline="") as tf:
-        textTargetContent = tf.read()
-    assert textContent == textTargetContent
+    text_output = FileStrategy(text_config).get()
+    text_content = DataCache().get(text_output["key"]).decode()
+    with open(
+        path / "sample2.json", mode="rt", encoding="utf-8", newline=""
+    ) as text_file:
+        assert text_content == text_file.read()

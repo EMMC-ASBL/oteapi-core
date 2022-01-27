@@ -1,4 +1,6 @@
 """Tests the download strategy for 'https://' and 'http://'."""
+# pylint: disable=unused-argument
+# pylint: disable=unused-import
 from pathlib import Path
 
 import requests_mock
@@ -9,8 +11,8 @@ def mock_get(**kwargs):
     """Override requests.get() in 'https.py' by fetching data from
     the local file 'file' instead.
     """
-    with open(kwargs["file"], "rb") as f:
-        kwargs["mock"].get(kwargs["url"], content=f.read())
+    with open(kwargs["file"], "rb") as args_file:
+        kwargs["mock"].get(kwargs["url"], content=args_file.read())
     return kwargs["strategy"].get(kwargs["url"])
 
 
@@ -33,19 +35,19 @@ def test_https(import_oteapi_modules, requests_mock):
     )
 
     path = Path(__file__).resolve().parents[1]
-    for n in range(len(tests)):
-        rc = ResourceConfig(
-            downloadUrl=tests[n][0] + "://this.is.not/real.url",
-            mediaType=tests[n][1],
+    for test in tests:
+        res_conf = ResourceConfig(
+            downloadUrl=test[0] + "://this.is.not/real.url",
+            mediaType=test[1],
         )
         params = {
-            "url": rc.downloadUrl,
-            "strategy": create_download_strategy(rc),
-            "file": str(path / tests[n][2]),
+            "url": res_conf.downloadUrl,
+            "strategy": create_download_strategy(res_conf),
+            "file": str(path / test[2]),
         }
-        keyDict = mock_get(**params)
-        mockData = DataCache().get(keyDict["key"])
+        key_dict = mock_get(**params)
+        mock_data = DataCache().get(key_dict["key"])
         DataCache().clear()
         with open(params["file"], "rb") as target:
-            targetData = target.read()
-        assert mockData == targetData
+            target_data = target.read()
+        assert mock_data == target_data

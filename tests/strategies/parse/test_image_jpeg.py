@@ -1,4 +1,5 @@
 """Tests the parse strategy for JPEG."""
+# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
@@ -10,13 +11,13 @@ def test_jpeg(import_oteapi_modules):
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.image_jpeg import ImageDataParseStrategy
 
-    thisDir = Path(__file__).resolve().parent
-    parentDir = thisDir.parent
+    this_dir = Path(__file__).resolve().parent
+    parent_dir = this_dir.parent
     config = ResourceConfig(
         downloadUrl="file://dummy",
         mediaType="image/jpeg",
         configuration={
-            "localpath": str(parentDir),
+            "localpath": str(parent_dir),
             "filename": "sample_1280_853.jpeg",
             "crop": (200, 300, 900, 700),
         },
@@ -24,9 +25,9 @@ def test_jpeg(import_oteapi_modules):
     parser = ImageDataParseStrategy(config)
     parser.parse()
 
-    with open(thisDir / "sample_700_400.jpeg", "rb") as f:
-        target_data = f.read()
-    with open(parentDir / "cropped_sample_1280_853.jpeg", "rb") as f2:
-        cropped_data = f2.read()
-    os.remove(parentDir / "cropped_sample_1280_853.jpeg")
+    with open(this_dir / "sample_700_400.jpeg", "rb") as sample:
+        target_data = sample.read()
+    with open(parent_dir / "cropped_sample_1280_853.jpeg", "rb") as cropped:
+        cropped_data = cropped.read()
+    os.remove(parent_dir / "cropped_sample_1280_853.jpeg")
     assert cropped_data == target_data

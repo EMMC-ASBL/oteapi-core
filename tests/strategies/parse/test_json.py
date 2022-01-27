@@ -1,4 +1,6 @@
 """Tests the parse strategy for JSON."""
+# pylint: disable=unused-argument
+# pylint: disable=unused-import
 from pathlib import Path
 
 
@@ -23,9 +25,9 @@ def test_json(import_oteapi_modules):
     # uri now starts with "file:///..." (incompatible with AnyUrl)
     # On Windows, the drive is also present, e.g. "file:///C:/...",
     # so the second ":" must be removed to produce a valid AnyUrl
-    fileUrl = uri.replace(":", "").replace("///", "://")
+    url = uri.replace(":", "").replace("///", "://")
     config = ResourceConfig(
-        downloadUrl=fileUrl,
+        downloadUrl=url,
         mediaType="application/json",
     )
     parser = JSONDataParseStrategy(config)

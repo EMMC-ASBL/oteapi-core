@@ -19,5 +19,5 @@ from pytest import MonkeyPatch
 @pytest.fixture(scope="session", autouse=True)
 def import_oteapi_modules() -> None:
     """Set oteapi path to the path of the oteapi source code."""
-    mp = MonkeyPatch()
-    mp.syspath_prepend(str(Path(__file__).absolute().parents[1]))
+    m_p = MonkeyPatch()
+    m_p.syspath_prepend(str(Path(__file__).absolute().parents[1]))

@@ -1,4 +1,5 @@
 """Tests for `oteapi.models.resourceconfig`"""
+# pylint: disable=unused-argument
 import pytest
 from pydantic import ValidationError
 

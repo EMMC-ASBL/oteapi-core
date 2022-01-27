@@ -1,4 +1,5 @@
 """Tests the parse strategy for SQLite."""
+# pylint: disable=unused-argument
 from pathlib import Path
 
 
