@@ -1,5 +1,4 @@
 """`oteapi.plugins` module."""
-from .factories import StrategyFactory, create_strategy
-from .plugins import load_plugins
+from .factories import create_strategy
 
-__all__ = ("StrategyFactory", "create_strategy", "load_plugins")
+__all__ = ("create_strategy",)

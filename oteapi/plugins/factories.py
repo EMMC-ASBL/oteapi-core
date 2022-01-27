@@ -14,12 +14,10 @@ from oteapi.interfaces import (
     IResourceStrategy,
     ITransformationStrategy,
 )
+from oteapi.plugins.plugins import get_strategy_entry_points
 
 if TYPE_CHECKING:
-    from typing import Any, Callable, Dict, Optional, Tuple, Type, Union
-    from uuid import UUID
-
-    from pydantic import AnyUrl
+    from typing import Dict, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import (
@@ -29,8 +27,7 @@ if TYPE_CHECKING:
         StrategyConfig,
         TransformationConfig,
     )
-
-    ValueType = Union[int, str, AnyUrl, UUID]
+    from oteapi.plugins.plugins import EntryPointStrategyCollection
 
 
 class StrategyType(Enum):
@@ -55,10 +52,8 @@ class StrategyType(Enum):
     TRANSFORMATION = "transformation"
 
     @lru_cache
-    def map_to_field(self) -> str:
-        """Map strategy type to
-        [`make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy]
-        field value."""
+    def map_to_type(self) -> str:
+        """Map enumeration value to strategy type."""
         return {
             "download": "scheme",
             "filter": "filterType",
@@ -68,31 +63,43 @@ class StrategyType(Enum):
             "transformation": "transformation_type",
         }[self.value]
 
+    @classmethod
     @lru_cache
-    def get_make_strategy_kwargs(self, config: "StrategyConfig") -> "Dict[str, Any]":
-        """Get `make_strategy` kwargs.
+    def map_from_type(cls, strategy_type: str) -> "StrategyType":
+        """Map strategy type to enumeration.
 
-        Parameters:
-            config: A strategy configuration.
+        Raises:
+            KeyError: If the `strategy_type` is not valid.
 
         Returns:
-            The expected
-            [`make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy]
-            key-word-arguments (kwargs), meaning either a `field` or `index` key with
-            an appropriate value.
+            An enumeration instance representing the strategy type.
 
         """
-        if self.value == "download":
-            # index
-            return {
-                "index": (
-                    "scheme",
-                    config.downloadUrl.scheme if config.downloadUrl is not None else "",
-                )
-            }
+        return {
+            "scheme": cls.DOWNLOAD,
+            "filterType": cls.FILTER,
+            "mappingType": cls.MAPPING,
+            "mediaType": cls.PARSE,
+            "accessService": cls.RESOURCE,
+            "transformation_type": cls.TRANSFORMATION,
+        }[strategy_type]
 
-        # field
-        return {"field": self.map_to_field()}
+    @classmethod
+    @lru_cache
+    def init(cls, value: str) -> "StrategyType":
+        """Initialize a StrategyType with more than just the enumeration value.
+
+        This method allows one to also initialize a StrategyType with an actual
+        strategy type string, e.g., `scheme`, `mediaType`, etc.
+
+        Raises:
+            ValueError: As normal if the enumeration value is not valid.
+
+        """
+        try:
+            return cls.map_from_type(value)
+        except KeyError:
+            return cls(value)
 
 
 class StrategyFactory:
@@ -104,70 +111,81 @@ class StrategyFactory:
 
     """
 
-    strategy_create_func: "Dict[Tuple[str, ValueType], Type[IStrategy]]" = {}
+    strategy_create_func: "Dict[StrategyType, EntryPointStrategyCollection]" = {
+        strategy_type: get_strategy_entry_points(strategy_type.map_to_type())
+        for strategy_type in StrategyType
+    }
 
     @classmethod
     def make_strategy(
-        cls,
-        model: "StrategyConfig",
-        field: "Optional[str]" = None,
-        index: "Optional[Tuple[str, ValueType]]" = None,
+        cls, config: "StrategyConfig", strategy_type: "Union[StrategyType, str]"
     ) -> "IStrategy":
         """Instantiate a strategy in a context class.
 
         Parameters:
-            model: A strategy configuration.
-            field: The strategy index type, e.g., `"scheme"`, `"mediaType"` or similar.
-            index: A tuple of the `field` and a unique strategy name for the strategy
-                index type/`field`.
+            config: A strategy configuration.
+            strategy_type: The strategy type, e.g., `"scheme"`, `"mediaType"`, ... or
+                `"download"`, `"parse"`, ...
+
+        Raises:
+            NotImplementedError: If the strategy cannot be found.
+            ValueError: If the strategy type is not supported.
 
         Returns:
             An instantiated strategy. The strategy is instantiated with the provided
-            configuration, through the `model` parameter.
+            configuration, through the `config` parameter.
 
         """
+        if isinstance(strategy_type, str):
+            try:
+                strategy_type = StrategyType.init(strategy_type)
+            except ValueError as exc:
+                raise ValueError(
+                    f"Strategy type {strategy_type!r} is not supported."
+                ) from exc
+        elif not isinstance(strategy_type, StrategyType):
+            raise TypeError(
+                "strategy_type should be either of type StrategyType or a string."
+            )
 
-        try:
-            if not index and field:
-                index = (field, model.dict()[field])
-            elif not index:
-                raise ValueError("field or index must be specified.")
-            retval = cls.strategy_create_func[index]
-        except KeyError as err:
-            raise NotImplementedError(f"{index=!r} does not exist") from err
-        return retval(model)
+        strategy_name: str = cls._get_strategy_name(config, strategy_type)
+
+        if strategy_name in cls.strategy_create_func[strategy_type]:
+            return cls.strategy_create_func[strategy_type][
+                strategy_name
+            ].implementation(config)
+        raise NotImplementedError(
+            f"The {strategy_type.value} strategy {strategy_name!r} does not exist."
+        )
 
     @classmethod
-    def register(
-        cls, *args: "Tuple[str, ValueType]"
-    ) -> "Callable[[Any], Type[IStrategy]]":
-        """Register a strategy.
+    def _get_strategy_name(
+        cls,
+        config: "StrategyConfig",
+        strategy_type: StrategyType,
+    ) -> str:
+        """Return the strategy name through the config.
 
-        The identifier for the strategy is defined by a set of key-value tuple pairs.
+        This is a method to accommodate strategy type-specific quirks to retrieve the
+        strategy name.
+
+        Parameters:
+            config: A strategy configuration.
+            strategy_type: The strategy type as initialized in `make_strategy()`.
+
+        Returns:
+            The strategy name provided in the configuration.
+
         """
-
-        def decorator(strategy_class: "Type[IStrategy]") -> "Type[IStrategy]":
-            for index in args:
-                if index not in cls.strategy_create_func:
-                    print(f"Registering {strategy_class.__name__} with {index}")
-                    cls.strategy_create_func[index] = strategy_class
-                else:
-                    raise KeyError(f"{index=!r} is already registered.")
-            return strategy_class
-
-        return decorator
-
-    @classmethod
-    def unregister(cls, *args: "Tuple[str, ValueType]") -> None:
-        """Unregister a strategy."""
-        for index in args:
-            cls.strategy_create_func.pop(index, None)
+        if strategy_type == StrategyType.DOWNLOAD:
+            return config.downloadUrl.scheme if config.downloadUrl is not None else ""
+        return getattr(config, strategy_type.map_to_type(), "")
 
 
 def create_strategy(
     strategy_type: "Union[StrategyType, str]", config: "StrategyConfig"
 ) -> "IStrategy":
-    """General helper function to simplify creating any strategy.
+    """Proxy function for `StrategyFactory.make_strategy()`.
 
     Parameters:
         strategy_type: A valid strategy type.
@@ -184,9 +202,7 @@ def create_strategy(
         The created strategy.
 
     """
-    strategy_type = StrategyType(strategy_type)
-    strategy_kwargs = strategy_type.get_make_strategy_kwargs()
-    return StrategyFactory.make_strategy(model=config, **strategy_kwargs)
+    return StrategyFactory.make_strategy(config, strategy_type)
 
 
 def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
@@ -199,13 +215,7 @@ def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
         The created download strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(
-        config,
-        index=(
-            "scheme",
-            config.downloadUrl.scheme if config.downloadUrl is not None else "",
-        ),
-    )
+    strategy = StrategyFactory.make_strategy(config, StrategyType.DOWNLOAD)
     if not isinstance(strategy, IDownloadStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -224,7 +234,7 @@ def create_filter_strategy(config: "FilterConfig") -> IFilterStrategy:
         The created filter strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="filterType")
+    strategy = StrategyFactory.make_strategy(config, StrategyType.FILTER)
     if not isinstance(strategy, IFilterStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -243,7 +253,7 @@ def create_mapping_strategy(config: "MappingConfig") -> IMappingStrategy:
         The created mapping strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="mappingType")
+    strategy = StrategyFactory.make_strategy(config, StrategyType.MAPPING)
     if not isinstance(strategy, IMappingStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -262,7 +272,7 @@ def create_parse_strategy(config: "ResourceConfig") -> IParseStrategy:
         The created parse strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="mediaType")
+    strategy = StrategyFactory.make_strategy(config, StrategyType.PARSE)
     if not isinstance(strategy, IParseStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -281,7 +291,7 @@ def create_resource_strategy(config: "ResourceConfig") -> IResourceStrategy:
         The created resource strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="accessService")
+    strategy = StrategyFactory.make_strategy(config, StrategyType.RESOURCE)
     if not isinstance(strategy, IResourceStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
@@ -302,7 +312,7 @@ def create_transformation_strategy(
         The created transformation strategy.
 
     """
-    strategy = StrategyFactory.make_strategy(config, field="transformation_type")
+    strategy = StrategyFactory.make_strategy(config, StrategyType.TRANSFORMATION)
     if not isinstance(strategy, ITransformationStrategy):
         raise TypeError(
             "Got back unexpected type from `StrategyFactory.make_strategy`. "
