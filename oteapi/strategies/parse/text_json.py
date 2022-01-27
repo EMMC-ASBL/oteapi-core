@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from oteapi.datacache import DataCache
-from oteapi.plugins.factories import StrategyFactory, create_download_strategy
+from oteapi.plugins.factories import create_download_strategy
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
@@ -14,7 +14,6 @@ if TYPE_CHECKING:
 
 
 @dataclass
-@StrategyFactory.register(("mediaType", "text/json"))
 class JSONDataParseStrategy:
     """Parse strategy for JSON.
 

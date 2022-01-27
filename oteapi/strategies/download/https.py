@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING
 import requests
 
 from oteapi.datacache import DataCache
-from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
@@ -15,7 +14,6 @@ if TYPE_CHECKING:
 
 
 @dataclass
-@StrategyFactory.register(("scheme", "http"), ("scheme", "https"))
 class HTTPSStrategy:
     """Strategy for retrieving data via http.
 

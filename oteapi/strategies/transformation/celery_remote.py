@@ -9,7 +9,6 @@ from fastapi_plugins import RedisSettings
 from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
-from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
     from typing import Dict, Optional
@@ -28,7 +27,6 @@ class CeleryConfig(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("transformation_type", "celery/remote"))
 class CeleryRemoteStrategy:
     """Submit job to remote Celery runner.
 

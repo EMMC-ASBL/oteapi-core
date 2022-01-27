@@ -5,8 +5,6 @@ from typing import TYPE_CHECKING
 
 from PIL import Image
 
-from oteapi.plugins import StrategyFactory
-
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
@@ -14,15 +12,6 @@ if TYPE_CHECKING:
 
 
 @dataclass
-@StrategyFactory.register(
-    ("mediaType", "image/jpg"),
-    ("mediaType", "image/jpeg"),
-    ("mediaType", "image/j2p"),
-    ("mediaType", "image/png"),
-    ("mediaType", "image/gif"),
-    ("mediaType", "image/tiff"),
-    ("mediaType", "image/eps"),
-)
 class ImageDataParseStrategy:
     """Parse strategy for images.
 

@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING
 import pysftp
 
 from oteapi.datacache import DataCache
-from oteapi.plugins import StrategyFactory
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
@@ -17,7 +16,6 @@ if TYPE_CHECKING:
 
 
 @dataclass
-@StrategyFactory.register(("scheme", "sftp"), ("scheme", "ftp"))
 class SFTPStrategy:
     """Strategy for retrieving data via sftp.
 

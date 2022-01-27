@@ -4,8 +4,6 @@ import sqlite3
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from oteapi.plugins import StrategyFactory
-
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
@@ -29,7 +27,6 @@ def create_connection(db_file):
 
 
 @dataclass
-@StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
     """Parse strategy for SQLite.
 

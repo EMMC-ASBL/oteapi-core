@@ -8,7 +8,7 @@ from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
-from oteapi.plugins.factories import StrategyFactory, create_download_strategy
+from oteapi.plugins.factories import create_download_strategy
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Iterable
@@ -123,9 +123,6 @@ def get_column_indices(
 
 
 @dataclass
-@StrategyFactory.register(
-    ("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-)
 class XLSXParseStrategy:
     """Parse strategy for Excel XLSX files.
 

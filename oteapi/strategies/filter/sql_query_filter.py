@@ -5,8 +5,6 @@ from typing import TYPE_CHECKING
 
 from pydantic import BaseModel, Field
 
-from oteapi.plugins import StrategyFactory
-
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
@@ -20,7 +18,6 @@ class SqlQueryDataModel(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("filterType", "filter/sql"))
 class SQLQueryFilter:
     """Strategy for a SQL query filter.
 
