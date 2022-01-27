@@ -38,8 +38,8 @@ class FileConfig(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("scheme", "file"))
-class FileStrategy:
+@StrategyFactory.register(("uploadScheme", "file"))
+class FileUploadStrategy:
     """Strategy for writing data from a local file.
 
     **Registers strategies**:

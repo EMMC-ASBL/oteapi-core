@@ -1,4 +1,4 @@
-"""Test serialise strategies."""
+"""Test upload strategies."""
 import pytest
 
 
@@ -12,8 +12,8 @@ def datacache():
     cache.evict(tag="test")
 
 
-def test_serialise_json(datacache):
-    """Test `text/json` serialise strategy."""
+def test_upload_file(datacache):
+    """Test file upload strategy."""
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.plugins import create_strategy
 
@@ -28,13 +28,14 @@ def test_serialise_json(datacache):
     key = datacache.add(data, tag="test")
 
     config = ResourceConfig(
-        downloadUrl="xxx://not.used/",  # not used, but required!
-        mediaType="text/json",
+        accessUrl="file://tmp.txt",
+        accessService="<unused>",  # Not used!!!
         configuration={"accessKey": key},
     )
-    serialiser = create_strategy("serialise", config)
-    dct = serialiser.parse()
-    value = dct["key"]
+
+    serialiser = create_strategy("upload", config)
+    output = serialiser.parse()
+    value = output["key"]
     print(value)
 
     assert value == data

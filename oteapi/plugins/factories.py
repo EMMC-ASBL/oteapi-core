@@ -71,10 +71,10 @@ class StrategyType(Enum):
             "resource": "accessService",
             "serialise": "serialiseType",
             "transformation": "transformationType",
-            "upload": "uploadType",
+            "upload": "uploadScheme",
         }[self.value]
 
-    @lru_cache
+    # @lru_cache
     def get_make_strategy_kwargs(self, config: "StrategyConfig") -> "Dict[str, Any]":
         """Get `make_strategy` kwargs.
 
@@ -94,6 +94,14 @@ class StrategyType(Enum):
                 "index": (
                     "scheme",
                     config.downloadUrl.scheme if config.downloadUrl is not None else "",
+                )
+            }
+        if self.value == "upload":
+            # index
+            return {
+                "index": (
+                    "scheme",
+                    config.accessUrl.scheme if config.accessUrl is not None else "",
                 )
             }
 
@@ -132,7 +140,6 @@ class StrategyFactory:
             configuration, through the `model` parameter.
 
         """
-
         try:
             if not index and field:
                 index = (field, model.dict()[field])
@@ -191,7 +198,7 @@ def create_strategy(
 
     """
     strategy_type = StrategyType(strategy_type)
-    strategy_kwargs = strategy_type.get_make_strategy_kwargs()
+    strategy_kwargs = strategy_type.get_make_strategy_kwargs(config)
     return StrategyFactory.make_strategy(model=config, **strategy_kwargs)
 
 
