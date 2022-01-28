@@ -7,7 +7,7 @@ import requests
 
 from oteapi.datacache import DataCache
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig

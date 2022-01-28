@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from oteapi.datacache import DataCache
 from oteapi.plugins.factories import create_download_strategy
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig

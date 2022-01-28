@@ -8,7 +8,7 @@ from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
     from oteapi.models import ResourceConfig

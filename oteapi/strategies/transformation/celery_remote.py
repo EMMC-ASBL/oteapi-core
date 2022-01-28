@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Dict, Optional
 
     from oteapi.models import TransformationConfig

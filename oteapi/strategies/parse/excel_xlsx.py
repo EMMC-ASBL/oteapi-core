@@ -10,7 +10,7 @@ from pydantic import BaseModel, Extra, Field
 from oteapi.datacache import DataCache
 from oteapi.plugins.factories import create_download_strategy
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Iterable
 
     from openpyxl.worksheet.worksheet import Worksheet

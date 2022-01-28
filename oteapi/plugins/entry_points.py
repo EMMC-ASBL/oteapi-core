@@ -17,7 +17,7 @@ from functools import lru_cache
 from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
     from typing import Any, Iterable, Iterator, Optional, Set, Tuple, Type, Union
 

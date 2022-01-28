@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 from PIL import Image
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig

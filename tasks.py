@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 
 from invoke import task
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Tuple
 
     from invoke import Context, Result
@@ -153,7 +153,7 @@ def create_api_reference_docs(context, pre_clean=False, pre_commit=False):
     if pre_commit:
         # Check if there have been any changes.
         # List changes if yes.
-        if TYPE_CHECKING:
+        if TYPE_CHECKING:  # pragma: no cover
             context: "Context" = context
 
         # NOTE: grep returns an exit code of 1 if it doesn't find anything

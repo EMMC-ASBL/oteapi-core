@@ -14,7 +14,7 @@ from oteapi.interfaces import (
 )
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Dict, Union
 
     from oteapi.interfaces import IStrategy
