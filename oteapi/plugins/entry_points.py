@@ -117,7 +117,7 @@ class EntryPointStrategy:
     An entry point strategy is made unique by its "strategy", i.e., its
     (strategy type, strategy name)-tuple, e.g., `("download", "https")`.
     This tuple can be retrieved from the
-    [`strategy`][oteapi.plugins.entry_points.EntryPointsStrategy.strategy] property,
+    [`strategy`][oteapi.plugins.entry_points.EntryPointStrategy.strategy] property,
     where the strategy type is represented by the
     [`StrategyType`][oteapi.plugins.entry_points.StrategyType] enumeration.
 
