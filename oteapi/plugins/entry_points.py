@@ -13,6 +13,7 @@ import importlib
 import re
 from collections import abc
 from enum import Enum
+from functools import lru_cache
 from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
 
@@ -28,24 +29,114 @@ class EntryPointNotFound(Exception):
     point value."""
 
 
-class OteapiStrategyType(Enum):
-    """A valid OTE-API entry point group."""
+class StrategyType(Enum):
+    """An enumeration of available strategy types.
 
-    DOWNLOAD = "scheme"
-    FILTER = "filterType"
-    MAPPING = "mappingType"
-    PARSE = "mediaType"
-    RESOURCE = "accessService"
-    TRANSFORMATION = "transformation_type"
+    Available strategy types:
+
+    - download
+    - filter
+    - mapping
+    - parse
+    - resource
+    - transformation
+
+    """
+
+    DOWNLOAD = "download"
+    FILTER = "filter"
+    MAPPING = "mapping"
+    PARSE = "parse"
+    RESOURCE = "resource"
+    TRANSFORMATION = "transformation"
+
+    @lru_cache
+    def map_to_field(self) -> str:
+        """Map enumeration value to the strategy type's field."""
+        return {
+            "download": "scheme",
+            "filter": "filterType",
+            "mapping": "mappingType",
+            "parse": "mediaType",
+            "resource": "accessService",
+            "transformation": "transformation_type",
+        }[self.value]
 
     @classmethod
+    @lru_cache
+    def map_from_field(cls, strategy_type_field: str) -> "StrategyType":
+        """Map the strategy type's field to enumeration.
+
+        Parameters:
+            strategy_type_field: The strategy type's field. E.g., `scheme` for
+                `download`.
+
+        Raises:
+            KeyError: If the `strategy_type_field` is not valid.
+
+        Returns:
+            An enumeration instance representing the strategy type's field.
+
+        """
+        return {
+            "scheme": cls.DOWNLOAD,
+            "filterType": cls.FILTER,
+            "mappingType": cls.MAPPING,
+            "mediaType": cls.PARSE,
+            "accessService": cls.RESOURCE,
+            "transformation_type": cls.TRANSFORMATION,
+        }[strategy_type_field]
+
+    @classmethod
+    @lru_cache
+    def init(cls, value: str) -> "StrategyType":
+        """Initialize a StrategyType with more than just the enumeration value.
+
+        This method allows one to also initialize a StrategyType with an actual
+        strategy type string, e.g., `scheme`, `mediaType`, etc.
+
+        Raises:
+            ValueError: As normal if the enumeration value is not valid.
+
+        """
+        try:
+            return cls.map_from_field(value)
+        except KeyError:
+            return cls(value)
+
+    @classmethod
+    @lru_cache
     def all_values(cls) -> "Tuple[str, ...]":
-        """Return all enumeration values."""
+        """Return all values."""
         return tuple(_.value for _ in cls)
 
 
 class EntryPointStrategy:
     """A strategy realized from an entry point.
+
+    An entry point strategy is made unique by its "strategy", i.e., its
+    (strategy type, strategy name)-tuple, e.g., `("download", "https")`.
+    This tuple can be retrieved from the
+    [`strategy`][oteapi.plugins.entry_points.EntryPointsStrategy.strategy] property,
+    where the strategy type is represented by the
+    [`StrategyType`][oteapi.plugins.entry_points.StrategyType] enumeration.
+
+    Note:
+        It may be that in the future an entry points strategy is made unique by
+        its "full name" instead, i.e., the entry point group + the entry points name,
+        e.g., `oteapi.download:oteapi.https`.
+        This value can be retrieved from the
+        [`full_name`][oteapi.plugins.entry_points.EntryPointStrategy.full_name]
+        property.
+
+        This is a condition for uniqueness that is considered to be a superset of the
+        current condition for uniqueness.
+        It adds an extra package-specific uniqueness trait, allowing for different
+        packages to implement the same strategies (which is currently not allowed
+        according to the condition of uniqueness explained above).
+
+        Currently there is no consensus on the API for handling this added strategy
+        ambiguity.
 
     Raises:
         ValueError: If the entry point name is not properly defined.
@@ -53,7 +144,7 @@ class EntryPointStrategy:
     """
 
     ENTRY_POINT_NAME_REGEX = re.compile(
-        r"^(?P<package_name>[a-z_]+)" r"\.(?P<strategy_name>.+)$"
+        r"^(?P<package_name>[a-z_]+)\.(?P<strategy_name>.+)$"
     )
     ENTRY_POINT_NAME_SEPARATOR = ":"
 
@@ -68,11 +159,11 @@ class EntryPointStrategy:
             )
 
         self._match = match
-        self._type = OteapiStrategyType(self._entry_point.group[len("oteapi.") :])
+        self._type = StrategyType(self._entry_point.group[len("oteapi.") :])
         self._implementation: "Optional[Type[IStrategy]]" = None
 
     @property
-    def type(self) -> OteapiStrategyType:
+    def type(self) -> StrategyType:
         """The strategy type.
 
         One part of the (strategy type, strategy name)-tuple.
@@ -88,7 +179,7 @@ class EntryPointStrategy:
         return self._match.group("strategy_name")
 
     @property
-    def strategy(self) -> "Tuple[OteapiStrategyType, str]":
+    def strategy(self) -> "Tuple[StrategyType, str]":
         """The unique index identifier for the strategy."""
         return self.type, self.name
 
@@ -108,8 +199,10 @@ class EntryPointStrategy:
         return f"{self._entry_point.group}{self.ENTRY_POINT_NAME_SEPARATOR}{self._entry_point.name}"
 
     def __str__(self) -> str:
-        """String representation for EntryPointStrategy."""
         return self.full_name
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(entry_point={self._entry_point!r})"
 
     @property
     def implementation_name(self) -> str:
@@ -135,9 +228,9 @@ class EntryPointStrategy:
         already implemented in the `importlib` API.
 
         Raises:
-            oteapi.plugins.plugins.EntryPointNotFound: If the strategy implementation
-                (class) the entry point is pointing to cannot be found in the module or
-                if the module cannot be imported.
+            EntryPointNotFound: If the strategy implementation (class) the entry point
+                is pointing to cannot be found in the module or if the module cannot be
+                imported.
 
         Returns:
             The imported strategy implementation (class).
@@ -157,10 +250,18 @@ class EntryPointStrategy:
             f"{self.implementation_name} cannot be found in {self.module}"
         )
 
+    def __eq__(self, other: "Any") -> bool:
+        if isinstance(other, self.__class__):
+            return hash(self) == hash(other)
+        return False
+
+    def __hash__(self) -> int:
+        return hash(self.strategy)
+
 
 class EntryPointStrategyCollection(abc.Collection):
     """A collection of
-    [`EntryPointStrategy`][oteapi.plugins.plugins.EntryPointStrategy]s."""
+    [`EntryPointStrategy`][oteapi.plugins.entry_points.EntryPointStrategy]s."""
 
     def __init__(
         self, entry_points: "Optional[Iterable[EntryPointStrategy]]" = None
@@ -170,15 +271,28 @@ class EntryPointStrategyCollection(abc.Collection):
         )
 
     def add(self, *entry_points: EntryPointStrategy) -> None:
-        """Add entry points to the collection."""
+        """Add entry points to the collection.
+
+        Parameters:
+            entry_points: Entry points to add to the collection.
+
+        """
         self._entry_points |= set(entry_points)
 
     def remove(self, *entry_points: EntryPointStrategy) -> None:
-        """Remove entry points from the collection."""
+        """Remove entry points from the collection.
+
+        Parameters:
+            entry_points: Entry points to remove from the collection.
+
+        """
         self._entry_points -= set(entry_points)
 
     def exclusive_add(self, *entry_points: EntryPointStrategy) -> None:
         """Exclusively add entry points to the collection.
+
+        Parameters:
+            entry_points: Entry points to add to the collection.
 
         Raises:
             KeyError: If an entry point to be added already exists in the collection.
@@ -190,7 +304,6 @@ class EntryPointStrategyCollection(abc.Collection):
             self.add(entry_point)
 
     def __len__(self) -> int:
-        """Total number of entry points in the collection."""
         return len(self._entry_points)
 
     def __contains__(self, item: "Any") -> bool:
@@ -198,6 +311,14 @@ class EntryPointStrategyCollection(abc.Collection):
 
         One can test with an `EntryPointStrategy` or a string of an entry point
         strategy's name or full name.
+
+        Parameters:
+            item: Item to test whether it is contained in the collection.
+
+        Returns:
+            Whether or not `item` is contained in the collection.
+            If the `item` is an unrecognized type, `False` will be returned.
+
         """
         if isinstance(item, EntryPointStrategy):
             return item in self._entry_points
@@ -210,19 +331,9 @@ class EntryPointStrategyCollection(abc.Collection):
         return False
 
     def __iter__(self) -> "Iterator[EntryPointStrategy]":
-        """Return an iterator for the contained entry points."""
         yield from self._entry_points
 
     def __getitem__(self, key: "Any") -> EntryPointStrategy:
-        """Return an entry point item in the collection.
-
-        Raises:
-            KeyError: If an entry point cannot be found in the collection.
-
-        Returns:
-            An entry point in the collection representing the key.
-
-        """
         return self.get_entry_point(key)
 
     def get_entry_point(
@@ -271,21 +382,46 @@ class EntryPointStrategyCollection(abc.Collection):
             "_get_entry_point method."
         )
 
+    def __eq__(self, other: "Any") -> bool:
+        if isinstance(other, self.__class__):
+            return hash(self) == hash(other)
+        return False
+
+    def __hash__(self) -> int:
+        return hash(self._entry_points)
+
+    def __str__(self) -> str:
+        return (
+            f"<{self.__class__.__name__}: Length={len(self)} "
+            f"Strategy type(s)={','.join(_.type.value for _ in self._entry_points)}>"
+        )
+
+    def __repr__(self) -> str:
+        return f"{self.__class__.__name__}(entry_points=*{self._entry_points!r})"
+
 
 def get_strategy_entry_points(
-    strategy_type: "Union[OteapiStrategyType, str]",
+    strategy_type: "Union[StrategyType, str]",
+    enforce_uniqueness: bool = True,
 ) -> EntryPointStrategyCollection:
     """Retrieve all entry points from a specific strategy type.
 
     Raises:
         ValueError: If the strategy type is not supported.
+        KeyError: If `enforce_uniqueness` is `True` and an entry point strategy is
+            duplicated.
+
+    Parameters:
+        strategy_type: A strategy type for which the entry points will be retrieved.
+        enforce_uniqueness: Whether or not duplicate entry point strategies are
+            allowed. Defaults to `True`, meaning duplicates are *not* allowed.
 
     Returns:
         A collection of entry points for the specific strategy type.
 
     """
     try:
-        strategy_type = OteapiStrategyType(strategy_type)
+        strategy_type = StrategyType(strategy_type)
     except ValueError as exc:
         raise ValueError(
             "Strategy type "
@@ -298,5 +434,10 @@ def get_strategy_entry_points(
         if group.startswith("oteapi.") and group[len("oteapi.") :] == str(
             strategy_type.value
         ):
-            collection.add(*(EntryPointStrategy(_) for _ in oteapi_entry_points))
+            if enforce_uniqueness:
+                collection.exclusive_add(
+                    *(EntryPointStrategy(_) for _ in oteapi_entry_points)
+                )
+            else:
+                collection.add(*(EntryPointStrategy(_) for _ in oteapi_entry_points))
     return collection

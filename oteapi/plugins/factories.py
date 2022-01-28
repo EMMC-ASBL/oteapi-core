@@ -2,8 +2,6 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
-from enum import Enum
-from functools import lru_cache
 from typing import TYPE_CHECKING
 
 from oteapi.interfaces import (
@@ -14,7 +12,7 @@ from oteapi.interfaces import (
     IResourceStrategy,
     ITransformationStrategy,
 )
-from oteapi.plugins.entry_points import get_strategy_entry_points
+from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:
     from typing import Dict, Union
@@ -30,91 +28,16 @@ if TYPE_CHECKING:
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
 
 
-class StrategyType(Enum):
-    """An enumeration of available strategy types.
-
-    Available strategy types:
-
-    - download
-    - filter
-    - mapping
-    - parse
-    - resource
-    - transformation
-
-    """
-
-    DOWNLOAD = "download"
-    FILTER = "filter"
-    MAPPING = "mapping"
-    PARSE = "parse"
-    RESOURCE = "resource"
-    TRANSFORMATION = "transformation"
-
-    @lru_cache
-    def map_to_type(self) -> str:
-        """Map enumeration value to strategy type."""
-        return {
-            "download": "scheme",
-            "filter": "filterType",
-            "mapping": "mappingType",
-            "parse": "mediaType",
-            "resource": "accessService",
-            "transformation": "transformation_type",
-        }[self.value]
-
-    @classmethod
-    @lru_cache
-    def map_from_type(cls, strategy_type: str) -> "StrategyType":
-        """Map strategy type to enumeration.
-
-        Raises:
-            KeyError: If the `strategy_type` is not valid.
-
-        Returns:
-            An enumeration instance representing the strategy type.
-
-        """
-        return {
-            "scheme": cls.DOWNLOAD,
-            "filterType": cls.FILTER,
-            "mappingType": cls.MAPPING,
-            "mediaType": cls.PARSE,
-            "accessService": cls.RESOURCE,
-            "transformation_type": cls.TRANSFORMATION,
-        }[strategy_type]
-
-    @classmethod
-    @lru_cache
-    def init(cls, value: str) -> "StrategyType":
-        """Initialize a StrategyType with more than just the enumeration value.
-
-        This method allows one to also initialize a StrategyType with an actual
-        strategy type string, e.g., `scheme`, `mediaType`, etc.
-
-        Raises:
-            ValueError: As normal if the enumeration value is not valid.
-
-        """
-        try:
-            return cls.map_from_type(value)
-        except KeyError:
-            return cls(value)
-
-
 class StrategyFactory:
     """Decorator-based Factory class.
 
     Attributes:
-        strategy_create_func: A local cache of all registerred strategies with their
-            accompanying class.
+        strategy_create_func (Dict[StrategyType, EntryPointStrategyCollection]): An
+            in-memory cache of all registered strategies.
 
     """
 
-    strategy_create_func: "Dict[StrategyType, EntryPointStrategyCollection]" = {
-        strategy_type: get_strategy_entry_points(strategy_type.map_to_type())
-        for strategy_type in StrategyType
-    }
+    strategy_create_func: "Dict[StrategyType, EntryPointStrategyCollection]"
 
     @classmethod
     def make_strategy(
@@ -179,7 +102,53 @@ class StrategyFactory:
         """
         if strategy_type == StrategyType.DOWNLOAD:
             return config.downloadUrl.scheme if config.downloadUrl is not None else ""
-        return getattr(config, strategy_type.map_to_type(), "")
+        return getattr(config, strategy_type.map_to_field(), "")
+
+    @classmethod
+    def load_strategies(cls, test_for_uniqueness: bool = True) -> None:
+        """Load strategies from entry points and store in class attribute.
+
+        Important:
+            This is not a cached method.
+            The importlib.metadata API will be re-requested to load the entry points
+            and strategies.
+
+        Note:
+            This does *not* import the actual strategy implementations (classes).
+            It only loads the strategies from the registerred OTE-API entry points.
+
+        Raises:
+            KeyError: If `test_for_uniqueness` is `True` and an entry point strategy is
+                duplicated.
+
+        Parameters:
+            test_for_uniqueness: If `True`, this will raise `KeyError` should an entry
+                point strategy be duplicated. Otherwise, the first loaded entry point
+                strategy will silently become the implementation of choice for the
+                duplicated strategy and the duplicates will be ignored.
+
+        """
+        cls.strategy_create_func = {
+            strategy_type: get_strategy_entry_points(
+                strategy_type, enforce_uniqueness=test_for_uniqueness
+            )
+            for strategy_type in StrategyType
+        }
+
+
+def load_strategies(test_for_uniqueness: bool = True) -> None:
+    # pylint: disable=line-too-long
+    """Proxy function for
+    [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].
+
+    Parameters:
+        test_for_uniqueness: If `True`, this will raise `KeyError` should an entry
+            point strategy be duplicated. Otherwise, the first loaded entry point
+            strategy will silently become the implementation of choice for the
+            duplicated strategy and the duplicates will be ignored.
+
+    """
+    StrategyFactory.load_strategies(test_for_uniqueness)
 
 
 def create_strategy(
