@@ -28,6 +28,11 @@ if TYPE_CHECKING:  # pragma: no cover
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
 
 
+class StrategiesNotLoaded(Exception):
+    """Entry point strategies have not been loaded, run
+    [`load_strategies()`][oteapi.plugins.factories.load_strategies]."""
+
+
 class StrategyFactory:
     """Decorator-based Factory class.
 
@@ -53,12 +58,19 @@ class StrategyFactory:
         Raises:
             NotImplementedError: If the strategy cannot be found.
             ValueError: If the strategy type is not supported.
+            StrategiesNotLoaded: If the entry point strategies have not been loaded.
 
         Returns:
             An instantiated strategy. The strategy is instantiated with the provided
             configuration, through the `config` parameter.
 
         """
+        if not hasattr(cls, "strategy_create_func"):
+            raise StrategiesNotLoaded(
+                "Strategies have not been loaded, run `load_strategies()` or "
+                "`StrategyFactory.load_strategies()`."
+            )
+
         if isinstance(strategy_type, str):
             try:
                 strategy_type = StrategyType.init(strategy_type)
