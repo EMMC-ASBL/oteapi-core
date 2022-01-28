@@ -14,7 +14,7 @@ from oteapi.interfaces import (
     IResourceStrategy,
     ITransformationStrategy,
 )
-from oteapi.plugins.plugins import get_strategy_entry_points
+from oteapi.plugins.entry_points import get_strategy_entry_points
 
 if TYPE_CHECKING:
     from typing import Dict, Union
@@ -27,7 +27,7 @@ if TYPE_CHECKING:
         StrategyConfig,
         TransformationConfig,
     )
-    from oteapi.plugins.plugins import EntryPointStrategyCollection
+    from oteapi.plugins.entry_points import EntryPointStrategyCollection
 
 
 class StrategyType(Enum):

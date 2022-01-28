@@ -1,4 +1,14 @@
-"""Plugin loader."""
+"""Load plugins through entry points.
+
+This module deals with handling all plugged in strategies through the entry points API
+and importlib metadata API.
+
+Special functionality is put in place to handle the OTE-API-specific entry points.
+
+Since the entry points are information complete in and of themselves, there is no need
+to import actual strategy classes until they are truly needed.
+This therefore implements lazy loading of all plugin strategies.
+"""
 import importlib
 import re
 from collections import abc
