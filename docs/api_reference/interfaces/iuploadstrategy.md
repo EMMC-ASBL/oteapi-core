@@ -1,0 +1,3 @@
+# iuploadstrategy
+
+::: oteapi.interfaces.iuploadstrategy

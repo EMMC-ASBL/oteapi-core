@@ -33,8 +33,8 @@ def test_upload_file(datacache):
         configuration={"accessKey": key},
     )
 
-    serialiser = create_strategy("upload", config)
-    output = serialiser.parse()
+    uploader = create_strategy("upload", config)
+    output = uploader.get()
     value = output["key"]
     print(value)
 

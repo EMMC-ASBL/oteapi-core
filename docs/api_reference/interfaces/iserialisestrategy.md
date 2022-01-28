@@ -1,0 +1,3 @@
+# iserialisestrategy
+
+::: oteapi.interfaces.iserialisestrategy

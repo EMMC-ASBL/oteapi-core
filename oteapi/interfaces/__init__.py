@@ -11,7 +11,9 @@ from .ifilterstrategy import IFilterStrategy
 from .imappingstrategy import IMappingStrategy
 from .iparsestrategy import IParseStrategy
 from .iresourcestrategy import IResourceStrategy
+from .iserialisestrategy import ISerialiseStrategy
 from .itransformationstrategy import ITransformationStrategy
+from .iuploadstrategy import IUploadStrategy
 
 __all__ = (
     "IDownloadStrategy",
@@ -19,8 +21,10 @@ __all__ = (
     "IMappingStrategy",
     "IParseStrategy",
     "IResourceStrategy",
+    "ISerialiseStrategy",
     "IStrategy",
     "ITransformationStrategy",
+    "IUploadStrategy",
 )
 
 IStrategy = Union[
@@ -29,5 +33,7 @@ IStrategy = Union[
     IMappingStrategy,
     IParseStrategy,
     IResourceStrategy,
+    ISerialiseStrategy,
     ITransformationStrategy,
+    IUploadStrategy,
 ]
