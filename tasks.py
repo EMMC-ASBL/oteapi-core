@@ -27,10 +27,6 @@ def update_file(filename: Path, sub_line: "Tuple[str, str]", strip: str = None) 
     ]
     filename.write_text("\n".join(lines) + "\n", encoding="utf8")
 
-    # with open(filename, "w", encoding="utf8") as handle:
-    #     handle.write("\n".join(lines))
-    #     handle.write("\n")
-
 
 @task(help={"ver": "oteapi-core version to set"})
 def setver(_, ver=""):
