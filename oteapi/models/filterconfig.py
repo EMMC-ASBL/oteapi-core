@@ -1,10 +1,12 @@
 """Pydantic Filter Configuration Data Model."""
 from typing import Dict, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from oteapi.models.genericconfig import GenericConfig
 
 
-class FilterConfig(BaseModel):
+class FilterConfig(GenericConfig):
     """Filter Strategy Data Configuration."""
 
     filterType: str = Field(

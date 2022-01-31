@@ -10,6 +10,8 @@ from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
+from oteapi.models.genericconfig import GenericConfig
+
 
 class PriorityEnum(str, Enum):
     """Defining process priority enumerators.
@@ -27,7 +29,7 @@ class PriorityEnum(str, Enum):
     HIGH = "High"
 
 
-class TransformationConfig(BaseModel):
+class TransformationConfig(GenericConfig):
     """Transformation Strategy Data Configuration."""
 
     transformation_type: str = Field(

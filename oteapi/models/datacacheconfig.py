@@ -1,10 +1,12 @@
 """Pydantic DataCache Configuration Data Model."""
 from pathlib import Path
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from oteapi.models.genericconfig import GenericConfig
 
 
-class DataCacheConfig(BaseModel):
+class DataCacheConfig(GenericConfig):
     """DataCache Configuration."""
 
     cacheDir: Path = Field("oteapi", description="Cache directory.")
