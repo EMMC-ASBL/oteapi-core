@@ -53,7 +53,7 @@ class GenericConfig(BaseModel):
         """Enable write access through subscription."""
         if key in self.__dict__:
             target_type = type(self.__dict__[key])
-            if not value.isinstance(target_type):
+            if not isinstance(value, target_type):
                 raise TypeError(
                     "Mapped value must be subclass of " + target_type.__name__
                 )
