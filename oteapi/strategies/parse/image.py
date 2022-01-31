@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 @StrategyFactory.register(
     ("mediaType", "image/jpg"),
     ("mediaType", "image/jpeg"),
-    ("mediaType", "image/j2p"),
+    ("mediaType", "image/jp2"),
     ("mediaType", "image/png"),
     ("mediaType", "image/gif"),
     ("mediaType", "image/tiff"),
@@ -30,7 +30,7 @@ class ImageDataParseStrategy:
 
     - `("mediaType", "image/jpg")`
     - `("mediaType", "image/jpeg")`
-    - `("mediaType", "image/j2p")`
+    - `("mediaType", "image/jp2")`
     - `("mediaType", "image/png")`
     - `("mediaType", "image/gif")`
     - `("mediaType", "image/tiff")`
