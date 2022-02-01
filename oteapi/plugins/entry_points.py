@@ -89,7 +89,7 @@ class StrategyType(Enum):
 
     @classmethod
     @lru_cache
-    def init(cls, value: str) -> "StrategyType":
+    def init(cls, value: "Union[str, StrategyType]") -> "StrategyType":
         """Initialize a StrategyType with more than just the enumeration value.
 
         This method allows one to also initialize a StrategyType with an actual
@@ -258,14 +258,39 @@ class EntryPointStrategy:
     def __hash__(self) -> int:
         return hash(self.strategy)
 
+    def __lt__(self, other: "Any") -> bool:
+        """Whether or not `self` is less than (`<`) `other`.
+
+        This is implemented to allow sorting (using `sorted()`).
+
+        The inequality is determined on the basis of the following properties:
+
+        1. [`type`][oteapi.plugins.entry_points.EntryPointStrategy.type]
+        2. [`package`][oteapi.plugins.entry_points.EntryPointStrategy.package]
+        3. [`name`][oteapi.plugins.entry_points.EntryPointStrategy.name]
+
+        Going from highest priority to lowest and in alphabetical ascending order.
+        """
+        if isinstance(other, self.__class__):
+            if self.type == other.type:
+                if self.package == other.package:
+                    if self.name == other.name:
+                        # Considered equal, i.e., one can by definition not be unequal
+                        # with the other.
+                        return False
+                    return sorted([self.name, other.name])[0] == self.name
+                return sorted([self.package, other.package])[0] == self.package
+            return sorted([self.type.value, other.type.value])[0] == self.type.value
+        raise NotImplementedError(
+            f"Less than comparison is not implemented for {type(other)} type objects."
+        )
+
 
 class EntryPointStrategyCollection(abc.Collection):
     """A collection of
     [`EntryPointStrategy`][oteapi.plugins.entry_points.EntryPointStrategy]s."""
 
-    def __init__(
-        self, entry_points: "Optional[Iterable[EntryPointStrategy]]" = None
-    ) -> None:
+    def __init__(self, *entry_points: "EntryPointStrategy") -> None:
         self._entry_points: "Set[EntryPointStrategy]" = (
             set(entry_points) if entry_points else set()
         )
@@ -388,7 +413,7 @@ class EntryPointStrategyCollection(abc.Collection):
         return False
 
     def __hash__(self) -> int:
-        return hash(self._entry_points)
+        return hash(tuple(_ for _ in sorted(self._entry_points)))
 
     def __str__(self) -> str:
         return (
@@ -397,7 +422,7 @@ class EntryPointStrategyCollection(abc.Collection):
         )
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(entry_points=*{self._entry_points!r})"
+        return f"{self.__class__.__name__}(*{self._entry_points!r})"
 
 
 def get_strategy_entry_points(
