@@ -109,11 +109,10 @@ class DataCache:
             cache_dir = self.config.cacheDir
         if isinstance(cache_dir, str):
             cache_dir = Path(cache_dir)
-        if cache_dir.is_absolute():  # type: ignore[union-attr]
+        if cache_dir.is_absolute():
             self.cache_dir = cache_dir
         else:
-            temp_path = Path(tempfile.gettempdir()).resolve()
-            self.cache_dir = temp_path / cache_dir  # type: ignore[operator]
+            self.cache_dir = Path(tempfile.gettempdir()).resolve() / cache_dir
 
         self.diskcache = DiskCache(directory=self.cache_dir)
 
@@ -170,7 +169,7 @@ class DataCache:
             expire = self.config.expireTime
 
         self.diskcache.set(key, value, expire=expire, tag=tag)
-        return key  # type: ignore[return-value]
+        return key
 
     def get(self, key: str) -> "Any":
         """Return the value corresponding to `key`.
