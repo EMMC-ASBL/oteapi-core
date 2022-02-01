@@ -64,15 +64,12 @@ class ResourceConfig(GenericConfig):
             "A rights statement that concerns how the distribution is accessed."
         ),
     )
-    description: Optional[str] = Field(
-        None, description="A free-text account of the distribution."
-    )
     publisher: Optional[str] = Field(
         None,
         description="The entity responsible for making the resource/item available.",
     )
     configuration: DataCacheConfig = Field(
-        {},
+        DataCacheConfig(),
         description="Resource-specific configuration options given as key/value-pairs.",
     )
 

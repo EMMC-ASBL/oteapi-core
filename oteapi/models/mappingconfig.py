@@ -25,7 +25,3 @@ class MappingConfig(GenericConfig):
         None,
         description="List of semantic triples given as (subject, predicate, object).",
     )
-    configuration: Optional[Dict] = Field(
-        None,
-        description="Mapping-specific configuration options given as key/value-pairs.",
-    )

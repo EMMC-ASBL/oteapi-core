@@ -1,36 +1,17 @@
 """Generic data model for configuration attributes."""
-from typing import Any
+from typing import Any, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
-class GenericConfig(BaseModel):
-    """Generic class for configuration objects.
+class AttrDict(BaseModel):
+    """An object whose attributes can also be accessed through
+    subscription, like with a dictionary."""
 
-    The goal of this class is that objects of the class can be treated
-    both like a BaseModel and like a dictionary, e.g. subscripted.
-    """
+    class Config:
+        """Class for configuration of pydantic models."""
 
-    def __init__(self, **kwargs) -> None:
-        """Initializer from dictionary."""
-        super().__init__(**kwargs)
-        for key, value in kwargs.items():
-            # Attributes have been set by the call to super() above
-            if not self.__contains__(key):
-                self.__dict__[key] = value
-
-    def __call__(self, *args, **kwargs) -> Any:
-        """Enable calling the function in args[0]."""
-        func = args[0]
-        if func in dir(self):
-            # This object has this function
-            found = getattr(self, func)
-        elif func in dir(dict):
-            # The dictionary representation has the function
-            found = getattr(dict(self), func)
-        else:
-            raise AttributeError(func)
-        return found(*args[1:], **kwargs)
+        extra = "allow"
 
     def __contains__(self, name: Any) -> bool:
         """Enable using the 'in' operator on this object."""
@@ -58,3 +39,22 @@ class GenericConfig(BaseModel):
                     "Mapped value must be subclass of " + target_type.__name__
                 )
         self.__dict__[key] = value
+
+
+class GenericConfig(AttrDict):
+    """Generic class for configuration objects."""
+
+    configuration: Optional[AttrDict] = Field(
+        None,
+        description="Model-specific configuration options which can either "
+        "be given as key/value-pairs or set as attributes.",
+    )
+
+    description: str = Field(
+        __doc__,
+        description="A description of the configuration model.",
+    )
+
+    @classmethod
+    def __init_subclass__(cls) -> None:
+        cls.__fields__["description"].default = cls.__doc__

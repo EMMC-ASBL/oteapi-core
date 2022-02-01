@@ -1,5 +1,5 @@
 """Pydantic Filter Configuration Data Model."""
-from typing import Dict, Optional
+from typing import Optional
 
 from pydantic import Field
 
@@ -19,8 +19,4 @@ class FilterConfig(GenericConfig):
     )
     limit: Optional[int] = Field(
         None, description="Number of items remaining after a filter expression."
-    )
-    configuration: Optional[Dict] = Field(
-        None,
-        description="Filter-specific configuration options given as key/value-pairs.",
     )
