@@ -334,8 +334,8 @@ class EntryPointStrategyCollection(abc.Collection):
     def __contains__(self, item: "Any") -> bool:
         """Whether or not `item` is contained in the collection.
 
-        One can test with an `EntryPointStrategy` or a string of an entry point
-        strategy's name or full name.
+        One can test with an `EntryPointStrategy`, a string of an entry point
+        strategy's full name, or a tuple of an entry point's strategy type and name.
 
         Parameters:
             item: Item to test whether it is contained in the collection.
@@ -349,9 +349,23 @@ class EntryPointStrategyCollection(abc.Collection):
             return item in self._entry_points
         if isinstance(item, str):
             for entry_point in self._entry_points:
-                if item in (entry_point.name, entry_point.full_name):
+                if item == entry_point.full_name:
                     return True
-            return False
+        if isinstance(item, tuple):
+            if len(item) != 2 or (
+                not isinstance(item[0], (StrategyType, str))
+                or not isinstance(item[1], str)
+            ):
+                # Only tuples of type (Union[StrategyType, str], str) are allowed.
+                return False
+            try:
+                item_ = (StrategyType.init(item[0]), item[1])
+            except ValueError:
+                # We only want to return True or False
+                return False
+            for entry_point in self._entry_points:
+                if item_ == entry_point.strategy:
+                    return True
         # For any other type:
         return False
 
@@ -362,7 +376,8 @@ class EntryPointStrategyCollection(abc.Collection):
         return self.get_entry_point(key)
 
     def get_entry_point(
-        self, key: "Union[EntryPointStrategy, str]"
+        self,
+        key: "Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]",
     ) -> EntryPointStrategy:
         """Retrieve an entry point from the collection.
 
@@ -373,14 +388,18 @@ class EntryPointStrategyCollection(abc.Collection):
             An entry point in the collection representing the key.
 
         """
-        if isinstance(key, (EntryPointStrategy, str)):
+        if isinstance(key, (EntryPointStrategy, str, tuple)):
             if key not in self:
                 raise KeyError(f"{key} not found in {self}")
             return self._get_entry_point(key)
-        raise TypeError("key should either of type EntryPointStrategy or a string.")
+        raise TypeError(
+            "key should either be of type EntryPointStrategy, a string of the full "
+            "name or a strategy tuple."
+        )
 
     def _get_entry_point(
-        self, key: "Union[EntryPointStrategy, str]"
+        self,
+        key: "Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]",
     ) -> EntryPointStrategy:
         """Helper method for retrieving an entry point from the collection.
 
@@ -400,7 +419,12 @@ class EntryPointStrategyCollection(abc.Collection):
             return key
         if isinstance(key, str):
             for entry_point in self._entry_points:
-                if key in (entry_point.name, entry_point.full_name):
+                if key == entry_point.full_name:
+                    return entry_point
+        if isinstance(key, tuple):
+            key_ = (StrategyType(key[0]), key[1])
+            for entry_point in self._entry_points:
+                if key_ == entry_point.strategy:
                     return entry_point
         raise RuntimeError(
             f"{key} not found in {self}, which is a requirement for the "
@@ -416,10 +440,14 @@ class EntryPointStrategyCollection(abc.Collection):
         return hash(tuple(_ for _ in sorted(self._entry_points)))
 
     def __str__(self) -> str:
-        return (
-            f"<{self.__class__.__name__}: Length={len(self)} "
-            f"Strategy type(s)={','.join(_.type.value for _ in self._entry_points)}>"
-        )
+        res = {}  # type: ignore[var-annotated]
+        for _ in self._entry_points:
+            if _.type.value in res:
+                res[_.type.value] += 1
+            else:
+                res[_.type.value] = 1
+        res = (f"{key} ({value})" for key, value in res.items())
+        return f"<{self.__class__.__name__}: " f"Strategies={', '.join(res)}>"
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(*{self._entry_points!r})"

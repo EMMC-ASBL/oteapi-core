@@ -97,7 +97,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
                 file.
 
         Returns:
-            An `importlib.metadata.EntryPoint` from the information given in
+            A tuple of `importlib.metadata.EntryPoint`s from the information given in
             `entry_point`.
 
         """
