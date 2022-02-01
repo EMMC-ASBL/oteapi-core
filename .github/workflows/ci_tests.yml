@@ -73,8 +73,10 @@ jobs:
     - name: Run pylint - tests
       run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621 -- tests
 
+    # Ignore ID 44715 for now.
+    # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
     - name: Run safety
-      run: pip freeze | safety check --stdin
+      run: pip freeze | safety check --stdin --ignore 44715
 
   pytest-linux:
     runs-on: ubuntu-latest
