@@ -21,6 +21,8 @@ class AttrDict(BaseModel):
         """Enable deletion access through subscription."""
         if key in dir(self):
             self.__delattr__(key)
+            del self.__fields__[key]
+            self.__fields_set__.remove(key)  # pylint: disable=no-member
         else:
             raise KeyError(key)
 
@@ -30,18 +32,22 @@ class AttrDict(BaseModel):
             return getattr(self, key)
         raise KeyError(key)
 
-    def __setitem__(self, key: str, value: Any) -> None:
-        """Enable write access through subscription."""
-        if key in self.__dict__:
-            target_type = type(self.__dict__[key])
+    def __setattr__(self, name: str, value: Any) -> None:
+        """Extend BaseModel.__setattr__ with type-checking."""
+        if name in self.__dict__ and self.__dict__[name]:
+            target_type = type(self.__dict__[name])
             if not isinstance(value, target_type):
                 raise TypeError(
                     "Mapped value must be subclass of " + target_type.__name__
                 )
-        self.__dict__[key] = value
+        super().__setattr__(name, value)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        """Enable write access through subscription."""
+        self.__setattr__(key, value)
 
 
-class GenericConfig(AttrDict):
+class GenericConfig(BaseModel):
     """Generic class for configuration objects."""
 
     configuration: Optional[AttrDict] = Field(
@@ -57,4 +63,5 @@ class GenericConfig(AttrDict):
 
     @classmethod
     def __init_subclass__(cls) -> None:
+        """Initialize subclass descriptions with their docstrings."""
         cls.__fields__["description"].default = cls.__doc__
