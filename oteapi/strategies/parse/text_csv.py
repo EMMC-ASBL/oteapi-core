@@ -19,9 +19,9 @@ class CSVParseStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parse CSV."""
         print("CSV in action!")
         return {}

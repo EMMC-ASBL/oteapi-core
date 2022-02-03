@@ -36,9 +36,9 @@ class SqliteParseStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parse SQLite query responses."""
         if session is None:
             raise ValueError("Missing session")
