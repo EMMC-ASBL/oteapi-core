@@ -333,8 +333,8 @@ oteapi.parse =
 def test_collection_eq(
     create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
 ) -> None:
-    """Test `EntryPointStrategyCollection.__getitem__()` /
-    `EntryPointStrategyCollection()[x]`."""
+    """Test `EntryPointStrategyCollection.__eq__()` /
+    `EntryPointStrategyCollection() == EntryPointStrategyCollection()`."""
     from oteapi.plugins.entry_points import (
         EntryPointStrategy,
         EntryPointStrategyCollection,
@@ -363,8 +363,8 @@ oteapi.download =
 def test_collection_str_repr(
     create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
 ) -> None:
-    """Test `EntryPointStrategyCollection.__getitem__()` /
-    `EntryPointStrategyCollection()[x]`."""
+    """Test `EntryPointStrategyCollection.__str__()` and `.__repr__()` /
+    `str(EntryPointStrategyCollection())` or `repr()`."""
     from oteapi.plugins.entry_points import (
         EntryPointStrategy,
         EntryPointStrategyCollection,
@@ -391,3 +391,28 @@ oteapi.parse =
         repr(collection)
         == f"{collection.__class__.__name__}(*{entry_point_strategies!r})"
     )
+
+
+def test_strategy_eq(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Test `EntryPointStrategy.__eq__()` /
+    `EntryPointStrategy() == EntryPointStrategy()`."""
+    from oteapi.plugins.entry_points import EntryPointStrategy
+
+    entry_points = """\
+oteapi.download =
+  test.file = test:Test
+  test.http = test:Test
+  test.ftp = test:Test
+"""
+
+    parsed_entry_points = create_importlib_entry_points(entry_points)
+    strategies = [EntryPointStrategy(_) for _ in parsed_entry_points]
+
+    for index, strategy in enumerate(strategies):
+        assert strategy == EntryPointStrategy(parsed_entry_points[index])
+    assert strategies[0] != 2
+    assert strategies[0] != strategies[1]
+
+    assert sorted(strategies + strategies) == sorted(strategies + strategies)
