@@ -90,16 +90,22 @@ def test_create_strategy(
                 strategy_type=strategy_type,
                 config=(
                     get_strategy_config(strategy_type)(
-                        downloadUrl=f"{entry_point.name}://example.org"
-                        if entry_point.type == StrategyType.DOWNLOAD
-                        else "https",
-                        mediaType=entry_point.name
-                        if entry_point.type == StrategyType.PARSE
-                        else "text/html",
+                        downloadUrl=(
+                            f"{entry_point.name}://example.org"
+                            if entry_point.type == StrategyType.DOWNLOAD
+                            else "https"
+                        ),
+                        mediaType=(
+                            entry_point.name
+                            if entry_point.type == StrategyType.PARSE
+                            else "text/html"
+                        ),
                         accessUrl="https://example.org",
-                        accessService=entry_point.name
-                        if entry_point.type == StrategyType.RESOURCE
-                        else "example.org",
+                        accessService=(
+                            entry_point.name
+                            if entry_point.type == StrategyType.RESOURCE
+                            else "example.org"
+                        ),
                     )
                     if strategy_type
                     in (
@@ -113,3 +119,40 @@ def test_create_strategy(
                 ),
             )
             assert hasattr(strategy, f"{strategy_type.value}_config")
+
+
+def test_create_strategy_not_loaded() -> None:
+    """Test `StrategyFactory.make_strategy()` fails if `load_strategies()` has not been
+    called."""
+    from oteapi.models.filterconfig import FilterConfig
+    from oteapi.plugins.factories import StrategiesNotLoaded, create_strategy
+
+    with pytest.raises(StrategiesNotLoaded):
+        create_strategy("filter", FilterConfig(filterType="test"))
+
+
+@pytest.mark.usefixtures("load_test_strategies")
+def test_create_strategy_fails() -> None:
+    """Test `StrategyFactory.make_strategy()` fails when expected to."""
+    from oteapi.models.filterconfig import FilterConfig
+    from oteapi.plugins.factories import create_strategy
+
+    strategy_type = "filter"
+    invalid_strategy_name = "test"
+    config = FilterConfig(filterType=invalid_strategy_name)
+    invalid_strategy_type = "test"
+
+    with pytest.raises(
+        ValueError,
+        match=rf"^Strategy type {invalid_strategy_type!r} is not supported.$",
+    ):
+        create_strategy(invalid_strategy_type, config)
+
+    with pytest.raises(TypeError, match=r"^strategy_type should be either of type.*$"):
+        create_strategy(2, config)
+
+    with pytest.raises(
+        NotImplementedError,
+        match=rf"^The {strategy_type} strategy {invalid_strategy_name!r} does not exist\.$",
+    ):
+        create_strategy(strategy_type, config)
