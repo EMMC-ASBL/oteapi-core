@@ -15,8 +15,7 @@ def test_jpeg_jpg(import_oteapi_modules):
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.image import ImageDataParseStrategy
 
-    this_dir = Path(__file__).resolve().parent
-    parent_dir = this_dir.parent
+    parent_dir = Path(__file__).resolve().parents[1]
     config = ResourceConfig(
         downloadUrl="file://dummy",
         mediaType="image/jpeg",
@@ -32,10 +31,12 @@ def test_jpeg_jpg(import_oteapi_modules):
     parser_jpg = ImageDataParseStrategy(config)
     parser_jpg.parse()
 
-    with open(this_dir / "sample_700_400.jpeg", "rb") as sample:
+    with open(parent_dir / "sample_700_400.jpeg", "rb") as sample:
         target_data = sample.read()
     with open(parent_dir / "cropped_sample_1280_853.jpeg", "rb") as cropped:
-        cropped_data = cropped.read()
+        cropped_jpeg_data = cropped.read()
+    with open(parent_dir / "cropped_sample_1280_853.jpg", "rb") as cropped:
+        cropped_jpg_data = cropped.read()
     os.remove(parent_dir / "cropped_sample_1280_853.jpeg")
     os.remove(parent_dir / "cropped_sample_1280_853.jpg")
-    assert cropped_data == target_data
+    assert cropped_jpeg_data == cropped_jpg_data == target_data
