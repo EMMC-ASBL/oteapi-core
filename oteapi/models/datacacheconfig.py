@@ -3,11 +3,16 @@ from pathlib import Path
 
 from pydantic import Field
 
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.genericconfig import AttrDict
 
 
-class DataCacheConfig(GenericConfig):
-    """DataCache Configuration."""
+class DataCacheConfig(AttrDict):
+    """DataCache Configuration.
+
+    This class should not be used directly as a configuration object
+    for a strategy object, but only as a configuration field inside
+    a configuration object.
+    """
 
     cacheDir: Path = Field("oteapi", description="Cache directory.")
     accessKey: str = Field(
