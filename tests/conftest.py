@@ -111,6 +111,9 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
         current_group = ""
 
         for line in entry_point_lines:
+            if not line:
+                # Empty line
+                continue
             match = re.match(r"^(?P<group>\S+)\s*=$", line.strip())
             if match is None:
                 match = re.match(r"^(?P<name>\S+)\s*=\s*(?P<value>\S+)$", line.strip())

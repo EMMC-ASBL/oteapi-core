@@ -110,6 +110,12 @@ class StrategyType(Enum):
         """Return all values."""
         return tuple(_.value for _ in cls)
 
+    def __str__(self) -> str:
+        return str(self.value)
+
+    def __repr__(self) -> str:
+        return repr(str(self))
+
 
 class EntryPointStrategy:
     """A strategy realized from an entry point.
@@ -325,7 +331,10 @@ class EntryPointStrategyCollection(abc.Collection):
         """
         for entry_point in entry_points:
             if entry_point in self:
-                raise KeyError(f"{entry_point} already exists in {self}.")
+                raise KeyError(
+                    f"{entry_point.strategy} already exists in {self}. "
+                    f"(Tried adding {entry_point}.)"
+                )
             self.add(entry_point)
 
     def __len__(self) -> int:
@@ -446,7 +455,7 @@ class EntryPointStrategyCollection(abc.Collection):
                 res[_.type.value] += 1
             else:
                 res[_.type.value] = 1
-        res = (f"{key} ({value})" for key, value in res.items())
+        res = sorted(f"{key} ({value})" for key, value in res.items())
         return f"<{self.__class__.__name__}: " f"Strategies={', '.join(res)}>"
 
     def __repr__(self) -> str:

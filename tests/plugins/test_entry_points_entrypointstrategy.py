@@ -1,11 +1,12 @@
 """Test the `oteapi.plugins.entry_points` module's `EntryPointStrategy*` classes."""
+# pylint: disable=pointless-statement,expression-not-assigned,protected-access
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, Tuple, Union
+    from typing import Any, Callable, Dict, Iterable, List, Tuple, Union
 
     MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
 
@@ -123,6 +124,7 @@ def test_collection_contains(
     from oteapi.plugins.entry_points import (
         EntryPointStrategy,
         EntryPointStrategyCollection,
+        StrategyType,
     )
 
     entry_points = """\
@@ -163,10 +165,229 @@ oteapi.parse =
         for _ in excluded_entry_point_strategies
     )
 
-    # `name` cannot be used as it does not constitute uniqueness
+    # General
     assert all(
         _.name not in collection
         for _ in entry_point_strategies.union(excluded_entry_point_strategies)
     )
+    assert ("download", "file", "test") not in collection
+    assert ("download",) not in collection
+    with pytest.raises(ValueError):
+        StrategyType("test")
+    assert ("test", "file") not in collection
 
-    sorted(collection)
+
+def test_invalid_module(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Ensure `EntryPointNotFound` is raised if a module cannot be imported."""
+    from importlib import import_module
+
+    from oteapi.plugins.entry_points import EntryPointNotFound, EntryPointStrategy
+
+    package = "test"
+    invalid_module = "this_module_does_not_exist"
+    invalid_class = "Test"
+    valid_module = "tests.static.strategies.download"
+    entry_points = f"""\
+oteapi.download =
+  {package}.http = {valid_module}:{invalid_class}
+  {package}.test = {invalid_module}:Test
+"""
+
+    # Sorts entry points strategies by: strategy type, package, strategy name
+    entry_point_strategies = sorted(
+        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+    )
+    assert len(entry_point_strategies) == 2
+    for index, strategy in enumerate(("http", "test")):
+        assert strategy == entry_point_strategies[index].name
+
+    assert import_module(valid_module)
+    with pytest.raises(
+        EntryPointNotFound,
+        match=rf"^{invalid_class} cannot be found in {valid_module}$",
+    ):
+        entry_point_strategies[0].implementation
+
+    with pytest.raises(
+        EntryPointNotFound,
+        match=rf"^{invalid_module} cannot be imported\. Did you install the {package!r} package\?$",
+    ):
+        entry_point_strategies[1].implementation
+
+
+def test_sorting_priority(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Ensure `EntryPointStrategy`s are sorted correctly according to the intended
+    priority order in `__lt__()`."""
+    from oteapi.plugins.entry_points import (
+        EntryPointStrategy,
+        EntryPointStrategyCollection,
+        StrategyType,
+    )
+
+    entry_points = """\
+oteapi.download =
+  test.a = test:Test
+  test.b = test:Test
+oteapi.parse =
+  a.a = test:Test
+  b.b = test:Test
+"""
+
+    expected_sorting = (
+        (StrategyType("download"), "a"),
+        (StrategyType("download"), "b"),
+        (StrategyType("parse"), "a"),
+        (StrategyType("parse"), "b"),
+    )
+
+    entry_point_strategies = {
+        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+    }
+    collection = EntryPointStrategyCollection()
+    collection.exclusive_add(*entry_point_strategies)
+    sorted_collection: "List[EntryPointStrategy]" = sorted(collection)
+    assert sorted_collection == sorted(entry_point_strategies)
+    for index, strategy in enumerate(expected_sorting):
+        assert sorted_collection[index].strategy == strategy
+
+    with pytest.raises(
+        NotImplementedError,
+        match=rf"^Less than comparison is not implemented for {int} type objects.$",
+    ):
+        entry_point_strategies.pop() < 2
+
+
+def test_collection_getitem(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Test `EntryPointStrategyCollection.__getitem__()` /
+    `EntryPointStrategyCollection()[x]`."""
+    from oteapi.plugins.entry_points import (
+        EntryPointStrategy,
+        EntryPointStrategyCollection,
+    )
+
+    entry_points = """\
+oteapi.download =
+  test.file = test:Test
+  test.http = test:Test
+  test.ftp = test:Test
+"""
+    non_existing_entry_points = """\
+oteapi.parse =
+  test.test = test:Test
+  test.http = test:Test
+"""
+
+    entry_point_strategies = {
+        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+    }
+    collection = EntryPointStrategyCollection(*entry_point_strategies)
+    non_existing_entry_points_strategies = {
+        EntryPointStrategy(_)
+        for _ in create_importlib_entry_points(non_existing_entry_points)
+    }
+
+    assert all(
+        isinstance(collection[_], EntryPointStrategy) for _ in entry_point_strategies
+    )
+    assert all(
+        isinstance(collection[_.full_name], EntryPointStrategy)
+        for _ in entry_point_strategies
+    )
+    assert all(
+        isinstance(collection[_.strategy], EntryPointStrategy)
+        for _ in entry_point_strategies
+    )
+    assert all(
+        isinstance(collection[(_.type.value, _.name)], EntryPointStrategy)
+        for _ in entry_point_strategies
+    )
+
+    for entry_point_strategy in non_existing_entry_points_strategies:
+        with pytest.raises(KeyError, match=r"not found in"):
+            collection[entry_point_strategy]
+        with pytest.raises(
+            RuntimeError,
+            match=(
+                r"not found in .+, which is a "
+                r"requirement for the _get_entry_point method\.$"
+            ),
+        ):
+            collection._get_entry_point(entry_point_strategy.full_name)
+
+    with pytest.raises(
+        TypeError,
+        match=(
+            r"^key should either be of type EntryPointStrategy, a string of the full "
+            r"name or a strategy tuple\.$"
+        ),
+    ):
+        collection[2]
+
+
+def test_collection_eq(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Test `EntryPointStrategyCollection.__getitem__()` /
+    `EntryPointStrategyCollection()[x]`."""
+    from oteapi.plugins.entry_points import (
+        EntryPointStrategy,
+        EntryPointStrategyCollection,
+    )
+
+    entry_points = """\
+oteapi.download =
+  test.file = test:Test
+  test.http = test:Test
+  test.ftp = test:Test
+"""
+
+    entry_point_strategies = {
+        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+    }
+    collection = EntryPointStrategyCollection()
+    collection.exclusive_add(*entry_point_strategies)
+
+    assert collection == EntryPointStrategyCollection(*list(entry_point_strategies))
+    assert collection != 2
+    assert collection != EntryPointStrategyCollection(
+        *list(entry_point_strategies)[:-1]
+    )
+
+
+def test_collection_str_repr(
+    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+) -> None:
+    """Test `EntryPointStrategyCollection.__getitem__()` /
+    `EntryPointStrategyCollection()[x]`."""
+    from oteapi.plugins.entry_points import (
+        EntryPointStrategy,
+        EntryPointStrategyCollection,
+    )
+
+    entry_points = """\
+oteapi.download =
+  test.file = test:Test
+  test.http = test:Test
+oteapi.parse =
+  test.text/plain = test:Test
+"""
+
+    entry_point_strategies = {
+        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+    }
+    collection = EntryPointStrategyCollection(*entry_point_strategies)
+
+    assert (
+        str(collection)
+        == f"<{collection.__class__.__name__}: Strategies=download (2), parse (1)>"
+    )
+    assert (
+        repr(collection)
+        == f"{collection.__class__.__name__}(*{entry_point_strategies!r})"
+    )
