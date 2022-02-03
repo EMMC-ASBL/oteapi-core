@@ -79,7 +79,7 @@ class FileStrategy:
             key = cache.config.accessKey
         else:
             config = FileConfig(
-                **self.resource_config.configuration, extra=Extra.ignore
+                **self.resource_config.configuration.dict(), extra=Extra.ignore
             )
             key = cache.add(
                 filename.read_text(encoding=config.encoding)

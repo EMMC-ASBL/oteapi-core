@@ -12,3 +12,11 @@ scripts_are_modules = true
 warn_unused_configs = true
 show_error_codes = true
 allow_redefinition = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-rs --cov=oteapi --cov-report=term --durations=10"
+filterwarnings = [
+    "ignore:.*imp module.*:DeprecationWarning",
+    "ignore:.*_yaml extension module.*:DeprecationWarning"
+]

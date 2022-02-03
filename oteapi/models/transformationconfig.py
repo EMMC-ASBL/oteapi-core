@@ -6,9 +6,11 @@ method.
 """
 from datetime import datetime
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
+
+from oteapi.models.genericconfig import GenericConfig
 
 
 class PriorityEnum(str, Enum):
@@ -27,7 +29,7 @@ class PriorityEnum(str, Enum):
     HIGH = "High"
 
 
-class TransformationConfig(BaseModel):
+class TransformationConfig(GenericConfig):
     """Transformation Strategy Data Configuration."""
 
     transformation_type: str = Field(
@@ -38,9 +40,6 @@ class TransformationConfig(BaseModel):
     )
     name: Optional[str] = Field(
         None, description="Human-readable name of the transformation strategy."
-    )
-    description: Optional[str] = Field(
-        None, description="A free-text account of the transformation."
     )
     due: Optional[datetime] = Field(
         None,
@@ -56,12 +55,6 @@ class TransformationConfig(BaseModel):
     secret: Optional[str] = Field(
         None,
         description="Authorization secret given when running a transformation.",
-    )
-    configuration: Optional[Dict] = Field(
-        None,
-        description=(
-            "Transformation-specific configuration options given as key/value-pairs."
-        ),
     )
 
 

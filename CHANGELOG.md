@@ -1,5 +1,35 @@
 # Changelog
 
+## [v0.0.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.4) (2022-01-26)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.3...v0.0.4)
+
+**Implemented enhancements:**
+
+- Setup dependency handling via dependabot [\#31](https://github.com/EMMC-ASBL/oteapi-core/issues/31)
+- Attempt simplifying strategy factory function [\#13](https://github.com/EMMC-ASBL/oteapi-core/issues/13)
+
+**Fixed bugs:**
+
+- Update pytest command in CI to fix codecov [\#42](https://github.com/EMMC-ASBL/oteapi-core/issues/42)
+- Publish workflow failing - invoke not installed [\#40](https://github.com/EMMC-ASBL/oteapi-core/issues/40)
+
+**Closed issues:**
+
+- Use new TEAM 4.0\[bot\] email throughout [\#38](https://github.com/EMMC-ASBL/oteapi-core/issues/38)
+- Make datacache safe to call from within a running asyncio event loop [\#26](https://github.com/EMMC-ASBL/oteapi-core/issues/26)
+- Setup documentation framework [\#9](https://github.com/EMMC-ASBL/oteapi-core/issues/9)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#45](https://github.com/EMMC-ASBL/oteapi-core/pull/45) ([TEAM4-0](https://github.com/TEAM4-0))
+- Add pytest options to pyproject.toml [\#43](https://github.com/EMMC-ASBL/oteapi-core/pull/43) ([CasperWA](https://github.com/CasperWA))
+- Install the `dev` extra in publish workflow [\#41](https://github.com/EMMC-ASBL/oteapi-core/pull/41) ([CasperWA](https://github.com/CasperWA))
+- Use the updated @TEAM4-0 email address [\#39](https://github.com/EMMC-ASBL/oteapi-core/pull/39) ([CasperWA](https://github.com/CasperWA))
+- Implement CI/CD for dependabot [\#33](https://github.com/EMMC-ASBL/oteapi-core/pull/33) ([CasperWA](https://github.com/CasperWA))
+- Remove asyncio from datacache [\#32](https://github.com/EMMC-ASBL/oteapi-core/pull/32) ([jesper-friis](https://github.com/jesper-friis))
+- Setup docs framework and implement creating any strategy function [\#29](https://github.com/EMMC-ASBL/oteapi-core/pull/29) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.0.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.3) (2022-01-21)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.2...v0.0.3)

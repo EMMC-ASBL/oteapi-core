@@ -1,6 +1,6 @@
 celery>=5.2.3,<6
 diskcache>=5.4.0,<6
-fastapi-plugins~=0.8.1
+fastapi-plugins~=0.9.0
 numpy>=1.21,<2
 openpyxl>=3.0.9,<4
 Pillow>=9.0.0,<10
