@@ -54,10 +54,14 @@ class StrategyFactory:
             config: A strategy configuration.
             strategy_type: The strategy type, e.g., `"scheme"`, `"mediaType"`, ... or
                 `"download"`, `"parse"`, ...
+                See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType]
+                enumeration for a definition of valid strategy types.
 
         Raises:
             NotImplementedError: If the strategy cannot be found.
-            ValueError: If the strategy type is not supported.
+            ValueError: If the `strategy_type` is not a valid strategy type.
+                See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType]
+                enumeration for a definition of valid strategy types.
             StrategiesNotLoaded: If the entry point strategies have not been loaded.
 
         Returns:
@@ -166,18 +170,14 @@ def load_strategies(test_for_uniqueness: bool = True) -> None:
 def create_strategy(
     strategy_type: "Union[StrategyType, str]", config: "StrategyConfig"
 ) -> "IStrategy":
-    """Proxy function for `StrategyFactory.make_strategy()`.
+    """Proxy function for
+    [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].
 
     Parameters:
         strategy_type: A valid strategy type.
-            See the [`StrategyType`][oteapi.plugins.factories.StrategyType] enumeration
+            See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType] enumeration
             for a definition of valid strategy types.
         config: A strategy configuration.
-
-    Raises:
-        ValueError: If the `strategy_type` is not a valid strategy type.
-            See the [`StrategyType`][oteapi.plugins.factories.StrategyType] enumeration
-            for a definition of valid strategy types.
 
     Returns:
         The created strategy.

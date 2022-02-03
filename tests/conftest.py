@@ -33,6 +33,12 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
                 dictionaries with which `importlib.metadata.EntryPoint`s can be
                 initiated.
                 These need to include the keys: `name`, `value`, and `group`.
+                Regex for EntryPoints:
+
+                ```ini
+                group =
+                  name = value
+                ```
 
         """
         load_entry_points: "Dict[str, List[EntryPoint]]" = {}

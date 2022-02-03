@@ -13,7 +13,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class IDownloadStrategy(Protocol):
     """Download Strategy Interface."""
 
-    resource_config: "ResourceConfig"
+    download_config: "ResourceConfig"
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
