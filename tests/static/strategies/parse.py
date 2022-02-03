@@ -1,4 +1,4 @@
-"""Download test strategy class."""
+"""Parse test strategy class."""
 # pylint: disable=unused-argument,no-self-use
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -10,10 +10,10 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 @dataclass
-class DownloadTestStrategy:
-    """Test download strategy."""
+class ParseTestStrategy:
+    """Test parse strategy."""
 
-    download_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -22,5 +22,5 @@ class DownloadTestStrategy:
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run download strategy."""
+        """Run parse strategy."""
         return {}

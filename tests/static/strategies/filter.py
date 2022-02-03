@@ -1,4 +1,4 @@
-"""Download test strategy class."""
+"""Filter test strategy class."""
 # pylint: disable=unused-argument,no-self-use
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
@@ -6,14 +6,14 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import ResourceConfig
+    from oteapi.models import FilterConfig
 
 
 @dataclass
-class DownloadTestStrategy:
-    """Test download strategy."""
+class FilterTestStrategy:
+    """Test filter strategy."""
 
-    download_config: "ResourceConfig"
+    filter_config: "FilterConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -22,5 +22,5 @@ class DownloadTestStrategy:
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run download strategy."""
+        """Run filter strategy."""
         return {}

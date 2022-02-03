@@ -58,8 +58,18 @@ def load_test_strategies(
     """Load all strategies under `tests/static/strategies/`."""
     setup_cfg = """\
 oteapi.download =
-  oteapi_tests.http = tests.static.strategies.download:HTTPSStrategy
-  oteapi_tests.https = tests.static.strategies.download:HTTPSStrategy
+  oteapi_tests.http = tests.static.strategies.download:DownloadTestStrategy
+  oteapi_tests.https = tests.static.strategies.download:DownloadTestStrategy
+oteapi.filter =
+  oteapi_tests.query_parameters = tests.static.strategies.filter:FilterTestStrategy
+oteapi.mapping =
+  oteapi_tests.html = tests.static.strategies.mapping:MappingTestStrategy
+oteapi.parse =
+  oteapi_tests.text/html = tests.static.strategies.parse:ParseTestStrategy
+oteapi.resource =
+  oteapi_tests.example = tests.static.strategies.resource:ResourceTestStrategy
+oteapi.transformation =
+  oteapi_tests.render = tests.static.strategies.transformation:TransformationTestStrategy
 """
     entry_points = create_importlib_entry_points(setup_cfg)
     mock_importlib_entry_points(entry_points)

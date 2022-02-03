@@ -459,7 +459,7 @@ class EntryPointStrategyCollection(abc.Collection):
         return f"<{self.__class__.__name__}: " f"Strategies={', '.join(res)}>"
 
     def __repr__(self) -> str:
-        return f"{self.__class__.__name__}(*{self._entry_points!r})"
+        return f"{self.__class__.__name__}(*{tuple(sorted(self._entry_points))!r})"
 
 
 def get_strategy_entry_points(

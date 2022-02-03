@@ -378,9 +378,11 @@ oteapi.parse =
   test.text/plain = test:Test
 """
 
-    entry_point_strategies = {
-        EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
-    }
+    entry_point_strategies = tuple(
+        sorted(
+            EntryPointStrategy(_) for _ in create_importlib_entry_points(entry_points)
+        )
+    )
     collection = EntryPointStrategyCollection(*entry_point_strategies)
 
     assert (

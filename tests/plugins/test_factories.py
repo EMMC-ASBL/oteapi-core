@@ -13,6 +13,16 @@ if TYPE_CHECKING:  # pragma: no cover
     MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
 
 
+def test_create_strategy_not_loaded() -> None:
+    """Test `StrategyFactory.make_strategy()` fails if `load_strategies()` has not been
+    called."""
+    from oteapi.models.filterconfig import FilterConfig
+    from oteapi.plugins.factories import StrategiesNotLoaded, create_strategy
+
+    with pytest.raises(StrategiesNotLoaded):
+        create_strategy("filter", FilterConfig(filterType="test"))
+
+
 def test_load_strategies(mock_importlib_entry_points: "MockEntryPoints") -> None:
     """Test `StrategyFactory.load_strategies()`."""
     strategy_type = "download"
@@ -86,49 +96,45 @@ def test_create_strategy(
 
     for strategy_type, collection in StrategyFactory.strategy_create_func.items():
         for entry_point in collection:
-            strategy = create_strategy(
-                strategy_type=strategy_type,
-                config=(
-                    get_strategy_config(strategy_type)(
-                        downloadUrl=(
-                            f"{entry_point.name}://example.org"
-                            if entry_point.type == StrategyType.DOWNLOAD
-                            else "https"
-                        ),
-                        mediaType=(
-                            entry_point.name
-                            if entry_point.type == StrategyType.PARSE
-                            else "text/html"
-                        ),
-                        accessUrl="https://example.org",
-                        accessService=(
-                            entry_point.name
-                            if entry_point.type == StrategyType.RESOURCE
-                            else "example.org"
-                        ),
-                    )
-                    if strategy_type
-                    in (
-                        StrategyType.DOWNLOAD,
-                        StrategyType.PARSE,
-                        StrategyType.RESOURCE,
-                    )
-                    else get_strategy_config(strategy_type)(
-                        **{entry_point.type.value: entry_point.name}
-                    )
-                ),
-            )
+            try:
+                strategy = create_strategy(
+                    strategy_type=strategy_type,
+                    config=(
+                        get_strategy_config(strategy_type)(
+                            downloadUrl=(
+                                f"{entry_point.name}://example.org"
+                                if entry_point.type == StrategyType.DOWNLOAD
+                                else "https://example.org"
+                            ),
+                            mediaType=(
+                                entry_point.name
+                                if entry_point.type == StrategyType.PARSE
+                                else "text/html"
+                            ),
+                            accessUrl="https://example.org",
+                            accessService=(
+                                entry_point.name
+                                if entry_point.type == StrategyType.RESOURCE
+                                else "example.org"
+                            ),
+                        )
+                        if strategy_type
+                        in (
+                            StrategyType.DOWNLOAD,
+                            StrategyType.PARSE,
+                            StrategyType.RESOURCE,
+                        )
+                        else get_strategy_config(strategy_type)(
+                            **{entry_point.type.map_to_field(): entry_point.name}
+                        )
+                    ),
+                )
+            except Exception:  # pylint: disable=broad-except
+                pytest.fail(
+                    f"Failed to create strategy. strategy_type={strategy_type} "
+                    f"entry_point={entry_point}"
+                )
             assert hasattr(strategy, f"{strategy_type.value}_config")
-
-
-def test_create_strategy_not_loaded() -> None:
-    """Test `StrategyFactory.make_strategy()` fails if `load_strategies()` has not been
-    called."""
-    from oteapi.models.filterconfig import FilterConfig
-    from oteapi.plugins.factories import StrategiesNotLoaded, create_strategy
-
-    with pytest.raises(StrategiesNotLoaded):
-        create_strategy("filter", FilterConfig(filterType="test"))
 
 
 @pytest.mark.usefixtures("load_test_strategies")
