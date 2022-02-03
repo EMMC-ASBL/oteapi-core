@@ -4,27 +4,13 @@ Factory wrapper methods for creating the individual strategies.
 """
 from typing import TYPE_CHECKING
 
-from oteapi.interfaces import (
-    IDownloadStrategy,
-    IFilterStrategy,
-    IMappingStrategy,
-    IParseStrategy,
-    IResourceStrategy,
-    ITransformationStrategy,
-)
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Dict, Union
 
     from oteapi.interfaces import IStrategy
-    from oteapi.models import (
-        FilterConfig,
-        MappingConfig,
-        ResourceConfig,
-        StrategyConfig,
-        TransformationConfig,
-    )
+    from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
 
 
@@ -184,119 +170,3 @@ def create_strategy(
 
     """
     return StrategyFactory.make_strategy(config, strategy_type)
-
-
-def create_download_strategy(config: "ResourceConfig") -> IDownloadStrategy:
-    """Helper function to simplify creating a download strategy.
-
-    Parameters:
-        config: A download strategy configuration.
-
-    Returns:
-        The created download strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.DOWNLOAD)
-    if not isinstance(strategy, IDownloadStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a download strategy."
-        )
-    return strategy
-
-
-def create_filter_strategy(config: "FilterConfig") -> IFilterStrategy:
-    """Helper function to simplify creating a filter strategy.
-
-    Parameters:
-        config: A filter strategy configuration.
-
-    Returns:
-        The created filter strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.FILTER)
-    if not isinstance(strategy, IFilterStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a filter strategy."
-        )
-    return strategy
-
-
-def create_mapping_strategy(config: "MappingConfig") -> IMappingStrategy:
-    """Helper function to simplify creating a filter strategy.
-
-    Parameters:
-        config: A mapping strategy configuration.
-
-    Returns:
-        The created mapping strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.MAPPING)
-    if not isinstance(strategy, IMappingStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a mapping strategy."
-        )
-    return strategy
-
-
-def create_parse_strategy(config: "ResourceConfig") -> IParseStrategy:
-    """Helper function to simplify creating a parse strategy.
-
-    Parameters:
-        config: A parse strategy configuration.
-
-    Returns:
-        The created parse strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.PARSE)
-    if not isinstance(strategy, IParseStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a parse strategy."
-        )
-    return strategy
-
-
-def create_resource_strategy(config: "ResourceConfig") -> IResourceStrategy:
-    """Helper function to instanciate a resource strategy.
-
-    Parameters:
-        config: A resource strategy configuration.
-
-    Returns:
-        The created resource strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.RESOURCE)
-    if not isinstance(strategy, IResourceStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a resource strategy."
-        )
-    return strategy
-
-
-def create_transformation_strategy(
-    config: "TransformationConfig",
-) -> ITransformationStrategy:
-    """Helper function to instanciate a transformation strategy.
-
-    Parameters:
-        config: A transformation strategy configuration.
-
-    Returns:
-        The created transformation strategy.
-
-    """
-    strategy = StrategyFactory.make_strategy(config, StrategyType.TRANSFORMATION)
-    if not isinstance(strategy, ITransformationStrategy):
-        raise TypeError(
-            "Got back unexpected type from `StrategyFactory.make_strategy`. "
-            "Expected a transformation strategy."
-        )
-    return strategy
