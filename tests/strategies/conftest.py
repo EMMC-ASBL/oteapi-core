@@ -3,8 +3,8 @@ import pytest
 
 
 @pytest.fixture(scope="session", autouse=True)
-def load_plugins() -> None:
-    """Load plugins."""
-    from oteapi.plugins.plugins import load_plugins
+def load_strategies() -> None:
+    """Load entry points strategies."""
+    from oteapi.plugins import load_strategies
 
-    load_plugins()
+    load_strategies(test_for_uniqueness=False)

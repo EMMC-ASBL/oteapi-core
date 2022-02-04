@@ -1,21 +1,20 @@
 """Parse Strategy Interface"""
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models.resourceconfig import ResourceConfig
 
 
 @dataclass  # type: ignore[misc]
-@runtime_checkable
 class IParseStrategy(Protocol):
     """Parse Strategy Interface."""
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
 
         Parameters:

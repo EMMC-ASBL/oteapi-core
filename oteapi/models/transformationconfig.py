@@ -30,7 +30,7 @@ class PriorityEnum(str, Enum):
 class TransformationConfig(BaseModel):
     """Transformation Strategy Data Configuration."""
 
-    transformation_type: str = Field(
+    transformationType: str = Field(
         ...,
         description=(
             "Type of registered transformation strategy. E.g., `celery/remote`."

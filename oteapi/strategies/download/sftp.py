@@ -8,16 +8,14 @@ from typing import TYPE_CHECKING
 import pysftp
 
 from oteapi.datacache import DataCache
-from oteapi.plugins import StrategyFactory
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
 
 @dataclass
-@StrategyFactory.register(("scheme", "sftp"), ("scheme", "ftp"))
 class SFTPStrategy:
     """Strategy for retrieving data via sftp.
 
@@ -28,7 +26,7 @@ class SFTPStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    download_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -38,7 +36,7 @@ class SFTPStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Download via sftp"""
-        cache = DataCache(self.resource_config.configuration)
+        cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
@@ -46,15 +44,15 @@ class SFTPStrategy:
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
 
-            if not self.resource_config.accessUrl:
-                raise ValueError("accessUrl is not defined in configuration.")
+            if not self.download_config.downloadUrl:
+                raise ValueError("downloadUrl is not defined in configuration.")
 
             # open connection and store data locally
             with pysftp.Connection(
-                host=self.resource_config.accessUrl.host,
-                username=self.resource_config.accessUrl.user,
-                password=self.resource_config.accessUrl.password,
-                port=self.resource_config.accessUrl.port,
+                host=self.download_config.downloadUrl.host,
+                username=self.download_config.downloadUrl.user,
+                password=self.download_config.downloadUrl.password,
+                port=self.download_config.downloadUrl.port,
                 cnopts=cnopts,
             ) as sftp:
                 # Because of insane locking on Windows, we have to close
@@ -62,7 +60,7 @@ class SFTPStrategy:
                 with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as handle:
                     localpath = Path(handle.name).resolve()
                 try:
-                    sftp.get(self.resource_config.accessUrl.path, localpath=localpath)
+                    sftp.get(self.download_config.downloadUrl.path, localpath=localpath)
                     key = cache.add(localpath.read_bytes())
                 finally:
                     localpath.unlink()

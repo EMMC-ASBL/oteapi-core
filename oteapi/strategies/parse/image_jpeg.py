@@ -5,24 +5,13 @@ from typing import TYPE_CHECKING
 
 from PIL import Image
 
-from oteapi.plugins import StrategyFactory
-
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
 
 @dataclass
-@StrategyFactory.register(
-    ("mediaType", "image/jpg"),
-    ("mediaType", "image/jpeg"),
-    ("mediaType", "image/j2p"),
-    ("mediaType", "image/png"),
-    ("mediaType", "image/gif"),
-    ("mediaType", "image/tiff"),
-    ("mediaType", "image/eps"),
-)
 class ImageDataParseStrategy:
     """Parse strategy for images.
 
@@ -38,13 +27,13 @@ class ImageDataParseStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
     def __post_init__(self):
         self.localpath = "/ote-data"
-        self.filename = self.resource_config.configuration["artifactName"]
-        if self.resource_config.configuration:
-            self.conf = self.resource_config.configuration
+        self.filename = self.parse_config.configuration["artifactName"]
+        if self.parse_config.configuration:
+            self.conf = self.parse_config.configuration
         else:
             self.conf = {}
 
@@ -54,7 +43,7 @@ class ImageDataParseStrategy:
         """Initialize."""
         return {}
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         if session is not None:
             self.conf.update(session)
         parsedOutput = {}
