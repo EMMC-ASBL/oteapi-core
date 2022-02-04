@@ -390,8 +390,13 @@ class EntryPointStrategyCollection(abc.Collection):
     ) -> EntryPointStrategy:
         """Retrieve an entry point from the collection.
 
+        Parameters:
+            key: The key to check for in the collection.
+
         Raises:
             KeyError: If an entry point cannot be found in the collection.
+            TypeError: If the `key` is not of an expected type. See the `key` parameter
+                above for the expected types.
 
         Returns:
             An entry point in the collection representing the key.
@@ -415,6 +420,9 @@ class EntryPointStrategyCollection(abc.Collection):
         Important:
             It is expected that the entry point representing the key exists in the
             collection. For example through a `key in self` test.
+
+        Parameters:
+            key: The key to check for in the collection.
 
         Raises:
             RuntimeError: If an entry point cannot be found in the collection, since
