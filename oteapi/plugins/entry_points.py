@@ -107,7 +107,7 @@ class StrategyType(Enum):
     @lru_cache
     def all_values(cls) -> "Tuple[str, ...]":
         """Return all values."""
-        return tuple(_.value for _ in cls)
+        return tuple(strategy_type.value for strategy_type in cls)
 
     def __str__(self) -> str:
         return str(self.value)
