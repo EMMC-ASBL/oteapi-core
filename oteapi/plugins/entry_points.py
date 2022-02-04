@@ -50,7 +50,6 @@ class StrategyType(Enum):
     RESOURCE = "resource"
     TRANSFORMATION = "transformation"
 
-    @lru_cache
     def map_to_field(self) -> str:
         """Map enumeration value to the strategy type's field."""
         return {
@@ -63,7 +62,6 @@ class StrategyType(Enum):
         }[self.value]
 
     @classmethod
-    @lru_cache
     def map_from_field(cls, strategy_type_field: str) -> "StrategyType":
         """Map the strategy type's field to enumeration.
 
@@ -88,7 +86,6 @@ class StrategyType(Enum):
         }[strategy_type_field]
 
     @classmethod
-    @lru_cache
     def init(cls, value: "Union[str, StrategyType]") -> "StrategyType":
         """Initialize a StrategyType with more than just the enumeration value.
 
@@ -99,10 +96,12 @@ class StrategyType(Enum):
             ValueError: As normal if the enumeration value is not valid.
 
         """
-        try:
-            return cls.map_from_field(value)
-        except KeyError:
-            return cls(value)
+        if isinstance(value, str):
+            try:
+                return cls.map_from_field(value)
+            except KeyError:
+                pass
+        return cls(value)
 
     @classmethod
     @lru_cache
