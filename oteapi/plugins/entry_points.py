@@ -59,7 +59,7 @@ class StrategyType(Enum):
             "mapping": "mappingType",
             "parse": "mediaType",
             "resource": "accessService",
-            "transformation": "transformation_type",
+            "transformation": "transformationType",
         }[self.value]
 
     @classmethod
@@ -84,7 +84,7 @@ class StrategyType(Enum):
             "mappingType": cls.MAPPING,
             "mediaType": cls.PARSE,
             "accessService": cls.RESOURCE,
-            "transformation_type": cls.TRANSFORMATION,
+            "transformationType": cls.TRANSFORMATION,
         }[strategy_type_field]
 
     @classmethod

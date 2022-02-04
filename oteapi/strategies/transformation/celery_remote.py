@@ -32,7 +32,7 @@ class CeleryRemoteStrategy:
 
     **Registers strategies**:
 
-    - `("transformation_type", "celery/remote")`
+    - `("transformationType", "celery/remote")`
 
     """
 

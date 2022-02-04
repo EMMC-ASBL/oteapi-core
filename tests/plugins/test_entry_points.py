@@ -102,7 +102,7 @@ def test_strategytype_methods() -> None:
         "mapping": "mappingType",
         "parse": "mediaType",
         "resource": "accessService",
-        "transformation": "transformation_type",
+        "transformation": "transformationType",
     }
 
     for strategy_name, strategy_type in expected_values.items():
