@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -933,15 +933,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.initialize" class="md-nav__link">
-    initialize()
+  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.get" class="md-nav__link">
+    get()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.parse" class="md-nav__link">
-    parse()
+  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.initialize" class="md-nav__link">
+    initialize()
   </a>
   
 </li>
@@ -1083,15 +1083,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.initialize" class="md-nav__link">
-    initialize()
+  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.get" class="md-nav__link">
+    get()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.parse" class="md-nav__link">
-    parse()
+  <a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.initialize" class="md-nav__link">
+    initialize()
   </a>
   
 </li>
@@ -1160,7 +1160,6 @@ CSVParseStrategy        </code>
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">((</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;text/csv&quot;</span><span class="p">))</span>
 <span class="k">class</span> <span class="nc">CSVParseStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse strategy for CSV files.</span>
 
@@ -1170,9 +1169,9 @@ CSVParseStrategy        </code>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">parse_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV in action!&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">{}</span>
@@ -1203,6 +1202,34 @@ CSVParseStrategy        </code>
 
 
 
+<h3 id="oteapi.strategies.parse.text_csv.CSVParseStrategy.get" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Parse CSV.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV in action!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{}</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
 <h3 id="oteapi.strategies.parse.text_csv.CSVParseStrategy.initialize" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
@@ -1219,34 +1246,6 @@ CSVParseStrategy        </code>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-method">
-
-
-
-<h3 id="oteapi.strategies.parse.text_csv.CSVParseStrategy.parse" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-
-
-<a href="#oteapi.strategies.parse.text_csv.CSVParseStrategy.parse" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Parse CSV.</p>
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSV in action!&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{}</span>
 </code></pre></div>
         </details>

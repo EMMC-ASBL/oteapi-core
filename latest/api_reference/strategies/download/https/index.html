@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1161,7 +1161,6 @@ HTTPSStrategy        </code>
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/download/https.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">((</span><span class="s2">&quot;scheme&quot;</span><span class="p">,</span> <span class="s2">&quot;http&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;scheme&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">))</span>
 <span class="k">class</span> <span class="nc">HTTPSStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Strategy for retrieving data via http.</span>
 
@@ -1172,7 +1171,7 @@ HTTPSStrategy        </code>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1182,13 +1181,13 @@ HTTPSStrategy        </code>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Download via http/https and store on local cache.&quot;&quot;&quot;</span>
-        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl not defined in configuration.&quot;</span><span class="p">)</span>
-            <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span>
@@ -1227,13 +1226,13 @@ HTTPSStrategy        </code>
           <summary>Source code in <code>oteapi/strategies/download/https.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Download via http/https and store on local cache.&quot;&quot;&quot;</span>
-    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl not defined in configuration.&quot;</span><span class="p">)</span>
-        <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">}</span>

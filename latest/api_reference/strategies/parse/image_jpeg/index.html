@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1152,15 +1152,6 @@ ImageDataParseStrategy        </code>
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/image_jpeg.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpg&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/jpeg&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/j2p&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/png&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/gif&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/tiff&quot;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;mediaType&quot;</span><span class="p">,</span> <span class="s2">&quot;image/eps&quot;</span><span class="p">),</span>
-<span class="p">)</span>
 <span class="k">class</span> <span class="nc">ImageDataParseStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse strategy for images.</span>
 
@@ -1176,13 +1167,13 @@ ImageDataParseStrategy        </code>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">parse_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">localpath</span> <span class="o">=</span> <span class="s2">&quot;/ote-data&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;artifactName&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="s2">&quot;artifactName&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -1192,7 +1183,7 @@ ImageDataParseStrategy        </code>
         <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{}</span>
 
-    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
         <span class="n">parsedOutput</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1212,6 +1203,7 @@ ImageDataParseStrategy        </code>
 
 
   <div class="doc doc-children">
+
 
 
 
@@ -1249,7 +1241,6 @@ ImageDataParseStrategy        </code>
     </div>
 
   </div>
-
 
 
 

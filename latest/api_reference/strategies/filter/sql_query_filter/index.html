@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1200,7 +1200,6 @@ SQLQueryFilter        </code>
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">((</span><span class="s2">&quot;filterType&quot;</span><span class="p">,</span> <span class="s2">&quot;filter/sql&quot;</span><span class="p">))</span>
 <span class="k">class</span> <span class="nc">SQLQueryFilter</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Strategy for a SQL query filter.</span>
 

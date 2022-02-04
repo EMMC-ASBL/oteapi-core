@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1335,19 +1335,18 @@ CeleryRemoteStrategy        </code>
       <p>Submit job to remote Celery runner.</p>
 <p><strong>Registers strategies</strong>:</p>
 <ul>
-<li><code>("transformation_type", "celery/remote")</code></li>
+<li><code>("transformationType", "celery/remote")</code></li>
 </ul>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/transformation/celery_remote.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">((</span><span class="s2">&quot;transformation_type&quot;</span><span class="p">,</span> <span class="s2">&quot;celery/remote&quot;</span><span class="p">))</span>
 <span class="k">class</span> <span class="nc">CeleryRemoteStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Submit job to remote Celery runner.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">    - `(&quot;transformation_type&quot;, &quot;celery/remote&quot;)`</span>
+<span class="sd">    - `(&quot;transformationType&quot;, &quot;celery/remote&quot;)`</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 

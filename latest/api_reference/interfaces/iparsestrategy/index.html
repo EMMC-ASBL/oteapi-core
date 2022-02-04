@@ -488,15 +488,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.initialize" class="md-nav__link">
-    initialize()
+  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.get" class="md-nav__link">
+    get()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.parse" class="md-nav__link">
-    parse()
+  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.initialize" class="md-nav__link">
+    initialize()
   </a>
   
 </li>
@@ -685,8 +685,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -699,8 +699,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1081,15 +1081,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.initialize" class="md-nav__link">
-    initialize()
+  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.get" class="md-nav__link">
+    get()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.parse" class="md-nav__link">
-    parse()
+  <a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.initialize" class="md-nav__link">
+    initialize()
   </a>
   
 </li>
@@ -1155,13 +1155,12 @@ IParseStrategy            (<span title="typing.Protocol">Protocol</span>)
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/iparsestrategy.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">IParseStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse Strategy Interface.&quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">parse_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">        Parameters:</span>
@@ -1203,6 +1202,76 @@ IParseStrategy            (<span title="typing.Protocol">Protocol</span>)
 
 
 
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="oteapi.interfaces.iparsestrategy.IParseStrategy.get" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+
+<a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Execute the strategy.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>session</code></td>
+        <td><code>Optional[Dict[str, Any]]</code></td>
+        <td><p>A session-specific dictionary context.</p></td>
+        <td><code>None</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Dict[str, Any]</code></td>
+      <td><p>Dictionary of key/value-pairs to be stored in the sessions-specific
+dictionary context.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/interfaces/iparsestrategy.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        session: A session-specific dictionary context.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary of key/value-pairs to be stored in the sessions-specific</span>
+<span class="sd">        dictionary context.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
 
 
 
@@ -1266,76 +1335,6 @@ dictionary context.</p></td>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">    Services.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Dictionary of key/value-pairs to be stored in the sessions-specific</span>
-<span class="sd">        dictionary context.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-method">
-
-
-
-<h3 id="oteapi.interfaces.iparsestrategy.IParseStrategy.parse" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-
-
-<a href="#oteapi.interfaces.iparsestrategy.IParseStrategy.parse" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Execute the strategy.</p>
-
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>session</code></td>
-        <td><code>Optional[Dict[str, Any]]</code></td>
-        <td><p>A session-specific dictionary context.</p></td>
-        <td><code>None</code></td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Dict[str, Any]</code></td>
-      <td><p>Dictionary of key/value-pairs to be stored in the sessions-specific
-dictionary context.</p></td>
-    </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>oteapi/interfaces/iparsestrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>

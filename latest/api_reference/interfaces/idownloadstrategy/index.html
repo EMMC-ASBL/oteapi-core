@@ -685,8 +685,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -699,8 +699,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1155,11 +1155,10 @@ IDownloadStrategy            (<span title="typing.Protocol">Protocol</span>)
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/idownloadstrategy.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">IDownloadStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Download Strategy Interface.&quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>

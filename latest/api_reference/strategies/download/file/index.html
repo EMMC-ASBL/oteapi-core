@@ -615,8 +615,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/factories/" class="md-nav__link">
-        factories
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
+        entry_points
       </a>
     </li>
   
@@ -629,8 +629,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../plugins/plugins/" class="md-nav__link">
-        plugins
+      <a href="../../../plugins/factories/" class="md-nav__link">
+        factories
       </a>
     </li>
   
@@ -1321,7 +1321,6 @@ FileStrategy        </code>
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="nd">@StrategyFactory</span><span class="o">.</span><span class="n">register</span><span class="p">((</span><span class="s2">&quot;scheme&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">))</span>
 <span class="k">class</span> <span class="nc">FileStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Strategy for retrieving data from a local file.</span>
 
@@ -1331,7 +1330,7 @@ FileStrategy        </code>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1342,21 +1341,21 @@ FileStrategy        </code>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
-            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Expected &#39;downloadUrl&#39; to have scheme &#39;file&#39; in the configuration.&quot;</span>
             <span class="p">)</span>
 
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
-        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="n">FileConfig</span><span class="p">(</span>
-                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">Extra</span><span class="o">.</span><span class="n">ignore</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">Extra</span><span class="o">.</span><span class="n">ignore</span>
             <span class="p">)</span>
             <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                 <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
@@ -1401,21 +1400,21 @@ FileStrategy        </code>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
-        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;Expected &#39;downloadUrl&#39; to have scheme &#39;file&#39; in the configuration.&quot;</span>
         <span class="p">)</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
-    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">FileConfig</span><span class="p">(</span>
-            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">Extra</span><span class="o">.</span><span class="n">ignore</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">Extra</span><span class="o">.</span><span class="n">ignore</span>
         <span class="p">)</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
             <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
@@ -1498,7 +1497,7 @@ FileStrategy        </code>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../../plugins/plugins/" class="md-footer__link md-footer__link--prev" aria-label="Previous: plugins" rel="prev">
+        <a href="../../../plugins/factories/" class="md-footer__link md-footer__link--prev" aria-label="Previous: factories" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1507,7 +1506,7 @@ FileStrategy        </code>
               <span class="md-footer__direction">
                 Previous
               </span>
-              plugins
+              factories
             </div>
           </div>
         </a>
