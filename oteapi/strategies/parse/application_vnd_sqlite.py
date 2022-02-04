@@ -4,9 +4,7 @@ import sqlite3
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from oteapi.plugins import StrategyFactory
-
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
@@ -29,7 +27,6 @@ def create_connection(db_file):
 
 
 @dataclass
-@StrategyFactory.register(("mediaType", "application/vnd.sqlite3"))
 class SqliteParseStrategy:
     """Parse strategy for SQLite.
 
@@ -39,9 +36,9 @@ class SqliteParseStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parse SQLite query responses."""
         if session is None:
             raise ValueError("Missing session")

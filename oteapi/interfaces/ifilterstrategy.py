@@ -1,15 +1,14 @@
 """Filter Strategy Interface"""
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models.filterconfig import FilterConfig
 
 
 @dataclass  # type: ignore[misc]
-@runtime_checkable
 class IFilterStrategy(Protocol):
     """Filter Strategy Interface."""
 

@@ -7,9 +7,8 @@ from typing import TYPE_CHECKING, Optional
 from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
-from oteapi.plugins import StrategyFactory
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
     from oteapi.models import ResourceConfig
@@ -34,7 +33,6 @@ class FileConfig(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("scheme", "file"))
 class FileStrategy:
     """Strategy for retrieving data from a local file.
 
@@ -44,7 +42,7 @@ class FileStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    download_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -55,21 +53,21 @@ class FileStrategy:
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
         if (
-            self.resource_config.downloadUrl is None
-            or self.resource_config.downloadUrl.scheme != "file"
+            self.download_config.downloadUrl is None
+            or self.download_config.downloadUrl.scheme != "file"
         ):
             raise ValueError(
                 "Expected 'downloadUrl' to have scheme 'file' in the configuration."
             )
 
-        filename = Path(self.resource_config.downloadUrl.host).resolve()
+        filename = Path(self.download_config.downloadUrl.host).resolve()
 
-        cache = DataCache(self.resource_config.configuration)
+        cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
             config = FileConfig(
-                **self.resource_config.configuration.dict(), extra=Extra.ignore
+                **self.download_config.configuration.dict(), extra=Extra.ignore
             )
             key = cache.add(
                 filename.read_text(encoding=config.encoding)

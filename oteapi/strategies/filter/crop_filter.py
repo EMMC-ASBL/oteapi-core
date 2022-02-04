@@ -5,9 +5,7 @@ from typing import TYPE_CHECKING, List
 
 from pydantic import BaseModel, Field
 
-from oteapi.plugins import StrategyFactory
-
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import FilterConfig
@@ -20,7 +18,6 @@ class CropDataModel(BaseModel):
 
 
 @dataclass
-@StrategyFactory.register(("filterType", "filter/crop"))
 class CropFilter:
     """Strategy for cropping an image.
 
