@@ -1,5 +1,31 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.5...HEAD)
+
+**Implemented enhancements:**
+
+- Consider removing the `create_*_strategy()` functions [\#57](https://github.com/EMMC-ASBL/oteapi-core/issues/57)
+- Lazy strategy loading [\#21](https://github.com/EMMC-ASBL/oteapi-core/issues/21)
+- Extend and "safeguard" plugin loading through entry points [\#10](https://github.com/EMMC-ASBL/oteapi-core/issues/10)
+
+## [v0.0.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.5) (2022-02-04)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.4...v0.0.5)
+
+**Fixed bugs:**
+
+- Out-of-scope CVE from NumPy makes safety cry [\#54](https://github.com/EMMC-ASBL/oteapi-core/issues/54)
+- pyproject.toml addopts line doesn't work on Windows [\#51](https://github.com/EMMC-ASBL/oteapi-core/issues/51)
+- Ignore ID 44715 for safety [\#55](https://github.com/EMMC-ASBL/oteapi-core/pull/55) ([CasperWA](https://github.com/CasperWA))
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#56](https://github.com/EMMC-ASBL/oteapi-core/pull/56) ([TEAM4-0](https://github.com/TEAM4-0))
+- Add Windows pytest CI job [\#52](https://github.com/EMMC-ASBL/oteapi-core/pull/52) ([CasperWA](https://github.com/CasperWA))
+- Start implementing entry point logic [\#47](https://github.com/EMMC-ASBL/oteapi-core/pull/47) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.0.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.4) (2022-01-26)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.3...v0.0.4)
