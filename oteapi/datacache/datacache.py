@@ -24,7 +24,7 @@ from pydantic import Extra
 
 from oteapi.models import DataCacheConfig
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Iterator, Optional, Type, Union
 
 

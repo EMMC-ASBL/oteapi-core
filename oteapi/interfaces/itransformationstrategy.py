@@ -1,15 +1,14 @@
 """Tranformation Strategy Interface"""
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Protocol
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import TransformationConfig, TransformationStatus
 
 
 @dataclass  # type: ignore[misc]
-@runtime_checkable
 class ITransformationStrategy(Protocol):
     """Transformation Strategy Interface."""
 

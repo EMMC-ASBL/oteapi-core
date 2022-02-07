@@ -8,9 +8,9 @@ from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import BaseModel, Extra, Field
 
 from oteapi.datacache import DataCache
-from oteapi.plugins.factories import StrategyFactory, create_download_strategy
+from oteapi.plugins import create_strategy
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Iterable
 
     from openpyxl.worksheet.worksheet import Worksheet
@@ -123,9 +123,6 @@ def get_column_indices(
 
 
 @dataclass
-@StrategyFactory.register(
-    ("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-)
 class XLSXParseStrategy:
     """Parse strategy for Excel XLSX files.
 
@@ -135,7 +132,7 @@ class XLSXParseStrategy:
 
     """
 
-    resource_config: "ResourceConfig"
+    parse_config: "ResourceConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -143,7 +140,7 @@ class XLSXParseStrategy:
         """Initialize."""
         return {}
 
-    def parse(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Parses selected region of an excel file.
 
         Returns:
@@ -151,12 +148,12 @@ class XLSXParseStrategy:
 
         """
         model = XLSXParseDataModel(
-            **self.resource_config.configuration, extra=Extra.ignore
+            **self.parse_config.configuration, extra=Extra.ignore
         )
 
-        downloader = create_download_strategy(self.resource_config)
+        downloader = create_strategy("download", self.parse_config)
         output = downloader.get()
-        cache = DataCache(self.resource_config.configuration)
+        cache = DataCache(self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
             workbook = load_workbook(filename=filename, read_only=True, data_only=True)
         worksheet = workbook[model.worksheet]

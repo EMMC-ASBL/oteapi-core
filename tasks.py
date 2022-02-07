@@ -10,7 +10,7 @@ from typing import TYPE_CHECKING
 
 from invoke import task
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Tuple
 
     from invoke import Context, Result
@@ -26,10 +26,6 @@ def update_file(filename: Path, sub_line: "Tuple[str, str]", strip: str = None) 
         for line in filename.read_text(encoding="utf8").splitlines()
     ]
     filename.write_text("\n".join(lines) + "\n", encoding="utf8")
-
-    # with open(filename, "w", encoding="utf8") as handle:
-    #     handle.write("\n".join(lines))
-    #     handle.write("\n")
 
 
 @task(help={"ver": "oteapi-core version to set"})
@@ -153,7 +149,7 @@ def create_api_reference_docs(context, pre_clean=False, pre_commit=False):
     if pre_commit:
         # Check if there have been any changes.
         # List changes if yes.
-        if TYPE_CHECKING:
+        if TYPE_CHECKING:  # pragma: no cover
             context: "Context" = context
 
         # NOTE: grep returns an exit code of 1 if it doesn't find anything
