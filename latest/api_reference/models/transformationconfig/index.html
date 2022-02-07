@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/transformationconfig/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.10">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d6be258b.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -542,6 +542,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../genericconfig/" class="md-nav__link">
+        genericconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mappingconfig/" class="md-nav__link">
         mappingconfig
       </a>
@@ -651,20 +665,6 @@
   
     <nav class="md-nav" aria-label="TransformationConfig">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.models.transformationconfig.TransformationConfig.configuration" class="md-nav__link">
-    configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.models.transformationconfig.TransformationConfig.description" class="md-nav__link">
-    description
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#oteapi.models.transformationconfig.TransformationConfig.due" class="md-nav__link">
@@ -1239,20 +1239,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.models.transformationconfig.TransformationConfig.configuration" class="md-nav__link">
-    configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.models.transformationconfig.TransformationConfig.description" class="md-nav__link">
-    description
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oteapi.models.transformationconfig.TransformationConfig.due" class="md-nav__link">
     due
   </a>
@@ -1507,7 +1493,7 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 
 <h2 id="oteapi.models.transformationconfig.TransformationConfig" class="doc doc-heading">
         <code>
-TransformationConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
+TransformationConfig            (<a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a>)
         </code>
 
 
@@ -1523,7 +1509,7 @@ TransformationConfig            (<span title="pydantic.main.BaseModel">BaseModel
 
         <details class="quote">
           <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transformation Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">transformationType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1534,9 +1520,6 @@ TransformationConfig            (<span title="pydantic.main.BaseModel">BaseModel
     <span class="p">)</span>
     <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Human-readable name of the transformation strategy.&quot;</span>
-    <span class="p">)</span>
-    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A free-text account of the transformation.&quot;</span>
     <span class="p">)</span>
     <span class="n">due</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
@@ -1553,12 +1536,6 @@ TransformationConfig            (<span title="pydantic.main.BaseModel">BaseModel
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when running a transformation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">configuration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Transformation-specific configuration options given as key/value-pairs.&quot;</span>
-        <span class="p">),</span>
-    <span class="p">)</span>
 </code></pre></div>
         </details>
 
@@ -1568,50 +1545,6 @@ TransformationConfig            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 
-
-
-
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.models.transformationconfig.TransformationConfig.configuration" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">configuration</span><span class="p">:</span> <span class="n">Dict</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-  </span>
-
-<a href="#oteapi.models.transformationconfig.TransformationConfig.configuration" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Transformation-specific configuration options given as key/value-pairs.</p>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.models.transformationconfig.TransformationConfig.description" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-  </span>
-
-<a href="#oteapi.models.transformationconfig.TransformationConfig.description" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>A free-text account of the transformation.</p>
-    </div>
-
-  </div>
 
 
 
@@ -2032,10 +1965,10 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.092fa1f6.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e3b2bf44.min.js"></script>
       
     
   </body>

@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/datacacheconfig/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.10">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d6be258b.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
@@ -631,6 +631,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../genericconfig/" class="md-nav__link">
+        genericconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../mappingconfig/" class="md-nav__link">
         mappingconfig
       </a>
@@ -1180,7 +1194,7 @@
 
 <h2 id="oteapi.models.datacacheconfig.DataCacheConfig" class="doc doc-heading">
         <code>
-DataCacheConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
+DataCacheConfig            (<a title="oteapi.models.genericconfig.AttrDict" href="../genericconfig/#oteapi.models.genericconfig.AttrDict">AttrDict</a>)
         </code>
 
 
@@ -1193,11 +1207,19 @@ DataCacheConfig            (<span title="pydantic.main.BaseModel">BaseModel</spa
     <div class="doc doc-contents ">
 
       <p>DataCache Configuration.</p>
+<p>This class should not be used directly as a configuration object
+for a strategy object, but only as a configuration field inside
+a configuration object.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/models/datacacheconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DataCacheConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;DataCache Configuration.&quot;&quot;&quot;</span>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DataCacheConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;DataCache Configuration.</span>
+
+<span class="sd">    This class should not be used directly as a configuration object</span>
+<span class="sd">    for a strategy object, but only as a configuration field inside</span>
+<span class="sd">    a configuration object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">cacheDir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;oteapi&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Cache directory.&quot;</span><span class="p">)</span>
     <span class="n">accessKey</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1450,10 +1472,10 @@ DataCacheConfig            (<span title="pydantic.main.BaseModel">BaseModel</spa
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.092fa1f6.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e3b2bf44.min.js"></script>
       
     
   </body>
