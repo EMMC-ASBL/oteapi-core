@@ -1,12 +1,14 @@
 """Pydantic Mapping Configuration Data Model."""
 from typing import Dict, List, Optional
 
-from pydantic import BaseModel, Field, conlist
+from pydantic import Field, conlist
+
+from oteapi.models.genericconfig import GenericConfig
 
 SemanticTriple = conlist(str, min_items=3, max_items=3)
 
 
-class MappingConfig(BaseModel):
+class MappingConfig(GenericConfig):
     """Mapping Strategy Data Configuration."""
 
     mappingType: str = Field(
@@ -22,8 +24,4 @@ class MappingConfig(BaseModel):
     triples: Optional[List[SemanticTriple]] = Field(  # type: ignore[valid-type]
         None,
         description="List of semantic triples given as (subject, predicate, object).",
-    )
-    configuration: Optional[Dict] = Field(
-        None,
-        description="Mapping-specific configuration options given as key/value-pairs.",
     )

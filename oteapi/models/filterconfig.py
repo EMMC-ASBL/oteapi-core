@@ -1,10 +1,12 @@
 """Pydantic Filter Configuration Data Model."""
-from typing import Dict, Optional
+from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from oteapi.models.genericconfig import GenericConfig
 
 
-class FilterConfig(BaseModel):
+class FilterConfig(GenericConfig):
     """Filter Strategy Data Configuration."""
 
     filterType: str = Field(
@@ -17,8 +19,4 @@ class FilterConfig(BaseModel):
     )
     limit: Optional[int] = Field(
         None, description="Number of items remaining after a filter expression."
-    )
-    configuration: Optional[Dict] = Field(
-        None,
-        description="Filter-specific configuration options given as key/value-pairs.",
     )

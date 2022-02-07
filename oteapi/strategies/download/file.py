@@ -67,7 +67,7 @@ class FileStrategy:
             key = cache.config.accessKey
         else:
             config = FileConfig(
-                **self.download_config.configuration, extra=Extra.ignore
+                **self.download_config.configuration.dict(), extra=Extra.ignore
             )
             key = cache.add(
                 filename.read_text(encoding=config.encoding)
