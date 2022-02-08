@@ -1,10 +1,9 @@
 """Tests the parse strategy for JPEG."""
-# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
 
-def test_jpeg_jpg(import_oteapi_modules):
+def test_jpeg_jpg():
     """Test the `image/jpeg` and `image/jpg` parse strategies on
     'sample_1280_853.jpeg' and 'sample_1280_853.jpg',
     downloaded from filesamples.com (called 'sample_1280x853').
@@ -26,10 +25,10 @@ def test_jpeg_jpg(import_oteapi_modules):
         },
     )
     parser_jpeg = ImageDataParseStrategy(config)
-    parser_jpeg.parse()
+    parser_jpeg.get()
     config.configuration["filename"] = "sample_1280_853.jpg"
     parser_jpg = ImageDataParseStrategy(config)
-    parser_jpg.parse()
+    parser_jpg.get()
 
     with open(parent_dir / "sample_700_400.jpeg", "rb") as sample:
         target_data = sample.read()

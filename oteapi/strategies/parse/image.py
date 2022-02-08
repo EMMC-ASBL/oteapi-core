@@ -31,8 +31,8 @@ class ImageDataParseStrategy:
 
     def __post_init__(self):
         self.localpath = "/ote-data"
-        self.filename = self.resource_config.configuration["filename"]
-            self.conf = self.parse_config.configuration
+        self.filename = self.parse_config.configuration["filename"]
+        self.conf = self.parse_config.configuration
         if "localpath" in self.conf:
             self.localpath = self.conf["localpath"]
 

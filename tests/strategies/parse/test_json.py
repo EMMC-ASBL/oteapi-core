@@ -1,10 +1,9 @@
 """Tests the parse strategy for JSON."""
-# pylint: disable=unused-argument
 # pylint: disable=unused-import
 from pathlib import Path
 
 
-def test_json(import_oteapi_modules):
+def test_json():
     """Test `application/json` parse strategy on 'sample2.json',
     downloaded from filesamples.com.
     """
@@ -31,6 +30,6 @@ def test_json(import_oteapi_modules):
         mediaType="application/json",
     )
     parser = JSONDataParseStrategy(config)
-    json = parser.parse()
+    json = parser.get()
 
     assert json == data

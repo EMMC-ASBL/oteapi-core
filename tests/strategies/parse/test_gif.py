@@ -1,10 +1,9 @@
 """Tests the parse strategy for GIF."""
-# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
 
-def test_gif(import_oteapi_modules):
+def test_gif():
     """Test the `image/gif` parse strategy on 'sample_1280_853.gif',
     downloaded from filesamples.com (called 'sample_1280x853.gif').
     """
@@ -22,7 +21,7 @@ def test_gif(import_oteapi_modules):
         },
     )
     parser = ImageDataParseStrategy(config)
-    parser.parse()
+    parser.get()
 
     with open(this_dir / "sample_700_400.gif", "rb") as target:
         target_data = target.read()

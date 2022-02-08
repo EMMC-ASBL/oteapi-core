@@ -1,10 +1,9 @@
 """Tests the parse strategy for TIFF."""
-# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
 
-def test_tiff(import_oteapi_modules):
+def test_tiff():
     """Test the `image/tiff` parse strategy on 'sample_640_426.tiff',
     downloaded from filesamples.com (called 'sample_640x426.tiff').
     """
@@ -22,7 +21,7 @@ def test_tiff(import_oteapi_modules):
         },
     )
     parser = ImageDataParseStrategy(config)
-    parser.parse()
+    parser.get()
 
     with open(this_dir / "sample_350_250.tiff", "rb") as target:
         target_data = target.read()

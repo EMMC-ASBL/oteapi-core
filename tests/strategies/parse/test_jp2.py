@@ -1,10 +1,9 @@
 """Tests the parse strategy for JPEG 2000."""
-# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
 
-def test_jp2(import_oteapi_modules):
+def test_jp2():
     """Test the `image/jp2` parse strategy on 'sample1_1000_1000.jp2,
     a cropped subset of 'sample1.jp2' downloaded from filesamples.com.
     """
@@ -22,7 +21,7 @@ def test_jp2(import_oteapi_modules):
         },
     )
     parser = ImageDataParseStrategy(config)
-    parser.parse()
+    parser.get()
 
     with open(this_dir / "sample1_1000_1000.jp2", "rb") as target:
         target_data = target.read()

@@ -1,5 +1,4 @@
 """Tests the download strategy for 'sftp://'."""
-# pylint: disable=unused-argument
 # pylint: disable=no-self-use
 from pathlib import Path
 from shutil import copyfile
@@ -26,7 +25,7 @@ class MockSFTPConnection:
         copyfile(remotepath, localpath)
 
 
-def test_sftp(import_oteapi_modules, mocker: MockerFixture) -> None:
+def test_sftp(mocker: MockerFixture) -> None:
     """Test `sftp.py` download strategy by mocking download, and
     comparing data mock downloaded from the local file
     'sample_1280_853.jpeg' with data obtained from simply opening the
@@ -38,8 +37,8 @@ def test_sftp(import_oteapi_modules, mocker: MockerFixture) -> None:
 
     path = str(Path(__file__).resolve().parents[1] / "sample_1280_853.jpeg")
     config = ResourceConfig(
-        accessUrl=AnyUrl(url="dummy", scheme="sftp", path=path),
-        accessService="dummy",
+        downloadUrl=AnyUrl(url="dummy", scheme="sftp", path=path),
+        mediaType="image/jpeg",
     )
     mocker.patch(
         target="pysftp.Connection",

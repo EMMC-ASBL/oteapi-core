@@ -1,10 +1,9 @@
 """Tests for `oteapi.models.resourceconfig`"""
-# pylint: disable=unused-argument
 import pytest
 from pydantic import ValidationError
 
 
-def test_ensure_unique_url_pairs(import_oteapi_modules) -> None:
+def test_ensure_unique_url_pairs() -> None:
     """Test the root validator `ensure_unique_url_pairs` for `ResourceConfig`."""
     from oteapi.models.resourceconfig import ResourceConfig
 

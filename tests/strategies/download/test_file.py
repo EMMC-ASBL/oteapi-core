@@ -1,9 +1,8 @@
 """Tests the download strategy for 'file://'."""
-# pylint: disable=unused-argument
 from pathlib import Path
 
 
-def test_file(import_oteapi_modules):
+def test_file():
     """Test `file` download strategy on 'sample_1280_853.jpeg' and
     'sample2.json', downloaded from filesamples.com.
     """

@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 
-def test_crop_filter(import_oteapi_modules):
+def test_crop_filter():
     """Test the crop filter strategy on 'sample_1280_853.jpeg',
     downloaded from filesamples.com (called 'sample_1280x853').
 
@@ -32,7 +32,7 @@ def test_crop_filter(import_oteapi_modules):
         },
     )
     parser_jpeg = ImageDataParseStrategy(image_config)
-    parser_jpeg.parse()
+    parser_jpeg.get()
 
     with open(parent_dir / "sample_700_400.jpeg", "rb") as sample:
         target_data = sample.read()

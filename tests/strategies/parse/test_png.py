@@ -1,10 +1,9 @@
 """Tests the parse strategy for PNG."""
-# pylint: disable=unused-argument
 import os
 from pathlib import Path
 
 
-def test_png(import_oteapi_modules):
+def test_png():
     """Test the `image/png` parse strategy on 'sample_640_426.png',
     downloaded from filesamples.com (called 'sample_640x426.png').
     """
@@ -22,7 +21,7 @@ def test_png(import_oteapi_modules):
         },
     )
     parser = ImageDataParseStrategy(config)
-    parser.parse()
+    parser.get()
 
     with open(this_dir / "sample_350_250.png", "rb") as target:
         target_data = target.read()

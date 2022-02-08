@@ -16,7 +16,7 @@ def mock_get(**kwargs):
     return kwargs["strategy"].get(kwargs["url"])
 
 
-def test_https(import_oteapi_modules, requests_mock):
+def test_https(requests_mock):
     """Test `https.py` download strategy by mocking downloads and
     comparing data mock downloaded from the local copies
     'sample_1280_853.jpeg' and 'sample2.json'
@@ -24,7 +24,7 @@ def test_https(import_oteapi_modules, requests_mock):
     """
     from oteapi.datacache.datacache import DataCache
     from oteapi.models.resourceconfig import ResourceConfig
-    from oteapi.plugins.factories import create_download_strategy
+    from oteapi.plugins.factories import StrategyType, create_strategy
     from oteapi.strategies.download.https import HTTPSStrategy
 
     tests = (
@@ -42,7 +42,7 @@ def test_https(import_oteapi_modules, requests_mock):
         )
         params = {
             "url": res_conf.downloadUrl,
-            "strategy": create_download_strategy(res_conf),
+            "strategy": create_strategy(StrategyType.DOWNLOAD, res_conf),
             "file": str(path / test[2]),
         }
         key_dict = mock_get(**params)

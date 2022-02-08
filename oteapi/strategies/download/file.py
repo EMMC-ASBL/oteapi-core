@@ -63,13 +63,13 @@ class FileStrategy:
 
         if system() == "Windows":
             filename = Path(
-                self.resource_config.downloadUrl.host
+                self.download_config.downloadUrl.host
                 + ":"
-                + self.resource_config.downloadUrl.path
+                + self.download_config.downloadUrl.path
             ).resolve()
         else:
-            host = self.resource_config.downloadUrl.host
-            path = str(Path(self.resource_config.downloadUrl.path).resolve())
+            host = self.download_config.downloadUrl.host
+            path = str(Path(self.download_config.downloadUrl.path).resolve())
             filename = Path("/" + host + path)
 
         cache = DataCache(self.download_config.configuration)
@@ -77,7 +77,8 @@ class FileStrategy:
             key = cache.config.accessKey
         else:
             config = FileConfig(
-                **self.resource_config.configuration.dict(), extra=Extra.ignore
+                **self.download_config.configuration.dict(),
+                extra=Extra.ignore,
             )
             key = cache.add(
                 filename.read_text(encoding=config.encoding)

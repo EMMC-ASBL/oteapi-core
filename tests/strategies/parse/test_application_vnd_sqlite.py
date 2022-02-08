@@ -1,9 +1,8 @@
 """Tests the parse strategy for SQLite."""
-# pylint: disable=unused-argument
 from pathlib import Path
 
 
-def test_sqlite(import_oteapi_modules):
+def test_sqlite():
     """Test `application/vnd.sqlite3` parse strategy on 'sample1.db',
     downloaded as SQL source 'sample1.sql' from filesamples.com.
     """
@@ -38,7 +37,7 @@ def test_sqlite(import_oteapi_modules):
     )
 
     parser = SqliteParseStrategy(config)
-    reply1 = parser.parse({"filename": filename, "sqlquery": query1})
-    reply2 = parser.parse({"filename": filename, "sqlquery": query2})
+    reply1 = parser.get({"filename": filename, "sqlquery": query1})
+    reply2 = parser.get({"filename": filename, "sqlquery": query2})
 
     assert reply1["result"][0] == compare1 and reply2["result"][0] == compare2

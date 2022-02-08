@@ -6,7 +6,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from pathlib import Path
 
 
-def test_cache(import_oteapi_modules, tmp_path: "Path") -> None:
+def test_cache(tmp_path: "Path") -> None:
     """Simple tests for the `DataCache`."""
     from oteapi.datacache.datacache import DataCache
 
