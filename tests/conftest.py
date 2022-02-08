@@ -85,7 +85,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
 
         ```ini
         oteapi.parse =
-          oteapi.image/jpeg = oteapi.strategies.parse.image_jpeg:ImageDataParseStrategy
+          oteapi.image/jpeg = oteapi.strategies.parse.image:ImageDataParseStrategy
           my_oteapi_test_package.test = my_test:MyTestStrategy
         oteapi.transformation =
           oteapi.celery/remote = oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy
