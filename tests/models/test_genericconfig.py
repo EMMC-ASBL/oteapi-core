@@ -1,4 +1,5 @@
 """Tests for `oteapi.models.genericconfig`"""
+# pylint: disable=no-member
 
 
 def test_attrdict() -> None:
