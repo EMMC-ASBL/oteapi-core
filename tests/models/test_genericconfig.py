@@ -1,4 +1,4 @@
-"""Tests for `oteapi.models.genericceconfig`"""
+"""Tests for `oteapi.models.genericconfig`"""
 import pytest
 
 
@@ -6,8 +6,9 @@ def test_attrdict() -> None:
     """Test the behaviour of AttrDict."""
     from oteapi.models.genericconfig import AttrDict
 
-    config = AttrDict(a=1, b='foo', c='bar')
-    assert config.a == 1
-    assert config.b == 'foo'
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    config = AttrDict(**data)
+    assert config.a == config[a] == config.get(a) == data[a]
+    assert config.b == config[b] == config.get(b) == data[b]
 
-    assert **config == {'a': 1, 'b': 'foo', 'c': 'bar'}
+    assert {**config} == data
