@@ -50,6 +50,10 @@ class AttrDict(BaseModel):
         """Return number of items."""
         return self.__dict__.__len__()
 
+    def __iter__(self):
+        """Enable **unpacking."""
+        return self.__dict__.__iter__()
+
     def items(self):
         """Return a view of all (key, value) pairs."""
         return self.__dict__.items()
@@ -61,10 +65,6 @@ class AttrDict(BaseModel):
     def values(self):
         """Return a view of all values."""
         return self.__dict__.values()
-
-    def has_key(self, key):
-        """Return whether key is in self."""
-        return self.__dict__.has_key(key)
 
 
 class GenericConfig(BaseModel):
