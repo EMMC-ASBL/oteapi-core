@@ -47,6 +47,35 @@ class AttrDict(BaseModel):
         """Enable write access through subscription."""
         self.__setattr__(key, value)
 
+    def __len__(self):
+        """Return number of items."""
+        return self.__dict__.__len__()
+
+    def __iter__(self):
+        """Enable **unpacking."""
+        return self.__dict__.__iter__()
+
+    def items(self):
+        """Return a view of all (key, value) pairs."""
+        return self.__dict__.items()
+
+    def keys(self):
+        """Return a view of all keys."""
+        return self.__dict__.keys()
+
+    def values(self):
+        """Return a view of all values."""
+        return self.__dict__.values()
+
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
+        """Mapping `get`-method."""
+        return self.__dict__.get(key, default)
+
+    def __ne__(self, other: Any) -> bool:
+        if isinstance(other, BaseModel):
+            return self.dict() != other.dict()
+        return self.dict() != other
+
 
 class GenericConfig(BaseModel):
     """Generic class for configuration objects."""
