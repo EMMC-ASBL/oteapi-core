@@ -5,9 +5,10 @@ from typing import TYPE_CHECKING, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from pydantic import BaseModel, Extra, Field
+from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
+from oteapi.models import AttrDict
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -62,6 +63,10 @@ class XLSXParseDataModel(BaseModel):
         description=(
             "Optional list of new column names replacing `header` in the output."
         ),
+    )
+    download_config: AttrDict = Field(
+        AttrDict(),
+        description="Configurations provided to a download strategy.",
     )
 
 
@@ -147,15 +152,17 @@ class XLSXParseStrategy:
             A dict with column-name/column-value pairs. The values are lists.
 
         """
-        model = XLSXParseDataModel(
-            **self.parse_config.configuration, extra=Extra.ignore
-        )
+        model = XLSXParseDataModel(**self.parse_config.configuration)
 
-        downloader = create_strategy("download", self.parse_config)
+        download_config = self.parse_config.copy()
+        download_config.configuration = model.download_config
+        downloader = create_strategy("download", download_config)
         output = downloader.get()
+
         cache = DataCache(self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
             workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
         columns = get_column_indices(model, worksheet)
@@ -197,5 +204,5 @@ class XLSXParseStrategy:
         if header is None:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
-        transposed = list(map(list, zip(*data)))
-        return {k: v for k, v in zip(header, transposed)}
+        transposed = [list(datum) for datum in zip(*data)]
+        return {key: value for key, value in zip(header, transposed)}

@@ -6,12 +6,13 @@ from typing import Union
 
 from .datacacheconfig import DataCacheConfig
 from .filterconfig import FilterConfig
-from .genericconfig import GenericConfig
+from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
 from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
+    "AttrDict",
     "DataCacheConfig",
     "FilterConfig",
     "GenericConfig",
