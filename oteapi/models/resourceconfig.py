@@ -1,10 +1,9 @@
 """Pydantic Resource Configuration Data Model."""
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Union
 
-from pydantic import AnyUrl, Field, root_validator
+from pydantic import AnyUrl, Field, FileUrl, root_validator
 
-from oteapi.models.datacacheconfig import DataCacheConfig
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.genericconfig import AttrDict, GenericConfig
 
 
 class ResourceConfig(GenericConfig):
@@ -16,7 +15,7 @@ class ResourceConfig(GenericConfig):
 
     """
 
-    downloadUrl: Optional[AnyUrl] = Field(
+    downloadUrl: Optional[Union[AnyUrl, FileUrl]] = Field(
         None,
         description=(
             "Definition: The URL of the downloadable file in a given format. E.g. CSV "
@@ -68,8 +67,8 @@ class ResourceConfig(GenericConfig):
         None,
         description="The entity responsible for making the resource/item available.",
     )
-    configuration: DataCacheConfig = Field(
-        DataCacheConfig(),
+    configuration: Optional[AttrDict] = Field(
+        {},
         description="Resource-specific configuration options given as key/value-pairs.",
     )
 
