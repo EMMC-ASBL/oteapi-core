@@ -1,4 +1,5 @@
 """Tests for `oteapi.models.genericconfig`"""
+# pylint: disable=no-member
 from typing import TYPE_CHECKING
 
 import pytest
@@ -63,3 +64,15 @@ def test_attribute_del_item(generic_config: "GenericConfig") -> None:
     """Test configuration.__delitem__."""
     del generic_config.configuration["float"]
     assert "float" not in generic_config.configuration
+
+
+def test_attrdict() -> None:
+    """Test the behaviour of AttrDict."""
+    from oteapi.models.genericconfig import AttrDict
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    config = AttrDict(**data)
+    assert config.a == config["a"] == config.get("a") == data["a"]
+    assert config.b == config["b"] == config.get("b") == data["b"]
+
+    assert {**config} == data
