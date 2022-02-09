@@ -1266,7 +1266,7 @@ ResourceConfig            (<a title="oteapi.models.genericconfig.GenericConfig" 
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">AnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">AnyUrl</span><span class="p">,</span> <span class="n">FileUrl</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;Definition: The URL of the downloadable file in a given format. E.g. CSV &quot;</span>
@@ -1425,7 +1425,7 @@ ResourceConfig            (<a title="oteapi.models.genericconfig.GenericConfig" 
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.downloadUrl" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">AnyUrl</span></code>
+<code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydantic</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">AnyUrl</span><span class="p">,</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">FileUrl</span><span class="p">]</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
