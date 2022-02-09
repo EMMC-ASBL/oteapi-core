@@ -12,6 +12,7 @@ from .resourceconfig import ResourceConfig
 from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
+    "AttrDict",
     "DataCacheConfig",
     "FilterConfig",
     "GenericConfig",

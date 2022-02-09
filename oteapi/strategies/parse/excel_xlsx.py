@@ -64,8 +64,8 @@ class XLSXParseDataModel(BaseModel):
             "Optional list of new column names replacing `header` in the output."
         ),
     )
-    download_config: Optional[AttrDict] = Field(
-        {},
+    download_config: AttrDict = Field(
+        AttrDict(),
         description="Configurations provided to a download strategy.",
     )
 
@@ -153,15 +153,16 @@ class XLSXParseStrategy:
 
         """
         model = XLSXParseDataModel(**self.parse_config.configuration)
+
         download_config = self.parse_config.copy()
-        download_config.configuration = self.parse_config.configuration.get(
-            "download_config"
-        )
+        download_config.configuration = model.download_config
         downloader = create_strategy("download", download_config)
         output = downloader.get()
+
         cache = DataCache(self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
             workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
         columns = get_column_indices(model, worksheet)
@@ -203,5 +204,5 @@ class XLSXParseStrategy:
         if header is None:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
-        transposed = list(map(list, zip(*data)))
-        return {k: v for k, v in zip(header, transposed)}
+        transposed = [list(datum) for datum in zip(*data)]
+        return {key: value for key, value in zip(header, transposed)}
