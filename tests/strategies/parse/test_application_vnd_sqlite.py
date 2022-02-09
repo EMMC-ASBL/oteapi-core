@@ -1,11 +1,12 @@
 """Tests the parse strategy for SQLite."""
-from pathlib import Path
 
 
 def test_sqlite():
     """Test `application/vnd.sqlite3` parse strategy on 'sample1.db',
     downloaded as SQL source 'sample1.sql' from filesamples.com.
     """
+    from pathlib import Path
+
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.application_vnd_sqlite import SqliteParseStrategy
 

@@ -1,50 +1,54 @@
 """Tests the download strategy for 'sftp://'."""
 # pylint: disable=no-self-use
-from pathlib import Path
-from shutil import copyfile
-from typing import Any
-
-from pydantic import AnyUrl
-from pytest_mock import MockerFixture
+import pytest
 
 
 class MockSFTPConnection:
     """A mockup of pysftp.Connection, as used in SFTPStrategy.get()."""
 
-    def __enter__(self) -> Any:
+    from pathlib import Path
+
+    def __init__(self, **kwargs) -> None:
+        """Dummy initializer."""
+
+    def __enter__(self):
         """Entry into context manager."""
         return self
 
-    def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None:
+    def __exit__(self, exc_type: str, exc_value: str, traceback: str) -> None:
         """Dummy exit from context manager."""
 
     def get(self, remotepath: str, localpath: Path) -> None:
         """A mockup of pysftp.Connection.get() as called in
         SFTPStrategy.get().
         """
+        from shutil import copyfile
+
         copyfile(remotepath, localpath)
 
 
-def test_sftp(mocker: MockerFixture) -> None:
+def test_sftp(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test `sftp.py` download strategy by mocking download, and
     comparing data mock downloaded from the local file
     'sample_1280_853.jpeg' with data obtained from simply opening the
     file directly.
     """
+    from pathlib import Path
+
+    import pysftp
+    from pydantic import AnyUrl
+
     from oteapi.datacache.datacache import DataCache
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.sftp import SFTPStrategy
 
-    path = str(Path(__file__).resolve().parents[1] / "sample_1280_853.jpeg")
+    path = Path(__file__).resolve().parents[1] / "sample_1280_853.jpeg"
     config = ResourceConfig(
-        downloadUrl=AnyUrl(url="dummy", scheme="sftp", path=path),
+        downloadUrl=AnyUrl(url="dummy", scheme="sftp", path=str(path)),
         mediaType="image/jpeg",
     )
-    mocker.patch(
-        target="pysftp.Connection",
-        return_value=MockSFTPConnection(),
-    )
+    monkeypatch.setattr(pysftp, "Connection", MockSFTPConnection)
     output = SFTPStrategy(config).get()
     content = DataCache().get(output["key"])
-    with open(path, "rb") as target:
-        assert content == target.read()
+    DataCache().clear()
+    assert content == path.read_bytes()

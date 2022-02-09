@@ -1,11 +1,12 @@
 """Tests the parse strategy for JSON."""
-from pathlib import Path
 
 
 def test_json():
     """Test `application/json` parse strategy on 'sample2.json',
     downloaded from filesamples.com.
     """
+    from pathlib import Path
+
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.application_json import JSONDataParseStrategy
 

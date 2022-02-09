@@ -1,6 +1,4 @@
 """Tests the crop filter strategy."""
-import os
-from pathlib import Path
 
 
 def test_crop_filter():
@@ -10,6 +8,8 @@ def test_crop_filter():
     Note: This test incorporates much of the contents of the test
     'test_jpeg.py', so if that test fails, this one should fail too.
     """
+    from pathlib import Path
+
     from oteapi.models.filterconfig import FilterConfig
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.filter.crop_filter import CropFilter
@@ -34,9 +34,9 @@ def test_crop_filter():
     parser_jpeg = ImageDataParseStrategy(image_config)
     parser_jpeg.get()
 
-    with open(parent_dir / "sample_700_400.jpeg", "rb") as sample:
-        target_data = sample.read()
-    with open(parent_dir / "cropped_sample_1280_853.jpeg", "rb") as cropped:
-        cropped_data = cropped.read()
-    os.remove(parent_dir / "cropped_sample_1280_853.jpeg")
+    target_data = (parent_dir / "sample_700_400.jpeg").read_bytes()
+    cropped_file = parent_dir / "cropped_sample_1280_853.jpeg"
+    assert cropped_file.is_file()
+    cropped_data = cropped_file.read_bytes()
+    cropped_file.unlink()
     assert cropped_data == target_data

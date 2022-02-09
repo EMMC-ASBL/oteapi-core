@@ -1,11 +1,12 @@
 """Tests the download strategy for 'file://'."""
-from pathlib import Path
 
 
 def test_file():
     """Test `file` download strategy on 'sample_1280_853.jpeg' and
     'sample2.json', downloaded from filesamples.com.
     """
+    from pathlib import Path
+
     from oteapi.datacache.datacache import DataCache
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.file import FileStrategy
@@ -20,8 +21,7 @@ def test_file():
     )
     binary_output = FileStrategy(binary_config).get()
     binary_content = DataCache().get(binary_output["key"])
-    with open(path / "sample_1280_853.jpeg", "rb") as binary_file:
-        assert binary_content == binary_file.read()
+    assert binary_content == (path / "sample_1280_853.jpeg").read_bytes()
 
     # Test text file download
     text_config = ResourceConfig(

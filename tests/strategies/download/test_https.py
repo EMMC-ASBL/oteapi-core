@@ -1,8 +1,5 @@
 """Tests the download strategy for 'https://' and 'http://'."""
 # pylint: disable=unused-argument
-# pylint: disable=unused-import
-from pathlib import Path
-
 import requests_mock
 
 
@@ -22,10 +19,11 @@ def test_https(requests_mock):
     'sample_1280_853.jpeg' and 'sample2.json'
     with data obtained from simply opening them directly.
     """
+    from pathlib import Path
+
     from oteapi.datacache.datacache import DataCache
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.plugins.factories import StrategyType, create_strategy
-    from oteapi.strategies.download.https import HTTPSStrategy
 
     tests = (
         ("http", "image/jpeg", "sample_1280_853.jpeg"),
@@ -48,6 +46,4 @@ def test_https(requests_mock):
         key_dict = mock_get(**params)
         mock_data = DataCache().get(key_dict["key"])
         DataCache().clear()
-        with open(params["file"], "rb") as target:
-            target_data = target.read()
-        assert mock_data == target_data
+        assert mock_data == Path(params["file"]).read_bytes()
