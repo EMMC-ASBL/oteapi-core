@@ -21,7 +21,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class XLSXParseDataModel(BaseModel):
     """Data model for retrieving a rectangular section of an Excel sheet."""
 
-    worksheet: str = Field("Sheet1", description="Name of worksheet to load.")
+    worksheet: str = Field(..., description="Name of worksheet to load.")
     row_from: Optional[int] = Field(
         None,
         description="Excel row number of first row. Defaults to first assigned row.",

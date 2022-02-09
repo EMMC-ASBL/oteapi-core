@@ -1,5 +1,4 @@
 """Tests for `oteapi.models.genericconfig`"""
-import pytest
 
 
 def test_attrdict() -> None:
@@ -8,7 +7,7 @@ def test_attrdict() -> None:
 
     data = {"a": 1, "b": "foo", "c": "bar"}
     config = AttrDict(**data)
-    assert config.a == config[a] == config.get(a) == data[a]
-    assert config.b == config[b] == config.get(b) == data[b]
+    assert config.a == config["a"] == config.get("a") == data["a"]
+    assert config.b == config["b"] == config.get("b") == data["b"]
 
     assert {**config} == data

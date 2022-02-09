@@ -66,6 +66,15 @@ class AttrDict(BaseModel):
         """Return a view of all values."""
         return self.__dict__.values()
 
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
+        """Mapping `get`-method."""
+        return self.__dict__.get(key, default)
+
+    def __ne__(self, other: Any) -> bool:
+        if isinstance(other, BaseModel):
+            return self.dict() != other.dict()
+        return self.dict() != other
+
 
 class GenericConfig(BaseModel):
     """Generic class for configuration objects."""

@@ -81,7 +81,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
     `[options.entry_points]` group.
 
     Example:
-        The provided `entry_point` could look like:
+        The provided `entry_points` could look like:
 
         ```ini
         oteapi.parse =
