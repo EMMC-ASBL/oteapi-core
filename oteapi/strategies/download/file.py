@@ -60,14 +60,14 @@ class FileStrategy:
                 "Expected 'downloadUrl' to have scheme 'file' in the configuration."
             )
 
-        filename = Path(self.download_config.downloadUrl.host).resolve()
+        filename = Path(self.download_config.downloadUrl.path).resolve()
 
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
             config = FileConfig(
-                **self.download_config.configuration.dict(), extra=Extra.ignore
+                **self.download_config.configuration, extra=Extra.ignore
             )
             key = cache.add(
                 filename.read_text(encoding=config.encoding)

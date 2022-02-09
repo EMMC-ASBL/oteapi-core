@@ -46,6 +46,26 @@ class AttrDict(BaseModel):
         """Enable write access through subscription."""
         self.__setattr__(key, value)
 
+    def __len__(self):
+        """Return number of items."""
+        return self.__dict__.__len__()
+
+    def items(self):
+        """Return a view of all (key, value) pairs."""
+        return self.__dict__.items()
+
+    def keys(self):
+        """Return a view of all keys."""
+        return self.__dict__.keys()
+
+    def values(self):
+        """Return a view of all values."""
+        return self.__dict__.values()
+
+    def has_key(self, key):
+        """Return whether key is in self."""
+        return self.__dict__.has_key(key)
+
 
 class GenericConfig(BaseModel):
     """Generic class for configuration objects."""
