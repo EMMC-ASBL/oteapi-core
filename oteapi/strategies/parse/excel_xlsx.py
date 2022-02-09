@@ -161,7 +161,7 @@ class XLSXParseStrategy:
 
         cache = DataCache(self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
-            workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+            workbook = load_workbook(filename=filename, read_only=False, data_only=True)
 
         worksheet = workbook[model.worksheet]
         set_model_defaults(model, worksheet)
