@@ -1,5 +1,4 @@
 """Tests the parse strategy for JSON."""
-# pylint: disable=unused-import
 from pathlib import Path
 
 
@@ -8,7 +7,6 @@ def test_json():
     downloaded from filesamples.com.
     """
     from oteapi.models.resourceconfig import ResourceConfig
-    from oteapi.strategies.download.file import FileStrategy
     from oteapi.strategies.parse.application_json import JSONDataParseStrategy
 
     data = {
@@ -30,6 +28,5 @@ def test_json():
         mediaType="application/json",
     )
     parser = JSONDataParseStrategy(config)
-    json = parser.get()
 
-    assert json == data
+    assert parser.get() == data
