@@ -3,17 +3,27 @@
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
+from pydantic import Field
 
 import pysftp
 
 from oteapi.datacache import DataCache
+
+from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
+class SessionUpdateSFTP(SessionUpdate):
+    """Class for returning values from Download HTTPS strategy."""
+
+    key: Optional[str] = Field(
+        None,
+        description="Key to access the data in the cache.",
+    )
 
 @dataclass
 class SFTPStrategy:
@@ -30,11 +40,11 @@ class SFTPStrategy:
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdate:
         """Initialize."""
         return {}
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSFTP:
         """Download via sftp"""
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -65,4 +75,4 @@ class SFTPStrategy:
                 finally:
                     localpath.unlink()
 
-        return {"key": key}
+        return SessionUpdateSFTP(key=key)

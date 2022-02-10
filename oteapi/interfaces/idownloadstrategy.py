@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.models import ResourceConfig, SessionUpdate
 
 
 @dataclass  # type: ignore[misc]
@@ -14,7 +14,7 @@ class IDownloadStrategy(Protocol):
 
     download_config: "ResourceConfig"
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Execute the strategy.
 
         Parameters:
@@ -28,7 +28,7 @@ class IDownloadStrategy(Protocol):
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> "SessionUpdate":
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API

@@ -11,6 +11,7 @@ from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
 from .transformationconfig import TransformationConfig, TransformationStatus
+from .sessionupdate import SessionUpdate
 
 __all__ = (
     "AttrDict",
@@ -23,6 +24,7 @@ __all__ = (
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
+    "SessionUpdate",
 )
 
 StrategyConfig = Union[
