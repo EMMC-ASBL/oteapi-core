@@ -8,6 +8,7 @@ from typing import Union
 
 from .idownloadstrategy import IDownloadStrategy
 from .ifilterstrategy import IFilterStrategy
+from .ifunctionstrategy import IFunctionStrategy
 from .imappingstrategy import IMappingStrategy
 from .iparsestrategy import IParseStrategy
 from .iresourcestrategy import IResourceStrategy
@@ -16,6 +17,7 @@ from .itransformationstrategy import ITransformationStrategy
 __all__ = (
     "IDownloadStrategy",
     "IFilterStrategy",
+    "IFunctionStrategy",
     "IMappingStrategy",
     "IParseStrategy",
     "IResourceStrategy",
@@ -26,6 +28,7 @@ __all__ = (
 IStrategy = Union[
     IDownloadStrategy,
     IFilterStrategy,
+    IFunctionStrategy,
     IMappingStrategy,
     IParseStrategy,
     IResourceStrategy,
