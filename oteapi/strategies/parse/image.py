@@ -19,7 +19,7 @@ class ImageDataParseStrategy:
 
     - `("mediaType", "image/jpg")`
     - `("mediaType", "image/jpeg")`
-    - `("mediaType", "image/j2p")`
+    - `("mediaType", "image/jp2")`
     - `("mediaType", "image/png")`
     - `("mediaType", "image/gif")`
     - `("mediaType", "image/tiff")`
@@ -31,11 +31,10 @@ class ImageDataParseStrategy:
 
     def __post_init__(self):
         self.localpath = "/ote-data"
-        self.filename = self.parse_config.configuration["artifactName"]
-        if self.parse_config.configuration:
-            self.conf = self.parse_config.configuration
-        else:
-            self.conf = {}
+        self.filename = self.parse_config.configuration["filename"]
+        self.conf = self.parse_config.configuration
+        if "localpath" in self.conf:
+            self.localpath = self.conf["localpath"]
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None

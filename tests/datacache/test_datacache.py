@@ -1,4 +1,5 @@
 """Tests for `oteapi.datacache.datacache`."""
+# pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -7,7 +8,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 def test_cache(tmp_path: "Path") -> None:
     """Simple tests for the `DataCache`."""
-    from oteapi.datacache import DataCache
+    from oteapi.datacache.datacache import DataCache
 
     cache = DataCache(cache_dir=tmp_path / "oteapi-test_cache")
 

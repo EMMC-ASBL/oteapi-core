@@ -21,8 +21,9 @@ class AttrDict(BaseModel):
         """Enable deletion access through subscription."""
         if key in dir(self):
             self.__delattr__(key)
-            del self.__fields__[key]
-            self.__fields_set__.remove(key)  # pylint: disable=no-member
+            if key in self.__fields__:
+                del self.__fields__[key]
+                self.__fields_set__.remove(key)  # pylint: disable=no-member
         else:
             raise KeyError(key)
 
