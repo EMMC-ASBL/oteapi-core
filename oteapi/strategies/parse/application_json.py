@@ -1,4 +1,4 @@
-"""Strategy class for text/json."""
+"""Strategy class for application/json."""
 # pylint: disable=unused-argument
 import json
 from dataclasses import dataclass
@@ -19,7 +19,7 @@ class JSONDataParseStrategy:
 
     **Registers strategies**:
 
-    - `("mediaType", "text/json")`
+    - `("mediaType", "application/json")`
 
     """
 
