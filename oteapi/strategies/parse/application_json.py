@@ -2,16 +2,24 @@
 # pylint: disable=unused-argument
 import json
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
+
+from pydantic import Field
 
 from oteapi.datacache import DataCache
 from oteapi.plugins import create_strategy
+
+from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
+class SessionUpdateJSONParse(SessionUpdate):
+    """Class for returning values from JSON Parse."""
+
+    content: Dict = Field(..., description="Content of the JSON document.")
 
 @dataclass
 class JSONDataParseStrategy:
@@ -27,11 +35,11 @@ class JSONDataParseStrategy:
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateJSONParse:
         """Parse json."""
         downloader = create_strategy("download", self.parse_config)
         output = downloader.get()
@@ -39,5 +47,5 @@ class JSONDataParseStrategy:
         content = cache.get(output["key"])
 
         if isinstance(content, dict):
-            return content
-        return json.loads(content)
+            return SessionUpdateJSONParse(content=content)
+        return SessionUpdateJSONParse(content=json.loads(content))

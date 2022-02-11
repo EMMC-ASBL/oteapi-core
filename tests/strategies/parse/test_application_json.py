@@ -30,4 +30,4 @@ def test_json():
     )
     parser = JSONDataParseStrategy(config)
 
-    assert parser.get() == data
+    assert parser.get().content == data

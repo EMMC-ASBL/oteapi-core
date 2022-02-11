@@ -3,7 +3,9 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
@@ -11,8 +13,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from oteapi.models import FilterConfig
 
 
-class SqlQueryDataModel(BaseModel):
-    """SQL Query data model."""
+class SessionUpdateSqlQuery(SessionUpdate):
+    """Class for returning values from SQL Query data model."""
 
     query: str = Field(..., description="A SQL query string.")
 
@@ -31,11 +33,11 @@ class SQLQueryFilter:
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdateSqlQuery:
         """Initialize strategy and return a dictionary"""
-        queryData = SqlQueryDataModel(**{"query": self.filter_config.query})
-        return {"sqlquery": queryData.query}
+        queryData = SessionUpdateSqlQuery(**{"query": self.filter_config.query})
+        return queryData
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary"""
-        return {}
+        return SessionUpdate()

@@ -11,6 +11,8 @@ from oteapi.datacache import DataCache
 from oteapi.models import AttrDict
 from oteapi.plugins import create_strategy
 
+from oteapi.models.sessionupdate import SessionUpdate
+
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Iterable
 
@@ -18,6 +20,10 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from oteapi.models import ResourceConfig
 
+class SessionUpdateXLSXParse(SessionUpdate):
+    """Class for returning values from XLSXParse."""
+
+    data: Dict[str,List] = Field(..., description="A dict with column-name/column-value pairs. The values are lists.")
 
 class XLSXParseDataModel(BaseModel):
     """Data model for retrieving a rectangular section of an Excel sheet."""
@@ -141,11 +147,11 @@ class XLSXParseStrategy:
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateXLSXParse:
         """Parses selected region of an excel file.
 
         Returns:
@@ -205,4 +211,4 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return {key: value for key, value in zip(header, transposed)}
+        return SessionUpdateXLSXParse(data={k: v for k, v in zip(header, transposed)})

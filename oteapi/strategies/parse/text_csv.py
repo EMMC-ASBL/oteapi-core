@@ -3,11 +3,17 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from oteapi.models.sessionupdate import SessionUpdate
+
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
+class SessionUpdateCSVParse(SessionUpdate):
+    """Class for returning values from CSVParse."""
+    # returns nothing...
+    
 
 @dataclass
 class CSVParseStrategy:
@@ -21,13 +27,13 @@ class CSVParseStrategy:
 
     parse_config: "ResourceConfig"
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCSVParse:
         """Parse CSV."""
         print("CSV in action!")
-        return {}
+        return SessionUpdateCSVParse()
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()

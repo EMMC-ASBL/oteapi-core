@@ -10,6 +10,8 @@ from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
 
+from oteapi.models.sessionupdate import SessionUpdate
+
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Dict, Optional
 
@@ -18,6 +20,10 @@ if TYPE_CHECKING:  # pragma: no cover
 # Connect Celery to the currently running Redis instance
 app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)
 
+class SessionUpdateCelery(SessionUpdate):
+    """Class for returning values from XLSXParse."""
+
+    data: Dict[str,List] = Field(..., description="A dict with column-name/column-value pairs. The values are lists.")
 
 class CeleryConfig(BaseModel):
     """Celery configuration."""
@@ -38,18 +44,19 @@ class CeleryRemoteStrategy:
 
     transformation_config: "TransformationConfig"
 
-    def run(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def run(self, session: "Optional[Dict[str, Any]]" = None) -> TransformationStatus:
         """Run a job, return a job ID."""
         config = self.transformation_config.configuration
         celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
         result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
-        return {"result": result.task_id}
+        status = AsyncResult(id=result.task_id, app=app)
+        return TransformationStatus(id=result.task_id,status=status.status)
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    ) -> SessionUpdate:
         """Initialize a job."""
-        return {}
+        return SessionUpdate()
 
     def status(self, task_id: str) -> TransformationStatus:
         """Get job status."""
@@ -59,4 +66,4 @@ class CeleryRemoteStrategy:
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Get transformation."""
         # TODO: update and return global state  # pylint: disable=fixme
-        return {}
+        return SessionUpdate()

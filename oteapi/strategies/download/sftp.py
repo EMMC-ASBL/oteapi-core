@@ -18,7 +18,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from oteapi.models import ResourceConfig
 
 class SessionUpdateSFTP(SessionUpdate):
-    """Class for returning values from Download HTTPS strategy."""
+    """Class for returning values from Download SFTP strategy."""
 
     key: Optional[str] = Field(
         None,
