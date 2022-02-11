@@ -18,10 +18,8 @@ def test_crop_filter(tmp_path):
 
     parent_dir = Path(__file__).resolve().parents[1]
     # Create a temporary directory to use for this test
-    temp_dir = tmp_path / "crop_test_dir"
-    temp_dir.mkdir()
     source_file = "sample_1280_853.jpeg"
-    copy(parent_dir / source_file, temp_dir / source_file)
+    copy(parent_dir / source_file, tmp_path / source_file)
 
     crop = [200, 300, 900, 700]
     filter_config = FilterConfig(
@@ -33,18 +31,13 @@ def test_crop_filter(tmp_path):
         downloadUrl="file://dummy",
         mediaType="image/jpeg",
         configuration={
-            "localpath": str(temp_dir),
+            "localpath": str(tmp_path),
             "filename": source_file,
             "crop": crop_filter_data["imagecrop"],
         },
     )
     ImageDataParseStrategy(image_config).get()
 
-    try:
-        cropped_file = temp_dir / ("cropped_" + source_file)
-        cropped_data = cropped_file.read_bytes()
-    finally:
-        (temp_dir / source_file).unlink()
-        cropped_file.unlink()
-        temp_dir.rmdir()
+    cropped_file = tmp_path / f"cropped_{source_file}"
+    cropped_data = cropped_file.read_bytes()
     assert cropped_data == (parent_dir / "sample_700_400.jpeg").read_bytes()
