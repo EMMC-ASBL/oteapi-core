@@ -1,17 +1,17 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
-from pathlib import Path, PosixPath
+from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, FileUrl
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
+from oteapi.models import ResourceConfig
+from oteapi.models.datacacheconfig import DataCacheConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
-
-    from oteapi.models import ResourceConfig
 
 
 class FileConfig(BaseModel):
@@ -30,6 +30,21 @@ class FileConfig(BaseModel):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
+    cache_config: Optional[DataCacheConfig] = Field(
+        None,
+        description="Configuration options for the local data cache.",
+    )
+
+
+class FileResourceConfig(ResourceConfig):
+    """File download strategy filter config."""
+
+    downloadUrl: FileUrl = Field(
+        ..., description="The file URL, which will be downloaded."
+    )
+    configuration: FileConfig = Field(
+        FileConfig(), description="File download strategy-specific configuration."
+    )
 
 
 @dataclass
@@ -42,7 +57,7 @@ class FileStrategy:
 
     """
 
-    download_config: "ResourceConfig"
+    download_config: FileResourceConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -52,26 +67,18 @@ class FileStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
-        if (
-            self.download_config.downloadUrl is None
-            or self.download_config.downloadUrl.scheme != "file"
-        ):
-            raise ValueError(
-                "Expected 'downloadUrl' to have scheme 'file' in the configuration."
-            )
-
         filename = Path(self.download_config.downloadUrl.path).resolve()
-        if isinstance(filename, PosixPath):
-            filename = Path("/" + self.download_config.downloadUrl.host + str(filename))
 
-        cache = DataCache(self.download_config.configuration)
+        if not filename.exists():
+            raise FileNotFoundError(f"File not found at {filename}")
+
+        cache = DataCache(self.download_config.configuration.cache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
-            config = FileConfig(**self.download_config.configuration)
             key = cache.add(
-                filename.read_text(encoding=config.encoding)
-                if config.text
+                filename.read_text(encoding=self.download_config.configuration.encoding)
+                if self.download_config.configuration.text
                 else filename.read_bytes()
             )
 

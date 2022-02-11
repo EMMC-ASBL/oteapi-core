@@ -1,14 +1,41 @@
 """Strategy class for image/jpg."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from io import BytesIO
+from typing import TYPE_CHECKING, Optional, Tuple
 
 from PIL import Image
+from pydantic import BaseModel, Field
+from pydantic.dataclasses import dataclass
+
+from oteapi.datacache import DataCache
+from oteapi.models import DataCacheConfig, ResourceConfig
+from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
-    from oteapi.models import ResourceConfig
+
+class ImageParserConfig(BaseModel):
+    """[`ResourceConfig.configuration`][oteapi.models.resourceconfig.ResourceConfig.configuration]
+    data model for
+    [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""
+
+    crop: Optional[Tuple[int, int, int, int]] = Field(
+        None,
+        description="Box cropping parameters.",
+    )
+    cache_config: Optional[DataCacheConfig] = Field(
+        None,
+        description="Configuration options for the local data cache.",
+    )
+
+
+class ImageParserResourceConfig(ResourceConfig):
+    """Image parse strategy resource config."""
+
+    configuration: ImageParserConfig = Field(
+        ImageParserConfig(), description="Image parse strategy-specific configuration."
+    )
 
 
 @dataclass
@@ -27,32 +54,71 @@ class ImageDataParseStrategy:
 
     """
 
-    parse_config: "ResourceConfig"
-
-    def __post_init__(self):
-        self.localpath = "/ote-data"
-        self.filename = self.parse_config.configuration["filename"]
-        self.conf = self.parse_config.configuration
-        if "localpath" in self.conf:
-            self.localpath = self.conf["localpath"]
+    parse_config: ImageParserResourceConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize."""
+        """Initialize strategy."""
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        if session is not None:
-            self.conf.update(session)
-        parsedOutput = {}
-        if "crop" in self.conf:
-            print("cropping!")
-            im = Image.open(f"{self.localpath}/{self.filename}")
-            crop = self.conf["crop"]
-            im_cropped = im.crop(tuple(crop))
-            cropped_filename = f"{self.localpath}/cropped_{self.filename}"
-            im_cropped.save(cropped_filename)
-            parsedOutput["cropped_filename"] = cropped_filename
-        parsedOutput["parseImage"] = "Done"
-        return parsedOutput
+        """Execute the strategy."""
+        if session:
+            self._use_filters(session)
+        session = session if session else {}
+
+        mime_format = self.parse_config.mediaType.split("/")[1]
+        image_format = self._map_mime_to_format()
+
+        # Retrieve image file
+        download_config = self.parse_config.copy()
+        download_config.configuration = {}
+        downloader = create_strategy("download", download_config)
+        session.update(downloader.initialize(session))
+        cache_key = downloader.get(session).get("key", "")
+
+        cache = DataCache(self.parse_config.configuration.cache_config)
+
+        if not self.parse_config.configuration.crop:
+            # Return raw data as is - no change needed
+            return {
+                "content": cache.get(cache_key),
+                "format": image_format,
+                "cropped": False,
+            }
+
+        # Treat image according to filter values
+        with cache.getfile(cache_key, suffix=mime_format) as filename:
+            image = Image.open(filename, formats=[image_format]).crop(
+                self.parse_config.configuration.crop
+            )
+
+        if image_format == "GIF":
+            if image.info.get("version", b"").startswith(b"GIF"):
+                image.info.update(
+                    {"version": image.info.get("version", b"")[len(b"GIF") :]}
+                )
+
+        # Return parsed and treated image
+        image_content = BytesIO()
+        image.save(image_content, format=image_format)
+        return {
+            "content": image_content.getvalue(),
+            "format": image_format,
+            "cropped": bool(self.parse_config.configuration.crop),
+        }
+
+    def _use_filters(self, session: "Dict[str, Any]") -> None:
+        """Update `config` according to filter values found in the session."""
+        if "imagecrop" in session and not self.parse_config.configuration.crop:
+            # Use CropFilter available in session
+            self.parse_config.configuration.crop = session["imagecrop"]
+
+    def _map_mime_to_format(self) -> str:
+        """Return mapped Pillow-understandable format."""
+        image_format = self.parse_config.mediaType.split("/")[1]
+        return {
+            "jpg": "JPEG",
+            "jp2": "JPEG2000",
+        }.get(image_format, image_format.upper())

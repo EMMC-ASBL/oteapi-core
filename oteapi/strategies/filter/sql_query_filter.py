@@ -1,18 +1,18 @@
 """SQL query filter strategy."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+from pydantic.dataclasses import dataclass
+
+from oteapi.models import FilterConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import FilterConfig
 
-
-class SqlQueryDataModel(BaseModel):
-    """SQL Query data model."""
+class SqlQueryFilterConfig(FilterConfig):
+    """SQLite query filter strategy filter config."""
 
     query: str = Field(..., description="A SQL query string.")
 
@@ -27,15 +27,14 @@ class SQLQueryFilter:
 
     """
 
-    filter_config: "FilterConfig"
+    filter_config: SqlQueryFilterConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
         """Initialize strategy and return a dictionary"""
-        queryData = SqlQueryDataModel(**{"query": self.filter_config.query})
-        return {"sqlquery": queryData.query}
+        return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Execute strategy and return a dictionary"""
-        return {}
+        """Execute strategy and return a dictionary."""
+        return {"sqlquery": self.filter_config.query}

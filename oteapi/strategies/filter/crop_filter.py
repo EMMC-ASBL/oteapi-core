@@ -1,24 +1,32 @@
 """Demo-filter strategy"""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, Tuple
 
 from pydantic import BaseModel, Field
+from pydantic.dataclasses import dataclass
+
+from oteapi.models import FilterConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import FilterConfig
 
-
-class CropDataModel(BaseModel):
+class CropImageConfig(BaseModel):
     """Configuration model for crop data."""
 
-    crop: List[int] = Field(..., description="List of image cropping details.")
+    crop: Tuple[int, int, int, int] = Field(..., description="Box cropping parameters.")
+
+
+class CropImageFilterConfig(FilterConfig):
+    """Crop filter strategy filter config."""
+
+    configuration: CropImageConfig = Field(
+        ..., description="Image crop filter strategy-specific configuration."
+    )
 
 
 @dataclass
-class CropFilter:
+class CropImageFilter:
     """Strategy for cropping an image.
 
     **Registers strategies**:
@@ -27,19 +35,14 @@ class CropFilter:
 
     """
 
-    filter_config: "FilterConfig"
+    filter_config: CropImageFilterConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
-        """Initialize strategy and return a dictionary."""
-        return {"result": "collectionid"}
+        """Initialize strategy."""
+        return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Execute strategy and return a dictionary"""
-        cropData = (
-            CropDataModel(**self.filter_config.configuration.dict())
-            if self.filter_config.configuration
-            else CropDataModel()
-        )
-        return {"imagecrop": cropData.crop}
+        """Execute strategy and return cropping details."""
+        return {"imagecrop": self.filter_config.configuration.crop}

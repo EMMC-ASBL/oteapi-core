@@ -1,44 +1,67 @@
 """Tests the parse strategy for SQLite."""
+from typing import TYPE_CHECKING
 
+import pytest
 
-def test_sqlite():
-    """Test `application/vnd.sqlite3` parse strategy on 'sample1.db',
-    downloaded as SQL source 'sample1.sql' from filesamples.com.
-    """
+if TYPE_CHECKING:
     from pathlib import Path
+    from typing import Tuple
 
+
+sqlite_queries = [
+    (
+        "SELECT * FROM user_details WHERE user_details.user_id = 19;",
+        (
+            19,
+            "jenny0988",
+            "maria",
+            "morgan",
+            "Female",
+            "ec9ed18ae2a13fef709964af24bb60e6",
+            1,
+        ),
+    ),
+    (
+        "SELECT * FROM user_details WHERE user_details.user_id = 72;",
+        (
+            72,
+            "brown84",
+            "john",
+            "ross",
+            "Male",
+            "738cb4da81a2790a9a845f902a811ea2",
+            1,
+        ),
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    "query,expected", sqlite_queries, ids=["configuration", "session"]
+)
+def test_sqlite(
+    query: str,
+    expected: "Tuple[int, str, str, str, str, str, int]",
+    static_files: "Path",
+) -> None:
+    """Test `application/vnd.sqlite3` parse strategy on a local SQLite DB.
+
+    Test both passing in the query as a configuration and through a session.
+    """
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.application_vnd_sqlite import SqliteParseStrategy
 
-    filename = str((Path(__file__).resolve().parent / "sample1.db"))
-    query1 = "SELECT * FROM user_details WHERE user_details.user_id = 19;"
-    compare1 = (
-        19,
-        "jenny0988",
-        "maria",
-        "morgan",
-        "Female",
-        "ec9ed18ae2a13fef709964af24bb60e6",
-        1,
-    )
-    query2 = "SELECT * FROM user_details WHERE user_details.user_id = 72;"
-    compare2 = (
-        72,
-        "brown84",
-        "john",
-        "ross",
-        "Male",
-        "738cb4da81a2790a9a845f902a811ea2",
-        1,
-    )
+    sample_file = static_files / "sample1.db"
 
     config = ResourceConfig(
-        downloadUrl="file://dummy",
+        downloadUrl=sample_file.as_uri(),
         mediaType="application/vnd.sqlite3",
+        configuration={"sqlquery": query} if "19" in query else {},
     )
 
     parser = SqliteParseStrategy(config)
-    reply1 = parser.get({"filename": filename, "sqlquery": query1})
-    reply2 = parser.get({"filename": filename, "sqlquery": query2})
+    parser.initialize()
 
-    assert reply1["result"][0] == compare1 and reply2["result"][0] == compare2
+    result = parser.get({"sqlquery": query} if "19" not in query else None)
+
+    assert result["result"][0] == expected
