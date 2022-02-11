@@ -74,7 +74,6 @@ class FileStrategy:
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
-            filename = Path(self.download_config.downloadUrl.path).resolve()
             key = cache.add(
                 filename.read_text(encoding=config.encoding)
                 if config.text
