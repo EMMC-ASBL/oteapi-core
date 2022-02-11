@@ -1,7 +1,8 @@
 """Tests the crop filter strategy."""
+from shutil import copy
 
 
-def test_crop_filter():
+def test_crop_filter(tmp_path):
     """Test the crop filter strategy on 'sample_1280_853.jpeg',
     downloaded from filesamples.com (called 'sample_1280x853').
 
@@ -16,6 +17,12 @@ def test_crop_filter():
     from oteapi.strategies.parse.image import ImageDataParseStrategy
 
     parent_dir = Path(__file__).resolve().parents[1]
+    # Create a temporary directory to use for this test
+    temp_dir = tmp_path / "crop_test_dir"
+    temp_dir.mkdir()
+    source_file = "sample_1280_853.jpeg"
+    copy(parent_dir / source_file, temp_dir / source_file)
+
     crop = [200, 300, 900, 700]
     filter_config = FilterConfig(
         filterType="filter/crop",
@@ -26,17 +33,18 @@ def test_crop_filter():
         downloadUrl="file://dummy",
         mediaType="image/jpeg",
         configuration={
-            "localpath": str(parent_dir),
-            "filename": "sample_1280_853.jpeg",
+            "localpath": str(temp_dir),
+            "filename": source_file,
             "crop": crop_filter_data["imagecrop"],
         },
     )
-    parser_jpeg = ImageDataParseStrategy(image_config)
-    parser_jpeg.get()
+    ImageDataParseStrategy(image_config).get()
 
-    target_data = (parent_dir / "sample_700_400.jpeg").read_bytes()
-    cropped_file = parent_dir / "cropped_sample_1280_853.jpeg"
-    assert cropped_file.is_file()
-    cropped_data = cropped_file.read_bytes()
-    cropped_file.unlink()
-    assert cropped_data == target_data
+    try:
+        cropped_file = temp_dir / ("cropped_" + source_file)
+        cropped_data = cropped_file.read_bytes()
+    finally:
+        (temp_dir / source_file).unlink()
+        cropped_file.unlink()
+        temp_dir.rmdir()
+    assert cropped_data == (parent_dir / "sample_700_400.jpeg").read_bytes()
