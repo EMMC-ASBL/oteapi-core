@@ -2,16 +2,16 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Tuple
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import FilterConfig
+from oteapi.models import AttrDict, FilterConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
 
-class CropImageConfig(BaseModel):
+class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
     crop: Tuple[int, int, int, int] = Field(..., description="Box cropping parameters.")

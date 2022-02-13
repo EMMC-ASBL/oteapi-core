@@ -1,14 +1,14 @@
 """Strategy class for workbook/xlsx."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from typing import TYPE_CHECKING, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from pydantic import BaseModel, Field
+from pydantic import Field
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict
+from oteapi.models import AttrDict, ResourceConfig
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -16,10 +16,8 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from openpyxl.worksheet.worksheet import Worksheet
 
-    from oteapi.models import ResourceConfig
 
-
-class XLSXParseDataModel(BaseModel):
+class XLSXParseConfig(AttrDict):
     """Data model for retrieving a rectangular section of an Excel sheet."""
 
     worksheet: str = Field(..., description="Name of worksheet to load.")
@@ -70,7 +68,15 @@ class XLSXParseDataModel(BaseModel):
     )
 
 
-def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> None:
+class XLSXParseResourceConfig(ResourceConfig):
+    """XLSX parse strategy resource config."""
+
+    configuration: XLSXParseConfig = Field(
+        ..., description="SQLite parse strategy-specific configuration."
+    )
+
+
+def set_model_defaults(model: XLSXParseConfig, worksheet: "Worksheet") -> None:
     """Update data model `model` with default values obtained from `worksheet`.
 
     Parameters:
@@ -103,7 +109,7 @@ def set_model_defaults(model: XLSXParseDataModel, worksheet: "Worksheet") -> Non
 
 
 def get_column_indices(
-    model: XLSXParseDataModel, worksheet: "Worksheet"
+    model: XLSXParseConfig, worksheet: "Worksheet"
 ) -> "Iterable[int]":
     """Helper function returning a list of column indices.
 
@@ -137,7 +143,7 @@ class XLSXParseStrategy:
 
     """
 
-    parse_config: "ResourceConfig"
+    parse_config: XLSXParseResourceConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -152,34 +158,32 @@ class XLSXParseStrategy:
             A dict with column-name/column-value pairs. The values are lists.
 
         """
-        model = XLSXParseDataModel(**self.parse_config.configuration)
-
-        download_config = self.parse_config.copy()
-        download_config.configuration = model.download_config
+        download_config = ResourceConfig(**self.parse_config.dict())
+        download_config.configuration = self.parse_config.configuration.download_config
         downloader = create_strategy("download", download_config)
         output = downloader.get()
 
-        cache = DataCache(self.parse_config.configuration)
+        cache = DataCache(**self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
             workbook = load_workbook(filename=filename, read_only=True, data_only=True)
 
-        worksheet = workbook[model.worksheet]
-        set_model_defaults(model, worksheet)
-        columns = get_column_indices(model, worksheet)
+        worksheet = workbook[self.parse_config.configuration.worksheet]
+        set_model_defaults(self.parse_config.configuration, worksheet)
+        columns = get_column_indices(self.parse_config.configuration, worksheet)
 
         data = []
         for row in worksheet.iter_rows(
-            min_row=model.row_from,
-            max_row=model.row_to,
+            min_row=self.parse_config.configuration.row_from,
+            max_row=self.parse_config.configuration.row_to,
             min_col=min(columns),
             max_col=max(columns),
         ):
             data.append([row[c - 1].value for c in columns])
 
-        if model.header_row:
+        if self.parse_config.configuration.header_row:
             row = worksheet.iter_rows(
-                min_row=model.header_row,
-                max_row=model.header_row,
+                min_row=self.parse_config.configuration.header_row,
+                max_row=self.parse_config.configuration.header_row,
                 min_col=min(columns),
                 max_col=max(columns),
             ).__next__()
@@ -187,19 +191,19 @@ class XLSXParseStrategy:
         else:
             header = None
 
-        if model.new_header:
+        if self.parse_config.configuration.new_header:
             nhead = len(header) if header else len(data[0]) if data else 0
-            if len(model.new_header) != nhead:
+            if len(self.parse_config.configuration.new_header) != nhead:
                 raise TypeError(
-                    f"length of `new_header` (={len(model.new_header)}) "
+                    f"length of `new_header` (={len(self.parse_config.configuration.new_header)}) "
                     f"doesn't match number of columns (={len(header) if header else 0})"
                 )
             if header:
-                for i, val in enumerate(model.new_header):
+                for i, val in enumerate(self.parse_config.configuration.new_header):
                     if val is not None:
                         header[i] = val
             elif data:
-                header = model.new_header
+                header = self.parse_config.configuration.new_header
 
         if header is None:
             header = [get_column_letter(col + 1) for col in range(len(data))]

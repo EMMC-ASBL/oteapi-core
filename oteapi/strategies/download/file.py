@@ -3,18 +3,17 @@
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Field, FileUrl
+from pydantic import Field, FileUrl, validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import ResourceConfig
-from oteapi.models.datacacheconfig import DataCacheConfig
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 
-class FileConfig(BaseModel):
+class FileConfig(AttrDict):
     """File-specific Configuration Data Model."""
 
     text: bool = Field(
@@ -39,12 +38,19 @@ class FileConfig(BaseModel):
 class FileResourceConfig(ResourceConfig):
     """File download strategy filter config."""
 
-    downloadUrl: FileUrl = Field(
+    downloadUrl: FileUrl = Field(  # type: ignore[assignment]
         ..., description="The file URL, which will be downloaded."
     )
     configuration: FileConfig = Field(
         FileConfig(), description="File download strategy-specific configuration."
     )
+
+    @validator("downloadUrl")
+    def ensure_path_exists(cls, value: FileUrl) -> FileUrl:
+        """Ensure `path` is defined in `downloadUrl`."""
+        if not value.path:
+            raise ValueError("downloadUrl must contain a `path` part.")
+        return value
 
 
 @dataclass
@@ -67,7 +73,7 @@ class FileStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Read local file."""
-        filename = Path(self.download_config.downloadUrl.path).resolve()
+        filename = Path(self.download_config.downloadUrl.path).resolve()  # type: ignore[arg-type]
 
         if not filename.exists():
             raise FileNotFoundError(f"File not found at {filename}")

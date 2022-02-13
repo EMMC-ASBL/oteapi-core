@@ -3,7 +3,6 @@ from typing import Any, Dict, Optional
 
 from pydantic import AnyUrl, Field, root_validator
 
-from oteapi.models.datacacheconfig import DataCacheConfig
 from oteapi.models.genericconfig import GenericConfig
 
 
@@ -73,10 +72,6 @@ class ResourceConfig(GenericConfig):
     publisher: Optional[str] = Field(
         None,
         description="The entity responsible for making the resource/item available.",
-    )
-    configuration: DataCacheConfig = Field(
-        DataCacheConfig(),
-        description="Resource-specific configuration options given as key/value-pairs.",
     )
 
     @root_validator

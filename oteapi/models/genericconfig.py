@@ -1,10 +1,10 @@
 """Generic data model for configuration attributes."""
-from typing import Any, Optional
+from typing import Any, Mapping, Optional
 
 from pydantic import BaseModel, Field
 
 
-class AttrDict(BaseModel):
+class AttrDict(BaseModel, Mapping):
     """An object whose attributes can also be accessed through
     subscription, like with a dictionary."""
 
@@ -80,8 +80,8 @@ class AttrDict(BaseModel):
 class GenericConfig(BaseModel):
     """Generic class for configuration objects."""
 
-    configuration: Optional[AttrDict] = Field(
-        None,
+    configuration: AttrDict = Field(
+        AttrDict(),
         description="Model-specific configuration options which can either "
         "be given as key/value-pairs or set as attributes.",
     )

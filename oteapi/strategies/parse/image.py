@@ -4,18 +4,18 @@ from io import BytesIO
 from typing import TYPE_CHECKING, Optional, Tuple
 
 from PIL import Image
-from pydantic import BaseModel, Field
+from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import DataCacheConfig, ResourceConfig
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 
-class ImageParserConfig(BaseModel):
+class ImageParserConfig(AttrDict):
     """[`ResourceConfig.configuration`][oteapi.models.resourceconfig.ResourceConfig.configuration]
     data model for
     [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""
@@ -35,6 +35,16 @@ class ImageParserResourceConfig(ResourceConfig):
 
     configuration: ImageParserConfig = Field(
         ImageParserConfig(), description="Image parse strategy-specific configuration."
+    )
+    mediaType: str = Field(
+        ...,
+        description=(
+            "The media type of the distribution as defined by IANA "
+            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]"
+            ".\n\nUsage: This property *SHOULD* be used when the media"
+            " type of the distribution is defined in IANA "
+            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]."
+        ),
     )
 
 
@@ -72,8 +82,8 @@ class ImageDataParseStrategy:
         image_format = self._map_mime_to_format()
 
         # Retrieve image file
-        download_config = self.parse_config.copy()
-        download_config.configuration = {}
+        download_config = ResourceConfig(**self.parse_config.dict())
+        del download_config.configuration
         downloader = create_strategy("download", download_config)
         session.update(downloader.initialize(session))
         cache_key = downloader.get(session).get("key", "")

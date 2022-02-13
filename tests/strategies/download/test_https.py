@@ -32,7 +32,7 @@ def test_https(
     directly."""
     from oteapi.datacache.datacache import DataCache
     from oteapi.models.resourceconfig import ResourceConfig
-    from oteapi.plugins.factories import create_strategy
+    from oteapi.strategies.download.https import HTTPSStrategy
 
     sample_file = static_files / filename
     assert sample_file.exists(), f"Test file not found at {sample_file} !"
@@ -45,7 +45,7 @@ def test_https(
     # Mock requests call in the download strategy
     requests_mock.get(config.downloadUrl, content=sample_file.read_bytes())
 
-    download = create_strategy("download", config)
+    download = HTTPSStrategy(config)
     datacache_key = download.get(config.downloadUrl).get("key", "")
 
     datacache = DataCache()

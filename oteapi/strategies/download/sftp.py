@@ -1,18 +1,17 @@
 """Strategy class for sftp/ftp"""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING
 
 import pysftp
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
+from oteapi.models import ResourceConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
-
-    from oteapi.models import ResourceConfig
 
 
 @dataclass
@@ -26,7 +25,7 @@ class SFTPStrategy:
 
     """
 
-    download_config: "ResourceConfig"
+    download_config: ResourceConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
@@ -36,7 +35,7 @@ class SFTPStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Download via sftp"""
-        cache = DataCache(self.download_config.configuration)
+        cache = DataCache(**self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:

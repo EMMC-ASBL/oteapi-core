@@ -4,23 +4,23 @@ import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import DataCacheConfig, ResourceConfig
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 
-class SqliteParseConfig(BaseModel):
+class SqliteParseConfig(AttrDict):
     """[`ResourceConfig.configuration`][oteapi.models.resourceconfig.ResourceConfig.configuration]
     data model for
     [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy]."""
 
-    sqlquery: Optional[str] = Field(None, description="A SQL query string.")
+    sqlquery: str = Field("", description="A SQL query string.")
     cache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
@@ -28,14 +28,14 @@ class SqliteParseConfig(BaseModel):
 
 
 class SqliteParserResourceConfig(ResourceConfig):
-    """Image parse strategy resource config."""
+    """SQLite parse strategy resource config."""
 
     configuration: SqliteParseConfig = Field(
         SqliteParseConfig(), description="SQLite parse strategy-specific configuration."
     )
 
 
-def create_connection(db_file: Path) -> "Optional[sqlite3.Connection]":
+def create_connection(db_file: Path) -> sqlite3.Connection:
     """Create a database connection to SQLite database.
 
     Parameters:
@@ -48,8 +48,7 @@ def create_connection(db_file: Path) -> "Optional[sqlite3.Connection]":
     try:
         return sqlite3.connect(db_file)
     except sqlite3.Error as exc:
-        print(exc)
-    return None
+        raise sqlite3.Error("Could not connect to given SQLite DB.") from exc
 
 
 @dataclass
@@ -81,7 +80,7 @@ class SqliteParseStrategy:
 
         # Retrieve SQLite file
         download_config = self.parse_config.copy()
-        download_config.configuration = {}
+        del download_config.configuration
         downloader = create_strategy("download", download_config)
         session.update(downloader.initialize(session))
         cache_key = downloader.get(session).get("key", "")
