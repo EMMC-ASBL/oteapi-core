@@ -212,4 +212,6 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return SessionUpdateXLSXParse(data={k: v for k, v in zip(header, transposed)})
+        return SessionUpdateXLSXParse(
+            data={key: value for key, value in zip(header, transposed)}
+        )
