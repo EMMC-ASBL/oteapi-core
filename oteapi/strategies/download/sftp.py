@@ -9,7 +9,7 @@ import pysftp
 from pydantic import Field
 
 from oteapi.datacache import DataCache
-from oteapi.models.sessionupdate import SessionUpdate
+from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict

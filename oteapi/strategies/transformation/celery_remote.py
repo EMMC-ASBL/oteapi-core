@@ -8,8 +8,7 @@ from celery.result import AsyncResult
 from fastapi_plugins import RedisSettings
 from pydantic import BaseModel, Field
 
-from oteapi.models import TransformationStatus
-from oteapi.models.sessionupdate import SessionUpdate
+from oteapi.models import SessionUpdate, TransformationStatus
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Union

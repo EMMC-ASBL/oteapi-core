@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from pydantic import Field
 
 from oteapi.datacache import DataCache
-from oteapi.models.sessionupdate import SessionUpdate
+from oteapi.models import SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover

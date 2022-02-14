@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, List
 
 from pydantic import Field
 
-from oteapi.models.sessionupdate import SessionUpdate
+from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional

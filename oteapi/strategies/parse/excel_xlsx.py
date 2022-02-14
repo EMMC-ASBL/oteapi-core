@@ -8,8 +8,7 @@ from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict
-from oteapi.models.sessionupdate import SessionUpdate
+from oteapi.models import AttrDict, SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
