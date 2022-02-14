@@ -79,8 +79,8 @@ class DataCache:
     ```
 
     Args:
-        config: Download configurations.
-        cache_dir: Cache directory overriding the config.
+        config (Union[DataCacheConfig, Dict[str, Any]]): Download configurations.
+        cache_dir (Optional[Union[Path, str]]): Cache directory overriding the config.
 
     Attributes:
         config: DataCacheConfig instance.

@@ -193,4 +193,9 @@ jobs:
       run: |
         invoke create-api-reference-docs --pre-clean
         invoke create-docs-index
-        mkdocs build --strict
+
+        # Note `--strict` has been removed due to new Python handler,
+        # which prints WARNINGS for not being able to resolve aliases within pydantic.
+        # It is not connected with this package directly.
+        # However, this means other cross-reference warnings will be ignored now !
+        mkdocs build

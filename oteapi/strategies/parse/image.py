@@ -17,8 +17,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 class ImageParserConfig(AttrDict):
-    """[`ResourceConfig.configuration`][oteapi.models.resourceconfig.ResourceConfig.configuration]
-    data model for
+    """Configuration data model for
     [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""
 
     crop: Optional[Tuple[int, int, int, int]] = Field(
