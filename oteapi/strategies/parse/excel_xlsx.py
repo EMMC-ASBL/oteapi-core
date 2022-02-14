@@ -22,7 +22,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class SessionUpdateXLSXParse(SessionUpdate):
     """Class for returning values from XLSXParse."""
 
-    data: Dict[str, List] = Field(
+    data: Dict[str, list] = Field(
         ...,
         description="A dict with column-name/column-value pairs. The values are lists.",
     )

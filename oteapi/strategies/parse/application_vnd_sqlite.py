@@ -2,14 +2,14 @@
 # pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field
 
 from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from oteapi.models import ResourceConfig
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class SessionUpdateSqLiteParse(SessionUpdate):
     """Configuration model for SqLiteParse."""
 
-    result: List = Field(..., description="List of results from the query.")
+    result: Optional[list] = Field(None, description="List of results from the query.")
     msg: str = Field(..., description="Messsage concerning the execution of the query.")
 
 
