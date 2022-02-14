@@ -420,6 +420,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig" class="md-nav__link">
+    functionconfig
+  </a>
+  
+    <nav class="md-nav" aria-label="functionconfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig" class="md-nav__link">
+    FunctionConfig
+  </a>
+  
+    <nav class="md-nav" aria-label="FunctionConfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig.functionType" class="md-nav__link">
+    functionType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#oteapi.models.genericconfig" class="md-nav__link">
     genericconfig
   </a>
@@ -917,6 +950,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../api_reference/interfaces/ifunctionstrategy/" class="md-nav__link">
+        ifunctionstrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../api_reference/interfaces/imappingstrategy/" class="md-nav__link">
         imappingstrategy
       </a>
@@ -1022,6 +1069,20 @@
     <li class="md-nav__item">
       <a href="../api_reference/models/filterconfig/" class="md-nav__link">
         filterconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/models/functionconfig/" class="md-nav__link">
+        functionconfig
       </a>
     </li>
   
@@ -1611,6 +1672,39 @@
           <li class="md-nav__item">
   <a href="#oteapi.models.filterconfig.FilterConfig.query" class="md-nav__link">
     query
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig" class="md-nav__link">
+    functionconfig
+  </a>
+  
+    <nav class="md-nav" aria-label="functionconfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig" class="md-nav__link">
+    FunctionConfig
+  </a>
+  
+    <nav class="md-nav" aria-label="FunctionConfig">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig.functionType" class="md-nav__link">
+    functionType
   </a>
   
 </li>
@@ -2389,6 +2483,120 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
     <div class="doc doc-contents ">
 
       <p>Define a query operation.</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="oteapi.models.functionconfig" class="doc doc-heading">
+        <code>functionconfig</code>
+
+
+
+<a href="#oteapi.models.functionconfig" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Pydantic Function Configuration Data Model.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="oteapi.models.functionconfig.FunctionConfig" class="doc doc-heading">
+        <code>
+FunctionConfig            (<a title="oteapi.models.genericconfig.GenericConfig" href="../api_reference/models/genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a>)
+        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+<a href="#oteapi.models.functionconfig.FunctionConfig" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Function Strategy Data Configuration.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Function Strategy Data Configuration.&quot;&quot;&quot;</span>
+
+    <span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Type of registered function strategy.&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="oteapi.models.functionconfig.FunctionConfig.functionType" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-property doc-property-required"><code>required</code></small>
+  </span>
+
+<a href="#oteapi.models.functionconfig.FunctionConfig.functionType" class="headerlink" title="Permanent link">&para;</a></h4>
+
+    <div class="doc doc-contents ">
+
+      <p>Type of registered function strategy.</p>
     </div>
 
   </div>
