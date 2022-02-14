@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import pysftp
 from pydantic import Field
@@ -12,7 +12,7 @@ from oteapi.datacache import DataCache
 from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
@@ -20,10 +20,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class SessionUpdateSFTP(SessionUpdate):
     """Class for returning values from Download SFTP strategy."""
 
-    key: Optional[str] = Field(
-        None,
-        description="Key to access the data in the cache.",
-    )
+    key: str = Field(..., description="Key to access the data in the cache.")
 
 
 @dataclass

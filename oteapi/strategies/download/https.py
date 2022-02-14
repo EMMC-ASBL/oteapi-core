@@ -1,7 +1,7 @@
 """Download strategy class for http/https"""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import requests
 from pydantic import Field
@@ -10,7 +10,7 @@ from oteapi.datacache import DataCache
 from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
 
@@ -18,10 +18,7 @@ if TYPE_CHECKING:  # pragma: no cover
 class SessionUpdateHTTPS(SessionUpdate):
     """Class for returning values from Download HTTPS strategy."""
 
-    key: Optional[str] = Field(
-        None,
-        description="Key to access the data in the cache.",
-    )
+    key: str = Field(..., description="Key to access the data in the cache.")
 
 
 @dataclass

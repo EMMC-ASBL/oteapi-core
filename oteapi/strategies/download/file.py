@@ -36,10 +36,7 @@ class FileConfig(BaseModel):
 class SessionUpdateFile(SessionUpdate):
     """Class for returning values from Download File strategy."""
 
-    key: Optional[str] = Field(
-        None,
-        description="Key to access the data in the cache.",
-    )
+    key: str = Field(..., description="Key to access the data in the cache.")
 
 
 @dataclass
