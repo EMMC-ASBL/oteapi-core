@@ -110,14 +110,6 @@ class ImageDataParseStrategy:
 
         cache = DataCache(self.parse_config.configuration.cache_config)
 
-        if not self.parse_config.configuration.crop:
-            # Return raw data as is - no change needed
-            return SessionUpdateImageParse(
-                content=cache.get(cache_key),
-                format=image_format,
-                cropped=False,
-            )
-
         # Treat image according to filter values
         with cache.getfile(cache_key, suffix=mime_format) as filename:
             image = Image.open(filename, formats=[image_format]).crop(
