@@ -610,6 +610,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -864,26 +878,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.crop_filter.CropDataModel" class="md-nav__link">
-    CropDataModel
-  </a>
-  
-    <nav class="md-nav" aria-label="CropDataModel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.crop_filter.CropDataModel.crop" class="md-nav__link">
-    crop
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#oteapi.strategies.filter.crop_filter.CropFilter" class="md-nav__link">
     CropFilter
   </a>
@@ -901,6 +895,26 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.filter.crop_filter.CropFilter.initialize" class="md-nav__link">
     initialize()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop" class="md-nav__link">
+    SessionUpdateCrop
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateCrop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop.crop" class="md-nav__link">
+    crop
   </a>
   
 </li>
@@ -1137,26 +1151,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.crop_filter.CropDataModel" class="md-nav__link">
-    CropDataModel
-  </a>
-  
-    <nav class="md-nav" aria-label="CropDataModel">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.crop_filter.CropDataModel.crop" class="md-nav__link">
-    crop
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#oteapi.strategies.filter.crop_filter.CropFilter" class="md-nav__link">
     CropFilter
   </a>
@@ -1174,6 +1168,26 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.filter.crop_filter.CropFilter.initialize" class="md-nav__link">
     initialize()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop" class="md-nav__link">
+    SessionUpdateCrop
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateCrop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop.crop" class="md-nav__link">
+    crop
   </a>
   
 </li>
@@ -1220,80 +1234,6 @@
 
 
 
-<h2 id="oteapi.strategies.filter.crop_filter.CropDataModel" class="doc doc-heading">
-        <code>
-CropDataModel            (<span title="pydantic.main.BaseModel">BaseModel</span>)
-        </code>
-
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
-
-<a href="#oteapi.strategies.filter.crop_filter.CropDataModel" class="headerlink" title="Permanent link">&para;</a></h2>
-
-    <div class="doc doc-contents ">
-
-      <p>Configuration model for crop data.</p>
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/filter/crop_filter.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CropDataModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configuration model for crop data.&quot;&quot;&quot;</span>
-
-    <span class="n">crop</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of image cropping details.&quot;</span><span class="p">)</span>
-</code></pre></div>
-        </details>
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.strategies.filter.crop_filter.CropDataModel.crop" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">crop</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
-  </span>
-
-<a href="#oteapi.strategies.filter.crop_filter.CropDataModel.crop" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>List of image cropping details.</p>
-    </div>
-
-  </div>
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-class">
-
-
-
 <h2 id="oteapi.strategies.filter.crop_filter.CropFilter" class="doc doc-heading">
         <code>
 CropFilter        </code>
@@ -1327,20 +1267,18 @@ CropFilter        </code>
 
     <span class="n">filter_config</span><span class="p">:</span> <span class="s2">&quot;FilterConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;collectionid&quot;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCrop</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
         <span class="n">cropData</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="n">CropDataModel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+            <span class="n">SessionUpdateCrop</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span>
-            <span class="k">else</span> <span class="n">CropDataModel</span><span class="p">()</span>
+            <span class="k">else</span> <span class="n">SessionUpdateCrop</span><span class="p">()</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;imagecrop&quot;</span><span class="p">:</span> <span class="n">cropData</span><span class="o">.</span><span class="n">crop</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">cropData</span>
 </code></pre></div>
         </details>
 
@@ -1374,14 +1312,14 @@ CropFilter        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/filter/crop_filter.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCrop</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
     <span class="n">cropData</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">CropDataModel</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">dict</span><span class="p">())</span>
+        <span class="n">SessionUpdateCrop</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span>
-        <span class="k">else</span> <span class="n">CropDataModel</span><span class="p">()</span>
+        <span class="k">else</span> <span class="n">SessionUpdateCrop</span><span class="p">()</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;imagecrop&quot;</span><span class="p">:</span> <span class="n">cropData</span><span class="o">.</span><span class="n">crop</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">cropData</span>
 </code></pre></div>
         </details>
     </div>
@@ -1406,16 +1344,88 @@ CropFilter        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/filter/crop_filter.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;collectionid&quot;</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
     </div>
 
   </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="oteapi.strategies.filter.crop_filter.SessionUpdateCrop" class="doc doc-heading">
+        <code>
+SessionUpdateCrop            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
+        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+<a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Class for returning values from crop data.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/filter/crop_filter.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCrop</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for returning values from crop data.&quot;&quot;&quot;</span>
+
+    <span class="n">crop</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of image cropping details.&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.strategies.filter.crop_filter.SessionUpdateCrop.crop" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">crop</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-property doc-property-required"><code>required</code></small>
+  </span>
+
+<a href="#oteapi.strategies.filter.crop_filter.SessionUpdateCrop.crop" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>List of image cropping details.</p>
+    </div>
+
+  </div>
+
+
+
 
 
 

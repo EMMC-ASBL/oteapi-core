@@ -610,6 +610,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -939,6 +953,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse" class="md-nav__link">
+    SessionUpdateSqLiteParse
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateSqLiteParse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.msg" class="md-nav__link">
+    msg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.result" class="md-nav__link">
+    result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy" class="md-nav__link">
     SqliteParseStrategy
   </a>
@@ -1124,6 +1165,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse" class="md-nav__link">
+    SessionUpdateSqLiteParse
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateSqLiteParse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.msg" class="md-nav__link">
+    msg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.result" class="md-nav__link">
+    result
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy" class="md-nav__link">
     SqliteParseStrategy
   </a>
@@ -1194,6 +1262,103 @@
 
 
 
+<h2 id="oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse" class="doc doc-heading">
+        <code>
+SessionUpdateSqLiteParse            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
+        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+<a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Configuration model for SqLiteParse.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/parse/application_vnd_sqlite.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configuration model for SqLiteParse.&quot;&quot;&quot;</span>
+
+    <span class="n">result</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of results from the query.&quot;</span><span class="p">)</span>
+    <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Messsage concerning the execution of the query.&quot;</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.msg" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-property doc-property-required"><code>required</code></small>
+  </span>
+
+<a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.msg" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Messsage concerning the execution of the query.</p>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.result" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">result</span><span class="p">:</span> <span class="nb">list</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+  </span>
+
+<a href="#oteapi.strategies.parse.application_vnd_sqlite.SessionUpdateSqLiteParse.result" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>List of results from the query.</p>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
 <h2 id="oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy" class="doc doc-heading">
         <code>
 SqliteParseStrategy        </code>
@@ -1227,7 +1392,9 @@ SqliteParseStrategy        </code>
 
     <span class="n">parse_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing session&quot;</span><span class="p">)</span>
@@ -1236,14 +1403,12 @@ SqliteParseStrategy        </code>
             <span class="n">cn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">])</span>
             <span class="n">cur</span> <span class="o">=</span> <span class="n">cn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
             <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;sqlquery&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;No query given&quot;</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Query executed&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;No query given&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
 
@@ -1277,7 +1442,9 @@ SqliteParseStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/application_vnd_sqlite.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Missing session&quot;</span><span class="p">)</span>
@@ -1286,8 +1453,8 @@ SqliteParseStrategy        </code>
         <span class="n">cn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;filename&quot;</span><span class="p">])</span>
         <span class="n">cur</span> <span class="o">=</span> <span class="n">cn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
         <span class="n">rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">session</span><span class="p">[</span><span class="s2">&quot;sqlquery&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">rows</span><span class="p">}</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;No query given&quot;</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">rows</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="s2">&quot;Query executed&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="s2">&quot;No query given&quot;</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1312,11 +1479,9 @@ SqliteParseStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/application_vnd_sqlite.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
     </div>

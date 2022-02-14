@@ -610,6 +610,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -1043,8 +1057,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.taskName" class="md-nav__link">
-    taskName
+  <a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.task_name" class="md-nav__link">
+    task_name
   </a>
   
 </li>
@@ -1086,6 +1100,26 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.status" class="md-nav__link">
     status()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery" class="md-nav__link">
+    SessionUpdateCelery
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateCelery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery.data" class="md-nav__link">
+    data
   </a>
   
 </li>
@@ -1173,8 +1207,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.taskName" class="md-nav__link">
-    taskName
+  <a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.task_name" class="md-nav__link">
+    task_name
   </a>
   
 </li>
@@ -1216,6 +1250,26 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.status" class="md-nav__link">
     status()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery" class="md-nav__link">
+    SessionUpdateCelery
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateCelery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery.data" class="md-nav__link">
+    data
   </a>
   
 </li>
@@ -1284,8 +1338,8 @@ CeleryConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
           <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CeleryConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Celery configuration.&quot;&quot;&quot;</span>
 
-    <span class="n">taskName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A task name.&quot;</span><span class="p">)</span>
-    <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of arguments for the task.&quot;</span><span class="p">)</span>
+    <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A task name.&quot;</span><span class="p">)</span>
+    <span class="n">args</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of arguments for the task.&quot;</span><span class="p">)</span>
 </code></pre></div>
         </details>
 
@@ -1303,7 +1357,7 @@ CeleryConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.args" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span></code>
+<code class="highlight language-python"><span class="n">args</span><span class="p">:</span> <span class="nb">list</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
@@ -1325,15 +1379,15 @@ CeleryConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
 
 
 
-<h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.taskName" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">taskName</span><span class="p">:</span> <span class="nb">str</span></code>
+<h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.task_name" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
       <small class="doc doc-property doc-property-required"><code>required</code></small>
   </span>
 
-<a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.taskName" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.strategies.transformation.celery_remote.CeleryConfig.task_name" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 
@@ -1394,28 +1448,29 @@ CeleryRemoteStrategy        </code>
 
     <span class="n">transformation_config</span><span class="p">:</span> <span class="s2">&quot;TransformationConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformationStatus</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Run a job, return a job ID.&quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_config</span><span class="o">.</span><span class="n">configuration</span>
-        <span class="n">celeryConfig</span> <span class="o">=</span> <span class="n">CeleryConfig</span><span class="p">()</span> <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">CeleryConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span><span class="n">celeryConfig</span><span class="o">.</span><span class="n">taskName</span><span class="p">,</span> <span class="n">celeryConfig</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">}</span>
+        <span class="n">celery_config</span> <span class="o">=</span> <span class="n">CeleryConfig</span><span class="p">()</span> <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">CeleryConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">:</span> <span class="s2">&quot;Union[AsyncResult, Any]&quot;</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span>
+            <span class="n">celery_config</span><span class="o">.</span><span class="n">task_name</span><span class="p">,</span> <span class="n">celery_config</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">session</span>
+        <span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">TransformationStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize a job.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformationStatus</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get job status.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">TransformationStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdateCelery&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get transformation.&quot;&quot;&quot;</span>
         <span class="c1"># TODO: update and return global state  # pylint: disable=fixme</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">SessionUpdateCelery</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{})</span>
 </code></pre></div>
         </details>
 
@@ -1449,10 +1504,10 @@ CeleryRemoteStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/transformation/celery_remote.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdateCelery&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Get transformation.&quot;&quot;&quot;</span>
     <span class="c1"># TODO: update and return global state  # pylint: disable=fixme</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">SessionUpdateCelery</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">{})</span>
 </code></pre></div>
         </details>
     </div>
@@ -1477,11 +1532,9 @@ CeleryRemoteStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/transformation/celery_remote.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize a job.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
     </div>
@@ -1506,12 +1559,15 @@ CeleryRemoteStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/transformation/celery_remote.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformationStatus</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Run a job, return a job ID.&quot;&quot;&quot;</span>
     <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_config</span><span class="o">.</span><span class="n">configuration</span>
-    <span class="n">celeryConfig</span> <span class="o">=</span> <span class="n">CeleryConfig</span><span class="p">()</span> <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">CeleryConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span><span class="n">celeryConfig</span><span class="o">.</span><span class="n">taskName</span><span class="p">,</span> <span class="n">celeryConfig</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">}</span>
+    <span class="n">celery_config</span> <span class="o">=</span> <span class="n">CeleryConfig</span><span class="p">()</span> <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">CeleryConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">result</span><span class="p">:</span> <span class="s2">&quot;Union[AsyncResult, Any]&quot;</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span>
+        <span class="n">celery_config</span><span class="o">.</span><span class="n">task_name</span><span class="p">,</span> <span class="n">celery_config</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">session</span>
+    <span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TransformationStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -1545,6 +1601,83 @@ CeleryRemoteStrategy        </code>
     </div>
 
   </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="oteapi.strategies.transformation.celery_remote.SessionUpdateCelery" class="doc doc-heading">
+        <code>
+SessionUpdateCelery            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
+        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+<a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Class for returning values from XLSXParse.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/transformation/celery_remote.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCelery</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for returning values from XLSXParse.&quot;&quot;&quot;</span>
+
+    <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A dict with column-name/column-value pairs. The values are lists.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.strategies.transformation.celery_remote.SessionUpdateCelery.data" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-property doc-property-required"><code>required</code></small>
+  </span>
+
+<a href="#oteapi.strategies.transformation.celery_remote.SessionUpdateCelery.data" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>A dict with column-name/column-value pairs. The values are lists.</p>
+    </div>
+
+  </div>
+
+
+
 
 
 

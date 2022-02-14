@@ -610,6 +610,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -986,6 +1000,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.image.SessionUpdateImageParse" class="md-nav__link">
+    SessionUpdateImageParse
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateImageParse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.image.SessionUpdateImageParse.parsedOutput" class="md-nav__link">
+    parsedOutput
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1129,6 +1163,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.image.SessionUpdateImageParse" class="md-nav__link">
+    SessionUpdateImageParse
+  </a>
+  
+    <nav class="md-nav" aria-label="SessionUpdateImageParse">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.parse.image.SessionUpdateImageParse.parsedOutput" class="md-nav__link">
+    parsedOutput
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1218,13 +1272,13 @@ ImageDataParseStrategy        </code>
         <span class="k">if</span> <span class="s2">&quot;localpath&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">localpath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="p">[</span><span class="s2">&quot;localpath&quot;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateImageParse</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
         <span class="n">parsedOutput</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1237,7 +1291,7 @@ ImageDataParseStrategy        </code>
             <span class="n">im_cropped</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cropped_filename</span><span class="p">)</span>
             <span class="n">parsedOutput</span><span class="p">[</span><span class="s2">&quot;cropped_filename&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cropped_filename</span>
         <span class="n">parsedOutput</span><span class="p">[</span><span class="s2">&quot;parseImage&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Done&quot;</span>
-        <span class="k">return</span> <span class="n">parsedOutput</span>
+        <span class="k">return</span> <span class="n">SessionUpdateImageParse</span><span class="p">(</span><span class="n">parsedOutput</span><span class="o">=</span><span class="n">parsedOutput</span><span class="p">)</span>
 </code></pre></div>
         </details>
 
@@ -1272,16 +1326,90 @@ ImageDataParseStrategy        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
     </div>
 
   </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="oteapi.strategies.parse.image.SessionUpdateImageParse" class="doc doc-heading">
+        <code>
+SessionUpdateImageParse            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
+        </code>
+
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
+  </span>
+
+<a href="#oteapi.strategies.parse.image.SessionUpdateImageParse" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Configuration model for ImageParse.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateImageParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Configuration model for ImageParse.&quot;&quot;&quot;</span>
+
+    <span class="n">parsedOutput</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Parsed output from ImageParse.&quot;</span>
+    <span class="p">)</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+  <div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.strategies.parse.image.SessionUpdateImageParse.parsedOutput" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">parsedOutput</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-property doc-property-required"><code>required</code></small>
+  </span>
+
+<a href="#oteapi.strategies.parse.image.SessionUpdateImageParse.parsedOutput" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Parsed output from ImageParse.</p>
+    </div>
+
+  </div>
+
+
+
 
 
 

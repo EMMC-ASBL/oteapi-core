@@ -680,6 +680,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -1202,21 +1216,19 @@ IResourceStrategy            (<span title="typing.Protocol">Protocol</span>)
 
     <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            session: A session-specific dictionary context.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Dictionary of key/value-pairs to be stored in the sessions-specific</span>
-<span class="sd">            dictionary context.</span>
+<span class="sd">            An update model of key/value-pairs to be stored in the</span>
+<span class="sd">            session-specific context from services.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">        This method will be called through the `/initialize` endpoint of the OTE-API</span>
@@ -1226,8 +1238,8 @@ IResourceStrategy            (<span title="typing.Protocol">Protocol</span>)
 <span class="sd">            session: A session-specific dictionary context.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Dictionary of key/value-pairs to be stored in the sessions-specific</span>
-<span class="sd">            dictionary context.</span>
+<span class="sd">            An update model of key/value-pairs to be stored in the</span>
+<span class="sd">            session-specific context from services.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
 </code></pre></div>
@@ -1290,23 +1302,23 @@ IResourceStrategy            (<span title="typing.Protocol">Protocol</span>)
   </thead>
   <tbody>
     <tr>
-      <td><code>Dict[str, Any]</code></td>
-      <td><p>Dictionary of key/value-pairs to be stored in the sessions-specific
-dictionary context.</p></td>
+      <td><code>SessionUpdate</code></td>
+      <td><p>An update model of key/value-pairs to be stored in the
+session-specific context from services.</p></td>
     </tr>
   </tbody>
 </table>
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Dictionary of key/value-pairs to be stored in the sessions-specific</span>
-<span class="sd">        dictionary context.</span>
+<span class="sd">        An update model of key/value-pairs to be stored in the</span>
+<span class="sd">        session-specific context from services.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
@@ -1362,17 +1374,15 @@ Services.</p>
   </thead>
   <tbody>
     <tr>
-      <td><code>Dict[str, Any]</code></td>
-      <td><p>Dictionary of key/value-pairs to be stored in the sessions-specific
-dictionary context.</p></td>
+      <td><code>SessionUpdate</code></td>
+      <td><p>An update model of key/value-pairs to be stored in the
+session-specific context from services.</p></td>
     </tr>
   </tbody>
 </table>
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
@@ -1382,8 +1392,8 @@ dictionary context.</p></td>
 <span class="sd">        session: A session-specific dictionary context.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        Dictionary of key/value-pairs to be stored in the sessions-specific</span>
-<span class="sd">        dictionary context.</span>
+<span class="sd">        An update model of key/value-pairs to be stored in the</span>
+<span class="sd">        session-specific context from services.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>

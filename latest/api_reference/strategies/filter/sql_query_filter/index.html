@@ -610,6 +610,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
@@ -905,15 +919,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel" class="md-nav__link">
-    SqlQueryDataModel
+  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="md-nav__link">
+    SessionUpdateSqlQuery
   </a>
   
-    <nav class="md-nav" aria-label="SqlQueryDataModel">
+    <nav class="md-nav" aria-label="SessionUpdateSqlQuery">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel.query" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.query" class="md-nav__link">
     query
   </a>
   
@@ -1164,15 +1178,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel" class="md-nav__link">
-    SqlQueryDataModel
+  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="md-nav__link">
+    SessionUpdateSqlQuery
   </a>
   
-    <nav class="md-nav" aria-label="SqlQueryDataModel">
+    <nav class="md-nav" aria-label="SessionUpdateSqlQuery">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel.query" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.query" class="md-nav__link">
     query
   </a>
   
@@ -1255,14 +1269,13 @@ SQLQueryFilter        </code>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary&quot;&quot;&quot;</span>
-        <span class="n">queryData</span> <span class="o">=</span> <span class="n">SqlQueryDataModel</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">})</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;sqlquery&quot;</span><span class="p">:</span> <span class="n">queryData</span><span class="o">.</span><span class="n">query</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">})</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
 
@@ -1296,9 +1309,9 @@ SQLQueryFilter        </code>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
         </details>
     </div>
@@ -1325,10 +1338,9 @@ SQLQueryFilter        </code>
           <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary&quot;&quot;&quot;</span>
-    <span class="n">queryData</span> <span class="o">=</span> <span class="n">SqlQueryDataModel</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">})</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;sqlquery&quot;</span><span class="p">:</span> <span class="n">queryData</span><span class="o">.</span><span class="n">query</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">})</span>
 </code></pre></div>
         </details>
     </div>
@@ -1351,9 +1363,9 @@ SQLQueryFilter        </code>
 
 
 
-<h2 id="oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel" class="doc doc-heading">
+<h2 id="oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="doc doc-heading">
         <code>
-SqlQueryDataModel            (<span title="pydantic.main.BaseModel">BaseModel</span>)
+SessionUpdateSqlQuery            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
         </code>
 
 
@@ -1361,16 +1373,16 @@ SqlQueryDataModel            (<span title="pydantic.main.BaseModel">BaseModel</s
       <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
   </span>
 
-<a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="headerlink" title="Permanent link">&para;</a></h2>
 
     <div class="doc doc-contents ">
 
-      <p>SQL Query data model.</p>
+      <p>Class for returning values from SQL Query data model.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SqlQueryDataModel</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SQL Query data model.&quot;&quot;&quot;</span>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for returning values from SQL Query data model.&quot;&quot;&quot;</span>
 
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
 </code></pre></div>
@@ -1389,7 +1401,7 @@ SqlQueryDataModel            (<span title="pydantic.main.BaseModel">BaseModel</s
 
 
 
-<h3 id="oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel.query" class="doc doc-heading">
+<h3 id="oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.query" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">query</span><span class="p">:</span> <span class="nb">str</span></code>
 
   <span class="doc doc-properties">
@@ -1397,7 +1409,7 @@ SqlQueryDataModel            (<span title="pydantic.main.BaseModel">BaseModel</s
       <small class="doc doc-property doc-property-required"><code>required</code></small>
   </span>
 
-<a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryDataModel.query" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.query" class="headerlink" title="Permanent link">&para;</a></h3>
 
     <div class="doc doc-contents ">
 

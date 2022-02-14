@@ -96,6 +96,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/sessionupdate/</loc>
+         <lastmod>2022-02-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/transformationconfig/</loc>
          <lastmod>2022-02-14</lastmod>
          <changefreq>daily</changefreq>
