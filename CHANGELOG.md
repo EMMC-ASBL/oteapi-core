@@ -1,18 +1,45 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.0.6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.6) (2022-02-14)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.5...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.5...v0.0.6)
+
+**Implemented enhancements:**
+
+- New Function strategy [\#19](https://github.com/EMMC-ASBL/oteapi-core/issues/19)
+
+**Fixed bugs:**
+
+- ResourceConfig.configuration should be a dict [\#65](https://github.com/EMMC-ASBL/oteapi-core/issues/65)
+- Configuration bug [\#34](https://github.com/EMMC-ASBL/oteapi-core/issues/34)
+- Change mediaType for json to application/json [\#24](https://github.com/EMMC-ASBL/oteapi-core/issues/24)
+
+**Closed issues:**
+
+- AttrDict cannot be \*\*unpacked [\#69](https://github.com/EMMC-ASBL/oteapi-core/issues/69)
+- Add tests of configuration object subscripting functionality [\#61](https://github.com/EMMC-ASBL/oteapi-core/issues/61)
+- Tests require installation [\#50](https://github.com/EMMC-ASBL/oteapi-core/issues/50)
+- Rename image\_jpeg.py [\#48](https://github.com/EMMC-ASBL/oteapi-core/issues/48)
+- Write unit tests [\#11](https://github.com/EMMC-ASBL/oteapi-core/issues/11)
+
+**Merged pull requests:**
+
+- Sg/session update model [\#78](https://github.com/EMMC-ASBL/oteapi-core/pull/78) ([sygout](https://github.com/sygout))
+- New Function strategy [\#73](https://github.com/EMMC-ASBL/oteapi-core/pull/73) ([CasperWA](https://github.com/CasperWA))
+- Made ResourceConfig.configuration a dict [\#67](https://github.com/EMMC-ASBL/oteapi-core/pull/67) ([jesper-friis](https://github.com/jesper-friis))
+- \[Auto-generated\] Update dependencies [\#66](https://github.com/EMMC-ASBL/oteapi-core/pull/66) ([TEAM4-0](https://github.com/TEAM4-0))
+- Add some dictionary functionality to configuration models [\#53](https://github.com/EMMC-ASBL/oteapi-core/pull/53) ([TorgeirUstad](https://github.com/TorgeirUstad))
+- All new tests [\#35](https://github.com/EMMC-ASBL/oteapi-core/pull/35) ([TorgeirUstad](https://github.com/TorgeirUstad))
+
+## [v0.0.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.5) (2022-02-04)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.4...v0.0.5)
 
 **Implemented enhancements:**
 
 - Consider removing the `create_*_strategy()` functions [\#57](https://github.com/EMMC-ASBL/oteapi-core/issues/57)
 - Lazy strategy loading [\#21](https://github.com/EMMC-ASBL/oteapi-core/issues/21)
 - Extend and "safeguard" plugin loading through entry points [\#10](https://github.com/EMMC-ASBL/oteapi-core/issues/10)
-
-## [v0.0.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.5) (2022-02-04)
-
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.4...v0.0.5)
 
 **Fixed bugs:**
 
