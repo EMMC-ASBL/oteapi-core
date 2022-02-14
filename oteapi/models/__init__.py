@@ -10,6 +10,7 @@ from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig
 from .resourceconfig import ResourceConfig
+from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
@@ -20,6 +21,7 @@ __all__ = (
     "GenericConfig",
     "MappingConfig",
     "ResourceConfig",
+    "SessionUpdate",
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",

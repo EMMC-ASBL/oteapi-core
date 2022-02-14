@@ -3,7 +3,9 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
-from pydantic import BaseModel, Field
+from pydantic import Field
+
+from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
@@ -11,8 +13,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from oteapi.models import FilterConfig
 
 
-class CropDataModel(BaseModel):
-    """Configuration model for crop data."""
+class SessionUpdateCrop(SessionUpdate):
+    """Class for returning values from crop data."""
 
     crop: List[int] = Field(..., description="List of image cropping details.")
 
@@ -29,17 +31,15 @@ class CropFilter:
 
     filter_config: "FilterConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy and return a dictionary."""
-        return {"result": "collectionid"}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCrop:
         """Execute strategy and return a dictionary"""
         cropData = (
-            CropDataModel(**self.filter_config.configuration.dict())
+            SessionUpdateCrop(**self.filter_config.configuration)
             if self.filter_config.configuration
-            else CropDataModel()
+            else SessionUpdateCrop()
         )
-        return {"imagecrop": cropData.crop}
+        return cropData
