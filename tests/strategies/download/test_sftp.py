@@ -34,19 +34,18 @@ def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
     import pysftp
 
     from oteapi.datacache.datacache import DataCache
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.sftp import SFTPStrategy
 
     monkeypatch.setattr(pysftp, "Connection", MockSFTPConnection)
 
     sample_file = static_files / "sample_1280_853.jpeg"
 
-    config = ResourceConfig(
-        downloadUrl=f"sftp://{sample_file}",
-        mediaType="image/jpeg",
-    )
+    config = {
+        "downloadUrl": sample_file.as_uri().replace("file://", "sftp://"),
+        "mediaType": "image/jpeg",
+    }
 
-    datacache_key = SFTPStrategy(config).get().get("key", "")
+    datacache_key: str = SFTPStrategy(config).get().get("key", "")
     datacache = DataCache()
     content = datacache.get(datacache_key)
     del datacache[datacache_key]
