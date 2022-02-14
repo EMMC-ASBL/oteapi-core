@@ -99,6 +99,7 @@ def test_strategytype_methods() -> None:
     expected_values = {
         "download": "scheme",
         "filter": "filterType",
+        "function": "functionType",
         "mapping": "mappingType",
         "parse": "mediaType",
         "resource": "accessService",

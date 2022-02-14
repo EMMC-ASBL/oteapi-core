@@ -1,22 +1,31 @@
 """Strategy class for workbook/xlsx."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, List, Optional, Union
+from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict
+from oteapi.models import AttrDict, SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Iterable
+    from typing import Any, Iterable
 
     from openpyxl.worksheet.worksheet import Worksheet
 
     from oteapi.models import ResourceConfig
+
+
+class SessionUpdateXLSXParse(SessionUpdate):
+    """Class for returning values from XLSXParse."""
+
+    data: Dict[str, list] = Field(
+        ...,
+        description="A dict with column-name/column-value pairs. The values are lists.",
+    )
 
 
 class XLSXParseDataModel(BaseModel):
@@ -139,13 +148,11 @@ class XLSXParseStrategy:
 
     parse_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateXLSXParse:
         """Parses selected region of an excel file.
 
         Returns:
@@ -209,4 +216,6 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return {key: value for key, value in zip(header, transposed)}
+        return SessionUpdateXLSXParse(
+            data={key: value for key, value in zip(header, transposed)}
+        )

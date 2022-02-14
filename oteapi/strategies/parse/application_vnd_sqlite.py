@@ -2,12 +2,23 @@
 # pylint: disable=unused-argument
 import sqlite3
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
+
+from pydantic import Field
+
+from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
 
     from oteapi.models import ResourceConfig
+
+
+class SessionUpdateSqLiteParse(SessionUpdate):
+    """Configuration model for SqLiteParse."""
+
+    result: Optional[list] = Field(None, description="List of results from the query.")
+    msg: str = Field(..., description="Messsage concerning the execution of the query.")
 
 
 def create_connection(db_file):
@@ -38,7 +49,9 @@ class SqliteParseStrategy:
 
     parse_config: "ResourceConfig"
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateSqLiteParse:
         """Parse SQLite query responses."""
         if session is None:
             raise ValueError("Missing session")
@@ -47,11 +60,9 @@ class SqliteParseStrategy:
             cn = create_connection(session["filename"])
             cur = cn.cursor()
             rows = cur.execute(session["sqlquery"]).fetchall()
-            return {"result": rows}
-        return {"result": "No query given"}
+            return SessionUpdateSqLiteParse(result=rows, msg="Query executed")
+        return SessionUpdateSqLiteParse(msg="No query given")
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()

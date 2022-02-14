@@ -4,13 +4,21 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 import requests
+from pydantic import Field
 
 from oteapi.datacache import DataCache
+from oteapi.models import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
     from oteapi.models import ResourceConfig
+
+
+class SessionUpdateHTTPS(SessionUpdate):
+    """Class for returning values from Download HTTPS strategy."""
+
+    key: str = Field(..., description="Key to access the data in the cache.")
 
 
 @dataclass
@@ -26,13 +34,11 @@ class HTTPSStrategy:
 
     download_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateHTTPS:
         """Download via http/https and store on local cache."""
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -43,4 +49,4 @@ class HTTPSStrategy:
             req = requests.get(self.download_config.downloadUrl, allow_redirects=True)
             key = cache.add(req.content)
 
-        return {"key": key}
+        return SessionUpdateHTTPS(key=key)

@@ -62,6 +62,8 @@ oteapi.download =
   oteapi_tests.https = tests.static.strategies.download:DownloadTestStrategy
 oteapi.filter =
   oteapi_tests.query_parameters = tests.static.strategies.filter:FilterTestStrategy
+oteapi.function =
+  oteapi_tests.render = tests.static.strategies.function:FunctionTestStrategy
 oteapi.mapping =
   oteapi_tests.html = tests.static.strategies.mapping:MappingTestStrategy
 oteapi.parse =
@@ -84,6 +86,7 @@ def get_strategy_config() -> "Callable[[Union[StrategyType, str]], Type[Strategy
     """Get the strategy configuration model class."""
     from oteapi.models import (
         FilterConfig,
+        FunctionConfig,
         MappingConfig,
         ResourceConfig,
         TransformationConfig,
@@ -112,6 +115,7 @@ def get_strategy_config() -> "Callable[[Union[StrategyType, str]], Type[Strategy
         return {
             StrategyType.DOWNLOAD: ResourceConfig,
             StrategyType.FILTER: FilterConfig,
+            StrategyType.FUNCTION: FunctionConfig,
             StrategyType.MAPPING: MappingConfig,
             StrategyType.PARSE: ResourceConfig,
             StrategyType.RESOURCE: ResourceConfig,

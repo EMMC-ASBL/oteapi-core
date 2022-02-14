@@ -45,6 +45,7 @@ class StrategyType(Enum):
 
     DOWNLOAD = "download"
     FILTER = "filter"
+    FUNCTION = "function"
     MAPPING = "mapping"
     PARSE = "parse"
     RESOURCE = "resource"
@@ -55,6 +56,7 @@ class StrategyType(Enum):
         return {
             "download": "scheme",
             "filter": "filterType",
+            "function": "functionType",
             "mapping": "mappingType",
             "parse": "mediaType",
             "resource": "accessService",
@@ -79,6 +81,7 @@ class StrategyType(Enum):
         return {
             "scheme": cls.DOWNLOAD,
             "filterType": cls.FILTER,
+            "functionType": cls.FUNCTION,
             "mappingType": cls.MAPPING,
             "mediaType": cls.PARSE,
             "accessService": cls.RESOURCE,
