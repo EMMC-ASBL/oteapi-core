@@ -1,4 +1,5 @@
 """Test the image formats in the image parse strategy."""
+# pylint: disable=too-many-locals
 from typing import TYPE_CHECKING
 
 import pytest
@@ -39,15 +40,35 @@ def test_image(
 
     if image_format == "eps":
         # Skip if Ghostscript is not installed
+        import platform
         import subprocess
 
-        try:
-            subprocess.run("gs --help".split(), check=True)
-        except subprocess.CalledProcessError:
-            pytest.skip(
-                "Ghostscript assumed to no be installed (`gs --help` returned a "
-                "non-zero error code)."
+        command = {
+            "Linux": ["gs -h"],
+            "Windows": [
+                "gswin32.exe -h",
+                "gswin32c.exe -h",
+                "gswin64.exe -h",
+                "gswin64c.exe -h",
+            ],
+        }.get(platform.system(), None)
+
+        if not command:
+            raise RuntimeError(
+                f"No support for testing EPS image parser with OS {platform.system()}"
             )
+
+        failed = True
+        for cmd in command:
+            try:
+                subprocess.run(cmd.split(), check=True)
+            except subprocess.CalledProcessError:
+                pass
+            else:
+                failed = False
+
+        if failed:
+            pytest.skip("Could not find Ghostscript on the system.")
 
     mime_to_format = {"jpg": "jpeg", "jp2": "jpeg2000"}
 

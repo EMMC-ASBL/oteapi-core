@@ -7,6 +7,8 @@ if TYPE_CHECKING:
     from pathlib import Path
     from typing import Tuple
 
+    from oteapi.interfaces import IParseStrategy
+
 
 sqlite_queries = [
     (
@@ -48,18 +50,17 @@ def test_sqlite(
 
     Test both passing in the query as a configuration and through a session.
     """
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.application_vnd_sqlite import SqliteParseStrategy
 
     sample_file = static_files / "sample1.db"
 
-    config = ResourceConfig(
-        downloadUrl=sample_file.as_uri(),
-        mediaType="application/vnd.sqlite3",
-        configuration={"sqlquery": query} if "19" in query else {},
-    )
+    config = {
+        "downloadUrl": sample_file.as_uri(),
+        "mediaType": "application/vnd.sqlite3",
+        "configuration": {"sqlquery": query} if "19" in query else {},
+    }
 
-    parser = SqliteParseStrategy(config)
+    parser: "IParseStrategy" = SqliteParseStrategy(config)
     parser.initialize()
 
     result = parser.get({"sqlquery": query} if "19" not in query else None)

@@ -98,6 +98,7 @@ class SqliteParseStrategy:
             connection = create_connection(filename)
             cursor = connection.cursor()
             result = cursor.execute(self.parse_config.configuration.sqlquery).fetchall()
+            connection.close()
         return SessionUpdateSqLiteParse(result=result)
 
     def _use_filters(self, session: "Dict[str, Any]") -> None:
