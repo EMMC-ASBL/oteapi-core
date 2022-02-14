@@ -80,7 +80,7 @@ class FileStrategy:
         filename = Path(self.download_config.downloadUrl.path)  # type: ignore[arg-type]
         if isinstance(filename, PureWindowsPath):
             # Windows paths should not start with a forward slash
-            filename = Path(str(filename).lstrip("/"))
+            filename = Path(str(filename).lstrip("\\"))
         filename = filename.resolve()
 
         if not filename.exists():
