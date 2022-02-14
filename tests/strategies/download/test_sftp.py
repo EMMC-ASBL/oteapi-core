@@ -23,9 +23,14 @@ class MockSFTPConnection:
 
     def get(self, remotepath: str, localpath: "Path") -> None:
         """A mockup of pysftp.Connection.get() as called in SFTPStrategy.get()."""
+        from pathlib import Path, PureWindowsPath
         from shutil import copyfile
 
-        copyfile(remotepath, localpath)
+        remote_as_path = Path(remotepath)
+        if isinstance(remote_as_path, PureWindowsPath):
+            remote_as_path = Path(str(remote_as_path).lstrip("\\"))
+
+        copyfile(remote_as_path, localpath)
 
 
 def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
