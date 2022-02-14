@@ -33,7 +33,7 @@ def test_crop_filter(tmp_path):
         configuration={
             "localpath": str(tmp_path),
             "filename": source_file,
-            "crop": crop_filter_data["imagecrop"],
+            "crop": crop_filter_data.crop,
         },
     )
     ImageDataParseStrategy(image_config).get()

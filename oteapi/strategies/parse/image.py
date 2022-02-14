@@ -1,14 +1,25 @@
 """Strategy class for image/jpg."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 
 from PIL import Image
+from pydantic import Field
+
+from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Optional
 
     from oteapi.models import ResourceConfig
+
+
+class SessionUpdateImageParse(SessionUpdate):
+    """Configuration model for ImageParse."""
+
+    parsedOutput: Dict[str, str] = Field(
+        ..., description="Parsed output from ImageParse."
+    )
 
 
 @dataclass
@@ -36,13 +47,13 @@ class ImageDataParseStrategy:
         if "localpath" in self.conf:
             self.localpath = self.conf["localpath"]
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateImageParse:
         if session is not None:
             self.conf.update(session)
         parsedOutput = {}
@@ -55,4 +66,4 @@ class ImageDataParseStrategy:
             im_cropped.save(cropped_filename)
             parsedOutput["cropped_filename"] = cropped_filename
         parsedOutput["parseImage"] = "Done"
-        return parsedOutput
+        return SessionUpdateImageParse(parsedOutput=parsedOutput)
