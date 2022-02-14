@@ -62,7 +62,7 @@ def test_image(
         for cmd in command:
             try:
                 subprocess.run(cmd.split(), check=True)
-            except subprocess.CalledProcessError:
+            except (subprocess.CalledProcessError, FileNotFoundError):
                 pass
             else:
                 failed = False
