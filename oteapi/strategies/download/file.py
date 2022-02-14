@@ -12,7 +12,7 @@ from oteapi.models import SessionUpdate
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
-    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.models import ResourceConfig
 
 
 class FileConfig(BaseModel):
