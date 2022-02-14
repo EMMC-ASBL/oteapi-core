@@ -1,5 +1,6 @@
 """Strategy class for image/jpg."""
 # pylint: disable=unused-argument
+from enum import Enum
 from io import BytesIO
 from typing import TYPE_CHECKING, Optional, Tuple
 
@@ -8,7 +9,7 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -48,6 +49,25 @@ class ImageParserResourceConfig(ResourceConfig):
     )
 
 
+class SupportedFormat(Enum):
+    """Supported formats for `ImageDataParseStrategy`."""
+
+    JPEG = "JPEG"
+    JPEG2000 = "JPEG2000"
+    PNG = "PNG"
+    GIF = "GIF"
+    TIFF = "TIFF"
+    EPS = "EPS"
+
+
+class SessionUpdateImageParse(SessionUpdate):
+    """Configuration model for ImageParse."""
+
+    content: bytes = Field(..., description="Parsed output from ImageParse.")
+    format: SupportedFormat = Field(..., description="The format of the parsed image.")
+    cropped: bool = Field(..., description="Whether or not the image has been cropped.")
+
+
 @dataclass
 class ImageDataParseStrategy:
     """Parse strategy for images.
@@ -66,13 +86,13 @@ class ImageDataParseStrategy:
 
     parse_config: ImageParserResourceConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateImageParse:
         """Execute the strategy."""
         if session:
             self._use_filters(session)
@@ -92,11 +112,11 @@ class ImageDataParseStrategy:
 
         if not self.parse_config.configuration.crop:
             # Return raw data as is - no change needed
-            return {
-                "content": cache.get(cache_key),
-                "format": image_format,
-                "cropped": False,
-            }
+            return SessionUpdateImageParse(
+                content=cache.get(cache_key),
+                format=image_format,
+                cropped=False,
+            )
 
         # Treat image according to filter values
         with cache.getfile(cache_key, suffix=mime_format) as filename:
@@ -113,11 +133,11 @@ class ImageDataParseStrategy:
         # Return parsed and treated image
         image_content = BytesIO()
         image.save(image_content, format=image_format)
-        return {
-            "content": image_content.getvalue(),
-            "format": image_format,
-            "cropped": bool(self.parse_config.configuration.crop),
-        }
+        return SessionUpdateImageParse(
+            content=image_content.getvalue(),
+            format=image_format,
+            cropped=bool(self.parse_config.configuration.crop),
+        )
 
     def _use_filters(self, session: "Dict[str, Any]") -> None:
         """Update `config` according to filter values found in the session."""

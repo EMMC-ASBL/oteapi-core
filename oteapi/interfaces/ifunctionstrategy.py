@@ -1,18 +1,18 @@
-"""Download Strategy Interface"""
+"""Function Strategy Interface"""
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import ResourceConfig, SessionUpdate
+    from oteapi.models import FunctionConfig, SessionUpdate
 
 
 @dataclass  # type: ignore[misc]
-class IDownloadStrategy(Protocol):
-    """Download Strategy Interface."""
+class IFunctionStrategy(Protocol):
+    """Function Strategy Interface."""
 
-    download_config: "ResourceConfig"
+    function_config: "FunctionConfig"
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Execute the strategy.

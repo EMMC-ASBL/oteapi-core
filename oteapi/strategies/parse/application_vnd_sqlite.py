@@ -8,7 +8,7 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -41,14 +41,23 @@ def create_connection(db_file: Path) -> sqlite3.Connection:
     Parameters:
         db_file: Full path to SQLite database file.
 
+    Raises:
+        sqlite3.Error: If a DB connection cannot be made.
+
     Returns:
-        Connection object or None
+        Connection object.
 
     """
     try:
         return sqlite3.connect(db_file)
     except sqlite3.Error as exc:
         raise sqlite3.Error("Could not connect to given SQLite DB.") from exc
+
+
+class SessionUpdateSqLiteParse(SessionUpdate):
+    """Configuration model for SqLiteParse."""
+
+    result: list = Field(..., description="List of results from the query.")
 
 
 @dataclass
@@ -66,13 +75,13 @@ class SqliteParseStrategy:
 
     parse_config: SqliteParserResourceConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy."""
-        return {}
+        return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateSqLiteParse:
         """Parse SQLite query responses."""
         if session:
             self._use_filters(session)
@@ -90,7 +99,7 @@ class SqliteParseStrategy:
             connection = create_connection(filename)
             cursor = connection.cursor()
             result = cursor.execute(self.parse_config.configuration.sqlquery).fetchall()
-        return {"result": result}
+        return SessionUpdateSqLiteParse(result=result)
 
     def _use_filters(self, session: "Dict[str, Any]") -> None:
         """Update `config` according to filter values found in the session."""

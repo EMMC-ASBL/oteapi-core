@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
+    from oteapi.interfaces import IParseStrategy
+
 
 def test_json(static_files: "Path") -> None:
     """Test `application/json` parse strategy on local file."""
@@ -18,9 +20,9 @@ def test_json(static_files: "Path") -> None:
         downloadUrl=sample_file.as_uri(),
         mediaType="application/json",
     )
-    parser = JSONDataParseStrategy(config)
+    parser: "IParseStrategy" = JSONDataParseStrategy(config)
     parser.initialize()
 
     test_data = json.loads(sample_file.read_text())
 
-    assert parser.get() == test_data
+    assert parser.get().dict() == test_data

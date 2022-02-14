@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import TransformationConfig, TransformationStatus
+    from oteapi.models import SessionUpdate, TransformationConfig, TransformationStatus
 
 
 @dataclass  # type: ignore[misc]
@@ -14,15 +14,15 @@ class ITransformationStrategy(Protocol):
 
     transformation_config: "TransformationConfig"
 
-    def run(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def run(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Run a transformation job.
 
         Parameters:
             session: A session-specific dictionary context.
 
         Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
+            An update model of key/value-pairs to be stored in the
+            session-specific context from services.
             As a minimum, the dictionary will contain the job ID.
 
         """
@@ -39,21 +39,19 @@ class ITransformationStrategy(Protocol):
 
         """
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Execute the strategy.
 
         Parameters:
             session: A session-specific dictionary context.
 
         Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
+            An update model of key/value-pairs to be stored in the
+            session-specific context from services.
 
         """
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API
@@ -63,7 +61,7 @@ class ITransformationStrategy(Protocol):
             session: A session-specific dictionary context.
 
         Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
+            An update model of key/value-pairs to be stored in the
+            session-specific context from services.
 
         """

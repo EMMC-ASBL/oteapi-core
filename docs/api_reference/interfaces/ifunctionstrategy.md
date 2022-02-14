@@ -1,0 +1,3 @@
+# ifunctionstrategy
+
+::: oteapi.interfaces.ifunctionstrategy
