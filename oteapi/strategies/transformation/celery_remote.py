@@ -1,7 +1,7 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Dict, List
+from typing import TYPE_CHECKING, Dict
 
 from celery import Celery
 from celery.result import AsyncResult
@@ -12,7 +12,7 @@ from oteapi.models import TransformationStatus
 from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Optional
+    from typing import Any, Optional, Union
 
     from oteapi.models import TransformationConfig
 
@@ -23,7 +23,7 @@ app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url
 class SessionUpdateCelery(SessionUpdate):
     """Class for returning values from XLSXParse."""
 
-    data: Dict[str, List] = Field(
+    data: Dict[str, list] = Field(
         ...,
         description="A dict with column-name/column-value pairs. The values are lists.",
     )
@@ -32,8 +32,8 @@ class SessionUpdateCelery(SessionUpdate):
 class CeleryConfig(BaseModel):
     """Celery configuration."""
 
-    taskName: str = Field(..., description="A task name.")
-    args: List[Any] = Field(..., description="List of arguments for the task.")
+    task_name: str = Field(..., description="A task name.")
+    args: list = Field(..., description="List of arguments for the task.")
 
 
 @dataclass
@@ -51,8 +51,10 @@ class CeleryRemoteStrategy:
     def run(self, session: "Optional[Dict[str, Any]]" = None) -> TransformationStatus:
         """Run a job, return a job ID."""
         config = self.transformation_config.configuration
-        celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
-        result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
+        celery_config = CeleryConfig() if config is None else CeleryConfig(**config)
+        result: "Union[AsyncResult, Any]" = app.send_task(
+            celery_config.task_name, celery_config.args, kwargs=session
+        )
         status = AsyncResult(id=result.task_id, app=app)
         return TransformationStatus(id=result.task_id, status=status.status)
 
@@ -65,7 +67,7 @@ class CeleryRemoteStrategy:
         result = AsyncResult(id=task_id, app=app)
         return TransformationStatus(id=task_id, status=result.state)
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdateCelery":
         """Get transformation."""
         # TODO: update and return global state  # pylint: disable=fixme
-        return SessionUpdate()
+        return SessionUpdateCelery(data={})

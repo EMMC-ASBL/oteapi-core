@@ -35,8 +35,7 @@ class SQLQueryFilter:
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> SessionUpdateSqlQuery:
         """Initialize strategy and return a dictionary"""
-        queryData = SessionUpdateSqlQuery(**{"query": self.filter_config.query})
-        return queryData
+        return SessionUpdateSqlQuery(**{"query": self.filter_config.query})
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary"""

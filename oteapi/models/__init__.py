@@ -21,10 +21,10 @@ __all__ = (
     "GenericConfig",
     "MappingConfig",
     "ResourceConfig",
+    "SessionUpdate",
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
-    "SessionUpdate",
 )
 
 StrategyConfig = Union[

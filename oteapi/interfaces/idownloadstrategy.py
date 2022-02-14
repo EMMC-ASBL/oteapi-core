@@ -21,8 +21,8 @@ class IDownloadStrategy(Protocol):
             session: A session-specific dictionary context.
 
         Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
+            An update model of key/value-pairs to be stored in the
+            session-specific context from services.
 
         """
 
@@ -36,7 +36,7 @@ class IDownloadStrategy(Protocol):
             session: A session-specific dictionary context.
 
         Returns:
-            Dictionary of key/value-pairs to be stored in the sessions-specific
-            dictionary context.
+            An update model of key/value-pairs to be stored in the
+            session-specific context from services.
 
         """
