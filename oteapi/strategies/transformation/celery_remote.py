@@ -1,7 +1,7 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, List
+from typing import TYPE_CHECKING, Any, Dict, List
 
 from celery import Celery
 from celery.result import AsyncResult
@@ -9,21 +9,25 @@ from fastapi_plugins import RedisSettings
 from pydantic import BaseModel, Field
 
 from oteapi.models import TransformationStatus
-
 from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Dict, Optional
+    from typing import Optional
 
     from oteapi.models import TransformationConfig
 
 # Connect Celery to the currently running Redis instance
 app = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)
 
+
 class SessionUpdateCelery(SessionUpdate):
     """Class for returning values from XLSXParse."""
 
-    data: Dict[str,List] = Field(..., description="A dict with column-name/column-value pairs. The values are lists.")
+    data: Dict[str, List] = Field(
+        ...,
+        description="A dict with column-name/column-value pairs. The values are lists.",
+    )
+
 
 class CeleryConfig(BaseModel):
     """Celery configuration."""
@@ -50,11 +54,9 @@ class CeleryRemoteStrategy:
         celeryConfig = CeleryConfig() if config is None else CeleryConfig(**config)
         result = app.send_task(celeryConfig.taskName, celeryConfig.args, kwargs=session)
         status = AsyncResult(id=result.task_id, app=app)
-        return TransformationStatus(id=result.task_id,status=status.status)
+        return TransformationStatus(id=result.task_id, status=status.status)
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize a job."""
         return SessionUpdate()
 

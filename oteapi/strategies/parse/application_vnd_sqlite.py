@@ -13,11 +13,13 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from oteapi.models import ResourceConfig
 
+
 class SessionUpdateSqLiteParse(SessionUpdate):
     """Configuration model for SqLiteParse."""
 
     result: List = Field(..., description="List of results from the query.")
     msg: str = Field(..., description="Messsage concerning the execution of the query.")
+
 
 def create_connection(db_file):
     """create a database connection to the SQLite database
@@ -47,7 +49,9 @@ class SqliteParseStrategy:
 
     parse_config: "ResourceConfig"
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSqLiteParse:
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateSqLiteParse:
         """Parse SQLite query responses."""
         if session is None:
             raise ValueError("Missing session")
@@ -56,11 +60,9 @@ class SqliteParseStrategy:
             cn = create_connection(session["filename"])
             cur = cn.cursor()
             rows = cur.execute(session["sqlquery"]).fetchall()
-            return SessionUpdateSqLiteParse(result=rows,msg="Query executed")
+            return SessionUpdateSqLiteParse(result=rows, msg="Query executed")
         return SessionUpdateSqLiteParse(msg="No query given")
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
         return SessionUpdate()

@@ -26,9 +26,7 @@ class IDownloadStrategy(Protocol):
 
         """
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "SessionUpdate":
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API

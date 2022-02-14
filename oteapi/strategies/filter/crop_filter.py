@@ -3,7 +3,7 @@
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, List
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from oteapi.models.sessionupdate import SessionUpdate
 
@@ -18,6 +18,7 @@ class SessionUpdateCrop(SessionUpdate):
 
     crop: List[int] = Field(..., description="List of image cropping details.")
 
+
 @dataclass
 class CropFilter:
     """Strategy for cropping an image.
@@ -30,9 +31,7 @@ class CropFilter:
 
     filter_config: "FilterConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy and return a dictionary."""
         return SessionUpdate()
 

@@ -10,10 +10,12 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from oteapi.models import ResourceConfig
 
+
 class SessionUpdateCSVParse(SessionUpdate):
     """Class for returning values from CSVParse."""
+
     # returns nothing...
-    
+
 
 @dataclass
 class CSVParseStrategy:
@@ -32,8 +34,6 @@ class CSVParseStrategy:
         print("CSV in action!")
         return SessionUpdateCSVParse()
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
         return SessionUpdate()

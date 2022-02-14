@@ -7,15 +7,12 @@ from typing import TYPE_CHECKING, Optional
 from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
-
 from oteapi.models.sessionupdate import SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
     from oteapi.models.resourceconfig import ResourceConfig
-
-    
 
 
 class FileConfig(BaseModel):
@@ -34,6 +31,7 @@ class FileConfig(BaseModel):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
+
 
 class SessionUpdateFile(SessionUpdate):
     """Class for returning values from Download File strategy."""
@@ -56,9 +54,7 @@ class FileStrategy:
 
     download_config: "ResourceConfig"
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
         return SessionUpdate()
 
