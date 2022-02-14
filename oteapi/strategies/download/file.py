@@ -1,6 +1,6 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field, FileUrl, validator
@@ -77,7 +77,11 @@ class FileStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateFile:
         """Read local file."""
-        filename = Path(self.download_config.downloadUrl.path).resolve()  # type: ignore[arg-type]
+        filename = Path(self.download_config.downloadUrl.path)  # type: ignore[arg-type]
+        if isinstance(filename, PureWindowsPath):
+            # Windows paths should not start with a forward slash
+            filename = Path(str(filename).lstrip("/"))
+        filename = filename.resolve()
 
         if not filename.exists():
             raise FileNotFoundError(f"File not found at {filename}")
