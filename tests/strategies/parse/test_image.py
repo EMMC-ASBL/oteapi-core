@@ -10,45 +10,6 @@ if TYPE_CHECKING:
     from oteapi.interfaces.iparsestrategy import IParseStrategy
 
 
-# def get_cropping_values(ext: str) -> Tuple[int]:
-#     """Return the cropping values for the test."""
-#     return {
-#         "gif": (200, 300, 900, 700),
-#         "jpeg": (200, 300, 900, 700),
-#         "jpg": (200, 300, 900, 700),
-#         "jp2": (1000, 1000, 2000, 2000),
-#         "png": (100, 50, 450, 300),
-#         "tiff": (100, 50, 450, 300),
-#     }[ext]
-
-
-# def get_orig_path(ext: str) -> Path:
-#     """Return the path to the original image in the test."""
-#     return {
-#         "gif": "sample_1280_853.gif",
-#         "jpeg": "sample_1280_853.jpeg",
-#         "jpg": "sample_1280_853.jpg",
-#         "jp2": "sample1.jp2",
-#         "png": "sample_640_426.png",
-#         "tiff": "sample_640_426.tiff",
-#     }[ext]
-
-
-# def get_target_path(ext: str) -> Path:
-#     """Return the path to the target contents for the cropped image
-#     in the test.
-#     """
-#     dirs = Path(__file__).resolve().parents
-#     targets = {
-#         "gif": dirs[0] / "sample_700_400.gif",
-#         "jpeg": dirs[1] / "sample_700_400.jpeg",
-#         "jpg": dirs[1] / "sample_700_400.jpeg",
-#         "jp2": dirs[0] / "sample1_1000_1000.jp2",
-#         "png": dirs[0] / "sample_350_250.png",
-#         "tiff": dirs[0] / "sample_350_250.tiff",
-#     }
-#     return targets[ext]
-
 image_formats = [
     ("gif", "sample_1280_853.gif", "sample_700_400.gif", (200, 300, 900, 700)),
     ("jpeg", "sample_1280_853.jpeg", "sample_700_400.jpeg", (200, 300, 900, 700)),
@@ -73,7 +34,7 @@ def test_image(
     static_files: "Path",
 ) -> None:
     """Test parsing an image format."""
-    from oteapi.strategies.parse.image import ImageDataParseStrategy
+    from oteapi.strategies.parse.image import ImageDataParseStrategy, SupportedFormat
 
     mime_to_format = {"jpg": "jpeg", "jp2": "jpeg2000"}
 
@@ -105,7 +66,7 @@ def test_image(
             session.get("cropped", False) if crop else not session.get("cropped", False)
         )
         assert (
-            session.get("format", "")
+            session.get("format", SupportedFormat).value
             == mime_to_format.get(image_format, image_format).upper()
         )
         assert session.get("content", b"") == reference_file.read_bytes()

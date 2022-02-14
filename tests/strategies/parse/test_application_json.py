@@ -25,4 +25,4 @@ def test_json(static_files: "Path") -> None:
 
     test_data = json.loads(sample_file.read_text())
 
-    assert parser.get().dict() == test_data
+    assert parser.get().get("content", {}) == test_data
