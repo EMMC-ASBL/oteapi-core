@@ -11,7 +11,7 @@ def test_file():
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.file import FileStrategy
 
-    path = Path(__file__).resolve().parent
+    path = Path(__file__).resolve().parents[1]
 
     # Test binary file download
     binary_config = ResourceConfig(

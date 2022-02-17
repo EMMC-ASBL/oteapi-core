@@ -1,8 +1,9 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
 from dataclasses import dataclass
-from pathlib import Path, PosixPath
+from pathlib import Path
 from typing import TYPE_CHECKING, Optional
+from urllib.parse import urlparse
 
 from pydantic import BaseModel, Field
 
@@ -65,9 +66,7 @@ class FileStrategy:
                 "Expected 'downloadUrl' to have scheme 'file' in the configuration."
             )
 
-        filename = Path(self.download_config.downloadUrl.path).resolve()
-        if isinstance(filename, PosixPath):
-            filename = Path("/" + self.download_config.downloadUrl.host + str(filename))
+        filename = Path(urlparse(self.download_config.downloadUrl).path)
 
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
