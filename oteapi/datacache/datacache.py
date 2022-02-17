@@ -51,24 +51,27 @@ def gethash(
         A hash of the input `value`.
 
     """
+    hash_ = hashlib.new(hashtype)
+
     if isinstance(value, (bytes, bytearray)):
         data = value
     elif isinstance(value, str):
         data = value.encode(encoding)
-    elif value.__class__.__name__ in ("ndarray", "recarray"):
-        # Support NumPy arrays without importing numpy
-        data = value
     else:
-        # Try to serialise using json
-        data = json.dumps(
-            value,
-            ensure_ascii=False,
-            cls=json_encoder,
-            sort_keys=True,
-        ).encode(encoding)
+        data = value
+        try:
+            hash_.update(data)
+        except TypeError:
+            # Fallback, try to serialise using json...
+            data = json.dumps(
+                value,
+                ensure_ascii=False,
+                cls=json_encoder,
+                sort_keys=True,
+            ).encode(encoding)
 
-    hash_ = hashlib.new(hashtype)
-    hash_.update(data)
+            hash_.update(data)
+
     return hash_.hexdigest()
 
 

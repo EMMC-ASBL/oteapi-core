@@ -8,7 +8,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 def test_cache(tmp_path: "Path") -> None:
     """Simple tests for the `DataCache`."""
-    from oteapi.datacache.datacache import DataCache
+    from oteapi.datacache import DataCache
 
     cache = DataCache(cache_dir=tmp_path / "oteapi-test_cache")
 
@@ -40,7 +40,7 @@ def test_numpy(tmp_path: "Path") -> None:
     """Test adding numpy arrays in the datachache."""
     import numpy as np
 
-    from oteapi.datacache.datacache import DataCache
+    from oteapi.datacache import DataCache
 
     cache = DataCache(cache_dir=tmp_path / "oteapi-test_numpy")
     val = np.eye(4)
