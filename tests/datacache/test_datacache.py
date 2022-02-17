@@ -34,3 +34,17 @@ def test_cache(tmp_path: "Path") -> None:
     assert len(cache) == 1
     cache.clear()
     assert len(cache) == 0
+
+
+def test_numpy(tmp_path: "Path") -> None:
+    """Test adding numpy arrays in the datachache."""
+    import numpy as np
+
+    from oteapi.datacache.datacache import DataCache
+
+    cache = DataCache(cache_dir=tmp_path / "oteapi-test_numpy")
+    val = np.eye(4)
+    key = cache.add(val)
+
+    assert np.all(cache[key] == np.eye(4))
+    cache.clear()

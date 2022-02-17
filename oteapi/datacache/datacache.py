@@ -55,6 +55,9 @@ def gethash(
         data = value
     elif isinstance(value, str):
         data = value.encode(encoding)
+    elif value.__class__.__name__ in ("ndarray", "recarray"):
+        # Support NumPy arrays without importing numpy
+        data = value
     else:
         # Try to serialise using json
         data = json.dumps(
