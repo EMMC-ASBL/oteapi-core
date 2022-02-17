@@ -20,8 +20,12 @@ def test_json():
     }
 
     uri = (Path(__file__).resolve().parents[1] / "sample2.json").as_uri()
+    # uri now starts with "file:///..." (incompatible with AnyUrl)
+    # On Windows, the drive is also present, e.g. "file:///C:/...",
+    # so the second ":" must be removed to produce a valid AnyUrl
+    url = uri.replace(":", "").replace("///", "://")
     config = ResourceConfig(
-        downloadUrl=uri,
+        downloadUrl=url,
         mediaType="application/json",
     )
     parser = JSONDataParseStrategy(config)

@@ -1,11 +1,8 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
-import re
-import sys
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PosixPath
 from typing import TYPE_CHECKING, Optional
-from urllib.parse import urlparse
 
 from pydantic import BaseModel, Field
 
@@ -68,14 +65,9 @@ class FileStrategy:
                 "Expected 'downloadUrl' to have scheme 'file' in the configuration."
             )
 
-        filename = Path(urlparse(self.download_config.downloadUrl).path)
-
-        # Workaround for urlparse("file:///C:/Windows") -> "/C:/Windows" on Windows.
-        # Remove the initial slash in this case.
-        if sys.platform.startswith("Windows") and re.match(
-            "^\\[a-zA-Z]:\\", str(filename)
-        ):
-            filename = Path(str(filename)[1:])
+        filename = Path(self.download_config.downloadUrl.path).resolve()
+        if isinstance(filename, PosixPath):
+            filename = Path("/" + self.download_config.downloadUrl.host + str(filename))
 
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
