@@ -139,12 +139,13 @@ class DataCache:
         self.diskcache.expire()
         self.diskcache.close()
 
-    def add(
+    def add(  # pylint: disable=too-many-arguments
         self,
         value: "Any",
         key: "Optional[str]" = None,
         expire: "Optional[int]" = None,
         tag: "Optional[str]" = None,
+        json_encoder: "Optional[Any]" = None,
     ) -> str:
         """Add a value to cache.
 
@@ -168,7 +169,11 @@ class DataCache:
             if self.config.accessKey:
                 key = self.config.accessKey
             else:
-                key = gethash(value, hashtype=self.config.hashType)
+                key = gethash(
+                    value,
+                    hashtype=self.config.hashType,
+                    json_encoder=json_encoder,
+                )
         if not expire:
             expire = self.config.expireTime
 

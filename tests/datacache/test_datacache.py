@@ -2,6 +2,8 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
+import pytest
+
 if TYPE_CHECKING:  # pragma: no cover
     from pathlib import Path
 
@@ -37,8 +39,12 @@ def test_cache(tmp_path: "Path") -> None:
 
 
 def test_numpy(tmp_path: "Path") -> None:
-    """Test adding numpy arrays in the datachache."""
-    import numpy as np
+    """Test adding numpy arrays to the datachache."""
+    try:
+        import numpy as np
+    except ImportError:
+        pytest.skip("numpy is not installed")
+        return
 
     from oteapi.datacache import DataCache
 
@@ -47,4 +53,33 @@ def test_numpy(tmp_path: "Path") -> None:
     key = cache.add(val)
 
     assert np.all(cache[key] == np.eye(4))
+    cache.clear()
+
+
+def test_ase_atoms(tmp_path: "Path") -> None:
+    """Test adding ase Atoms objects to the datachache."""
+    try:
+        import ase
+    except ImportError:
+        pytest.skip("ase is not installed")
+        return
+
+    from ase.io.jsonio import MyEncoder
+
+    from oteapi.datacache import DataCache
+
+    cache = DataCache(cache_dir=tmp_path / "oteapi-test_numpy")
+    atoms = ase.Atoms(
+        symbols=[
+            ase.Atom("H", [0.7575, 0.5871, 0.0]),
+            ase.Atom("H", [-0.7575, 0.5871, 0.0]),
+            ase.Atom("O", [0, 0, 0]),
+        ],
+    )
+    key = cache.add(atoms, json_encoder=MyEncoder)
+
+    atoms2 = cache[key]
+    assert len(atoms2) == 3
+    assert atoms2.get_chemical_symbols() == ["H", "H", "O"]
+    assert all(atoms2.positions[2] == (0, 0, 0))
     cache.clear()
