@@ -60,11 +60,10 @@ def test_ase_atoms(tmp_path: "Path") -> None:
     """Test adding ase Atoms objects to the datachache."""
     try:
         import ase
+        from ase.io.jsonio import MyEncoder
     except ImportError:
         pytest.skip("ase is not installed")
         return
-
-    from ase.io.jsonio import MyEncoder
 
     from oteapi.datacache import DataCache
 

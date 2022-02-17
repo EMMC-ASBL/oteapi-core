@@ -11,12 +11,11 @@ def test_file():
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.file import FileStrategy
 
-    path = Path(__file__).resolve().parents[1]
-    url = path.as_uri().replace(":", "").replace("///", "://")
+    path = Path(__file__).resolve().parent
 
     # Test binary file download
     binary_config = ResourceConfig(
-        downloadUrl=url + "/sample_1280_853.jpeg",
+        downloadUrl=(path / "sample_1280_853.jpeg").as_uri(),
         mediaType="image/jpeg",
     )
     binary_output = FileStrategy(binary_config).get()
@@ -25,7 +24,7 @@ def test_file():
 
     # Test text file download
     text_config = ResourceConfig(
-        downloadUrl=url + "/sample2.json",
+        downloadUrl=(path / "sample2.json").as_uri(),
         mediaType="application/json",
     )
     text_output = FileStrategy(text_config).get()
