@@ -72,10 +72,9 @@ class FileStrategy:
 
         # Workaround for urlparse("file:///C:/Windows") -> "/C:/Windows" on Windows.
         # Remove the initial slash in this case.
-        if sys.platform.startswith("Windows") and re.match(
-            "^\\[a-zA-Z]:\\", str(filename)
-        ):
-            filename = Path(str(filename)[1:])
+        if sys.platform.startswith("Windows"):
+            if re.match("^\\[a-zA-Z]:\\", str(filename)):
+                filename = Path(str(filename)[1:])
 
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
