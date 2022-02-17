@@ -53,9 +53,7 @@ def gethash(
     """
     hash_ = hashlib.new(hashtype)
 
-    if isinstance(value, (bytes, bytearray)):
-        data = value
-    elif isinstance(value, str):
+    if isinstance(value, str):
         data = value.encode(encoding)
     else:
         data = value
