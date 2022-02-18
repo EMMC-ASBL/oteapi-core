@@ -2638,16 +2638,15 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
         <span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
 
     <span class="n">collection</span> <span class="o">=</span> <span class="n">EntryPointStrategyCollection</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">group</span><span class="p">,</span> <span class="n">oteapi_entry_points</span> <span class="ow">in</span> <span class="n">get_entry_points</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">group</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;oteapi.&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">group</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;oteapi.&quot;</span><span class="p">)</span> <span class="p">:]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span>
-            <span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span>
-        <span class="p">):</span>
-            <span class="k">if</span> <span class="n">enforce_uniqueness</span><span class="p">:</span>
-                <span class="n">collection</span><span class="o">.</span><span class="n">exclusive_add</span><span class="p">(</span>
-                    <span class="o">*</span><span class="p">(</span><span class="n">EntryPointStrategy</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">oteapi_entry_points</span><span class="p">)</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">EntryPointStrategy</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">oteapi_entry_points</span><span class="p">))</span>
+    <span class="n">oteapi_entry_points</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+        <span class="nb">set</span><span class="p">(</span><span class="n">get_entry_points</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;oteapi.</span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">[]))</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">enforce_uniqueness</span><span class="p">:</span>
+        <span class="n">collection</span><span class="o">.</span><span class="n">exclusive_add</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">EntryPointStrategy</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">oteapi_entry_points</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">collection</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">EntryPointStrategy</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">oteapi_entry_points</span><span class="p">))</span>
+
     <span class="k">return</span> <span class="n">collection</span>
 </code></pre></div>
         </details>
