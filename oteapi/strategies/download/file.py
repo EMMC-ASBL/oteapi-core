@@ -70,8 +70,11 @@ class FileStrategy:
 
         filename = Path(urlparse(self.download_config.downloadUrl).path)
 
-        # Workaround for urlparse("file:///C:/Windows") -> "/C:/Windows" on Windows.
-        # Remove the initial slash in this case.
+        # Grr, urlparse() leaving an initial slash in front of the drive
+        # letter when parsing a file url for an absolute path on Windows.
+        # Example: urlparse("file:///C:/Windows") -> "/C:/Windows"
+        #
+        # Workaround: remove the initial slash in these cases.
         if sys.platform.startswith("Windows"):
             if re.match("^\\[a-zA-Z]:\\", str(filename)):
                 filename = Path(str(filename)[1:])
