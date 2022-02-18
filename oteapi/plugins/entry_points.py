@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Iterable, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Iterator, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
 
@@ -502,14 +502,13 @@ def get_strategy_entry_points(
         ) from exc
 
     collection = EntryPointStrategyCollection()
-    for group, oteapi_entry_points in get_entry_points().items():
-        if group.startswith("oteapi.") and group[len("oteapi.") :] == str(
-            strategy_type.value
-        ):
-            if enforce_uniqueness:
-                collection.exclusive_add(
-                    *(EntryPointStrategy(_) for _ in oteapi_entry_points)
-                )
-            else:
-                collection.add(*(EntryPointStrategy(_) for _ in oteapi_entry_points))
+    oteapi_entry_points = sorted(
+        set(get_entry_points().get(f"oteapi.{strategy_type.value}", []))
+    )
+
+    if enforce_uniqueness:
+        collection.exclusive_add(*(EntryPointStrategy(_) for _ in oteapi_entry_points))
+    else:
+        collection.add(*(EntryPointStrategy(_) for _ in oteapi_entry_points))
+
     return collection
