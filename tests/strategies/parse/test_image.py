@@ -16,7 +16,7 @@ image_formats = [
     ("gif", "sample_1280_853.gif", "sample_700_400.gif", (200, 300, 900, 700)),
     ("jpeg", "sample_1280_853.jpeg", "sample_700_400.jpeg", (200, 300, 900, 700)),
     ("jpg", "sample_1280_853.jpg", "sample_700_400.jpeg", (200, 300, 900, 700)),
-    ("jp2", "sample1.jp2", "sample1_1000_1000.jp2", (1000, 1000, 2000, 2000)),
+    ("jp2", "sample1_1000_1000.jp2", None, None),
     ("png", "sample_640_426.png", "sample_350_250.png", (100, 50, 450, 300)),
     ("tiff", "sample_640_426.tiff", "sample_350_250.tiff", (100, 50, 450, 300)),
     ("gif", "sample_700_400.gif", None, None),
