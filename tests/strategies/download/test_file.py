@@ -11,7 +11,7 @@ def test_file():
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.file import FileStrategy
 
-    path = Path(__file__).resolve().parents[1]
+    path = Path(__file__).resolve().parent.parent
     url = path.as_uri().replace(":", "").replace("///", "://")
 
     # Test binary file download
