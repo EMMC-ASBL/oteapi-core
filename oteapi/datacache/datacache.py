@@ -17,7 +17,7 @@ import json
 import tempfile
 from contextlib import contextmanager
 from pathlib import Path
-from typing import TYPE_CHECKING, Mapping
+from typing import TYPE_CHECKING
 
 from diskcache import Cache as DiskCache
 
@@ -94,7 +94,7 @@ class DataCache:
     ) -> None:
         if config is None:
             self.config = DataCacheConfig()
-        elif isinstance(config, (Mapping, AttrDict)):
+        elif isinstance(config, (dict, AttrDict)):
             self.config = DataCacheConfig(**config)
         elif isinstance(config, DataCacheConfig):
             self.config = config

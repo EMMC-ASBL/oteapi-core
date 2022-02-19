@@ -31,8 +31,8 @@ class FileConfig(BaseModel):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
-    datacache_config: Optional[AttrDict] = Field(
-        AttrDict(),
+    datacache_config: Optional[DataCacheConfig] = Field(
+        None,
         description="Datacache configurations.",
     )
 
