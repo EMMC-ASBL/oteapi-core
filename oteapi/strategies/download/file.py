@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Optional
 from pydantic import BaseModel, Field
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, SessionUpdate
+from oteapi.models import DataCacheConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -32,8 +32,8 @@ class FileConfig(BaseModel):
         ),
     )
     datacache_config: Optional[DataCacheConfig] = Field(
-        None,
-        description="Datacache configurations.",
+        DataCacheConfig(),
+        description="Configurations for the data cache for storing the downloaded file content.",
     )
 
 
@@ -74,6 +74,7 @@ class FileStrategy:
         if isinstance(filename, PosixPath):
             filename = Path("/" + self.download_config.downloadUrl.host + str(filename))
 
+        config = FileConfig(**self.download_config.configuration)
         cache = DataCache(config.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
