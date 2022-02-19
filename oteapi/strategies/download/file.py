@@ -76,13 +76,18 @@ class FileStrategy:
         #
         # Workaround: remove the initial slash in these cases.
 
-        print("*** filename: {filename}")
+        import sys
+        print("*****************************************************************", file=sys.stderr)
+        print("*** filename: {filename}", file=sys.stderr)
 
         if sys.platform.startswith("Windows"):
-            if re.match("^\\[a-zA-Z]:\\", str(filename)):
+            print("  * on Windows", file=sys.stderr)
+            if re.match(r"^\\[a-zA-Z]:\\", str(filename)):
+                print("  * match", file=sys.stderr)
                 filename = Path(str(filename)[1:])
 
-        print("--> filename: {filename}")
+        print("--> filename: {filename}", file=sys.stderr)
+        print("*****************************************************************", file=sys.stderr)
 
         cache = DataCache(self.download_config.configuration)
         if cache.config.accessKey and cache.config.accessKey in cache:
