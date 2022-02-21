@@ -1,6 +1,5 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
-from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field, FileUrl, validator
@@ -8,6 +7,7 @@ from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils.paths import uri_to_path
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -77,12 +77,7 @@ class FileStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateFile:
         """Read local file."""
-        filename = Path(self.download_config.downloadUrl.path)  # type: ignore[arg-type]
-        if isinstance(filename, PureWindowsPath):
-            # Windows paths should not start with a forward slash
-            # Note, the forward slash is converted to `\\` when casting to a string.
-            filename = Path(str(filename).lstrip("\\"))
-        filename = filename.resolve()
+        filename = uri_to_path(self.download_config.downloadUrl).resolve()
 
         if not filename.exists():
             raise FileNotFoundError(f"File not found at {filename}")
