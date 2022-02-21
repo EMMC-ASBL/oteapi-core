@@ -316,7 +316,7 @@ class EntryPointStrategyCollection(abc.Collection):
         """Remove entry points from the collection.
 
         Parameters:
-            entry_points /Iterable[EntryPointStrategy]: Entry points to remove from the collection.
+            entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the collection.
 
         """
         self._entry_points -= set(entry_points)
