@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from importlib.metadata import EntryPoint
     from typing import Any, Callable, Dict, Iterable, List, Tuple, Union
 

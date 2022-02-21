@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-if TYPE_CHECKING:  # pragma: no cover
+if TYPE_CHECKING:
     from importlib.metadata import EntryPoint
     from typing import Any, Callable, Dict, Iterable, Tuple, Union
 
@@ -155,3 +155,54 @@ def test_eval_custom_classes() -> None:
         == eval_collection_cls._entry_points
         == {normal_strategy_cls}
     )
+
+
+@pytest.mark.parametrize(
+    "enforce_uniqueness", (True, False), ids=("uniqueness", "no uniqueness")
+)
+def test_duplicate_entry_points(
+    mock_importlib_entry_points: "MockEntryPoints",
+    enforce_uniqueness: bool,
+) -> None:
+    """Ensure duplicate entry points does not result in an error.
+
+    Note: This is for duplicate entry points, NOT entry point _strategies_.
+    """
+    strategy_type = "download"
+    test_entry_points = [
+        {
+            "name": "package_one.file",
+            "value": "package_one.strategies.file:FileStrategy",
+            "group": f"oteapi.{strategy_type}",
+        },
+        {
+            "name": "package_two.http",
+            "value": "package_two.strategies.http:HTTPStrategy",
+            "group": f"oteapi.{strategy_type}",
+        },
+    ]
+    # Must be called prior to importing anything from `oteapi`
+    mock_importlib_entry_points(test_entry_points + test_entry_points)
+
+    from oteapi.plugins.entry_points import (
+        EntryPointStrategy,
+        get_entry_points,
+        get_strategy_entry_points,
+    )
+
+    assert len(get_entry_points().get(f"oteapi.{strategy_type}", [])) == 2 * len(
+        test_entry_points
+    )
+
+    collection = get_strategy_entry_points(
+        strategy_type, enforce_uniqueness=enforce_uniqueness
+    )
+
+    assert len(collection) == len(test_entry_points)
+
+    for test_entry_point in test_entry_points:
+        assert (
+            f"oteapi.{strategy_type}"
+            f"{EntryPointStrategy.ENTRY_POINT_NAME_SEPARATOR}"
+            f"{test_entry_point.get('name', '')}"
+        ) in collection
