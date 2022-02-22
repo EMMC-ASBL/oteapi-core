@@ -1,26 +1,40 @@
 """Demo-filter strategy"""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, Tuple
 
 from pydantic import Field
+from pydantic.dataclasses import dataclass
 
-from oteapi.models import SessionUpdate
+from oteapi.models import AttrDict, FilterConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import FilterConfig
+
+class CropImageConfig(AttrDict):
+    """Configuration model for crop data."""
+
+    crop: Tuple[int, int, int, int] = Field(..., description="Box cropping parameters.")
 
 
-class SessionUpdateCrop(SessionUpdate):
-    """Class for returning values from crop data."""
+class CropImageFilterConfig(FilterConfig):
+    """Crop filter strategy filter config."""
 
-    crop: List[int] = Field(..., description="List of image cropping details.")
+    configuration: CropImageConfig = Field(
+        ..., description="Image crop filter strategy-specific configuration."
+    )
+
+
+class SessionUpdateCropFilter(SessionUpdate):
+    """Return model for `CropImageFilter`."""
+
+    imagecrop: Tuple[int, int, int, int] = Field(
+        ..., description="Box cropping parameters."
+    )
 
 
 @dataclass
-class CropFilter:
+class CropImageFilter:
     """Strategy for cropping an image.
 
     **Registers strategies**:
@@ -29,17 +43,14 @@ class CropFilter:
 
     """
 
-    filter_config: "FilterConfig"
+    filter_config: CropImageFilterConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy and return a dictionary."""
         return SessionUpdate()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCrop:
+    def get(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> SessionUpdateCropFilter:
         """Execute strategy and return a dictionary"""
-        cropData = (
-            SessionUpdateCrop(**self.filter_config.configuration)
-            if self.filter_config.configuration
-            else SessionUpdateCrop()
-        )
-        return cropData
+        return SessionUpdateCropFilter(imagecrop=self.filter_config.configuration.crop)

@@ -1,15 +1,18 @@
 """Tests the download strategy for 'sftp://'."""
 # pylint: disable=no-self-use
-import pytest
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+    from pytest import MonkeyPatch
 
 
 class MockSFTPConnection:
     """A mockup of pysftp.Connection, as used in SFTPStrategy.get()."""
 
-    from pathlib import Path
-
     def __init__(self, **kwargs) -> None:
-        """Dummy initializer."""
+        """Dummy initializer passing through any kwargs."""
 
     def __enter__(self):
         """Entry into context manager."""
@@ -18,37 +21,37 @@ class MockSFTPConnection:
     def __exit__(self, exc_type: str, exc_value: str, traceback: str) -> None:
         """Dummy exit from context manager."""
 
-    def get(self, remotepath: str, localpath: Path) -> None:
-        """A mockup of pysftp.Connection.get() as called in
-        SFTPStrategy.get().
-        """
+    def get(self, remotepath: str, localpath: "Path") -> None:
+        """A mockup of pysftp.Connection.get() as called in SFTPStrategy.get()."""
+        from pathlib import Path, PureWindowsPath
         from shutil import copyfile
 
-        copyfile(remotepath, localpath)
+        remote_as_path = Path(remotepath)
+        if isinstance(remote_as_path, PureWindowsPath):
+            remote_as_path = Path(str(remote_as_path).lstrip("\\"))
+
+        copyfile(remote_as_path, localpath)
 
 
-def test_sftp(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Test `sftp.py` download strategy by mocking download, and
-    comparing data mock downloaded from the local file
-    'sample_1280_853.jpeg' with data obtained from simply opening the
-    file directly.
-    """
-    from pathlib import Path
-
+def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
+    """Test `sftp.py` download strategy by mocking download, and comparing data mock
+    downloaded from a local file with data obtained from opening the file directly."""
     import pysftp
-    from pydantic import AnyUrl
 
     from oteapi.datacache.datacache import DataCache
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.download.sftp import SFTPStrategy
 
-    path = Path(__file__).resolve().parents[1] / "sample_1280_853.jpeg"
-    config = ResourceConfig(
-        downloadUrl=AnyUrl(url="dummy", scheme="sftp", path=str(path)),
-        mediaType="image/jpeg",
-    )
     monkeypatch.setattr(pysftp, "Connection", MockSFTPConnection)
-    output = SFTPStrategy(config).get()
-    content = DataCache().get(output["key"])
-    DataCache().clear()
-    assert content == path.read_bytes()
+
+    sample_file = static_files / "sample_1280_853.jpeg"
+
+    config = {
+        "downloadUrl": sample_file.as_uri().replace("file://", "sftp://"),
+        "mediaType": "image/jpeg",
+    }
+
+    datacache_key: str = SFTPStrategy(config).get().get("key", "")
+    datacache = DataCache()
+    content = datacache.get(datacache_key)
+    del datacache[datacache_key]
+    assert content == sample_file.read_bytes()
