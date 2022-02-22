@@ -1089,6 +1089,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1194,24 +1241,55 @@
 
 
 <h2 id="oteapi.interfaces.ifilterstrategy.IFilterStrategy" class="doc doc-heading">
-        <code>
-IFilterStrategy            (<span title="typing.Protocol">Protocol</span>)
-        </code>
+          <code>IFilterStrategy</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
-  </span>
 
 <a href="#oteapi.interfaces.ifilterstrategy.IFilterStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><span title="typing.Protocol">Protocol</span></code></p>
+
 
       <p>Filter Strategy Interface.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/interfaces/ifilterstrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/interfaces/ifilterstrategy.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
 <span class="k">class</span> <span class="nc">IFilterStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Filter Strategy Interface.&quot;&quot;&quot;</span>
 
@@ -1244,7 +1322,8 @@ IFilterStrategy            (<span title="typing.Protocol">Protocol</span>)
 
 <span class="sd">        &quot;&quot;&quot;</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1258,9 +1337,7 @@ IFilterStrategy            (<span title="typing.Protocol">Protocol</span>)
 
 
 
-
-
-  <div class="doc doc-object doc-method">
+  <div class="doc doc-object doc-function">
 
 
 
@@ -1270,48 +1347,72 @@ IFilterStrategy            (<span title="typing.Protocol">Protocol</span>)
 
 <a href="#oteapi.interfaces.ifilterstrategy.IFilterStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
       <p>Execute the strategy.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>session</code></td>
-        <td><code>Optional[Dict[str, Any]]</code></td>
-        <td><p>A session-specific dictionary context.</p></td>
-        <td><code>None</code></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>SessionUpdate</code></td>
-      <td><p>An update model of key/value-pairs to be stored in the
-session-specific context from services.</p></td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>session</code></td>
+          <td>
+                <code>&#39;Optional[Dict[str, Any]]&#39;</code>
+          </td>
+          <td><p>A session-specific dictionary context.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>&#39;SessionUpdate&#39;</code>
+          </td>
+          <td><p>An update model of key/value-pairs to be stored in the</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>&#39;SessionUpdate&#39;</code>
+          </td>
+          <td><p>session-specific context from services.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/ifilterstrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1323,6 +1424,7 @@ session-specific context from services.</p></td>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
+</td></tr></table>
         </details>
     </div>
 
@@ -1330,7 +1432,7 @@ session-specific context from services.</p></td>
 
 
 
-  <div class="doc doc-object doc-method">
+  <div class="doc doc-object doc-function">
 
 
 
@@ -1340,50 +1442,77 @@ session-specific context from services.</p></td>
 
 <a href="#oteapi.interfaces.ifilterstrategy.IFilterStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
       <p>Initialize data class.</p>
 <p>This method will be called through the <code>/initialize</code> endpoint of the OTE-API
 Services.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>session</code></td>
-        <td><code>Optional[Dict[str, Any]]</code></td>
-        <td><p>A session-specific dictionary context.</p></td>
-        <td><code>None</code></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>SessionUpdate</code></td>
-      <td><p>An update model of key/value-pairs to be stored in the
-session-specific context from services.</p></td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>session</code></td>
+          <td>
+                <code>&#39;Optional[Dict[str, Any]]&#39;</code>
+          </td>
+          <td><p>A session-specific dictionary context.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>&#39;SessionUpdate&#39;</code>
+          </td>
+          <td><p>An update model of key/value-pairs to be stored in the</p></td>
+        </tr>
+        <tr>
+          <td>
+                <code>&#39;SessionUpdate&#39;</code>
+          </td>
+          <td><p>session-specific context from services.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
         <details class="quote">
           <summary>Source code in <code>oteapi/interfaces/ifilterstrategy.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
@@ -1398,6 +1527,7 @@ session-specific context from services.</p></td>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div>
+</td></tr></table>
         </details>
     </div>
 
@@ -1412,7 +1542,6 @@ session-specific context from services.</p></td>
     </div>
 
   </div>
-
 
 
 

@@ -1199,6 +1199,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1417,15 +1464,17 @@ method.</p>
 
 
 <h2 id="oteapi.models.transformationconfig.PriorityEnum" class="doc doc-heading">
-        <code>
-PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">Enum</span>)
-        </code>
+          <code>PriorityEnum</code>
 
 
 
 <a href="#oteapi.models.transformationconfig.PriorityEnum" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code>str</code>, <code><span title="enum.Enum">Enum</span></code></p>
+
 
       <p>Defining process priority enumerators.</p>
 <p>Process priorities:</p>
@@ -1435,9 +1484,23 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 <li>High</li>
 </ul>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PriorityEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">PriorityEnum</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Defining process priority enumerators.</span>
 
 <span class="sd">    Process priorities:</span>
@@ -1452,7 +1515,8 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
     <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s2">&quot;Medium&quot;</span>
     <span class="n">HIGH</span> <span class="o">=</span> <span class="s2">&quot;High&quot;</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1468,10 +1532,14 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 
 
 <h3 id="oteapi.models.transformationconfig.PriorityEnum.HIGH" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">HIGH</span></code>
+<code class="highlight language-python"><span class="n">HIGH</span> <span class="o">=</span> <span class="s1">&#39;High&#39;</span></code>
 
+  <span class="doc doc-properties">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
 
 <a href="#oteapi.models.transformationconfig.PriorityEnum.HIGH" class="headerlink" title="Permanent link">&para;</a></h3>
+
 
     <div class="doc doc-contents ">
 
@@ -1486,10 +1554,14 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 
 
 <h3 id="oteapi.models.transformationconfig.PriorityEnum.LOW" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">LOW</span></code>
+<code class="highlight language-python"><span class="n">LOW</span> <span class="o">=</span> <span class="s1">&#39;Low&#39;</span></code>
 
+  <span class="doc doc-properties">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
 
 <a href="#oteapi.models.transformationconfig.PriorityEnum.LOW" class="headerlink" title="Permanent link">&para;</a></h3>
+
 
     <div class="doc doc-contents ">
 
@@ -1504,17 +1576,20 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 
 
 <h3 id="oteapi.models.transformationconfig.PriorityEnum.MEDIUM" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">MEDIUM</span></code>
+<code class="highlight language-python"><span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;Medium&#39;</span></code>
 
+  <span class="doc doc-properties">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
 
 <a href="#oteapi.models.transformationconfig.PriorityEnum.MEDIUM" class="headerlink" title="Permanent link">&para;</a></h3>
+
 
     <div class="doc doc-contents ">
 
     </div>
 
   </div>
-
 
 
 
@@ -1535,24 +1610,50 @@ PriorityEnum            (<span title="str">str</span>, <span title="enum.Enum">E
 
 
 <h2 id="oteapi.models.transformationconfig.TransformationConfig" class="doc doc-heading">
-        <code>
-TransformationConfig            (<a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a>)
-        </code>
+          <code>TransformationConfig</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+
 
       <p>Transformation Strategy Data Configuration.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transformation Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">transformationType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1580,7 +1681,8 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when running a transformation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1596,17 +1698,17 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.due" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">due</span><span class="p">:</span> <span class="n">datetime</span></code>
+<code class="highlight language-python"><span class="n">due</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional field to indicate a due data/time for when a transformation should finish.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig.due" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Optional field to indicate a due data/time for when a transformation should finish.</p>
     </div>
 
   </div>
@@ -1618,17 +1720,17 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.name" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Human-readable name of the transformation strategy.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig.name" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Human-readable name of the transformation strategy.</p>
     </div>
 
   </div>
@@ -1640,17 +1742,17 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.priority" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">priority</span><span class="p">:</span> <span class="n">PriorityEnum</span></code>
+<code class="highlight language-python"><span class="n">priority</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PriorityEnum</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">PriorityEnum</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Define the process priority of the transformation execution.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig.priority" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Define the process priority of the transformation execution.</p>
     </div>
 
   </div>
@@ -1662,17 +1764,17 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.secret" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Authorization secret given when running a transformation.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig.secret" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Authorization secret given when running a transformation.</p>
     </div>
 
   </div>
@@ -1684,22 +1786,20 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.transformationType" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">transformationType</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">transformationType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered transformation strategy. E.g., `celery/remote`.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationConfig.transformationType" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Type of registered transformation strategy. E.g., <code>celery/remote</code>.</p>
     </div>
 
   </div>
-
 
 
 
@@ -1720,24 +1820,43 @@ TransformationConfig            (<a title="oteapi.models.genericconfig.GenericCo
 
 
 <h2 id="oteapi.models.transformationconfig.TransformationStatus" class="doc doc-heading">
-        <code>
-TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel</span>)
-        </code>
+          <code>TransformationStatus</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
 
       <p>Return from transformation status.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationStatus</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">TransformationStatus</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return from transformation status.&quot;&quot;&quot;</span>
 
     <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID for the given transformation process.&quot;</span><span class="p">)</span>
@@ -1758,7 +1877,8 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Time when the tranformation process finished. Given in UTC.&quot;</span>
     <span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1774,17 +1894,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.created" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">created</span><span class="p">:</span> <span class="n">datetime</span></code>
+<code class="highlight language-python"><span class="n">created</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time of creation for the transformation process. Given in UTC.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.created" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Time of creation for the transformation process. Given in UTC.</p>
     </div>
 
   </div>
@@ -1796,17 +1916,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.finishTime" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">finishTime</span><span class="p">:</span> <span class="n">datetime</span></code>
+<code class="highlight language-python"><span class="n">finishTime</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time when the tranformation process finished. Given in UTC.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.finishTime" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Time when the tranformation process finished. Given in UTC.</p>
     </div>
 
   </div>
@@ -1818,18 +1938,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.id" class="doc doc-heading">
-<code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;ID for the given transformation process.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.id" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>ID for the given transformation process.</p>
     </div>
 
   </div>
@@ -1841,17 +1960,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.messages" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">messages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+<code class="highlight language-python"><span class="n">messages</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Messages related to the transformation process.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.messages" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Messages related to the transformation process.</p>
     </div>
 
   </div>
@@ -1863,17 +1982,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.startTime" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">startTime</span><span class="p">:</span> <span class="n">datetime</span></code>
+<code class="highlight language-python"><span class="n">startTime</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time when the transformation process started. Given in UTC.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.startTime" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Time when the transformation process started. Given in UTC.</p>
     </div>
 
   </div>
@@ -1885,17 +2004,17 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.status" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">status</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Status for the transformation process.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.transformationconfig.TransformationStatus.status" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Status for the transformation process.</p>
     </div>
 
   </div>
@@ -1906,13 +2025,11 @@ TransformationStatus            (<span title="pydantic.main.BaseModel">BaseModel
 
 
 
-
   </div>
 
     </div>
 
   </div>
-
 
 
 

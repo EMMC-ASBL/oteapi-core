@@ -807,19 +807,19 @@
     FileConfig
   </a>
   
-    <nav class="md-nav" aria-label="FileConfig">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.download.file.FileResourceConfig" class="md-nav__link">
+    FileResourceConfig
+  </a>
+  
+    <nav class="md-nav" aria-label="FileResourceConfig">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.FileConfig.encoding" class="md-nav__link">
-    encoding
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.FileConfig.text" class="md-nav__link">
-    text
+  <a href="#oteapi.strategies.download.file.FileResourceConfig.ensure_path_exists" class="md-nav__link">
+    ensure_path_exists()
   </a>
   
 </li>
@@ -860,19 +860,6 @@
   <a href="#oteapi.strategies.download.file.SessionUpdateFile" class="md-nav__link">
     SessionUpdateFile
   </a>
-  
-    <nav class="md-nav" aria-label="SessionUpdateFile">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.SessionUpdateFile.key" class="md-nav__link">
-    key
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1138,6 +1125,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1182,19 +1216,19 @@
     FileConfig
   </a>
   
-    <nav class="md-nav" aria-label="FileConfig">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.download.file.FileResourceConfig" class="md-nav__link">
+    FileResourceConfig
+  </a>
+  
+    <nav class="md-nav" aria-label="FileResourceConfig">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.FileConfig.encoding" class="md-nav__link">
-    encoding
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.FileConfig.text" class="md-nav__link">
-    text
+  <a href="#oteapi.strategies.download.file.FileResourceConfig.ensure_path_exists" class="md-nav__link">
+    ensure_path_exists()
   </a>
   
 </li>
@@ -1235,19 +1269,6 @@
   <a href="#oteapi.strategies.download.file.SessionUpdateFile" class="md-nav__link">
     SessionUpdateFile
   </a>
-  
-    <nav class="md-nav" aria-label="SessionUpdateFile">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.strategies.download.file.SessionUpdateFile.key" class="md-nav__link">
-    key
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1290,24 +1311,43 @@
 
 
 <h2 id="oteapi.strategies.download.file.FileConfig" class="doc doc-heading">
-        <code>
-FileConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
-        </code>
+          <code>FileConfig</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.strategies.download.file.FileConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
+
 
       <p>File-specific Configuration Data Model.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FileConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FileConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;File-specific Configuration Data Model.&quot;&quot;&quot;</span>
 
     <span class="n">text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1323,8 +1363,13 @@ FileConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
             <span class="s2">&quot;Encoding used when opening the file. The default is platform dependent.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
+    <span class="n">cache_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataCacheConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configuration options for the local data cache.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1334,48 +1379,6 @@ FileConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
 
 
 
-
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.strategies.download.file.FileConfig.encoding" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-  </span>
-
-<a href="#oteapi.strategies.download.file.FileConfig.encoding" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Encoding used when opening the file. The default is platform dependent.</p>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.strategies.download.file.FileConfig.text" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">text</span><span class="p">:</span> <span class="nb">bool</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-  </span>
-
-<a href="#oteapi.strategies.download.file.FileConfig.text" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Whether the file should be opened in text mode. If <code>False</code>, the file will be opened in bytes mode.</p>
-    </div>
-
-  </div>
 
 
 
@@ -1396,71 +1399,58 @@ FileConfig            (<span title="pydantic.main.BaseModel">BaseModel</span>)
 
 
 
-<h2 id="oteapi.strategies.download.file.FileStrategy" class="doc doc-heading">
-        <code>
-FileStrategy        </code>
+<h2 id="oteapi.strategies.download.file.FileResourceConfig" class="doc doc-heading">
+          <code>FileResourceConfig</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-dataclass"><code>dataclass</code></small>
-  </span>
 
-<a href="#oteapi.strategies.download.file.FileStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#oteapi.strategies.download.file.FileResourceConfig" class="headerlink" title="Permanent link">&para;</a></h2>
+
 
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.ResourceConfig" href="../../../../all_models/#oteapi.models.ResourceConfig">ResourceConfig</a></code></p>
 
-      <p>Strategy for retrieving data from a local file.</p>
-<p><strong>Registers strategies</strong>:</p>
-<ul>
-<li><code>("scheme", "file")</code></li>
-</ul>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">FileStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Strategy for retrieving data from a local file.</span>
+      <p>File download strategy filter config.</p>
 
-<span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">    - `(&quot;scheme&quot;, &quot;file&quot;)`</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FileResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;File download strategy filter config.&quot;&quot;&quot;</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">FileUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore[assignment]</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The file URL, which will be downloaded.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">configuration</span><span class="p">:</span> <span class="n">FileConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">FileConfig</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;File download strategy-specific configuration.&quot;</span>
+    <span class="p">)</span>
 
-    <span class="n">download_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
-
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
-            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
-        <span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;Expected &#39;downloadUrl&#39; to have scheme &#39;file&#39; in the configuration.&quot;</span>
-            <span class="p">)</span>
-
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">PosixPath</span><span class="p">):</span>
-            <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
-
-        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">FileConfig</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-                <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">text</span>
-                <span class="k">else</span> <span class="n">filename</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
-            <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">SessionUpdateFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+    <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">ensure_path_exists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">FileUrl</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUrl</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl must contain a `path` part.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1475,8 +1465,161 @@ FileStrategy        </code>
 
 
 
+  <div class="doc doc-object doc-function">
 
-  <div class="doc doc-object doc-method">
+
+
+<h3 id="oteapi.strategies.download.file.FileResourceConfig.ensure_path_exists" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">ensure_path_exists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></code>
+
+
+<a href="#oteapi.strategies.download.file.FileResourceConfig.ensure_path_exists" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Ensure <code>path</code> is defined in <code>downloadUrl</code>.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ensure_path_exists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">FileUrl</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUrl</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl must contain a `path` part.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="oteapi.strategies.download.file.FileStrategy" class="doc doc-heading">
+          <code>FileStrategy</code>
+
+
+
+<a href="#oteapi.strategies.download.file.FileStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+      <p>Strategy for retrieving data from a local file.</p>
+<p><strong>Registers strategies</strong>:</p>
+<ul>
+<li><code>("scheme", "file")</code></li>
+</ul>
+
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">FileStrategy</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Strategy for retrieving data from a local file.</span>
+
+<span class="sd">    **Registers strategies**:</span>
+
+<span class="sd">    - `(&quot;scheme&quot;, &quot;file&quot;)`</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">FileResourceConfig</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">uri_to_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found at </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">cache_config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">text</span>
+                <span class="k">else</span> <span class="n">filename</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">SessionUpdateFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+          </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
 
 
 
@@ -1486,39 +1629,50 @@ FileStrategy        </code>
 
 <a href="#oteapi.strategies.download.file.FileStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
       <p>Read local file.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="kc">None</span>
-        <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="o">!=</span> <span class="s2">&quot;file&quot;</span>
-    <span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s2">&quot;Expected &#39;downloadUrl&#39; to have scheme &#39;file&#39; in the configuration.&quot;</span>
-        <span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">uri_to_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
-    <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">PosixPath</span><span class="p">):</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found at </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">cache_config</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">and</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">accessKey</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">FileConfig</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
-            <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">filename</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">text</span>
             <span class="k">else</span> <span class="n">filename</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">()</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">SessionUpdateFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
 </code></pre></div>
+</td></tr></table>
         </details>
     </div>
 
@@ -1526,7 +1680,7 @@ FileStrategy        </code>
 
 
 
-  <div class="doc doc-object doc-method">
+  <div class="doc doc-object doc-function">
 
 
 
@@ -1536,16 +1690,20 @@ FileStrategy        </code>
 
 <a href="#oteapi.strategies.download.file.FileStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
       <p>Initialize.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
+</td></tr></table>
         </details>
     </div>
 
@@ -1568,29 +1726,33 @@ FileStrategy        </code>
 
 
 <h2 id="oteapi.strategies.download.file.SessionUpdateFile" class="doc doc-heading">
-        <code>
-SessionUpdateFile            (<a title="oteapi.models.sessionupdate.SessionUpdate" href="../../../models/sessionupdate/#oteapi.models.sessionupdate.SessionUpdate">SessionUpdate</a>)
-        </code>
+          <code>SessionUpdateFile</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.strategies.download.file.SessionUpdateFile" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
+
 
       <p>Class for returning values from Download File strategy.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateFile</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/download/file.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateFile</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class for returning values from Download File strategy.&quot;&quot;&quot;</span>
 
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Key to access the data in the cache.&quot;</span><span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1601,29 +1763,6 @@ SessionUpdateFile            (<a title="oteapi.models.sessionupdate.SessionUpdat
 
 
 
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="oteapi.strategies.download.file.SessionUpdateFile.key" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">key</span><span class="p">:</span> <span class="nb">str</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
-  </span>
-
-<a href="#oteapi.strategies.download.file.SessionUpdateFile.key" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Key to access the data in the cache.</p>
-    </div>
-
-  </div>
-
-
-
 
 
 
@@ -1634,7 +1773,6 @@ SessionUpdateFile            (<a title="oteapi.models.sessionupdate.SessionUpdat
     </div>
 
   </div>
-
 
 
 

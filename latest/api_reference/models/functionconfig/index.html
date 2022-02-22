@@ -1082,6 +1082,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1180,24 +1227,30 @@
 
 
 <h2 id="oteapi.models.functionconfig.FunctionConfig" class="doc doc-heading">
-        <code>
-FunctionConfig            (<a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a>)
-        </code>
+          <code>FunctionConfig</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.models.functionconfig.FunctionConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+
 
       <p>Function Strategy Data Configuration.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1205,7 +1258,8 @@ FunctionConfig            (<a title="oteapi.models.genericconfig.GenericConfig" 
         <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Type of registered function strategy.&quot;</span><span class="p">),</span>
     <span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1221,18 +1275,17 @@ FunctionConfig            (<a title="oteapi.models.genericconfig.GenericConfig" 
 
 
 <h3 id="oteapi.models.functionconfig.FunctionConfig.functionType" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered function strategy.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.functionconfig.FunctionConfig.functionType" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Type of registered function strategy.</p>
     </div>
 
   </div>
@@ -1243,13 +1296,11 @@ FunctionConfig            (<a title="oteapi.models.genericconfig.GenericConfig" 
 
 
 
-
   </div>
 
     </div>
 
   </div>
-
 
 
 

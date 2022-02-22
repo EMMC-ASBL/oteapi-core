@@ -1103,6 +1103,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1222,24 +1269,37 @@
 
 
 <h2 id="oteapi.models.filterconfig.FilterConfig" class="doc doc-heading">
-        <code>
-FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a>)
-        </code>
+          <code>FilterConfig</code>
 
 
-  <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-model"><code>pydantic-model</code></small>
-  </span>
 
 <a href="#oteapi.models.filterconfig.FilterConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
+
     <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><a title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+
 
       <p>Filter Strategy Data Configuration.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/models/filterconfig.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FilterConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/models/filterconfig.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FilterConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Filter Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">filterType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1254,7 +1314,8 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Number of items remaining after a filter expression.&quot;</span>
     <span class="p">)</span>
 </code></pre></div>
-        </details>
+</td></tr></table>
+          </details>
 
 
 
@@ -1270,17 +1331,17 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
 
 
 <h3 id="oteapi.models.filterconfig.FilterConfig.condition" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">condition</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">condition</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Logical statement indicating when a filter should be applied.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.filterconfig.FilterConfig.condition" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Logical statement indicating when a filter should be applied.</p>
     </div>
 
   </div>
@@ -1292,18 +1353,17 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
 
 
 <h3 id="oteapi.models.filterconfig.FilterConfig.filterType" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">filterType</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">filterType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered filter strategy. E.g., `filter/sql`.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
-      <small class="doc doc-property doc-property-required"><code>required</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.filterconfig.FilterConfig.filterType" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Type of registered filter strategy. E.g., <code>filter/sql</code>.</p>
     </div>
 
   </div>
@@ -1315,17 +1375,17 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
 
 
 <h3 id="oteapi.models.filterconfig.FilterConfig.limit" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">limit</span><span class="p">:</span> <span class="nb">int</span></code>
+<code class="highlight language-python"><span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Number of items remaining after a filter expression.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.filterconfig.FilterConfig.limit" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Number of items remaining after a filter expression.</p>
     </div>
 
   </div>
@@ -1337,17 +1397,17 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
 
 
 <h3 id="oteapi.models.filterconfig.FilterConfig.query" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">query</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">query</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Define a query operation.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
-      <small class="doc doc-property doc-property-pydantic-field"><code>pydantic-field</code></small>
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.filterconfig.FilterConfig.query" class="headerlink" title="Permanent link">&para;</a></h3>
 
+
     <div class="doc doc-contents ">
 
-      <p>Define a query operation.</p>
     </div>
 
   </div>
@@ -1358,13 +1418,11 @@ FilterConfig            (<a title="oteapi.models.genericconfig.GenericConfig" hr
 
 
 
-
   </div>
 
     </div>
 
   </div>
-
 
 
 
