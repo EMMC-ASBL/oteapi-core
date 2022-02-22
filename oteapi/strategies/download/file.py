@@ -1,21 +1,19 @@
 """Download strategy class for the `file` scheme."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
-from pathlib import Path, PosixPath
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field, FileUrl, validator
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import DataCacheConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils.paths import uri_to_path
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
-    from oteapi.models import ResourceConfig
 
-
-class FileConfig(BaseModel):
+class FileConfig(AttrDict):
     """File-specific Configuration Data Model."""
 
     text: bool = Field(
@@ -31,10 +29,28 @@ class FileConfig(BaseModel):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
-    datacache_config: DataCacheConfig = Field(
-        DataCacheConfig(),
+    datacache_config: Optional[DataCacheConfig] = Field(
+        None,
         description="Configurations for the data cache for storing the downloaded file content.",
     )
+
+
+class FileResourceConfig(ResourceConfig):
+    """File download strategy filter config."""
+
+    downloadUrl: FileUrl = Field(  # type: ignore[assignment]
+        ..., description="The file URL, which will be downloaded."
+    )
+    configuration: FileConfig = Field(
+        FileConfig(), description="File download strategy-specific configuration."
+    )
+
+    @validator("downloadUrl")
+    def ensure_path_exists(cls, value: FileUrl) -> FileUrl:
+        """Ensure `path` is defined in `downloadUrl`."""
+        if not value.path:
+            raise ValueError("downloadUrl must contain a `path` part.")
+        return value
 
 
 class SessionUpdateFile(SessionUpdate):
@@ -53,7 +69,7 @@ class FileStrategy:
 
     """
 
-    download_config: "ResourceConfig"
+    download_config: FileResourceConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
@@ -61,27 +77,18 @@ class FileStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateFile:
         """Read local file."""
-        if (
-            self.download_config.downloadUrl is None
-            or self.download_config.downloadUrl.scheme != "file"
-        ):
-            raise ValueError(
-                "Expected 'downloadUrl' to have scheme 'file' in the configuration."
-            )
-        config = FileConfig(**self.download_config.configuration)
+        filename = uri_to_path(self.download_config.downloadUrl).resolve()
 
-        filename = Path(self.download_config.downloadUrl.path).resolve()
-        if isinstance(filename, PosixPath):
-            filename = Path("/" + self.download_config.downloadUrl.host + str(filename))
+        if not filename.exists():
+            raise FileNotFoundError(f"File not found at {filename}")
 
-        config = FileConfig(**self.download_config.configuration)
-        cache = DataCache(config.datacache_config)
+        cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
             key = cache.add(
-                filename.read_text(encoding=config.encoding)
-                if config.text
+                filename.read_text(encoding=self.download_config.configuration.encoding)
+                if self.download_config.configuration.text
                 else filename.read_bytes()
             )
 
