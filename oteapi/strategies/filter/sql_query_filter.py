@@ -1,22 +1,26 @@
 """SQL query filter strategy."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from pydantic import Field
+from pydantic.dataclasses import dataclass
 
-from oteapi.models import SessionUpdate
+from oteapi.models import FilterConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import FilterConfig
+
+class SqlQueryFilterConfig(FilterConfig):
+    """SQLite query filter strategy filter config."""
+
+    query: str = Field(..., description="A SQL query string.")
 
 
 class SessionUpdateSqlQuery(SessionUpdate):
     """Class for returning values from SQL Query data model."""
 
-    query: str = Field(..., description="A SQL query string.")
+    sqlquery: str = Field(..., description="A SQL query string.")
 
 
 @dataclass
@@ -29,14 +33,12 @@ class SQLQueryFilter:
 
     """
 
-    filter_config: "FilterConfig"
+    filter_config: SqlQueryFilterConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdateSqlQuery:
-        """Initialize strategy and return a dictionary"""
-        return SessionUpdateSqlQuery(**{"query": self.filter_config.query})
-
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
-        """Execute strategy and return a dictionary"""
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+        """Initialize strategy."""
         return SessionUpdate()
+
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSqlQuery:
+        """Execute strategy and return a dictionary."""
+        return SessionUpdateSqlQuery(sqlquery=self.filter_config.query)

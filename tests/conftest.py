@@ -5,6 +5,7 @@ import pytest
 
 if TYPE_CHECKING:
     from importlib.metadata import EntryPoint
+    from pathlib import Path
     from typing import Any, Callable, Dict, Iterable, List, Tuple, Union
 
     MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
@@ -156,3 +157,11 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
         return tuple(res)
 
     return _create_entry_points
+
+
+@pytest.fixture(scope="session")
+def static_files() -> "Path":
+    """Path to `static` folder containing static test files."""
+    from pathlib import Path
+
+    return (Path(__file__).resolve().parent / "static").resolve()
