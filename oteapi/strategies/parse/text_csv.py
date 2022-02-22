@@ -1,14 +1,13 @@
 """Strategy class for text/csv."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from oteapi.models import SessionUpdate
+from pydantic.dataclasses import dataclass
+
+from oteapi.models import ResourceConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
-
-    from oteapi.models import ResourceConfig
 
 
 @dataclass
@@ -21,7 +20,7 @@ class CSVParseStrategy:
 
     """
 
-    parse_config: "ResourceConfig"
+    parse_config: ResourceConfig
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Parse CSV."""

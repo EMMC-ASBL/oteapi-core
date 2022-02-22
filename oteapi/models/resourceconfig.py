@@ -1,10 +1,15 @@
 """Pydantic Resource Configuration Data Model."""
-from typing import Any, Dict, Optional, Union
+from typing import Any, Dict, Optional
 
-from pydantic import AnyUrl, Field, FileUrl, root_validator
+from pydantic import AnyUrl, Field, root_validator
 
-from oteapi.models.datacacheconfig import DataCacheConfig
 from oteapi.models.genericconfig import GenericConfig
+
+
+class HostlessAnyUrl(AnyUrl):
+    """AnyUrl, but allow not having a host."""
+
+    host_required = False
 
 
 class ResourceConfig(GenericConfig):
@@ -16,7 +21,7 @@ class ResourceConfig(GenericConfig):
 
     """
 
-    downloadUrl: Optional[Union[AnyUrl, FileUrl]] = Field(
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
             "Definition: The URL of the downloadable file in a given format. E.g. CSV "
@@ -35,7 +40,7 @@ class ResourceConfig(GenericConfig):
             "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]."
         ),
     )
-    accessUrl: Optional[AnyUrl] = Field(
+    accessUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
             "A URL of the resource that gives access to a distribution of "
@@ -67,10 +72,6 @@ class ResourceConfig(GenericConfig):
     publisher: Optional[str] = Field(
         None,
         description="The entity responsible for making the resource/item available.",
-    )
-    configuration: DataCacheConfig = Field(
-        DataCacheConfig(),
-        description="Resource-specific configuration options given as key/value-pairs.",
     )
 
     @root_validator
