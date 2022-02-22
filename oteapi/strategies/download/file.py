@@ -31,7 +31,7 @@ class FileConfig(BaseModel):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig = Field(
         DataCacheConfig(),
         description="Configurations for the data cache for storing the downloaded file content.",
     )
