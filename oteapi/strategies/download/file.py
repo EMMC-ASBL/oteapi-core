@@ -29,9 +29,9 @@ class FileConfig(AttrDict):
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
-    cache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configuration options for the local data cache.",
+        description="Configurations for the data cache for storing the downloaded file content.",
     )
 
 
@@ -82,7 +82,7 @@ class FileStrategy:
         if not filename.exists():
             raise FileNotFoundError(f"File not found at {filename}")
 
-        cache = DataCache(self.download_config.configuration.cache_config)
+        cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:

@@ -172,7 +172,11 @@ class XLSXParseStrategy:
 
         cache = DataCache(**self.parse_config.configuration)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
-            workbook = load_workbook(filename=filename, read_only=True, data_only=True)
+            # Note that we have to set read_only=False to ensure that
+            # load_workbook() properly closes the xlsx file after reading.
+            # Otherwise Windows will fail when the temporary file is removed
+            # when leaving the with statement.
+            workbook = load_workbook(filename=filename, read_only=False, data_only=True)
 
         worksheet = workbook[self.parse_config.configuration.worksheet]
         set_model_defaults(self.parse_config.configuration, worksheet)
