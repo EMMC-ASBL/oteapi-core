@@ -1681,7 +1681,11 @@
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">XLSXParseStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse strategy for Excel XLSX files.</span>
 
@@ -1711,7 +1715,11 @@
 
         <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
-            <span class="n">workbook</span> <span class="o">=</span> <span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># Note that we have to set read_only=False to ensure that</span>
+            <span class="c1"># load_workbook() properly closes the xlsx file after reading.</span>
+            <span class="c1"># Otherwise Windows will fail when the temporary file is removed</span>
+            <span class="c1"># when leaving the with statement.</span>
+            <span class="n">workbook</span> <span class="o">=</span> <span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="n">worksheet</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">worksheet</span><span class="p">]</span>
         <span class="n">set_model_defaults</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">)</span>
@@ -1869,7 +1877,11 @@
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
-<span class="normal">221</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateXLSXParse</span><span class="p">:</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateXLSXParse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parses selected region of an excel file.</span>
 
 <span class="sd">    Returns:</span>
@@ -1883,7 +1895,11 @@
 
     <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.xlsx&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
-        <span class="n">workbook</span> <span class="o">=</span> <span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># Note that we have to set read_only=False to ensure that</span>
+        <span class="c1"># load_workbook() properly closes the xlsx file after reading.</span>
+        <span class="c1"># Otherwise Windows will fail when the temporary file is removed</span>
+        <span class="c1"># when leaving the with statement.</span>
+        <span class="n">workbook</span> <span class="o">=</span> <span class="n">load_workbook</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="n">worksheet</span> <span class="o">=</span> <span class="n">workbook</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">worksheet</span><span class="p">]</span>
     <span class="n">set_model_defaults</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">)</span>
