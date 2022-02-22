@@ -20,9 +20,8 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from diskcache import Cache as DiskCache
-from pydantic import Extra
 
-from oteapi.models import DataCacheConfig
+from oteapi.models import AttrDict, DataCacheConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Iterator, Optional, Type, Union
@@ -99,8 +98,8 @@ class DataCache:
     ) -> None:
         if config is None:
             self.config = DataCacheConfig()
-        elif isinstance(config, dict):
-            self.config = DataCacheConfig(**config, extra=Extra.ignore)
+        elif isinstance(config, (dict, AttrDict)):
+            self.config = DataCacheConfig(**config)
         elif isinstance(config, DataCacheConfig):
             self.config = config
         else:
