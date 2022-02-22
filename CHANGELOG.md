@@ -1,5 +1,40 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.0...HEAD)
+
+**Fixed bugs:**
+
+- xlsx parse strategy fails parsing file on Windows [\#23](https://github.com/EMMC-ASBL/oteapi-core/issues/23)
+
+## [v0.1.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.0) (2022-02-22)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.6...v0.1.0)
+
+**Implemented enhancements:**
+
+- Clean up tests [\#75](https://github.com/EMMC-ASBL/oteapi-core/issues/75)
+- Image parser: Use datacache [\#63](https://github.com/EMMC-ASBL/oteapi-core/issues/63)
+
+**Fixed bugs:**
+
+- Entrypoint does not seem to be updated during rebuild [\#86](https://github.com/EMMC-ASBL/oteapi-core/issues/86)
+- Use proper file scheme URLs in tests [\#74](https://github.com/EMMC-ASBL/oteapi-core/issues/74)
+
+**Closed issues:**
+
+- Use standard library functions instead of homemade code for handling file:// URIs [\#88](https://github.com/EMMC-ASBL/oteapi-core/issues/88)
+- Remove image/eps as supported image format [\#68](https://github.com/EMMC-ASBL/oteapi-core/issues/68)
+
+**Merged pull requests:**
+
+- EntryPoint duplicity [\#87](https://github.com/EMMC-ASBL/oteapi-core/pull/87) ([CasperWA](https://github.com/CasperWA))
+- Added support for dumping numpy arrays to the datacache [\#83](https://github.com/EMMC-ASBL/oteapi-core/pull/83) ([jesper-friis](https://github.com/jesper-friis))
+- \[Auto-generated\] Update dependencies [\#82](https://github.com/EMMC-ASBL/oteapi-core/pull/82) ([TEAM4-0](https://github.com/TEAM4-0))
+- Pydantic dataclasses [\#81](https://github.com/EMMC-ASBL/oteapi-core/pull/81) ([CasperWA](https://github.com/CasperWA))
+- Made datacache accepting AttrDict configuration [\#70](https://github.com/EMMC-ASBL/oteapi-core/pull/70) ([jesper-friis](https://github.com/jesper-friis))
+
 ## [v0.0.6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.0.6) (2022-02-14)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.0.5...v0.0.6)
