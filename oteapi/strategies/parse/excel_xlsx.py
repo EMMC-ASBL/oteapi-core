@@ -8,7 +8,7 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -74,6 +74,10 @@ class XLSXParseConfig(AttrDict):
     download_config: AttrDict = Field(
         AttrDict(),
         description="Configurations provided to a download strategy.",
+    )
+    datacache_config: Optional[DataCacheConfig] = Field(
+        None,
+        description="Configurations for the data cache for retrieving the downloaded content.",
     )
 
 
@@ -170,7 +174,7 @@ class XLSXParseStrategy:
         downloader = create_strategy("download", download_config)
         output = downloader.get()
 
-        cache = DataCache(**self.parse_config.configuration)
+        cache = DataCache(self.parse_config.configuration.datacache_config)
         with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
             # Note that we have to set read_only=False to ensure that
             # load_workbook() properly closes the xlsx file after reading.

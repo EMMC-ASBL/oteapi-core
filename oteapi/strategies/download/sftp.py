@@ -2,17 +2,43 @@
 # pylint: disable=unused-argument
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import pysftp
-from pydantic import Field
+from pydantic import AnyUrl, Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
+
+
+class AnyFtpUrl(AnyUrl):
+    """A (S)FTP URL model."""
+
+    allowed_schemes = {"ftp", "sftp"}
+
+
+class SFTPConfig(AttrDict):
+    """(S)FTP-specific Configuration Data Model."""
+
+    datacache_config: Optional[DataCacheConfig] = Field(
+        None,
+        description="Configurations for the data cache for storing the downloaded file content.",
+    )
+
+
+class SFTPResourceConfig(ResourceConfig):
+    """(S)FTP download strategy filter config."""
+
+    downloadUrl: AnyFtpUrl = Field(  # type: ignore[assignment]
+        ..., description="The (S)FTP URL, which will be downloaded."
+    )
+    configuration: SFTPConfig = Field(
+        SFTPConfig(), description="(S)FTP download strategy-specific configuration."
+    )
 
 
 class SessionUpdateSFTP(SessionUpdate):
@@ -32,7 +58,7 @@ class SFTPStrategy:
 
     """
 
-    download_config: ResourceConfig
+    download_config: SFTPResourceConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
@@ -40,16 +66,13 @@ class SFTPStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSFTP:
         """Download via sftp"""
-        cache = DataCache(**self.download_config.configuration)
+        cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
             # Setup connection options
             cnopts = pysftp.CnOpts()
             cnopts.hostkeys = None
-
-            if not self.download_config.downloadUrl:
-                raise ValueError("downloadUrl is not defined in configuration.")
 
             # open connection and store data locally
             with pysftp.Connection(

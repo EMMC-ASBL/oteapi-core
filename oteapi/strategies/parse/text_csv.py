@@ -18,6 +18,8 @@ class CSVParseStrategy:
 
     - `("mediaType", "text/csv")`
 
+    Note: This strategy is currently not finished, and is therefore not registered.
+
     """
 
     parse_config: ResourceConfig
