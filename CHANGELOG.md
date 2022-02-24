@@ -1,12 +1,22 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.1.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.1) (2022-02-24)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.0...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.0...v0.1.1)
 
-**Fixed bugs:**
+**Implemented enhancements:**
 
-- xlsx parse strategy fails parsing file on Windows [\#23](https://github.com/EMMC-ASBL/oteapi-core/issues/23)
+- Avoid registerring the incomplete `text/csv` parse strategy [\#95](https://github.com/EMMC-ASBL/oteapi-core/issues/95)
+- Use special `*Config` classes where necessary [\#93](https://github.com/EMMC-ASBL/oteapi-core/issues/93)
+
+**Closed issues:**
+
+- Clean up the handling of paths in the file download strategy [\#84](https://github.com/EMMC-ASBL/oteapi-core/issues/84)
+
+**Merged pull requests:**
+
+- Update data cache invocation [\#94](https://github.com/EMMC-ASBL/oteapi-core/pull/94) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#92](https://github.com/EMMC-ASBL/oteapi-core/pull/92) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.0) (2022-02-22)
 
@@ -21,6 +31,7 @@
 
 - Entrypoint does not seem to be updated during rebuild [\#86](https://github.com/EMMC-ASBL/oteapi-core/issues/86)
 - Use proper file scheme URLs in tests [\#74](https://github.com/EMMC-ASBL/oteapi-core/issues/74)
+- xlsx parse strategy fails parsing file on Windows [\#23](https://github.com/EMMC-ASBL/oteapi-core/issues/23)
 
 **Closed issues:**
 
