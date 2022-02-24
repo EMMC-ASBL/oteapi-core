@@ -20,7 +20,7 @@ class SqliteParseConfig(AttrDict):
     [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy]."""
 
     sqlquery: str = Field("", description="A SQL query string.")
-    cache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
     )
@@ -93,7 +93,7 @@ class SqliteParseStrategy:
         session.update(downloader.initialize(session))
         cache_key = downloader.get(session).get("key", "")
 
-        cache = DataCache(self.parse_config.configuration.cache_config)
+        cache = DataCache(self.parse_config.configuration.datacache_config)
         with cache.getfile(cache_key, suffix="db") as filename:
             connection = create_connection(filename)
             cursor = connection.cursor()

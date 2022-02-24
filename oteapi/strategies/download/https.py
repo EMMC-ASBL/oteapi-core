@@ -1,16 +1,36 @@
 """Download strategy class for http/https"""
 # pylint: disable=unused-argument
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import requests
-from pydantic import Field
+from pydantic import AnyHttpUrl, Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Dict
+
+
+class HTTPSConfig(AttrDict):
+    """HTTP(S)-specific Configuration Data Model."""
+
+    datacache_config: Optional[DataCacheConfig] = Field(
+        None,
+        description="Configurations for the data cache for storing the downloaded file content.",
+    )
+
+
+class HTTPSResourceConfig(ResourceConfig):
+    """HTTP(S) download strategy filter config."""
+
+    downloadUrl: AnyHttpUrl = Field(  # type: ignore[assignment]
+        ..., description="The HTTP(S) URL, which will be downloaded."
+    )
+    configuration: HTTPSConfig = Field(
+        HTTPSConfig(), description="HTTP(S) download strategy-specific configuration."
+    )
 
 
 class SessionUpdateHTTPS(SessionUpdate):
@@ -30,7 +50,7 @@ class HTTPSStrategy:
 
     """
 
-    download_config: ResourceConfig
+    download_config: HTTPSResourceConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
@@ -38,12 +58,10 @@ class HTTPSStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateHTTPS:
         """Download via http/https and store on local cache."""
-        cache = DataCache(**self.download_config.configuration)
+        cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
-            if not self.download_config.downloadUrl:
-                raise ValueError("downloadUrl not defined in configuration.")
             req = requests.get(self.download_config.downloadUrl, allow_redirects=True)
             key = cache.add(req.content)
 

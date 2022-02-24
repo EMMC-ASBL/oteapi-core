@@ -24,7 +24,7 @@ class ImageParserConfig(AttrDict):
         None,
         description="Box cropping parameters.",
     )
-    cache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
     )
@@ -107,7 +107,7 @@ class ImageDataParseStrategy:
         session.update(downloader.initialize(session))
         cache_key = downloader.get(session).get("key", "")
 
-        cache = DataCache(self.parse_config.configuration.cache_config)
+        cache = DataCache(self.parse_config.configuration.datacache_config)
 
         # Treat image according to filter values
         with cache.getfile(cache_key, suffix=mime_format) as filename:

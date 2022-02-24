@@ -46,7 +46,7 @@ def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
     sample_file = static_files / "sample_1280_853.jpeg"
 
     config = {
-        "downloadUrl": sample_file.as_uri().replace("file://", "sftp://"),
+        "downloadUrl": sample_file.as_uri().replace("file:///", "sftp://localhost/"),
         "mediaType": "image/jpeg",
     }
 
