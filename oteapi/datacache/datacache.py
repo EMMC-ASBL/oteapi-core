@@ -150,7 +150,7 @@ class DataCache:
 
         Args:
             value: The value to add to the cache.
-            options: Keyword argument options:
+            options (Dict[str, Union[str, int, Type[json.JSONEncoder]]]): Keyword argument options:
                 key (str): If given, use this as the retrieval key. Otherwise the key
                     is either taken from the `accessKey` configuration or generated as
                     a hash of `value`.
@@ -228,7 +228,7 @@ class DataCache:
             key: Key of value to write to file.
             delete: Whether to automatically delete the created file when
                 leaving the context.
-            options: Keyword argument options:
+            options (Dict[str, Union[pathlib.Path, str]]): Keyword argument options:
                 filename (Union[Path, str]): Full path to created file. If not given, a
                     unique filename will be created.
                 prefix (str): Prefix to prepend to the returned file name (default is
