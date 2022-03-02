@@ -26,7 +26,7 @@ class AttrDict(BaseModel, Mapping):
             self.__delattr__(key)
             if key in self.__fields__:
                 del self.__fields__[key]
-                self.__fields_set__.remove(key)
+                self.__fields_set__.remove(key)  # pylint: disable=no-member
         else:
             raise KeyError(key)
 

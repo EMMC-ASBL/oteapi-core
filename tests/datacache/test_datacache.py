@@ -1,11 +1,17 @@
 """Tests for `oteapi.datacache.datacache`."""
-# pylint: disable=unused-argument
+# pylint: disable=invalid-name
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
+
+    try:
+        import ase
+        import numpy
+    except ImportError:
+        pass
 
 
 def test_cache(tmp_path: "Path") -> None:
@@ -16,7 +22,7 @@ def test_cache(tmp_path: "Path") -> None:
 
     val1 = b"a binary blob..."
     val2 = 42
-    val3 = dict(a=[1, 2, 3], pi=3.14, s=set([0, "a"]))
+    val3 = {"a": [1, 2, 3], "pi": 3.14, "s": (0, "a")}
     val4 = (1, 2, 3)
 
     key1 = cache.add(val1, tag="test_cache")
@@ -40,11 +46,7 @@ def test_cache(tmp_path: "Path") -> None:
 
 def test_numpy(tmp_path: "Path") -> None:
     """Test adding numpy arrays to the datachache."""
-    try:
-        import numpy as np
-    except ImportError:
-        pytest.skip("numpy is not installed")
-        return
+    np: "numpy" = pytest.importorskip("numpy", reason="numpy is not installed")
 
     from oteapi.datacache import DataCache
 
@@ -58,12 +60,9 @@ def test_numpy(tmp_path: "Path") -> None:
 
 def test_ase_atoms(tmp_path: "Path") -> None:
     """Test adding ase Atoms objects to the datachache."""
-    try:
-        import ase
-        from ase.io.jsonio import MyEncoder
-    except ImportError:
-        pytest.skip("ase is not installed")
-        return
+    ase: "ase" = pytest.importorskip("ase", reason="ase is not installed")
+
+    from ase.io.jsonio import MyEncoder
 
     from oteapi.datacache import DataCache
 
@@ -77,7 +76,7 @@ def test_ase_atoms(tmp_path: "Path") -> None:
     )
     key = cache.add(atoms, json_encoder=MyEncoder)
 
-    atoms2 = cache[key]
+    atoms2: "ase.Atoms" = cache[key]
     assert len(atoms2) == 3
     assert atoms2.get_chemical_symbols() == ["H", "H", "O"]
     assert all(atoms2.positions[2] == (0, 0, 0))
