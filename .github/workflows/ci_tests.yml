@@ -101,17 +101,18 @@ jobs:
       with:
         python-version: ${{ matrix.python-version}}
 
-    - name: Install system dependencies
+    - name: Install linux system dependencies
+      if: matrix.os[1] == 'linux'
+      run: sudo apt update && sudo apt install -y ghostscript
+
+    - name: Install windows system dependencies
+      if: matrix.os[1] == 'windows'
       run: |
-        if [ "${{ matrix.os[1] }}" = "linux" ]; then
-          sudo apt update && sudo apt install -y ghostscript
-        else
-          $url = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/gs9550w64.exe"
-          $outpath = "${{ github.workspace }}/ghostscript.exe"
-          Invoke-WebRequest -Uri $url -OutFile $outpath
-          $args = @("/S")
-          Start-Process -Filepath $outpath -ArgumentList $args
-        fi
+        $url = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/gs9550w64.exe"
+        $outpath = "${{ github.workspace }}/ghostscript.exe"
+        Invoke-WebRequest -Uri $url -OutFile $outpath
+        $args = @("/S")
+        Start-Process -Filepath $outpath -ArgumentList $args
 
     - name: Install Python dependencies
       run: |
