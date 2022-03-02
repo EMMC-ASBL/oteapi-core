@@ -109,10 +109,11 @@ jobs:
       if: matrix.os[1] == 'windows'
       run: |
         $url = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/gs9550w64.exe"
-        $outpath = "${{ github.workspace }}/ghostscript.exe"
+        $outpath = "${{ github.workspace }}\ghostscript.exe"
         Invoke-WebRequest -Uri $url -OutFile $outpath
         $args = @("/S")
         Start-Process -Filepath $outpath -ArgumentList $args
+      shell: powershell
 
     - name: Install Python dependencies
       run: |
