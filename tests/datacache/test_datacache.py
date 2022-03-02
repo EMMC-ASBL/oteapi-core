@@ -1,5 +1,5 @@
 """Tests for `oteapi.datacache.datacache`."""
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,import-error
 from typing import TYPE_CHECKING
 
 import pytest
