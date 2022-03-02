@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Iterator, List, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
 
@@ -459,14 +459,16 @@ class EntryPointStrategyCollection(abc.Collection):
         return hash(tuple(_ for _ in sorted(self._entry_points)))
 
     def __str__(self) -> str:
-        res = {}  # type: ignore[var-annotated]
-        for _ in self._entry_points:
-            if _.type.value in res:
-                res[_.type.value] += 1
+        number_of_strategies: "Dict[str, int]" = {}
+        for entry_point in self._entry_points:
+            if entry_point.type.value in number_of_strategies:
+                number_of_strategies[entry_point.type.value] += 1
             else:
-                res[_.type.value] = 1
-        res = sorted(f"{key} ({value})" for key, value in res.items())
-        return f"<{self.__class__.__name__}: " f"Strategies={', '.join(res)}>"
+                number_of_strategies[entry_point.type.value] = 1
+        sorted_list = sorted(
+            f"{key} ({value})" for key, value in number_of_strategies.items()
+        )
+        return f"<{self.__class__.__name__}: " f"Strategies={', '.join(sorted_list)}>"
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(*{tuple(sorted(self._entry_points))!r})"
