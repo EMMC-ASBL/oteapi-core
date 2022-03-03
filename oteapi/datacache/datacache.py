@@ -12,6 +12,7 @@ Features:
 - High performance.
 
 """
+# pylint: disable=too-many-arguments
 import hashlib
 import json
 import tempfile
@@ -141,7 +142,10 @@ class DataCache:
     def add(
         self,
         value: "Any",
-        **options,
+        key: "Optional[str]" = None,
+        expire: "Optional[int]" = None,
+        tag: "Optional[str]" = None,
+        json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
     ) -> str:
         """Add a value to cache.
 
@@ -150,38 +154,38 @@ class DataCache:
 
         Args:
             value: The value to add to the cache.
-            options (Dict[str, Union[str, int, Type[json.JSONEncoder]]]): Keyword argument options:
-                key (str): If given, use this as the retrieval key. Otherwise the key
-                    is either taken from the `accessKey` configuration or generated as
-                    a hash of `value`.
-                expire (int): If given, the number of seconds before the value expire.
-                    Otherwise it is taken from the configuration.
-                tag (str): Tag used with
-                    [`evict()`][oteapi.datacache.datacache.DataCache.evict] for
-                    cleaning up a session.
-                json_encoder (Type[json.JSONEncoder]): Customised json encoder for
-                    complex Python objects.
+            key: If given, use this as the retrieval key. Otherwise the key is either
+                taken from the `accessKey` configuration or generated as a hash of
+                `value`.
+            expire: If given, the number of seconds before the value expire. Otherwise
+                it is taken from the configuration.
+            tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]
+                for cleaning up a session.
+            json_encoder: Customised json encoder forcomplex Python objects.
 
         Returns:
             A key that can be used to retrieve `value` from cache later.
 
         """
-        key: str = options.get(
-            "key",
-            self.config.accessKey
-            if self.config.accessKey
-            else gethash(
-                value,
-                hashtype=self.config.hashType,
-                json_encoder=options.get("json_encoder"),
-            ),
+        key = (
+            key
+            if key
+            else (
+                self.config.accessKey
+                if self.config.accessKey
+                else gethash(
+                    value,
+                    hashtype=self.config.hashType,
+                    json_encoder=json_encoder,
+                )
+            )
         )
 
         self.diskcache.set(
             key,
             value,
-            expire=options.get("expire", self.config.expireTime),
-            tag=options.get("tag"),
+            expire=expire if expire else self.config.expireTime,
+            tag=tag,
         )
         return key
 
@@ -204,7 +208,10 @@ class DataCache:
         self,
         key: str,
         delete: bool = True,
-        **options,
+        filename: "Optional[Union[Path, str]]" = None,
+        prefix: "Optional[str]" = None,
+        suffix: "Optional[str]" = None,
+        directory: "Optional[str]" = None,
     ) -> "Iterator[Path]":
         """Write the value for `key` to file and return the filename.
 
@@ -226,31 +233,28 @@ class DataCache:
 
         Args:
             key: Key of value to write to file.
-            delete: Whether to automatically delete the created file when
-                leaving the context.
-            options (Dict[str, Union[pathlib.Path, str]]): Keyword argument options:
-                filename (Union[Path, str]): Full path to created file. If not given, a
-                    unique filename will be created.
-                prefix (str): Prefix to prepend to the returned file name (default is
-                    `"oteapi-download-"`).
-                suffix (str): Suffix to append to the returned file name.
-                directory (str): File directory if `filename` is not provided (is
-                    `None`).
+            delete: Whether to automatically delete the created file when leaving the
+                context.
+            filename: Full path to created file. If not given, a unique filename will
+                be created.
+            prefix: Prefix to prepend to the returned file name (default is
+                `"oteapi-download-"`).
+            suffix: Suffix to append to the returned file name.
+            directory: File directory if `filename` is not provided (is `None`).
 
         Yields:
             Path object, referencing and representing the created file.
 
         """
-        filename: "Optional[Union[Path, str]]" = options.get("filename")
         if filename:
             filename = Path(filename).resolve()
             filename.write_bytes(self.get(key))
         else:
-            prefix = options.get("prefix", "oteapi-download-")
+            prefix = prefix if prefix else "oteapi-download-"
             with tempfile.NamedTemporaryFile(
                 prefix=prefix,
-                suffix=options.get("suffix"),
-                dir=options.get("directory"),
+                suffix=suffix,
+                dir=directory,
                 delete=False,
             ) as handle:
                 handle.write(self.get(key))
