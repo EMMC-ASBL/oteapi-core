@@ -97,8 +97,10 @@ def test_attrdict_update() -> None:
     final_data = data.copy()
     final_data.update(update_data)
 
-    for other_type in (dict, AttrDict, SubAttrDict, SubSubAttrDict):
-        attr_dict = AttrDict(**data)
-        other = other_type(**update_data)
-        attr_dict.update(other)
-        assert {**attr_dict} == final_data
+    testing_types = (dict, AttrDict, SubAttrDict, SubSubAttrDict)
+    for original_type in testing_types:
+        for other_type in testing_types:
+            original = original_type(**data)
+            other = other_type(**update_data)
+            original.update(other)
+            assert {**original} == final_data
