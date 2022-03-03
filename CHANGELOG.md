@@ -1,5 +1,25 @@
 # Changelog
 
+## [v0.1.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.2) (2022-03-03)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.1...v0.1.2)
+
+**Implemented enhancements:**
+
+- Go through ignored dev tools comments [\#76](https://github.com/EMMC-ASBL/oteapi-core/issues/76)
+
+**Fixed bugs:**
+
+- Issue with `AttrDict.update()` for `AttrDict` subclasses [\#101](https://github.com/EMMC-ASBL/oteapi-core/issues/101)
+- GH GraphQL type issue in auto-merge workflow [\#96](https://github.com/EMMC-ASBL/oteapi-core/issues/96)
+
+**Merged pull requests:**
+
+- Update "ignore" statements [\#103](https://github.com/EMMC-ASBL/oteapi-core/pull/103) ([CasperWA](https://github.com/CasperWA))
+- Add test for AttrDict.update\(\) method [\#102](https://github.com/EMMC-ASBL/oteapi-core/pull/102) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#100](https://github.com/EMMC-ASBL/oteapi-core/pull/100) ([TEAM4-0](https://github.com/TEAM4-0))
+- Use `ID!` type instead of `String!` [\#97](https://github.com/EMMC-ASBL/oteapi-core/pull/97) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.1.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.1) (2022-02-24)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.0...v0.1.1)
