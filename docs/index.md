@@ -120,9 +120,32 @@ The plugins will then automagically load all installed strategy module plugins, 
 
 OTEAPI Core can be installed with:
 
-```console
-$ pip install oteapi-core
+```shell
+pip install oteapi-core
 ```
+
+### For developers
+
+If you want to install OTEAPI Core to have a developer environment, please clone down the repository from GitHub and install:
+
+```shell
+git clone https://github.com/EMMC-ASBL/oteapi-core /path/to/oteapi-core
+pip install -U --upgrade-strategy=eager -e /path/to/oteapi-core[dev]
+```
+
+Note, `/path/to/oteapi-core` can be left out of the first line, but then it must be updated in the second line, either to `./oteapi-core`/`oteapi-core` or `.` if you `cd` into the generated folder wherein the repository has been cloned.
+
+The `--upgrade-strategy=eager` part can be left out.
+We recommend installing within a dedicated virtual environment.
+
+To test the installation, you can run:
+
+```shell
+cd /path/to/oteapi-core
+pytest
+```
+
+If you run into issues at this stage, please [open an issue](https://github.com/EMMC-ASBL/oteapi-core/issues/new).
 
 ## License
 
