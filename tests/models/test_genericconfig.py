@@ -76,3 +76,31 @@ def test_attrdict() -> None:
     assert config.b == config["b"] == config.get("b") == data["b"]
 
     assert {**config} == data
+
+
+def test_attrdict_update() -> None:
+    """Test supplying `AttrDict.update()` with different (valid) types."""
+    from pydantic import Field
+
+    from oteapi.models.genericconfig import AttrDict
+
+    class SubAttrDict(AttrDict):
+        """1st level sub-class of AttrDict."""
+
+    class SubSubAttrDict(SubAttrDict):
+        """2nd level sub-class of AttrDict."""
+
+        test: SubAttrDict = Field(SubAttrDict())
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    update_data = {"a": 2, "c": "bar", "d": "baz", "test": {"key": "value"}}
+    final_data = data.copy()
+    final_data.update(update_data)
+
+    testing_types = (dict, AttrDict, SubAttrDict, SubSubAttrDict)
+    for original_type in testing_types:
+        for other_type in testing_types:
+            original = original_type(**data)
+            other = other_type(**update_data)
+            original.update(other)
+            assert {**original} == final_data
