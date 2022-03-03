@@ -83,7 +83,7 @@ class AttrDict(BaseModel, Mapping):
         self, other: "Optional[Union[dict, AttrDict, Iterable[Any]]]" = None, **kwargs
     ) -> None:
         """MutableMapping `update`-method."""
-        if other and isinstance(other, (dict, self.__class__)):
+        if other and isinstance(other, (dict, Mapping)):
             for key, value in other.items():
                 setattr(self, key, value)
         elif other and isinstance(other, Iterable):
