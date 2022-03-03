@@ -2,6 +2,13 @@
 
 > Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations
 
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/oteapi-core?logo=pypi)
+![PyPI](https://img.shields.io/pypi/v/oteapi-core?logo=pypi)
+![Codecov master](https://img.shields.io/codecov/c/github/EMMC-ASBL/oteapi-core/master?logo=codecov)
+![CI - Tests](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml/badge.svg?branch=master)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/EMMC-ASBL/oteapi-core?logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)
+
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
 ## About OTEAPI Core
