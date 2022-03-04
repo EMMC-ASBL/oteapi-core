@@ -19,7 +19,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Dict, Iterator, List, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
 
