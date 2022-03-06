@@ -13,8 +13,9 @@ def test_crop_filter(static_files: "Path") -> None:
     Note: This test incorporates much of the contents of the test
     'test_jpeg.py', so if that test fails, this one should fail too.
     """
+    from oteapi.datacache import DataCache
     from oteapi.strategies.filter.crop_filter import CropImageFilter
-    from oteapi.strategies.parse.image import ImageDataParseStrategy, SupportedFormat
+    from oteapi.strategies.parse.image import ImageDataParseStrategy
 
     # Create a temporary directory to use for this test
     sample_file = static_files / "sample_1280_853.jpeg"
@@ -34,14 +35,16 @@ def test_crop_filter(static_files: "Path") -> None:
     image_parser: "IParseStrategy" = ImageDataParseStrategy(image_config)
 
     # Run "pipeline"
-    session = image_parser.initialize()
+    session = {}
     session.update(crop_filter.initialize(session))
-    session.update(crop_filter.get(session))
+    session.update(image_parser.initialize(session))
     session.update(image_parser.get(session))
+    session.update(crop_filter.get(session))
 
-    assert session.get("cropped", False)
-    assert session.get("format", SupportedFormat).value == "JPEG"
-    assert (
-        session.get("content", b"")
-        == (static_files / "sample_700_400.jpeg").read_bytes()
-    )
+    cache = DataCache()
+    image_key = session["image_key"]
+    data = cache.get(image_key)
+
+    assert data.shape == (400, 700, 3)
+
+    del cache[image_key]

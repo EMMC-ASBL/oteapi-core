@@ -45,12 +45,18 @@ class CropImageFilter:
 
     filter_config: CropImageFilterConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(
+        self,
+        session: "Optional[Dict[str, Any]]" = None,
+    ) -> SessionUpdateCropFilter:
         """Initialize strategy and return a dictionary."""
-        return SessionUpdate()
+        return SessionUpdateCropFilter(
+            imagecrop=self.filter_config.configuration.crop,
+        )
 
     def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdateCropFilter:
+        self,
+        session: "Optional[Dict[str, Any]]" = None,
+    ) -> SessionUpdate:
         """Execute strategy and return a dictionary"""
-        return SessionUpdateCropFilter(imagecrop=self.filter_config.configuration.crop)
+        return SessionUpdate()
