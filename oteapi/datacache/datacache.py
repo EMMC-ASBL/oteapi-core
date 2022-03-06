@@ -259,6 +259,7 @@ class DataCache:
             ) as handle:
                 handle.write(self.get(key))
                 filename = Path(handle.name).resolve()
+                handle.close()
 
         try:
             yield filename
