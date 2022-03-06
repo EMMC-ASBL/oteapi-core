@@ -156,8 +156,9 @@ class ImageDataParseStrategy:
         mime_format = self.parse_config.mediaType.split("/")[1]
         image_format = SupportedFormats[mime_format].value
 
-        # Retrieve image file
+        # Proper download configurations
         conf = self.parse_config.dict()
+        del conf["configuration"]
         if config.download_config:
             conf.update(config.download_config.dict())
         download_config = ResourceConfig(**conf)
