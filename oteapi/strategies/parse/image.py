@@ -182,10 +182,10 @@ class ImageDataParseStrategy:
         # Treat image according to filter values
         with cache.getfile(cache_key, suffix=mime_format) as filename:
             image = Image.open(filename, formats=[image_format])
-        if crop:
-            image = image.crop(crop)
-        if config.image_mode:
-            image = image.convert(mode=config.image_mode)
+            if crop:
+                image = image.crop(crop)
+            if config.image_mode:
+                image = image.convert(mode=config.image_mode)
 
         if image_format == "GIF":
             if image.info.get("version", b"").startswith(b"GIF"):
