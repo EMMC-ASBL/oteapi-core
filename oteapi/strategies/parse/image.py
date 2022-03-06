@@ -158,9 +158,7 @@ class ImageDataParseStrategy:
 
         # Proper download configurations
         conf = self.parse_config.dict()
-        del conf["configuration"]
-        if config.download_config:
-            conf.update(config.download_config.dict())
+        conf["configuration"] = config.download_config
         download_config = ResourceConfig(**conf)
 
         downloader = create_strategy("download", download_config)
