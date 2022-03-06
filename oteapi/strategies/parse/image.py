@@ -215,7 +215,7 @@ class ImageDataParseStrategy:
                     if isinstance(val, (str, int, float, type(None), bool, tuple, list))
                 }
             else:
-                image_info = None
+                image_info = {}
 
             session_update = SessionUpdateImageParse(
                 image_key=image_key,
