@@ -206,12 +206,23 @@ class ImageDataParseStrategy:
             else:
                 image_palette_key = None
 
+            # The session must be json serialisable - filter out all
+            # non-json serialisable fields in image.info
+            if image.info:
+                image_info = {
+                    key: val
+                    for key, val in image.info.items()
+                    if isinstance(val, (str, int, float, type(None), bool, tuple, list))
+                }
+            else:
+                image_info = None
+
             session_update = SessionUpdateImageParse(
                 image_key=image_key,
                 image_size=image.size,
                 image_mode=image.mode,
                 image_palette_key=image_palette_key,
-                image_info=image.info,
+                image_info=image_info,
             )
 
             # Explicitly close the image to avoid crashes on Windows
