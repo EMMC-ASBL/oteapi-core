@@ -187,27 +187,36 @@ class ImageDataParseStrategy:
             if config.image_mode:
                 image = image.convert(mode=config.image_mode)
 
-        if image_format == "GIF":
-            if image.info.get("version", b"").startswith(b"GIF"):
-                image.info.update(
-                    {"version": image.info.get("version", b"")[len(b"GIF") :]}
-                )
+            if image_format == "GIF":
+                if image.info.get("version", b"").startswith(b"GIF"):
+                    image.info.update(
+                        {"version": image.info.get("version", b"")[len(b"GIF") :]}
+                    )
 
-        # Use the buffer protocol to store the image in the datacache
-        data = np.asarray(image)
-        image_key = cache.add(data, key=config.image_key, tag=str(id(session)))
-
-        if image.mode == "P":
-            image_palette_key = cache.add(
-                np.asarray(image.getpalette()), tag=str(id(session))
+            # Use the buffer protocol to store the image in the datacache
+            data = np.asarray(image)
+            image_key = cache.add(
+                data,
+                key=config.image_key,
+                tag=str(id(session)),
             )
-        else:
-            image_palette_key = None
 
-        return SessionUpdateImageParse(
-            image_key=image_key,
-            image_size=image.size,
-            image_mode=image.mode,
-            image_palette_key=image_palette_key,
-            image_info=image.info,
-        )
+            if image.mode == "P":
+                image_palette_key = cache.add(
+                    np.asarray(image.getpalette()), tag=str(id(session))
+                )
+            else:
+                image_palette_key = None
+
+            session_update = SessionUpdateImageParse(
+                image_key=image_key,
+                image_size=image.size,
+                image_mode=image.mode,
+                image_palette_key=image_palette_key,
+                image_info=image.info,
+            )
+
+            # Explicitly close the image to avoid crashes on Windows
+            image.close()
+
+        return session_update
