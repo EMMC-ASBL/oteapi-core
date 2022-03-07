@@ -2,12 +2,21 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
-from pydantic.dataclasses import dataclass
+from pydantic.dataclasses import Field, dataclass
 
 from oteapi.models import MappingConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
+
+
+class MappingStrategyConfig(MappingConfig):
+    """Strategy-specific mapping config."""
+
+    mappingType: str = Field(
+        "triples",
+        description="Mapping type.  Normally this is just 'mapping'.",
+    )
 
 
 @dataclass
@@ -21,16 +30,19 @@ class MappingStrategy:
 
     **Registers strategies**:
 
-    - `("filterType", "mapping")`
+    - `("mappingType", "triples")`
 
     """
 
-    config: MappingConfig
+    config: MappingStrategyConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy."""
         if session is None:
-            raise ValueError("Missing session.")
+            return_session = True
+            session = {}
+        else:
+            return_session = False
 
         if not "prefixes" in session:
             session["prefixes"] = {}
@@ -41,7 +53,10 @@ class MappingStrategy:
         session["prefixes"].update(self.config.prefixes)
         session["triples"].extend(self.config.triples)
 
-        return SessionUpdate()
+        if return_session:
+            return SessionUpdate(**session)
+        else:
+            return SessionUpdate()
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary."""

@@ -10,8 +10,8 @@ class MappingConfig(GenericConfig):
     """Mapping Strategy Data Configuration."""
 
     mappingType: str = Field(
-        "mapping",
-        description="Mapping type.  Normally this is just 'mapping'.",
+        ...,
+        description="Mapping type.  Normally this is just 'triples'.",
     )
     prefixes: Optional[Dict[str, str]] = Field(
         {},
