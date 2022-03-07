@@ -90,7 +90,7 @@ def test_add_bind(tmp_path: "Path") -> None:
     cache = DataCache(cache_dir=tmp_path / "oteapi-add_bind")
 
     class Session(dict):
-        pass
+        """A class who's instances are weakref'able."""
 
     session = Session()
     key = cache.add([1, 2, 3], bind=session)
