@@ -1,1 +1,1 @@
-from .mapping import MappingStrategy
+from .mapping import MappingStrategy, MappingStrategyConfig
