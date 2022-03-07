@@ -81,3 +81,20 @@ def test_ase_atoms(tmp_path: "Path") -> None:
     assert atoms2.get_chemical_symbols() == ["H", "H", "O"]
     assert all(atoms2.positions[2] == (0, 0, 0))
     cache.clear()
+
+
+def test_add_bind(tmp_path: "Path") -> None:
+    """Test the `bind` argument to DataCache.add()."""
+    from oteapi.datacache import DataCache
+
+    cache = DataCache(cache_dir=tmp_path / "oteapi-add_bind")
+
+    class Session(dict):
+        pass
+
+    session = Session()
+    key = cache.add([1, 2, 3], bind=session)
+    assert key in cache
+
+    del session
+    assert key not in cache
