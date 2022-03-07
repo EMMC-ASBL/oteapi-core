@@ -35,10 +35,13 @@ class SQLQueryFilter:
 
     filter_config: SqlQueryFilterConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(
+        self,
+        session: "Optional[Dict[str, Any]]" = None,
+    ) -> SessionUpdateSqlQuery:
         """Initialize strategy."""
-        return SessionUpdate()
-
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSqlQuery:
-        """Execute strategy and return a dictionary."""
         return SessionUpdateSqlQuery(sqlquery=self.filter_config.query)
+
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+        """Execute strategy and return a dictionary."""
+        return SessionUpdate()
