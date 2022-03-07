@@ -65,7 +65,7 @@ class ImageParserResourceConfig(ResourceConfig):
     )
 
 
-class SupportedFormats(Enum):
+class SupportedFormat(Enum):
     """Supported formats for `ImageDataParseStrategy`."""
 
     jpeg = "JPEG"
@@ -81,17 +81,13 @@ class SupportedFormats(Enum):
 class SessionUpdateImageParse(SessionUpdate):
     """Configuration model for ImageParse.
 
-    For
-      - image_mode
-      - image_palette
-      - image_info
-
-    see [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details.
+    See [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details
+    on `image_mode`, `image_palette`, and `image_info`.
     """
 
     image_key: str = Field(
         ...,
-        description="Key with which the image content is stored in datacache.",
+        description="Key with which the image content is stored in the data cache.",
     )
     image_size: Tuple[int, int] = Field(
         ...,
@@ -119,7 +115,7 @@ class ImageDataParseStrategy:
     converts it into a NumPy array and stores the new array in the
     data cache.
 
-    It also support simple cropping and image conversions.
+    It also supports simple cropping and image conversions.
 
     The key to the new array and other metadata is stored in the session. See
     [`SessionUpdateImageParse`][oteapi.strategies.parse.image.SessionUpdateImageParse]
@@ -173,7 +169,7 @@ class ImageDataParseStrategy:
         elif "key" in output:
             cache_key = output["key"]
         else:
-            RuntimeError("no datacache key provided to downloaded content")
+            RuntimeError("No data cache key provided to the downloaded content")
 
         cache = DataCache(config.datacache_config)
 

@@ -34,7 +34,7 @@ def test_crop_filter(static_files: "Path") -> None:
     }
     image_parser: "IParseStrategy" = ImageDataParseStrategy(image_config)
 
-    # Run "pipeline"
+    # Run pipeline = image_parser > crop_filter
     session = {}
     session.update(crop_filter.initialize(session))
     session.update(image_parser.initialize(session))

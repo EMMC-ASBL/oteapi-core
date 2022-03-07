@@ -89,10 +89,10 @@ def test_image(
         }
         session = {"imagecrop": crop} if crop and itest == 1 else {}
 
-        parser = ImageDataParseStrategy(parse_config=config)
+        parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
         session.update(parser.initialize(session))
 
-        parser = ImageDataParseStrategy(parse_config=config)
+        parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
         session.update(parser.get(session))
 
         cache = DataCache()
