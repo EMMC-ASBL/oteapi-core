@@ -190,6 +190,7 @@ class DataCache:
         )
 
         if bind is not None:
+
             def remover(key):
                 del self[key]
 
