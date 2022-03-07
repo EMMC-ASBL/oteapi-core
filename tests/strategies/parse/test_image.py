@@ -82,6 +82,7 @@ def test_image(
     assert reference_file.exists(), f"Test file not found at {reference_file} !"
 
     for itest in range(2):
+        print(f"itest={itest}")
         config = {
             "downloadUrl": sample_file.as_uri(),
             "mediaType": f"image/{image_format}",
@@ -98,6 +99,7 @@ def test_image(
         cache = DataCache()
         image_key = session["image_key"]
         data = cache.get(image_key)
+        del cache[image_key]
 
         if crop:
             mode = session["image_mode"]

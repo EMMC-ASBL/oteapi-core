@@ -150,7 +150,7 @@ class ImageDataParseStrategy:
         crop = config.crop if config.crop else session.get("imagecrop")
 
         mime_format = self.parse_config.mediaType.split("/")[1]
-        image_format = SupportedFormats[mime_format].value
+        image_format = SupportedFormat[mime_format].value
 
         # Proper download configurations
         conf = self.parse_config.dict()
