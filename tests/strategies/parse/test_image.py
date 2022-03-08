@@ -98,8 +98,10 @@ def test_image(
 
         cache = DataCache()
         image_key = session["image_key"]
-        data = cache.get(image_key)
-        del cache[image_key]
+        try:
+            data = cache.get(image_key)
+        finally:
+            del cache[image_key]
 
         if crop:
             mode = session["image_mode"]

@@ -43,8 +43,9 @@ def test_crop_filter(static_files: "Path") -> None:
 
     cache = DataCache()
     image_key = session["image_key"]
-    data = cache.get(image_key)
 
-    assert data.shape == (400, 700, 3)
-
-    del cache[image_key]
+    try:
+        data = cache.get(image_key)
+        assert data.shape == (400, 700, 3)
+    finally:
+        del cache[image_key]
