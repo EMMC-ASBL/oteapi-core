@@ -153,8 +153,9 @@ class ImageDataParseStrategy:
         image_format = SupportedFormat[mime_format].value
 
         # Proper download configurations
-        download_config = self.parse_config.copy()
-        download_config.configuration = config.download_config
+        conf = self.parse_config.dict()
+        conf["configuration"] = config.download_config
+        download_config = ResourceConfig(**conf)
 
         downloader = create_strategy("download", download_config)
         session.update(downloader.initialize(session))
