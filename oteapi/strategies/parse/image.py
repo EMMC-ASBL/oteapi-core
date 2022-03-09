@@ -28,8 +28,8 @@ class ImageParserConfig(AttrDict):
         None,
         description="Configuration options for the local data cache.",
     )
-    download_config: Optional[ResourceConfig] = Field(
-        {},
+    download_config: ResourceConfig = Field(
+        ResourceConfig(),
         description="Configurations passed to the downloader.",
     )
     image_key: Optional[str] = Field(
@@ -97,7 +97,7 @@ class SessionUpdateImageParse(SessionUpdate):
         ...,
         description="Image mode. Examples: 'L', 'P', 'RGB', 'RGBA'...",
     )
-    image_palette_key: str = Field(
+    image_palette_key: Optional[str] = Field(
         None,
         description="Datacache key for colour palette if mode is 'P'.",
     )
