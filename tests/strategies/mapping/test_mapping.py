@@ -4,19 +4,20 @@
 
 def test_mapping() -> None:
     """Test mapping strategy."""
-    from oteapi.strategies.mapping import MappingStrategy, MappingStrategyConfig
+    from oteapi.models import MappingConfig
+    from oteapi.strategies.mapping.mapping import MappingStrategy
 
-    conf1 = MappingStrategyConfig(
+    conf1 = MappingConfig(
         triples=[
             ("http://onto-ns.com/meta/1.0/Foo#a", "map:mapsTo", "onto:A"),
             ("http://onto-ns.com/meta/1.0/Foo#b", "map:mapsTo", "onto:B"),
             ("http://onto-ns.com/meta/1.0/Foo#c", "map:mapsTo", "onto:C"),
         ],
     )
-    conf2 = MappingStrategyConfig(
+    conf2 = MappingConfig(
         prefixes={
             "map": "http://emmo.info/domain-mappings#",
-            "onto": "http://example.com/0.1/Myonto",
+            "onto": "http://example.com/0.1/Myonto#",
         },
         triples=[
             ("http://onto-ns.com/meta/1.0/Bar#a", "map:mapsTo", "onto:A"),

@@ -1,9 +1,11 @@
 """Pydantic Mapping Configuration Data Model."""
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 from pydantic import Field
 
 from oteapi.models.genericconfig import GenericConfig
+
+RDFTriple = Tuple[str, str, str]
 
 
 class MappingConfig(GenericConfig):
@@ -13,16 +15,14 @@ class MappingConfig(GenericConfig):
         ...,
         description="Type of registered mapping strategy.",
     )
-    prefixes: Optional[Dict[str, str]] = Field(
+    prefixes: Dict[str, str] = Field(
         {},
         description=(
             "List of shortnames that expands to an IRI "
             "given as local value/IRI-expansion-pairs."
         ),
     )
-    triples: Optional[List[Tuple[str, str, str]]] = Field(
+    triples: List[RDFTriple] = Field(
         [],
-        description=(
-            "List of semantic triples given as " "(subject, predicate, object)."
-        ),
+        description=("List of RDF triples given as (subject, predicate, object)."),
     )

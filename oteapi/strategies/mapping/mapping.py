@@ -2,7 +2,7 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
-from pydantic.dataclasses import Field, dataclass
+from pydantic.dataclasses import dataclass
 
 from oteapi.models import MappingConfig, SessionUpdate
 
@@ -10,20 +10,20 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
 
-
-
 @dataclass
 class MappingStrategy:
     """Strategy for a mapping.
 
     The mapping strategy simply adds more prefixes and triples to the
-    `prefixes` and `triples` fields in the session.
+    `prefixes` and `triples` fields in the session such that they are
+    available for other strategies, like function strategies that convert
+    between data models.
 
     Nothing is returned to avoid deleting existing mappings.
 
     **Registers strategies**:
 
-    - `("mappingType", "triples")`
+    - `("mappingType", "mapping")`
 
     """
 
@@ -31,18 +31,13 @@ class MappingStrategy:
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy."""
-        session = session or {}
+        prefixes = session.get("prefixes", {}) if session else {}
+        triples = session.get("triples", []) if session else []
 
-        if not "prefixes" in session:
-            session["prefixes"] = {}
+        prefixes.update(self.mapping_config.prefixes)
+        triples.extend(self.mapping_config.triples)
 
-        if not "triples" in session:
-            session["triples"] = []
-
-        session["prefixes"].update(self.mapping_config.prefixes)
-        session["triples"].extend(self.mapping_config.triples)
-
-        return SessionUpdate(**session)
+        return SessionUpdate(prefixes=prefixes, triples=triples)
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary."""
