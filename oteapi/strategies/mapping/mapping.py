@@ -10,13 +10,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
 
-class MappingStrategyConfig(MappingConfig):
-    """Strategy-specific mapping config."""
-
-    mappingType: str = Field(
-        "triples",
-        description="Mapping type.  Normally this is just 'mapping'.",
-    )
 
 
 @dataclass
@@ -34,15 +27,11 @@ class MappingStrategy:
 
     """
 
-    config: MappingStrategyConfig
+    mapping_config: MappingConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize strategy."""
-        if session is None:
-            return_session = True
-            session = {}
-        else:
-            return_session = False
+        session = session or {}
 
         if not "prefixes" in session:
             session["prefixes"] = {}
@@ -50,13 +39,10 @@ class MappingStrategy:
         if not "triples" in session:
             session["triples"] = []
 
-        session["prefixes"].update(self.config.prefixes)
-        session["triples"].extend(self.config.triples)
+        session["prefixes"].update(self.mapping_config.prefixes)
+        session["triples"].extend(self.mapping_config.triples)
 
-        if return_session:
-            return SessionUpdate(**session)
-        else:
-            return SessionUpdate()
+        return SessionUpdate(**session)
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary."""

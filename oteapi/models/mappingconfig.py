@@ -11,7 +11,7 @@ class MappingConfig(GenericConfig):
 
     mappingType: str = Field(
         ...,
-        description="Mapping type.  Normally this is just 'triples'.",
+        description="Type of registered mapping strategy.",
     )
     prefixes: Optional[Dict[str, str]] = Field(
         {},
