@@ -12,7 +12,7 @@ class MappingConfig(GenericConfig):
     """Mapping Strategy Data Configuration."""
 
     mappingType: str = Field(
-        ...,
+        "mapping",
         description="Type of registered mapping strategy.",
     )
     prefixes: Dict[str, str] = Field(
