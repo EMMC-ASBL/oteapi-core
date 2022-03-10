@@ -29,7 +29,6 @@ def test_mapping() -> None:
 
     all_prefixes = {}
     all_prefixes.update(conf2.prefixes)
-    all_prefixes.update(conf1.prefixes)
 
     all_triples = []
     all_triples.extend(conf2.triples)
