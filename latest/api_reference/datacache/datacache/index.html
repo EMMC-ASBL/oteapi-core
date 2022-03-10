@@ -1386,8 +1386,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 
           <details class="quote">
             <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
-<span class="normal"> 77</span>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
@@ -1592,7 +1591,22 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="normal">279</span>
 <span class="normal">280</span>
 <span class="normal">281</span>
-<span class="normal">282</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DataCache</span><span class="p">:</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">DataCache</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize a cache instance with the given download configuration.</span>
 
 <span class="sd">    This class is also available to import from `oteapi.datacache`, e.g.:</span>
@@ -1664,6 +1678,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="n">key</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">expire</span><span class="p">:</span> <span class="s2">&quot;Optional[int]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tag</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bind</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">json_encoder</span><span class="p">:</span> <span class="s2">&quot;Optional[Type[json.JSONEncoder]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
@@ -1680,6 +1695,12 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">                it is taken from the configuration.</span>
 <span class="sd">            tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]</span>
 <span class="sd">                for cleaning up a session.</span>
+<span class="sd">            bind: Remove `value` from the cache when the object provided with</span>
+<span class="sd">                this argument goes out of scope.  Note that `bind` must be a</span>
+<span class="sd">                weakref&#39;able object.</span>
+
+<span class="sd">                The argument name refers to that we bind `value` to this</span>
+<span class="sd">                argument.</span>
 <span class="sd">            json_encoder: Customised json encoder forcomplex Python objects.</span>
 
 <span class="sd">        Returns:</span>
@@ -1699,6 +1720,13 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
                 <span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">bind</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">remover</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+            <span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">bind</span><span class="p">,</span> <span class="n">remover</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
             <span class="n">key</span><span class="p">,</span>
@@ -1829,7 +1857,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 
 
 <h3 id="oteapi.datacache.datacache.DataCache.add" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expire</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expire</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
 <a href="#oteapi.datacache.datacache.DataCache.add" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -1897,6 +1925,20 @@ for cleaning up a session.</p></td>
           </td>
         </tr>
         <tr>
+          <td><code>bind</code></td>
+          <td>
+                <code>&#39;Any&#39;</code>
+          </td>
+          <td><p>Remove <code>value</code> from the cache when the object provided with
+this argument goes out of scope.  Note that <code>bind</code> must be a
+weakref'able object.</p>
+<p>The argument name refers to that we bind <code>value</code> to this
+argument.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
           <td><code>json_encoder</code></td>
           <td>
                 <code>&#39;Optional[Type[json.JSONEncoder]]&#39;</code>
@@ -1929,8 +1971,7 @@ for cleaning up a session.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
-<span class="normal">143</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -1977,12 +2018,28 @@ for cleaning up a session.</p></td>
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span><span class="p">,</span>
     <span class="n">key</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">expire</span><span class="p">:</span> <span class="s2">&quot;Optional[int]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tag</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bind</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">json_encoder</span><span class="p">:</span> <span class="s2">&quot;Optional[Type[json.JSONEncoder]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
@@ -1999,6 +2056,12 @@ for cleaning up a session.</p></td>
 <span class="sd">            it is taken from the configuration.</span>
 <span class="sd">        tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]</span>
 <span class="sd">            for cleaning up a session.</span>
+<span class="sd">        bind: Remove `value` from the cache when the object provided with</span>
+<span class="sd">            this argument goes out of scope.  Note that `bind` must be a</span>
+<span class="sd">            weakref&#39;able object.</span>
+
+<span class="sd">            The argument name refers to that we bind `value` to this</span>
+<span class="sd">            argument.</span>
 <span class="sd">        json_encoder: Customised json encoder forcomplex Python objects.</span>
 
 <span class="sd">    Returns:</span>
@@ -2018,6 +2081,13 @@ for cleaning up a session.</p></td>
             <span class="p">)</span>
         <span class="p">)</span>
     <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">bind</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="k">def</span> <span class="nf">remover</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="n">weakref</span><span class="o">.</span><span class="n">finalize</span><span class="p">(</span><span class="n">bind</span><span class="p">,</span> <span class="n">remover</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
         <span class="n">key</span><span class="p">,</span>
@@ -2052,9 +2122,9 @@ for cleaning up a session.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div>
@@ -2108,16 +2178,16 @@ for cleaning up a session.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
-<span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
 
 <span class="sd">    Useful for cleaning up a session.</span>
@@ -2195,19 +2265,19 @@ for cleaning up a session.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span>
-<span class="normal">203</span>
-<span class="normal">204</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Any&quot;</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Any&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
 
 <span class="sd">    Args:</span>
@@ -2355,22 +2425,7 @@ be created.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">221</span>
 <span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
@@ -2416,7 +2471,22 @@ be created.</p></td>
 <span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span>
-<span class="normal">267</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@contextmanager</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@contextmanager</span>
 <span class="k">def</span> <span class="nf">getfile</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2591,8 +2661,7 @@ calculating the hash.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
-<span class="normal">32</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -2633,7 +2702,8 @@ calculating the hash.</p></td>
 <span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">gethash</span><span class="p">(</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">gethash</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span><span class="p">,</span>
     <span class="n">hashtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
     <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
