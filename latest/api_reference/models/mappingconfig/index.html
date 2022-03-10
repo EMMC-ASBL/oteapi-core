@@ -626,13 +626,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.models.mappingconfig.SemanticTriple" class="md-nav__link">
-    SemanticTriple
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#oteapi.models.mappingconfig.MappingConfig" class="md-nav__link">
     MappingConfig
   </a>
@@ -1191,13 +1184,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.models.mappingconfig.SemanticTriple" class="md-nav__link">
-    SemanticTriple
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#oteapi.models.mappingconfig.MappingConfig" class="md-nav__link">
     MappingConfig
   </a>
@@ -1264,28 +1250,6 @@
 
 
 
-  <div class="doc doc-object doc-attribute">
-
-
-
-<h2 id="oteapi.models.mappingconfig.SemanticTriple" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">SemanticTriple</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">conlist</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">min_items</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_items</span><span class="o">=</span><span class="mi">3</span><span class="p">]</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
-  </span>
-
-<a href="#oteapi.models.mappingconfig.SemanticTriple" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-  </div>
-
-
-
 
   <div class="doc doc-object doc-class">
 
@@ -1309,7 +1273,9 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/models/mappingconfig.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1323,9 +1289,7 @@
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MappingConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MappingConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mapping Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">mappingType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1338,7 +1302,7 @@
             <span class="s2">&quot;given as local value/IRI-expansion-pairs.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">triples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SemanticTriple</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">triples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of semantic triples given as (subject, predicate, object).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -1404,7 +1368,7 @@
 
 
 <h3 id="oteapi.models.mappingconfig.MappingConfig.triples" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">triples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SemanticTriple</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of semantic triples given as (subject, predicate, object).&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">triples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of semantic triples given as (subject, predicate, object).&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-properties">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
