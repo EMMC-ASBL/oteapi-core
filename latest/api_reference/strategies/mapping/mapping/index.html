@@ -10,21 +10,21 @@
       
       
       
-        <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/iresourcestrategy/">
+        <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/mapping/mapping/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
     
     
       
-        <title>iresourcestrategy - OTE-API Core</title>
+        <title>mapping - OTE-API Core</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2d9f7617.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
         
           
           
@@ -43,11 +43,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../../css/reference.css">
+      <link rel="stylesheet" href="../../../../css/reference.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#iresourcestrategy" class="md-skip">
+        <a href="#mapping" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../../.." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5z"/></svg>
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              iresourcestrategy
+              mapping
             
           </span>
         </div>
@@ -189,7 +189,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../../.." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5z"/></svg>
@@ -220,7 +220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -235,7 +235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../LICENSE/" class="md-nav__link">
+      <a href="../../../../LICENSE/" class="md-nav__link">
         License
       </a>
     </li>
@@ -250,7 +250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../CHANGELOG/" class="md-nav__link">
+      <a href="../../../../CHANGELOG/" class="md-nav__link">
         Changelog
       </a>
     </li>
@@ -265,7 +265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../all_models/" class="md-nav__link">
+      <a href="../../../../all_models/" class="md-nav__link">
         OTE-API Configuration Models
       </a>
     </li>
@@ -280,7 +280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../all_strategies/" class="md-nav__link">
+      <a href="../../../../all_strategies/" class="md-nav__link">
         OTE-API Core Strategies
       </a>
     </li>
@@ -349,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../datacache/datacache/" class="md-nav__link">
+      <a href="../../../datacache/datacache/" class="md-nav__link">
         datacache
       </a>
     </li>
@@ -368,14 +368,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
       
       
@@ -398,7 +396,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../idownloadstrategy/" class="md-nav__link">
+      <a href="../../../interfaces/idownloadstrategy/" class="md-nav__link">
         idownloadstrategy
       </a>
     </li>
@@ -412,7 +410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ifilterstrategy/" class="md-nav__link">
+      <a href="../../../interfaces/ifilterstrategy/" class="md-nav__link">
         ifilterstrategy
       </a>
     </li>
@@ -426,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ifunctionstrategy/" class="md-nav__link">
+      <a href="../../../interfaces/ifunctionstrategy/" class="md-nav__link">
         ifunctionstrategy
       </a>
     </li>
@@ -440,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../imappingstrategy/" class="md-nav__link">
+      <a href="../../../interfaces/imappingstrategy/" class="md-nav__link">
         imappingstrategy
       </a>
     </li>
@@ -454,7 +452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../iparsestrategy/" class="md-nav__link">
+      <a href="../../../interfaces/iparsestrategy/" class="md-nav__link">
         iparsestrategy
       </a>
     </li>
@@ -466,79 +464,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          iresourcestrategy
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../interfaces/iresourcestrategy/" class="md-nav__link">
         iresourcestrategy
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy" class="md-nav__link">
-    oteapi.interfaces.iresourcestrategy
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy" class="md-nav__link">
-    IResourceStrategy
-  </a>
-  
-    <nav class="md-nav" aria-label="IResourceStrategy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="md-nav__link">
-    get()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="md-nav__link">
-    initialize()
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -550,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../itransformationstrategy/" class="md-nav__link">
+      <a href="../../../interfaces/itransformationstrategy/" class="md-nav__link">
         itransformationstrategy
       </a>
     </li>
@@ -597,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/datacacheconfig/" class="md-nav__link">
+      <a href="../../../models/datacacheconfig/" class="md-nav__link">
         datacacheconfig
       </a>
     </li>
@@ -611,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/filterconfig/" class="md-nav__link">
+      <a href="../../../models/filterconfig/" class="md-nav__link">
         filterconfig
       </a>
     </li>
@@ -625,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/functionconfig/" class="md-nav__link">
+      <a href="../../../models/functionconfig/" class="md-nav__link">
         functionconfig
       </a>
     </li>
@@ -639,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/genericconfig/" class="md-nav__link">
+      <a href="../../../models/genericconfig/" class="md-nav__link">
         genericconfig
       </a>
     </li>
@@ -653,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/mappingconfig/" class="md-nav__link">
+      <a href="../../../models/mappingconfig/" class="md-nav__link">
         mappingconfig
       </a>
     </li>
@@ -667,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/resourceconfig/" class="md-nav__link">
+      <a href="../../../models/resourceconfig/" class="md-nav__link">
         resourceconfig
       </a>
     </li>
@@ -681,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sessionupdate/" class="md-nav__link">
+      <a href="../../../models/sessionupdate/" class="md-nav__link">
         sessionupdate
       </a>
     </li>
@@ -695,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/transformationconfig/" class="md-nav__link">
+      <a href="../../../models/transformationconfig/" class="md-nav__link">
         transformationconfig
       </a>
     </li>
@@ -742,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/entry_points/" class="md-nav__link">
+      <a href="../../../plugins/entry_points/" class="md-nav__link">
         entry_points
       </a>
     </li>
@@ -756,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../plugins/factories/" class="md-nav__link">
+      <a href="../../../plugins/factories/" class="md-nav__link">
         factories
       </a>
     </li>
@@ -775,12 +705,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" checked>
       
       
       
@@ -829,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/download/file/" class="md-nav__link">
+      <a href="../../download/file/" class="md-nav__link">
         file
       </a>
     </li>
@@ -843,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/download/https/" class="md-nav__link">
+      <a href="../../download/https/" class="md-nav__link">
         https
       </a>
     </li>
@@ -857,7 +789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/download/sftp/" class="md-nav__link">
+      <a href="../../download/sftp/" class="md-nav__link">
         sftp
       </a>
     </li>
@@ -904,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/filter/crop_filter/" class="md-nav__link">
+      <a href="../../filter/crop_filter/" class="md-nav__link">
         crop_filter
       </a>
     </li>
@@ -918,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/filter/sql_query_filter/" class="md-nav__link">
+      <a href="../../filter/sql_query_filter/" class="md-nav__link">
         sql_query_filter
       </a>
     </li>
@@ -937,12 +869,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_3" type="checkbox" id="__nav_6_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_3" type="checkbox" id="__nav_6_5_3" checked>
       
       
       
@@ -963,11 +897,86 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../strategies/mapping/mapping/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          mapping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         mapping
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping" class="md-nav__link">
+    oteapi.strategies.mapping.mapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="md-nav__link">
+    MappingSessionUpdate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy" class="md-nav__link">
+    MappingStrategy
+  </a>
+  
+    <nav class="md-nav" aria-label="MappingStrategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.get" class="md-nav__link">
+    get()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="md-nav__link">
+    initialize()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1012,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/parse/application_json/" class="md-nav__link">
+      <a href="../../parse/application_json/" class="md-nav__link">
         application_json
       </a>
     </li>
@@ -1026,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/parse/application_vnd_sqlite/" class="md-nav__link">
+      <a href="../../parse/application_vnd_sqlite/" class="md-nav__link">
         application_vnd_sqlite
       </a>
     </li>
@@ -1040,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/parse/excel_xlsx/" class="md-nav__link">
+      <a href="../../parse/excel_xlsx/" class="md-nav__link">
         excel_xlsx
       </a>
     </li>
@@ -1054,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/parse/image/" class="md-nav__link">
+      <a href="../../parse/image/" class="md-nav__link">
         image
       </a>
     </li>
@@ -1068,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/parse/text_csv/" class="md-nav__link">
+      <a href="../../parse/text_csv/" class="md-nav__link">
         text_csv
       </a>
     </li>
@@ -1115,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../strategies/transformation/celery_remote/" class="md-nav__link">
+      <a href="../../transformation/celery_remote/" class="md-nav__link">
         celery_remote
       </a>
     </li>
@@ -1169,7 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../utils/paths/" class="md-nav__link">
+      <a href="../../../utils/paths/" class="md-nav__link">
         paths
       </a>
     </li>
@@ -1217,29 +1226,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy" class="md-nav__link">
-    oteapi.interfaces.iresourcestrategy
+  <a href="#oteapi.strategies.mapping.mapping" class="md-nav__link">
+    oteapi.strategies.mapping.mapping
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy" class="md-nav__link">
-    IResourceStrategy
+  <a href="#oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="md-nav__link">
+    MappingSessionUpdate
   </a>
   
-    <nav class="md-nav" aria-label="IResourceStrategy">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy" class="md-nav__link">
+    MappingStrategy
+  </a>
+  
+    <nav class="md-nav" aria-label="MappingStrategy">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="md-nav__link">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.get" class="md-nav__link">
     get()
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="md-nav__link">
+  <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="md-nav__link">
     initialize()
   </a>
   
@@ -1264,15 +1280,15 @@
                 
 
 
-<h1 id="iresourcestrategy">iresourcestrategy<a class="headerlink" href="#iresourcestrategy" title="Permanent link">&para;</a></h1>
+<h1 id="mapping">mapping<a class="headerlink" href="#mapping" title="Permanent link">&para;</a></h1>
 
 
   <div class="doc doc-object doc-module">
 
-<a id="oteapi.interfaces.iresourcestrategy"></a>
+<a id="oteapi.strategies.mapping.mapping"></a>
     <div class="doc doc-contents first">
 
-      <p>Resource Strategy Interface</p>
+      <p>Mapping filter strategy.</p>
 
 
 
@@ -1288,27 +1304,25 @@
 
 
 
-<h2 id="oteapi.interfaces.iresourcestrategy.IResourceStrategy" class="doc doc-heading">
-          <code>IResourceStrategy</code>
+<h2 id="oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="doc doc-heading">
+          <code>MappingSessionUpdate</code>
 
 
 
-<a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
     <div class="doc doc-contents ">
         <p class="doc doc-class-bases">
-          Bases: <code><span title="typing.Protocol">Protocol</span></code></p>
+          Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
 
 
-      <p>Resource Strategy Interface.</p>
+      <p>SessionUpdate model for mappings.</p>
 
 
           <details class="quote">
-            <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
+            <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
@@ -1321,10 +1335,77 @@
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MappingSessionUpdate</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;SessionUpdate model for mappings.&quot;&quot;&quot;</span>
+
+    <span class="n">prefixes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;List of shortnames that expands to an IRI &quot;</span>
+            <span class="s2">&quot;given as local value/IRI-expansion-pairs.&quot;</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">triples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of semantic triples given as (subject, predicate, object).&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+          </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="oteapi.strategies.mapping.mapping.MappingStrategy" class="doc doc-heading">
+          <code>MappingStrategy</code>
+
+
+
+<a href="#oteapi.strategies.mapping.mapping.MappingStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents ">
+
+
+      <p>Strategy for a mapping.</p>
+<p>The mapping strategy simply adds more prefixes and triples to the
+<code>prefixes</code> and <code>triples</code> fields in the session such that they are
+available for other strategies, like function strategies that convert
+between data models.</p>
+<p>Nothing is returned to avoid deleting existing mappings.</p>
+<p><strong>Registers strategies</strong>:</p>
+<ul>
+<li><code>("mappingType", "triples")</code></li>
+</ul>
+
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
@@ -1337,38 +1418,64 @@
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="k">class</span> <span class="nc">IResourceStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Resource Strategy Interface.&quot;&quot;&quot;</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">MappingStrategy</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Strategy for a mapping.</span>
 
-    <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
+<span class="sd">    The mapping strategy simply adds more prefixes and triples to the</span>
+<span class="sd">    `prefixes` and `triples` fields in the session such that they are</span>
+<span class="sd">    available for other strategies, like function strategies that convert</span>
+<span class="sd">    between data models.</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="sd">    Nothing is returned to avoid deleting existing mappings.</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            session: A session-specific dictionary context.</span>
+<span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            An update model of key/value-pairs to be stored in the</span>
-<span class="sd">            session-specific context from services.</span>
+<span class="sd">    - `(&quot;mappingType&quot;, &quot;triples&quot;)`</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+    <span class="n">mapping_config</span><span class="p">:</span> <span class="n">MappingConfig</span>
 
-<span class="sd">        This method will be called through the `/initialize` endpoint of the OTE-API</span>
-<span class="sd">        Services.</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MappingSessionUpdate</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+        <span class="n">prefixes</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prefixes&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="n">triples</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;triples&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">[]</span>
 
-<span class="sd">        Parameters:</span>
-<span class="sd">            session: A session-specific dictionary context.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">prefixes</span><span class="p">:</span>
+            <span class="n">prefixes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">prefixes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">triples</span><span class="p">:</span>
+            <span class="n">triples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">triples</span><span class="p">)</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            An update model of key/value-pairs to be stored in the</span>
-<span class="sd">            session-specific context from services.</span>
+        <span class="k">return</span> <span class="n">MappingSessionUpdate</span><span class="p">(</span><span class="n">prefixes</span><span class="o">=</span><span class="n">prefixes</span><span class="p">,</span> <span class="n">triples</span><span class="o">=</span><span class="n">triples</span><span class="p">)</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
           </details>
@@ -1389,88 +1496,24 @@
 
 
 
-<h3 id="oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="doc doc-heading">
+<h3 id="oteapi.strategies.mapping.mapping.MappingStrategy.get" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
-<a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.strategies.mapping.mapping.MappingStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-      <p>Execute the strategy.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>session</code></td>
-          <td>
-                <code>&#39;Optional[Dict[str, Any]]&#39;</code>
-          </td>
-          <td><p>A session-specific dictionary context.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>&#39;SessionUpdate&#39;</code>
-          </td>
-          <td><p>An update model of key/value-pairs to be stored in the</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code>&#39;SessionUpdate&#39;</code>
-          </td>
-          <td><p>session-specific context from services.</p></td>
-        </tr>
-    </tbody>
-  </table>
+      <p>Execute strategy and return a dictionary.</p>
 
         <details class="quote">
-          <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        An update model of key/value-pairs to be stored in the</span>
-<span class="sd">        session-specific context from services.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
+          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
 </td></tr></table>
         </details>
@@ -1484,96 +1527,44 @@
 
 
 
-<h3 id="oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="doc doc-heading">
+<h3 id="oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 
-<a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-      <p>Initialize data class.</p>
-<p>This method will be called through the <code>/initialize</code> endpoint of the OTE-API
-Services.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>session</code></td>
-          <td>
-                <code>&#39;Optional[Dict[str, Any]]&#39;</code>
-          </td>
-          <td><p>A session-specific dictionary context.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>&#39;SessionUpdate&#39;</code>
-          </td>
-          <td><p>An update model of key/value-pairs to be stored in the</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code>&#39;SessionUpdate&#39;</code>
-          </td>
-          <td><p>session-specific context from services.</p></td>
-        </tr>
-    </tbody>
-  </table>
+      <p>Initialize strategy.</p>
 
         <details class="quote">
-          <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MappingSessionUpdate</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+    <span class="n">prefixes</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prefixes&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="n">triples</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;triples&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">[]</span>
 
-<span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
-<span class="sd">    Services.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">prefixes</span><span class="p">:</span>
+        <span class="n">prefixes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">prefixes</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">triples</span><span class="p">:</span>
+        <span class="n">triples</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mapping_config</span><span class="o">.</span><span class="n">triples</span><span class="p">)</span>
 
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        An update model of key/value-pairs to be stored in the</span>
-<span class="sd">        session-specific context from services.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">MappingSessionUpdate</span><span class="p">(</span><span class="n">prefixes</span><span class="o">=</span><span class="n">prefixes</span><span class="p">,</span> <span class="n">triples</span><span class="o">=</span><span class="n">triples</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
         </details>
@@ -1619,7 +1610,7 @@ Services.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../iparsestrategy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: iparsestrategy" rel="prev">
+        <a href="../../filter/sql_query_filter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: sql_query_filter" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1628,20 +1619,20 @@ Services.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              iparsestrategy
+              sql_query_filter
             </div>
           </div>
         </a>
       
       
         
-        <a href="../itransformationstrategy/" class="md-footer__link md-footer__link--next" aria-label="Next: itransformationstrategy" rel="next">
+        <a href="../../parse/application_json/" class="md-footer__link md-footer__link--next" aria-label="Next: application_json" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              itransformationstrategy
+              application_json
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1685,10 +1676,10 @@ Services.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.467223ff.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.467223ff.min.js"></script>
       
     
   </body>
