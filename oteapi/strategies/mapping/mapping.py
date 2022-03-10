@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Dict, List, Tuple
 
 from pydantic.dataclasses import dataclass, Field
 
-from oteapi.models import MappingConfig, SessionUpdate
+from oteapi.models import MappingConfig, SessionUpdate, RDFTriple
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
@@ -19,7 +19,7 @@ class MappingSessionUpdate(SessionUpdate):
             "given as local value/IRI-expansion-pairs."
         ),
     )
-    triples: List[Tuple[str, str, str]] = Field(
+    triples: List[RDFTriple] = Field(
         ...,
         description="List of semantic triples given as (subject, predicate, object).",
     )

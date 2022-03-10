@@ -8,7 +8,7 @@ from .datacacheconfig import DataCacheConfig
 from .filterconfig import FilterConfig
 from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
-from .mappingconfig import MappingConfig
+from .mappingconfig import MappingConfig, RDFTriple
 from .resourceconfig import ResourceConfig
 from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
