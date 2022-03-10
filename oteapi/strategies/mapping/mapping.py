@@ -1,17 +1,18 @@
 """Mapping filter strategy."""
 # pylint: disable=unused-argument
-from typing import TYPE_CHECKING, Dict, List, Tuple
+from typing import TYPE_CHECKING, Dict, List
 
-from pydantic.dataclasses import dataclass, Field
+from pydantic.dataclasses import Field, dataclass
 
-from oteapi.models import MappingConfig, SessionUpdate, RDFTriple
+from oteapi.models import MappingConfig, RDFTriple, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    from typing import Any, Optional
 
 
 class MappingSessionUpdate(SessionUpdate):
     """SessionUpdate model for mappings."""
+
     prefixes: Dict[str, str] = Field(
         ...,
         description=(
@@ -44,7 +45,9 @@ class MappingStrategy:
 
     mapping_config: MappingConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> MappingSessionUpdate:
+    def initialize(
+        self, session: "Optional[Dict[str, Any]]" = None
+    ) -> MappingSessionUpdate:
         """Initialize strategy."""
         prefixes = session.get("prefixes", {}) if session else {}
         triples = session.get("triples", []) if session else []
