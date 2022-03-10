@@ -16,6 +16,7 @@ Features:
 import hashlib
 import json
 import tempfile
+import weakref
 from contextlib import contextmanager
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -145,6 +146,7 @@ class DataCache:
         key: "Optional[str]" = None,
         expire: "Optional[int]" = None,
         tag: "Optional[str]" = None,
+        bind: "Any" = None,
         json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
     ) -> str:
         """Add a value to cache.
@@ -161,6 +163,12 @@ class DataCache:
                 it is taken from the configuration.
             tag: Tag used with [`evict()`][oteapi.datacache.datacache.DataCache.evict]
                 for cleaning up a session.
+            bind: Remove `value` from the cache when the object provided with
+                this argument goes out of scope.  Note that `bind` must be a
+                weakref'able object.
+
+                The argument name refers to that we bind `value` to this
+                argument.
             json_encoder: Customised json encoder forcomplex Python objects.
 
         Returns:
@@ -180,6 +188,13 @@ class DataCache:
                 )
             )
         )
+
+        if bind is not None:
+
+            def remover(key):
+                del self[key]
+
+            weakref.finalize(bind, remover, key)
 
         self.diskcache.set(
             key,
