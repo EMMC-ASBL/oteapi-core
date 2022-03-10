@@ -167,7 +167,7 @@ class DataCache:
                 this argument goes out of scope.  Note that `bind` must be a
                 weakref'able object.
 
-                The argument name refer to that we bind `value` to this
+                The argument name refers to that we bind `value` to this
                 argument.
             json_encoder: Customised json encoder forcomplex Python objects.
 
