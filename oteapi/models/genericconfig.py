@@ -2,9 +2,10 @@
 from typing import TYPE_CHECKING, Iterable, Mapping
 
 from pydantic import BaseModel, Field
+from pydantic.fields import Undefined
 
 if TYPE_CHECKING:
-    from typing import Any, Optional, Union
+    from typing import Any, Optional, Tuple, Union
 
 
 class AttrDict(BaseModel, Mapping):
@@ -97,6 +98,34 @@ class AttrDict(BaseModel, Mapping):
         if kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def pop(self, key: str, default: "Optional[Any]" = Undefined) -> "Any":
+        """MutableMapping `pop`-method."""
+        value = self.get(key, default)
+        if value == Undefined:
+            raise KeyError(key)
+        if key in self:
+            del self[key]
+        return value
+
+    def popitem(self) -> "Tuple[str, Any]":
+        """MutableMapping `popitem`-method.
+
+        Important:
+            Unlike the regular `dict.popitem()` method, this one does _not_ respect
+            LIFO (last-in, first-out).
+            This is due to the fact that attributes are stored in a random order when
+            initializing the model.
+
+            However, it will respect LIFO with respect to the internal `__dict__`.
+
+        """
+        if not self:
+            raise KeyError(f"popitem(): {self.__class__.__name__} is empty")
+
+        key = list(self.__dict__)[-1]
+        value = self.pop(key)
+        return key, value
 
 
 class GenericConfig(BaseModel):
