@@ -1,5 +1,5 @@
 """Pydantic Mapping Configuration Data Model."""
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from pydantic import Field
 
@@ -12,17 +12,17 @@ class MappingConfig(GenericConfig):
     """Mapping Strategy Data Configuration."""
 
     mappingType: str = Field(
-        "mapping",
+        ...,
         description="Type of registered mapping strategy.",
     )
-    prefixes: Dict[str, str] = Field(
-        {},
+    prefixes: Optional[Dict[str, str]] = Field(
+        None,
         description=(
             "List of shortnames that expands to an IRI "
             "given as local value/IRI-expansion-pairs."
         ),
     )
-    triples: List[RDFTriple] = Field(
-        [],
+    triples: Optional[List[RDFTriple]] = Field(
+        None,
         description="List of RDF triples given as (subject, predicate, object).",
     )

@@ -34,8 +34,10 @@ class MappingStrategy:
         prefixes = session.get("prefixes", {}) if session else {}
         triples = session.get("triples", []) if session else []
 
-        prefixes.update(self.mapping_config.prefixes)
-        triples.extend(self.mapping_config.triples)
+        if self.mapping_config.prefixes:
+            prefixes.update(self.mapping_config.prefixes)
+        if self.mapping_config.triples:
+            triples.extend(self.mapping_config.triples)
 
         return SessionUpdate(prefixes=prefixes, triples=triples)
 
