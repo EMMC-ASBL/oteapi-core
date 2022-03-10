@@ -36,7 +36,11 @@ def test_image(
     static_files: "Path",
 ) -> None:
     """Test parsing an image format."""
-    from oteapi.strategies.parse.image import ImageDataParseStrategy, SupportedFormat
+    import numpy as np
+    from PIL import Image
+
+    from oteapi.datacache import DataCache
+    from oteapi.strategies.parse.image import ImageDataParseStrategy
 
     if image_format == "eps":
         # Skip if Ghostscript is not installed
@@ -70,8 +74,6 @@ def test_image(
         if failed:
             pytest.skip("Could not find Ghostscript on the system.")
 
-    mime_to_format = {"jpg": "jpeg", "jp2": "jpeg2000"}
-
     sample_file = static_files / filename
     reference_file = (
         static_files / filename_cropped if filename_cropped else static_files / filename
@@ -79,28 +81,33 @@ def test_image(
     assert sample_file.exists(), f"Test file not found at {sample_file} !"
     assert reference_file.exists(), f"Test file not found at {reference_file} !"
 
-    for config_parse_test in range(2):
-        print(f"config_parse_test={config_parse_test}")
-
+    for itest in range(2):
+        print(f"itest={itest}")
         config = {
             "downloadUrl": sample_file.as_uri(),
             "mediaType": f"image/{image_format}",
-            "configuration": {"crop": crop} if crop and config_parse_test == 0 else {},
+            "configuration": {"crop": crop} if crop and itest == 0 else {},
         }
+        session = {"imagecrop": crop} if crop and itest == 1 else {}
+
         parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
+        session.update(parser.initialize(session))
 
-        session = parser.initialize(
-            {"imagecrop": crop} if crop and config_parse_test == 1 else None
-        )
-        session = parser.get(
-            {"imagecrop": crop} if crop and config_parse_test == 1 else session
-        )
+        parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
+        session.update(parser.get(session))
 
-        assert (
-            session.get("cropped", False) if crop else not session.get("cropped", False)
-        )
-        assert (
-            session.get("format", SupportedFormat).value
-            == mime_to_format.get(image_format, image_format).upper()
-        )
-        assert session.get("content", b"") == reference_file.read_bytes()
+        cache = DataCache()
+        image_key = session["image_key"]
+        try:
+            data = cache.get(image_key)
+        finally:
+            del cache[image_key]
+
+        if crop:
+            mode = session["image_mode"]
+            assert data.shape == (400, 700) if mode == "P" else (400, 700, 3)
+
+    if filename_cropped and image_format in ("png", "gif", "eps", "tiff"):
+        cropped = Image.open(reference_file, formats=[image_format])
+        arr = np.asarray(cropped)
+        assert np.all(data == arr)
