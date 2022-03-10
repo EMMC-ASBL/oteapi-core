@@ -5,7 +5,6 @@ from pydantic import Field
 
 from oteapi.models.genericconfig import GenericConfig
 
-
 RDFTriple = Tuple[str, str, str]
 
 
