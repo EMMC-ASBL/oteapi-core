@@ -1,13 +1,28 @@
 """Mapping filter strategy."""
 # pylint: disable=unused-argument
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict, List, Tuple
 
-from pydantic.dataclasses import dataclass
+from pydantic.dataclasses import dataclass, Field
 
 from oteapi.models import MappingConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
+
+
+class MappingSessionUpdate(SessionUpdate):
+    """SessionUpdate model for mappings."""
+    prefixes: Dict[str, str] = Field(
+        ...,
+        description=(
+            "List of shortnames that expands to an IRI "
+            "given as local value/IRI-expansion-pairs."
+        ),
+    )
+    triples: List[Tuple[str, str, str]] = Field(
+        ...,
+        description="List of semantic triples given as (subject, predicate, object).",
+    )
 
 
 @dataclass
@@ -29,7 +44,7 @@ class MappingStrategy:
 
     mapping_config: MappingConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> MappingSessionUpdate:
         """Initialize strategy."""
         prefixes = session.get("prefixes", {}) if session else {}
         triples = session.get("triples", []) if session else []
@@ -39,7 +54,7 @@ class MappingStrategy:
         if self.mapping_config.triples:
             triples.extend(self.mapping_config.triples)
 
-        return SessionUpdate(prefixes=prefixes, triples=triples)
+        return MappingSessionUpdate(prefixes=prefixes, triples=triples)
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Execute strategy and return a dictionary."""
