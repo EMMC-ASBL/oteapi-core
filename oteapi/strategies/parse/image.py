@@ -28,8 +28,8 @@ class ImageParserConfig(AttrDict):
         None,
         description="Configuration options for the local data cache.",
     )
-    download_config: ResourceConfig = Field(
-        ResourceConfig(),
+    download_config: Optional[ResourceConfig] = Field(
+        None,
         description="Configurations passed to the downloader.",
     )
     image_key: Optional[str] = Field(
@@ -154,7 +154,7 @@ class ImageDataParseStrategy:
 
         # Proper download configurations
         conf = self.parse_config.dict()
-        conf["configuration"] = config.download_config
+        conf["configuration"] = config.download_config or {}
         download_config = ResourceConfig(**conf)
 
         downloader = create_strategy("download", download_config)
