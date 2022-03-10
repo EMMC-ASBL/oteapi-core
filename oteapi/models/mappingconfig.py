@@ -24,5 +24,5 @@ class MappingConfig(GenericConfig):
     )
     triples: List[RDFTriple] = Field(
         [],
-        description=("List of RDF triples given as (subject, predicate, object)."),
+        description="List of RDF triples given as (subject, predicate, object).",
     )
