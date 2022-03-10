@@ -1,5 +1,30 @@
 # Changelog
 
+## [v0.1.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.3) (2022-03-10)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.2...v0.1.3)
+
+**Implemented enhancements:**
+
+- Move pytest fixtures into `oteapi` package [\#121](https://github.com/EMMC-ASBL/oteapi-core/issues/121)
+- Add `pop()` \(and possibly `popitem()`\) to `AttrDict` [\#118](https://github.com/EMMC-ASBL/oteapi-core/issues/118)
+- Allow to bind values added to the data cache to an object, such that they automatically will be remove when the object goes out of scope [\#114](https://github.com/EMMC-ASBL/oteapi-core/issues/114)
+- Add some badges to the README [\#91](https://github.com/EMMC-ASBL/oteapi-core/issues/91)
+
+**Fixed bugs:**
+
+- The image strategy puts binary data in the session [\#107](https://github.com/EMMC-ASBL/oteapi-core/issues/107)
+
+**Merged pull requests:**
+
+- Implement and test `pop()` and `popitem()` for AttrDict [\#119](https://github.com/EMMC-ASBL/oteapi-core/pull/119) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#116](https://github.com/EMMC-ASBL/oteapi-core/pull/116) ([TEAM4-0](https://github.com/TEAM4-0))
+- Allow to bind the lifetime of datacache values to the lifetime of the session [\#115](https://github.com/EMMC-ASBL/oteapi-core/pull/115) ([jesper-friis](https://github.com/jesper-friis))
+- Added mapping strategy [\#112](https://github.com/EMMC-ASBL/oteapi-core/pull/112) ([jesper-friis](https://github.com/jesper-friis))
+- Corrected the sql\_query\_filter. [\#110](https://github.com/EMMC-ASBL/oteapi-core/pull/110) ([jesper-friis](https://github.com/jesper-friis))
+- Store image data in datacache instead of session [\#108](https://github.com/EMMC-ASBL/oteapi-core/pull/108) ([jesper-friis](https://github.com/jesper-friis))
+- Update README [\#106](https://github.com/EMMC-ASBL/oteapi-core/pull/106) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.1.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.2) (2022-03-03)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.1...v0.1.2)
