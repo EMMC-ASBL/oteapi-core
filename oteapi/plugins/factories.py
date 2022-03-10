@@ -2,15 +2,15 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, get_args
 
+from oteapi.models import StrategyConfig
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Dict, Union
+    from typing import Any, Dict, Union
 
     from oteapi.interfaces import IStrategy
-    from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
 
 
@@ -32,7 +32,9 @@ class StrategyFactory:
 
     @classmethod
     def make_strategy(
-        cls, config: "StrategyConfig", strategy_type: "Union[StrategyType, str]"
+        cls,
+        config: "Union[StrategyConfig, Dict[str, Any]]",
+        strategy_type: "Union[StrategyType, str]",
     ) -> "IStrategy":
         """Instantiate a strategy in a context class.
 
@@ -72,6 +74,11 @@ class StrategyFactory:
             raise TypeError(
                 "strategy_type should be either of type StrategyType or a string."
             )
+
+        if isinstance(config, dict):
+            config = strategy_type.config_cls(**config)  # type: ignore[call-arg]
+        elif not isinstance(config, get_args(StrategyConfig)):
+            raise TypeError("config should be either of type StrategyConfig or a dict.")
 
         strategy_name: str = cls._get_strategy_name(config, strategy_type)
 
@@ -156,7 +163,8 @@ def load_strategies(test_for_uniqueness: bool = True) -> None:
 
 
 def create_strategy(
-    strategy_type: "Union[StrategyType, str]", config: "StrategyConfig"
+    strategy_type: "Union[StrategyType, str]",
+    config: "Union[StrategyConfig, Dict[str, Any]]",
 ) -> "IStrategy":
     """Proxy function for
     [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].
