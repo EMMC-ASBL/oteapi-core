@@ -8,6 +8,7 @@ def test_mapping() -> None:
     from oteapi.strategies.mapping.mapping import MappingStrategy
 
     conf1 = MappingConfig(
+        mappingType="triples",
         triples=[
             ("http://onto-ns.com/meta/1.0/Foo#a", "map:mapsTo", "onto:A"),
             ("http://onto-ns.com/meta/1.0/Foo#b", "map:mapsTo", "onto:B"),
@@ -15,6 +16,7 @@ def test_mapping() -> None:
         ],
     )
     conf2 = MappingConfig(
+        mappingType="triples",
         prefixes={
             "map": "http://emmo.info/domain-mappings#",
             "onto": "http://example.com/0.1/Myonto#",

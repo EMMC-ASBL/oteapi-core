@@ -23,7 +23,7 @@ class MappingStrategy:
 
     **Registers strategies**:
 
-    - `("mappingType", "mapping")`
+    - `("mappingType", "triples")`
 
     """
 
