@@ -13,15 +13,23 @@ import importlib
 import re
 from collections import abc
 from enum import Enum
-from functools import lru_cache
 from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
+
+from oteapi.models import (
+    FilterConfig,
+    FunctionConfig,
+    MappingConfig,
+    ResourceConfig,
+    TransformationConfig,
+)
 
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
     from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
+    from oteapi.models import StrategyConfig
 
 
 class EntryPointNotFound(Exception):
@@ -36,6 +44,7 @@ class StrategyType(Enum):
 
     - download
     - filter
+    - function
     - mapping
     - parse
     - resource
@@ -107,7 +116,6 @@ class StrategyType(Enum):
         return cls(value)
 
     @classmethod
-    @lru_cache
     def all_values(cls) -> "Tuple[str, ...]":
         """Return all values."""
         return tuple(strategy_type.value for strategy_type in cls)
@@ -117,6 +125,19 @@ class StrategyType(Enum):
 
     def __repr__(self) -> str:
         return repr(str(self))
+
+    @property
+    def config_cls(self) -> "Type[StrategyConfig]":
+        """Return the strategy-specific `*Config` class."""
+        return {  # type: ignore[return-value]
+            "download": ResourceConfig,
+            "filter": FilterConfig,
+            "function": FunctionConfig,
+            "mapping": MappingConfig,
+            "parse": ResourceConfig,
+            "resource": ResourceConfig,
+            "transformation": TransformationConfig,
+        }[self.value]
 
 
 class EntryPointStrategy:
