@@ -14,6 +14,11 @@ if TYPE_CHECKING:  # pragma: no cover
 class SqlQueryFilterConfig(FilterConfig):
     """SQLite query filter strategy filter config."""
 
+    filterType: str = Field(
+        "filter/sql",
+        const=True,
+        description=FilterConfig.__fields__["filterType"].field_info.description,
+    )
     query: str = Field(..., description="A SQL query string.")
 
 

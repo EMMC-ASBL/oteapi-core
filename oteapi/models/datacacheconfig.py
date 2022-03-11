@@ -1,5 +1,6 @@
 """Pydantic DataCache Configuration Data Model."""
 from pathlib import Path
+from typing import Optional
 
 from pydantic import Field
 
@@ -14,8 +15,8 @@ class DataCacheConfig(AttrDict):
     a configuration object.
     """
 
-    cacheDir: Path = Field("oteapi", description="Cache directory.")
-    accessKey: str = Field(
+    cacheDir: Path = Field(Path("oteapi"), description="Cache directory.")
+    accessKey: Optional[str] = Field(
         None,
         description="Key with which the downloaded content can be accessed. "
         "Should preferable be the hash (corresponding to `hashType`) of the "
@@ -31,7 +32,7 @@ class DataCacheConfig(AttrDict):
         description="Number of seconds before the cache entry expires. "
         "Zero means no expiration. Default is two weeks.",
     )
-    tag: str = Field(
+    tag: Optional[str] = Field(
         None,
         description="Tag assigned to the downloaded content, typically "
         "identifying a session. Used with the `evict()` method to clean up a "

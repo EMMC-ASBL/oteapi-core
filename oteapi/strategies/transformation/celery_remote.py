@@ -41,6 +41,13 @@ class SessionUpdateCelery(SessionUpdate):
 class CeleryStrategyConfig(TransformationConfig):
     """Celery strategy-specific configuration."""
 
+    transformationType: str = Field(
+        "celery/remote",
+        const=True,
+        description=TransformationConfig.__fields__[
+            "transformationType"
+        ].field_info.description,
+    )
     configuration: CeleryConfig = Field(
         ..., description="Celery transformation strategy-specific configuration."
     )
