@@ -16,9 +16,17 @@ from enum import Enum
 from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
 
+from oteapi.models import (
+    FilterConfig,
+    FunctionConfig,
+    MappingConfig,
+    ResourceConfig,
+    TransformationConfig,
+)
+
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
@@ -36,6 +44,7 @@ class StrategyType(Enum):
 
     - download
     - filter
+    - function
     - mapping
     - parse
     - resource
@@ -118,35 +127,16 @@ class StrategyType(Enum):
         return repr(str(self))
 
     @property
-    def config_cls(self) -> "Callable[[Any], StrategyConfig]":
+    def config_cls(self) -> "Type[StrategyConfig]":
         """Return the strategy-specific `*Config` class."""
-        return {
-            "download": getattr(
-                importlib.import_module("oteapi.models.resourceconfig"),
-                "ResourceConfig",
-            ),
-            "filter": getattr(
-                importlib.import_module("oteapi.models.filterconfig"), "FilterConfig"
-            ),
-            "function": getattr(
-                importlib.import_module("oteapi.models.functionconfig"),
-                "FunctionConfig",
-            ),
-            "mapping": getattr(
-                importlib.import_module("oteapi.models.mappingconfig"), "MappingConfig"
-            ),
-            "parse": getattr(
-                importlib.import_module("oteapi.models.resourceconfig"),
-                "ResourceConfig",
-            ),
-            "resource": getattr(
-                importlib.import_module("oteapi.models.resourceconfig"),
-                "ResourceConfig",
-            ),
-            "transformation": getattr(
-                importlib.import_module("oteapi.models.transformationconfig"),
-                "TransformationConfig",
-            ),
+        return {  # type: ignore[return-value]
+            "download": ResourceConfig,
+            "filter": FilterConfig,
+            "function": FunctionConfig,
+            "mapping": MappingConfig,
+            "parse": ResourceConfig,
+            "resource": ResourceConfig,
+            "transformation": TransformationConfig,
         }[self.value]
 
 
