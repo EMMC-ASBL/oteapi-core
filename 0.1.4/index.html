@@ -1,0 +1,1869 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the OTE-API Core package">
+      
+      
+      
+        <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/0.1.4/">
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>OTE-API Core</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#795649">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="css/reference.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="amber">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#open-translation-environment-ote-api-core" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-component="outdated" hidden>
+        <aside class="md-banner md-banner--warning">
+          
+        </aside>
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OTE-API Core
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/EMMC-ASBL/oteapi-core" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oteapi-core
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9h-1.5m0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5v-7.5z"/></svg>
+
+    </a>
+    OTE-API Core
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/EMMC-ASBL/oteapi-core" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    oteapi-core
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Home
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-oteapi-core" class="md-nav__link">
+    About OTEAPI Core
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-strategies" class="md-nav__link">
+    Types of strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-strategy" class="md-nav__link">
+    Download strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-strategy" class="md-nav__link">
+    Parse strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-strategy" class="md-nav__link">
+    Resource strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-strategy" class="md-nav__link">
+    Mapping strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-strategy" class="md-nav__link">
+    Filter strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-strategy" class="md-nav__link">
+    Function strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-strategy" class="md-nav__link">
+    Transformation strategy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-points-for-plugins" class="md-nav__link">
+    Entry points for plugins
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry points for plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-entry-points" class="md-nav__link">
+    Defining entry points
+  </a>
+  
+    <nav class="md-nav" aria-label="Defining entry points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuppy" class="md-nav__link">
+    setup.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yamljson-custom-files" class="md-nav__link">
+    YAML/JSON custom files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setupcfgpyprojecttoml" class="md-nav__link">
+    setup.cfg/pyproject.toml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syntax-and-semantics" class="md-nav__link">
+    Syntax and semantics
+  </a>
+  
+    <nav class="md-nav" aria-label="Syntax and semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-python-entry-points" class="md-nav__link">
+    General Python entry points
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi-strategy-entry-points" class="md-nav__link">
+    OTEAPI strategy entry points
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-of-entry-point-strategies" class="md-nav__link">
+    Table of entry point strategies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-oteapi-related-repositories" class="md-nav__link">
+    Other OTEAPI-related repositories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-developers" class="md-nav__link">
+    For developers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgment" class="md-nav__link">
+    Acknowledgment
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="LICENSE/" class="md-nav__link">
+        License
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CHANGELOG/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="all_models/" class="md-nav__link">
+        OTE-API Configuration Models
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="all_strategies/" class="md-nav__link">
+        OTE-API Core Strategies
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          API Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_1">
+          datacache
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="datacache" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          datacache
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/datacache/datacache/" class="md-nav__link">
+        datacache
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          interfaces
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="interfaces" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          interfaces
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/idownloadstrategy/" class="md-nav__link">
+        idownloadstrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/ifilterstrategy/" class="md-nav__link">
+        ifilterstrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/ifunctionstrategy/" class="md-nav__link">
+        ifunctionstrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/imappingstrategy/" class="md-nav__link">
+        imappingstrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/iparsestrategy/" class="md-nav__link">
+        iparsestrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/iresourcestrategy/" class="md-nav__link">
+        iresourcestrategy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/interfaces/itransformationstrategy/" class="md-nav__link">
+        itransformationstrategy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="models" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/datacacheconfig/" class="md-nav__link">
+        datacacheconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/filterconfig/" class="md-nav__link">
+        filterconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/functionconfig/" class="md-nav__link">
+        functionconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/genericconfig/" class="md-nav__link">
+        genericconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/mappingconfig/" class="md-nav__link">
+        mappingconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/resourceconfig/" class="md-nav__link">
+        resourceconfig
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/sessionupdate/" class="md-nav__link">
+        sessionupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/models/transformationconfig/" class="md-nav__link">
+        transformationconfig
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          plugins
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="plugins" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          plugins
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/plugins/entry_points/" class="md-nav__link">
+        entry_points
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/plugins/factories/" class="md-nav__link">
+        factories
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5" type="checkbox" id="__nav_6_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5">
+          strategies
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="strategies" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          strategies
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_1" type="checkbox" id="__nav_6_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5_1">
+          download
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="download" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          download
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/download/file/" class="md-nav__link">
+        file
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/download/https/" class="md-nav__link">
+        https
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/download/sftp/" class="md-nav__link">
+        sftp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_2" type="checkbox" id="__nav_6_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5_2">
+          filter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="filter" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          filter
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/filter/crop_filter/" class="md-nav__link">
+        crop_filter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/filter/sql_query_filter/" class="md-nav__link">
+        sql_query_filter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_3" type="checkbox" id="__nav_6_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5_3">
+          mapping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mapping" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          mapping
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/mapping/mapping/" class="md-nav__link">
+        mapping
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_4" type="checkbox" id="__nav_6_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5_4">
+          parse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="parse" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          parse
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/parse/application_json/" class="md-nav__link">
+        application_json
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/parse/application_vnd_sqlite/" class="md-nav__link">
+        application_vnd_sqlite
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/parse/excel_xlsx/" class="md-nav__link">
+        excel_xlsx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/parse/image/" class="md-nav__link">
+        image
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/parse/text_csv/" class="md-nav__link">
+        text_csv
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_5_5" type="checkbox" id="__nav_6_5_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_5_5">
+          transformation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="transformation" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          transformation
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/transformation/celery_remote/" class="md-nav__link">
+        celery_remote
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_6" type="checkbox" id="__nav_6_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6">
+          utils
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="utils" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_6">
+          <span class="md-nav__icon md-icon"></span>
+          utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/utils/paths/" class="md-nav__link">
+        paths
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-oteapi-core" class="md-nav__link">
+    About OTEAPI Core
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-strategies" class="md-nav__link">
+    Types of strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download-strategy" class="md-nav__link">
+    Download strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parse-strategy" class="md-nav__link">
+    Parse strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-strategy" class="md-nav__link">
+    Resource strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-strategy" class="md-nav__link">
+    Mapping strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-strategy" class="md-nav__link">
+    Filter strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function-strategy" class="md-nav__link">
+    Function strategy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transformation-strategy" class="md-nav__link">
+    Transformation strategy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entry-points-for-plugins" class="md-nav__link">
+    Entry points for plugins
+  </a>
+  
+    <nav class="md-nav" aria-label="Entry points for plugins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#defining-entry-points" class="md-nav__link">
+    Defining entry points
+  </a>
+  
+    <nav class="md-nav" aria-label="Defining entry points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setuppy" class="md-nav__link">
+    setup.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yamljson-custom-files" class="md-nav__link">
+    YAML/JSON custom files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setupcfgpyprojecttoml" class="md-nav__link">
+    setup.cfg/pyproject.toml
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#syntax-and-semantics" class="md-nav__link">
+    Syntax and semantics
+  </a>
+  
+    <nav class="md-nav" aria-label="Syntax and semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-python-entry-points" class="md-nav__link">
+    General Python entry points
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi-strategy-entry-points" class="md-nav__link">
+    OTEAPI strategy entry points
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-of-entry-point-strategies" class="md-nav__link">
+    Table of entry point strategies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-oteapi-related-repositories" class="md-nav__link">
+    Other OTEAPI-related repositories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-developers" class="md-nav__link">
+    For developers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#license" class="md-nav__link">
+    License
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgment" class="md-nav__link">
+    Acknowledgment
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="open-translation-environment-ote-api-core">Open Translation Environment (OTE) API Core<a class="headerlink" href="#open-translation-environment-ote-api-core" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Framework for accessing data resources, mapping data models, describing the data to ontologies and perform data transformations</p>
+</blockquote>
+<p><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/oteapi-core?logo=pypi" />
+<img alt="PyPI" src="https://img.shields.io/pypi/v/oteapi-core?logo=pypi" />
+<img alt="Codecov master" src="https://img.shields.io/codecov/c/github/EMMC-ASBL/oteapi-core/master?logo=codecov" />
+<img alt="CI - Tests" src="https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml/badge.svg?branch=master" />
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/EMMC-ASBL/oteapi-core?logo=github" />
+<img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github" /></p>
+<p>We highly recommend reading this page in <a href="https://emmc-asbl.github.io/oteapi-core">the official documentation</a>.</p>
+<h2 id="about-oteapi-core">About OTEAPI Core<a class="headerlink" href="#about-oteapi-core" title="Permanent link">&para;</a></h2>
+<p>OTEAPI Core provides the core functionality of OTEAPI, which stands for the <em>Open Translation Environment API</em>.</p>
+<p>It uses the <a href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy</a> software design pattern to implement a simple and easy to extend access to a large range of data resources.
+Semantic interoperability is supported via mapping of data models describing the data to ontologies.
+Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.</p>
+<p>OTEAPI Core includes:</p>
+<ul>
+<li>A set of standard strategies;</li>
+<li>A plugin system for loading the standard strategies, as well as third party strategies;</li>
+<li>Data models for configuring the strategies;</li>
+<li>A Python library, through which the data can be accessed; and</li>
+<li>An efficient data cache module that avoids downloading the same content several times.</li>
+</ul>
+<h2 id="types-of-strategies">Types of strategies<a class="headerlink" href="#types-of-strategies" title="Permanent link">&para;</a></h2>
+<h3 id="download-strategy">Download strategy<a class="headerlink" href="#download-strategy" title="Permanent link">&para;</a></h3>
+<p>Download strategy patterns use a given protocol to download content into the data cache.
+They are configured with the <code>ResourceConfig</code> data model, using the scheme of the <code>downloadUrl</code> field for strategy selection.
+The <code>configuration</code> field can be used to configure how the downloaded content is stored in the cache using the <code>DownloadConfig</code> data model.</p>
+<p>Standard downloaded strategies: <em>file</em>, <em>https</em>, <em>http</em>, <em>sftp</em>, <em>ftp</em></p>
+<h3 id="parse-strategy">Parse strategy<a class="headerlink" href="#parse-strategy" title="Permanent link">&para;</a></h3>
+<p>Parse strategy patterns convert content from the data cache to a Python dict.
+Like download strategies, they are configured with the <code>ResourceConfig</code> data model, using the <code>mediaType</code> field for strategy selection.
+Additional strategy-specific configurations can be provided via the <code>configuration</code> field.</p>
+<p>Standard parse strategies: <em>application/json</em>, <em>image/jpg</em>, <em>image/jpeg</em>, <em>image/jp2</em>, <em>image/png</em>, <em>image/gif</em>, <em>image/tiff</em>, <em>image/eps</em>, <em>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</em>, <em>application/vnd.sqlite3</em></p>
+<h3 id="resource-strategy">Resource strategy<a class="headerlink" href="#resource-strategy" title="Permanent link">&para;</a></h3>
+<p>Resource strategy patterns can retrieve/upload data to external data services.
+They are configured with the <code>ResourceConfig</code> data model, using the scheme of the <code>accessUrl</code> and <code>accessService</code> fields.
+The scheme of the <code>accessUrl</code> is used for strategy selection.</p>
+<h3 id="mapping-strategy">Mapping strategy<a class="headerlink" href="#mapping-strategy" title="Permanent link">&para;</a></h3>
+<p>Strategies for mapping fields/properties in data models to ontological concepts.</p>
+<h3 id="filter-strategy">Filter strategy<a class="headerlink" href="#filter-strategy" title="Permanent link">&para;</a></h3>
+<p>Filter strategies can update the configuration of other strategies.
+They can also update values in the data cache.</p>
+<p>Standard filter strategies: <em>filter/crop</em>, <em>filter/sql</em></p>
+<h3 id="function-strategy">Function strategy<a class="headerlink" href="#function-strategy" title="Permanent link">&para;</a></h3>
+<p>Function strategies are synchronous transformations that (normally) run directly on the server hosting the OTE service.</p>
+<h3 id="transformation-strategy">Transformation strategy<a class="headerlink" href="#transformation-strategy" title="Permanent link">&para;</a></h3>
+<p>Transformation strategies are a special form of a function strategy intended for long-running transformations.
+In this sense, they represent asynchronous functions running in the background or on external resources.</p>
+<p>Standard transformation strategies: <em>celery/remote</em></p>
+<h2 id="entry-points-for-plugins">Entry points for plugins<a class="headerlink" href="#entry-points-for-plugins" title="Permanent link">&para;</a></h2>
+<p>The way strategies are registered and found is through <a href="https://packaging.python.org/en/latest/specifications/entry-points/">entry points</a>.</p>
+<p>Special group names allow understanding the strategy type and the entry point values allow understanding of what kind of strategy a specific class implements.
+A full overview of recognized entry point group names can be seen in <a href="#table-of-entry-point-strategies">Table of entry point strategies</a>.</p>
+<h3 id="defining-entry-points">Defining entry points<a class="headerlink" href="#defining-entry-points" title="Permanent link">&para;</a></h3>
+<p>In the following examples, let's imagine we have a package importable in Python through <code>my_plugin</code> and contains two download strategies and a single parse strategy:</p>
+<ol>
+<li>A peer-2-peer download strategy, implemented in a class named <code>Peer2PeerDownload</code> importable from <code>my_plugin.strategies.download.peer_2_peer</code>.</li>
+<li>A MongoDB download strategy, implemented in a class named <code>MongoRetrieve</code> importable from <code>my_plugin.strategies.mongo</code>.</li>
+<li>A MongoDB parse strategy, implemented in a class named <code>MongoParse</code> importable from <code>my_plugin.strategies.mongo</code>.</li>
+</ol>
+<p>There are now various different ways to let the Python environment know of these strategies through entry points.</p>
+<h4 id="setuppy"><code>setup.py</code><a class="headerlink" href="#setuppy" title="Permanent link">&para;</a></h4>
+<p>In the package's <code>setup.py</code> file, one can specify entry points.<br />
+Here, an example snippet is shown using <a href="https://setuptools.pypa.io/">setuptools</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># setup.py</span>
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="c1"># ...,</span>
+    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;oteapi.download&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;oteapi.parse&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="yamljson-custom-files">YAML/JSON custom files<a class="headerlink" href="#yamljson-custom-files" title="Permanent link">&para;</a></h4>
+<p>Use custom files that are later parsed and used in a <code>setup.py</code> file.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">entry_points</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">oteapi.download</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.p2p</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.mongo</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">oteapi.parse</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.application/vnd.mongo+json</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoParse&quot;</span><span class="w"></span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;entry_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;oteapi.download&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;oteapi.parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="setupcfgpyprojecttoml"><code>setup.cfg</code>/<code>pyproject.toml</code><a class="headerlink" href="#setupcfgpyprojecttoml" title="Permanent link">&para;</a></h4>
+<p>A more modern approach is to use <code>setup.cfg</code> or <code>pyproject.toml</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span><span class="w"></span>
+<span class="na">oteapi.download</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">my_plugin.p2p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload</span><span class="w"></span>
+<span class="w">    </span><span class="na">my_plugin.mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve</span><span class="w"></span>
+<span class="na">oteapi.parse</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">my_plugin.application/vnd.mongo+json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoParse</span><span class="w"></span>
+</code></pre></div>
+<h3 id="syntax-and-semantics">Syntax and semantics<a class="headerlink" href="#syntax-and-semantics" title="Permanent link">&para;</a></h3>
+<p>As seen above, there are a few different syntactical flavors of how to list the entry points.
+However, the "value" stays the same throughout.</p>
+<h4 id="general-python-entry-points">General Python entry points<a class="headerlink" href="#general-python-entry-points" title="Permanent link">&para;</a></h4>
+<p>The general syntax for entry points is based on <code>ini</code> files and parsed using the built-in <code>configparser</code> module described <a href="https://docs.python.org/3/library/configparser.html#module-configparser">here</a>.
+Specifically for entry points the nomenclature is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span><span class="w"></span>
+<span class="na">GROUP</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">VALUE</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>VALUE</code> is then further split into: <code>PACKAGE.MODULE:OBJECT.ATTRIBUTE [EXTRA1, EXTRA2]</code>.</p>
+<h4 id="oteapi-strategy-entry-points">OTEAPI strategy entry points<a class="headerlink" href="#oteapi-strategy-entry-points" title="Permanent link">&para;</a></h4>
+<p>From the general syntax outlined above, OTEAPI Core then implements rules and requirements regarding the syntax for strategies.</p>
+<ol>
+<li>A class <em>MUST</em> be specified (as an <code>OBJECT</code>).</li>
+<li>The <code>NAME</code> <em>MUST</em> consist of exactly two parts: <code>PACKAGE</code> and strategy type value in the form of <code>PACKAGE.STRATEGY_TYPE_VALUE</code>.</li>
+<li>The <code>GROUP</code> <em>MUST</em> be a valid OTEAPI entry point group, see <a href="#table-of-entry-point-strategies">Table of entry point strategies</a> for a full list of valid OTEAPI entry point group values.</li>
+</ol>
+<p>To understand what the strategy type value should be, see <a href="#table-of-entry-point-strategies">Table of entry point strategies</a>.</p>
+<h3 id="table-of-entry-point-strategies">Table of entry point strategies<a class="headerlink" href="#table-of-entry-point-strategies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th align="center">Strategy Type Name</th>
+<th align="center">Strategy Type Value</th>
+<th align="center">Entry Point Group</th>
+<th align="left">Documentation Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Download</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/resourceconfig/#oteapi.models.resourceconfig.ResourceConfig.downloadUrl"><code>scheme</code></a></td>
+<td align="center"><code>oteapi.download</code></td>
+<td align="left"><a href="#download-strategy">Download strategy</a></td>
+</tr>
+<tr>
+<td align="center">Filter</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/filterconfig/#oteapi.models.filterconfig.FilterConfig.filterType"><code>filterType</code></a></td>
+<td align="center"><code>oteapi.filter</code></td>
+<td align="left"><a href="#filter-strategy">Filter strategy</a></td>
+</tr>
+<tr>
+<td align="center">Function</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/functionconfig/#oteapi.models.functionconfig.FunctionConfig.functionType"><code>functionType</code></a></td>
+<td align="center"><code>oteapi.function</code></td>
+<td align="left"><a href="#function-strategy">Function strategy</a></td>
+</tr>
+<tr>
+<td align="center">Mapping</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/mappingconfig/#oteapi.models.mappingconfig.MappingConfig.mappingType"><code>mappingType</code></a></td>
+<td align="center"><code>oteapi.mapping</code></td>
+<td align="left"><a href="#mapping-strategy">Mapping strategy</a></td>
+</tr>
+<tr>
+<td align="center">Parse</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/resourceconfig/#oteapi.models.resourceconfig.ResourceConfig.mediaType"><code>mediaType</code></a></td>
+<td align="center"><code>oteapi.parse</code></td>
+<td align="left"><a href="#parse-strategy">Parse strategy</a></td>
+</tr>
+<tr>
+<td align="center">Resource</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/resourceconfig/#oteapi.models.resourceconfig.ResourceConfig.accessService"><code>accessService</code></a></td>
+<td align="center"><code>oteapi.resource</code></td>
+<td align="left"><a href="#resource-strategy">Resource strategy</a></td>
+</tr>
+<tr>
+<td align="center">Transformation</td>
+<td align="center"><a class="autorefs autorefs-internal" href="api_reference/models/transformationconfig/#oteapi.models.transformationconfig.TransformationConfig.transformationType"><code>transformationType</code></a></td>
+<td align="center"><code>oteapi.transformation</code></td>
+<td align="left"><a href="#transformation-strategy">Transformation strategy</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-oteapi-related-repositories">Other OTEAPI-related repositories<a class="headerlink" href="#other-oteapi-related-repositories" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/EMMC-ASBL/oteapi-services">OTEAPI Services</a> - a RESTful interface to OTEAPI Core</li>
+<li><a href="https://github.com/EMMC-ASBL/otelib">OTELib</a> - a Python interface to OTEAPI Services</li>
+<li><a href="https://github.com/EMMC-ASBL/oteapi-plugin-template">OTEAPI Plugin Template</a> - a <a href="https://cookiecutter.readthedocs.io/">cookiecutter</a> template for OTEAPI Plugins</li>
+</ul>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>OTEAPI Core can be installed with:</p>
+<div class="highlight"><pre><span></span><code>pip install oteapi-core
+</code></pre></div>
+<h3 id="for-developers">For developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
+<p>If you want to install OTEAPI Core to have a developer environment, please clone down the repository from GitHub and install:</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/EMMC-ASBL/oteapi-core /path/to/oteapi-core
+pip install -U --upgrade-strategy<span class="o">=</span>eager -e /path/to/oteapi-core<span class="o">[</span>dev<span class="o">]</span>
+</code></pre></div>
+<p>Note, <code>/path/to/oteapi-core</code> can be left out of the first line, but then it must be updated in the second line, either to <code>./oteapi-core</code>/<code>oteapi-core</code> or <code>.</code> if you <code>cd</code> into the generated folder wherein the repository has been cloned.</p>
+<p>The <code>--upgrade-strategy=eager</code> part can be left out.
+We recommend installing within a dedicated virtual environment.</p>
+<p>To test the installation, you can run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /path/to/oteapi-core
+pytest
+</code></pre></div>
+<p>If you run into issues at this stage, please <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/new">open an issue</a>.</p>
+<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<p>OTEAPI Core is released under the <a href="LICENSE/">MIT license</a> with copyright &copy; SINTEF.</p>
+<h2 id="acknowledgment">Acknowledgment<a class="headerlink" href="#acknowledgment" title="Permanent link">&para;</a></h2>
+<p>OTEAPI Core has been supported by the following projects:</p>
+<ul>
+<li><strong>OntoTrans</strong> (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement n. 862136.</li>
+</ul>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+      
+        
+        <a href="LICENSE/" class="md-footer__link md-footer__link--next" aria-label="Next: License" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              License
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2020-2022 SINTEF
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    <a href="https://github.com/EMMC-ASBL" target="_blank" rel="noopener" title="EMMC-ASBL on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.bd0b6b67.min.js", "version": {"provider": "mike", "default": "latest"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.467223ff.min.js"></script>
+      
+    
+  </body>
+</html>
