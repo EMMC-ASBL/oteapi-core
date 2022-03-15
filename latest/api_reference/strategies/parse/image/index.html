@@ -1379,8 +1379,7 @@ for more info.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
-<span class="normal">111</span>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
@@ -1496,7 +1495,8 @@ for more info.</p>
 <span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ImageDataParseStrategy</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Parse strategy for images.</span>
 
@@ -1647,8 +1647,7 @@ for more info.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">142</span>
-<span class="normal">143</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -1732,7 +1731,8 @@ for more info.</p>
 <span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
-<span class="normal">227</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateImageParse</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute the strategy.&quot;&quot;&quot;</span>
@@ -1844,9 +1844,9 @@ for more info.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div>
@@ -1930,8 +1930,8 @@ for more info.</p>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configuration options for the local data cache.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ResourceConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">AttrDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="n">AttrDict</span><span class="p">(),</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configurations passed to the downloader.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_key</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -2014,22 +2014,26 @@ for more info.</p>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Image parse strategy resource config.&quot;&quot;&quot;</span>
 
+    <span class="n">mediaType</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/jpg&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/jpeg&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/jp2&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/png&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/gif&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/tiff&quot;</span><span class="p">],</span>
+        <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;image/eps&quot;</span><span class="p">],</span>
+    <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">field_info</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">ImageParserConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">ImageParserConfig</span><span class="p">(),</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image parse strategy-specific configuration.&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;The media type of the distribution as defined by IANA &quot;</span>
-            <span class="s2">&quot;[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]&quot;</span>
-            <span class="s2">&quot;.</span><span class="se">\n\n</span><span class="s2">Usage: This property *SHOULD* be used when the media&quot;</span>
-            <span class="s2">&quot; type of the distribution is defined in IANA &quot;</span>
-            <span class="s2">&quot;[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].&quot;</span>
-        <span class="p">),</span>
     <span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
@@ -2082,8 +2086,7 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 81</span>
-<span class="normal"> 82</span>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
 <span class="normal"> 83</span>
 <span class="normal"> 84</span>
 <span class="normal"> 85</span>
@@ -2108,7 +2111,8 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateImageParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+<span class="normal">107</span>
+<span class="normal">108</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateImageParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Configuration model for ImageParse.</span>
 
 <span class="sd">    See [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details</span>
@@ -2187,9 +2191,7 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
@@ -2197,7 +2199,8 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SupportedFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SupportedFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Supported formats for `ImageDataParseStrategy`.&quot;&quot;&quot;</span>
 
     <span class="n">jpeg</span> <span class="o">=</span> <span class="s2">&quot;JPEG&quot;</span>
@@ -2206,7 +2209,6 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
     <span class="n">png</span> <span class="o">=</span> <span class="s2">&quot;PNG&quot;</span>
     <span class="n">gif</span> <span class="o">=</span> <span class="s2">&quot;GIF&quot;</span>
     <span class="n">tiff</span> <span class="o">=</span> <span class="s2">&quot;TIFF&quot;</span>
-    <span class="n">tif</span> <span class="o">=</span> <span class="s2">&quot;TIFF&quot;</span>
     <span class="n">eps</span> <span class="o">=</span> <span class="s2">&quot;EPS&quot;</span>
 </code></pre></div>
 </td></tr></table>
@@ -2215,7 +2217,6 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 
 
   <div class="doc doc-children">
-
 
 
 
