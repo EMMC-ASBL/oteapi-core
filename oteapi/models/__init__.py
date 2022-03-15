@@ -12,6 +12,7 @@ from .mappingconfig import MappingConfig, RDFTriple
 from .resourceconfig import ResourceConfig
 from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
+from .triplestoreconfig import TripleStoreConfig
 
 __all__ = (
     "AttrDict",
@@ -26,6 +27,7 @@ __all__ = (
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
+    "TripleStoreConfig",
 )
 
 StrategyConfig = Union[
