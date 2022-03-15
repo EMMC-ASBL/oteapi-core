@@ -13,17 +13,22 @@ class TripleStoreConfig(AttrDict):
     a configuration object.
     """
 
-    repositoryName: str = Field(...,
-        description="repository name where the mappings need to be stored.")
-    agraphHost: str = Field(...,
+    repositoryName: str = Field(
+        ..., description="repository name where the mappings need to be stored."
+    )
+    agraphHost: str = Field(
+        ...,
         description="Allegrograph host name to make connection to the triplestore.",
     )
-    agraphPort: int = Field(...,
+    agraphPort: int = Field(
+        ...,
         description="Allegrograph port number to make connection to the triplestore.",
     )
-    agraphUser: str = Field(...,
+    agraphUser: str = Field(
+        ...,
         description="Allegrograph user name to login to the triplestore.",
     )
-    agraphPassword: str = Field(...,
+    agraphPassword: str = Field(
+        ...,
         description="Allegrograph password to login to the triplestore.",
     )
