@@ -29,6 +29,11 @@ class SqliteParseConfig(AttrDict):
 class SqliteParserResourceConfig(ResourceConfig):
     """SQLite parse strategy resource config."""
 
+    mediaType: str = Field(
+        "application/vnd.sqlite3",
+        const=True,
+        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    )
     configuration: SqliteParseConfig = Field(
         SqliteParseConfig(), description="SQLite parse strategy-specific configuration."
     )

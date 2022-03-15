@@ -1,7 +1,7 @@
 """Strategy class for image/jpg."""
 # pylint: disable=unused-argument
 from enum import Enum
-from typing import TYPE_CHECKING, Optional, Tuple
+from typing import TYPE_CHECKING, Literal, Optional, Tuple, Union
 
 import numpy as np
 from PIL import Image
@@ -28,8 +28,8 @@ class ImageParserConfig(AttrDict):
         None,
         description="Configuration options for the local data cache.",
     )
-    download_config: Optional[ResourceConfig] = Field(
-        None,
+    download_config: AttrDict = Field(
+        AttrDict(),
         description="Configurations passed to the downloader.",
     )
     image_key: Optional[str] = Field(
@@ -49,19 +49,21 @@ class ImageParserConfig(AttrDict):
 class ImageParserResourceConfig(ResourceConfig):
     """Image parse strategy resource config."""
 
+    mediaType: Union[
+        Literal["image/jpg"],
+        Literal["image/jpeg"],
+        Literal["image/jp2"],
+        Literal["image/png"],
+        Literal["image/gif"],
+        Literal["image/tiff"],
+        Literal["image/eps"],
+    ] = Field(
+        ...,
+        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    )
     configuration: ImageParserConfig = Field(
         ImageParserConfig(),
         description="Image parse strategy-specific configuration.",
-    )
-    mediaType: str = Field(
-        ...,
-        description=(
-            "The media type of the distribution as defined by IANA "
-            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]"
-            ".\n\nUsage: This property *SHOULD* be used when the media"
-            " type of the distribution is defined in IANA "
-            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]."
-        ),
     )
 
 
@@ -74,7 +76,6 @@ class SupportedFormat(Enum):
     png = "PNG"
     gif = "GIF"
     tiff = "TIFF"
-    tif = "TIFF"
     eps = "EPS"
 
 

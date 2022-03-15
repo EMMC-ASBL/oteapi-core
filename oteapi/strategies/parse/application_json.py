@@ -26,6 +26,11 @@ class JSONConfig(AttrDict):
 class JSONResourceConfig(ResourceConfig):
     """JSON parse strategy filter config."""
 
+    mediaType: str = Field(
+        "application/json",
+        const=True,
+        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    )
     configuration: JSONConfig = Field(
         JSONConfig(), description="JSON parse strategy-specific configuration."
     )

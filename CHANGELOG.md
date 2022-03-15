@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.1.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.4) (2022-03-11)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.3...v0.1.4)
+
+**Implemented enhancements:**
+
+- Support passing a dictionary as config to `create_strategy()` [\#123](https://github.com/EMMC-ASBL/oteapi-core/issues/123)
+
+**Merged pull requests:**
+
+- Using the `StrategyType` to deliver the `*Config` cls [\#124](https://github.com/EMMC-ASBL/oteapi-core/pull/124) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.1.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.3) (2022-03-10)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.2...v0.1.3)
