@@ -18,8 +18,8 @@ class MappingConfig(GenericConfig):
     prefixes: Optional[Dict[str, str]] = Field(
         None,
         description=(
-            "List of shortnames that expands to an IRI "
-            "given as local value/IRI-expansion-pairs."
+            "List of shortnames that expands to an IRI given as local "
+            "value/IRI-expansion-pairs."
         ),
     )
     triples: Optional[List[RDFTriple]] = Field(

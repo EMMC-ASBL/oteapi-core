@@ -14,12 +14,19 @@ if TYPE_CHECKING:  # pragma: no cover
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Tuple[int, int, int, int] = Field(..., description="Box cropping parameters.")
+    crop: Tuple[int, int, int, int] = Field(
+        ..., description="Box cropping parameters (left, top, right, bottom)."
+    )
 
 
 class CropImageFilterConfig(FilterConfig):
     """Crop filter strategy filter config."""
 
+    filterType: str = Field(
+        "filter/crop",
+        const=True,
+        description=FilterConfig.__fields__["filterType"].field_info.description,
+    )
     configuration: CropImageConfig = Field(
         ..., description="Image crop filter strategy-specific configuration."
     )
@@ -29,7 +36,7 @@ class SessionUpdateCropFilter(SessionUpdate):
     """Return model for `CropImageFilter`."""
 
     imagecrop: Tuple[int, int, int, int] = Field(
-        ..., description="Box cropping parameters."
+        ..., description="Box cropping parameters (left, top, right, bottom)."
     )
 
 

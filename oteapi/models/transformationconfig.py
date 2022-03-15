@@ -13,7 +13,7 @@ from pydantic import BaseModel, Field
 from oteapi.models.genericconfig import GenericConfig
 
 
-class PriorityEnum(str, Enum):
+class ProcessPriority(str, Enum):
     """Defining process priority enumerators.
 
     Process priorities:
@@ -48,8 +48,8 @@ class TransformationConfig(GenericConfig):
             "should finish."
         ),
     )
-    priority: Optional[PriorityEnum] = Field(
-        PriorityEnum.MEDIUM,
+    priority: Optional[ProcessPriority] = Field(
+        ProcessPriority.MEDIUM,
         description="Define the process priority of the transformation execution.",
     )
     secret: Optional[str] = Field(
