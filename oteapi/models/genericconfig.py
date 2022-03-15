@@ -163,7 +163,7 @@ class GenericConfig(BaseModel):
         cls.__fields__["description"].default = cls.__doc__
 
     class Config:
-        """Pydantic configuration for `AttrDict`.
+        """Pydantic configuration for `GenericConfig`.
 
         * **`validate_assignment`**
           Validate and cast set values.
