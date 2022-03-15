@@ -12,11 +12,6 @@ class AttrDict(BaseModel, Mapping):
     """An object whose attributes can also be accessed through
     subscription, like with a dictionary."""
 
-    class Config:
-        """Class for configuration of pydantic models."""
-
-        extra = "allow"
-
     def __contains__(self, name: "Any") -> bool:
         """Enable using the 'in' operator on this object."""
         return self.__dict__.__contains__(name)
@@ -127,6 +122,26 @@ class AttrDict(BaseModel, Mapping):
         value = self.pop(key)
         return key, value
 
+    class Config:
+        """Pydantic configuration for `AttrDict`.
+
+        * **`extra`**
+          Allow any attributes/fields to be defined - this is what makes this pydantic
+          model an attribute dictionary.
+        * **`validate_assignment`**
+          Validate and cast set values.
+          This is mainly relevant for sub-classes of `AttrDict`, where specific
+          attributes have been defined.
+        * **`arbitrary_types_allowed`**
+          If a custom type is used for an attribute that doesn't have a `validate()`
+          method, don't fail setting the attribute.
+
+        """
+
+        extra = "allow"
+        validate_assignment = True
+        arbitrary_types_allowed = True
+
 
 class GenericConfig(BaseModel):
     """Generic class for configuration objects."""
@@ -146,3 +161,19 @@ class GenericConfig(BaseModel):
     def __init_subclass__(cls) -> None:
         """Initialize subclass descriptions with their docstrings."""
         cls.__fields__["description"].default = cls.__doc__
+
+    class Config:
+        """Pydantic configuration for `GenericConfig`.
+
+        * **`validate_assignment`**
+          Validate and cast set values.
+          This is mainly relevant for sub-classes of `AttrDict`, where specific
+          attributes have been defined.
+        * **`arbitrary_types_allowed`**
+          If a custom type is used for an attribute that doesn't have a `validate()`
+          method, don't fail setting the attribute.
+
+        """
+
+        validate_assignment = True
+        arbitrary_types_allowed = True
