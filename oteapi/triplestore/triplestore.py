@@ -97,7 +97,6 @@ class TripleStore:
         )
         tuple_query = connection.prepareTupleQuery(query=sparql_query)
         response = []
-        results = tuple_query.evaluate(output_format=TupleFormat.JSON)
         with tuple_query.evaluate(output_format=TupleFormat.JSON) as results:
             for result in results:
                 triple_set = {}
