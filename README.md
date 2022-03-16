@@ -7,7 +7,7 @@
 [![Codecov master](https://img.shields.io/codecov/c/github/EMMC-ASBL/oteapi-core/master?logo=codecov)](https://app.codecov.io/gh/EMMC-ASBL/oteapi-core)
 [![CI - Tests](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml/badge.svg?branch=master)](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml?query=branch%3Amaster)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/pulse)
-[![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/pulse)
+[![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity)
 
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
