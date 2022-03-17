@@ -62,7 +62,7 @@ class TripleStore:
             self.config.agraphPassword.get_secret_value(),
         )
 
-    def add(self, triples: RDFTriple):
+    def add(self, triples: RDFTriple) -> None:
         """
         Add triples to the triplestore.
 
@@ -112,7 +112,7 @@ class TripleStore:
         except RequestError as error:
             return {"Error": error}
 
-    def update_delete(self, sparql_query: str):
+    def update_delete(self, sparql_query: str) -> None:
         """Remove and update triples.
 
         Useful for modifying and cleaning up mappings.
