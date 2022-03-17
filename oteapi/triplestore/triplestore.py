@@ -1,5 +1,5 @@
 """
-Triplestore using Allegrograph
+An RDF triplestore using Allegrograph
 https://franz.com/agraph/support/documentation/current/python/api.html
 https://franz.com/agraph/support/documentation/current/agraph-introduction.html
 
@@ -8,19 +8,18 @@ Features:
 - Store mapping data (triple format)
 - AllegroGraph has a well documented python API package
 
-
 """
 # pylint: disable=too-many-arguments
-
-import json
 from typing import TYPE_CHECKING
 
+from franz.miniclient.request import RequestError
 from franz.openrdf.connect import ag_connect
 from franz.openrdf.rio.tupleformat import TupleFormat
 from franz.openrdf.sail.allegrographserver import AllegroGraphServer  # type: ignore
-from franz.openrdf.sail.spec import reason  # type: ignore
+from franz.openrdf.sail.spec import reason
 
 from oteapi.models import AttrDict, TripleStoreConfig
+from oteapi.models.mappingconfig import RDFTriple
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Union
@@ -36,10 +35,10 @@ class TripleStore:
     Init must initialize the triple store connection?
 
     Args:
-        config (Union[TripleStoreConfig, Dict[str, Any]]): Download configurations.
+        config (Union[TripleStoreConfig, Dict[str, Any]]): RDF triple-store configuration.
 
     Attributes:
-        config: TripleStoreConfig instance.
+        config (TripleStoreConfig): The RDF triple-store configuration.
 
     """
 
@@ -60,10 +59,10 @@ class TripleStore:
             self.config.agraphHost,
             self.config.agraphPort,
             self.config.agraphUser,
-            self.config.agraphPassword,
+            self.config.agraphPassword.get_secret_value(),
         )
 
-    def add(self, triples: "Any") -> str:
+    def add(self, triples: RDFTriple):
         """
         Add triples to the triplestore.
 
@@ -71,19 +70,15 @@ class TripleStore:
             triples: triples turtle format(<s> <o> <p>.).
 
         """
-        try:
-            connection = ag_connect(
-                self.config.repositoryName,
-                host=self.config.agraphHost,
-                port=self.config.agraphPort,
-                user=self.config.agraphUser,
-                password=self.config.agraphPassword,
-            )
+        with ag_connect(
+            self.config.repositoryName,
+            host=self.config.agraphHost,
+            port=self.config.agraphPort,
+            user=self.config.agraphUser,
+            password=self.config.agraphPassword.get_secret_value(),
+        ) as connection:
             connection.addData(triples)
             connection.close()
-            return "Triples successfully added"
-        except Exception as e:
-            return {"Error": e}
 
     def get(self, sparql_query: str) -> "Any":
         """Return the query result.
@@ -92,7 +87,7 @@ class TripleStore:
             sparql_query: The SPARQL search query.
 
         Returns:
-            The output of the search query in the form of subject, object and predicate.
+            The output of the search query in the form of a list of RDF triples.
 
         """
         connection = self.server.openSession(
@@ -101,23 +96,23 @@ class TripleStore:
         try:
             tuple_query = connection.prepareTupleQuery(query=sparql_query)
             response = []
-        
+
             with tuple_query.evaluate(output_format=TupleFormat.JSON) as results:
                 for result in results:
-                    triple_set = {}
+                    triple = {}
                     if "'s': " in str(result):
-                        triple_set["s"] = str(result.getValue("s"))
+                        triple["s"] = str(result.getValue("s"))
                     if "'p': " in str(result):
-                        triple_set["p"] = str(result.getValue("p"))
+                        triple["p"] = str(result.getValue("p"))
                     if "'o': " in str(result):
-                        triple_set["o"] = str(result.getValue("o"))
-                    response.append((triple_set))
+                        triple["o"] = str(result.getValue("o"))
+                    response.append(triple)
             connection.close()
-            return json.dumps(response)
-        except Exception as e:
-            return {"Error": e}
+            return response
+        except RequestError as error:
+            return {"Error": error}
 
-    def update_delete(self, sparql_query: str) -> None:
+    def update_delete(self, sparql_query: str):
         """Remove and update triples.
 
         Useful for modifying and cleaning up mappings.
@@ -128,17 +123,13 @@ class TripleStore:
             True if update was successful.
 
         """
-        try :
-            connection = ag_connect(
-                self.config.repositoryName,
-                host=self.config.agraphHost,
-                port=self.config.agraphPort,
-                user=self.config.agraphUser,
-                password=self.config.agraphPassword,
-            )
+        with ag_connect(
+            self.config.repositoryName,
+            host=self.config.agraphHost,
+            port=self.config.agraphPort,
+            user=self.config.agraphUser,
+            password=self.config.agraphPassword.get_secret_value(),
+        ) as connection:
             update_query = connection.prepareUpdate(query=sparql_query)
-            response = update_query.evaluate()
+            update_query.evaluate()
             connection.close()
-            return response
-        except Exception as e:
-            return {"Error": e}

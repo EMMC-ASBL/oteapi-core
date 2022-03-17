@@ -1,5 +1,5 @@
 """Pydantic TripleStore Configuration Data Model."""
-from pydantic import Field
+from pydantic import Field, SecretStr
 
 from oteapi.models.genericconfig import AttrDict
 
@@ -16,21 +16,21 @@ class TripleStoreConfig(AttrDict):
     """
 
     repositoryName: str = Field(
-        ..., description="repository name where the mappings need to be stored."
+        ..., description="The repository name, where the mappings are stored."
     )
     agraphHost: str = Field(
         ...,
-        description="Allegrograph host name to make connection to the triplestore.",
+        description="AllegroGraph host name.",
     )
     agraphPort: int = Field(
         ...,
-        description="Allegrograph port number to make connection to the triplestore.",
+        description="AllegroGraph port number.",
     )
     agraphUser: str = Field(
         ...,
-        description="Allegrograph user name to login to the triplestore.",
+        description="AllegroGraph user name.",
     )
-    agraphPassword: str = Field(
+    agraphPassword: SecretStr = Field(
         ...,
-        description="Allegrograph password to login to the triplestore.",
+        description="AllegroGraph user password.",
     )
