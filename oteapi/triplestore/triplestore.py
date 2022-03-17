@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING
 from franz.miniclient.request import RequestError
 from franz.openrdf.connect import ag_connect
 from franz.openrdf.rio.tupleformat import TupleFormat
-from franz.openrdf.sail.allegrographserver import AllegroGraphServer  # type: ignore
+from franz.openrdf.sail.allegrographserver import AllegroGraphServer
 from franz.openrdf.sail.spec import reason
 
 from oteapi.models import AttrDict, TripleStoreConfig
@@ -32,7 +32,7 @@ class TripleStore:
     ```python
     from oteapi.triplestore import TripleStore
     ```
-    Init must initialize the triple store connection?
+    Init must initialize the triple store connection
 
     Args:
         config (Union[TripleStoreConfig, Dict[str, Any]]): RDF triple-store configuration.
