@@ -1,5 +1,4 @@
 """Pydantic TripleStore Configuration Data Model."""
-
 from pydantic import Field
 
 from oteapi.models.genericconfig import AttrDict
