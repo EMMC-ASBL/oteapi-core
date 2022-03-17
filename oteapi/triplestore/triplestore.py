@@ -71,16 +71,19 @@ class TripleStore:
             triples: triples turtle format(<s> <o> <p>.).
 
         """
-        connection = ag_connect(
-            self.config.repositoryName,
-            host=self.config.agraphHost,
-            port=self.config.agraphPort,
-            user=self.config.agraphUser,
-            password=self.config.agraphPassword,
-        )
-        connection.addData(triples)
-        connection.close()
-        return "Triples successfully added"
+        try:
+            connection = ag_connect(
+                self.config.repositoryName,
+                host=self.config.agraphHost,
+                port=self.config.agraphPort,
+                user=self.config.agraphUser,
+                password=self.config.agraphPassword,
+            )
+            connection.addData(triples)
+            connection.close()
+            return "Triples successfully added"
+        except Exception as e:
+            return {"Error": e}
 
     def get(self, sparql_query: str) -> "Any":
         """Return the query result.
@@ -95,20 +98,24 @@ class TripleStore:
         connection = self.server.openSession(
             reason("<" + str(self.config.repositoryName) + ">")
         )
-        tuple_query = connection.prepareTupleQuery(query=sparql_query)
-        response = []
-        with tuple_query.evaluate(output_format=TupleFormat.JSON) as results:
-            for result in results:
-                triple_set = {}
-                if "'s': " in str(result):
-                    triple_set["s"] = str(result.getValue("s"))
-                if "'p': " in str(result):
-                    triple_set["p"] = str(result.getValue("p"))
-                if "'o': " in str(result):
-                    triple_set["o"] = str(result.getValue("o"))
-                response.append((triple_set))
-        connection.close()
-        return json.dumps(response)
+        try:
+            tuple_query = connection.prepareTupleQuery(query=sparql_query)
+            response = []
+        
+            with tuple_query.evaluate(output_format=TupleFormat.JSON) as results:
+                for result in results:
+                    triple_set = {}
+                    if "'s': " in str(result):
+                        triple_set["s"] = str(result.getValue("s"))
+                    if "'p': " in str(result):
+                        triple_set["p"] = str(result.getValue("p"))
+                    if "'o': " in str(result):
+                        triple_set["o"] = str(result.getValue("o"))
+                    response.append((triple_set))
+            connection.close()
+            return json.dumps(response)
+        except Exception as e:
+            return {"Error": e}
 
     def update_delete(self, sparql_query: str) -> None:
         """Remove and update triples.
@@ -121,14 +128,17 @@ class TripleStore:
             True if update was successful.
 
         """
-        connection = ag_connect(
-            self.config.repositoryName,
-            host=self.config.agraphHost,
-            port=self.config.agraphPort,
-            user=self.config.agraphUser,
-            password=self.config.agraphPassword,
-        )
-        update_query = connection.prepareUpdate(query=sparql_query)
-        response = update_query.evaluate()
-        connection.close()
-        return response
+        try :
+            connection = ag_connect(
+                self.config.repositoryName,
+                host=self.config.agraphHost,
+                port=self.config.agraphPort,
+                user=self.config.agraphUser,
+                password=self.config.agraphPassword,
+            )
+            update_query = connection.prepareUpdate(query=sparql_query)
+            response = update_query.evaluate()
+            connection.close()
+            return response
+        except Exception as e:
+            return {"Error": e}
