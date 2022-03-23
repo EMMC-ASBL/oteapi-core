@@ -174,13 +174,9 @@ class XLSXParseStrategy:
             A dict with column-name/column-value pairs. The values are lists.
 
         """
-        download_config = ResourceConfig(**self.parse_config.dict())
-        download_config.configuration = self.parse_config.configuration.download_config
-        downloader = create_strategy("download", download_config)
-        output = downloader.get()
 
         cache = DataCache(self.parse_config.configuration.datacache_config)
-        with cache.getfile(key=output["key"], suffix=".xlsx") as filename:
+        with cache.getfile(key=session["key"], suffix=".xlsx") as filename:
             # Note that we have to set read_only=False to ensure that
             # load_workbook() properly closes the xlsx file after reading.
             # Otherwise Windows will fail when the temporary file is removed
