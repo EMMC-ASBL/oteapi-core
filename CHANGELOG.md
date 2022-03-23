@@ -1,5 +1,33 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.5...HEAD)
+
+**Implemented enhancements:**
+
+- Create a triple store class [\#120](https://github.com/EMMC-ASBL/oteapi-core/issues/120)
+
+## [v0.1.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.5) (2022-03-23)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.4...v0.1.5)
+
+**Implemented enhancements:**
+
+- Fix pydantic model types according to default values [\#117](https://github.com/EMMC-ASBL/oteapi-core/issues/117)
+
+**Closed issues:**
+
+- Fix badge links in README [\#122](https://github.com/EMMC-ASBL/oteapi-core/issues/122)
+
+**Merged pull requests:**
+
+- Update README.md [\#134](https://github.com/EMMC-ASBL/oteapi-core/pull/134) ([quaat](https://github.com/quaat))
+- \[Auto-generated\] Update dependencies [\#130](https://github.com/EMMC-ASBL/oteapi-core/pull/130) ([TEAM4-0](https://github.com/TEAM4-0))
+- triplestore class which does add, delete/update and get mappings/triples [\#128](https://github.com/EMMC-ASBL/oteapi-core/pull/128) ([Treesarj](https://github.com/Treesarj))
+- Add links to badges in README [\#126](https://github.com/EMMC-ASBL/oteapi-core/pull/126) ([CasperWA](https://github.com/CasperWA))
+- Fix pydantic model type and default values [\#125](https://github.com/EMMC-ASBL/oteapi-core/pull/125) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.1.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.4) (2022-03-11)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.3...v0.1.4)
