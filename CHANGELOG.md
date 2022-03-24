@@ -1,5 +1,90 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.5...HEAD)
+
+**Implemented enhancements:**
+
+- Create a triple store class [\#120](https://github.com/EMMC-ASBL/oteapi-core/issues/120)
+
+## [v0.1.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.5) (2022-03-23)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.4...v0.1.5)
+
+**Implemented enhancements:**
+
+- Fix pydantic model types according to default values [\#117](https://github.com/EMMC-ASBL/oteapi-core/issues/117)
+
+**Closed issues:**
+
+- Fix badge links in README [\#122](https://github.com/EMMC-ASBL/oteapi-core/issues/122)
+
+**Merged pull requests:**
+
+- Update README.md [\#134](https://github.com/EMMC-ASBL/oteapi-core/pull/134) ([quaat](https://github.com/quaat))
+- \[Auto-generated\] Update dependencies [\#130](https://github.com/EMMC-ASBL/oteapi-core/pull/130) ([TEAM4-0](https://github.com/TEAM4-0))
+- triplestore class which does add, delete/update and get mappings/triples [\#128](https://github.com/EMMC-ASBL/oteapi-core/pull/128) ([Treesarj](https://github.com/Treesarj))
+- Add links to badges in README [\#126](https://github.com/EMMC-ASBL/oteapi-core/pull/126) ([CasperWA](https://github.com/CasperWA))
+- Fix pydantic model type and default values [\#125](https://github.com/EMMC-ASBL/oteapi-core/pull/125) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.1.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.4) (2022-03-11)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.3...v0.1.4)
+
+**Implemented enhancements:**
+
+- Support passing a dictionary as config to `create_strategy()` [\#123](https://github.com/EMMC-ASBL/oteapi-core/issues/123)
+
+**Merged pull requests:**
+
+- Using the `StrategyType` to deliver the `*Config` cls [\#124](https://github.com/EMMC-ASBL/oteapi-core/pull/124) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.1.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.3) (2022-03-10)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.2...v0.1.3)
+
+**Implemented enhancements:**
+
+- Move pytest fixtures into `oteapi` package [\#121](https://github.com/EMMC-ASBL/oteapi-core/issues/121)
+- Add `pop()` \(and possibly `popitem()`\) to `AttrDict` [\#118](https://github.com/EMMC-ASBL/oteapi-core/issues/118)
+- Allow to bind values added to the data cache to an object, such that they automatically will be remove when the object goes out of scope [\#114](https://github.com/EMMC-ASBL/oteapi-core/issues/114)
+- Add some badges to the README [\#91](https://github.com/EMMC-ASBL/oteapi-core/issues/91)
+
+**Fixed bugs:**
+
+- The image strategy puts binary data in the session [\#107](https://github.com/EMMC-ASBL/oteapi-core/issues/107)
+
+**Merged pull requests:**
+
+- Implement and test `pop()` and `popitem()` for AttrDict [\#119](https://github.com/EMMC-ASBL/oteapi-core/pull/119) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#116](https://github.com/EMMC-ASBL/oteapi-core/pull/116) ([TEAM4-0](https://github.com/TEAM4-0))
+- Allow to bind the lifetime of datacache values to the lifetime of the session [\#115](https://github.com/EMMC-ASBL/oteapi-core/pull/115) ([jesper-friis](https://github.com/jesper-friis))
+- Added mapping strategy [\#112](https://github.com/EMMC-ASBL/oteapi-core/pull/112) ([jesper-friis](https://github.com/jesper-friis))
+- Corrected the sql\_query\_filter. [\#110](https://github.com/EMMC-ASBL/oteapi-core/pull/110) ([jesper-friis](https://github.com/jesper-friis))
+- Store image data in datacache instead of session [\#108](https://github.com/EMMC-ASBL/oteapi-core/pull/108) ([jesper-friis](https://github.com/jesper-friis))
+- Update README [\#106](https://github.com/EMMC-ASBL/oteapi-core/pull/106) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.1.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.2) (2022-03-03)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.1...v0.1.2)
+
+**Implemented enhancements:**
+
+- Go through ignored dev tools comments [\#76](https://github.com/EMMC-ASBL/oteapi-core/issues/76)
+
+**Fixed bugs:**
+
+- Issue with `AttrDict.update()` for `AttrDict` subclasses [\#101](https://github.com/EMMC-ASBL/oteapi-core/issues/101)
+- GH GraphQL type issue in auto-merge workflow [\#96](https://github.com/EMMC-ASBL/oteapi-core/issues/96)
+
+**Merged pull requests:**
+
+- Update "ignore" statements [\#103](https://github.com/EMMC-ASBL/oteapi-core/pull/103) ([CasperWA](https://github.com/CasperWA))
+- Add test for AttrDict.update\(\) method [\#102](https://github.com/EMMC-ASBL/oteapi-core/pull/102) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#100](https://github.com/EMMC-ASBL/oteapi-core/pull/100) ([TEAM4-0](https://github.com/TEAM4-0))
+- Use `ID!` type instead of `String!` [\#97](https://github.com/EMMC-ASBL/oteapi-core/pull/97) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.1.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.1) (2022-02-24)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.0...v0.1.1)

@@ -2,19 +2,15 @@
 from typing import TYPE_CHECKING, Iterable, Mapping
 
 from pydantic import BaseModel, Field
+from pydantic.fields import Undefined
 
 if TYPE_CHECKING:
-    from typing import Any, Optional, Union
+    from typing import Any, Optional, Tuple, Union
 
 
 class AttrDict(BaseModel, Mapping):
     """An object whose attributes can also be accessed through
     subscription, like with a dictionary."""
-
-    class Config:
-        """Class for configuration of pydantic models."""
-
-        extra = "allow"
 
     def __contains__(self, name: "Any") -> bool:
         """Enable using the 'in' operator on this object."""
@@ -83,7 +79,7 @@ class AttrDict(BaseModel, Mapping):
         self, other: "Optional[Union[dict, AttrDict, Iterable[Any]]]" = None, **kwargs
     ) -> None:
         """MutableMapping `update`-method."""
-        if other and isinstance(other, (dict, self.__class__)):
+        if other and isinstance(other, (dict, Mapping)):
             for key, value in other.items():
                 setattr(self, key, value)
         elif other and isinstance(other, Iterable):
@@ -97,6 +93,54 @@ class AttrDict(BaseModel, Mapping):
         if kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def pop(self, key: str, default: "Optional[Any]" = Undefined) -> "Any":
+        """MutableMapping `pop`-method."""
+        value = self.get(key, default)
+        if value == Undefined:
+            raise KeyError(key)
+        if key in self:
+            del self[key]
+        return value
+
+    def popitem(self) -> "Tuple[str, Any]":
+        """MutableMapping `popitem`-method.
+
+        Important:
+            Unlike the regular `dict.popitem()` method, this one does _not_ respect
+            LIFO (last-in, first-out).
+            This is due to the fact that attributes are stored in a random order when
+            initializing the model.
+
+            However, it will respect LIFO with respect to the internal `__dict__`.
+
+        """
+        if not self:
+            raise KeyError(f"popitem(): {self.__class__.__name__} is empty")
+
+        key = list(self.__dict__)[-1]
+        value = self.pop(key)
+        return key, value
+
+    class Config:
+        """Pydantic configuration for `AttrDict`.
+
+        * **`extra`**
+          Allow any attributes/fields to be defined - this is what makes this pydantic
+          model an attribute dictionary.
+        * **`validate_assignment`**
+          Validate and cast set values.
+          This is mainly relevant for sub-classes of `AttrDict`, where specific
+          attributes have been defined.
+        * **`arbitrary_types_allowed`**
+          If a custom type is used for an attribute that doesn't have a `validate()`
+          method, don't fail setting the attribute.
+
+        """
+
+        extra = "allow"
+        validate_assignment = True
+        arbitrary_types_allowed = True
 
 
 class GenericConfig(BaseModel):
@@ -117,3 +161,19 @@ class GenericConfig(BaseModel):
     def __init_subclass__(cls) -> None:
         """Initialize subclass descriptions with their docstrings."""
         cls.__fields__["description"].default = cls.__doc__
+
+    class Config:
+        """Pydantic configuration for `GenericConfig`.
+
+        * **`validate_assignment`**
+          Validate and cast set values.
+          This is mainly relevant for sub-classes of `AttrDict`, where specific
+          attributes have been defined.
+        * **`arbitrary_types_allowed`**
+          If a custom type is used for an attribute that doesn't have a `validate()`
+          method, don't fail setting the attribute.
+
+        """
+
+        validate_assignment = True
+        arbitrary_types_allowed = True

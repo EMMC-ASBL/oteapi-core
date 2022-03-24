@@ -13,15 +13,23 @@ import importlib
 import re
 from collections import abc
 from enum import Enum
-from functools import lru_cache
 from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
 
+from oteapi.models import (
+    FilterConfig,
+    FunctionConfig,
+    MappingConfig,
+    ResourceConfig,
+    TransformationConfig,
+)
+
 if TYPE_CHECKING:  # pragma: no cover
     from importlib.metadata import EntryPoint
-    from typing import Any, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
+    from oteapi.models import StrategyConfig
 
 
 class EntryPointNotFound(Exception):
@@ -36,6 +44,7 @@ class StrategyType(Enum):
 
     - download
     - filter
+    - function
     - mapping
     - parse
     - resource
@@ -107,7 +116,6 @@ class StrategyType(Enum):
         return cls(value)
 
     @classmethod
-    @lru_cache
     def all_values(cls) -> "Tuple[str, ...]":
         """Return all values."""
         return tuple(strategy_type.value for strategy_type in cls)
@@ -117,6 +125,19 @@ class StrategyType(Enum):
 
     def __repr__(self) -> str:
         return repr(str(self))
+
+    @property
+    def config_cls(self) -> "Type[StrategyConfig]":
+        """Return the strategy-specific `*Config` class."""
+        return {  # type: ignore[return-value]
+            "download": ResourceConfig,
+            "filter": FilterConfig,
+            "function": FunctionConfig,
+            "mapping": MappingConfig,
+            "parse": ResourceConfig,
+            "resource": ResourceConfig,
+            "transformation": TransformationConfig,
+        }[self.value]
 
 
 class EntryPointStrategy:
@@ -459,14 +480,16 @@ class EntryPointStrategyCollection(abc.Collection):
         return hash(tuple(_ for _ in sorted(self._entry_points)))
 
     def __str__(self) -> str:
-        res = {}  # type: ignore[var-annotated]
-        for _ in self._entry_points:
-            if _.type.value in res:
-                res[_.type.value] += 1
+        number_of_strategies: "Dict[str, int]" = {}
+        for entry_point in self._entry_points:
+            if entry_point.type.value in number_of_strategies:
+                number_of_strategies[entry_point.type.value] += 1
             else:
-                res[_.type.value] = 1
-        res = sorted(f"{key} ({value})" for key, value in res.items())
-        return f"<{self.__class__.__name__}: " f"Strategies={', '.join(res)}>"
+                number_of_strategies[entry_point.type.value] = 1
+        sorted_list = sorted(
+            f"{key} ({value})" for key, value in number_of_strategies.items()
+        )
+        return f"<{self.__class__.__name__}: " f"Strategies={', '.join(sorted_list)}>"
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(*{tuple(sorted(self._entry_points))!r})"

@@ -84,6 +84,11 @@ class XLSXParseConfig(AttrDict):
 class XLSXParseResourceConfig(ResourceConfig):
     """XLSX parse strategy resource config."""
 
+    mediaType: str = Field(
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        const=True,
+        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    )
     configuration: XLSXParseConfig = Field(
         ..., description="SQLite parse strategy-specific configuration."
     )

@@ -179,6 +179,34 @@ def create_docs_index(_):
     replacement_mapping = [
         ("docs/", ""),
         ("(LICENSE)", "(LICENSE.md)"),
+        (
+            "scheme`](oteapi/models/resourceconfig.py)",
+            "scheme`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl]",
+        ),
+        (
+            "mediaType`](oteapi/models/resourceconfig.py)",
+            "mediaType`][oteapi.models.resourceconfig.ResourceConfig.mediaType]",
+        ),
+        (
+            "accessService`](oteapi/models/resourceconfig.py)",
+            "accessService`][oteapi.models.resourceconfig.ResourceConfig.accessService]",
+        ),
+        (
+            "(oteapi/models/filterconfig.py)",
+            "[oteapi.models.filterconfig.FilterConfig.filterType]",
+        ),
+        (
+            "(oteapi/models/functionconfig.py)",
+            "[oteapi.models.functionconfig.FunctionConfig.functionType]",
+        ),
+        (
+            "(oteapi/models/mappingconfig.py)",
+            "[oteapi.models.mappingconfig.MappingConfig.mappingType]",
+        ),
+        (
+            "(oteapi/models/transformationconfig.py)",
+            "[oteapi.models.transformationconfig.TransformationConfig.transformationType]",
+        ),
     ]
 
     for old, new in replacement_mapping:

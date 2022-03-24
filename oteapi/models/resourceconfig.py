@@ -1,9 +1,12 @@
 """Pydantic Resource Configuration Data Model."""
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import AnyUrl, Field, root_validator
 
 from oteapi.models.genericconfig import GenericConfig
+
+if TYPE_CHECKING:
+    from typing import Any, Dict
 
 
 class HostlessAnyUrl(AnyUrl):
@@ -76,12 +79,12 @@ class ResourceConfig(GenericConfig):
 
     @root_validator
     def ensure_unique_url_pairs(  # pylint: disable=no-self-use
-        cls, values: Dict[str, Any]
-    ) -> Dict[str, Any]:
-        """Ensure either downloadUrl/mediaType or accessUrl/accessService are
-        defined.
-        It's fine to define them all, but at least one complete pair MUST be
-        specified."""
+        cls, values: "Dict[str, Any]"
+    ) -> "Dict[str, Any]":
+        """Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.
+
+        It's fine to define them all, but at least one complete pair MUST be specified.
+        """
         if not (
             all(values.get(_) for _ in ["downloadUrl", "mediaType"])
             or all(values.get(_) for _ in ["accessUrl", "accessService"])

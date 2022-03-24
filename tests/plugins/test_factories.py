@@ -86,9 +86,11 @@ def test_load_strategies_fails(mock_importlib_entry_points: "MockEntryPoints") -
     load_strategies(test_for_uniqueness=False)
 
 
+@pytest.mark.parametrize("config_type", ["dict", "config_cls"])
 @pytest.mark.usefixtures("load_test_strategies")
 def test_create_strategy(
     get_strategy_config: "Callable[[Union[StrategyType, str]], Type[StrategyConfig]]",
+    config_type: str,
 ) -> None:
     """Test `StrategyFactory.make_strategy()`."""
     from oteapi.plugins.entry_points import StrategyType
@@ -97,37 +99,38 @@ def test_create_strategy(
     for strategy_type, collection in StrategyFactory.strategy_create_func.items():
         for entry_point in collection:
             try:
+                config = (
+                    get_strategy_config(strategy_type)(
+                        downloadUrl=(
+                            f"{entry_point.name}://example.org"
+                            if entry_point.type == StrategyType.DOWNLOAD
+                            else "https://example.org"
+                        ),
+                        mediaType=(
+                            entry_point.name
+                            if entry_point.type == StrategyType.PARSE
+                            else "text/html"
+                        ),
+                        accessUrl="https://example.org",
+                        accessService=(
+                            entry_point.name
+                            if entry_point.type == StrategyType.RESOURCE
+                            else "example.org"
+                        ),
+                    )
+                    if strategy_type
+                    in (
+                        StrategyType.DOWNLOAD,
+                        StrategyType.PARSE,
+                        StrategyType.RESOURCE,
+                    )
+                    else get_strategy_config(strategy_type)(
+                        **{entry_point.type.map_to_field(): entry_point.name}
+                    )
+                )
                 strategy = create_strategy(
                     strategy_type=strategy_type,
-                    config=(
-                        get_strategy_config(strategy_type)(
-                            downloadUrl=(
-                                f"{entry_point.name}://example.org"
-                                if entry_point.type == StrategyType.DOWNLOAD
-                                else "https://example.org"
-                            ),
-                            mediaType=(
-                                entry_point.name
-                                if entry_point.type == StrategyType.PARSE
-                                else "text/html"
-                            ),
-                            accessUrl="https://example.org",
-                            accessService=(
-                                entry_point.name
-                                if entry_point.type == StrategyType.RESOURCE
-                                else "example.org"
-                            ),
-                        )
-                        if strategy_type
-                        in (
-                            StrategyType.DOWNLOAD,
-                            StrategyType.PARSE,
-                            StrategyType.RESOURCE,
-                        )
-                        else get_strategy_config(strategy_type)(
-                            **{entry_point.type.map_to_field(): entry_point.name}
-                        )
-                    ),
+                    config=config.dict() if config_type == "dict" else config,
                 )
             except Exception:  # pylint: disable=broad-except
                 pytest.fail(

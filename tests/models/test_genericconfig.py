@@ -76,3 +76,67 @@ def test_attrdict() -> None:
     assert config.b == config["b"] == config.get("b") == data["b"]
 
     assert {**config} == data
+
+
+def test_attrdict_update() -> None:
+    """Test supplying `AttrDict.update()` with different (valid) types."""
+    from pydantic import Field
+
+    from oteapi.models.genericconfig import AttrDict
+
+    class SubAttrDict(AttrDict):
+        """1st level sub-class of AttrDict."""
+
+    class SubSubAttrDict(SubAttrDict):
+        """2nd level sub-class of AttrDict."""
+
+        test: SubAttrDict = Field(SubAttrDict())
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    update_data = {"a": 2, "c": "bar", "d": "baz", "test": {"key": "value"}}
+    final_data = data.copy()
+    final_data.update(update_data)
+
+    testing_types = (dict, AttrDict, SubAttrDict, SubSubAttrDict)
+    for original_type in testing_types:
+        for other_type in testing_types:
+            original = original_type(**data)
+            other = other_type(**update_data)
+            original.update(other)
+            assert {**original} == final_data
+
+
+def test_attrdict_pop_popitem() -> None:
+    """Test the `pop()` and `popitem()` methods for `AttrDict`."""
+    from oteapi.models.genericconfig import AttrDict
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    attrdict = AttrDict(**data)
+
+    popped_value = attrdict.pop("b")
+    assert popped_value == data["b"]
+    assert len(attrdict) == len(data) - 1
+
+    # Should follow LIFO (last-in, first-out) wrt `__dict__`
+    attrdict_keys = list(attrdict.__dict__)
+    last_entry = (attrdict_keys[-1], data[attrdict_keys[-1]])
+    popped_item = attrdict.popitem()
+    assert popped_item == last_entry
+    assert len(attrdict) == len(data) - 2
+
+    # Pop non-existing key with default value
+    assert attrdict.pop("d", None) is None
+    assert attrdict.pop("d", "some default value") == "some default value"
+
+    # Pop non-existing key without default value - should raise KeyError
+    with pytest.raises(KeyError, match=r"^'d'$"):
+        attrdict.pop("d")
+
+    # Only a single entry is left in attrdict, let's check
+    attrdict_keys = list(attrdict.__dict__)
+    last_entry = (attrdict_keys[-1], data[attrdict_keys[-1]])
+    assert attrdict.popitem() == last_entry
+
+    # Popitem - attrdict is empty, should raise KeyError
+    with pytest.raises(KeyError, match=r"^'popitem\(\): .* is empty'$"):
+        attrdict.popitem()
