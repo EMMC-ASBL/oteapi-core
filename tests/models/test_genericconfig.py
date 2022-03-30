@@ -163,9 +163,17 @@ def test_attrdict() -> None:
 
 def test_attrdict_update() -> None:
     """Test supplying `AttrDict.update()` with different (valid) types."""
-    from pydantic import Field
+    from pydantic import BaseModel, Field
 
     from oteapi.models.genericconfig import AttrDict
+
+    class Foo(BaseModel):
+        """Foo pydantic model."""
+
+        class Config:
+            """Foo pydantic config."""
+
+            extra = "allow"
 
     class SubAttrDict(AttrDict):
         """1st level sub-class of AttrDict."""
@@ -180,13 +188,17 @@ def test_attrdict_update() -> None:
     final_data = data.copy()
     final_data.update(update_data)
 
-    testing_types = (dict, AttrDict, SubAttrDict, SubSubAttrDict)
+    testing_types = dict, AttrDict, SubAttrDict, SubSubAttrDict
+    non_update_method_testing_types = testing_types + (Foo,)
     for original_type in testing_types:
-        for other_type in testing_types:
+        for other_type in non_update_method_testing_types:
             original = original_type(**data)
             other = other_type(**update_data)
             original.update(other)
-            assert {**original} == final_data
+            assert {**original} == final_data, (
+                f"original type: {original_type.__name__}, "
+                f"other type: {other_type.__name__}"
+            )
 
 
 def test_attrdict_pop_popitem() -> None:
