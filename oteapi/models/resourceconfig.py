@@ -5,7 +5,7 @@ from pydantic import AnyUrl, Field, root_validator
 
 from oteapi.models.genericconfig import GenericConfig
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 

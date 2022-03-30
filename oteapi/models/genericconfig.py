@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Iterable, Mapping
 from pydantic import BaseModel, Field
 from pydantic.fields import Undefined
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Tuple, Union
 
 

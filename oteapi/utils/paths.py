@@ -6,7 +6,7 @@ from urllib.parse import ParseResult, urlparse
 
 from pydantic import AnyUrl
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Union
 
 
