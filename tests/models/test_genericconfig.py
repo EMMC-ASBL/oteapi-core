@@ -11,9 +11,26 @@ if TYPE_CHECKING:
 @pytest.fixture
 def generic_config() -> "GenericConfig":
     """Return a usable `GenericConfig` for test purposes."""
-    from oteapi.models.genericconfig import GenericConfig
+    from pydantic import Field
 
-    return GenericConfig(
+    from oteapi.models.genericconfig import AttrDict, GenericConfig
+
+    class CustomConfiguration(AttrDict):
+        """A custom AttrDict class to use as `configuration` in CustomConfig."""
+
+        string: str = Field("")
+
+    class CustomConfig(GenericConfig):
+        """A CustomConfig class."""
+
+        configuration: CustomConfiguration = Field(
+            CustomConfiguration(),
+            description=GenericConfig.__fields__[
+                "configuration"
+            ].field_info.description,
+        )
+
+    return CustomConfig(
         configuration={
             "float": 3.14,
             "integer": 5,
@@ -41,18 +58,21 @@ def test_attribute_get_item(generic_config: "GenericConfig") -> None:
 
 
 def test_attribute_set(generic_config: "GenericConfig") -> None:
-    """Test configuration.__setitem__, and thus also
-    configuration.__setattr__.
+    """Test configuration.__setitem__, and thus also configuration.__setattr__.
 
-    Assign both a valid and an invalid value, to test dynamic
-    type-checking.
+    Assign different values to test dynamic type-casting.
+    If a field has been specified to have a specific type, the incoming value should be
+    cast to this type. However, if it is a non-specified type (similar to a standard
+    dict key/value-pair), then it should be fine to change the value type for that
+    given key.
+
     """
     generic_config.configuration["string"] = "bar"
-    try:
-        generic_config.configuration["string"] = 3.14
-        assert False
-    except TypeError:
-        pass
+    generic_config.configuration["string"] = 3.14
+    assert generic_config.configuration["string"] == str(3.14)
+
+    generic_config.configuration["float"] = "0"
+    assert generic_config.configuration["float"] == "0"
 
 
 def test_attribute_contains(generic_config: "GenericConfig") -> None:
