@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 @pytest.fixture
 def generic_config() -> "CustomConfig":
-    """Return a usable `GenericConfig` for test purposes."""
+    """Return a usable `CustomConfig` for test purposes."""
     from pydantic import Field
 
     from oteapi.models.genericconfig import AttrDict, GenericConfig
