@@ -1,5 +1,5 @@
 """Tests for `oteapi.models.genericconfig`"""
-# pylint: disable=no-member,pointless-statement,disallowed-name
+# pylint: disable=no-member
 from typing import TYPE_CHECKING
 
 import pytest
@@ -29,12 +29,13 @@ def generic_config() -> "CustomConfig":
         """A custom AttrDict class to use as `configuration` in CustomConfig."""
 
         string: str = Field("")
+        required_string: str = Field(...)
 
     class CustomConfig(GenericConfig):
         """A CustomConfig class."""
 
         configuration: CustomConfiguration = Field(
-            CustomConfiguration(),
+            CustomConfiguration(required_string=""),
             description=GenericConfig.__fields__[
                 "configuration"
             ].field_info.description,
@@ -45,6 +46,7 @@ def generic_config() -> "CustomConfig":
             "float": 3.14,
             "integer": 5,
             "string": "foo",
+            "required_string": "bar",
         }
     )
 
@@ -72,7 +74,9 @@ def test_attribute_get_item_fail(generic_config: "CustomConfig") -> None:
     non_existent_key = "non_existent_key"
     assert non_existent_key not in generic_config.configuration
     with pytest.raises(KeyError):
-        generic_config.configuration[non_existent_key]
+        generic_config.configuration[  # pylint: disable=pointless-statement
+            non_existent_key
+        ]
 
 
 def test_attribute_set(generic_config: "CustomConfig") -> None:
@@ -121,6 +125,8 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
 def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
+    from pydantic import ValidationError
+
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
     with pytest.raises(KeyError):
@@ -131,18 +137,22 @@ def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     del generic_config.configuration["string"]
     del generic_config.configuration["string"]
 
+    # Ensure `ValidationError` is raised if deleting a "required" field.
+    with pytest.raises(ValidationError):
+        del generic_config.configuration["required_string"]
+
 
 def test_attribute_ne(generic_config: "CustomConfig") -> None:
     """Test configuration.__ne__()."""
     from pydantic import BaseModel
 
-    class Foo(BaseModel):
-        """Foo pydantic model."""
+    class Test(BaseModel):
+        """Test pydantic model."""
 
-        foo: str
+        test: str
 
-    assert generic_config.configuration != Foo(foo="foo")
-    assert generic_config.configuration != {"foo": "foo"}
+    assert generic_config.configuration != Test(test="test")
+    assert generic_config.configuration != {"test": "test"}
     assert generic_config.configuration != 2
 
     copy_config = generic_config.configuration.copy(deep=True)
