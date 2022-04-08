@@ -9,7 +9,6 @@ from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Iterable
@@ -176,6 +175,8 @@ class XLSXParseStrategy:
         """
 
         cache = DataCache(self.parse_config.configuration.datacache_config)
+        if session is None:
+            raise ValueError("Missing session")
         with cache.getfile(key=session["key"], suffix=".xlsx") as filename:
             # Note that we have to set read_only=False to ensure that
             # load_workbook() properly closes the xlsx file after reading.
