@@ -2,11 +2,29 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.5...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.6...HEAD)
 
-**Implemented enhancements:**
+**Fixed bugs:**
 
-- Create a triple store class [\#120](https://github.com/EMMC-ASBL/oteapi-core/issues/120)
+- Setting attributes in `AttrDict` should be handled by pydantic [\#143](https://github.com/EMMC-ASBL/oteapi-core/issues/143)
+
+## [v0.1.6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.6) (2022-04-20)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.5...v0.1.6)
+
+**Closed issues:**
+
+- Add checklist for reviewers to all repositories. [\#137](https://github.com/EMMC-ASBL/oteapi-core/issues/137)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#149](https://github.com/EMMC-ASBL/oteapi-core/pull/149) ([TEAM4-0](https://github.com/TEAM4-0))
+- Modify excel parse [\#148](https://github.com/EMMC-ASBL/oteapi-core/pull/148) ([daniel-sintef](https://github.com/daniel-sintef))
+- \[Auto-generated\] Update dependencies [\#147](https://github.com/EMMC-ASBL/oteapi-core/pull/147) ([TEAM4-0](https://github.com/TEAM4-0))
+- Fix deleting entries in AttrDict [\#144](https://github.com/EMMC-ASBL/oteapi-core/pull/144) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#142](https://github.com/EMMC-ASBL/oteapi-core/pull/142) ([TEAM4-0](https://github.com/TEAM4-0))
+- Added PR template with checklist for reviewers. [\#139](https://github.com/EMMC-ASBL/oteapi-core/pull/139) ([francescalb](https://github.com/francescalb))
+- \[Auto-generated\] Update dependencies [\#136](https://github.com/EMMC-ASBL/oteapi-core/pull/136) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.5) (2022-03-23)
 
@@ -14,6 +32,7 @@
 
 **Implemented enhancements:**
 
+- Create a triple store class [\#120](https://github.com/EMMC-ASBL/oteapi-core/issues/120)
 - Fix pydantic model types according to default values [\#117](https://github.com/EMMC-ASBL/oteapi-core/issues/117)
 
 **Closed issues:**
