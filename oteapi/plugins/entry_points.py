@@ -328,7 +328,7 @@ class EntryPointStrategyCollection(abc.Collection):
         """Add entry points to the collection.
 
         Parameters:
-            entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
 
         """
         self._entry_points |= set(entry_points)
@@ -337,7 +337,8 @@ class EntryPointStrategyCollection(abc.Collection):
         """Remove entry points from the collection.
 
         Parameters:
-            entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the
+                collection.
 
         """
         self._entry_points -= set(entry_points)
@@ -346,7 +347,7 @@ class EntryPointStrategyCollection(abc.Collection):
         """Exclusively add entry points to the collection.
 
         Parameters:
-            entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
 
         Raises:
             KeyError: If an entry point to be added already exists in the collection.
