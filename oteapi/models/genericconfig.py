@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, Iterable, Mapping
 from pydantic import BaseModel, Field
 from pydantic.fields import Undefined
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Tuple, Union
 
 
@@ -17,34 +17,31 @@ class AttrDict(BaseModel, Mapping):
         return self.__dict__.__contains__(name)
 
     def __delitem__(self, key: str) -> None:
-        """Enable deletion access through subscription."""
-        if key in dir(self):
-            self.__delattr__(key)
+        """Enable deletion access through subscription.
+
+        If the item is a pydantic field, reset it and remove it from the set of set
+        fields. Otherwise, delete the attribute.
+
+        """
+        if key in self.__dict__:
             if key in self.__fields__:
-                del self.__fields__[key]
+                # Reset field to default and remove from set of set fields
+                setattr(self, key, self.__fields__[key].default)
                 self.__fields_set__.remove(key)  # pylint: disable=no-member
+            else:
+                self.__delattr__(key)
         else:
             raise KeyError(key)
 
     def __getitem__(self, key: str) -> "Any":
         """Enable read access through subscription."""
-        if key in dir(self):
+        if key in self.__dict__:
             return getattr(self, key)
         raise KeyError(key)
 
-    def __setattr__(self, name: str, value: "Any") -> None:
-        """Extend BaseModel.__setattr__ with type-checking."""
-        if name in self.__dict__ and self.__dict__[name]:
-            target_type = type(self.__dict__[name])
-            if not isinstance(value, target_type):
-                raise TypeError(
-                    "Mapped value must be subclass of " + target_type.__name__
-                )
-        super().__setattr__(name, value)
-
     def __setitem__(self, key: str, value: "Any") -> None:
         """Enable write access through subscription."""
-        self.__setattr__(key, value)
+        setattr(self, key, value)
 
     def __len__(self):
         """Return number of items."""
@@ -71,6 +68,7 @@ class AttrDict(BaseModel, Mapping):
         return self.__dict__.get(key, default)
 
     def __ne__(self, other: "Any") -> bool:
+        """Implement the != operator."""
         if isinstance(other, BaseModel):
             return self.dict() != other.dict()
         return self.dict() != other
@@ -81,6 +79,9 @@ class AttrDict(BaseModel, Mapping):
         """MutableMapping `update`-method."""
         if other and isinstance(other, (dict, Mapping)):
             for key, value in other.items():
+                setattr(self, key, value)
+        elif other and isinstance(other, BaseModel):
+            for key, value in other.dict().items():
                 setattr(self, key, value)
         elif other and isinstance(other, Iterable):
             for entry in other:
