@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/plugins/factories/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.9">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.13">
     
     
       
@@ -21,10 +21,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.120efc48.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e411adfe.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.9647289d.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
         
           
           
@@ -1425,13 +1425,12 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
 <span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies].&quot;&quot;&quot;</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
           </details>
 
 
@@ -1482,7 +1481,7 @@ in-memory cache of all registered strategies.</p></td>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 22</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 22</span>
 <span class="normal"> 23</span>
 <span class="normal"> 24</span>
 <span class="normal"> 25</span>
@@ -1607,7 +1606,7 @@ in-memory cache of all registered strategies.</p></td>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
-<span class="normal">147</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyFactory</span><span class="p">:</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyFactory</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Decorator-based Factory class.</span>
 
 <span class="sd">    Attributes:</span>
@@ -1733,8 +1732,7 @@ in-memory cache of all registered strategies.</p></td>
             <span class="p">)</span>
             <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
         <span class="p">}</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
           </details>
 
 
@@ -1823,7 +1821,7 @@ strategy name.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
 <span class="normal"> 96</span>
 <span class="normal"> 97</span>
 <span class="normal"> 98</span>
@@ -1844,7 +1842,7 @@ strategy name.</p>
 <span class="normal">113</span>
 <span class="normal">114</span>
 <span class="normal">115</span>
-<span class="normal">116</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">_get_strategy_name</span><span class="p">(</span>
     <span class="bp">cls</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;StrategyConfig&quot;</span><span class="p">,</span>
@@ -1866,8 +1864,7 @@ strategy name.</p>
     <span class="k">if</span> <span class="n">strategy_type</span> <span class="o">==</span> <span class="n">StrategyType</span><span class="o">.</span><span class="n">DOWNLOAD</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># type: ignore[union-attr]  # pylint: disable=line-too-long</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">map_to_field</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
         </details>
     </div>
 
@@ -1952,7 +1949,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
@@ -1981,7 +1978,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
-<span class="normal">147</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
 
@@ -2011,8 +2008,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
         <span class="p">)</span>
         <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
     <span class="p">}</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
         </details>
     </div>
 
@@ -2133,7 +2129,7 @@ enumeration for a definition of valid strategy types.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
@@ -2193,7 +2189,7 @@ enumeration for a definition of valid strategy types.</p></td>
 <span class="normal">90</span>
 <span class="normal">91</span>
 <span class="normal">92</span>
-<span class="normal">93</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">make_strategy</span><span class="p">(</span>
     <span class="bp">cls</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
@@ -2254,8 +2250,7 @@ enumeration for a definition of valid strategy types.</p></td>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span>
     <span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
         </details>
     </div>
 
@@ -2346,7 +2341,7 @@ for a definition of valid strategy types.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
@@ -2363,7 +2358,7 @@ for a definition of valid strategy types.</p></td>
 <span class="normal">179</span>
 <span class="normal">180</span>
 <span class="normal">181</span>
-<span class="normal">182</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">create_strategy</span><span class="p">(</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_strategy</span><span class="p">(</span>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IStrategy&quot;</span><span class="p">:</span>
@@ -2381,8 +2376,7 @@ for a definition of valid strategy types.</p></td>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
         </details>
     </div>
 
@@ -2435,7 +2429,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
@@ -2447,7 +2441,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
-<span class="normal">162</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># pylint: disable=line-too-long</span>
     <span class="sd">&quot;&quot;&quot;Proxy function for</span>
 <span class="sd">    [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].</span>
@@ -2460,8 +2454,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+</code></pre></div></td></tr></table></div>
         </details>
     </div>
 
@@ -2563,7 +2556,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.6e54b5cd.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
       
     
   </body>
