@@ -78,9 +78,7 @@ class ResourceConfig(GenericConfig):
     )
 
     @root_validator
-    def ensure_unique_url_pairs(  # pylint: disable=no-self-use
-        cls, values: "Dict[str, Any]"
-    ) -> "Dict[str, Any]":
+    def ensure_unique_url_pairs(cls, values: "Dict[str, Any]") -> "Dict[str, Any]":
         """Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.
 
         It's fine to define them all, but at least one complete pair MUST be specified.
