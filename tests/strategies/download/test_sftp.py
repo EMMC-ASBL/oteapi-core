@@ -1,5 +1,4 @@
 """Tests the download strategy for 'sftp://'."""
-# pylint: disable=no-self-use
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
