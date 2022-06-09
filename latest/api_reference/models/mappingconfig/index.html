@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/mappingconfig/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
     
     
       
@@ -21,15 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#795649">
         
+      
       
     
     
@@ -1356,14 +1357,15 @@
 <h1 id="mappingconfig">mappingconfig<a class="headerlink" href="#mappingconfig" title="Permanent link">&para;</a></h1>
 
 
-  <div class="doc doc-object doc-module">
+<div class="doc doc-object doc-module">
+
 
 <a id="oteapi.models.mappingconfig"></a>
-    <div class="doc doc-contents first">
-
+  <div class="doc doc-contents first">
+  
       <p>Pydantic Mapping Configuration Data Model.</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1372,52 +1374,49 @@
 
 
 
-  <div class="doc doc-object doc-attribute">
+
+<div class="doc doc-object doc-attribute">
 
 
 
 <h2 id="oteapi.models.mappingconfig.RDFTriple" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">RDFTriple</span> <span class="o">=</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.mappingconfig.RDFTriple" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-
-    </div>
-
+  <div class="doc doc-contents ">
   </div>
 
+</div>
 
 
-
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.models.mappingconfig.MappingConfig" class="doc doc-heading">
-          <code>MappingConfig</code>
-
+        <code>MappingConfig</code>
 
 
 <a href="#oteapi.models.mappingconfig.MappingConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-        <p class="doc doc-class-bases">
-          Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
 
-
+  
       <p>Mapping Strategy Data Configuration.</p>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/mappingconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/models/mappingconfig.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1453,9 +1452,9 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of RDF triples given as (subject, predicate, object).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1464,71 +1463,63 @@
 
 
 
-  <div class="doc doc-object doc-attribute">
+
+<div class="doc doc-object doc-attribute">
 
 
 
 <h3 id="oteapi.models.mappingconfig.MappingConfig.mappingType" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">mappingType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered mapping strategy.&#39;</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.mappingconfig.MappingConfig.mappingType" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
-    </div>
-
+  <div class="doc doc-contents ">
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-attribute">
+<div class="doc doc-object doc-attribute">
 
 
 
 <h3 id="oteapi.models.mappingconfig.MappingConfig.prefixes" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">prefixes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of shortnames that expands to an IRI given as local value/IRI-expansion-pairs.&#39;</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.mappingconfig.MappingConfig.prefixes" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
-    </div>
-
+  <div class="doc doc-contents ">
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-attribute">
+<div class="doc doc-object doc-attribute">
 
 
 
 <h3 id="oteapi.models.mappingconfig.MappingConfig.triples" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">triples</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of RDF triples given as (subject, predicate, object).&#39;</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
   </span>
 
 <a href="#oteapi.models.mappingconfig.MappingConfig.triples" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
-    </div>
-
+  <div class="doc doc-contents ">
   </div>
 
-
+</div>
 
 
 
@@ -1536,27 +1527,26 @@
 
   </div>
 
-    </div>
+  </div>
+
+</div>
+
+
+
 
   </div>
 
-
-
-
-
-
   </div>
 
-    </div>
-
-  </div>
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
@@ -1565,7 +1555,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../genericconfig/" class="md-footer__link md-footer__link--prev" aria-label="Previous: genericconfig" rel="prev">
@@ -1634,10 +1625,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f758a944.min.js"></script>
       
     
   </body>

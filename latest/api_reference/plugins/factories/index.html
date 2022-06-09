@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/plugins/factories/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
     
     
       
@@ -21,15 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.3de6f41f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#795649">
         
+      
       
     
     
@@ -758,13 +759,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.plugins.factories.StrategyFactory._get_strategy_name" class="md-nav__link">
-    _get_strategy_name()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="md-nav__link">
     load_strategies()
   </a>
@@ -1328,13 +1322,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.plugins.factories.StrategyFactory._get_strategy_name" class="md-nav__link">
-    _get_strategy_name()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="md-nav__link">
     load_strategies()
   </a>
@@ -1384,15 +1371,16 @@
 <h1 id="factories">factories<a class="headerlink" href="#factories" title="Permanent link">&para;</a></h1>
 
 
-  <div class="doc doc-object doc-module">
+<div class="doc doc-object doc-module">
+
 
 <a id="oteapi.plugins.factories"></a>
-    <div class="doc doc-contents first">
-
+  <div class="doc doc-contents first">
+  
       <p>Factory class for registering and creating strategy instances.</p>
 <p>Factory wrapper methods for creating the individual strategies.</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1402,59 +1390,55 @@
 
 
 
-  <div class="doc doc-object doc-class">
+
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.plugins.factories.StrategiesNotLoaded" class="doc doc-heading">
-          <code>StrategiesNotLoaded</code>
-
+        <code>StrategiesNotLoaded</code>
 
 
 <a href="#oteapi.plugins.factories.StrategiesNotLoaded" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-        <p class="doc doc-class-bases">
-          Bases: <code>Exception</code></p>
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>Exception</code></p>
 
-
+  
       <p>Entry point strategies have not been loaded, run
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.load_strategies"><code>load_strategies()</code></a>.</p>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
 <span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies].&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-
-
-    </div>
+        </details>
 
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.plugins.factories.StrategyFactory" class="doc doc-heading">
-          <code>StrategyFactory</code>
-
+        <code>StrategyFactory</code>
 
 
 <a href="#oteapi.plugins.factories.StrategyFactory" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
+  <div class="doc doc-contents ">
 
-
+  
       <p>Decorator-based Factory class.</p>
 
   <p><strong>Attributes:</strong></p>
@@ -1479,9 +1463,9 @@ in-memory cache of all registered strategies.</p></td>
   </table>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 22</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 22</span>
 <span class="normal"> 23</span>
 <span class="normal"> 24</span>
 <span class="normal"> 25</span>
@@ -1733,9 +1717,9 @@ in-memory cache of all registered strategies.</p></td>
             <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
         <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1747,147 +1731,22 @@ in-memory cache of all registered strategies.</p></td>
 
 
 
-  <div class="doc doc-object doc-function">
-
-
-
-<h3 id="oteapi.plugins.factories.StrategyFactory._get_strategy_name" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">_get_strategy_name</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
-      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
-  </span>
-
-<a href="#oteapi.plugins.factories.StrategyFactory._get_strategy_name" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-      <p>Return the strategy name through the config.</p>
-<p>This is a method to accommodate strategy type-specific quirks to retrieve the
-strategy name.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>config</code></td>
-          <td>
-                <code>&#39;StrategyConfig&#39;</code>
-          </td>
-          <td><p>A strategy configuration.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>strategy_type</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a></code>
-          </td>
-          <td><p>The strategy type as initialized in <code>make_strategy()</code>.</p></td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code>str</code>
-          </td>
-          <td><p>The strategy name provided in the configuration.</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
-<span class="k">def</span> <span class="nf">_get_strategy_name</span><span class="p">(</span>
-    <span class="bp">cls</span><span class="p">,</span>
-    <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;StrategyConfig&quot;</span><span class="p">,</span>
-    <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Return the strategy name through the config.</span>
-
-<span class="sd">    This is a method to accommodate strategy type-specific quirks to retrieve the</span>
-<span class="sd">    strategy name.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        config: A strategy configuration.</span>
-<span class="sd">        strategy_type: The strategy type as initialized in `make_strategy()`.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        The strategy name provided in the configuration.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">strategy_type</span> <span class="o">==</span> <span class="n">StrategyType</span><span class="o">.</span><span class="n">DOWNLOAD</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span> <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># type: ignore[union-attr]  # pylint: disable=line-too-long</span>
-    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">map_to_field</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.plugins.factories.StrategyFactory.load_strategies" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
 
 <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Load strategies from entry points and store in class attribute.</p>
 
 <details class="important">
@@ -1947,9 +1806,9 @@ duplicated strategy and the duplicates will be ignored.</p></td>
     </tbody>
   </table>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
@@ -2009,29 +1868,27 @@ duplicated strategy and the duplicates will be ignored.</p></td>
         <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
-
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.plugins.factories.StrategyFactory.make_strategy" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span></code>
-
-  <span class="doc doc-properties">
+  
+  <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
 
 <a href="#oteapi.plugins.factories.StrategyFactory.make_strategy" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Instantiate a strategy in a context class.</p>
 
   <p><strong>Parameters:</strong></p>
@@ -2127,9 +1984,9 @@ enumeration for a definition of valid strategy types.</p></td>
     </tbody>
   </table>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
@@ -2251,37 +2108,32 @@ enumeration for a definition of valid strategy types.</p></td>
         <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
+      </details>
+  </div>
+
+</div>
+
+
 
   </div>
 
-
-
-
-
   </div>
 
-    </div>
-
-  </div>
+</div>
 
 
-
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h2 id="oteapi.plugins.factories.create_strategy" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">create_strategy</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.plugins.factories.create_strategy" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Proxy function for
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.make_strategy"><code>StrategyFactory.make_strategy()</code></a>.</p>
 
@@ -2339,9 +2191,9 @@ for a definition of valid strategy types.</p></td>
     </tbody>
   </table>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
@@ -2377,26 +2229,23 @@ for a definition of valid strategy types.</p></td>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
-
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h2 id="oteapi.plugins.factories.load_strategies" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.plugins.factories.load_strategies" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Proxy function for
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.load_strategies"><code>StrategyFactory.load_strategies()</code></a>.</p>
 
@@ -2427,9 +2276,9 @@ duplicated strategy and the duplicates will be ignored.</p></td>
     </tbody>
   </table>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
@@ -2455,27 +2304,26 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
+      </details>
+  </div>
+
+</div>
+
+
 
   </div>
 
-
-
-
-
   </div>
 
-    </div>
-
-  </div>
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
@@ -2484,7 +2332,8 @@ duplicated strategy and the duplicates will be ignored.</p></td>
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../entry_points/" class="md-footer__link md-footer__link--prev" aria-label="Previous: entry_points" rel="prev">
@@ -2553,10 +2402,10 @@ duplicated strategy and the duplicates will be ignored.</p></td>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.f758a944.min.js"></script>
       
     
   </body>

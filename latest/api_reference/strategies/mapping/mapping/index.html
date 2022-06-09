@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/mapping/mapping/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
     
     
       
@@ -21,15 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#795649">
         
+      
       
     
     
@@ -1344,14 +1345,15 @@
 <h1 id="mapping">mapping<a class="headerlink" href="#mapping" title="Permanent link">&para;</a></h1>
 
 
-  <div class="doc doc-object doc-module">
+<div class="doc doc-object doc-module">
+
 
 <a id="oteapi.strategies.mapping.mapping"></a>
-    <div class="doc doc-contents first">
-
+  <div class="doc doc-contents first">
+  
       <p>Mapping filter strategy.</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1361,29 +1363,29 @@
 
 
 
-  <div class="doc doc-object doc-class">
+
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="doc doc-heading">
-          <code>MappingSessionUpdate</code>
-
+        <code>MappingSessionUpdate</code>
 
 
 <a href="#oteapi.strategies.mapping.mapping.MappingSessionUpdate" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-        <p class="doc doc-class-bases">
-          Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
 
-
+  
       <p>SessionUpdate model for mappings.</p>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
@@ -1411,9 +1413,9 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of semantic triples given as (subject, predicate, object).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1427,30 +1429,26 @@
 
 
 
+  </div>
 
   </div>
 
-    </div>
+</div>
 
-  </div>
-
-
-
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.strategies.mapping.mapping.MappingStrategy" class="doc doc-heading">
-          <code>MappingStrategy</code>
-
+        <code>MappingStrategy</code>
 
 
 <a href="#oteapi.strategies.mapping.mapping.MappingStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
+  <div class="doc doc-contents ">
 
-
+  
       <p>Strategy for a mapping.</p>
 <p>The mapping strategy simply adds more prefixes and triples to the
 <code>prefixes</code> and <code>triples</code> fields in the session such that they are
@@ -1463,9 +1461,9 @@ between data models.</p>
 </ul>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
@@ -1537,9 +1535,9 @@ between data models.</p>
         <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1551,54 +1549,50 @@ between data models.</p>
 
 
 
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.strategies.mapping.mapping.MappingStrategy.get" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Execute strategy and return a dictionary.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
-
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.strategies.mapping.mapping.MappingStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Initialize strategy.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/strategies/mapping/mapping.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
@@ -1624,38 +1618,35 @@ between data models.</p>
 
     <span class="k">return</span> <span class="n">MappingSessionUpdate</span><span class="p">(</span><span class="n">prefixes</span><span class="o">=</span><span class="n">prefixes</span><span class="p">,</span> <span class="n">triples</span><span class="o">=</span><span class="n">triples</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
+      </details>
+  </div>
+
+</div>
+
+
 
   </div>
 
-
-
-
-
   </div>
 
-    </div>
-
-  </div>
-
-
+</div>
 
 
 
 
   </div>
 
-    </div>
-
   </div>
+
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
@@ -1664,7 +1655,8 @@ between data models.</p>
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../../filter/sql_query_filter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: sql_query_filter" rel="prev">
@@ -1733,10 +1725,10 @@ between data models.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.f758a944.min.js"></script>
       
     
   </body>

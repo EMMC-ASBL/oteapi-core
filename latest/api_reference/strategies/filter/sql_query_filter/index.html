@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/filter/sql_query_filter/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.3">
     
     
       
@@ -21,15 +21,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3de6f41f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4a0965b7.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#795649">
         
+      
       
     
     
@@ -1358,14 +1359,15 @@
 <h1 id="sql_query_filter">sql_query_filter<a class="headerlink" href="#sql_query_filter" title="Permanent link">&para;</a></h1>
 
 
-  <div class="doc doc-object doc-module">
+<div class="doc doc-object doc-module">
+
 
 <a id="oteapi.strategies.filter.sql_query_filter"></a>
-    <div class="doc doc-contents first">
-
+  <div class="doc doc-contents first">
+  
       <p>SQL query filter strategy.</p>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1375,21 +1377,21 @@
 
 
 
-  <div class="doc doc-object doc-class">
+
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.strategies.filter.sql_query_filter.SQLQueryFilter" class="doc doc-heading">
-          <code>SQLQueryFilter</code>
-
+        <code>SQLQueryFilter</code>
 
 
 <a href="#oteapi.strategies.filter.sql_query_filter.SQLQueryFilter" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
+  <div class="doc doc-contents ">
 
-
+  
       <p>Strategy for a SQL query filter.</p>
 <p><strong>Registers strategies</strong>:</p>
 <ul>
@@ -1397,9 +1399,9 @@
 </ul>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
@@ -1443,9 +1445,9 @@
         <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1457,54 +1459,50 @@
 
 
 
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.get" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Execute strategy and return a dictionary.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
-
+      </details>
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-function">
+<div class="doc doc-object doc-function">
 
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.initialize" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
-
 <a href="#oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-    <div class="doc doc-contents ">
-
+  <div class="doc doc-contents ">
+  
       <p>Initialize strategy.</p>
 
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+      <details class="quote">
+        <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
@@ -1516,46 +1514,41 @@
     <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
-    </div>
+      </details>
+  </div>
+
+</div>
+
+
 
   </div>
 
-
-
-
-
   </div>
 
-    </div>
+</div>
 
-  </div>
-
-
-
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="doc doc-heading">
-          <code>SessionUpdateSqlQuery</code>
-
+        <code>SessionUpdateSqlQuery</code>
 
 
 <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-        <p class="doc doc-class-bases">
-          Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
 
-
+  
       <p>Class for returning values from SQL Query data model.</p>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
@@ -1563,9 +1556,9 @@
 
     <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1581,35 +1574,32 @@
 
   </div>
 
-    </div>
-
   </div>
 
+</div>
 
-
-  <div class="doc doc-object doc-class">
+<div class="doc doc-object doc-class">
 
 
 
 <h2 id="oteapi.strategies.filter.sql_query_filter.SqlQueryFilterConfig" class="doc doc-heading">
-          <code>SqlQueryFilterConfig</code>
-
+        <code>SqlQueryFilterConfig</code>
 
 
 <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryFilterConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-    <div class="doc doc-contents ">
-        <p class="doc doc-class-bases">
-          Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.FilterConfig" href="../../../../all_models/#oteapi.models.FilterConfig">FilterConfig</a></code></p>
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.FilterConfig" href="../../../../all_models/#oteapi.models.FilterConfig">FilterConfig</a></code></p>
 
-
+  
       <p>SQLite query filter strategy filter config.</p>
 
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+        <details class="quote">
+          <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -1627,9 +1617,9 @@
     <span class="p">)</span>
     <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
+        </details>
 
-
+  
 
   <div class="doc doc-children">
 
@@ -1643,30 +1633,28 @@
 
 
 
+  </div>
 
   </div>
 
-    </div>
-
-  </div>
-
-
+</div>
 
 
 
 
   </div>
 
-    </div>
-
   </div>
+
+</div>
 
               
             </article>
+            
           </div>
         </div>
         
-          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
             Back to top
           </a>
@@ -1675,7 +1663,8 @@
       
         <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
         <a href="../crop_filter/" class="md-footer__link md-footer__link--prev" aria-label="Previous: crop_filter" rel="prev">
@@ -1744,10 +1733,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.b028fd86.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.c2e1ee47.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.f758a944.min.js"></script>
       
     
   </body>
