@@ -65,13 +65,13 @@ jobs:
         pip install safety
 
     - name: Run pylint
-      run: pylint --rcfile=.pylintrc --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' -- *.py oteapi
+      run: pylint --rcfile=.pylintrc --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
 
     - name: Run pylint - oteapi/strategies
-      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=R,C -- oteapi/strategies
+      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
 
     - name: Run pylint - tests
-      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621 -- tests
+      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621 tests
 
     # Ignore ID 44715 for now.
     # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
