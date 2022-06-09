@@ -1,5 +1,5 @@
 pre-commit~=2.19
-pylint~=2.13
+pylint~=2.14
 pytest~=7.1
 pytest-cov~=3.0
 requests-mock~=1.9

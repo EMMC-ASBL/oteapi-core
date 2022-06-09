@@ -1,5 +1,5 @@
 """Resource test strategy class."""
-# pylint: disable=unused-argument,no-self-use
+# pylint: disable=unused-argument
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
