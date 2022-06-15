@@ -79,9 +79,6 @@ plugins:
             docstring_style: google
           #   docstring_options:
           #     replace_admonitions: true
-          # setup_commands:
-          #   - import os
-          #   - os.environ["MKDOCS_BUILD"] = "1"
       watch:
         - oteapi
   - awesome-pages
