@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/plugins/factories/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.7">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.3.8">
     
     
       
@@ -21,7 +21,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.4a0965b7.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1d29e8d0.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -1905,7 +1905,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
         <tr>
           <td><code>config</code></td>
           <td>
-                <code>&#39;Union[StrategyConfig, Dict[str, Any]]&#39;</code>
+                <code>Union[StrategyConfig, Dict[str, Any]]</code>
           </td>
           <td><p>A strategy configuration.</p></td>
           <td>
@@ -1915,7 +1915,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
         <tr>
           <td><code>strategy_type</code></td>
           <td>
-                <code>&#39;Union[StrategyType, str]&#39;</code>
+                <code>Union[StrategyType, str]</code>
           </td>
           <td><p>The strategy type, e.g., <code>"scheme"</code>, <code>"mediaType"</code>, ... or
 <code>"download"</code>, <code>"parse"</code>, ...
@@ -1971,13 +1971,13 @@ enumeration for a definition of valid strategy types.</p></td>
     <tbody>
         <tr>
           <td>
-                <code>&#39;IStrategy&#39;</code>
+                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
           <td><p>An instantiated strategy. The strategy is instantiated with the provided</p></td>
         </tr>
         <tr>
           <td>
-                <code>&#39;IStrategy&#39;</code>
+                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
           <td><p>configuration, through the <code>config</code> parameter.</p></td>
         </tr>
@@ -2151,7 +2151,7 @@ enumeration for a definition of valid strategy types.</p></td>
         <tr>
           <td><code>strategy_type</code></td>
           <td>
-                <code>&#39;Union[StrategyType, str]&#39;</code>
+                <code>Union[StrategyType, str]</code>
           </td>
           <td><p>A valid strategy type.
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a> enumeration
@@ -2163,7 +2163,7 @@ for a definition of valid strategy types.</p></td>
         <tr>
           <td><code>config</code></td>
           <td>
-                <code>&#39;Union[StrategyConfig, Dict[str, Any]]&#39;</code>
+                <code>Union[StrategyConfig, Dict[str, Any]]</code>
           </td>
           <td><p>A strategy configuration.</p></td>
           <td>
@@ -2184,7 +2184,7 @@ for a definition of valid strategy types.</p></td>
     <tbody>
         <tr>
           <td>
-                <code>&#39;IStrategy&#39;</code>
+                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
           <td><p>The created strategy.</p></td>
         </tr>
