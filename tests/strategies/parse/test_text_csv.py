@@ -32,13 +32,25 @@ csv_sample_files = [
     ),
     (
         "sample2.csv",
-        {"dialect": {"skipinitialspace": True, "quoting": "QUOTE_NONNUMERIC"}},
+        {
+            "dialect": {
+                "skipinitialspace": True,
+                "quoting": "QUOTE_NONNUMERIC",
+                "base": "excel",
+            }
+        },
         ["Name", "Team", "Position", "Height(inches)", "Weight(lbs)", "Age"],
         [str] * 3 + [int] * 2 + [float],
     ),
     (
         "sample3.csv",
-        {"dialect": {"skipinitialspace": True, "quoting": "QUOTE_NONNUMERIC"}},
+        {
+            "dialect": {
+                "skipinitialspace": True,
+                "quoting": "QUOTE_NONNUMERIC",
+                "base": "unix",
+            }
+        },
         ["Game Number", "Game Length"],
         [int] * 2,
     ),
@@ -127,3 +139,40 @@ def test_csv(
                         f"\nfield: {field}\nindex: {index}\nrow: {row}\nparsed: "
                         f"{parsed_content[field][index]!r}"
                     )
+
+
+def test_csv_dialect_enum_fails() -> None:
+    """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
+    import csv
+    from pathlib import Path
+
+    from pydantic import ValidationError
+
+    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.strategies.parse.text_csv import CSVParseStrategy
+
+    non_existant_dialect = "test"
+    available_dialects = csv.list_dialects()
+
+    assert non_existant_dialect not in available_dialects, (
+        "What we thought was true, was false. "
+        "What we thought was right, was wrong. "
+        "These things are a mystery beyond me now."
+    )
+
+    config = ResourceConfig(
+        downloadUrl=Path(__name__).resolve().as_uri(),
+        mediaType="text/csv",
+        configuration={"dialect": {"base": non_existant_dialect}},
+    )
+
+    with pytest.raises(ValidationError) as exception:
+        CSVParseStrategy(config)
+
+    assert (
+        "value is not a valid enumeration member; permitted: "
+        f"{', '.join(repr(dialect) for dialect in available_dialects)} "
+        "(type=type_error.enum; enum_values=["
+        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # pylint: disable=line-too-long
+        "])"
+    ) in exception.exconly()

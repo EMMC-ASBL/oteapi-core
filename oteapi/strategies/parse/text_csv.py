@@ -3,7 +3,7 @@
 import csv
 from collections import defaultdict
 from enum import Enum
-from typing import Any, Hashable, Optional, Union
+from typing import Any, Hashable, Optional, Type, Union
 
 from pydantic import BaseModel, Field, validator
 from pydantic.dataclasses import dataclass
@@ -31,6 +31,20 @@ class QuoteConstants(str, Enum):
         }[self]
 
 
+# mypy is unable to recognize a DictComprehension for the 2nd arg.
+CSVDialect: Type[Enum] = Enum(  # type: ignore[misc]
+    value="CSVDialect",
+    names={dialect.upper(): dialect for dialect in csv.list_dialects()},
+    module=__name__,
+    type=str,
+)
+"""CSV dialects.
+
+All available dialects are retrieved through the `csv.list_dialects()` function,
+and will thus depend on the currently loaded and used Python interpreter.
+"""
+
+
 class DialectFormatting(BaseModel):
     """Dialect and formatting parameters for CSV.
 
@@ -43,7 +57,7 @@ class DialectFormatting(BaseModel):
 
     """
 
-    base: Optional[str] = Field(
+    base: Optional[CSVDialect] = Field(
         None,
         description=(
             "A specific CSV dialect, e.g., 'excel'. Any other parameters here will "
@@ -264,7 +278,7 @@ class CSVParseStrategy:
 
             dialect = self.parse_config.configuration.dialect.base
             if dialect:
-                kwargs["dialect"] = dialect
+                kwargs["dialect"] = dialect.value
             quoting = self.parse_config.configuration.dialect.quoting
             if quoting:
                 kwargs["quoting"] = quoting.csv_constant()
