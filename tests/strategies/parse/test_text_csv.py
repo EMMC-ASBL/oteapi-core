@@ -144,7 +144,6 @@ def test_csv(
 def test_csv_dialect_enum_fails() -> None:
     """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
     import csv
-    from pathlib import Path
 
     from pydantic import ValidationError
 
@@ -161,7 +160,7 @@ def test_csv_dialect_enum_fails() -> None:
     )
 
     config = ResourceConfig(
-        downloadUrl=Path(__name__).resolve().as_uri(),
+        downloadUrl="file:///test.csv",
         mediaType="text/csv",
         configuration={"dialect": {"base": non_existant_dialect}},
     )
