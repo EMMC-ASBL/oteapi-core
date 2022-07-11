@@ -1,16 +1,37 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.2.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.0) (2022-07-04)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.6...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.6...v0.2.0)
+
+**Implemented enhancements:**
+
+- Implement the CSV parse strategy [\#159](https://github.com/EMMC-ASBL/oteapi-core/issues/159)
 
 **Fixed bugs:**
 
-- Setting attributes in `AttrDict` should be handled by pydantic [\#143](https://github.com/EMMC-ASBL/oteapi-core/issues/143)
+- Problems accessing configurations' fields [\#113](https://github.com/EMMC-ASBL/oteapi-core/issues/113)
+
+**Closed issues:**
+
+- Add VIPCOAT and OpenModel to acknowledgements on all repositories. [\#133](https://github.com/EMMC-ASBL/oteapi-core/issues/133)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#165](https://github.com/EMMC-ASBL/oteapi-core/pull/165) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#163](https://github.com/EMMC-ASBL/oteapi-core/pull/163) ([TEAM4-0](https://github.com/TEAM4-0))
+- CSV parse strategy [\#160](https://github.com/EMMC-ASBL/oteapi-core/pull/160) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#155](https://github.com/EMMC-ASBL/oteapi-core/pull/155) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#152](https://github.com/EMMC-ASBL/oteapi-core/pull/152) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#150](https://github.com/EMMC-ASBL/oteapi-core/pull/150) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.6) (2022-04-20)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.5...v0.1.6)
+
+**Fixed bugs:**
+
+- Setting attributes in `AttrDict` should be handled by pydantic [\#143](https://github.com/EMMC-ASBL/oteapi-core/issues/143)
 
 **Closed issues:**
 
