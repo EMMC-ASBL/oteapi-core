@@ -1,6 +1,23 @@
 # Changelog
 
-## [v0.2.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.0) (2022-07-04)
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.2.1...HEAD)
+
+**Fixed bugs:**
+
+- `filter/crop` not loading properly [\#170](https://github.com/EMMC-ASBL/oteapi-core/issues/170)
+
+## [v0.2.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.1) (2022-07-20)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.2.0...v0.2.1)
+
+**Merged pull requests:**
+
+- Test and fix registered strategies [\#171](https://github.com/EMMC-ASBL/oteapi-core/pull/171) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#169](https://github.com/EMMC-ASBL/oteapi-core/pull/169) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.2.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.0) (2022-07-11)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.1.6...v0.2.0)
 
