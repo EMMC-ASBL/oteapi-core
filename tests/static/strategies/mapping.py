@@ -1,19 +1,20 @@
 """Mapping test strategy class."""
 # pylint: disable=unused-argument
-from dataclasses import dataclass
 from typing import TYPE_CHECKING
+
+from pydantic.dataclasses import dataclass
+
+from oteapi.models import MappingConfig
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
-
-    from oteapi.models import MappingConfig
 
 
 @dataclass
 class MappingTestStrategy:
     """Test mapping strategy."""
 
-    mapping_config: "MappingConfig"
+    mapping_config: MappingConfig
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None

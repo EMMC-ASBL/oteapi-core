@@ -188,7 +188,7 @@ def test_invalid_module(
     package = "test"
     invalid_module = "this_module_does_not_exist"
     invalid_class = "Test"
-    valid_module = "tests.static.strategies.download"
+    valid_module = "download"
     entry_points = f"""\
 oteapi.download =
   {package}.http = {valid_module}:{invalid_class}

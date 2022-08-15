@@ -69,7 +69,7 @@ repos:
     - id: pylint-tests
       name: pylint - tests
       entry: pylint
-      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621"]
+      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error"]
       language: python
       types: [python]
       require_serial: true
