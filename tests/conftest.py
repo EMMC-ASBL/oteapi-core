@@ -165,3 +165,12 @@ def static_files() -> "Path":
     from pathlib import Path
 
     return (Path(__file__).resolve().parent / "static").resolve()
+
+
+@pytest.fixture(autouse=True)
+def add_mock_strategies_to_path() -> None:
+    """Add test strategies to global PATH."""
+    import sys
+    from pathlib import Path
+
+    sys.path.append(str(Path(__file__).resolve().parent))

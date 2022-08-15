@@ -93,6 +93,8 @@ def test_create_strategy(
     config_type: str,
 ) -> None:
     """Test `StrategyFactory.make_strategy()`."""
+    import traceback
+
     from oteapi.plugins.entry_points import StrategyType
     from oteapi.plugins.factories import StrategyFactory, create_strategy
 
@@ -135,7 +137,7 @@ def test_create_strategy(
             except Exception:  # pylint: disable=broad-except
                 pytest.fail(
                     f"Failed to create strategy. strategy_type={strategy_type} "
-                    f"entry_point={entry_point}"
+                    f"entry_point={entry_point}\n\n{traceback.format_exc()}"
                 )
             assert hasattr(strategy, f"{strategy_type.value}_config")
 

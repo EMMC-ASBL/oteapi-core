@@ -58,20 +58,20 @@ def load_test_strategies(
     """Load all strategies under `tests/static/strategies/`."""
     setup_cfg = """\
 oteapi.download =
-  oteapi_tests.http = tests.static.strategies.download:DownloadTestStrategy
-  oteapi_tests.https = tests.static.strategies.download:DownloadTestStrategy
+  oteapi_tests.http = static.strategies.download:DownloadTestStrategy
+  oteapi_tests.https = static.strategies.download:DownloadTestStrategy
 oteapi.filter =
-  oteapi_tests.query_parameters = tests.static.strategies.filter:FilterTestStrategy
+  oteapi_tests.query_parameters = static.strategies.filter:FilterTestStrategy
 oteapi.function =
-  oteapi_tests.render = tests.static.strategies.function:FunctionTestStrategy
+  oteapi_tests.render = static.strategies.function:FunctionTestStrategy
 oteapi.mapping =
-  oteapi_tests.html = tests.static.strategies.mapping:MappingTestStrategy
+  oteapi_tests.html = static.strategies.mapping:MappingTestStrategy
 oteapi.parse =
-  oteapi_tests.text/html = tests.static.strategies.parse:ParseTestStrategy
+  oteapi_tests.text/html = static.strategies.parse:ParseTestStrategy
 oteapi.resource =
-  oteapi_tests.example = tests.static.strategies.resource:ResourceTestStrategy
+  oteapi_tests.example = static.strategies.resource:ResourceTestStrategy
 oteapi.transformation =
-  oteapi_tests.render = tests.static.strategies.transformation:TransformationTestStrategy
+  oteapi_tests.render = static.strategies.transformation:TransformationTestStrategy
 """
     entry_points = create_importlib_entry_points(setup_cfg)
     mock_importlib_entry_points(entry_points)
