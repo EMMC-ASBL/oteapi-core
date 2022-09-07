@@ -27,7 +27,7 @@ repos:
       args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
 
   - repo: https://github.com/ambv/black
-    rev: 22.6.0
+    rev: 22.8.0
     hooks:
     - id: black
 
