@@ -16,8 +16,6 @@ We highly recommend reading this page in [the official documentation](https://em
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
 
 It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
-We provide a set of abstract interfaces for strategies and data models used in their configuration. 
-This repo also contains implementations for several standard strategies, e.g., downloading files, parsing Excel documents.
 Semantic interoperability is supported via mapping of data models describing the data to ontologies.
 Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
