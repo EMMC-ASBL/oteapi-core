@@ -1,19 +1,14 @@
 """Strategy class for application/vnd.postgresql"""
 # pylint: disable=unused-argument
-from typing import TYPE_CHECKING, Optional
-from urllib.parse import urlparse
+from typing import Any, Dict, Optional
+from urllib.parse import urlunparse
 
 import psycopg
-from pydantic import Field
+from pydantic import AnyUrl, Field, parse_obj_as, root_validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-from oteapi.models.resourceconfig import HostlessAnyUrl
 
-from typing import Optional, Any, Dict
-from pydantic import  Field, AnyUrl, root_validator, parse_obj_as
-from urllib.parse import urlparse, urlunparse
-from oteapi.models import AttrDict, ResourceConfig
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
@@ -27,47 +22,47 @@ class PostgresConfig(AttrDict):
 
 
 class PostgresResourceConfig(ResourceConfig):
-    """ Postgresql parse strategy config """
+    """Postgresql parse strategy config"""
 
     configuration: PostgresConfig = Field(
         PostgresConfig(),
         description=(
-            "Configuration for resource. "
-            "Values in the accessURL take precedence."),
+            "Configuration for resource. " "Values in the accessURL take precedence."
+        ),
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
     )
 
-
     @classmethod
     def _urlconstruct(
-        cls, # PEP8 - Always use cls for the first argument to class methods.
-        scheme : Optional[str] = '', # Schema defining link format
-        user : Optional[str] = None, # Username
-        password : Optional[str] = None, # Password
-        host : Optional[str] = None, 
-        port : Optional[int] = None, 
-        path : Optional[str] = '', 
-        params : Optional[str] = '', 
-        query : Optional[str] = '', 
-        fragment : Optional[str] = ''):
+        cls,  # PEP8 - Always use cls for the first argument to class methods.
+        scheme: Optional[str] = "",  # Schema defining link format
+        user: Optional[str] = None,  # Username
+        password: Optional[str] = None,  # Password
+        host: Optional[str] = None,
+        port: Optional[int] = None,
+        path: Optional[str] = "",
+        params: Optional[str] = "",
+        query: Optional[str] = "",
+        fragment: Optional[str] = "",
+    ):
 
-        """ Construct a pydantic AnyUrl based on the given URL properties """
+        """Construct a pydantic AnyUrl based on the given URL properties"""
 
         # Hostname should always be given
         if not host:
-            raise Exception('hostname must be specified')
+            raise Exception("hostname must be specified")
 
         # Update netloc of username or username|password pair is defined
         netloc = host
-        if user and not password: # Only username is provided. OK
+        if user and not password:  # Only username is provided. OK
             netloc = f"{user}@{host}"
-        elif user and password: # Username and password is provided. OK
+        elif user and password:  # Username and password is provided. OK
             netloc = f"{user}:{password}@{host}"
         else:  # Password and no username is provided. ERROR
-            raise Exception('username not provided')
+            raise Exception("username not provided")
 
         # Append port if port is defined
         netloc = netloc if not port else f"{netloc}:{port}"
@@ -80,40 +75,39 @@ class PostgresResourceConfig(ResourceConfig):
 
     @root_validator
     def adjust_url(cls, values):
-        """ Root Validator         
-        Verifies configuration consistency, merge configurations 
+        """Root Validator
+        Verifies configuration consistency, merge configurations
         and update the accessUrl property.
         """
 
         # Copy model-state into placeholders
-        config = values.get('configuration')
-        accessUrl = values['accessUrl']        
+        config = values.get("configuration")
+        accessUrl = values["accessUrl"]
 
         # Check and merge user configuration
-        user = accessUrl.user if accessUrl.user else config['user']
-        if config['user'] and user != config['user']:            
+        user = accessUrl.user if accessUrl.user else config["user"]
+        if config["user"] and user != config["user"]:
             raise ValueError("mismatching username in accessUrl and configuration")
 
         # Check and merge password configuration
-        password = accessUrl.password if accessUrl.password else config['password']
-        if config['password'] and password != config['password']:            
-            raise ValueError("mismatching password in accessUrl and configuration") 
+        password = accessUrl.password if accessUrl.password else config["password"]
+        if config["password"] and password != config["password"]:
+            raise ValueError("mismatching password in accessUrl and configuration")
 
         # Check and merge database name configuration
-        dbname = accessUrl.path if accessUrl.path else config['dbname']       
-        if config['dbname'] and dbname != config['dbname']:
-            raise ValueError("mismatching dbname in accessUrl and configuration") 
+        dbname = accessUrl.path if accessUrl.path else config["dbname"]
+        if config["dbname"] and dbname != config["dbname"]:
+            raise ValueError("mismatching dbname in accessUrl and configuration")
 
         # Reconstruct accessUrl from the updated properties
-        values['accessUrl'] = cls._urlconstruct(
-            scheme = accessUrl.scheme, 
-            host = accessUrl.host, 
-            port = accessUrl.port, 
-            user=user, 
-            password=password)     
+        values["accessUrl"] = cls._urlconstruct(
+            scheme=accessUrl.scheme,
+            host=accessUrl.host,
+            port=accessUrl.port,
+            user=user,
+            password=password,
+        )
         return values
-
-
 
 
 def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connection:
@@ -148,8 +142,7 @@ class PostgresResourceStrategy:
 
     **Registers strategies**:
 
-    #TODO: replace with the 'correct' information
-    - `("mediaType", "application/vnd.postgres")`
+    - `("accessService", "postgres")`
 
     Purpose of this strategy: Connect to a postgres DB and run a
     SQL query on the dbname to return all relevant rows.
