@@ -1,5 +1,5 @@
-ase
 agraph-python>=101.0.7,<102
+ase
 celery>=5.2.3,<6
 diskcache>=5.4.0,<6
 fastapi-plugins~=0.11.0
