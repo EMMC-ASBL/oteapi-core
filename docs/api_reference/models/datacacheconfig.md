@@ -1,5 +1,5 @@
 # datacacheconfig
 
 ::: oteapi.models.datacacheconfig
-    rendering:
+    options:
       show_if_no_docstring: true
