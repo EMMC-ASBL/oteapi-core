@@ -8,80 +8,56 @@ on:
       - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
 
 jobs:
+  basic_tests:
+    name: External
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v1
+    with:
+      # pre-commit
+      run_pre-commit: true
+      python_version_pre-commit: "3.9"
+      install_extras: "[dev]"
+      skip_pre-commit_hooks: pylint,pylint-strategies,pylint-tests
 
-  pre-commit:
-    runs-on: ubuntu-latest
-    # timeout-minutes: 2
+      # pylint & safety
+      python_version_pylint_safety: "3.9"
 
-    steps:
-    - uses: actions/checkout@v3
+      run_pylint: true
+      pylint_runs: |
+        --rcfile=.pylintrc --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
+        --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
+        --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
 
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
+      run_safety: true
+      # Ignore ID 44715 for now.
+      # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
+      safety_options: --ignore=44715
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -U setuptools wheel
+      # Build package
+      run_build_package: true
+      python_vesion_package: "3.9"
+      build_cmd: "python -m build"
 
-        while IFS="" read -r line || [ -n "${line}" ]; do
-          if [[ "${line}" =~ ^pre-commit.*$ ]]; then
-            pre_commit="${line}"
-          fi
-        done < requirements_dev.txt
-
-        while IFS="" read -r line || [ -n "${line}" ]; do
-          if [[ "${line}" =~ ^invoke.*$ ]]; then
-            invoke="${line}"
-          fi
-        done < requirements_docs.txt
-
-        pip install ${pre_commit} ${invoke}
-
-    - name: Test with pre-commit
-      run: SKIP=pylint,pylint-strategies,pylint-tests pre-commit run --all-files
-
-  pylint-safety:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
-
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      run: |
-        python -m pip install -U pip
-        pip install -U setuptools wheel
-        pip install -U -r requirements.txt -r requirements_dev.txt -r requirements_docs.txt
-        pip install -e .
-        pip install safety
-
-    - name: Run pylint
-      run: pylint --rcfile=.pylintrc --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
-
-    - name: Run pylint - oteapi/strategies
-      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
-
-    - name: Run pylint - tests
-      run: pylint --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
-
-    # Ignore ID 44715 for now.
-    # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
-    - name: Run safety
-      run: pip freeze | safety check --stdin --ignore 44715
+      # Build documentation
+      run_build_docs: true
+      python_version_docs: "3.9"
+      update_python_api_ref: true
+      update_docs_landing_page: true
+      package_dirs: oteapi
+      full_docs_dirs: models
+      landing_page_replacements: |
+        (LICENSE),(LICENSE.md)
+        scheme`](oteapi/models/resourceconfig.py),scheme`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl]
+        mediaType`](oteapi/models/resourceconfig.py),mediaType`][oteapi.models.resourceconfig.ResourceConfig.mediaType]
+        accessService`](oteapi/models/resourceconfig.py),accessService`][oteapi.models.resourceconfig.ResourceConfig.accessService]
+        (oteapi/models/filterconfig.py),[oteapi.models.filterconfig.FilterConfig.filterType]
+        (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
+        (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
+        (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
+      warnings_as_errors: true
 
   pytest:
     name: pytest (${{ matrix.os[1] }}-py${{ matrix.python-version }})
     runs-on: ${{ matrix.os[0] }}
-    # timeout-minutes: 15
 
     strategy:
       fail-fast: false
@@ -142,48 +118,3 @@ jobs:
       with:
         files: coverage.xml
         flags: ${{ matrix.os[1] }}-extra_libs
-
-  build-package:
-    name: Build distribution package
-    runs-on: ubuntu-latest
-    # timeout-minutes: 5
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Install dependencies
-        run: |
-          python -m pip install -U pip
-          pip install -U setuptools wheel build
-
-      - name: Check building distribution
-        run: python -m build
-
-  docs:
-    name: Documentation
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
-
-    - uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install dependencies
-      run: |
-        python -m pip install -U pip
-        pip install -U setuptools wheel
-        pip install -e .[docs]
-
-    - name: Build
-      run: |
-        invoke create-api-reference-docs --pre-clean
-        invoke create-docs-index
-        mkdocs build
