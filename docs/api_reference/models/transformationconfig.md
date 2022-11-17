@@ -1,5 +1,5 @@
 # transformationconfig
 
 ::: oteapi.models.transformationconfig
-    rendering:
+    options:
       show_if_no_docstring: true

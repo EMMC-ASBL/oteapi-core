@@ -86,7 +86,7 @@ def create_api_reference_docs(context, pre_clean=False, pre_commit=False):
     pages_template = 'title: "{name}"\n'
     md_template = "# {name}\n\n::: {py_path}\n"
     models_template = (
-        md_template + f"{' ' * 4}rendering:\n{' ' * 6}show_if_no_docstring: true\n"
+        md_template + f"{' ' * 4}options:\n{' ' * 6}show_if_no_docstring: true\n"
     )
 
     if docs_api_ref_dir.exists() and pre_clean:
