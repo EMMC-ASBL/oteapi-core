@@ -53,7 +53,7 @@ jobs:
         (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
-      warnings_as_errors: true
+      warnings_as_errors: false
 
   pytest:
     name: pytest (${{ matrix.os[1] }}-py${{ matrix.python-version }})
