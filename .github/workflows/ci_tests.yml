@@ -34,7 +34,7 @@ jobs:
 
       # Build package
       run_build_package: true
-      python_vesion_package: "3.9"
+      python_version_package: "3.9"
       build_cmd: "python -m build"
 
       # Build documentation
