@@ -12,6 +12,12 @@ class AttrDict(BaseModel, Mapping):
     """An object whose attributes can also be accessed through
     subscription, like with a dictionary."""
 
+    # Ensure that AttrDict can be weakref'ed.
+    #
+    # This also exclude creation of the "__dict__" attribute which may save
+    # space and improve spead.
+    __slots__ = ("__weakref__",)
+
     def __contains__(self, name: "Any") -> bool:
         """Enable using the 'in' operator on this object."""
         return self.__dict__.__contains__(name)
