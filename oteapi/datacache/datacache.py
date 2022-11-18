@@ -95,7 +95,7 @@ class DataCache:
 
     def __init__(
         self,
-        config: "Union[DataCacheConfig, Dict[str, Any]]" = None,
+        config: "Optional[Union[DataCacheConfig, Dict[str, Any]]]" = None,
         cache_dir: "Optional[Union[Path, str]]" = None,
     ) -> None:
         if config is None:
