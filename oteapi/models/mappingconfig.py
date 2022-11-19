@@ -18,7 +18,7 @@ class MappingConfig(GenericConfig):
     prefixes: Optional[Dict[str, str]] = Field(
         None,
         description=(
-            "List of shortnames that expands to an IRI given as local "
+            "Dictionary of shortnames that expands to an IRI given as local "
             "value/IRI-expansion-pairs."
         ),
     )
