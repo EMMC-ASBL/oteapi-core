@@ -2,192 +2,192 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/CHANGELOG/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/LICENSE/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/all_models/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/all_strategies/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/datacache/datacache/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/idownloadstrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/ifilterstrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/ifunctionstrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/imappingstrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/iparsestrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/iresourcestrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/interfaces/itransformationstrategy/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/datacacheconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/filterconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/functionconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/genericconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/mappingconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/resourceconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/sessionupdate/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/transformationconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/models/triplestoreconfig/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/plugins/entry_points/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/plugins/factories/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/download/file/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/download/https/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/download/sftp/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/filter/crop_filter/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/filter/sql_query_filter/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/mapping/mapping/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/parse/application_json/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/parse/application_vnd_sqlite/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/parse/excel_xlsx/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/parse/image/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/parse/text_csv/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/strategies/transformation/celery_remote/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/triplestore/triplestore/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://EMMC-ASBL.github.io/oteapi-core/latest/api_reference/utils/paths/</loc>
-         <lastmod>2022-11-16</lastmod>
+         <lastmod>2022-11-21</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
