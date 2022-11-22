@@ -5,124 +5,29 @@ on:
     types:
     - published
 
-env:
-  PUBLISH_UPDATE_BRANCH: master
-  GIT_USER_NAME: "TEAM 4.0[bot]"
-  GIT_USER_EMAIL: "Team4.0@SINTEF.no"
-
 jobs:
-
-  update-and-publish:
-    name: Update CHANGELOG and version and publish to PyPI
-    runs-on: ubuntu-latest
+  publish:
+    name: External
+    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v1
     if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v')
+    with:
+      # General
+      git_username: "TEAM 4.0[bot]"
+      git_email: "Team4.0@SINTEF.no"
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      # Publish to PyPI
+      python_package: true
+      package_dirs: oteapi
+      release_branch: master
+      python_version_build: "3.9"
+      install_extras: "[dev]"
+      build_cmd: "python -m build"
+      publish_on_pypi: true
 
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install Python dependencies
-      run: |
-        python -m pip install -U pip
-        pip install -U setuptools wheel build
-        pip install -U -e .[dev]
-
-    - name: Update changelog
-      uses: CharMixer/auto-changelog-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        release_branch: ${{ env.PUBLISH_UPDATE_BRANCH }}
-
-    - name: Set up git user
-      run: |
-        git config --global user.name "${GIT_USER_NAME}"
-        git config --global user.email "${GIT_USER_EMAIL}"
-
-    - name: Update version and tag
-      run: |
-        invoke setver --ver="${GITHUB_REF#refs/tags/}"
-
-        git add oteapi/__init__.py CHANGELOG.md
-        git commit -m "Release ${GITHUB_REF#refs/tags/} - Changelog"
-
-        TAG_MSG=.github/utils/release_tag_msg.txt
-        sed -i "s|TAG_NAME|${GITHUB_REF#refs/tags/}|" "${TAG_MSG}"
-        git tag -af -F "${TAG_MSG}" ${GITHUB_REF#refs/tags/}
-
-    - name: Update '${{ env.PUBLISH_UPDATE_BRANCH }}'
-      uses: CasperWA/push-protected@v2
-      with:
-        token: ${{ secrets.RELEASE_PAT }}
-        branch: ${{ env.PUBLISH_UPDATE_BRANCH }}
-        sleep: 15
-        force: true
-        tags: true
-        unprotect_reviews: true
-
-    - name: Get tagged versions
-      run: echo "PREVIOUS_VERSION=$(git tag -l --sort -version:refname | sed -n 2p)" >> $GITHUB_ENV
-
-    - name: Create release-specific changelog
-      uses: CharMixer/auto-changelog-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        release_branch: ${{ env.PUBLISH_UPDATE_BRANCH }}
-        since_tag: "${{ env.PREVIOUS_VERSION }}"
-        output: "release_changelog.md"
-
-    - name: Append changelog to release body
-      run: |
-        gh api /repos/${{ github.repository }}/releases/${{ github.event.release.id }} --jq '.body' > release_body.md
-        cat release_changelog.md >> release_body.md
-        gh api /repos/${{ github.repository }}/releases/${{ github.event.release.id }} -X PATCH -F body='@release_body.md'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Build source distribution
-      run: python -m build
-
-    - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.5.1
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-
-  docs:
-    name: Deploy release documentation
-    needs: update-and-publish
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        ref: ${{ env.PUBLISH_UPDATE_BRANCH }}
-
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
-
-    - name: Install Python dependencies
-      run: |
-        python -m pip install -U pip
-        pip install -U setuptools wheel
-        pip install -U -e .[docs]
-
-    - name: Set up git user
-      run: |
-        git config --global user.name "${{ env.GIT_USER_NAME }}"
-        git config --global user.email "${{ env.GIT_USER_EMAIL }}"
-
-    - name: Deploy documentation
-      run: |
-        mike deploy --push --remote origin --branch gh-pages --update-aliases --config-file mkdocs.yml ${GITHUB_REF#refs/tags/v} stable
-        mike deploy --push --remote origin --branch gh-pages --update-aliases --config-file mkdocs.yml latest ${{ env.PUBLISH_UPDATE_BRANCH }}
+      # Documentation
+      update_docs: true
+      python_version_docs: "3.9"
+      doc_extras: "[docs]"
+    secrets:
+      PyPI_token: ${{ secrets.PYPI_TOKEN }}
+      PAT: ${{ secrets.RELEASE_PAT }}
