@@ -15,7 +15,7 @@ class AttrDict(BaseModel, Mapping):
     # Ensure that AttrDict can be weakref'ed.
     #
     # This also exclude creation of the "__dict__" attribute which may save
-    # space and improve spead.
+    # space and improve speed.
     __slots__ = ("__weakref__",)
 
     def __contains__(self, name: "Any") -> bool:
