@@ -1,5 +1,5 @@
 # genericconfig
 
 ::: oteapi.models.genericconfig
-    rendering:
+    options:
       show_if_no_docstring: true
