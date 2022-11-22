@@ -1,5 +1,5 @@
 # resourceconfig
 
 ::: oteapi.models.resourceconfig
-    rendering:
+    options:
       show_if_no_docstring: true
