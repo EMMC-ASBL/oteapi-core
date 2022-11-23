@@ -1,5 +1,5 @@
 # mappingconfig
 
 ::: oteapi.models.mappingconfig
-    rendering:
+    options:
       show_if_no_docstring: true

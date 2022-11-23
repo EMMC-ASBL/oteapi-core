@@ -1,4 +1,0 @@
-TAG_NAME
-
-The full release changelog can be seen in the
-[repository source file](https://github.com/EMMC-ASBL/oteapi-core/blob/TAG_NAME/CHANGELOG.md).
