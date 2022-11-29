@@ -76,6 +76,10 @@ class ResourceConfig(GenericConfig):
         None,
         description="The entity responsible for making the resource/item available.",
     )
+    secret: Optional[str] = Field(
+        None,
+        description="Authorization secret given when running a transformation.",
+    )
 
     @root_validator
     def ensure_unique_url_pairs(cls, values: "Dict[str, Any]") -> "Dict[str, Any]":
