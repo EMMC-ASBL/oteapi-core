@@ -48,7 +48,7 @@ repos:
       - "pydantic"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: dccbe6948d8d8ca90abf68c119b2a5e0e68ac6c6  # frozen: v1
+    rev: v2.0.0
     hooks:
     - id: docs-api-reference
       args:
