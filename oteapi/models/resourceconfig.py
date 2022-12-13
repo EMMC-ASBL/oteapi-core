@@ -1,7 +1,7 @@
 """Pydantic Resource Configuration Data Model."""
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import AnyUrl, Field, root_validator
+from pydantic import AnyUrl, Field, SecretStr, root_validator
 
 from oteapi.models.genericconfig import GenericConfig
 
@@ -76,9 +76,9 @@ class ResourceConfig(GenericConfig):
         None,
         description="The entity responsible for making the resource/item available.",
     )
-    secret: Optional[str] = Field(
+    secret: Optional[SecretStr] = Field(
         None,
-        description="Authorization secret given when running a transformation.",
+        description="Authorization secret given when accessing a resource.",
     )
 
     @root_validator
