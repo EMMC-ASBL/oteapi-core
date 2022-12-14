@@ -718,6 +718,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#oteapi.models.resourceconfig.ResourceConfig.secret" class="md-nav__link">
+    secret
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="md-nav__link">
     ensure_unique_url_pairs()
   </a>
@@ -1425,6 +1432,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#oteapi.models.resourceconfig.ResourceConfig.secret" class="md-nav__link">
+    secret
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="md-nav__link">
     ensure_unique_url_pairs()
   </a>
@@ -1645,7 +1659,11 @@
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
@@ -1705,6 +1723,10 @@
     <span class="n">publisher</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The entity responsible for making the resource/item available.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when accessing a resource.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="nd">@root_validator</span>
@@ -1868,6 +1890,25 @@
 
 </div>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.models.resourceconfig.ResourceConfig.secret" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Authorization secret given when accessing a resource.&#39;</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
+
+<a href="#oteapi.models.resourceconfig.ResourceConfig.secret" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
 
 
 <div class="doc doc-object doc-function">
@@ -1887,11 +1928,7 @@
 
       <details class="quote">
         <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
@@ -1901,7 +1938,11 @@
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 

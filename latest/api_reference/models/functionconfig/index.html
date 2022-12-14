@@ -613,6 +613,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig.secret" class="md-nav__link">
+    secret
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1293,6 +1300,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#oteapi.models.functionconfig.FunctionConfig.secret" class="md-nav__link">
+    secret
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1356,18 +1370,28 @@
 
         <details class="quote">
           <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Type of registered function strategy.&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when executing a function.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1394,6 +1418,25 @@
   </span>
 
 <a href="#oteapi.models.functionconfig.FunctionConfig.functionType" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="oteapi.models.functionconfig.FunctionConfig.secret" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Authorization secret given when executing a function.&#39;</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+  </span>
+
+<a href="#oteapi.models.functionconfig.FunctionConfig.secret" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">

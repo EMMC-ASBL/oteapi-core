@@ -2500,18 +2500,28 @@ a configuration object.</p>
 
         <details class="quote">
           <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FunctionConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Function Strategy Data Configuration.&quot;&quot;&quot;</span>
 
     <span class="n">functionType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Type of registered function strategy.&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when executing a function.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -2908,7 +2918,11 @@ a configuration object.</p>
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
@@ -2969,6 +2983,10 @@ a configuration object.</p>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The entity responsible for making the resource/item available.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when accessing a resource.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
     <span class="nd">@root_validator</span>
     <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
@@ -3017,11 +3035,7 @@ a configuration object.</p>
 
       <details class="quote">
         <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
@@ -3031,7 +3045,11 @@ a configuration object.</p>
 <span class="normal">91</span>
 <span class="normal">92</span>
 <span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
@@ -3161,7 +3179,7 @@ a configuration object.</p>
         <span class="n">ProcessPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Define the process priority of the transformation execution.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when running a transformation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>

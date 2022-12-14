@@ -1776,7 +1776,7 @@ method.</p>
         <span class="n">ProcessPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Define the process priority of the transformation execution.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Authorization secret given when running a transformation.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -1855,7 +1855,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.secret" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Authorization secret given when running a transformation.&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Authorization secret given when running a transformation.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
