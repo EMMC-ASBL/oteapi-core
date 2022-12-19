@@ -21,10 +21,10 @@ def test_mapping() -> None:
             "map": "http://emmo.info/domain-mappings#",
             "onto": "http://example.com/0.1/Myonto#",
         },
-        triples=[
+        triples=set(
             ("http://onto-ns.com/meta/1.0/Bar#a", "map:mapsTo", "onto:A"),
             ("http://onto-ns.com/meta/1.0/Bar#d", "map:mapsTo", "onto:D"),
-        ],
+        ),
     )
 
     all_prefixes = {}
