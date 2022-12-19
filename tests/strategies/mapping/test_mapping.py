@@ -21,10 +21,10 @@ def test_mapping() -> None:
             "map": "http://emmo.info/domain-mappings#",
             "onto": "http://example.com/0.1/Myonto#",
         },
-        triples=[
+        triples={
             ("http://onto-ns.com/meta/1.0/Bar#a", "map:mapsTo", "onto:A"),
             ("http://onto-ns.com/meta/1.0/Bar#d", "map:mapsTo", "onto:D"),
-        ],
+        },
     )
 
     all_prefixes = {}
@@ -39,15 +39,15 @@ def test_mapping() -> None:
     session.update(MappingStrategy(conf2).initialize(session))
 
     assert session["prefixes"] == conf2.prefixes
-    assert session["triples"] == conf2.triples
+    assert sorted(session["triples"]) == sorted(conf2.triples)
 
     session.update(MappingStrategy(conf1).initialize(session))
 
     assert session["prefixes"] == all_prefixes
-    assert session["triples"] == all_triples
+    assert sorted(session["triples"]) == sorted(all_triples)
 
     session.update(MappingStrategy(conf1).get(session))
     session.update(MappingStrategy(conf2).get(session))
 
     assert session["prefixes"] == all_prefixes
-    assert session["triples"] == all_triples
+    assert sorted(session["triples"]) == sorted(all_triples)
