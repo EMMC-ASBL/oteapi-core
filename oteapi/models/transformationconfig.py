@@ -8,7 +8,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 
 from oteapi.models.genericconfig import GenericConfig
 
@@ -52,7 +52,7 @@ class TransformationConfig(GenericConfig):
         ProcessPriority.MEDIUM,
         description="Define the process priority of the transformation execution.",
     )
-    secret: Optional[str] = Field(
+    secret: Optional[SecretStr] = Field(
         None,
         description="Authorization secret given when running a transformation.",
     )
