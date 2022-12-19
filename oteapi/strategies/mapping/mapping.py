@@ -50,7 +50,7 @@ class MappingStrategy:
     ) -> MappingSessionUpdate:
         """Initialize strategy."""
         prefixes = session.get("prefixes", {}) if session else {}
-        triples = session.get("triples", set()) if session else set()
+        triples = set(session.get("triples", []) if session else [])
 
         if self.mapping_config.prefixes:
             prefixes.update(self.mapping_config.prefixes)
