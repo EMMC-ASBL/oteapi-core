@@ -4,7 +4,7 @@
 #   pre-commit autoupdate
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
     - id: end-of-file-fixer
       exclude: ^tests/static/.*$
@@ -21,13 +21,13 @@ repos:
       args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/timothycrosley/isort
-    rev: 5.10.1
+    rev: 5.11.2
     hooks:
     - id: isort
       args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
 
   - repo: https://github.com/ambv/black
-    rev: 22.10.0
+    rev: 22.12.0
     hooks:
     - id: black
 
@@ -39,13 +39,31 @@ repos:
       files: ^oteapi/.*$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.982
+    rev: v0.991
     hooks:
     - id: mypy
       exclude: ^tests/.*$
       additional_dependencies:
-        - "types-requests"
-        - "pydantic"
+      - "types-requests"
+      - "pydantic"
+
+  - repo: https://github.com/SINTEF/ci-cd
+    rev: v2.0.0
+    hooks:
+    - id: docs-api-reference
+      args:
+      - --package-dir=oteapi
+      - --full-docs-folder=models
+    - id: docs-landing-page
+      args:
+      - --replacement=(LICENSE),(LICENSE.md)
+      - --replacement=scheme`](oteapi/models/resourceconfig.py),scheme`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl]
+      - --replacement=mediaType`](oteapi/models/resourceconfig.py),mediaType`][oteapi.models.resourceconfig.ResourceConfig.mediaType]
+      - --replacement=accessService`](oteapi/models/resourceconfig.py),accessService`][oteapi.models.resourceconfig.ResourceConfig.accessService]
+      - --replacement=(oteapi/models/filterconfig.py),[oteapi.models.filterconfig.FilterConfig.filterType]
+      - --replacement=(oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
+      - --replacement=(oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
+      - --replacement=(oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
 
   - repo: local
     hooks:
@@ -74,19 +92,3 @@ repos:
       types: [python]
       require_serial: true
       files: ^tests/.*$
-    - id: update-docs-api-reference
-      name: Update API Reference in Documentation
-      entry: invoke
-      args: [create-api-reference-docs, --pre-clean, --pre-commit]
-      language: python
-      pass_filenames: false
-      files: ^oteapi/.*\.py$
-      description: Update the API Reference documentation, whenever a Python file is touched in the code base.
-    - id: update-docs-index
-      name: Update Landing Page for Documentation
-      entry: invoke
-      args: [create-docs-index]
-      language: python
-      pass_filenames: false
-      files: ^README.md$
-      description: Update the landing page for the documentation if the source file (README.md) is changed.
