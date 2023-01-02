@@ -1723,33 +1723,33 @@ Here, an example snippet is shown using <a href="https://setuptools.pypa.io/">se
 </code></pre></div>
 <h4 id="yamljson-custom-files">YAML/JSON custom files<a class="headerlink" href="#yamljson-custom-files" title="Permanent link">&para;</a></h4>
 <p>Use custom files that are later parsed and used in a <code>setup.py</code> file.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">entry_points</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">oteapi.download</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.p2p</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.mongo</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">oteapi.parse</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.application/vnd.mongo+json</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoParse&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nt">entry_points</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">oteapi.download</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.p2p</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.mongo</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve&quot;</span>
+<span class="w">  </span><span class="nt">oteapi.parse</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.application/vnd.mongo+json</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoParse&quot;</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nt">&quot;entry_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;oteapi.download&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">],</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;oteapi.parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;entry_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;oteapi.download&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;oteapi.parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 <h4 id="setupcfgpyprojecttoml"><code>setup.cfg</code>/<code>pyproject.toml</code><a class="headerlink" href="#setupcfgpyprojecttoml" title="Permanent link">&para;</a></h4>
 <p>A more modern approach is to use <code>setup.cfg</code> or <code>pyproject.toml</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span><span class="w"></span>
-<span class="na">oteapi.download</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">my_plugin.p2p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload</span><span class="w"></span>
-<span class="w">    </span><span class="na">my_plugin.mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve</span><span class="w"></span>
-<span class="na">oteapi.parse</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">my_plugin.application/vnd.mongo+json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoParse</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span>
+<span class="na">oteapi.download</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">my_plugin.p2p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload</span>
+<span class="w">    </span><span class="na">my_plugin.mongo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve</span>
+<span class="na">oteapi.parse</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">my_plugin.application/vnd.mongo+json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_plugin.strategies.mongo:MongoParse</span>
 </code></pre></div>
 <h3 id="syntax-and-semantics">Syntax and semantics<a class="headerlink" href="#syntax-and-semantics" title="Permanent link">&para;</a></h3>
 <p>As seen above, there are a few different syntactical flavors of how to list the entry points.
@@ -1757,9 +1757,9 @@ However, the "value" stays the same throughout.</p>
 <h4 id="general-python-entry-points">General Python entry points<a class="headerlink" href="#general-python-entry-points" title="Permanent link">&para;</a></h4>
 <p>The general syntax for entry points is based on <code>ini</code> files and parsed using the built-in <code>configparser</code> module described <a href="https://docs.python.org/3/library/configparser.html#module-configparser">here</a>.
 Specifically for entry points the nomenclature is the following:</p>
-<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span><span class="w"></span>
-<span class="na">GROUP</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
-<span class="w">    </span><span class="na">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">VALUE</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="k">[options.entry_points]</span>
+<span class="na">GROUP</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="na">NAME</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">VALUE</span>
 </code></pre></div>
 <p>The <code>VALUE</code> is then further split into: <code>PACKAGE.MODULE:OBJECT.ATTRIBUTE [EXTRA1, EXTRA2]</code>.</p>
 <h4 id="oteapi-strategy-entry-points">OTEAPI strategy entry points<a class="headerlink" href="#oteapi-strategy-entry-points" title="Permanent link">&para;</a></h4>
@@ -1833,18 +1833,18 @@ Specifically for entry points the nomenclature is the following:</p>
 </ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>OTEAPI Core can be installed with:</p>
-<div class="highlight"><pre><span></span><code>pip install oteapi-core
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>oteapi-core
 </code></pre></div>
 <h3 id="for-developers">For developers<a class="headerlink" href="#for-developers" title="Permanent link">&para;</a></h3>
 <p>If you want to install OTEAPI Core to have a developer environment, please clone down the repository from GitHub and install:</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/EMMC-ASBL/oteapi-core /path/to/oteapi-core
-pip install -U --upgrade-strategy<span class="o">=</span>eager -e /path/to/oteapi-core<span class="o">[</span>dev<span class="o">]</span>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/EMMC-ASBL/oteapi-core<span class="w"> </span>/path/to/oteapi-core
+pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>--upgrade-strategy<span class="o">=</span>eager<span class="w"> </span>-e<span class="w"> </span>/path/to/oteapi-core<span class="o">[</span>dev<span class="o">]</span>
 </code></pre></div>
 <p>Note, <code>/path/to/oteapi-core</code> can be left out of the first line, but then it must be updated in the second line, either to <code>./oteapi-core</code>/<code>oteapi-core</code> or <code>.</code> if you <code>cd</code> into the generated folder wherein the repository has been cloned.</p>
 <p>The <code>--upgrade-strategy=eager</code> part can be left out.
 We recommend installing within a dedicated virtual environment.</p>
 <p>To test the installation, you can run:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /path/to/oteapi-core
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/oteapi-core
 pytest
 </code></pre></div>
 <p>If you run into issues at this stage, please <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/new">open an issue</a>.</p>

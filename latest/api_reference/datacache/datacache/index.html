@@ -1718,7 +1718,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DataCache</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize a cache instance with the given download configuration.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a cache instance with the given download configuration.</span>
 
 <span class="sd">    This class is also available to import from `oteapi.datacache`, e.g.:</span>
 
@@ -1792,7 +1792,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="n">bind</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">json_encoder</span><span class="p">:</span> <span class="s2">&quot;Optional[Type[json.JSONEncoder]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
 
 <span class="sd">        Existing value is overwritten if `key` is given and it already</span>
 <span class="sd">        exists in the cache.</span>
@@ -1848,7 +1848,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="k">return</span> <span class="n">key</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Any&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            key: The requested cached object to retrieve a value for.</span>
@@ -1871,7 +1871,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="n">suffix</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">directory</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Iterator[Path]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
 
 <span class="sd">        The file is created in the default directory for temporary</span>
 <span class="sd">        files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`</span>
@@ -1925,7 +1925,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
                 <span class="n">filename</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
 
 <span class="sd">        Useful for cleaning up a session.</span>
 
@@ -1936,7 +1936,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -2142,7 +2142,7 @@ argument.</p></td>
     <span class="n">bind</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">json_encoder</span><span class="p">:</span> <span class="s2">&quot;Optional[Type[json.JSONEncoder]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
 
 <span class="sd">    Existing value is overwritten if `key` is given and it already</span>
 <span class="sd">    exists in the cache.</span>
@@ -2221,7 +2221,7 @@ argument.</p></td>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -2280,7 +2280,7 @@ argument.</p></td>
 <span class="normal">291</span>
 <span class="normal">292</span>
 <span class="normal">293</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
 
 <span class="sd">    Useful for cleaning up a session.</span>
 
@@ -2366,7 +2366,7 @@ argument.</p></td>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Any&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        key: The requested cached object to retrieve a value for.</span>
@@ -2580,7 +2580,7 @@ be created.</p></td>
     <span class="n">suffix</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">directory</span><span class="p">:</span> <span class="s2">&quot;Optional[str]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Iterator[Path]&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
 
 <span class="sd">    The file is created in the default directory for temporary</span>
 <span class="sd">    files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`</span>
@@ -2787,7 +2787,7 @@ calculating the hash.</p></td>
     <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
     <span class="n">json_encoder</span><span class="p">:</span> <span class="s2">&quot;Optional[Type[json.JSONEncoder]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Return a hash of `value`.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a hash of `value`.</span>
 
 <span class="sd">    Can hash most python objects. Bytes and bytearrays are hashed directly.</span>
 <span class="sd">    Strings are converted to bytes with the given encoding.</span>

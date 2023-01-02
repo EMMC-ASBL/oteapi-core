@@ -1568,7 +1568,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;CSV parse-specific Configuration Data Model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse-specific Configuration Data Model.&quot;&quot;&quot;</span>
 
     <span class="n">datacache_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataCacheConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
@@ -1710,7 +1710,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">323</span>
 <span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CSVParseStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Parse strategy for CSV files.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for CSV files.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
@@ -1721,11 +1721,11 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
     <span class="n">parse_config</span><span class="p">:</span> <span class="n">CSVResourceConfig</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCSVParse</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
         <span class="n">downloader</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="p">)</span>
         <span class="n">output</span> <span class="o">=</span> <span class="n">downloader</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
@@ -1869,7 +1869,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCSVParse</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
     <span class="n">downloader</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">downloader</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
@@ -1950,7 +1950,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1998,7 +1998,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;CSV parse strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;text/csv&quot;</span><span class="p">,</span>
@@ -2177,7 +2177,7 @@ this model.</p>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DialectFormatting</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Dialect and formatting parameters for CSV.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dialect and formatting parameters for CSV.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv-fmt-params)</span>
 <span class="sd">    for more information.</span>
@@ -2287,7 +2287,7 @@ this model.</p>
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">validate_dialect_base</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. &quot;</span>
@@ -2335,7 +2335,7 @@ this model.</p>
 <span class="normal">164</span>
 <span class="normal">165</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">validate_dialect_base</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. &quot;</span>
@@ -2393,7 +2393,7 @@ this model.</p>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">QuoteConstants</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;CSV module `QUOTE_*` constants.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV module `QUOTE_*` constants.&quot;&quot;&quot;</span>
 
     <span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_ALL&quot;</span>
     <span class="n">QUOTE_MINIMAL</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_MINIMAL&quot;</span>
@@ -2401,7 +2401,7 @@ this model.</p>
     <span class="n">QUOTE_NONE</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_NONE&quot;</span>
 
     <span class="k">def</span> <span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">,</span>
@@ -2447,7 +2447,7 @@ this model.</p>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">,</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">,</span>
@@ -2527,7 +2527,7 @@ for more information.</p>
 <span class="normal">201</span>
 <span class="normal">202</span>
 <span class="normal">203</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReaderConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;CSV DictReader configuration parameters.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV DictReader configuration parameters.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv.DictReader)</span>
 <span class="sd">    for more information.</span>
@@ -2612,7 +2612,7 @@ for more information.</p>
 <span class="normal">247</span>
 <span class="normal">248</span>
 <span class="normal">249</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCSVParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class for returning values from CSV Parse.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from CSV Parse.&quot;&quot;&quot;</span>
 
     <span class="n">content</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Content of the CSV document.&quot;</span>

@@ -1432,7 +1432,7 @@
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configuration model for SqLiteParse.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration model for SqLiteParse.&quot;&quot;&quot;</span>
 
     <span class="n">result</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of results from the query.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1489,7 +1489,7 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqliteParseConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configuration data model for</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration data model for</span>
 <span class="sd">    [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy].&quot;&quot;&quot;</span>
 
     <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
@@ -1593,7 +1593,7 @@ SQL query on the database to return all relevant rows.</p>
 <span class="normal">112</span>
 <span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">SqliteParseStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Parse strategy for SQLite.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for SQLite.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
@@ -1607,13 +1607,13 @@ SQL query on the database to return all relevant rows.</p>
     <span class="n">parse_config</span><span class="p">:</span> <span class="n">SqliteParserResourceConfig</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">session</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_use_filters</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
         <span class="n">session</span> <span class="o">=</span> <span class="n">session</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
@@ -1634,7 +1634,7 @@ SQL query on the database to return all relevant rows.</p>
         <span class="k">return</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_use_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Update `config` according to filter values found in the session.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update `config` according to filter values found in the session.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;sqlquery&quot;</span> <span class="ow">in</span> <span class="n">session</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">sqlquery</span><span class="p">:</span>
             <span class="c1"># Use SQL query available in session</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">sqlquery</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="s2">&quot;sqlquery&quot;</span><span class="p">]</span>
@@ -1693,7 +1693,7 @@ SQL query on the database to return all relevant rows.</p>
 <span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqLiteParse</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse SQLite query responses.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">session</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_use_filters</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
     <span class="n">session</span> <span class="o">=</span> <span class="n">session</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
@@ -1737,7 +1737,7 @@ SQL query on the database to return all relevant rows.</p>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1785,7 +1785,7 @@ SQL query on the database to return all relevant rows.</p>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqliteParserResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SQLite parse strategy resource config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SQLite parse strategy resource config.&quot;&quot;&quot;</span>
 
     <span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;application/vnd.sqlite3&quot;</span><span class="p">,</span>
@@ -1912,7 +1912,7 @@ SQL query on the database to return all relevant rows.</p>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_connection</span><span class="p">(</span><span class="n">db_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Create a database connection to SQLite database.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a database connection to SQLite database.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        db_file: Full path to SQLite database file.</span>

@@ -1460,7 +1460,7 @@
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FileConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;File-specific Configuration Data Model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;File-specific Configuration Data Model.&quot;&quot;&quot;</span>
 
     <span class="n">text</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
@@ -1539,7 +1539,7 @@
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FileResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;File download strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;File download strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">FileUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>  <span class="c1"># type: ignore[assignment]</span>
         <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The file URL, which will be downloaded.&quot;</span>
@@ -1550,7 +1550,7 @@
 
     <span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">ensure_path_exists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">FileUrl</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUrl</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl must contain a `path` part.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
@@ -1592,7 +1592,7 @@
 <span class="normal">52</span>
 <span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span><span class="p">(</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">ensure_path_exists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">FileUrl</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUrl</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure `path` is defined in `downloadUrl`.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;downloadUrl must contain a `path` part.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">value</span>
@@ -1668,7 +1668,7 @@
 <span class="normal">94</span>
 <span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">FileStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Strategy for retrieving data from a local file.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for retrieving data from a local file.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
@@ -1679,11 +1679,11 @@
     <span class="n">download_config</span><span class="p">:</span> <span class="n">FileResourceConfig</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">uri_to_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -1749,7 +1749,7 @@
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateFile</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read local file.&quot;&quot;&quot;</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">uri_to_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -1791,7 +1791,7 @@
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1832,7 +1832,7 @@
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateFile</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class for returning values from Download File strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from Download File strategy.&quot;&quot;&quot;</span>
 
     <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Key to access the data in the cache.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>

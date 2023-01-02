@@ -1512,7 +1512,7 @@
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HostlessAnyUrl</span><span class="p">(</span><span class="n">AnyUrl</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;AnyUrl, but allow not having a host.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AnyUrl, but allow not having a host.&quot;&quot;&quot;</span>
 
     <span class="n">host_required</span> <span class="o">=</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
@@ -1664,7 +1664,7 @@
 <span class="normal">96</span>
 <span class="normal">97</span>
 <span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
 <span class="sd">        Either of the pairs of attributes `downloadUrl`/`mediaType` or</span>
@@ -1731,7 +1731,7 @@
 
     <span class="nd">@root_validator</span>
     <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
 <span class="sd">        It&#39;s fine to define them all, but at least one complete pair MUST be specified.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1944,7 +1944,7 @@
 <span class="normal">97</span>
 <span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
 <span class="sd">    It&#39;s fine to define them all, but at least one complete pair MUST be specified.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

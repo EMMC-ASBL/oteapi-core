@@ -1417,7 +1417,7 @@
           <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
 <span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies].&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1592,7 +1592,7 @@ in-memory cache of all registered strategies.</p></td>
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyFactory</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Decorator-based Factory class.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator-based Factory class.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        strategy_create_func (Dict[StrategyType, EntryPointStrategyCollection]): An</span>
@@ -1608,7 +1608,7 @@ in-memory cache of all registered strategies.</p></td>
         <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
         <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IStrategy&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            config: A strategy configuration.</span>
@@ -1670,7 +1670,7 @@ in-memory cache of all registered strategies.</p></td>
         <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;StrategyConfig&quot;</span><span class="p">,</span>
         <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return the strategy name through the config.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the strategy name through the config.</span>
 
 <span class="sd">        This is a method to accommodate strategy type-specific quirks to retrieve the</span>
 <span class="sd">        strategy name.</span>
@@ -1689,7 +1689,7 @@ in-memory cache of all registered strategies.</p></td>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
 
 <span class="sd">        Important:</span>
 <span class="sd">            This is not a cached method.</span>
@@ -1840,7 +1840,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 <span class="normal">146</span>
 <span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
 
 <span class="sd">    Important:</span>
 <span class="sd">        This is not a cached method.</span>
@@ -2053,7 +2053,7 @@ enumeration for a definition of valid strategy types.</p></td>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IStrategy&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        config: A strategy configuration.</span>
@@ -2215,7 +2215,7 @@ for a definition of valid strategy types.</p></td>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IStrategy&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
 <span class="sd">    [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].</span>
 
 <span class="sd">    Parameters:</span>
@@ -2293,7 +2293,7 @@ duplicated strategy and the duplicates will be ignored.</p></td>
 <span class="normal">161</span>
 <span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="c1"># pylint: disable=line-too-long</span>
-    <span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
 <span class="sd">    [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].</span>
 
 <span class="sd">    Parameters:</span>

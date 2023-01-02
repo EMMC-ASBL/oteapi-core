@@ -1425,7 +1425,7 @@
 <span class="normal">51</span>
 <span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">SQLQueryFilter</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Strategy for a SQL query filter.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for a SQL query filter.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
@@ -1439,11 +1439,11 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1479,7 +1479,7 @@
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1512,7 +1512,7 @@
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1553,7 +1553,7 @@
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Class for returning values from SQL Query data model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from SQL Query data model.&quot;&quot;&quot;</span>
 
     <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1609,7 +1609,7 @@
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqlQueryFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SQLite query filter strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SQLite query filter strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">filterType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;filter/sql&quot;</span><span class="p">,</span>

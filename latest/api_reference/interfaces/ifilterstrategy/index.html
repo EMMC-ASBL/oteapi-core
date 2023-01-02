@@ -1407,12 +1407,12 @@
 <span class="normal">41</span>
 <span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
 <span class="k">class</span> <span class="nc">IFilterStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Filter Strategy Interface.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter Strategy Interface.&quot;&quot;&quot;</span>
 
     <span class="n">filter_config</span><span class="p">:</span> <span class="s2">&quot;FilterConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            session: A session-specific dictionary context.</span>
@@ -1424,7 +1424,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">        This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">        Services.</span>
@@ -1527,7 +1527,7 @@
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>
@@ -1623,7 +1623,7 @@ Services.</p>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">    Services.</span>

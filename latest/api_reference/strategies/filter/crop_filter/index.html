@@ -1420,7 +1420,7 @@
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CropImageConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Configuration model for crop data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration model for crop data.&quot;&quot;&quot;</span>
 
     <span class="n">crop</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Box cropping parameters (left, top, right, bottom).&quot;</span>
@@ -1499,7 +1499,7 @@
 <span class="normal">68</span>
 <span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CropImageFilter</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Strategy for cropping an image.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for cropping an image.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
@@ -1513,7 +1513,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCropFilter</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdateCropFilter</span><span class="p">(</span>
             <span class="n">imagecrop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span><span class="p">,</span>
         <span class="p">)</span>
@@ -1522,7 +1522,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1564,7 +1564,7 @@
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1599,7 +1599,7 @@
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCropFilter</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdateCropFilter</span><span class="p">(</span>
         <span class="n">imagecrop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span><span class="p">,</span>
     <span class="p">)</span>
@@ -1649,7 +1649,7 @@
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CropImageFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Crop filter strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Crop filter strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">filterType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;filter/crop&quot;</span><span class="p">,</span>
@@ -1709,7 +1709,7 @@
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCropFilter</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return model for `CropImageFilter`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return model for `CropImageFilter`.&quot;&quot;&quot;</span>
 
     <span class="n">imagecrop</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Box cropping parameters (left, top, right, bottom).&quot;</span>

@@ -1460,12 +1460,12 @@
 <span class="normal">66</span>
 <span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
 <span class="k">class</span> <span class="nc">ITransformationStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Transformation Strategy Interface.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transformation Strategy Interface.&quot;&quot;&quot;</span>
 
     <span class="n">transformation_config</span><span class="p">:</span> <span class="s2">&quot;TransformationConfig&quot;</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            session: A session-specific dictionary context.</span>
@@ -1478,7 +1478,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TransformationStatus&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get job status.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get job status.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            task_id: The transformation job ID.</span>
@@ -1490,7 +1490,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            session: A session-specific dictionary context.</span>
@@ -1502,7 +1502,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">        This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">        Services.</span>
@@ -1605,7 +1605,7 @@
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>
@@ -1701,7 +1701,7 @@ Services.</p>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize data class.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">    Services.</span>
@@ -1802,7 +1802,7 @@ Services.</p>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>
@@ -1894,7 +1894,7 @@ Services.</p>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TransformationStatus&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Get job status.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get job status.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        task_id: The transformation job ID.</span>

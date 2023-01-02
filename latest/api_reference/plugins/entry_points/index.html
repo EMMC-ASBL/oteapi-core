@@ -1670,7 +1670,7 @@ point value.</p>
           <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EntryPointNotFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A given strategy implementation (class) cannot be found from the given entry</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A given strategy implementation (class) cannot be found from the given entry</span>
 <span class="sd">    point value.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1911,7 +1911,7 @@ ambiguity.</p>
 <span class="normal">313</span>
 <span class="normal">314</span>
 <span class="normal">315</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EntryPointStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;A strategy realized from an entry point.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A strategy realized from an entry point.</span>
 
 <span class="sd">    An entry point strategy is made unique by its &quot;strategy&quot;, i.e., its</span>
 <span class="sd">    (strategy type, strategy name)-tuple, e.g., `(&quot;download&quot;, &quot;https&quot;)`.</span>
@@ -1963,7 +1963,7 @@ ambiguity.</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StrategyType</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The strategy type.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The strategy type.</span>
 
 <span class="sd">        One part of the (strategy type, strategy name)-tuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1971,7 +1971,7 @@ ambiguity.</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The strategy name.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The strategy name.</span>
 
 <span class="sd">        One part of the (strategy type, strategy name)-tuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1979,22 +1979,22 @@ ambiguity.</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">strategy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[StrategyType, str]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The unique index identifier for the strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The unique index identifier for the strategy.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The importable base package name for the strategy plugin.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The importable base package name for the strategy plugin.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;package_name&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">module</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The fully resolved importable module path.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The fully resolved importable module path.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entry_point</span><span class="o">.</span><span class="n">module</span>  <span class="c1"># type: ignore[attr-defined]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">full_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The full entry point name.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The full entry point name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_entry_point</span><span class="o">.</span><span class="n">group</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">ENTRY_POINT_NAME_SEPARATOR</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_entry_point</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -2005,19 +2005,19 @@ ambiguity.</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">implementation_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The EntryPoint attr, which should be the strategy implementation class</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The EntryPoint attr, which should be the strategy implementation class</span>
 <span class="sd">        name.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entry_point</span><span class="o">.</span><span class="n">attr</span>  <span class="c1"># type: ignore[attr-defined]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Type[IStrategy]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;The actual strategy implementation.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The actual strategy implementation.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_implementation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_implementation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_implementation</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_implementation</span>
 
     <span class="k">def</span> <span class="nf">_load_implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Type[IStrategy]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Load the strategy implementation.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the strategy implementation.</span>
 
 <span class="sd">        Because the actual importing of the module does not happen until this method is</span>
 <span class="sd">        called, we are lazily loading in the strategy implementation.</span>
@@ -2058,7 +2058,7 @@ ambiguity.</p>
         <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strategy</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not `self` is less than (`&lt;`) `other`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether or not `self` is less than (`&lt;`) `other`.</span>
 
 <span class="sd">        This is implemented to allow sorting (using `sorted()`).</span>
 
@@ -2478,7 +2478,7 @@ name.</p>
 <span class="normal">494</span>
 <span class="normal">495</span>
 <span class="normal">496</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EntryPointStrategyCollection</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">Collection</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A collection of</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A collection of</span>
 <span class="sd">    [`EntryPointStrategy`][oteapi.plugins.entry_points.EntryPointStrategy]s.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="s2">&quot;EntryPointStrategy&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2487,7 +2487,7 @@ name.</p>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Add entry points to the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add entry points to the collection.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.</span>
@@ -2496,7 +2496,7 @@ name.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Remove entry points from the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove entry points from the collection.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            *entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the</span>
@@ -2506,7 +2506,7 @@ name.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">exclusive_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Exclusively add entry points to the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Exclusively add entry points to the collection.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.</span>
@@ -2527,7 +2527,7 @@ name.</p>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="s2">&quot;Any&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Whether or not `item` is contained in the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Whether or not `item` is contained in the collection.</span>
 
 <span class="sd">        One can test with an `EntryPointStrategy`, a string of an entry point</span>
 <span class="sd">        strategy&#39;s full name, or a tuple of an entry point&#39;s strategy type and name.</span>
@@ -2574,7 +2574,7 @@ name.</p>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">key</span><span class="p">:</span> <span class="s2">&quot;Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EntryPointStrategy</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Retrieve an entry point from the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieve an entry point from the collection.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            key: The key to check for in the collection.</span>
@@ -2601,7 +2601,7 @@ name.</p>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">key</span><span class="p">:</span> <span class="s2">&quot;Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]&quot;</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EntryPointStrategy</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for retrieving an entry point from the collection.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper method for retrieving an entry point from the collection.</span>
 
 <span class="sd">        Important:</span>
 <span class="sd">            It is expected that the entry point representing the key exists in the</span>
@@ -2719,7 +2719,7 @@ name.</p>
 <span class="normal">332</span>
 <span class="normal">333</span>
 <span class="normal">334</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Add entry points to the collection.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add entry points to the collection.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.</span>
@@ -2807,7 +2807,7 @@ name.</p>
 <span class="normal">360</span>
 <span class="normal">361</span>
 <span class="normal">362</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">exclusive_add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Exclusively add entry points to the collection.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exclusively add entry points to the collection.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.</span>
@@ -2941,7 +2941,7 @@ above for the expected types.</p></td>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">key</span><span class="p">:</span> <span class="s2">&quot;Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EntryPointStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Retrieve an entry point from the collection.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve an entry point from the collection.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        key: The key to check for in the collection.</span>
@@ -3019,7 +3019,7 @@ collection.</p></td>
 <span class="normal">342</span>
 <span class="normal">343</span>
 <span class="normal">344</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">entry_points</span><span class="p">:</span> <span class="n">EntryPointStrategy</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Remove entry points from the collection.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove entry points from the collection.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        *entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the</span>
@@ -3173,7 +3173,7 @@ collection.</p></td>
 <span class="normal">138</span>
 <span class="normal">139</span>
 <span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;An enumeration of available strategy types.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An enumeration of available strategy types.</span>
 
 <span class="sd">    Available strategy types:</span>
 
@@ -3196,7 +3196,7 @@ collection.</p></td>
     <span class="n">TRANSFORMATION</span> <span class="o">=</span> <span class="s2">&quot;transformation&quot;</span>
 
     <span class="k">def</span> <span class="nf">map_to_field</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Map enumeration value to the strategy type&#39;s field.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Map enumeration value to the strategy type&#39;s field.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="s2">&quot;scheme&quot;</span><span class="p">,</span>
             <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="s2">&quot;filterType&quot;</span><span class="p">,</span>
@@ -3209,7 +3209,7 @@ collection.</p></td>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">map_from_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">strategy_type_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;StrategyType&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Map the strategy type&#39;s field to enumeration.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Map the strategy type&#39;s field to enumeration.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            strategy_type_field: The strategy type&#39;s field. E.g., `scheme` for</span>
@@ -3234,7 +3234,7 @@ collection.</p></td>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Union[str, StrategyType]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;StrategyType&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize a StrategyType with more than just the enumeration value.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a StrategyType with more than just the enumeration value.</span>
 
 <span class="sd">        This method allows one to also initialize a StrategyType with an actual</span>
 <span class="sd">        strategy type string, e.g., `scheme`, `mediaType`, etc.</span>
@@ -3252,7 +3252,7 @@ collection.</p></td>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">all_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[str, ...]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -3263,7 +3263,7 @@ collection.</p></td>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">config_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Type[StrategyConfig]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Return the strategy-specific `*Config` class.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the strategy-specific `*Config` class.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>  <span class="c1"># type: ignore[return-value]</span>
             <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="n">ResourceConfig</span><span class="p">,</span>
             <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="n">FilterConfig</span><span class="p">,</span>
@@ -3334,7 +3334,7 @@ collection.</p></td>
 <span class="normal">120</span>
 <span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">all_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[str, ...]&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -3400,7 +3400,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
 <span class="normal">115</span>
 <span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="s2">&quot;Union[str, StrategyType]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;StrategyType&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize a StrategyType with more than just the enumeration value.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a StrategyType with more than just the enumeration value.</span>
 
 <span class="sd">    This method allows one to also initialize a StrategyType with an actual</span>
 <span class="sd">    strategy type string, e.g., `scheme`, `mediaType`, etc.</span>
@@ -3527,7 +3527,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
 <span class="normal">97</span>
 <span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">map_from_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">strategy_type_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;StrategyType&quot;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Map the strategy type&#39;s field to enumeration.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map the strategy type&#39;s field to enumeration.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        strategy_type_field: The strategy type&#39;s field. E.g., `scheme` for</span>
@@ -3582,7 +3582,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map_to_field</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Map enumeration value to the strategy type&#39;s field.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Map enumeration value to the strategy type&#39;s field.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;download&quot;</span><span class="p">:</span> <span class="s2">&quot;scheme&quot;</span><span class="p">,</span>
         <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="s2">&quot;filterType&quot;</span><span class="p">,</span>
@@ -3744,7 +3744,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
     <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
     <span class="n">enforce_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EntryPointStrategyCollection</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Retrieve all entry points from a specific strategy type.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieve all entry points from a specific strategy type.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        ValueError: If the strategy type is not supported.</span>
@@ -3765,7 +3765,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;Strategy type &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">strategy_type</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">!r}</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">strategy_type</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span><span class="w"> </span><span class="nb">str</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="nb">str</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="si">!r}</span><span class="s2">&quot;</span>
             <span class="s2">&quot; is not supported.&quot;</span>
         <span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span>
 

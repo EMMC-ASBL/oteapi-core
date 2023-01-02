@@ -1400,7 +1400,7 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MappingSessionUpdate</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;SessionUpdate model for mappings.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SessionUpdate model for mappings.&quot;&quot;&quot;</span>
 
     <span class="n">prefixes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
@@ -1501,7 +1501,7 @@ between data models.</p>
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">MappingStrategy</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Strategy for a mapping.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for a mapping.</span>
 
 <span class="sd">    The mapping strategy simply adds more prefixes and triples to the</span>
 <span class="sd">    `prefixes` and `triples` fields in the session such that they are</span>
@@ -1521,7 +1521,7 @@ between data models.</p>
     <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MappingSessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
         <span class="n">prefixes</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prefixes&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
         <span class="n">triples</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;triples&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">[])</span>
 
@@ -1533,7 +1533,7 @@ between data models.</p>
         <span class="k">return</span> <span class="n">MappingSessionUpdate</span><span class="p">(</span><span class="n">prefixes</span><span class="o">=</span><span class="n">prefixes</span><span class="p">,</span> <span class="n">triples</span><span class="o">=</span><span class="n">triples</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
         </details>
@@ -1569,7 +1569,7 @@ between data models.</p>
         <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
       </details>
@@ -1608,7 +1608,7 @@ between data models.</p>
 <span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MappingSessionUpdate</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
     <span class="n">prefixes</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;prefixes&quot;</span><span class="p">,</span> <span class="p">{})</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">{}</span>
     <span class="n">triples</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;triples&quot;</span><span class="p">,</span> <span class="p">[])</span> <span class="k">if</span> <span class="n">session</span> <span class="k">else</span> <span class="p">[])</span>
 
