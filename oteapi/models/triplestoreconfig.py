@@ -3,13 +3,14 @@ from typing import TYPE_CHECKING
 
 from pydantic import Field, root_validator
 
+from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
 
 if TYPE_CHECKING:
     from typing import Any, Dict
 
 
-class TripleStoreConfig(SecretConfig):
+class TripleStoreConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
     """TripleStore Configuration.
 
     This is a configuration for the

@@ -10,6 +10,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
+from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
 
 
@@ -29,7 +30,7 @@ class ProcessPriority(str, Enum):
     HIGH = "High"
 
 
-class TransformationConfig(SecretConfig):
+class TransformationConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
     """Transformation Strategy Data Configuration."""
 
     transformationType: str = Field(

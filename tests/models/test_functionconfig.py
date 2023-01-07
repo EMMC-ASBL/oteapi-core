@@ -2,22 +2,38 @@
 
 
 def test_functionconfig():
+    """Pytest for FunctionConfig, mainly for testing the included secrets."""
+
+    import json
 
     from oteapi.models.functionconfig import FunctionConfig
-    import json
+    from oteapi.settings import settings
 
     base_config = {"functionType": "foo/bar", "secret": "abc"}
     config_exposed = {
-        "configuration": {},
-        "description": "Function Strategy Data Configuration.",
         "user": None,
         "password": None,
         "secret": "abc",
         "client_id": None,
         "client_secret": None,
+        "configuration": {},
+        "description": "Function Strategy Data Configuration.",
         "functionType": "foo/bar",
     }
 
-    config = FunctionConfig(**base_config)
+    config_hidden = {
+        "user": None,
+        "password": None,
+        "secret": "**********",
+        "client_id": None,
+        "client_secret": None,
+        "configuration": {},
+        "description": "Function Strategy Data Configuration.",
+        "functionType": "foo/bar",
+    }
 
-    assert config.json() == json.dumps(config_exposed)
+    settings.expose_secrets = False
+    assert FunctionConfig(**base_config).json() == json.dumps(config_hidden)
+
+    settings.expose_secrets = True
+    assert FunctionConfig(**base_config).json() == json.dumps(config_exposed)

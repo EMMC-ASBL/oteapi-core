@@ -2,15 +2,14 @@
 
 
 def test_secretconfig():
-
-    import os
+    """Pytest for SecretConfig."""
     import json
+
     from oteapi.models.secretconfig import SecretConfig
+    from oteapi.settings import settings
 
     base_config = {"secret": "abc"}
     config_exposed = {
-        "configuration": {},
-        "description": "Simple model for handling secret in other config-models.",
         "user": None,
         "password": None,
         "secret": "abc",
@@ -18,5 +17,16 @@ def test_secretconfig():
         "client_secret": None,
     }
 
-    config = SecretConfig(**base_config)
-    assert config.json() == json.dumps(config_exposed)
+    config_hidden = {
+        "user": None,
+        "password": None,
+        "secret": "**********",
+        "client_id": None,
+        "client_secret": None,
+    }
+
+    settings.expose_secrets = False
+    assert SecretConfig(**base_config).json() == json.dumps(config_hidden)
+
+    settings.expose_secrets = True
+    assert SecretConfig(**base_config).json() == json.dumps(config_exposed)

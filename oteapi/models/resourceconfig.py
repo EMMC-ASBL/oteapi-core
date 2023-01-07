@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Optional
 
 from pydantic import AnyUrl, Field, root_validator
 
+from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -15,7 +16,7 @@ class HostlessAnyUrl(AnyUrl):
     host_required = False
 
 
-class ResourceConfig(SecretConfig):
+class ResourceConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
     """Resource Strategy Data Configuration.
 
     Important:
