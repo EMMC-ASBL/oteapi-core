@@ -1,9 +1,9 @@
 """Pydantic Resource Configuration Data Model."""
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import AnyUrl, Field, SecretStr, root_validator
+from pydantic import AnyUrl, Field, root_validator
 
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.secretconfig import SecretConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -15,7 +15,7 @@ class HostlessAnyUrl(AnyUrl):
     host_required = False
 
 
-class ResourceConfig(GenericConfig):
+class ResourceConfig(SecretConfig):
     """Resource Strategy Data Configuration.
 
     Important:
@@ -75,10 +75,6 @@ class ResourceConfig(GenericConfig):
     publisher: Optional[str] = Field(
         None,
         description="The entity responsible for making the resource/item available.",
-    )
-    secret: Optional[SecretStr] = Field(
-        None,
-        description="Authorization secret given when accessing a resource.",
     )
 
     @root_validator

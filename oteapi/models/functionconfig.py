@@ -1,20 +1,15 @@
 """Pydantic Function Configuration Data Model."""
 from typing import Optional
 
-from pydantic import Field, SecretStr
+from pydantic import Field
 
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.secretconfig import SecretConfig
 
 
-class FunctionConfig(GenericConfig):
+class FunctionConfig(SecretConfig):
     """Function Strategy Data Configuration."""
 
     functionType: str = Field(
         ...,
         description=("Type of registered function strategy."),
-    )
-
-    secret: Optional[SecretStr] = Field(
-        None,
-        description="Authorization secret given when executing a function.",
     )
