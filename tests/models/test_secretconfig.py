@@ -8,11 +8,11 @@ def test_secretconfig():
     from oteapi.models.secretconfig import SecretConfig
     from oteapi.settings import settings
 
-    base_config = {"secret": "abc"}
+    base_config = {"token": "abc"}
     config_exposed = {
         "user": None,
         "password": None,
-        "secret": "abc",
+        "token": "abc",
         "client_id": None,
         "client_secret": None,
     }
@@ -20,7 +20,7 @@ def test_secretconfig():
     config_hidden = {
         "user": None,
         "password": None,
-        "secret": "**********",
+        "token": "**********",
         "client_id": None,
         "client_secret": None,
     }

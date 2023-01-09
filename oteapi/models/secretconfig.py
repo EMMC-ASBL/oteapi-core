@@ -32,15 +32,15 @@ class SecretConfig(AttrDict):
     password: Optional[SecretStr] = Field(
         None, description="Password for authentication."
     )
-    secret: Optional[SecretStr] = Field(
+    token: Optional[SecretStr] = Field(
         None,
-        description="A secret passed to the config, e.g. an access token.",
+        description="An access token for providing access and meta data to an application.",
     )
     client_id: Optional[SecretStr] = Field(
-        None, description="Client ID for an OAUTH2 client"
+        None, description="Client ID for an OAUTH2 client."
     )
     client_secret: Optional[SecretStr] = Field(
-        None, description="Client secret for an OAUTH2 client"
+        None, description="Client secret for an OAUTH2 client."
     )
 
     class Config:

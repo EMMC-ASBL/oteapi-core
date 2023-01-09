@@ -39,3 +39,12 @@ class TripleStoreConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
         if not all(values.get(_) for _ in ["user", "password"]):
             raise ValueError("User and password must be defined.")
         return values
+
+    class Config:
+        """Pydantic configuration for TripleStoreConfig."""
+
+        fields = {
+            "token": {"exclude": True},
+            "client_id": {"exclude": True},
+            "client_secret": {"exclude": True},
+        }

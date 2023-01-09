@@ -9,11 +9,11 @@ def test_functionconfig():
     from oteapi.models.functionconfig import FunctionConfig
     from oteapi.settings import settings
 
-    base_config = {"functionType": "foo/bar", "secret": "abc"}
+    base_config = {"functionType": "foo/bar", "token": "abc"}
     config_exposed = {
         "user": None,
         "password": None,
-        "secret": "abc",
+        "token": "abc",
         "client_id": None,
         "client_secret": None,
         "configuration": {},
@@ -24,7 +24,7 @@ def test_functionconfig():
     config_hidden = {
         "user": None,
         "password": None,
-        "secret": "**********",
+        "token": "**********",
         "client_id": None,
         "client_secret": None,
         "configuration": {},
