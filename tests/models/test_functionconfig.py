@@ -3,7 +3,6 @@
 
 def test_functionconfig():
     """Pytest for FunctionConfig, mainly for testing the included secrets."""
-
     import json
 
     from oteapi.models.functionconfig import FunctionConfig
