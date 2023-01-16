@@ -20,12 +20,12 @@ def test_triplestoreconfig():
     a configuration object.
     """
 
-    config = dict(
-        agraphHost="localhost",
-        agraphPort=8080,
-        user="abc",
-        password="pass",
-        repositoryName="test",
+    config = {
+        "agraphHost": "localhost",
+        "agraphPort": 8080,
+        "user": "abc",
+        "password": "pass",
+        "repositoryName": "test",
     )
     config_invalid_1 = dict(
         agraphHost="localhost", agraphPort=8080, password="pass", repositoryName="test"

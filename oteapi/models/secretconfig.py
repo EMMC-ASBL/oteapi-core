@@ -8,9 +8,21 @@ from oteapi.models.genericconfig import AttrDict
 from oteapi.settings import settings
 
 
-def json_dumps(model, *, default):
+def json_dumps(model: SecretConfig, *, default: "Callable[[Any], Any]") -> "Dict[str, Any]":
     """Alternative function for dumping exposed
-    secrets to json when model is serialized."""
+    secrets to json when model is serialized.
+
+    Parameters:
+        model: The pydantic model to serialize.
+        default: A pass-through to the standard `json.dumps()`'s `default` parameter.
+            From the `json.dumps()` doc-string: `default(obj)` is a function that should
+            return a serializable version of `obj` or raise `TypeError`.
+            The default simply raises `TypeError`.
+
+    Returns:
+        The result of `json.dumps()` after handling possible secrets.
+
+    """
     return json.dumps(
         {
             key: (
