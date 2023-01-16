@@ -1,5 +1,4 @@
 """AttrDict for specifying user credentials or secrets."""
-
 import json
 from typing import Optional
 
