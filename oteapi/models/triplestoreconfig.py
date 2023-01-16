@@ -48,3 +48,5 @@ class TripleStoreConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
             "client_id": {"exclude": True},
             "client_secret": {"exclude": True},
         }
+        """The `fields`-config enables that `token`, `client_id` and `client_secret`
+        will be excluded, when the model is serialized."""

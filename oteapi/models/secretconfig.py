@@ -1,14 +1,17 @@
 """AttrDict for specifying user credentials or secrets."""
 import json
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field, SecretStr
 
 from oteapi.models.genericconfig import AttrDict
 from oteapi.settings import settings
 
+if TYPE_CHECKING:
+    from typing import Any, Callable
 
-def json_dumps(model: SecretConfig, *, default: "Callable[[Any], Any]") -> "Dict[str, Any]":
+
+def json_dumps(model: "SecretConfig", *, default: "Callable[[Any], Any]") -> "str":
     """Alternative function for dumping exposed
     secrets to json when model is serialized.
 

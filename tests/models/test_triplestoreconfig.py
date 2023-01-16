@@ -26,31 +26,37 @@ def test_triplestoreconfig():
         "user": "abc",
         "password": "pass",
         "repositoryName": "test",
-    )
-    config_invalid_1 = dict(
-        agraphHost="localhost", agraphPort=8080, password="pass", repositoryName="test"
-    )
-    config_invalid_2 = dict(
-        agraphHost="localhost", agraphPort=8080, user="abc", repositoryName="test"
-    )
-    config_hidden = dict(
-        user="**********",
-        password="**********",
-        configuration={},
-        description=description,
-        repositoryName="test",
-        agraphHost="localhost",
-        agraphPort=8080,
-    )
-    config_exposed = dict(
-        user="abc",
-        password="pass",
-        configuration={},
-        description=description,
-        repositoryName="test",
-        agraphHost="localhost",
-        agraphPort=8080,
-    )
+    }
+    config_invalid_1 = {
+        "agraphHost": "localhost",
+        "agraphPort": 8080,
+        "password": "pass",
+        "repositoryName": "test",
+    }
+    config_invalid_2 = {
+        "agraphHost": "localhost",
+        "agraphPort": 8080,
+        "user": "abc",
+        "repositoryName": "test",
+    }
+    config_hidden = {
+        "user": "**********",
+        "password": "**********",
+        "configuration": {},
+        "description": description,
+        "repositoryName": "test",
+        "agraphHost": "localhost",
+        "agraphPort": 8080,
+    }
+    config_exposed = {
+        "user": "abc",
+        "password": "pass",
+        "configuration": {},
+        "description": description,
+        "repositoryName": "test",
+        "agraphHost": "localhost",
+        "agraphPort": 8080,
+    }
 
     settings.expose_secrets = False
     assert TripleStoreConfig(**config).json() == json.dumps(config_hidden)

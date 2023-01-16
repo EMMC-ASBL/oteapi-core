@@ -13,14 +13,12 @@ class OteApiCoreSettings(BaseSettings):
 
     expose_secrets: bool = Field(
         False,
-        description=
-            "Whether `SecretStr` in `pydantic` should be exposed or not.\n\n"
-            "!!! warning\n"
-            "    Depending on the configuration and user management of the services"
-            "    using oteapi-core, secrets might be readable by other users when serialized!"
-            "    This especially takes place when then models and configs are put into the cache."
-            "    Hence be careful while using this option in production."
-        ),
+        description="Whether `SecretStr` in `pydantic` should be exposed or not.\n\n"
+        "!!! warning\n"
+        "    Depending on the configuration and user management of the services"
+        "    using oteapi-core, secrets might be readable by other users when serialized!"
+        "    This especially takes place when then models and configs are put into the cache."
+        "    Hence be careful while using this option in production.",
     )
 
     class Config:
