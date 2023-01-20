@@ -92,7 +92,7 @@ def test_postgres(
 
     def mock_connect(connect_str):
         connect_str = str(connect_str)
-        # TODO: this should work but for some reason we don't have
+        # NOTE: this should work but for some reason we don't have
         #       the DB name in the accessUrl?
         # expected_connect_str = \
         #    "postgresql://postgres:postgres@localhost:5432/postgres"
@@ -101,7 +101,7 @@ def test_postgres(
 
     monkeypatch.setattr(psycopg, "connect", mock_connect)
 
-    # TODO there are a lot of tests one can do on ways of connecting to the DB
+    # NOTE there are a lot of tests one can do on ways of connecting to the DB
     #      e.g., trying combinations of accessUrl and connection_dict
     # connection_dict = {
     #    "dbname": "postgres",
