@@ -12,7 +12,7 @@ from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpda
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
-    [`PostgresResourceStrategy`][oteapi.strategies.resource.application_vnd_postgres.PostgresParseStrategy]."""
+    [`PostgresResourceStrategy`][oteapi.strategies.resource.postgres.PostgresResourceConfig]."""
 
     user: Optional[str] = Field(None, description="postgres server username")
     dbname: Optional[str] = Field(None, description="postgres dbname name")
@@ -114,7 +114,7 @@ def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connec
     """Create a dbname connection to Postgres dbname.
 
     Parameters:
-        psycopg_config: A dictionary providing everything needed for a psycopg
+        resource_config: A dictionary providing everything needed for a psycopg
                      connection configuration
 
     Raises:
