@@ -16,7 +16,7 @@ class MappingSessionUpdate(SessionUpdate):
     prefixes: Dict[str, str] = Field(
         ...,
         description=(
-            "List of shortnames that expands to an IRI "
+            "Dictionary of shortnames that expands to an IRI "
             "given as local value/IRI-expansion-pairs."
         ),
     )
@@ -50,12 +50,12 @@ class MappingStrategy:
     ) -> MappingSessionUpdate:
         """Initialize strategy."""
         prefixes = session.get("prefixes", {}) if session else {}
-        triples = session.get("triples", []) if session else []
+        triples = set(session.get("triples", []) if session else [])
 
         if self.mapping_config.prefixes:
             prefixes.update(self.mapping_config.prefixes)
         if self.mapping_config.triples:
-            triples.extend(self.mapping_config.triples)
+            triples.update(self.mapping_config.triples)
 
         return MappingSessionUpdate(prefixes=prefixes, triples=triples)
 

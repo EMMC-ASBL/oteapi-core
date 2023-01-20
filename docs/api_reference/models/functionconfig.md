@@ -1,5 +1,5 @@
 # functionconfig
 
 ::: oteapi.models.functionconfig
-    rendering:
+    options:
       show_if_no_docstring: true
