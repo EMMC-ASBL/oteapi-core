@@ -53,7 +53,7 @@ class PostgresResourceConfig(ResourceConfig):
 
         # Hostname should always be given
         if not host:
-            raise Exception("hostname must be specified")
+            raise ValueError("hostname must be specified")
 
         # Update netloc of username or username|password pair is defined
         netloc = host
@@ -62,7 +62,7 @@ class PostgresResourceConfig(ResourceConfig):
         elif user and password:  # Username and password is provided. OK
             netloc = f"{user}:{password}@{host}"
         else:  # Password and no username is provided. ERROR
-            raise Exception("username not provided")
+            raise ValueError("username not provided")
 
         # Append port if port is defined
         netloc = netloc if not port else f"{netloc}:{port}"
