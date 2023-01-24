@@ -2,16 +2,15 @@
 import json
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import Field, SecretStr
+from pydantic import BaseModel, Field, SecretStr
 
-from oteapi.models.genericconfig import AttrDict
 from oteapi.settings import settings
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Callable
 
 
-def json_dumps(model: "SecretConfig", *, default: "Callable[[Any], Any]") -> "str":
+def json_dumps(model: dict, default: "Callable[[Any], Any]") -> "str":
     """Alternative function for dumping exposed
     secrets to json when model is serialized.
 
@@ -39,7 +38,7 @@ def json_dumps(model: "SecretConfig", *, default: "Callable[[Any], Any]") -> "st
     )
 
 
-class SecretConfig(AttrDict):
+class SecretConfig(BaseModel, json_dumps=json_dumps):
     """Simple model for handling secret in other config-models."""
 
     user: Optional[SecretStr] = Field(None, description="User name for authentication.")
@@ -56,26 +55,3 @@ class SecretConfig(AttrDict):
     client_secret: Optional[SecretStr] = Field(
         None, description="Client secret for an OAUTH2 client."
     )
-
-    class Config:
-        """Pydantic donfiguration for SecretConfig when serialized or exported."""
-
-        # json_encoders = {
-        #     SecretStr: lambda secret: (
-        #         secret.get_secret_value()
-        #         if settings.expose_secrets and secret
-        #         else secret
-        #     )
-        # }
-        #
-        # Using the json_encoders directly throws an
-        # `ValueError: Circular reference detected` when
-        # the model is called via the json-method, but ONLY
-        # if the `settings.expose_secrets` is used. Why?
-        # There are no schema-dependencies between the settings
-        # and the SecretConfig and calling `forward_update_refs`
-        # does not make any change.
-        # Alternatively, `json_dumps` (see below) can
-        # be called without any exception.
-
-        json_dumps = json_dumps

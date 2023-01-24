@@ -10,7 +10,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 
-class TripleStoreConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
+class TripleStoreConfig(GenericConfig, SecretConfig):
     """TripleStore Configuration.
 
     This is a configuration for the

@@ -16,7 +16,7 @@ class HostlessAnyUrl(AnyUrl):
     host_required = False
 
 
-class ResourceConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
+class ResourceConfig(GenericConfig, SecretConfig):
     """Resource Strategy Data Configuration.
 
     Important:

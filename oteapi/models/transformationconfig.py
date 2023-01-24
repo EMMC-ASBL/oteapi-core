@@ -30,7 +30,7 @@ class ProcessPriority(str, Enum):
     HIGH = "High"
 
 
-class TransformationConfig(GenericConfig, SecretConfig):  # type: ignore [misc]
+class TransformationConfig(GenericConfig, SecretConfig):
     """Transformation Strategy Data Configuration."""
 
     transformationType: str = Field(
