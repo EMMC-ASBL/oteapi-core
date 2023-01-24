@@ -4,7 +4,6 @@ import pytest
 
 def test_triplestoreconfig():
     """Pytest for TripleStoreConfig."""
-
     import json
 
     from oteapi.models.triplestoreconfig import TripleStoreConfig
