@@ -2,7 +2,7 @@
 import pytest
 
 
-def test_triplestoreconfig():
+def test_triplestoreconfig() -> None:
     """Pytest for TripleStoreConfig."""
     import json
 
