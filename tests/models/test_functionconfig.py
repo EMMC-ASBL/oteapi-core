@@ -1,7 +1,7 @@
 """Tests for `oteapi.models.functionconfig`"""
 
 
-def test_functionconfig():
+def test_functionconfig() -> None:
     """Pytest for FunctionConfig, mainly for testing the included secrets."""
     import json
 
