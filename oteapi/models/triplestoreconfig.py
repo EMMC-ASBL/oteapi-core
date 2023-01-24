@@ -1,10 +1,16 @@
 """Pydantic TripleStore Configuration Data Model."""
-from pydantic import Field, SecretStr
+from typing import TYPE_CHECKING
 
-from oteapi.models.genericconfig import AttrDict
+from pydantic import Field, root_validator
+
+from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.secretconfig import SecretConfig
+
+if TYPE_CHECKING:  # pragma: no cover
+    from typing import Any, Dict
 
 
-class TripleStoreConfig(AttrDict):
+class TripleStoreConfig(GenericConfig, SecretConfig):
     """TripleStore Configuration.
 
     This is a configuration for the
@@ -26,11 +32,21 @@ class TripleStoreConfig(AttrDict):
         ...,
         description="AllegroGraph port number.",
     )
-    agraphUser: str = Field(
-        ...,
-        description="AllegroGraph user name.",
-    )
-    agraphPassword: SecretStr = Field(
-        ...,
-        description="AllegroGraph user password.",
-    )
+
+    @root_validator
+    def ensure_user_pass(cls, values: "Dict[str, Any]") -> "Dict[str, Any]":
+        """Ensure that user/password are set, since they are optional in the SecretConfig."""
+        if not all(values.get(_) for _ in ["user", "password"]):
+            raise ValueError("User and password must be defined.")
+        return values
+
+    class Config:
+        """Pydantic configuration for TripleStoreConfig."""
+
+        fields = {
+            "token": {"exclude": True},
+            "client_id": {"exclude": True},
+            "client_secret": {"exclude": True},
+        }
+        """The `fields`-config enables that `token`, `client_id` and `client_secret`
+        will be excluded, when the model is serialized."""

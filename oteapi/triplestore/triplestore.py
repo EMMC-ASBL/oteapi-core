@@ -58,8 +58,8 @@ class TripleStore:
         self.server = AllegroGraphServer(
             self.config.agraphHost,
             self.config.agraphPort,
-            self.config.agraphUser,
-            self.config.agraphPassword.get_secret_value(),
+            self.config.user.get_secret_value(),  # type: ignore [union-attr]
+            self.config.password.get_secret_value(),  # type: ignore [union-attr]
         )
 
     def add(self, triples: RDFTriple) -> None:
@@ -74,8 +74,8 @@ class TripleStore:
             self.config.repositoryName,
             host=self.config.agraphHost,
             port=self.config.agraphPort,
-            user=self.config.agraphUser,
-            password=self.config.agraphPassword.get_secret_value(),
+            user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]
         ) as connection:
             connection.addData(triples)
             connection.close()
@@ -127,8 +127,8 @@ class TripleStore:
             self.config.repositoryName,
             host=self.config.agraphHost,
             port=self.config.agraphPort,
-            user=self.config.agraphUser,
-            password=self.config.agraphPassword.get_secret_value(),
+            user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]
         ) as connection:
             update_query = connection.prepareUpdate(query=sparql_query)
             update_query.evaluate()
