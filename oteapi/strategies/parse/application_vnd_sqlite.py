@@ -17,7 +17,8 @@ if TYPE_CHECKING:  # pragma: no cover
 
 class SqliteParseConfig(AttrDict):
     """Configuration data model for
-    [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy]."""
+    [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy].
+    """
 
     sqlquery: str = Field("", description="A SQL query string.")
     datacache_config: Optional[DataCacheConfig] = Field(

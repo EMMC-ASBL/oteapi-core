@@ -82,7 +82,9 @@ oteapi.transformation =
 
 
 @pytest.fixture
-def get_strategy_config() -> "Callable[[Union[StrategyType, str]], Type[StrategyConfig]]":
+def get_strategy_config() -> (
+    "Callable[[Union[StrategyType, str]], Type[StrategyConfig]]"
+):
     """Get the strategy configuration model class."""
     from oteapi.models import (
         FilterConfig,
