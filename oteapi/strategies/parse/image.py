@@ -170,7 +170,7 @@ class ImageDataParseStrategy:
         elif "key" in output:
             cache_key = output["key"]
         else:
-            RuntimeError("No data cache key provided to the downloaded content")
+            raise RuntimeError("No data cache key provided to the downloaded content")
 
         cache = DataCache(config.datacache_config)
 
