@@ -2,6 +2,7 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
+# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig
@@ -171,8 +172,8 @@ def create_strategy(
 
     Parameters:
         strategy_type: A valid strategy type.
-            See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType] enumeration
-            for a definition of valid strategy types.
+            See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType]
+            enumeration for a definition of valid strategy types.
         config: A strategy configuration.
 
     Returns:
