@@ -35,7 +35,8 @@ class TripleStoreConfig(GenericConfig, SecretConfig):
 
     @root_validator
     def ensure_user_pass(cls, values: "Dict[str, Any]") -> "Dict[str, Any]":
-        """Ensure that user/password are set, since they are optional in the SecretConfig."""
+        """Ensure that user/password are set, since they are optional in the
+        SecretConfig."""
         if not all(values.get(_) for _ in ["user", "password"]):
             raise ValueError("User and password must be defined.")
         return values

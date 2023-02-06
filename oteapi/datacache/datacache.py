@@ -89,7 +89,8 @@ class DataCache:
 
     Attributes:
         config: DataCacheConfig instance.
-        cache_dir: Subdirectory used for the Path to cache directory, e.g., `"my_oteapi"`.
+        cache_dir: Subdirectory used for the Path to cache directory, e.g.,
+            `"my_oteapi"`.
 
     """
 

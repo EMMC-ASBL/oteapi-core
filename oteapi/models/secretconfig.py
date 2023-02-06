@@ -47,7 +47,9 @@ class SecretConfig(BaseModel, json_dumps=json_dumps):
     )
     token: Optional[SecretStr] = Field(
         None,
-        description="An access token for providing access and meta data to an application.",
+        description=(
+            "An access token for providing access and meta data to an application."
+        ),
     )
     client_id: Optional[SecretStr] = Field(
         None, description="Client ID for an OAUTH2 client."

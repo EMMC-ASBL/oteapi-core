@@ -1,4 +1,5 @@
 """Pydantic Resource Configuration Data Model."""
+# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import AnyUrl, Field, root_validator

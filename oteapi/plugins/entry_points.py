@@ -225,7 +225,10 @@ class EntryPointStrategy:
     @property
     def full_name(self) -> str:
         """The full entry point name."""
-        return f"{self._entry_point.group}{self.ENTRY_POINT_NAME_SEPARATOR}{self._entry_point.name}"
+        return (
+            f"{self._entry_point.group}{self.ENTRY_POINT_NAME_SEPARATOR}"
+            f"{self._entry_point.name}"
+        )
 
     def __str__(self) -> str:
         return self.full_name
@@ -328,7 +331,8 @@ class EntryPointStrategyCollection(abc.Collection):
         """Add entry points to the collection.
 
         Parameters:
-            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the
+                collection.
 
         """
         self._entry_points |= set(entry_points)
@@ -337,8 +341,8 @@ class EntryPointStrategyCollection(abc.Collection):
         """Remove entry points from the collection.
 
         Parameters:
-            *entry_points (Iterable[EntryPointStrategy]): Entry points to remove from the
-                collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to remove from
+                the collection.
 
         """
         self._entry_points -= set(entry_points)
@@ -347,7 +351,8 @@ class EntryPointStrategyCollection(abc.Collection):
         """Exclusively add entry points to the collection.
 
         Parameters:
-            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the collection.
+            *entry_points (Iterable[EntryPointStrategy]): Entry points to add to the
+                collection.
 
         Raises:
             KeyError: If an entry point to be added already exists in the collection.
@@ -516,6 +521,7 @@ def get_strategy_entry_points(
         A collection of entry points for the specific strategy type.
 
     """
+    # pylint: disable=line-too-long
     try:
         strategy_type = StrategyType(strategy_type)
     except ValueError as exc:
