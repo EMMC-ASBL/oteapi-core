@@ -1,12 +1,12 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 # pylint: disable=unused-argument
+import os
 from typing import TYPE_CHECKING, Dict
 
 from celery import Celery
 from celery.result import AsyncResult
 from pydantic import Field
 from pydantic.dataclasses import dataclass
-import os
 
 from oteapi.models import (
     AttrDict,
@@ -15,17 +15,18 @@ from oteapi.models import (
     TransformationStatus,
 )
 
-
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Union
 
 # Connect Celery to the currently running Redis instance
 
-REDIS_HOST = os.environ.get('OTEAPI_REDIS_HOST', 'redis')
-REDIS_PORT = os.environ.get('OTEAPI_REDIS_PORT', 6379)
+REDIS_HOST = os.environ.get("OTEAPI_REDIS_HOST", "redis")
+REDIS_PORT = os.environ.get("OTEAPI_REDIS_PORT", 6379)
 
-CELERY_APP = Celery(broker=f'redis://{REDIS_HOST}:{REDIS_PORT}',
-                    backend=f'redis://{REDIS_HOST}:{REDIS_PORT}')
+CELERY_APP = Celery(
+    broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
+    backend=f"redis://{REDIS_HOST}:{REDIS_PORT}",
+)
 
 
 class CeleryConfig(AttrDict):
@@ -85,8 +86,7 @@ class CeleryRemoteStrategy:
             args=self.transformation_config.configuration.args,
             kwargs=celery_kwargs,
         )
-        return SessionUpdateCelery(data={"task_id":result.task_id})
-
+        return SessionUpdateCelery(data={"task_id": result.task_id})
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize a job."""

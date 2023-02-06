@@ -76,10 +76,9 @@ In this sense, they represent asynchronous functions running in the background o
 Standard transformation strategies: *celery/remote*
 
 The tranformation strategy has consolidated the execution of the
-transformation with the get() method to unify the strategy interfaces.
-get() is intended to start an asyncronous process and return a
-*tast_id* which can be queried using the status() method (outside of a
-pipeline)
+transformation with the `get()` method to unify the strategy interfaces.
+`get()` is intended to start an asynchronous process and return a
+*task_id* which can be queried using the `status()` method (outside of pipeline)
 
 ## Entry points for plugins
 
@@ -100,7 +99,7 @@ There are now various different ways to let the Python environment know of these
 
 #### `setup.py`
 
-In the package's `setup.py` file, one can specify entry points.  
+In the package's `setup.py` file, one can specify entry points.
 Here, an example snippet is shown using [setuptools](https://setuptools.pypa.io/):
 
 ```python
