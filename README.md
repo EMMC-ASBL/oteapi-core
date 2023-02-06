@@ -75,6 +75,12 @@ In this sense, they represent asynchronous functions running in the background o
 
 Standard transformation strategies: *celery/remote*
 
+The tranformation strategy has consolidated the execution of the
+transformation with the get() method to unify the strategy interfaces.
+get() is intended to start an asyncronous process and return a
+*tast_id* which can be queried using the status() method (outside of a
+pipeline)
+
 ## Entry points for plugins
 
 The way strategies are registered and found is through [entry points](https://packaging.python.org/en/latest/specifications/entry-points/).
