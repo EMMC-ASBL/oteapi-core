@@ -99,7 +99,7 @@ There are now various different ways to let the Python environment know of these
 
 #### `setup.py`
 
-In the package's `setup.py` file, one can specify entry points.
+In the package's `setup.py` file, one can specify entry points.  
 Here, an example snippet is shown using [setuptools](https://setuptools.pypa.io/):
 
 ```python
