@@ -1731,6 +1731,10 @@ They can also update values in the data cache.</p>
 <p>Transformation strategies are a special form of a function strategy intended for long-running transformations.
 In this sense, they represent asynchronous functions running in the background or on external resources.</p>
 <p>Standard transformation strategies: <em>celery/remote</em></p>
+<p>The transformation strategy has consolidated the execution of the
+transformation with the <code>get()</code> method to unify the strategy interfaces.
+<code>get()</code> is intended to start an asynchronous process and return a
+<em>task_id</em> which can be queried using the <code>status()</code> method (outside of a pipeline).</p>
 <h2 id="entry-points-for-plugins">Entry points for plugins<a class="headerlink" href="#entry-points-for-plugins" title="Permanent link">&para;</a></h2>
 <p>The way strategies are registered and found is through <a href="https://packaging.python.org/en/latest/specifications/entry-points/">entry points</a>.</p>
 <p>Special group names allow understanding the strategy type and the entry point values allow understanding of what kind of strategy a specific class implements.

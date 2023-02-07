@@ -564,13 +564,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.itransformationstrategy.ITransformationStrategy.run" class="md-nav__link">
-    run()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oteapi.interfaces.itransformationstrategy.ITransformationStrategy.status" class="md-nav__link">
     status()
   </a>
@@ -1364,13 +1357,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#oteapi.interfaces.itransformationstrategy.ITransformationStrategy.run" class="md-nav__link">
-    run()
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#oteapi.interfaces.itransformationstrategy.ITransformationStrategy.status" class="md-nav__link">
     status()
   </a>
@@ -1488,37 +1474,11 @@
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
 <span class="k">class</span> <span class="nc">ITransformationStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Transformation Strategy Interface.&quot;&quot;&quot;</span>
 
     <span class="n">transformation_config</span><span class="p">:</span> <span class="s2">&quot;TransformationConfig&quot;</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            session: A session-specific dictionary context.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            An update model of key/value-pairs to be stored in the</span>
-<span class="sd">            session-specific context from services.</span>
-<span class="sd">            As a minimum, the dictionary will contain the job ID.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TransformationStatus&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get job status.</span>
@@ -1533,7 +1493,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy i.e. running a transformation job.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            session: A session-specific dictionary context.</span>
@@ -1585,7 +1545,7 @@
 
   <div class="doc doc-contents ">
   
-      <p>Execute the strategy.</p>
+      <p>Execute the strategy i.e. running a transformation job.</p>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1637,18 +1597,18 @@
 
       <details class="quote">
         <summary>Source code in <code>oteapi/interfaces/itransformationstrategy.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy i.e. running a transformation job.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        session: A session-specific dictionary context.</span>
@@ -1730,20 +1690,20 @@ Services.</p>
 
       <details class="quote">
         <summary>Source code in <code>oteapi/interfaces/itransformationstrategy.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
@@ -1755,105 +1715,6 @@ Services.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        An update model of key/value-pairs to be stored in the</span>
 <span class="sd">        session-specific context from services.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-</code></pre></div></td></tr></table></div>
-      </details>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-
-<h3 id="oteapi.interfaces.itransformationstrategy.ITransformationStrategy.run" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">run</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-
-<a href="#oteapi.interfaces.itransformationstrategy.ITransformationStrategy.run" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>Run a transformation job.</p>
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>session</code></td>
-          <td>
-                <code>Optional[Dict[str, Any]]</code>
-          </td>
-          <td><p>A session-specific dictionary context.</p></td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
-          </td>
-          <td><p>An update model of key/value-pairs to be stored in the</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
-          </td>
-          <td><p>session-specific context from services.</p></td>
-        </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
-          </td>
-          <td><p>As a minimum, the dictionary will contain the job ID.</p></td>
-        </tr>
-    </tbody>
-  </table>
-
-      <details class="quote">
-        <summary>Source code in <code>oteapi/interfaces/itransformationstrategy.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a transformation job.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        An update model of key/value-pairs to be stored in the</span>
-<span class="sd">        session-specific context from services.</span>
-<span class="sd">        As a minimum, the dictionary will contain the job ID.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -1926,17 +1787,17 @@ Services.</p>
 
       <details class="quote">
         <summary>Source code in <code>oteapi/interfaces/itransformationstrategy.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TransformationStatus&quot;</span><span class="p">:</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TransformationStatus&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Get job status.</span>
 
 <span class="sd">    Parameters:</span>
