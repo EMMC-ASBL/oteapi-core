@@ -1,10 +1,10 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 # pylint: disable=unused-argument
+import os
 from typing import TYPE_CHECKING, Dict
 
 from celery import Celery
 from celery.result import AsyncResult
-from fastapi_plugins import RedisSettings
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
@@ -19,7 +19,14 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Union
 
 # Connect Celery to the currently running Redis instance
-CELERY = Celery(broker=RedisSettings().redis_url, backend=RedisSettings().redis_url)
+
+REDIS_HOST = os.environ.get("OTEAPI_REDIS_HOST", "redis")
+REDIS_PORT = os.environ.get("OTEAPI_REDIS_PORT", 6379)
+
+CELERY_APP = Celery(
+    broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
+    backend=f"redis://{REDIS_HOST}:{REDIS_PORT}",
+)
 
 
 class CeleryConfig(AttrDict):
@@ -65,20 +72,21 @@ class CeleryRemoteStrategy:
 
     transformation_config: CeleryStrategyConfig
 
-    def run(self, session: "Optional[Dict[str, Any]]" = None) -> TransformationStatus:
+    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCelery:
         """Run a job, return a job ID."""
+        celery_kwargs = {}
         if session:
             self._use_session(session)
             celery_kwargs = session.copy()
             for field in CeleryConfig.__fields__:
                 celery_kwargs.pop(field, None)
 
-        result: "Union[AsyncResult, Any]" = CELERY.send_task(
+        result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
             name=self.transformation_config.configuration.task_name,
             args=self.transformation_config.configuration.args,
             kwargs=celery_kwargs,
         )
-        return self.status(result.task_id)
+        return SessionUpdateCelery(data={"task_id": result.task_id})
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize a job."""
@@ -86,13 +94,8 @@ class CeleryRemoteStrategy:
 
     def status(self, task_id: str) -> TransformationStatus:
         """Get job status."""
-        result = AsyncResult(id=task_id, app=CELERY)
+        result = AsyncResult(id=task_id, app=CELERY_APP)
         return TransformationStatus(id=task_id, status=result.state)
-
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCelery:
-        """Get transformation."""
-        # TODO: update and return global state  # pylint: disable=fixme
-        return SessionUpdateCelery(data={})
 
     def _use_session(self, session: "Dict[str, Any]") -> None:
         """Update the configuration with values from the sesssion."""
