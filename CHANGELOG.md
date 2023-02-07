@@ -2,11 +2,26 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.3.0...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.0...HEAD)
 
-**Implemented enhancements:**
+**Closed issues:**
 
-- Add json-encoders for SecretStr/SecretByte [\#218](https://github.com/EMMC-ASBL/oteapi-core/issues/218)
+- Use get in transformation datamodels and celery\_remote [\#232](https://github.com/EMMC-ASBL/oteapi-core/issues/232)
+
+## [v0.4.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.0) (2023-02-07)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.3.0...v0.4.0)
+
+**Fixed bugs:**
+
+- pylint compliance [\#229](https://github.com/EMMC-ASBL/oteapi-core/issues/229)
+
+**Merged pull requests:**
+
+- Updated the interfaces and implementation of the transformation strat… [\#233](https://github.com/EMMC-ASBL/oteapi-core/pull/233) ([quaat](https://github.com/quaat))
+- Move pylint config file to pyproject.toml [\#230](https://github.com/EMMC-ASBL/oteapi-core/pull/230) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#228](https://github.com/EMMC-ASBL/oteapi-core/pull/228) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#226](https://github.com/EMMC-ASBL/oteapi-core/pull/226) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.3.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.3.0) (2023-01-24)
 
@@ -14,6 +29,7 @@
 
 **Implemented enhancements:**
 
+- Add json-encoders for SecretStr/SecretByte [\#218](https://github.com/EMMC-ASBL/oteapi-core/issues/218)
 - Use SINTEF/ci-cd callable workflows and pre-commit hooks [\#205](https://github.com/EMMC-ASBL/oteapi-core/issues/205)
 
 **Fixed bugs:**
