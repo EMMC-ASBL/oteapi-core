@@ -50,6 +50,8 @@ def test_celery_remote(
 
     celery_worker.reload()
 
+    # Use the test celery app instead of the strategy's celery app
+    # The strategy's celery app has not registered the `add()` task...
     monkeypatch.setattr(celery_remote, "CELERY_APP", celery_app)
 
     config = TransformationConfig(
