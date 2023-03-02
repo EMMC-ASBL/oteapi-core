@@ -1,5 +1,4 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
-# pylint: disable=unused-argument
 import os
 from typing import TYPE_CHECKING, Dict
 
@@ -20,8 +19,8 @@ if TYPE_CHECKING:  # pragma: no cover
 
 # Connect Celery to the currently running Redis instance
 
-REDIS_HOST = os.environ.get("OTEAPI_REDIS_HOST", "redis")
-REDIS_PORT = os.environ.get("OTEAPI_REDIS_PORT", 6379)
+REDIS_HOST = os.getenv("OTEAPI_REDIS_HOST", "redis")
+REDIS_PORT = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
 
 CELERY_APP = Celery(
     broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
@@ -30,19 +29,21 @@ CELERY_APP = Celery(
 
 
 class CeleryConfig(AttrDict):
-    """Celery configuration."""
+    """Celery configuration.
 
-    task_name: str = Field(..., description="A task name.")
+    All fields here (including those added from the session through the `get()` method,
+    as well as those added "anonymously") will be used as keyword arguments to the
+    `send_task()` method for the Celery App.
+    """
+
+    name: str = Field(..., description="A task name.")
     args: list = Field(..., description="List of arguments for the task.")
 
 
 class SessionUpdateCelery(SessionUpdate):
-    """Class for returning values from XLSXParse."""
+    """Class for returning values from a Celery task."""
 
-    data: Dict[str, list] = Field(
-        ...,
-        description="A dict with column-name/column-value pairs. The values are lists.",
-    )
+    celery_task_id: str = Field(..., description="A Celery task identifier.")
 
 
 class CeleryStrategyConfig(TransformationConfig):
@@ -74,21 +75,16 @@ class CeleryRemoteStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCelery:
         """Run a job, return a job ID."""
-        celery_kwargs = {}
         if session:
             self._use_session(session)
-            celery_kwargs = session.copy()
-            for field in CeleryConfig.__fields__:
-                celery_kwargs.pop(field, None)
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
-            name=self.transformation_config.configuration.task_name,
-            args=self.transformation_config.configuration.args,
-            kwargs=celery_kwargs,
+            **self.transformation_config.configuration
         )
-        return SessionUpdateCelery(data={"task_id": result.task_id})
+        return SessionUpdateCelery(celery_task_id=result.task_id)
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+        # pylint: disable=unused-argument
         """Initialize a job."""
         return SessionUpdate()
 
