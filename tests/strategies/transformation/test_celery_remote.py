@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 def celery_config() -> dict[str, str]:
     """Set Celery fixture configuration."""
     import os
+    import platform
 
     import redis
 
@@ -22,7 +23,9 @@ def celery_config() -> dict[str, str]:
     try:
         client.ping()
     except redis.ConnectionError:
-        if os.getenv("CI"):  # And OS is Linux!
+        if os.getenv("CI") and platform.system() == "Linux":
+            # Starting services (like redis) is only supported in GH Actions for the
+            # Linux OS
             pytest.fail("In CI environment - this test MUST run !")
         else:
             pytest.skip(f"No redis connection at {host}:{port} for testing celery.")
