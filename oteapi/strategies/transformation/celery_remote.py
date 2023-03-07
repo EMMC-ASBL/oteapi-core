@@ -103,8 +103,20 @@ class CeleryRemoteStrategy:
         return TransformationStatus(id=task_id, status=result.state)
 
     def _use_session(self, session: "Dict[str, Any]") -> None:
-        """Update the configuration with values from the sesssion."""
-        for field in CeleryConfig.__fields__:
+        """Update the configuration with values from the sesssion.
+
+        Check all fields (non-aliased and aliased) in `CeleryConfig` if they exist in
+        the session. Override the given field values in the current strategy-specific
+        configuration (the `CeleryConfig` instance) with the values found in the
+        session.
+
+        Parameters:
+            session: The current OTE session.
+
+        """
+        fields = set(CeleryConfig.__fields__)
+        fields |= {_.alias for _ in CeleryConfig.__fields__.values()}
+        for field in fields:
             if field in session:
                 setattr(
                     self.transformation_config.configuration,
