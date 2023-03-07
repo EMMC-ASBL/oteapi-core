@@ -1,5 +1,4 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
-# pylint: disable=unused-argument
 import os
 from typing import TYPE_CHECKING, Dict
 
@@ -20,8 +19,8 @@ if TYPE_CHECKING:  # pragma: no cover
 
 # Connect Celery to the currently running Redis instance
 
-REDIS_HOST = os.environ.get("OTEAPI_REDIS_HOST", "redis")
-REDIS_PORT = os.environ.get("OTEAPI_REDIS_PORT", 6379)
+REDIS_HOST = os.getenv("OTEAPI_REDIS_HOST", "redis")
+REDIS_PORT = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
 
 CELERY_APP = Celery(
     broker=f"redis://{REDIS_HOST}:{REDIS_PORT}",
@@ -29,20 +28,31 @@ CELERY_APP = Celery(
 )
 
 
-class CeleryConfig(AttrDict):
-    """Celery configuration."""
+class CeleryConfig(AttrDict, allow_population_by_field_name=True):
+    """Celery configuration.
 
-    task_name: str = Field(..., description="A task name.")
+    All fields here (including those added from the session through the `get()` method,
+    as well as those added "anonymously") will be used as keyword arguments to the
+    `send_task()` method for the Celery App.
+
+    Note:
+        Using `alias` for the `name` field to favor populating it with `task_name`
+        arguments, since this is the "original" field name. I.e., this is done for
+        backwards compatibility.
+
+    Setting `allow_population_by_field_name=True` as pydantic model configuration in
+    order to allow populating it using `name` as well as `task_name`.
+
+    """
+
+    name: str = Field(..., description="A task name.", alias="task_name")
     args: list = Field(..., description="List of arguments for the task.")
 
 
 class SessionUpdateCelery(SessionUpdate):
-    """Class for returning values from XLSXParse."""
+    """Class for returning values from a Celery task."""
 
-    data: Dict[str, list] = Field(
-        ...,
-        description="A dict with column-name/column-value pairs. The values are lists.",
-    )
+    celery_task_id: str = Field(..., description="A Celery task identifier.")
 
 
 class CeleryStrategyConfig(TransformationConfig):
@@ -74,21 +84,16 @@ class CeleryRemoteStrategy:
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCelery:
         """Run a job, return a job ID."""
-        celery_kwargs = {}
         if session:
             self._use_session(session)
-            celery_kwargs = session.copy()
-            for field in CeleryConfig.__fields__:
-                celery_kwargs.pop(field, None)
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
-            name=self.transformation_config.configuration.task_name,
-            args=self.transformation_config.configuration.args,
-            kwargs=celery_kwargs,
+            **self.transformation_config.configuration
         )
-        return SessionUpdateCelery(data={"task_id": result.task_id})
+        return SessionUpdateCelery(celery_task_id=result.task_id)
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+        # pylint: disable=unused-argument
         """Initialize a job."""
         return SessionUpdate()
 
@@ -98,11 +103,29 @@ class CeleryRemoteStrategy:
         return TransformationStatus(id=task_id, status=result.state)
 
     def _use_session(self, session: "Dict[str, Any]") -> None:
-        """Update the configuration with values from the sesssion."""
-        for field in CeleryConfig.__fields__:
+        """Update the configuration with values from the sesssion.
+
+        Check all fields (non-aliased and aliased) in `CeleryConfig` if they exist in
+        the session. Override the given field values in the current strategy-specific
+        configuration (the `CeleryConfig` instance) with the values found in the
+        session.
+
+        Parameters:
+            session: The current OTE session.
+
+        """
+        alias_mapping: dict[str, str] = {
+            field.alias: field_name
+            for field_name, field in CeleryConfig.__fields__.items()
+        }
+
+        fields = set(CeleryConfig.__fields__)
+        fields |= {_.alias for _ in CeleryConfig.__fields__.values()}
+
+        for field in fields:
             if field in session:
                 setattr(
                     self.transformation_config.configuration,
-                    field,
+                    alias_mapping[field],
                     session[field],
                 )

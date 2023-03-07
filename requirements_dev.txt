@@ -2,5 +2,6 @@ pre-commit>=2.21.0,<3; python_version<"3.8"
 pre-commit~=3.1; python_version>="3.8"
 pylint~=2.16
 pytest~=7.2
+pytest-celery
 pytest-cov~=4.0
 requests-mock~=1.10
