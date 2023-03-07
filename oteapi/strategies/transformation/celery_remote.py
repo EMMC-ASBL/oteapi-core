@@ -114,12 +114,18 @@ class CeleryRemoteStrategy:
             session: The current OTE session.
 
         """
+        alias_mapping: dict[str, str] = {
+            field.alias: field_name
+            for field_name, field in CeleryConfig.__fields__.items()
+        }
+
         fields = set(CeleryConfig.__fields__)
         fields |= {_.alias for _ in CeleryConfig.__fields__.values()}
+
         for field in fields:
             if field in session:
                 setattr(
                     self.transformation_config.configuration,
-                    field,
+                    alias_mapping[field],
                     session[field],
                 )
