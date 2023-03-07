@@ -63,7 +63,7 @@ def test_celery_remote(
     config = TransformationConfig(
         transformationType="celery/remote",
         configuration={
-            "name": add.name,
+            "task_name": add.name,
             "args": [1, 2],
         },
     )
@@ -86,3 +86,17 @@ def test_celery_remote(
 
     result = AsyncResult(id=session.celery_task_id, app=celery_app)
     assert result.result == add(1, 2)
+
+
+def test_celery_config_name() -> None:
+    """Check `CeleryConfig` can be populated with/-out alias use."""
+    from oteapi.strategies.transformation.celery_remote import CeleryConfig
+
+    aliased_keys = ("task_name", "args")
+    non_aliased_keys = ("name", "args")
+
+    values = ("app.add", [1, 2])
+
+    assert CeleryConfig(**dict(zip(aliased_keys, values))) == CeleryConfig(
+        **dict(zip(non_aliased_keys, values))
+    )

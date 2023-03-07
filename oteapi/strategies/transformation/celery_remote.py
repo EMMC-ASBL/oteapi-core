@@ -28,15 +28,24 @@ CELERY_APP = Celery(
 )
 
 
-class CeleryConfig(AttrDict):
+class CeleryConfig(AttrDict, allow_population_by_field_name=True):
     """Celery configuration.
 
     All fields here (including those added from the session through the `get()` method,
     as well as those added "anonymously") will be used as keyword arguments to the
     `send_task()` method for the Celery App.
+
+    Note:
+        Using `alias` for the `name` field to favor populating it with `task_name`
+        arguments, since this is the "original" field name. I.e., this is done for
+        backwards compatibility.
+
+    Setting `allow_population_by_field_name=True` as pydantic model configuration in
+    order to allow populating it using `name` as well as `task_name`.
+
     """
 
-    name: str = Field(..., description="A task name.")
+    name: str = Field(..., description="A task name.", alias="task_name")
     args: list = Field(..., description="List of arguments for the task.")
 
 
