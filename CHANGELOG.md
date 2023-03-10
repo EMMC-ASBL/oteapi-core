@@ -1,12 +1,16 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.4.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.1) (2023-03-10)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.0...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.0...v0.4.1)
 
-**Closed issues:**
+**Merged pull requests:**
 
-- Use get in transformation datamodels and celery\_remote [\#232](https://github.com/EMMC-ASBL/oteapi-core/issues/232)
+- \[Auto-generated\] Update dependencies [\#242](https://github.com/EMMC-ASBL/oteapi-core/pull/242) ([TEAM4-0](https://github.com/TEAM4-0))
+- Polish `celery/remote` transformation strategy [\#240](https://github.com/EMMC-ASBL/oteapi-core/pull/240) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#239](https://github.com/EMMC-ASBL/oteapi-core/pull/239) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#235](https://github.com/EMMC-ASBL/oteapi-core/pull/235) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#234](https://github.com/EMMC-ASBL/oteapi-core/pull/234) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.4.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.0) (2023-02-07)
 
@@ -15,6 +19,10 @@
 **Fixed bugs:**
 
 - pylint compliance [\#229](https://github.com/EMMC-ASBL/oteapi-core/issues/229)
+
+**Closed issues:**
+
+- Use get in transformation datamodels and celery\_remote [\#232](https://github.com/EMMC-ASBL/oteapi-core/issues/232)
 
 **Merged pull requests:**
 
