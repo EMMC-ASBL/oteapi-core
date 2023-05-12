@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.2...HEAD)
+
+**Implemented enhancements:**
+
+- Update SINTEF/ci-cd [\#265](https://github.com/EMMC-ASBL/oteapi-core/issues/265)
+
 ## [v0.4.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.2) (2023-05-12)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.1...v0.4.2)
@@ -16,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Update to SINTEF/ci-cd v2 [\#266](https://github.com/EMMC-ASBL/oteapi-core/pull/266) ([CasperWA](https://github.com/CasperWA))
 - \[Auto-generated\] Update dependencies [\#264](https://github.com/EMMC-ASBL/oteapi-core/pull/264) ([TEAM4-0](https://github.com/TEAM4-0))
 - Pin urllib3 to v1.x [\#262](https://github.com/EMMC-ASBL/oteapi-core/pull/262) ([CasperWA](https://github.com/CasperWA))
 - \[Auto-generated\] Update dependencies [\#260](https://github.com/EMMC-ASBL/oteapi-core/pull/260) ([TEAM4-0](https://github.com/TEAM4-0))
