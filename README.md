@@ -17,6 +17,8 @@ OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Ope
 
 It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
 Semantic interoperability is supported via mapping of data models describing the data to ontologies.
+A set of strategy interfaces that can be considered abstract classes for the implementation of strategies, and data models used in their configuration, are provided.
+This repo also contains implementations for several standard strategies, e.g., downloading files, parsing Excel documents.
 Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
 OTEAPI Core includes:
@@ -72,6 +74,11 @@ Transformation strategies are a special form of a function strategy intended for
 In this sense, they represent asynchronous functions running in the background or on external resources.
 
 Standard transformation strategies: *celery/remote*
+
+The transformation strategy has consolidated the execution of the
+transformation with the `get()` method to unify the strategy interfaces.
+`get()` is intended to start an asynchronous process and return a
+*task_id* which can be queried using the `status()` method (outside of a pipeline).
 
 ## Entry points for plugins
 

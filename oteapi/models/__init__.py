@@ -10,6 +10,7 @@ from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig, RDFTriple
 from .resourceconfig import ResourceConfig
+from .secretconfig import SecretConfig
 from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
 from .triplestoreconfig import TripleStoreConfig
@@ -28,6 +29,7 @@ __all__ = (
     "TransformationConfig",
     "TransformationStatus",
     "TripleStoreConfig",
+    "SecretConfig",
 )
 
 StrategyConfig = Union[

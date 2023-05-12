@@ -212,7 +212,10 @@ oteapi.download =
 
     with pytest.raises(
         EntryPointNotFound,
-        match=rf"^{invalid_module} cannot be imported\. Did you install the {package!r} package\?$",
+        match=(
+            rf"^{invalid_module} cannot be imported\. Did you install the {package!r} "
+            r"package\?$"
+        ),
     ):
         entry_point_strategies[1].implementation
 

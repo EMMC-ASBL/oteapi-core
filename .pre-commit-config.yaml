@@ -21,25 +21,25 @@ repos:
       args: [--markdown-linebreak-ext=md]
 
   - repo: https://github.com/timothycrosley/isort
-    rev: 5.11.2
+    rev: 5.12.0
     hooks:
     - id: isort
       args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
 
   - repo: https://github.com/ambv/black
-    rev: 22.12.0
+    rev: 23.3.0
     hooks:
     - id: black
 
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.4
+    rev: 1.7.5
     hooks:
     - id: bandit
       args: ["-r"]
       files: ^oteapi/.*$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.991
+    rev: v1.2.0
     hooks:
     - id: mypy
       exclude: ^tests/.*$
@@ -48,7 +48,7 @@ repos:
       - "pydantic"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.0.0
+    rev: v2.3.1
     hooks:
     - id: docs-api-reference
       args:
@@ -70,7 +70,7 @@ repos:
     - id: pylint
       name: pylint
       entry: pylint
-      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'"]
+      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'"]
       language: python
       types: [python]
       require_serial: true
@@ -79,7 +79,7 @@ repos:
     - id: pylint-strategies
       name: pylint - oteapi/strategies/
       entry: pylint
-      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=R,C"]
+      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=R,C"]
       language: python
       types: [python]
       require_serial: true
@@ -87,7 +87,7 @@ repos:
     - id: pylint-tests
       name: pylint - tests
       entry: pylint
-      args: ["--rcfile=.pylintrc", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error"]
+      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error"]
       language: python
       types: [python]
       require_serial: true

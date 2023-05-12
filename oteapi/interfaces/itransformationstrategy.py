@@ -14,19 +14,6 @@ class ITransformationStrategy(Protocol):
 
     transformation_config: "TransformationConfig"
 
-    def run(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
-        """Run a transformation job.
-
-        Parameters:
-            session: A session-specific dictionary context.
-
-        Returns:
-            An update model of key/value-pairs to be stored in the
-            session-specific context from services.
-            As a minimum, the dictionary will contain the job ID.
-
-        """
-
     def status(self, task_id: str) -> "TransformationStatus":
         """Get job status.
 
@@ -40,7 +27,7 @@ class ITransformationStrategy(Protocol):
         """
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
-        """Execute the strategy.
+        """Execute the strategy i.e. running a transformation job.
 
         Parameters:
             session: A session-specific dictionary context.
