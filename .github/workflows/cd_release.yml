@@ -8,17 +8,17 @@ on:
 jobs:
   publish:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v1
+    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.3.1
     if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v')
     with:
       # General
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
+      release_branch: master
 
       # Publish to PyPI
       python_package: true
       package_dirs: oteapi
-      release_branch: master
       python_version_build: "3.9"
       install_extras: "[dev]"
       build_cmd: "python -m build"
