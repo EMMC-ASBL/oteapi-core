@@ -1,5 +1,30 @@
 # Changelog
 
+## [v0.4.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.2) (2023-05-12)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.1...v0.4.2)
+
+**Fixed bugs:**
+
+- Pin to using urllib3 v1.x [\#261](https://github.com/EMMC-ASBL/oteapi-core/issues/261)
+
+**Closed issues:**
+
+- Rename the pipeline get\(\) method to execute\(\) [\#250](https://github.com/EMMC-ASBL/oteapi-core/issues/250)
+- Clean up requirements [\#248](https://github.com/EMMC-ASBL/oteapi-core/issues/248)
+- Activate auto-merging for CI workflow to update dependencies [\#247](https://github.com/EMMC-ASBL/oteapi-core/issues/247)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#264](https://github.com/EMMC-ASBL/oteapi-core/pull/264) ([TEAM4-0](https://github.com/TEAM4-0))
+- Pin urllib3 to v1.x [\#262](https://github.com/EMMC-ASBL/oteapi-core/pull/262) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#260](https://github.com/EMMC-ASBL/oteapi-core/pull/260) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#258](https://github.com/EMMC-ASBL/oteapi-core/pull/258) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#256](https://github.com/EMMC-ASBL/oteapi-core/pull/256) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#252](https://github.com/EMMC-ASBL/oteapi-core/pull/252) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#246](https://github.com/EMMC-ASBL/oteapi-core/pull/246) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#244](https://github.com/EMMC-ASBL/oteapi-core/pull/244) ([TEAM4-0](https://github.com/TEAM4-0))
+
 ## [v0.4.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.1) (2023-03-10)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.0...v0.4.1)
