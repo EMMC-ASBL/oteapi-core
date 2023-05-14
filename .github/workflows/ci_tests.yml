@@ -10,7 +10,7 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v1
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.3.1
     with:
       # pre-commit
       run_pre-commit: true
@@ -23,14 +23,11 @@ jobs:
 
       run_pylint: true
       pylint_runs: |
-        --rcfile=.pylintrc --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
-        --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
-        --rcfile=.pylintrc --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
+        --rcfile=pyproject.toml --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
+        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
+        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
 
       run_safety: true
-      # Ignore ID 44715 for now.
-      # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
-      safety_options: --ignore=44715
 
       # Build package
       run_build_package: true
@@ -55,34 +52,84 @@ jobs:
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
       warnings_as_errors: true
 
-  pytest:
-    name: pytest (${{ matrix.os[1] }}-py${{ matrix.python-version }})
-    runs-on: ${{ matrix.os[0] }}
+  pytest-linux:
+    name: pytest (linux-py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        os:
-        - ["ubuntu-latest", "linux"]
-        - ["windows-latest", "windows"]
         python-version: ["3.9", "3.10"]
+
+    services:
+      redis:
+        image: redis:latest
+        volumes:
+          - redis-persist:/data
+        ports:
+          - "6379:6379"
+
+    env:
+      OTEAPI_REDIS_HOST: localhost
+      OTEAPI_REDIST_PORT: 6379
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        fetch-depth: 2
 
     - name: Set up Python ${{ matrix.python-version}}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version}}
 
-    - name: Install linux system dependencies
-      if: matrix.os[1] == 'linux'
+    - name: Install system dependencies
       run: sudo apt update && sudo apt install -y ghostscript
 
-    - name: Install windows system dependencies
-      if: matrix.os[1] == 'windows'
+    - name: Install Python dependencies
+      run: |
+        python -m pip install -U pip
+        pip install -U setuptools wheel
+        pip install -e .[dev]
+
+    - name: Test with pytest
+      run: pytest -vvv --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: coverage.xml
+        flags: linux
+
+    - name: Test with optional libs
+      run: |
+        pip install ase numpy
+        pytest -vvv --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: coverage.xml
+        flags: linux-extra_libs
+
+  pytest-win:
+    name: pytest (windows-py${{ matrix.python-version }})
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version}}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version}}
+
+    - name: Install system dependencies
       run: |
         $url = "https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/gs9550w64.exe"
         $outpath = "${{ github.workspace }}\ghostscript.exe"
@@ -101,11 +148,11 @@ jobs:
       run: pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
-        flags: ${{ matrix.os[1] }}
+        flags: windows
 
     - name: Test with optional libs
       run: |
@@ -113,8 +160,8 @@ jobs:
         pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
-        flags: ${{ matrix.os[1] }}-extra_libs
+        flags: windows-extra_libs

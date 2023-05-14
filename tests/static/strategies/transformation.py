@@ -26,10 +26,6 @@ class TransformationTestStrategy:
         """Run transformation strategy."""
         return {}
 
-    def run(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
-        """Run a transformation job."""
-        return {}
-
     def status(self, task_id: str) -> TransformationStatus:
         """Return status for transformation job."""
         return TransformationStatus(id=task_id)

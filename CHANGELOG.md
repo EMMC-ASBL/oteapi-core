@@ -2,15 +2,119 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.2.1...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.2...HEAD)
+
+**Implemented enhancements:**
+
+- Update SINTEF/ci-cd [\#265](https://github.com/EMMC-ASBL/oteapi-core/issues/265)
+
+## [v0.4.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.2) (2023-05-12)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.1...v0.4.2)
 
 **Fixed bugs:**
 
-- `filter/crop` not loading properly [\#170](https://github.com/EMMC-ASBL/oteapi-core/issues/170)
+- Pin to using urllib3 v1.x [\#261](https://github.com/EMMC-ASBL/oteapi-core/issues/261)
+
+**Closed issues:**
+
+- Rename the pipeline get\(\) method to execute\(\) [\#250](https://github.com/EMMC-ASBL/oteapi-core/issues/250)
+- Clean up requirements [\#248](https://github.com/EMMC-ASBL/oteapi-core/issues/248)
+- Activate auto-merging for CI workflow to update dependencies [\#247](https://github.com/EMMC-ASBL/oteapi-core/issues/247)
+
+**Merged pull requests:**
+
+- Update to SINTEF/ci-cd v2 [\#266](https://github.com/EMMC-ASBL/oteapi-core/pull/266) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#264](https://github.com/EMMC-ASBL/oteapi-core/pull/264) ([TEAM4-0](https://github.com/TEAM4-0))
+- Pin urllib3 to v1.x [\#262](https://github.com/EMMC-ASBL/oteapi-core/pull/262) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#260](https://github.com/EMMC-ASBL/oteapi-core/pull/260) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#258](https://github.com/EMMC-ASBL/oteapi-core/pull/258) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#256](https://github.com/EMMC-ASBL/oteapi-core/pull/256) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#252](https://github.com/EMMC-ASBL/oteapi-core/pull/252) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#246](https://github.com/EMMC-ASBL/oteapi-core/pull/246) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#244](https://github.com/EMMC-ASBL/oteapi-core/pull/244) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.4.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.1) (2023-03-10)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.0...v0.4.1)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#242](https://github.com/EMMC-ASBL/oteapi-core/pull/242) ([TEAM4-0](https://github.com/TEAM4-0))
+- Polish `celery/remote` transformation strategy [\#240](https://github.com/EMMC-ASBL/oteapi-core/pull/240) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#239](https://github.com/EMMC-ASBL/oteapi-core/pull/239) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#235](https://github.com/EMMC-ASBL/oteapi-core/pull/235) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#234](https://github.com/EMMC-ASBL/oteapi-core/pull/234) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.4.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.0) (2023-02-07)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.3.0...v0.4.0)
+
+**Fixed bugs:**
+
+- pylint compliance [\#229](https://github.com/EMMC-ASBL/oteapi-core/issues/229)
+
+**Closed issues:**
+
+- Use get in transformation datamodels and celery\_remote [\#232](https://github.com/EMMC-ASBL/oteapi-core/issues/232)
+
+**Merged pull requests:**
+
+- Updated the interfaces and implementation of the transformation strat… [\#233](https://github.com/EMMC-ASBL/oteapi-core/pull/233) ([quaat](https://github.com/quaat))
+- Move pylint config file to pyproject.toml [\#230](https://github.com/EMMC-ASBL/oteapi-core/pull/230) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#228](https://github.com/EMMC-ASBL/oteapi-core/pull/228) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#226](https://github.com/EMMC-ASBL/oteapi-core/pull/226) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.3.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.3.0) (2023-01-24)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.2.1...v0.3.0)
+
+**Implemented enhancements:**
+
+- Add json-encoders for SecretStr/SecretByte [\#218](https://github.com/EMMC-ASBL/oteapi-core/issues/218)
+- Use SINTEF/ci-cd callable workflows and pre-commit hooks [\#205](https://github.com/EMMC-ASBL/oteapi-core/issues/205)
+
+**Fixed bugs:**
+
+- Update configuration files for MkDocs [\#203](https://github.com/EMMC-ASBL/oteapi-core/issues/203)
+
+**Closed issues:**
+
+- Reenable documentation CI/CD disabled in PR \#200 [\#201](https://github.com/EMMC-ASBL/oteapi-core/issues/201)
+- Error in description of MappingConfig.prefixes [\#197](https://github.com/EMMC-ASBL/oteapi-core/issues/197)
+- Update pylint options [\#193](https://github.com/EMMC-ASBL/oteapi-core/issues/193)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#223](https://github.com/EMMC-ASBL/oteapi-core/pull/223) ([TEAM4-0](https://github.com/TEAM4-0))
+- Enh/secrets json encoders [\#222](https://github.com/EMMC-ASBL/oteapi-core/pull/222) ([MBueschelberger](https://github.com/MBueschelberger))
+- \[Auto-generated\] Update dependencies [\#220](https://github.com/EMMC-ASBL/oteapi-core/pull/220) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#217](https://github.com/EMMC-ASBL/oteapi-core/pull/217) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#215](https://github.com/EMMC-ASBL/oteapi-core/pull/215) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#214](https://github.com/EMMC-ASBL/oteapi-core/pull/214) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#213](https://github.com/EMMC-ASBL/oteapi-core/pull/213) ([TEAM4-0](https://github.com/TEAM4-0))
+- add optional secret to functionconfig and resourceconfig [\#212](https://github.com/EMMC-ASBL/oteapi-core/pull/212) ([MBueschelberger](https://github.com/MBueschelberger))
+- Updated documentation of prefixes in MappingConfig [\#209](https://github.com/EMMC-ASBL/oteapi-core/pull/209) ([jesper-friis](https://github.com/jesper-friis))
+- Use SINTEF/ci-cd [\#206](https://github.com/EMMC-ASBL/oteapi-core/pull/206) ([CasperWA](https://github.com/CasperWA))
+- Revert removing `--strict` and fix docs build [\#204](https://github.com/EMMC-ASBL/oteapi-core/pull/204) ([CasperWA](https://github.com/CasperWA))
+- removed --strict option [\#202](https://github.com/EMMC-ASBL/oteapi-core/pull/202) ([daniel-sintef](https://github.com/daniel-sintef))
+- \[Auto-generated\] Update dependencies [\#199](https://github.com/EMMC-ASBL/oteapi-core/pull/199) ([TEAM4-0](https://github.com/TEAM4-0))
+- added a small clarification to the docs [\#198](https://github.com/EMMC-ASBL/oteapi-core/pull/198) ([daniel-sintef](https://github.com/daniel-sintef))
+- Use recursive option for pylint-tests CI [\#194](https://github.com/EMMC-ASBL/oteapi-core/pull/194) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#190](https://github.com/EMMC-ASBL/oteapi-core/pull/190) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#189](https://github.com/EMMC-ASBL/oteapi-core/pull/189) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#186](https://github.com/EMMC-ASBL/oteapi-core/pull/186) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#184](https://github.com/EMMC-ASBL/oteapi-core/pull/184) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#182](https://github.com/EMMC-ASBL/oteapi-core/pull/182) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#174](https://github.com/EMMC-ASBL/oteapi-core/pull/174) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.2.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.1) (2022-07-20)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.2.0...v0.2.1)
+
+**Fixed bugs:**
+
+- `filter/crop` not loading properly [\#170](https://github.com/EMMC-ASBL/oteapi-core/issues/170)
 
 **Merged pull requests:**
 
