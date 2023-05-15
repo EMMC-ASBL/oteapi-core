@@ -12,7 +12,8 @@ from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpda
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
-    [`PostgresResourceStrategy`][oteapi.strategies.resource.postgres.PostgresResourceConfig]."""
+    [`PostgresResourceStrategy`][oteapi.strategies.resource.postgres.PostgresResourceConfig].
+    """
 
     user: Optional[str] = Field(None, description="postgres server username")
     dbname: Optional[str] = Field(None, description="postgres dbname name")
@@ -48,7 +49,6 @@ class PostgresResourceConfig(ResourceConfig):
         query: Optional[str] = "",
         fragment: Optional[str] = "",
     ):
-
         """Construct a pydantic AnyUrl based on the given URL properties"""
 
         # Hostname should always be given
