@@ -1,7 +1,13 @@
 """Strategy class for image/jpg."""
 # pylint: disable=unused-argument
+import sys
 from enum import Enum
-from typing import TYPE_CHECKING, Literal, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Optional, Tuple
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 import numpy as np
 from PIL import Image
@@ -49,14 +55,14 @@ class ImageParserConfig(AttrDict):
 class ImageParserResourceConfig(ResourceConfig):
     """Image parse strategy resource config."""
 
-    mediaType: Union[
-        Literal["image/jpg"],
-        Literal["image/jpeg"],
-        Literal["image/jp2"],
-        Literal["image/png"],
-        Literal["image/gif"],
-        Literal["image/tiff"],
-        Literal["image/eps"],
+    mediaType: Literal[
+        "image/jpg",
+        "image/jpeg",
+        "image/jp2",
+        "image/png",
+        "image/gif",
+        "image/tiff",
+        "image/eps",
     ] = Field(
         ...,
         description=ResourceConfig.__fields__["mediaType"].field_info.description,
