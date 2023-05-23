@@ -1,16 +1,21 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.4.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.3) (2023-05-23)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.2...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.2...v0.4.3)
 
-**Implemented enhancements:**
+**Merged pull requests:**
 
-- Update SINTEF/ci-cd [\#265](https://github.com/EMMC-ASBL/oteapi-core/issues/265)
+- \[Auto-generated\] Update dependencies [\#272](https://github.com/EMMC-ASBL/oteapi-core/pull/272) ([TEAM4-0](https://github.com/TEAM4-0))
+- Use typing-extensions for Python \<= 3.9 [\#270](https://github.com/EMMC-ASBL/oteapi-core/pull/270) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.4.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.2) (2023-05-12)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.1...v0.4.2)
+
+**Implemented enhancements:**
+
+- Update SINTEF/ci-cd [\#265](https://github.com/EMMC-ASBL/oteapi-core/issues/265)
 
 **Fixed bugs:**
 
