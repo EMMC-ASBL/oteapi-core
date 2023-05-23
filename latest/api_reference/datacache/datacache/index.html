@@ -19,7 +19,7 @@
         <link rel="next" href="../../interfaces/idownloadstrategy/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
     
     
       
@@ -2042,7 +2042,7 @@ exists in the cache.</p>
         <tr>
           <td><code>key</code></td>
           <td>
-                <code>Optional[str]</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>If given, use this as the retrieval key. Otherwise the key is either
 taken from the <code>accessKey</code> configuration or generated as a hash of
@@ -2054,7 +2054,7 @@ taken from the <code>accessKey</code> configuration or generated as a hash of
         <tr>
           <td><code>expire</code></td>
           <td>
-                <code>Optional[int]</code>
+                <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
           <td><p>If given, the number of seconds before the value expire. Otherwise
 it is taken from the configuration.</p></td>
@@ -2065,7 +2065,7 @@ it is taken from the configuration.</p></td>
         <tr>
           <td><code>tag</code></td>
           <td>
-                <code>Optional[str]</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>Tag used with <a class="autorefs autorefs-internal" href="#oteapi.datacache.datacache.DataCache.evict"><code>evict()</code></a>
 for cleaning up a session.</p></td>
@@ -2090,7 +2090,7 @@ argument.</p></td>
         <tr>
           <td><code>json_encoder</code></td>
           <td>
-                <code><span title="Optional[Type[json.JSONEncoder]]">JSONEncoder]]</span></code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[json.<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
           </td>
           <td><p>Customised json encoder forcomplex Python objects.</p></td>
           <td>
@@ -2496,7 +2496,7 @@ context.</p></td>
         <tr>
           <td><code>filename</code></td>
           <td>
-                <code>Optional[Union[Path, str]]</code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
           </td>
           <td><p>Full path to created file. If not given, a unique filename will
 be created.</p></td>
@@ -2507,7 +2507,7 @@ be created.</p></td>
         <tr>
           <td><code>prefix</code></td>
           <td>
-                <code>Optional[str]</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>Prefix to prepend to the returned file name (default is
 <code>"oteapi-download-"</code>).</p></td>
@@ -2518,7 +2518,7 @@ be created.</p></td>
         <tr>
           <td><code>suffix</code></td>
           <td>
-                <code>Optional[str]</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>Suffix to append to the returned file name.</p></td>
           <td>
@@ -2528,7 +2528,7 @@ be created.</p></td>
         <tr>
           <td><code>directory</code></td>
           <td>
-                <code>Optional[str]</code>
+                <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
           <td><p>File directory if <code>filename</code> is not provided (is <code>None</code>).</p></td>
           <td>
@@ -2549,7 +2549,7 @@ be created.</p></td>
     <tbody>
         <tr>
           <td>
-                <code>Iterator[Path]</code>
+                <code><span title="typing.Iterator">Iterator</span>[<span title="pathlib.Path">Path</span>]</code>
           </td>
           <td><p>Path object, referencing and representing the created file.</p></td>
         </tr>
@@ -2758,7 +2758,7 @@ calculating the hash.</p></td>
         <tr>
           <td><code>json_encoder</code></td>
           <td>
-                <code><span title="Optional[Type[json.JSONEncoder]]">JSONEncoder]]</span></code>
+                <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[json.<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
           </td>
           <td><p>Customised json encoder for complex Python objects.</p></td>
           <td>
@@ -2947,7 +2947,7 @@ calculating the hash.</p></td>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.c2be25ad.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.b4d07000.min.js"></script>
       
     
   </body>
