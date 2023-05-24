@@ -12,7 +12,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 class SqlQueryFilterConfig(FilterConfig):
-    """SQLite query filter strategy filter config."""
+    """SQL query filter strategy filter config."""
 
     filterType: str = Field(
         "filter/sql",
