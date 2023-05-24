@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.4...HEAD)
+
+**Closed issues:**
+
+- psycopg2/PostgreSQL datasource strategy [\#191](https://github.com/EMMC-ASBL/oteapi-core/issues/191)
+
+## [v0.4.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.4) (2023-05-24)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.3...v0.4.4)
+
+**Merged pull requests:**
+
+- 191 psycopg2postgresql datasource strategy [\#196](https://github.com/EMMC-ASBL/oteapi-core/pull/196) ([daniel-sintef](https://github.com/daniel-sintef))
+
 ## [v0.4.3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.3) (2023-05-23)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.2...v0.4.3)
