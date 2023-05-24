@@ -435,6 +435,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-docker-with-postgresql" class="md-nav__link">
+    Using Docker with PostgreSQL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#license" class="md-nav__link">
     License
   </a>
@@ -1308,12 +1315,60 @@
       
       
         <label class="md-nav__link" for="__nav_6_6_5" id="__nav_6_6_5_label" tabindex="0">
-          transformation
+          resource
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_6_6_5">
+          <span class="md-nav__icon md-icon"></span>
+          resource
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_reference/strategies/resource/postgres/" class="md-nav__link">
+        postgres
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_6_6" id="__nav_6_6_6_label" tabindex="0">
+          transformation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6_6_6">
           <span class="md-nav__icon md-icon"></span>
           transformation
         </label>
@@ -1653,6 +1708,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-docker-with-postgresql" class="md-nav__link">
+    Using Docker with PostgreSQL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#license" class="md-nav__link">
     License
   </a>
@@ -1896,6 +1958,28 @@ We recommend installing within a dedicated virtual environment.</p>
 pytest
 </code></pre></div>
 <p>If you run into issues at this stage, please <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/new">open an issue</a>.</p>
+<h2 id="using-docker-with-postgresql">Using Docker with PostgreSQL<a class="headerlink" href="#using-docker-with-postgresql" title="Permanent link">&para;</a></h2>
+<p>Docker is an effective tool for creating portable, isolated environments for your applications. Here's an example of setting up a PostgreSQL instance using Docker:</p>
+<ol>
+<li><strong>Create a Docker volume</strong>: Docker volumes enable data to persist across uses of Docker containers. In this context, we create a volume called pgdata to store database data.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>pgdata
+</code></pre></div>
+<ol>
+<li><strong>Start a Docker container</strong>: Use the <code>docker run</code> command to initiate a new Docker container using the postgres image. Here's a breakdown of the options used in the command:</li>
+</ol>
+<p><code>-d</code>: Runs the container in the background (detached mode), freeing up your terminal.</p>
+<p><code>--name postgres</code>: Names the container postgres, allowing it to be referenced in future Docker commands.</p>
+<p><code>-e POSTGRES_PASSWORD=postgres</code>: Sets an environment variable in the container to specify the PostgreSQL database password as postgres.</p>
+<p><code>-p 5432:5432</code>: Maps port 5432 of the container to port 5432 of the host machine, letting applications on the host connect to the PostgreSQL database in the container.</p>
+<p><code>-v pgdata:/var/lib/postgresql/data</code>: Mounts the pgdata volume at the path /var/lib/postgresql/data inside the container, which is the storage location for PostgreSQL data files.</p>
+<p><code>--restart always</code>: Ensures the container restarts whenever it stops, unless it is manually stopped, in which case it only restarts when the Docker daemon starts, usually on system boot.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w">  </span>-d<span class="w"> </span>--name<span class="w"> </span>postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">                   </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>postgres<span class="w"> </span><span class="se">\</span>
+<span class="w">                   </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
+<span class="w">                   </span>-v<span class="w"> </span>pgdata:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">                   </span>--restart<span class="w"> </span>always<span class="w"> </span>postgres
+</code></pre></div>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
 <p>OTEAPI Core is released under the <a href="LICENSE/">MIT license</a> with copyright &copy; SINTEF.</p>
 <h2 id="acknowledgment">Acknowledgment<a class="headerlink" href="#acknowledgment" title="Permanent link">&para;</a></h2>
