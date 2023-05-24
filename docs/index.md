@@ -239,6 +239,39 @@ pytest
 
 If you run into issues at this stage, please [open an issue](https://github.com/EMMC-ASBL/oteapi-core/issues/new).
 
+
+
+## Using Docker with PostgreSQL
+Docker is an effective tool for creating portable, isolated environments for your applications. Here's an example of setting up a PostgreSQL instance using Docker:
+
+1. **Create a Docker volume**: Docker volumes enable data to persist across uses of Docker containers. In this context, we create a volume called pgdata to store database data.
+
+```shell
+docker volume create pgdata
+```
+
+2. **Start a Docker container**: Use the `docker run` command to initiate a new Docker container using the postgres image. Here's a breakdown of the options used in the command:
+
+   `-d`: Runs the container in the background (detached mode), freeing up your terminal.
+
+   `--name postgres`: Names the container postgres, allowing it to be referenced in future Docker commands.
+
+   `-e POSTGRES_PASSWORD=postgres`: Sets an environment variable in the container to specify the PostgreSQL database password as postgres.
+
+   `-p 5432:5432`: Maps port 5432 of the container to port 5432 of the host machine, letting applications on the host connect to the PostgreSQL database in the container.
+
+   `-v pgdata:/var/lib/postgresql/data`: Mounts the pgdata volume at the path /var/lib/postgresql/data inside the container, which is the storage location for PostgreSQL data files.
+
+   `--restart always`: Ensures the container restarts whenever it stops, unless it is manually stopped, in which case it only restarts when the Docker daemon starts, usually on system boot.
+
+```shell
+docker run  -d --name postgres \
+                   -e POSTGRES_PASSWORD=postgres \
+                   -p 5432:5432 \
+                   -v pgdata:/var/lib/postgresql/data \
+                   --restart always postgres
+```
+
 ## License
 
 OTEAPI Core is released under the [MIT license](LICENSE.md) with copyright &copy; SINTEF.
