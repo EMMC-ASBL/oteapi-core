@@ -8,6 +8,8 @@
 [![CI - Tests](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml/badge.svg?branch=master)](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml?query=branch%3Amaster)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/pulse)
 [![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity)
+[![DOI](https://zenodo.org/badge/447260507.svg)](https://zenodo.org/badge/latestdoi/447260507)
+
 
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
@@ -99,7 +101,7 @@ There are now various different ways to let the Python environment know of these
 
 #### `setup.py`
 
-In the package's `setup.py` file, one can specify entry points.  
+In the package's `setup.py` file, one can specify entry points.
 Here, an example snippet is shown using [setuptools](https://setuptools.pypa.io/):
 
 ```python
