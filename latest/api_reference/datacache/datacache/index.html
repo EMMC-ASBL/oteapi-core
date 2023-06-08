@@ -19,7 +19,7 @@
         <link rel="next" href="../../interfaces/idownloadstrategy/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -1545,7 +1545,11 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
           <td>
                 <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.DataCacheConfig" href="../../../all_models/#oteapi.models.DataCacheConfig">DataCacheConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
           </td>
-          <td><p>Download configurations.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Download configurations.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -1555,7 +1559,11 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
           </td>
-          <td><p>Cache directory overriding the config.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Cache directory overriding the config.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -1577,14 +1585,22 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
           <td><code>config</code></td>
           <td>
           </td>
-          <td><p>DataCacheConfig instance.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>DataCacheConfig instance.</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td><code>cache_dir</code></td>
           <td>
           </td>
-          <td><p>Subdirectory used for the Path to cache directory, e.g.,
-<code>"my_oteapi"</code>.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Subdirectory used for the Path to cache directory, e.g.,
+<code>"my_oteapi"</code>.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2082,7 +2098,11 @@ exists in the cache.</p>
           <td>
                 <code><span title="typing.Any">Any</span></code>
           </td>
-          <td><p>The value to add to the cache.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>The value to add to the cache.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2092,9 +2112,13 @@ exists in the cache.</p>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>If given, use this as the retrieval key. Otherwise the key is either
+          <td>
+            <div class="doc-md-description">
+              <p>If given, use this as the retrieval key. Otherwise the key is either
 taken from the <code>accessKey</code> configuration or generated as a hash of
-<code>value</code>.</p></td>
+<code>value</code>.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2104,8 +2128,12 @@ taken from the <code>accessKey</code> configuration or generated as a hash of
           <td>
                 <code><span title="typing.Optional">Optional</span>[int]</code>
           </td>
-          <td><p>If given, the number of seconds before the value expire. Otherwise
-it is taken from the configuration.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>If given, the number of seconds before the value expire. Otherwise
+it is taken from the configuration.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2115,8 +2143,12 @@ it is taken from the configuration.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>Tag used with <a class="autorefs autorefs-internal" href="#oteapi.datacache.datacache.DataCache.evict"><code>evict()</code></a>
-for cleaning up a session.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Tag used with <a class="autorefs autorefs-internal" href="#oteapi.datacache.datacache.DataCache.evict"><code>evict()</code></a>
+for cleaning up a session.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2126,11 +2158,15 @@ for cleaning up a session.</p></td>
           <td>
                 <code><span title="typing.Any">Any</span></code>
           </td>
-          <td><p>Remove <code>value</code> from the cache when the object provided with
+          <td>
+            <div class="doc-md-description">
+              <p>Remove <code>value</code> from the cache when the object provided with
 this argument goes out of scope.  Note that <code>bind</code> must be a
 weakref'able object.</p>
 <p>The argument name refers to that we bind <code>value</code> to this
-argument.</p></td>
+argument.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2140,7 +2176,11 @@ argument.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[json.<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
           </td>
-          <td><p>Customised json encoder forcomplex Python objects.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Customised json encoder forcomplex Python objects.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2161,7 +2201,11 @@ argument.</p></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>A key that can be used to retrieve <code>value</code> from cache later.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>A key that can be used to retrieve <code>value</code> from cache later.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2357,7 +2401,11 @@ argument.</p></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Tag identifying objects.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Tag identifying objects.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2422,7 +2470,11 @@ argument.</p></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>The requested cached object to retrieve a value for.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>The requested cached object to retrieve a value for.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2443,7 +2495,11 @@ argument.</p></td>
           <td>
                 <code><span title="typing.Any">Any</span></code>
           </td>
-          <td><p>The value corresponding to the <code>key</code> value.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>The value corresponding to the <code>key</code> value.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2525,7 +2581,11 @@ automatically delete the file when leaving the context:</p>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Key of value to write to file.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Key of value to write to file.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2535,8 +2595,12 @@ automatically delete the file when leaving the context:</p>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>Whether to automatically delete the created file when leaving the
-context.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Whether to automatically delete the created file when leaving the
+context.</p>
+            </div>
+          </td>
           <td>
                 <code>True</code>
           </td>
@@ -2546,8 +2610,12 @@ context.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
           </td>
-          <td><p>Full path to created file. If not given, a unique filename will
-be created.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Full path to created file. If not given, a unique filename will
+be created.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2557,8 +2625,12 @@ be created.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>Prefix to prepend to the returned file name (default is
-<code>"oteapi-download-"</code>).</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Prefix to prepend to the returned file name (default is
+<code>"oteapi-download-"</code>).</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2568,7 +2640,11 @@ be created.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>Suffix to append to the returned file name.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Suffix to append to the returned file name.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2578,7 +2654,11 @@ be created.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
-          <td><p>File directory if <code>filename</code> is not provided (is <code>None</code>).</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>File directory if <code>filename</code> is not provided (is <code>None</code>).</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2599,7 +2679,11 @@ be created.</p></td>
           <td>
                 <code><span title="typing.Iterator">Iterator</span>[<span title="pathlib.Path">Path</span>]</code>
           </td>
-          <td><p>Path object, referencing and representing the created file.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Path object, referencing and representing the created file.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2777,7 +2861,11 @@ All other objects are first serialised using json.</p>
           <td>
                 <code><span title="typing.Any">Any</span></code>
           </td>
-          <td><p>Value to hash.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Value to hash.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2787,7 +2875,11 @@ All other objects are first serialised using json.</p>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Any of the hash algorithms supported by hashlib.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Any of the hash algorithms supported by hashlib.</p>
+            </div>
+          </td>
           <td>
                 <code>&#39;sha256&#39;</code>
           </td>
@@ -2797,8 +2889,12 @@ All other objects are first serialised using json.</p>
           <td>
                 <code>str</code>
           </td>
-          <td><p>Encoding used to convert strings to bytes before
-calculating the hash.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Encoding used to convert strings to bytes before
+calculating the hash.</p>
+            </div>
+          </td>
           <td>
                 <code>&#39;utf-8&#39;</code>
           </td>
@@ -2808,7 +2904,11 @@ calculating the hash.</p></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[json.<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
           </td>
-          <td><p>Customised json encoder for complex Python objects.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>Customised json encoder for complex Python objects.</p>
+            </div>
+          </td>
           <td>
                 <code>None</code>
           </td>
@@ -2829,7 +2929,11 @@ calculating the hash.</p></td>
           <td>
                 <code>str</code>
           </td>
-          <td><p>A hash of the input <code>value</code>.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>A hash of the input <code>value</code>.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>

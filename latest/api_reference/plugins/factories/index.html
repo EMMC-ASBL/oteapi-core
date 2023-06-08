@@ -19,7 +19,7 @@
         <link rel="next" href="../../strategies/download/file/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.14">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.15">
     
     
       
@@ -27,10 +27,10 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -1551,8 +1551,12 @@
           <td>
                 <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="../entry_points/#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a>]</code>
           </td>
-          <td><p>An
-in-memory cache of all registered strategies.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>An
+in-memory cache of all registered strategies.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1868,8 +1872,12 @@ It only loads the strategies from the registerred OTE-API entry points.</p>
           <td>
                 <code>KeyError</code>
           </td>
-          <td><p>If <code>test_for_uniqueness</code> is <code>True</code> and an entry point strategy is
-duplicated.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>test_for_uniqueness</code> is <code>True</code> and an entry point strategy is
+duplicated.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -1890,10 +1898,14 @@ duplicated.</p></td>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
 point strategy be duplicated. Otherwise, the first loaded entry point
 strategy will silently become the implementation of choice for the
-duplicated strategy and the duplicates will be ignored.</p></td>
+duplicated strategy and the duplicates will be ignored.</p>
+            </div>
+          </td>
           <td>
                 <code>True</code>
           </td>
@@ -2002,7 +2014,11 @@ duplicated strategy and the duplicates will be ignored.</p></td>
           <td>
                 <code><span title="typing.Union">Union</span>[<span title="oteapi.models.StrategyConfig">StrategyConfig</span>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
           </td>
-          <td><p>A strategy configuration.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>A strategy configuration.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2012,10 +2028,14 @@ duplicated strategy and the duplicates will be ignored.</p></td>
           <td>
                 <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
           </td>
-          <td><p>The strategy type, e.g., <code>"scheme"</code>, <code>"mediaType"</code>, ... or
+          <td>
+            <div class="doc-md-description">
+              <p>The strategy type, e.g., <code>"scheme"</code>, <code>"mediaType"</code>, ... or
 <code>"download"</code>, <code>"parse"</code>, ...
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
-enumeration for a definition of valid strategy types.</p></td>
+enumeration for a definition of valid strategy types.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2036,21 +2056,33 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code>NotImplementedError</code>
           </td>
-          <td><p>If the strategy cannot be found.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the strategy cannot be found.</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>
                 <code>ValueError</code>
           </td>
-          <td><p>If the <code>strategy_type</code> is not a valid strategy type.
+          <td>
+            <div class="doc-md-description">
+              <p>If the <code>strategy_type</code> is not a valid strategy type.
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
-enumeration for a definition of valid strategy types.</p></td>
+enumeration for a definition of valid strategy types.</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>
                 <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
           </td>
-          <td><p>If the entry point strategies have not been loaded.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the entry point strategies have not been loaded.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2068,13 +2100,21 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
-          <td><p>An instantiated strategy. The strategy is instantiated with the provided</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>An instantiated strategy. The strategy is instantiated with the provided</p>
+            </div>
+          </td>
         </tr>
         <tr>
           <td>
                 <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
-          <td><p>configuration, through the <code>config</code> parameter.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>configuration, through the <code>config</code> parameter.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2248,9 +2288,13 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
           </td>
-          <td><p>A valid strategy type.
+          <td>
+            <div class="doc-md-description">
+              <p>A valid strategy type.
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
-enumeration for a definition of valid strategy types.</p></td>
+enumeration for a definition of valid strategy types.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2260,7 +2304,11 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code><span title="typing.Union">Union</span>[<span title="oteapi.models.StrategyConfig">StrategyConfig</span>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
           </td>
-          <td><p>A strategy configuration.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>A strategy configuration.</p>
+            </div>
+          </td>
           <td>
               <em>required</em>
           </td>
@@ -2281,7 +2329,11 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
           </td>
-          <td><p>The created strategy.</p></td>
+          <td>
+            <div class="doc-md-description">
+              <p>The created strategy.</p>
+            </div>
+          </td>
         </tr>
     </tbody>
   </table>
@@ -2360,10 +2412,14 @@ enumeration for a definition of valid strategy types.</p></td>
           <td>
                 <code>bool</code>
           </td>
-          <td><p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
 point strategy be duplicated. Otherwise, the first loaded entry point
 strategy will silently become the implementation of choice for the
-duplicated strategy and the duplicates will be ignored.</p></td>
+duplicated strategy and the duplicates will be ignored.</p>
+            </div>
+          </td>
           <td>
                 <code>True</code>
           </td>
