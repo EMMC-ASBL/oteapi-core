@@ -1,10 +1,14 @@
-agraph-python>=101.0.7,<102
+agraph-python>=101.0.7,<103
+ase~=3.22.1
 celery>=5.2.3,<6
 diskcache>=5.4.0,<6
 fastapi-plugins~=0.12.0
 numpy>=1.21,<2
 openpyxl>=3.0.9,<4
 Pillow>=9.0.0,<10
+psycopg~=3.1.9
 pydantic>=1.9.0,<2
 pysftp~=0.2.9
 requests>=2.26.0,<3
+typing-extensions~=4.6
+urllib3<2

@@ -10,7 +10,7 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v1
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.4.0
     with:
       # pre-commit
       run_pre-commit: true
@@ -28,9 +28,6 @@ jobs:
         --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
 
       run_safety: true
-      # Ignore ID 44715 for now.
-      # See this NumPy issue for more information: https://github.com/numpy/numpy/issues/19038
-      safety_options: --ignore=44715
 
       # Build package
       run_build_package: true
@@ -97,7 +94,7 @@ jobs:
       run: pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
@@ -109,7 +106,7 @@ jobs:
         pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
@@ -151,7 +148,7 @@ jobs:
       run: pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
@@ -163,7 +160,7 @@ jobs:
         pytest -vvv --cov-report=xml
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == 3.9 && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
