@@ -164,6 +164,9 @@ def test_create_strategy_fails() -> None:
 
     with pytest.raises(
         NotImplementedError,
-        match=rf"^The {strategy_type} strategy {invalid_strategy_name!r} does not exist\.$",
+        match=(
+            rf"^The {strategy_type} strategy {invalid_strategy_name!r} does not "
+            r"exist\.$"
+        ),
     ):
         create_strategy(strategy_type, config)

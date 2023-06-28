@@ -8,6 +8,8 @@
 [![CI - Tests](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml/badge.svg?branch=master)](https://github.com/EMMC-ASBL/oteapi-core/actions/workflows/ci_tests.yml?query=branch%3Amaster)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/pulse)
 [![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity)
+[![DOI](https://zenodo.org/badge/447260507.svg)](https://zenodo.org/badge/latestdoi/447260507)
+
 
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
@@ -17,6 +19,8 @@ OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Ope
 
 It uses the [strategy](https://en.wikipedia.org/wiki/Strategy_pattern) software design pattern to implement a simple and easy to extend access to a large range of data resources.
 Semantic interoperability is supported via mapping of data models describing the data to ontologies.
+A set of strategy interfaces that can be considered abstract classes for the implementation of strategies, and data models used in their configuration, are provided.
+This repo also contains implementations for several standard strategies, e.g., downloading files, parsing Excel documents.
 Transformations, mainly intended to transform data between representations, are also supported, but transformations can also be used for running simulations in a simple workflow.
 
 OTEAPI Core includes:
@@ -73,6 +77,11 @@ In this sense, they represent asynchronous functions running in the background o
 
 Standard transformation strategies: *celery/remote*
 
+The transformation strategy has consolidated the execution of the
+transformation with the `get()` method to unify the strategy interfaces.
+`get()` is intended to start an asynchronous process and return a
+*task_id* which can be queried using the `status()` method (outside of a pipeline).
+
 ## Entry points for plugins
 
 The way strategies are registered and found is through [entry points](https://packaging.python.org/en/latest/specifications/entry-points/).
@@ -92,7 +101,7 @@ There are now various different ways to let the Python environment know of these
 
 #### `setup.py`
 
-In the package's `setup.py` file, one can specify entry points.  
+In the package's `setup.py` file, one can specify entry points.
 Here, an example snippet is shown using [setuptools](https://setuptools.pypa.io/):
 
 ```python
@@ -229,6 +238,39 @@ pytest
 ```
 
 If you run into issues at this stage, please [open an issue](https://github.com/EMMC-ASBL/oteapi-core/issues/new).
+
+
+
+## Using Docker with PostgreSQL
+Docker is an effective tool for creating portable, isolated environments for your applications. Here's an example of setting up a PostgreSQL instance using Docker:
+
+1. **Create a Docker volume**: Docker volumes enable data to persist across uses of Docker containers. In this context, we create a volume called pgdata to store database data.
+
+```shell
+docker volume create pgdata
+```
+
+2. **Start a Docker container**: Use the `docker run` command to initiate a new Docker container using the postgres image. Here's a breakdown of the options used in the command:
+
+   `-d`: Runs the container in the background (detached mode), freeing up your terminal.
+
+   `--name postgres`: Names the container postgres, allowing it to be referenced in future Docker commands.
+
+   `-e POSTGRES_PASSWORD=postgres`: Sets an environment variable in the container to specify the PostgreSQL database password as postgres.
+
+   `-p 5432:5432`: Maps port 5432 of the container to port 5432 of the host machine, letting applications on the host connect to the PostgreSQL database in the container.
+
+   `-v pgdata:/var/lib/postgresql/data`: Mounts the pgdata volume at the path /var/lib/postgresql/data inside the container, which is the storage location for PostgreSQL data files.
+
+   `--restart always`: Ensures the container restarts whenever it stops, unless it is manually stopped, in which case it only restarts when the Docker daemon starts, usually on system boot.
+
+```shell
+docker run  -d --name postgres \
+                   -e POSTGRES_PASSWORD=postgres \
+                   -p 5432:5432 \
+                   -v pgdata:/var/lib/postgresql/data \
+                   --restart always postgres
+```
 
 ## License
 

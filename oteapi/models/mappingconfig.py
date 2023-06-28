@@ -1,5 +1,5 @@
 """Pydantic Mapping Configuration Data Model."""
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional, Set, Tuple
 
 from pydantic import Field
 
@@ -18,11 +18,11 @@ class MappingConfig(GenericConfig):
     prefixes: Optional[Dict[str, str]] = Field(
         None,
         description=(
-            "List of shortnames that expands to an IRI given as local "
+            "Dictionary of shortnames that expands to an IRI given as local "
             "value/IRI-expansion-pairs."
         ),
     )
-    triples: Optional[List[RDFTriple]] = Field(
+    triples: Optional[Set[RDFTriple]] = Field(
         None,
-        description="List of RDF triples given as (subject, predicate, object).",
+        description="Set of RDF triples given as (subject, predicate, object).",
     )

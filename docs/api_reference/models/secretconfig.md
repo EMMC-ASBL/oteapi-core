@@ -1,5 +1,5 @@
-# filterconfig
+# secretconfig
 
-::: oteapi.models.filterconfig
+::: oteapi.models.secretconfig
     options:
       show_if_no_docstring: true

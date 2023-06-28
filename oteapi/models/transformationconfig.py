@@ -11,6 +11,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.secretconfig import SecretConfig
 
 
 class ProcessPriority(str, Enum):
@@ -29,7 +30,7 @@ class ProcessPriority(str, Enum):
     HIGH = "High"
 
 
-class TransformationConfig(GenericConfig):
+class TransformationConfig(GenericConfig, SecretConfig):
     """Transformation Strategy Data Configuration."""
 
     transformationType: str = Field(
@@ -51,10 +52,6 @@ class TransformationConfig(GenericConfig):
     priority: Optional[ProcessPriority] = Field(
         ProcessPriority.MEDIUM,
         description="Define the process priority of the transformation execution.",
-    )
-    secret: Optional[str] = Field(
-        None,
-        description="Authorization secret given when running a transformation.",
     )
 
 

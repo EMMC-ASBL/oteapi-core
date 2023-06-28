@@ -1,9 +1,11 @@
 """Pydantic Resource Configuration Data Model."""
+# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import AnyUrl, Field, root_validator
 
 from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.secretconfig import SecretConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -15,7 +17,7 @@ class HostlessAnyUrl(AnyUrl):
     host_required = False
 
 
-class ResourceConfig(GenericConfig):
+class ResourceConfig(GenericConfig, SecretConfig):
     """Resource Strategy Data Configuration.
 
     Important:
