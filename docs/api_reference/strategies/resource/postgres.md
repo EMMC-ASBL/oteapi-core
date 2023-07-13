@@ -1,3 +1,3 @@
 # postgres
 
-::: oteapi.strategies.resource.postgres
+::: oteapi.strategies\resource.postgres

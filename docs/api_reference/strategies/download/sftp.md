@@ -1,3 +1,3 @@
 # sftp
 
-::: oteapi.strategies.download.sftp
+::: oteapi.strategies\download.sftp
