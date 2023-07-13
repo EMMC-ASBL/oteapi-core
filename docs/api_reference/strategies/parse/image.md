@@ -1,3 +1,3 @@
 # image
 
-::: oteapi.strategies\parse.image
+::: oteapi.strategies.parse.image

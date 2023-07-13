@@ -1,3 +1,3 @@
 # file
 
-::: oteapi.strategies\download.file
+::: oteapi.strategies.download.file

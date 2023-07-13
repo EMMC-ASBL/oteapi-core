@@ -1,3 +1,3 @@
 # mapping
 
-::: oteapi.strategies\mapping.mapping
+::: oteapi.strategies.mapping.mapping
