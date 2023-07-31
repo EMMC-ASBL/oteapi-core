@@ -10,5 +10,5 @@ psycopg~=3.1.9
 pydantic>=1.9.0,<2
 pysftp~=0.2.9
 requests>=2.26.0,<3
-typing-extensions~=4.6
+typing-extensions~=4.7
 urllib3<2
