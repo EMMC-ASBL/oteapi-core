@@ -58,18 +58,19 @@ def gethash(
         data = value.encode(encoding)
     else:
         data = value
-        try:
-            hash_.update(data)
-        except TypeError:
-            # Fallback, try to serialise using json...
-            data = json.dumps(
-                value,
-                ensure_ascii=False,
-                cls=json_encoder,
-                sort_keys=True,
-            ).encode(encoding)
 
-            hash_.update(data)
+    try:
+        hash_.update(data)
+    except TypeError:
+        # Fallback, try to serialise using json...
+        data = json.dumps(
+            value,
+            ensure_ascii=False,
+            cls=json_encoder,
+            sort_keys=True,
+        ).encode(encoding)
+
+        hash_.update(data)
 
     return hash_.hexdigest()
 
