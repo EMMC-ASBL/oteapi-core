@@ -8,7 +8,7 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Iterable
@@ -80,13 +80,13 @@ class XLSXParseConfig(AttrDict):
     )
 
 
-class XLSXParseResourceConfig(ResourceConfig):
+class XLSXParseParserConfig(ParserConfig):
     """XLSX parse strategy resource config."""
 
-    mediaType: str = Field(
+    parserType: str = Field(
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ParserConfig.__fields__["parserType"].field_info.description,
     )
     configuration: XLSXParseConfig = Field(
         ..., description="SQLite parse strategy-specific configuration."
@@ -156,11 +156,11 @@ class XLSXParseStrategy:
 
     **Registers strategies**:
 
-    - `("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")`
+    - `("parserType", "excel_xlsx")`
 
     """
 
-    parse_config: XLSXParseResourceConfig
+    parse_config: XLSXParseParserConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
