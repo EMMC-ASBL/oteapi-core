@@ -19,7 +19,7 @@
         <link rel="next" href="../application_vnd_sqlite/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -1492,23 +1492,22 @@
 
 
 <h2 id="oteapi.strategies.parse.application_json.JSONConfig" class="doc doc-heading">
-        <code>JSONConfig</code>
+          <code>JSONConfig</code>
 
 
 <a href="#oteapi.strategies.parse.application_json.JSONConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
 
   
       <p>JSON parse-specific Configuration Data Model.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
@@ -1522,7 +1521,7 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configurations for the data cache for storing the downloaded file content.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1549,7 +1548,7 @@
 
 
 <h2 id="oteapi.strategies.parse.application_json.JSONDataParseStrategy" class="doc doc-heading">
-        <code>JSONDataParseStrategy</code>
+          <code>JSONDataParseStrategy</code>
 
 
 <a href="#oteapi.strategies.parse.application_json.JSONDataParseStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -1564,10 +1563,9 @@
 <li><code>("mediaType", "application/json")</code></li>
 </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
@@ -1619,11 +1617,12 @@
             <span class="k">return</span> <span class="n">SessionUpdateJSONParse</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">SessionUpdateJSONParse</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -1647,9 +1646,9 @@
   
       <p>Parse json.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -1669,10 +1668,11 @@
         <span class="k">return</span> <span class="n">SessionUpdateJSONParse</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">SessionUpdateJSONParse</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -1688,15 +1688,15 @@
   
       <p>Initialize.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -1714,23 +1714,22 @@
 
 
 <h2 id="oteapi.strategies.parse.application_json.JSONResourceConfig" class="doc doc-heading">
-        <code>JSONResourceConfig</code>
+          <code>JSONResourceConfig</code>
 
 
 <a href="#oteapi.strategies.parse.application_json.JSONResourceConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.ResourceConfig" href="../../../../all_models/#oteapi.models.ResourceConfig">ResourceConfig</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.ResourceConfig" href="../../../../all_models/#oteapi.models.ResourceConfig">ResourceConfig</a></code></p>
 
   
       <p>JSON parse strategy filter config.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
@@ -1752,7 +1751,7 @@
         <span class="n">JSONConfig</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;JSON parse strategy-specific configuration.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1779,23 +1778,22 @@
 
 
 <h2 id="oteapi.strategies.parse.application_json.SessionUpdateJSONParse" class="doc doc-heading">
-        <code>SessionUpdateJSONParse</code>
+          <code>SessionUpdateJSONParse</code>
 
 
 <a href="#oteapi.strategies.parse.application_json.SessionUpdateJSONParse" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
 
   
       <p>Class for returning values from JSON Parse.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/strategies/parse/application_json.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateJSONParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
@@ -1803,7 +1801,7 @@
 
     <span class="n">content</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Content of the JSON document.&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -1891,10 +1889,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>

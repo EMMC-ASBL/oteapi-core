@@ -19,7 +19,7 @@
         <link rel="next" href="../factories/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.21">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.26e3688c.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
@@ -1744,30 +1744,29 @@ This therefore implements lazy loading of all plugin strategies.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointNotFound" class="doc doc-heading">
-        <code>EntryPointNotFound</code>
+          <code>EntryPointNotFound</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointNotFound" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code>Exception</code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code>Exception</code></p>
 
   
       <p>A given strategy implementation (class) cannot be found from the given entry
 point value.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EntryPointNotFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A given strategy implementation (class) cannot be found from the given entry</span>
 <span class="sd">    point value.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   </div>
 
@@ -1778,7 +1777,7 @@ point value.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointStrategy" class="doc doc-heading">
-        <code>EntryPointStrategy</code>
+          <code>EntryPointStrategy</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -1811,6 +1810,8 @@ according to the condition of uniqueness explained above).</p>
 <p>Currently there is no consensus on the API for handling this added strategy
 ambiguity.</p>
 </details>
+
+
   <p><strong>Raises:</strong></p>
   <table>
     <thead>
@@ -1833,10 +1834,9 @@ ambiguity.</p>
     </tbody>
   </table>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -2188,7 +2188,7 @@ ambiguity.</p>
             <span class="sa">f</span><span class="s2">&quot;Less than comparison is not implemented for </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2"> type objects.&quot;</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -2386,24 +2386,23 @@ name.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointStrategyCollection" class="doc doc-heading">
-        <code>EntryPointStrategyCollection</code>
+          <code>EntryPointStrategyCollection</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="collections.abc">abc</span>.<span title="collections.abc.Collection">Collection</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="collections.abc">abc</span>.<span title="collections.abc.Collection">Collection</span></code></p>
 
   
       <p>A collection of
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.entry_points.EntryPointStrategy"><code>EntryPointStrategy</code></a>s.</p>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">321</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">321</span>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
@@ -2765,11 +2764,12 @@ name.</p>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(*</span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span><span class="p">))</span><span class="si">!r}</span><span class="s2">)&quot;</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
   <div class="doc doc-children">
+
 
 
 
@@ -2793,6 +2793,8 @@ name.</p>
   
       <p>Add entry points to the collection.</p>
 
+
+
   <p><strong>Parameters:</strong></p>
   <table>
     <thead>
@@ -2822,9 +2824,9 @@ collection.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">330</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">330</span>
 <span class="normal">331</span>
 <span class="normal">332</span>
 <span class="normal">333</span>
@@ -2842,10 +2844,11 @@ collection.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2860,6 +2863,8 @@ collection.</p>
   <div class="doc doc-contents ">
   
       <p>Exclusively add entry points to the collection.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -2889,6 +2894,8 @@ collection.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -2912,9 +2919,9 @@ collection.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">350</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">350</span>
 <span class="normal">351</span>
 <span class="normal">352</span>
 <span class="normal">353</span>
@@ -2950,10 +2957,11 @@ collection.</p>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">entry_point</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -2968,6 +2976,8 @@ collection.</p>
   <div class="doc doc-contents ">
   
       <p>Retrieve an entry point from the collection.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -2996,6 +3006,8 @@ collection.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -3030,6 +3042,8 @@ above for the expected types.</p>
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3052,9 +3066,9 @@ above for the expected types.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">416</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">416</span>
 <span class="normal">417</span>
 <span class="normal">418</span>
 <span class="normal">419</span>
@@ -3106,10 +3120,11 @@ above for the expected types.</p>
         <span class="s2">&quot;name or a strategy tuple.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3124,6 +3139,8 @@ above for the expected types.</p>
   <div class="doc doc-contents ">
   
       <p>Remove entry points from the collection.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3154,9 +3171,9 @@ the collection.</p>
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">340</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">340</span>
 <span class="normal">341</span>
 <span class="normal">342</span>
 <span class="normal">343</span>
@@ -3174,7 +3191,7 @@ the collection.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -3192,15 +3209,15 @@ the collection.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.StrategyType" class="doc doc-heading">
-        <code>StrategyType</code>
+          <code>StrategyType</code>
 
 
 <a href="#oteapi.plugins.entry_points.StrategyType" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
-      <p class="doc doc-class-bases">
-        Bases: <code><span title="enum.Enum">Enum</span></code></p>
+          <p class="doc doc-class-bases">
+            Bases: <code><span title="enum.Enum">Enum</span></code></p>
 
   
       <p>An enumeration of available strategy types.</p>
@@ -3215,10 +3232,9 @@ the collection.</p>
 <li>transformation</li>
 </ul>
 
-
-        <details class="quote">
-          <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 40</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 40</span>
 <span class="normal"> 41</span>
 <span class="normal"> 42</span>
 <span class="normal"> 43</span>
@@ -3420,7 +3436,7 @@ the collection.</p>
             <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="n">TransformationConfig</span><span class="p">,</span>
         <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-        </details>
+            </details>
 
   
 
@@ -3455,6 +3471,7 @@ the collection.</p>
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
@@ -3473,9 +3490,9 @@ the collection.</p>
   
       <p>Return all values.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
 <span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
@@ -3483,10 +3500,11 @@ the collection.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3507,6 +3525,8 @@ the collection.</p>
       <p>Initialize a StrategyType with more than just the enumeration value.</p>
 <p>This method allows one to also initialize a StrategyType with an actual
 strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -3530,9 +3550,9 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
@@ -3566,10 +3586,11 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
             <span class="k">pass</span>
     <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3588,6 +3609,8 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
   <div class="doc doc-contents ">
   
       <p>Map the strategy type's field to enumeration.</p>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3618,6 +3641,8 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
     </tbody>
   </table>
 
+
+
   <p><strong>Raises:</strong></p>
   <table>
     <thead>
@@ -3639,6 +3664,8 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Returns:</strong></p>
   <table>
@@ -3662,9 +3689,9 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
@@ -3712,10 +3739,11 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
         <span class="s2">&quot;transformationType&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">TRANSFORMATION</span><span class="p">,</span>
     <span class="p">}[</span><span class="n">strategy_type_field</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
+
 
 <div class="doc doc-object doc-function">
 
@@ -3731,9 +3759,9 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
   
       <p>Map enumeration value to the strategy type's field.</p>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
@@ -3755,7 +3783,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
         <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="s2">&quot;transformationType&quot;</span><span class="p">,</span>
     <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -3767,6 +3795,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
   </div>
 
 </div>
+
 
 
 <div class="doc doc-object doc-function">
@@ -3782,6 +3811,8 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
   <div class="doc doc-contents ">
   
       <p>Retrieve all entry points from a specific strategy type.</p>
+
+
 
   <p><strong>Raises:</strong></p>
   <table>
@@ -3815,6 +3846,8 @@ duplicated.</p>
         </tr>
     </tbody>
   </table>
+
+
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -3859,6 +3892,8 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
     </tbody>
   </table>
 
+
+
   <p><strong>Returns:</strong></p>
   <table>
     <thead>
@@ -3881,9 +3916,9 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
     </tbody>
   </table>
 
-      <details class="quote">
-        <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">504</span>
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">504</span>
 <span class="normal">505</span>
 <span class="normal">506</span>
 <span class="normal">507</span>
@@ -3965,7 +4000,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
 
     <span class="k">return</span> <span class="n">collection</span>
 </code></pre></div></td></tr></table></div>
-      </details>
+          </details>
   </div>
 
 </div>
@@ -4035,10 +4070,10 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>
