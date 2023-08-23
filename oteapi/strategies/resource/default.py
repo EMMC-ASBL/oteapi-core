@@ -9,12 +9,6 @@ from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 
-# TODO: all this should do is write Url/Filelocation/Whatever into the session
-#  Need three data models:
-# 1. Generic ParserConfig 
-# 2. A specific config, e.g., PostgresParserConfig
-# 3. A SessionUpdate that will update the Postgres datamodel [what will be written to the session] 
-# --> advantage can use your own parser very easily, e.g., config-less hardcoded script 
 
 class PostgresConfig(AttrDict):
     """Configuration data model for

@@ -9,8 +9,8 @@ from .filterconfig import FilterConfig
 from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig, RDFTriple
+from .parserconfig import ParserConfig
 from .resourceconfig import ResourceConfig
-from .parserconfig import ParserConfig 
 from .secretconfig import SecretConfig
 from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
@@ -35,5 +35,10 @@ __all__ = (
 )
 
 StrategyConfig = Union[
-    FilterConfig, FunctionConfig, MappingConfig, ParserConfig, ResourceConfig, TransformationConfig
+    FilterConfig,
+    FunctionConfig,
+    MappingConfig,
+    ParserConfig,
+    ResourceConfig,
+    TransformationConfig,
 ]

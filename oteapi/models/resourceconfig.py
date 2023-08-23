@@ -26,18 +26,6 @@ class ResourceConfig(GenericConfig, SecretConfig):
 
     """
 
-    title: Optional[str] = Field(
-        None,
-        description=(
-            "Title of the resource."
-        ),
-    )
-    description: Optional[str] = Field(
-        None,
-        description=(
-            "Description of the resource."
-        ),
-    )
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
