@@ -5,3 +5,6 @@ This page provides documentation for the `oteapi.strategies` submodule, where al
 These strategies will always be available when setting up a server based on the OTE-API Core package.
 
 ::: oteapi.strategies
+    options:
+      show_submodules: true
+      show_if_no_docstring: true
