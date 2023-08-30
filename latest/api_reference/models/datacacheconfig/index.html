@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.3">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.5">
     
     
       
@@ -712,7 +712,7 @@
       
         <li class="md-nav__item">
   <a href="#oteapi.models.datacacheconfig" class="md-nav__link">
-    oteapi.models.datacacheconfig
+    datacacheconfig
   </a>
   
 </li>
@@ -1757,7 +1757,7 @@
       
         <li class="md-nav__item">
   <a href="#oteapi.models.datacacheconfig" class="md-nav__link">
-    oteapi.models.datacacheconfig
+    datacacheconfig
   </a>
   
 </li>
@@ -1831,6 +1831,7 @@
 <div class="doc doc-object doc-module">
 
 
+
 <a id="oteapi.models.datacacheconfig"></a>
   <div class="doc doc-contents first">
   
@@ -1848,6 +1849,7 @@
 
 
 <div class="doc doc-object doc-class">
+
 
 
 
@@ -1948,8 +1950,9 @@ a configuration object.</p>
 
 
 
+
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.accessKey" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">accessKey</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key with which the downloaded content can be accessed. Should preferable be the hash (corresponding to `hashType`) of the content if it is known.&#39;</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">accessKey</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key with which the downloaded content can be accessed. Should preferable be the hash (corresponding to `hashType`) of the content if it is known.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1968,8 +1971,9 @@ a configuration object.</p>
 
 
 
+
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.cacheDir" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">cacheDir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;oteapi&#39;</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cache directory.&#39;</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">cacheDir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;oteapi&#39;</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cache directory.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1988,8 +1992,9 @@ a configuration object.</p>
 
 
 
+
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.expireTime" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">expireTime</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Number of seconds before the cache entry expires. Zero means no expiration. Default is two weeks.&#39;</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">expireTime</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Number of seconds before the cache entry expires. Zero means no expiration. Default is two weeks.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2008,8 +2013,9 @@ a configuration object.</p>
 
 
 
+
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.hashType" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">hashType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Hash algorithm to use for creating hash keys for stored data. Can be any algorithm supported by hashlib.&#39;</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">hashType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Hash algorithm to use for creating hash keys for stored data. Can be any algorithm supported by hashlib.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2028,8 +2034,9 @@ a configuration object.</p>
 
 
 
+
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.tag" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tag assigned to the downloaded content, typically identifying a session. Used with the `evict()` method to clean up a all cache entries with a given tag.&#39;</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tag assigned to the downloaded content, typically identifying a session. Used with the `evict()` method to clean up a all cache entries with a given tag.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
