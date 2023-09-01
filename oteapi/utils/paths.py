@@ -31,8 +31,10 @@ def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
         A properly converted URI/IRI/URL to `pathlib.Path`.
 
     """
-    uri = urlparse(uri)  # type: ignore
-    uri_path = uri.netloc + uri.path
+    if not isinstance(uri, ParseResult):
+        uri = urlparse(uri)  # type: ignore
+
+    uri_path = uri.netloc + uri.path if uri.scheme == "file" else uri.path
 
     if uri.scheme != "file":
         warnings.warn(
