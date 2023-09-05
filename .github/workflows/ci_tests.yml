@@ -74,7 +74,7 @@ jobs:
       OTEAPI_REDIST_PORT: 6379
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
       uses: actions/setup-python@v4
@@ -122,7 +122,7 @@ jobs:
         python-version: ["3.9", "3.10"]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
       uses: actions/setup-python@v4
