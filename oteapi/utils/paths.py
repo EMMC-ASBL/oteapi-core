@@ -34,7 +34,7 @@ def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
     if not isinstance(uri, ParseResult):
         uri = urlparse(uri)  # type: ignore
 
-    uri_path = uri.netloc + uri.path if uri.scheme == "file" else uri.path
+    uri_path = (uri.netloc + uri.path) if uri.scheme == "file" else uri.path
 
     if uri.scheme != "file":
         warnings.warn(
