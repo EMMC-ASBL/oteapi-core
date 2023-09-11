@@ -48,12 +48,18 @@ repos:
       - "pydantic<2"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.4.0
+    rev: v2.5.1
     hooks:
     - id: docs-api-reference
       args:
       - --package-dir=oteapi
       - --full-docs-folder=models
+      - --full-docs-folder=strategies/download
+      - --full-docs-folder=strategies/filter
+      - --full-docs-folder=strategies/mapping
+      - --full-docs-folder=strategies/parse
+      - --full-docs-folder=strategies/resource
+      - --full-docs-folder=strategies/transformation
     - id: docs-landing-page
       args:
       - --replacement=(LICENSE),(LICENSE.md)
