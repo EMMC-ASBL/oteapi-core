@@ -5,14 +5,14 @@ from typing import TYPE_CHECKING, Protocol
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
 
-    from oteapi.models import ResourceConfig, SessionUpdate
+    from oteapi.models import ParserConfig, SessionUpdate
 
 
 @dataclass  # type: ignore[misc]
 class IParseStrategy(Protocol):
     """Parse Strategy Interface."""
 
-    parse_config: "ResourceConfig"
+    parse_config: "ParserConfig"
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
         """Execute the strategy.

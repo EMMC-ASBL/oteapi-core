@@ -88,7 +88,7 @@ def test_postgres(
     """
     import psycopg
 
-    from oteapi.strategies.resource.postgres import PostgresResourceStrategy
+    from oteapi.strategies.parse.postgres import PostgresResourceStrategy
 
     def mock_connect(connect_str):
         connect_str = str(connect_str)
