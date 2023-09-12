@@ -25,7 +25,14 @@ jobs:
       update_docs_landing_page: true
       python_version: "3.9"
       doc_extras: "[docs]"
-      full_docs_dirs: models
+      full_docs_dirs: |
+        models
+        strategies/download
+        strategies/filter
+        strategies/mapping
+        strategies/parse
+        strategies/resource
+        strategies/transformation
       landing_page_replacements: |
         (LICENSE),(LICENSE.md)
         scheme\`](oteapi/models/resourceconfig.py),scheme\`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl]
