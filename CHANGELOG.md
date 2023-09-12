@@ -1,16 +1,45 @@
 # Changelog
 
-## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+## [v0.5.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.0) (2023-09-12)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.4...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.5...v0.5.0)
+
+**Fixed bugs:**
+
+- datacache:  the hash is not updated if the value is a string [\#298](https://github.com/EMMC-ASBL/oteapi-core/issues/298)
 
 **Closed issues:**
 
-- psycopg2/PostgreSQL datasource strategy [\#191](https://github.com/EMMC-ASBL/oteapi-core/issues/191)
+- Ensure all strategy models are fully expressed [\#312](https://github.com/EMMC-ASBL/oteapi-core/issues/312)
+- Importing oteapi.strategies.parse.image fails for Python 3.9 [\#269](https://github.com/EMMC-ASBL/oteapi-core/issues/269)
+
+**Merged pull requests:**
+
+- Added support for relative file paths [\#318](https://github.com/EMMC-ASBL/oteapi-core/pull/318) ([jesper-friis](https://github.com/jesper-friis))
+- \[Auto-generated\] Update dependencies [\#315](https://github.com/EMMC-ASBL/oteapi-core/pull/315) ([TEAM4-0](https://github.com/TEAM4-0))
+- Fully document strategies [\#313](https://github.com/EMMC-ASBL/oteapi-core/pull/313) ([CasperWA](https://github.com/CasperWA))
+- Update .pre-commit-config.yaml [\#307](https://github.com/EMMC-ASBL/oteapi-core/pull/307) ([Treesarj](https://github.com/Treesarj))
+- Introduce ParserConfig Model  [\#306](https://github.com/EMMC-ASBL/oteapi-core/pull/306) ([daniel-sintef](https://github.com/daniel-sintef))
+- \[Auto-generated\] Update dependencies [\#282](https://github.com/EMMC-ASBL/oteapi-core/pull/282) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.4.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.5) (2023-08-11)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.4...v0.4.5)
+
+**Merged pull requests:**
+
+- update key in datacachewhen value is added as string [\#299](https://github.com/EMMC-ASBL/oteapi-core/pull/299) ([francescalb](https://github.com/francescalb))
+- \[Auto-generated\] Update dependencies [\#280](https://github.com/EMMC-ASBL/oteapi-core/pull/280) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#278](https://github.com/EMMC-ASBL/oteapi-core/pull/278) ([TEAM4-0](https://github.com/TEAM4-0))
+- Added DOI badge to readme [\#273](https://github.com/EMMC-ASBL/oteapi-core/pull/273) ([jesper-friis](https://github.com/jesper-friis))
 
 ## [v0.4.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.4) (2023-05-24)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.3...v0.4.4)
+
+**Closed issues:**
+
+- psycopg2/PostgreSQL datasource strategy [\#191](https://github.com/EMMC-ASBL/oteapi-core/issues/191)
 
 **Merged pull requests:**
 

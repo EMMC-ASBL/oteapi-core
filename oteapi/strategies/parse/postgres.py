@@ -12,7 +12,7 @@ from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpda
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
-    [`PostgresResourceStrategy`][oteapi.strategies.resource.postgres.PostgresResourceConfig].
+    [`PostgresResourceStrategy`][oteapi.strategies.parse.postgres.PostgresResourceConfig].
     """
 
     user: Optional[str] = Field(None, description="postgres server username")
