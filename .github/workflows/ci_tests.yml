@@ -102,7 +102,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
         flags: linux
@@ -114,7 +114,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
         flags: linux-extra_libs
@@ -156,7 +156,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
         flags: windows
@@ -168,7 +168,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
         flags: windows-extra_libs
