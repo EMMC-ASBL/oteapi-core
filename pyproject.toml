@@ -22,11 +22,11 @@ filterwarnings = [
     "ignore:.*_yaml extension module.*:DeprecationWarning"
 ]
 
-[tool.pylint.messages_control]
-max-line-length = 88
-disable = [
-    "no-name-in-module",
-    "no-self-argument",
-    "duplicate-code",
-    "too-few-public-methods",
-]
+# [tool.pylint.messages_control]
+# max-line-length = 88
+# disable = [
+#     "no-name-in-module",
+#     "no-self-argument",
+#     "duplicate-code",
+#     "too-few-public-methods",
+# ]
