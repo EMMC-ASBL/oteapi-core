@@ -46,7 +46,6 @@ def test_celery_remote(
 
     from celery.result import AsyncResult
 
-    from oteapi.models.transformationconfig import TransformationConfig
     from oteapi.strategies.transformation import celery_remote
 
     @celery_app.task
@@ -60,13 +59,13 @@ def test_celery_remote(
     # The strategy's celery app has not registered the `add()` task...
     monkeypatch.setattr(celery_remote, "CELERY_APP", celery_app)
 
-    config = TransformationConfig(
-        transformationType="celery/remote",
-        configuration={
+    config = {
+        "transformationType": "celery/remote",
+        "configuration": {
             "task_name": add.name,
             "args": [1, 2],
         },
-    )
+    }
     transformation = celery_remote.CeleryRemoteStrategy(config)
 
     session = transformation.initialize({})
