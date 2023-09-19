@@ -1,5 +1,4 @@
 """Strategy class for sftp/ftp"""
-# pylint: disable=unused-argument
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING, Optional

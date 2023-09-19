@@ -93,7 +93,6 @@ class CeleryRemoteStrategy:
         return SessionUpdateCelery(celery_task_id=result.task_id)
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
-        # pylint: disable=unused-argument
         """Initialize a job."""
         return SessionUpdate()
 

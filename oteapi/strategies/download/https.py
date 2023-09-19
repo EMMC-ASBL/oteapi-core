@@ -1,5 +1,4 @@
 """Download strategy class for http/https"""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
 
 import requests

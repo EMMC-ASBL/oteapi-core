@@ -2,7 +2,6 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
-# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig
@@ -153,7 +152,6 @@ class StrategyFactory:
 
 
 def load_strategies(test_for_uniqueness: bool = True) -> None:
-    # pylint: disable=line-too-long
     """Proxy function for
     [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].
 

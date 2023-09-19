@@ -1,5 +1,4 @@
 """Strategy class for workbook/xlsx."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 from openpyxl import load_workbook

@@ -521,7 +521,6 @@ def get_strategy_entry_points(
         A collection of entry points for the specific strategy type.
 
     """
-    # pylint: disable=line-too-long
     try:
         strategy_type = StrategyType(strategy_type)
     except ValueError as exc:

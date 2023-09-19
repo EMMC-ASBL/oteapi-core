@@ -1,5 +1,4 @@
 """Strategy class for application/vnd.postgresql"""
-# pylint: disable=unused-argument
 from typing import Any, Dict, Optional
 from urllib.parse import urlunparse
 

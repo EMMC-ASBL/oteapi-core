@@ -9,7 +9,6 @@ Features:
 - AllegroGraph has a well documented python API package
 
 """
-# pylint: disable=too-many-arguments
 from typing import TYPE_CHECKING
 
 from franz.miniclient.request import RequestError

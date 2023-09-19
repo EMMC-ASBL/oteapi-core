@@ -1,5 +1,4 @@
 """Demo-filter strategy"""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Tuple
 
 from pydantic import Field

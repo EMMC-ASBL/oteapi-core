@@ -12,7 +12,6 @@ Features:
 - High performance.
 
 """
-# pylint: disable=too-many-arguments
 import hashlib
 import json
 import tempfile

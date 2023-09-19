@@ -1,5 +1,4 @@
 """Download strategy class for the `file` scheme."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field, FileUrl, validator

@@ -77,7 +77,6 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
 
 @pytest.fixture
 def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]":
-    # pylint: disable=line-too-long
     """Generate `importlib.metadata.EntryPoint`s from a parsed `setup.cfg` file's
     `[options.entry_points]` group.
 

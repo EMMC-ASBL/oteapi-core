@@ -1,5 +1,4 @@
 """Strategy class for image/jpg."""
-# pylint: disable=unused-argument
 import sys
 from enum import Enum
 from typing import TYPE_CHECKING, Optional, Tuple

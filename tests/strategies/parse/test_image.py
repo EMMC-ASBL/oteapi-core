@@ -1,5 +1,4 @@
 """Test the image formats in the image parse strategy."""
-# pylint: disable=too-many-locals
 from typing import TYPE_CHECKING
 
 import pytest

@@ -1,5 +1,4 @@
 """Strategy class for text/csv."""
-# pylint: disable=unused-argument
 import csv
 from collections import defaultdict
 from enum import Enum

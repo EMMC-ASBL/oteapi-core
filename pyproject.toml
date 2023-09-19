@@ -15,18 +15,9 @@ allow_redefinition = true
 plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-rs --cov=oteapi --cov-report=term --durations=10"
+minversion = "7.0"
+addopts = "-rs --cov=oteapi --cov-report=term"
 filterwarnings = [
     "ignore:.*imp module.*:DeprecationWarning",
     "ignore:.*_yaml extension module.*:DeprecationWarning"
 ]
-
-# [tool.pylint.messages_control]
-# max-line-length = 88
-# disable = [
-#     "no-name-in-module",
-#     "no-self-argument",
-#     "duplicate-code",
-#     "too-few-public-methods",
-# ]

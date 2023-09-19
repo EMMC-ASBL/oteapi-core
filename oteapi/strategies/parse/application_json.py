@@ -1,5 +1,4 @@
 """Strategy class for application/json."""
-# pylint: disable=unused-argument
 import json
 from typing import TYPE_CHECKING, Optional
 
