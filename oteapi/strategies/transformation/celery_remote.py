@@ -87,7 +87,7 @@ class CeleryRemoteStrategy:
             self._use_session(session)
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
-            **self.transformation_config.configuration
+            **self.transformation_config.configuration.model_dump()
         )
         return SessionUpdateCelery(celery_task_id=result.task_id)
 
@@ -114,12 +114,12 @@ class CeleryRemoteStrategy:
 
         """
         alias_mapping: dict[str, str] = {
-            field.alias: field_name
+            getattr(field, "alias", field_name): field_name
             for field_name, field in CeleryConfig.model_fields.items()
         }
 
         fields = set(CeleryConfig.model_fields)
-        fields |= {_.alias for _ in CeleryConfig.model_fields.values()}
+        fields |= {_.alias for _ in CeleryConfig.model_fields.values() if _.alias}
 
         for field in fields:
             if field in session:

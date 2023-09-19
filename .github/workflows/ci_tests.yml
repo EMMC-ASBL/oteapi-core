@@ -24,8 +24,8 @@ jobs:
       run_pylint: true
       pylint_runs: |
         --rcfile=pyproject.toml --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' *.py oteapi
-        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
-        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
+        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=R,C,no-member oteapi/strategies
+        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error,no-member,unsubscriptable-object --recursive=yes tests
 
       run_safety: true
 

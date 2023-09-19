@@ -3,16 +3,10 @@
 from typing import Any, Dict, Optional
 
 import psycopg
-from pydantic import Field, model_validator
+from pydantic import AnyUrl, BaseModel, Field, model_validator
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import (
-    AttrDict,
-    DataCacheConfig,
-    HostlessAnyUrl,
-    ResourceConfig,
-    SessionUpdate,
-)
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 
 
 class PostgresConfig(AttrDict):
@@ -48,19 +42,21 @@ class PostgresResourceConfig(ResourceConfig):
         Verifies configuration consistency, merge configurations
         and update the accessUrl property.
         """
-        if not isinstance(data, dict):
-            try:
-                data: dict = data.model_dump()
-            except AttributeError:
-                raise TypeError(
-                    "invalid data type, should be either dict or pydantic model"
-                )
+        if isinstance(data, BaseModel):
+            data = data.model_dump()
+        elif not isinstance(data, dict):
+            raise TypeError(
+                "invalid data type, should be either dict or pydantic model"
+            )
 
         if "accessUrl" not in data:
             raise ValueError("missing accessUrl in PostgreSQL resource configuration")
 
-        accessUrl = HostlessAnyUrl(data["accessUrl"])
+        accessUrl = AnyUrl(data["accessUrl"])
         default_config = PostgresConfig()
+
+        if not accessUrl.host:
+            raise ValueError("missing host in accessUrl")
 
         # Check and merge user configuration
         user = (
@@ -175,5 +171,8 @@ class PostgresResourceStrategy:
     def _use_filters(self, session: "Dict[str, Any]") -> None:
         """Update `config` according to filter values found in the session."""
         if "sqlquery" in session and not self.resource_config.configuration.sqlquery:
+            if not isinstance(session["sqlquery"], str):
+                raise TypeError("sqlquery (found in session) must be a string")
             # Use SQL query available in session
+            # pylint: disable=assigning-non-slot
             self.resource_config.configuration.sqlquery = session["sqlquery"]

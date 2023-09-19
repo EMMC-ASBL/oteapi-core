@@ -1,7 +1,7 @@
 """Generic data model for configuration attributes."""
 from typing import TYPE_CHECKING, Iterable, Mapping, MutableMapping
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field
 from pydantic.fields import PydanticUndefined
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -55,10 +55,9 @@ class AttrDict(BaseModel, MutableMapping):
     def __eq__(self, value: object) -> bool:
         if isinstance(value, Mapping):
             return self.model_dump() == value
-        elif isinstance(value, BaseModel):
+        if isinstance(value, BaseModel):
             return BaseModel.__eq__(self, value)
-        else:
-            return False
+        return False
 
     # MutableMapping methods
     def __setitem__(self, key: "Any", value: "Any") -> None:
@@ -81,31 +80,38 @@ class AttrDict(BaseModel, MutableMapping):
 
     def clear(self) -> None:
         """MutableMapping `clear`-method."""
-        self.model_extra = {}
-        self = self.model_copy(
-            update={key: value.default for key, value in self.model_fields.items()}
-        )
-        self.model_fields_set = set()
-        return None
+        for field in self.model_dump():
+            del self[field]
 
-    def update(
-        self, other: "Optional[Union[dict, AttrDict, Iterable[Any]]]" = None, **kwargs
+    def update(  # type: ignore[override]  # pylint: disable=arguments-differ
+        self,
+        other: "Optional[Union[Mapping[str, Any], AttrDict, Iterable[tuple[str, Any]]]]" = None,  # pylint: disable=line-too-long
+        **kwargs,
     ) -> None:
         """MutableMapping `update`-method."""
-        if other and isinstance(other, (dict, Mapping)):
+        if other and isinstance(other, Mapping):
             for key, value in other.items():
                 setattr(self, key, value)
         elif other and isinstance(other, BaseModel):
-            for key, value in other.model_dump().items():
+            for key, value in other:
                 setattr(self, key, value)
         elif other and isinstance(other, Iterable):
             for entry in other:
+                if not isinstance(entry, tuple):
+                    raise TypeError(
+                        "`other` must be an iterable of tuples of length two."
+                    )
                 if not len(entry) == 2:
                     raise ValueError(
                         "`other` must be an iterable of objects of length two."
                     )
-            for key, value in other:
+            for key, value in other:  # type: ignore[misc]
                 setattr(self, key, value)
+        elif other:
+            raise TypeError(
+                "`other` must be of type `dict`, `Mapping`, `BaseModel` or "
+                "`Iterable`, not `{type(other).__name__}`."
+            )
         if kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
@@ -154,7 +160,7 @@ class GenericConfig(BaseModel):
     )
 
     @classmethod
-    def __init_subclass__(cls) -> None:
+    def __init_subclass__(cls, **kwargs) -> None:
         """Initialize subclass descriptions with their docstrings."""
         cls.model_fields["description"].default = cls.__doc__
 

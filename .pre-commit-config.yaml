@@ -85,7 +85,7 @@ repos:
     - id: pylint-strategies
       name: pylint - oteapi/strategies/
       entry: pylint
-      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=R,C"]
+      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=R,C,no-member"]
       language: python
       types: [python]
       require_serial: true
@@ -93,7 +93,7 @@ repos:
     - id: pylint-tests
       name: pylint - tests
       entry: pylint
-      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error"]
+      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error,no-member,unsubscriptable-object"]
       language: python
       types: [python]
       require_serial: true

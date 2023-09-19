@@ -127,8 +127,6 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
 def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
-    from pydantic import ValidationError
-
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
     with pytest.raises(KeyError):
@@ -167,7 +165,7 @@ def test_attrdict() -> None:
     assert {**config} == data
 
 
-def test_attrdict_update() -> None:
+def test_attrdict_update() -> None:  # pylint: disable=too-many-locals
     """Test supplying `AttrDict.update()` with different (valid) types."""
     from pydantic import BaseModel, ConfigDict, Field
 

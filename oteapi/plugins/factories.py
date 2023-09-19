@@ -89,7 +89,9 @@ class StrategyFactory:
         if (strategy_type, strategy_name) in cls.strategy_create_func[strategy_type]:
             return cls.strategy_create_func[strategy_type][
                 (strategy_type, strategy_name)
-            ].implementation(config)
+            ].implementation(
+                config  # type: ignore[arg-type]
+            )
         raise NotImplementedError(
             f"The {strategy_type.value} strategy {strategy_name!r} does not exist."
         )

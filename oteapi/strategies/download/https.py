@@ -63,7 +63,7 @@ class HTTPSStrategy:
             key = cache.config.accessKey
         else:
             req = requests.get(
-                self.download_config.downloadUrl,
+                str(self.download_config.downloadUrl),
                 allow_redirects=True,
                 timeout=(3, 27),  # timeout: (connect, read) in seconds
             )

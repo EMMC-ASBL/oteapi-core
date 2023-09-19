@@ -109,5 +109,8 @@ class SqliteParseStrategy:
     def _use_filters(self, session: "Dict[str, Any]") -> None:
         """Update `config` according to filter values found in the session."""
         if "sqlquery" in session and not self.parse_config.configuration.sqlquery:
+            if not isinstance(session["sqlquery"], str):
+                raise TypeError("sqlquery (found in session) must be a string.")
             # Use SQL query available in session
+            # pylint: disable=assigning-non-slot
             self.parse_config.configuration.sqlquery = session["sqlquery"]
