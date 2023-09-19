@@ -4,10 +4,10 @@ from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING
 from urllib.parse import ParseResult, urlparse
 
-from pydantic import AnyUrl
-
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Union
+
+    from pydantic import AnyUrl
 
 
 def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
@@ -32,7 +32,7 @@ def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
 
     """
     if not isinstance(uri, ParseResult):
-        uri = urlparse(uri)  # type: ignore
+        uri = urlparse(str(uri))
 
     uri_path = (uri.netloc + uri.path) if uri.scheme == "file" else uri.path
 

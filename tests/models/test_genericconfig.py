@@ -36,9 +36,7 @@ def generic_config() -> "CustomConfig":
 
         configuration: CustomConfiguration = Field(
             CustomConfiguration(required_string=""),
-            description=GenericConfig.__fields__[
-                "configuration"
-            ].field_info.description,
+            description=GenericConfig.model_fields["configuration"].description,
         )
 
     return CustomConfig(
@@ -87,11 +85,19 @@ def test_attribute_set(generic_config: "CustomConfig") -> None:
     cast to this type. However, if it is a non-specified type (similar to a standard
     dict key/value-pair), then it should be fine to change the value type for that
     given key.
+    Note: Pydantic v2 will not coerce all types, e.g. any type to `str`.
+    One should instead use Annotated to create custom types.
+    See https://docs.pydantic.dev/dev-v2/usage/types/custom/ for more information.
 
     """
+    from pydantic import ValidationError
+
     generic_config.configuration["string"] = "bar"
-    generic_config.configuration["string"] = 3.14
-    assert generic_config.configuration["string"] == str(3.14)
+    # Will not work with Pydantic v2:
+    # generic_config.configuration["string"] = 3.14
+    with pytest.raises(ValidationError):
+        generic_config.configuration["string"] = 3.14
+    assert generic_config.configuration["string"] == "bar"
 
     generic_config.configuration["float"] = "0"
     assert generic_config.configuration["float"] == "0"
@@ -108,19 +114,15 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     assert "float" not in generic_config.configuration
 
     # "string" is defined as a pydantic model field.
-    # This means it should not be deleted, but reset to its default value
-    # and removed from the set of set fields.
+    # This means it should not be deleted from the model schema,
+    # but it should be removed from the model isntance.
     generic_config.configuration["string"] = "my secret string"
     assert generic_config.configuration.string == "my secret string"
-    assert "string" in generic_config.configuration.__fields_set__
+    assert "string" in generic_config.configuration.model_fields_set
 
     del generic_config.configuration["string"]
-    assert "string" in generic_config.configuration
-    assert (
-        generic_config.configuration.string
-        == generic_config.configuration.__fields__["string"].default
-    )
-    assert "string" not in generic_config.configuration.__fields_set__
+    assert "string" not in generic_config.configuration
+    assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
 
 def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
@@ -132,14 +134,8 @@ def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     with pytest.raises(KeyError):
         del generic_config.configuration[non_existent_key]
 
-    # Make sure deleting a pydantic field does not fully delete it
-    # and hence does not raise KeyError.
-    del generic_config.configuration["string"]
-    del generic_config.configuration["string"]
-
-    # Ensure `ValidationError` is raised if deleting a "required" field.
-    with pytest.raises(ValidationError):
-        del generic_config.configuration["required_string"]
+    # Required fields can also be deleted
+    del generic_config.configuration["required_string"]
 
 
 def test_attribute_ne(generic_config: "CustomConfig") -> None:
@@ -155,7 +151,7 @@ def test_attribute_ne(generic_config: "CustomConfig") -> None:
     assert generic_config.configuration != {"test": "test"}
     assert generic_config.configuration != 2
 
-    copy_config = generic_config.configuration.copy(deep=True)
+    copy_config = generic_config.configuration.model_copy(deep=True)
     assert (generic_config.configuration != copy_config) is False
 
 
@@ -173,17 +169,14 @@ def test_attrdict() -> None:
 
 def test_attrdict_update() -> None:
     """Test supplying `AttrDict.update()` with different (valid) types."""
-    from pydantic import BaseModel, Field
+    from pydantic import BaseModel, ConfigDict, Field
 
     from oteapi.models.genericconfig import AttrDict
 
     class Foo(BaseModel):
         """Foo pydantic model."""
 
-        class Config:
-            """Foo pydantic config."""
-
-            extra = "allow"
+        model_config = ConfigDict(extra="allow")
 
     class SubAttrDict(AttrDict):
         """1st level sub-class of AttrDict."""
@@ -223,7 +216,7 @@ def test_attrdict_pop_popitem() -> None:
     assert len(attrdict) == len(data) - 1
 
     # Should follow LIFO (last-in, first-out) wrt `__dict__`
-    attrdict_keys = list(attrdict.__dict__)
+    attrdict_keys = list(attrdict.keys())
     last_entry = (attrdict_keys[-1], data[attrdict_keys[-1]])
     popped_item = attrdict.popitem()
     assert popped_item == last_entry
@@ -238,7 +231,7 @@ def test_attrdict_pop_popitem() -> None:
         attrdict.pop("d")
 
     # Only a single entry is left in attrdict, let's check
-    attrdict_keys = list(attrdict.__dict__)
+    attrdict_keys = list(attrdict.keys())
     last_entry = (attrdict_keys[-1], data[attrdict_keys[-1]])
     assert attrdict.popitem() == last_entry
 

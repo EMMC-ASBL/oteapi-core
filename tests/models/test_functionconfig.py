@@ -32,7 +32,11 @@ def test_functionconfig() -> None:
     }
 
     settings.expose_secrets = False
-    assert FunctionConfig(**base_config).json() == json.dumps(config_hidden)
+    assert FunctionConfig(**base_config).model_dump_json() == json.dumps(
+        config_hidden, indent=None, separators=(",", ":")
+    )
 
     settings.expose_secrets = True
-    assert FunctionConfig(**base_config).json() == json.dumps(config_exposed)
+    assert FunctionConfig(**base_config).model_dump_json() == json.dumps(
+        config_exposed, indent=None, separators=(",", ":")
+    )

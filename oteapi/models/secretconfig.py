@@ -1,44 +1,12 @@
 """AttrDict for specifying user credentials or secrets."""
-import json
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
-from pydantic import BaseModel, Field, SecretStr
+from pydantic import BaseModel, Field, SecretStr, field_serializer
 
 from oteapi.settings import settings
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Callable
 
-
-def json_dumps(model: dict, default: "Callable[[Any], Any]") -> "str":
-    """Alternative function for dumping exposed
-    secrets to json when model is serialized.
-
-    Parameters:
-        model: The pydantic model to serialize.
-        default: A pass-through to the standard `json.dumps()`'s `default` parameter.
-            From the `json.dumps()` doc-string: `default(obj)` is a function that should
-            return a serializable version of `obj` or raise `TypeError`.
-            The default simply raises `TypeError`.
-
-    Returns:
-        The result of `json.dumps()` after handling possible secrets.
-
-    """
-    return json.dumps(
-        {
-            key: (
-                value.get_secret_value()
-                if settings.expose_secrets and isinstance(value, SecretStr)
-                else value
-            )
-            for key, value in model.items()
-        },
-        default=default,
-    )
-
-
-class SecretConfig(BaseModel, json_dumps=json_dumps):
+class SecretConfig(BaseModel):
     """Simple model for handling secret in other config-models."""
 
     user: Optional[SecretStr] = Field(None, description="User name for authentication.")
@@ -57,3 +25,15 @@ class SecretConfig(BaseModel, json_dumps=json_dumps):
     client_secret: Optional[SecretStr] = Field(
         None, description="Client secret for an OAUTH2 client."
     )
+
+    @field_serializer(
+        "user",
+        "password",
+        "token",
+        "client_id",
+        "client_secret",
+        when_used="json-unless-none",
+    )
+    def serialize_secrets(self, value: SecretStr, _) -> str:
+        """Convert secret values to strings if expose_secrets=True in settings."""
+        return value.get_secret_value() if settings.expose_secrets else str(value)

@@ -77,18 +77,19 @@ class StrategyFactory:
             )
 
         if isinstance(config, dict):
-            config = strategy_type.config_cls(**config)  # type: ignore[call-arg]
-        elif not isinstance(config, get_args(StrategyConfig)):
+            config_model = strategy_type.config_cls(**config)
+        elif isinstance(config, get_args(StrategyConfig)):
+            config_model = config
+            config = config.model_dump()
+        else:
             raise TypeError("config should be either of type StrategyConfig or a dict.")
 
-        strategy_name: str = cls._get_strategy_name(config, strategy_type)
+        strategy_name: str = cls._get_strategy_name(config_model, strategy_type)
 
         if (strategy_type, strategy_name) in cls.strategy_create_func[strategy_type]:
             return cls.strategy_create_func[strategy_type][
                 (strategy_type, strategy_name)
-            ].implementation(
-                config  # type: ignore[arg-type]
-            )
+            ].implementation(config)
         raise NotImplementedError(
             f"The {strategy_type.value} strategy {strategy_name!r} does not exist."
         )

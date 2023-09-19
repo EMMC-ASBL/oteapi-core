@@ -3,9 +3,9 @@
 import csv
 from collections import defaultdict
 from enum import Enum
-from typing import Any, Hashable, Optional, Type, Union
+from typing import Any, Hashable, Literal, Optional, Type, Union
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
@@ -154,7 +154,8 @@ class DialectFormatting(BaseModel):
         ),
     )
 
-    @validator("base")
+    @field_validator("base")
+    @classmethod
     def validate_dialect_base(cls, value: str) -> str:
         """Ensure the given `base` dialect is registered locally."""
         if value not in csv.list_dialects():
@@ -231,10 +232,9 @@ class CSVConfig(AttrDict):
 class CSVResourceConfig(ResourceConfig):
     """CSV parse strategy filter config."""
 
-    mediaType: str = Field(
+    mediaType: Literal["text/csv"] = Field(
         "text/csv",
-        const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ResourceConfig.model_fields["mediaType"].description,
     )
     configuration: CSVConfig = Field(
         CSVConfig(), description="CSV parse strategy-specific configuration."
@@ -272,7 +272,7 @@ class CSVParseStrategy:
         cache = DataCache(self.parse_config.configuration.datacache_config)
 
         with cache.getfile(output["key"]) as csvfile_path:
-            kwargs = self.parse_config.configuration.dialect.dict(
+            kwargs = self.parse_config.configuration.dialect.model_dump(
                 exclude={"base", "quoting"}, exclude_unset=True
             )
 
@@ -284,7 +284,7 @@ class CSVParseStrategy:
                 kwargs["quoting"] = quoting.csv_constant()
 
             kwargs.update(
-                self.parse_config.configuration.reader.dict(exclude_unset=True)
+                self.parse_config.configuration.reader.model_dump(exclude_unset=True)
             )
 
             with open(

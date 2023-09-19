@@ -26,7 +26,11 @@ def test_secretconfig():
     }
 
     settings.expose_secrets = False
-    assert SecretConfig(**base_config).json() == json.dumps(config_hidden)
+    assert SecretConfig(**base_config).model_dump_json() == json.dumps(
+        config_hidden, indent=None, separators=(",", ":")
+    )
 
     settings.expose_secrets = True
-    assert SecretConfig(**base_config).json() == json.dumps(config_exposed)
+    assert SecretConfig(**base_config).model_dump_json() == json.dumps(
+        config_exposed, indent=None, separators=(",", ":")
+    )

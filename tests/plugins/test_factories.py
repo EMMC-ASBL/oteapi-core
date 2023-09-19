@@ -132,7 +132,7 @@ def test_create_strategy(
                 )
                 strategy = create_strategy(
                     strategy_type=strategy_type,
-                    config=config.dict() if config_type == "dict" else config,
+                    config=config.model_dump() if config_type == "dict" else config,
                 )
             except Exception:  # pylint: disable=broad-except
                 pytest.fail(

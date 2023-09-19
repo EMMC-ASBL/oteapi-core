@@ -58,10 +58,14 @@ def test_triplestoreconfig() -> None:
     }
 
     settings.expose_secrets = False
-    assert TripleStoreConfig(**config).json() == json.dumps(config_hidden)
+    assert TripleStoreConfig(**config).model_dump_json(
+        exclude={"token", "client_id", "client_secret"}
+    ) == json.dumps(config_hidden, indent=None, separators=(",", ":"))
 
     settings.expose_secrets = True
-    assert TripleStoreConfig(**config).json() == json.dumps(config_exposed)
+    assert TripleStoreConfig(**config).model_dump_json(
+        exclude={"token", "client_id", "client_secret"}
+    ) == json.dumps(config_exposed, indent=None, separators=(",", ":"))
 
     for config in [config_invalid_1, config_invalid_2]:
         with pytest.raises(ValueError, match="User and password must be defined."):

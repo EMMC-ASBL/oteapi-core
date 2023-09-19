@@ -1,13 +1,18 @@
 """Strategy class for application/vnd.postgresql"""
 # pylint: disable=unused-argument
 from typing import Any, Dict, Optional
-from urllib.parse import urlunparse
 
 import psycopg
-from pydantic import AnyUrl, Field, parse_obj_as, root_validator
+from pydantic import Field, model_validator
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import (
+    AttrDict,
+    DataCacheConfig,
+    HostlessAnyUrl,
+    ResourceConfig,
+    SessionUpdate,
+)
 
 
 class PostgresConfig(AttrDict):
@@ -36,78 +41,76 @@ class PostgresResourceConfig(ResourceConfig):
         description="Configuration options for the local data cache.",
     )
 
+    @model_validator(mode="before")
     @classmethod
-    def _urlconstruct(
-        cls,  # PEP8 - Always use cls for the first argument to class methods.
-        scheme: Optional[str] = "",  # Schema defining link format
-        user: Optional[str] = None,  # Username
-        password: Optional[str] = None,  # Password
-        host: Optional[str] = None,
-        port: Optional[int] = None,
-        path: Optional[str] = "",
-        params: Optional[str] = "",
-        query: Optional[str] = "",
-        fragment: Optional[str] = "",
-    ):
-        """Construct a pydantic AnyUrl based on the given URL properties"""
-
-        # Hostname should always be given
-        if not host:
-            raise ValueError("hostname must be specified")
-
-        # Update netloc of username or username|password pair is defined
-        netloc = host
-        if user and not password:  # Only username is provided. OK
-            netloc = f"{user}@{host}"
-        elif user and password:  # Username and password is provided. OK
-            netloc = f"{user}:{password}@{host}"
-        else:  # Password and no username is provided. ERROR
-            raise ValueError("username not provided")
-
-        # Append port if port is defined
-        netloc = netloc if not port else f"{netloc}:{port}"
-
-        # Construct a URL from a tuple of URL-properties
-        unparsed = urlunparse([scheme, netloc, path, params, query, fragment])
-
-        # Populate and return a Pydantic URL
-        return parse_obj_as(AnyUrl, unparsed)
-
-    @root_validator
-    def adjust_url(cls, values):
-        """Root Validator
+    def adjust_url(cls, data: Any) -> "PostgresResourceConfig":
+        """Model Validator
         Verifies configuration consistency, merge configurations
         and update the accessUrl property.
         """
+        if not isinstance(data, dict):
+            try:
+                data: dict = data.model_dump()
+            except AttributeError:
+                raise TypeError(
+                    "invalid data type, should be either dict or pydantic model"
+                )
 
-        # Copy model-state into placeholders
-        config = values.get("configuration")
-        accessUrl = values["accessUrl"]
+        if "accessUrl" not in data:
+            raise ValueError("missing accessUrl in PostgreSQL resource configuration")
+
+        accessUrl = HostlessAnyUrl(data["accessUrl"])
+        default_config = PostgresConfig()
 
         # Check and merge user configuration
-        user = accessUrl.user if accessUrl.user else config["user"]
-        if config["user"] and user != config["user"]:
+        user = (
+            accessUrl.username
+            if accessUrl.username
+            else data.get("configuration", {}).get("user", default_config.user)
+        )
+        if data.get("configuration", {}).get(
+            "user", default_config.user
+        ) and user != data.get("configuration", {}).get("user", default_config.user):
             raise ValueError("mismatching username in accessUrl and configuration")
 
         # Check and merge password configuration
-        password = accessUrl.password if accessUrl.password else config["password"]
-        if config["password"] and password != config["password"]:
+        password = (
+            accessUrl.password
+            if accessUrl.password
+            else data.get("configuration", {}).get("password", default_config.password)
+        )
+        if data.get("configuration", {}).get(
+            "password", default_config.password
+        ) and password != data.get("configuration", {}).get(
+            "password", default_config.password
+        ):
             raise ValueError("mismatching password in accessUrl and configuration")
 
         # Check and merge database name configuration
-        dbname = accessUrl.path if accessUrl.path else config["dbname"]
-        if config["dbname"] and dbname != config["dbname"]:
+        dbname = (
+            accessUrl.path
+            if accessUrl.path
+            else data.get("configuration", {}).get("dbname", default_config.dbname)
+        )
+        if data.get("configuration", {}).get(
+            "dbname", default_config.dbname
+        ) and dbname != data.get("configuration", {}).get(
+            "dbname", default_config.dbname
+        ):
             raise ValueError("mismatching dbname in accessUrl and configuration")
 
         # Reconstruct accessUrl from the updated properties
-        values["accessUrl"] = cls._urlconstruct(
+        data["accessUrl"] = accessUrl.__class__.build(
             scheme=accessUrl.scheme,
+            username=user,
+            password=password,
             host=accessUrl.host,
             port=accessUrl.port,
-            user=user,
-            password=password,
+            path=dbname,
+            query=accessUrl.query,
+            fragment=accessUrl.fragment,
         )
-        return values
+        return data
 
 
 def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connection:

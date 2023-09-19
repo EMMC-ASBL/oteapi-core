@@ -2,7 +2,7 @@
 # pylint: disable=unused-argument
 import sqlite3
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Literal, Optional
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -30,10 +30,9 @@ class SqliteParseConfig(AttrDict):
 class SqliteParserResourceConfig(ResourceConfig):
     """SQLite parse strategy resource config."""
 
-    mediaType: str = Field(
+    mediaType: Literal["application/vnd.sqlite3"] = Field(
         "application/vnd.sqlite3",
-        const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ResourceConfig.model_fields["mediaType"].description,
     )
     configuration: SqliteParseConfig = Field(
         SqliteParseConfig(), description="SQLite parse strategy-specific configuration."
@@ -93,7 +92,7 @@ class SqliteParseStrategy:
         session = session if session else {}
 
         # Retrieve SQLite file
-        download_config = self.parse_config.copy()
+        download_config = self.parse_config.model_copy(deep=True)
         del download_config.configuration
         downloader = create_strategy("download", download_config)
         session.update(downloader.initialize(session))

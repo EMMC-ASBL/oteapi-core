@@ -65,7 +65,7 @@ class ImageParserResourceConfig(ResourceConfig):
         "image/eps",
     ] = Field(
         ...,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ResourceConfig.model_fields["mediaType"].description,
     )
     configuration: ImageParserConfig = Field(
         ImageParserConfig(),
@@ -160,9 +160,8 @@ class ImageDataParseStrategy:
         image_format = SupportedFormat[mime_format].value
 
         # Proper download configurations
-        conf = self.parse_config.dict()
-        conf["configuration"] = config.download_config or {}
-        download_config = ResourceConfig(**conf)
+        download_config = self.parse_config.model_dump()
+        download_config["configuration"] = config.download_config or {}
 
         downloader = create_strategy("download", download_config)
         session.update(downloader.initialize(session))
