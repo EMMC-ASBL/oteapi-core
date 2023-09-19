@@ -113,7 +113,11 @@ class StrategyFactory:
 
         """
         if strategy_type == StrategyType.DOWNLOAD:
-            return config.downloadUrl.scheme if config.downloadUrl is not None else ""  # type: ignore[union-attr]  # pylint: disable=line-too-long
+            return (
+                config.downloadUrl.scheme  # type: ignore[union-attr]
+                if config.downloadUrl is not None  # type: ignore[union-attr]
+                else ""
+            )
         return getattr(config, strategy_type.map_to_field(), "")
 
     @classmethod

@@ -88,8 +88,9 @@ class SupportedFormat(Enum):
 class SessionUpdateImageParse(SessionUpdate):
     """Configuration model for ImageParse.
 
-    See [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details
-    on `image_mode`, `image_palette`, and `image_info`.
+    See
+    [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html)
+    for more details on `image_mode`, `image_palette`, and `image_info`.
     """
 
     image_key: str = Field(

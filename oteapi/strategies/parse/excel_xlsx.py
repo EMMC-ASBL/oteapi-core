@@ -76,7 +76,10 @@ class XLSXParseConfig(AttrDict):
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for retrieving the downloaded content.",
+        description=(
+            "Configurations for the data cache for retrieving the downloaded file "
+            "content."
+        ),
     )
 
 
@@ -212,7 +215,8 @@ class XLSXParseStrategy:
             nhead = len(header) if header else len(data[0]) if data else 0
             if len(self.parse_config.configuration.new_header) != nhead:
                 raise TypeError(
-                    f"length of `new_header` (={len(self.parse_config.configuration.new_header)}) "
+                    "length of `new_header` "
+                    f"(={len(self.parse_config.configuration.new_header)}) "
                     f"doesn't match number of columns (={len(header) if header else 0})"
                 )
             if header:

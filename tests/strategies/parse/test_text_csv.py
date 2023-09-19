@@ -172,6 +172,6 @@ def test_csv_dialect_enum_fails() -> None:
         "value is not a valid enumeration member; permitted: "
         f"{', '.join(repr(dialect) for dialect in available_dialects)} "
         "(type=type_error.enum; enum_values=["
-        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # pylint: disable=line-too-long
+        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # noqa: E501
         "])"
     ) in exception.exconly()
