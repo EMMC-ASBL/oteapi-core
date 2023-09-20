@@ -98,7 +98,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml
+      run: pytest -vvv --cov-report=xml --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -110,7 +110,7 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml
+        pytest -vvv --cov-report=xml --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -152,7 +152,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml
+      run: pytest -vvv --cov-report=xml --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -164,7 +164,7 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml
+        pytest -vvv --cov-report=xml --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
