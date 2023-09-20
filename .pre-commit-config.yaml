@@ -13,9 +13,6 @@ repos:
       name: Check YAML
     - id: check-toml
       name: Check TOML
-    - id: requirements-txt-fixer
-      name: Fix requirements*.txt
-      files: ^requirements.*\.txt$
     - id: trailing-whitespace
       exclude: ^tests/static/.*$
       args: [--markdown-linebreak-ext=md]
