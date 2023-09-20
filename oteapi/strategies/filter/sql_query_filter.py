@@ -2,10 +2,9 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
-from pydantic import Field
-from pydantic.dataclasses import dataclass
-
 from oteapi.models import FilterConfig, SessionUpdate
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
@@ -28,7 +27,7 @@ class SessionUpdateSqlQuery(SessionUpdate):
     sqlquery: str = Field(..., description="A SQL query string.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class SQLQueryFilter:
     """Strategy for a SQL query filter.
 

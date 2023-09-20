@@ -25,12 +25,11 @@ dependencies = [
     "ase~=3.22.1",
     "celery>=5.2.3,<6",
     "diskcache>=5.4.0,<6",
-    "fastapi-plugins~=0.12.0",
     "numpy>=1.21,<2",
     "openpyxl>=3.0.9,<4",
     "Pillow>=9.0.0,<11",
     "psycopg~=3.1.10",
-    "pydantic>=1.9.0,<2",
+    "pydantic>=1.10.12,<3",
     "pysftp~=0.2.9",
     "requests>=2.26.0,<3",
     "typing-extensions~=4.8",
@@ -57,6 +56,7 @@ dev = [
     "pytest~=7.4",
     "pytest-celery",
     "pytest-cov~=4.1",
+    "redis~=5.0",
     "requests-mock~=1.11",
 ]
 

@@ -57,6 +57,8 @@ repos:
       - --full-docs-folder=strategies/parse
       - --full-docs-folder=strategies/resource
       - --full-docs-folder=strategies/transformation
+      - --unwanted-file=_pydantic.py
+      - --unwanted-file=__init__.py
     - id: docs-landing-page
       args:
       - --replacement=(LICENSE),(LICENSE.md)

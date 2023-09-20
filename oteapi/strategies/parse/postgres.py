@@ -4,10 +4,11 @@ from typing import Any, Dict, Optional
 from urllib.parse import urlunparse
 
 import psycopg
-from pydantic import AnyUrl, Field, parse_obj_as, root_validator
-from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils._pydantic import AnyUrl, Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from oteapi.utils._pydantic import parse_obj_as, root_validator
 
 
 class PostgresConfig(AttrDict):
@@ -136,7 +137,7 @@ class SessionUpdatePostgresResource(SessionUpdate):
     result: list = Field(..., description="List of results from the query.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class PostgresResourceStrategy:
     """Resource strategy for Postgres.
 

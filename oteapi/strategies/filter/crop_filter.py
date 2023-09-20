@@ -2,10 +2,9 @@
 # pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Tuple
 
-from pydantic import Field
-from pydantic.dataclasses import dataclass
-
 from oteapi.models import AttrDict, FilterConfig, SessionUpdate
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict, Optional
@@ -40,7 +39,7 @@ class SessionUpdateCropFilter(SessionUpdate):
     )
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class CropImageFilter:
     """Strategy for cropping an image.
 
