@@ -16,7 +16,7 @@ plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "-rs --cov=oteapi --cov-report=term --durations=10"
+addopts = "-rs --cov-report=term --durations=10"
 filterwarnings = [
     "ignore:.*imp module.*:DeprecationWarning",
     "ignore:.*_yaml extension module.*:DeprecationWarning"
