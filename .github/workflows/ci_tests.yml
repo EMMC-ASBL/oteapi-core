@@ -32,7 +32,8 @@ jobs:
       # Build package
       run_build_package: true
       python_version_package: "3.9"
-      build_cmd: "python -m build"
+      build_libs: "flit"
+      build_cmd: "flit build"
 
       # Build documentation
       run_build_docs: true
