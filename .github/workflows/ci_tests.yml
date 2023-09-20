@@ -111,7 +111,7 @@ jobs:
       run: |
         pip install ase numpy
         pytest -vvv --cov-report=xml --cov=oteapi
-        pytest --cov-report=strategies.xml --cov=oteapi/strategies
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -173,7 +173,7 @@ jobs:
       run: |
         pip install ase numpy
         pytest -vvv --cov-report=xml --cov=oteapi
-        pytest --cov-report=strategies.xml --cov=oteapi/strategies
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
