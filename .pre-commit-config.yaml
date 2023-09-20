@@ -42,7 +42,7 @@ repos:
       exclude: ^tests/.*$
       additional_dependencies:
       - "types-requests"
-      - "pydantic>=1.10.12,<3"
+      - "pydantic>=2,<3"
 
   - repo: https://github.com/SINTEF/ci-cd
     rev: v2.5.1
