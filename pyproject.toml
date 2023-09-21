@@ -104,6 +104,7 @@ exclude = [
     "tests/",
     ".gitignore",
     ".pre-commit-config.yaml",
+    ".codecov.yml",
 ]
 
 [tool.mypy]
