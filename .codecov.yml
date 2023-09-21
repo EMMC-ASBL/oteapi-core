@@ -1,0 +1,41 @@
+codecov:
+  notify:
+    wait_for_ci: true
+  require_ci_to_pass: true
+
+coverage:
+  precision: 2
+  round: down
+  range: "75...100"
+
+  status:
+    project:
+      default: false
+      linux:
+        threshold: 1%
+        flags:
+          - linux
+      linux-extra_libs:
+        threshold: 1%
+        flags:
+          - linux-extra_libs
+      windows:
+        threshold: 1%
+        flags:
+          - windows
+      windows-extra_libs:
+        threshold: 1%
+        flags:
+          - windows-extra_libs
+      linux-strategies:
+        threshold: 1%
+        flags:
+          - linux-strategies
+      windows-strategies:
+        threshold: 1%
+        flags:
+          - windows-strategies
+    patch:
+      default:
+        threshold: 5%
+    changes: false

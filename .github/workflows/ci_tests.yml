@@ -99,7 +99,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --durations=10
+      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -111,7 +111,8 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml --durations=10
+        pytest -vvv --cov-report=xml --cov=oteapi --durations=10
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -119,6 +120,13 @@ jobs:
       with:
         files: coverage.xml
         flags: linux-extra_libs
+
+    - name: Upload strategies coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: strategies.xml
+        flags: linux-strategies
 
   pytest-win:
     name: pytest (windows-py${{ matrix.python-version }})
@@ -153,7 +161,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --durations=10
+      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -165,7 +173,8 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml --durations=10
+        pytest -vvv --cov-report=xml --cov=oteapi --durations=10
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -173,3 +182,10 @@ jobs:
       with:
         files: coverage.xml
         flags: windows-extra_libs
+
+    - name: Upload strategies coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: strategies.xml
+        flags: windows-strategies
