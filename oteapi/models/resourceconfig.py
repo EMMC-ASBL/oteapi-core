@@ -1,5 +1,4 @@
 """Pydantic Resource Configuration Data Model."""
-# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, Optional
 
 from oteapi.models.genericconfig import GenericConfig

@@ -521,14 +521,16 @@ def get_strategy_entry_points(
         A collection of entry points for the specific strategy type.
 
     """
-    # pylint: disable=line-too-long
     try:
         strategy_type = StrategyType(strategy_type)
     except ValueError as exc:
+        str_strategy_type = (
+            strategy_type
+            if isinstance(strategy_type, str)
+            else str(strategy_type.value)
+        )
         raise ValueError(
-            "Strategy type "
-            f"{strategy_type if isinstance(strategy_type, str) else str(strategy_type.value)!r}"
-            " is not supported."
+            f"Strategy type {str_strategy_type!r} is not supported."
         ) from exc
 
     collection = EntryPointStrategyCollection()

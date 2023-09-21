@@ -1,5 +1,4 @@
 """Function test strategy class."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
 from oteapi.models import FunctionConfig

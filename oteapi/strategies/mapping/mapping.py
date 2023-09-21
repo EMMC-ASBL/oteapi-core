@@ -1,5 +1,4 @@
 """Mapping filter strategy."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Dict, List
 
 from oteapi.models import MappingConfig, RDFTriple, SessionUpdate

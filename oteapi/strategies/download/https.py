@@ -1,5 +1,4 @@
 """Download strategy class for http/https"""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
 
 import requests
@@ -18,7 +17,10 @@ class HTTPSConfig(AttrDict):
 
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 

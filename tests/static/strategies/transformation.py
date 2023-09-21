@@ -1,5 +1,4 @@
 """Transformation test strategy class."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
 from oteapi.models import TransformationConfig, TransformationStatus

@@ -1,5 +1,4 @@
 """SQL query filter strategy."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING
 
 from oteapi.models import FilterConfig, SessionUpdate

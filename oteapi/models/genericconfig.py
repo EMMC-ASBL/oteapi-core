@@ -26,7 +26,7 @@ class AttrDict(BaseModel, Mapping):
             if key in self.__fields__:
                 # Reset field to default and remove from set of set fields
                 setattr(self, key, self.__fields__[key].default)
-                self.__fields_set__.remove(key)  # pylint: disable=no-member
+                self.__fields_set__.remove(key)
             else:
                 self.__delattr__(key)
         else:

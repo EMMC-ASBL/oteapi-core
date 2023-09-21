@@ -16,17 +16,11 @@ jobs:
       run_pre-commit: true
       python_version_pre-commit: "3.9"
       install_extras: "[dev]"
-      skip_pre-commit_hooks: pylint,pylint-strategies,pylint-tests
 
       # pylint & safety
       python_version_pylint_safety: "3.9"
 
-      run_pylint: true
-      pylint_runs: |
-        --rcfile=pyproject.toml --ignore-paths=oteapi/strategies/,tests/ --extension-pkg-whitelist='pydantic' oteapi
-        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=R,C oteapi/strategies
-        --rcfile=pyproject.toml --extension-pkg-whitelist='pydantic' --disable=C0415,W0621,import-error --recursive=yes tests
-
+      run_pylint: false
       run_safety: true
 
       # Build package
@@ -59,6 +53,12 @@ jobs:
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
       warnings_as_errors: true
+
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chartboost/ruff-action@v1
 
   pytest-linux:
     name: pytest (linux-py${{ matrix.python-version }})
@@ -99,7 +99,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --durations=10
+      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -111,7 +111,8 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml --durations=10
+        pytest -vvv --cov-report=xml --cov=oteapi --durations=10
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -119,6 +120,13 @@ jobs:
       with:
         files: coverage.xml
         flags: linux-extra_libs
+
+    - name: Upload strategies coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: strategies.xml
+        flags: linux-strategies
 
   pytest-win:
     name: pytest (windows-py${{ matrix.python-version }})
@@ -153,7 +161,7 @@ jobs:
         pip install -e .[dev]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --durations=10
+      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -165,7 +173,8 @@ jobs:
     - name: Test with optional libs
       run: |
         pip install ase numpy
-        pytest -vvv --cov-report=xml --durations=10
+        pytest -vvv --cov-report=xml --cov=oteapi --durations=10
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -173,3 +182,10 @@ jobs:
       with:
         files: coverage.xml
         flags: windows-extra_libs
+
+    - name: Upload strategies coverage to Codecov
+      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      uses: codecov/codecov-action@v3
+      with:
+        files: strategies.xml
+        flags: windows-strategies

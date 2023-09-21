@@ -1,5 +1,4 @@
 """Strategy class for application/vnd.sqlite3."""
-# pylint: disable=unused-argument
 import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional

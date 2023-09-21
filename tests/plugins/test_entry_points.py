@@ -122,7 +122,6 @@ def test_strategytype_methods() -> None:
 
 def test_eval_custom_classes() -> None:
     """Check the custom classes can be re-invoked using `eval(repr())`."""
-    # pylint: disable=eval-used,protected-access
     from importlib.metadata import EntryPoint
 
     from oteapi.plugins.entry_points import (

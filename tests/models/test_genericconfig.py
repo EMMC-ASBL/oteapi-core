@@ -1,5 +1,4 @@
 """Tests for `oteapi.models.genericconfig`"""
-# pylint: disable=no-member
 from typing import TYPE_CHECKING
 
 import pytest
@@ -73,9 +72,7 @@ def test_attribute_get_item_fail(generic_config: "CustomConfig") -> None:
     non_existent_key = "non_existent_key"
     assert non_existent_key not in generic_config.configuration
     with pytest.raises(KeyError):
-        generic_config.configuration[  # pylint: disable=pointless-statement
-            non_existent_key
-        ]
+        generic_config.configuration[non_existent_key]
 
 
 def test_attribute_set(generic_config: "CustomConfig") -> None:

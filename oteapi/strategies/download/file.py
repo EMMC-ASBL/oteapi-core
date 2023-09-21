@@ -1,5 +1,4 @@
 """Download strategy class for the `file` scheme."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
 
 from oteapi.datacache import DataCache
@@ -31,7 +30,10 @@ class FileConfig(AttrDict):
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 
