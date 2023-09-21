@@ -33,7 +33,7 @@ dependencies = [
     "pydantic>=1.9.0,<2",
     "pysftp~=0.2.9",
     "requests>=2.26.0,<3",
-    "typing-extensions~=4.7",
+    "typing-extensions~=4.8",
     "urllib3<2",
 ]
 
@@ -42,14 +42,14 @@ docs = [
     "mike~=1.1",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.2",
+    "mkdocs-material~=9.3",
     "mkdocstrings[python]~=0.23.0",
 ]
 dev = [
     "mike~=1.1",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.2",
+    "mkdocs-material~=9.3",
     "mkdocstrings[python]~=0.23.0",
     "pre-commit>=2.21.0,<3; python_version<'3.8'",
     "pre-commit~=3.4; python_version>='3.8'",
