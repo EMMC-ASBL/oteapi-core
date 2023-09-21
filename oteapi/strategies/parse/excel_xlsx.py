@@ -3,11 +3,11 @@ from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from pydantic import Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Iterable
@@ -152,7 +152,7 @@ def get_column_indices(
     return range(model.col_from, model.col_to + 1)
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class XLSXParseStrategy:
     """Parse strategy for Excel XLSX files.
 

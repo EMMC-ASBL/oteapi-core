@@ -20,9 +20,8 @@ if TYPE_CHECKING:
 @pytest.fixture
 def generic_config() -> "CustomConfig":
     """Return a usable `CustomConfig` for test purposes."""
-    from pydantic import Field
-
     from oteapi.models.genericconfig import AttrDict, GenericConfig
+    from oteapi.utils._pydantic import Field
 
     class CustomConfiguration(AttrDict):
         """A custom AttrDict class to use as `configuration` in CustomConfig."""
@@ -122,7 +121,7 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
 def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
-    from pydantic import ValidationError
+    from oteapi.utils._pydantic import ValidationError
 
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
@@ -141,7 +140,7 @@ def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
 
 def test_attribute_ne(generic_config: "CustomConfig") -> None:
     """Test configuration.__ne__()."""
-    from pydantic import BaseModel
+    from oteapi.utils._pydantic import BaseModel
 
     class Test(BaseModel):
         """Test pydantic model."""
@@ -170,9 +169,8 @@ def test_attrdict() -> None:
 
 def test_attrdict_update() -> None:
     """Test supplying `AttrDict.update()` with different (valid) types."""
-    from pydantic import BaseModel, Field
-
     from oteapi.models.genericconfig import AttrDict
+    from oteapi.utils._pydantic import BaseModel, Field
 
     class Foo(BaseModel):
         """Foo pydantic model."""

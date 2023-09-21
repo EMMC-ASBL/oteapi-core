@@ -4,7 +4,7 @@ from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING
 from urllib.parse import ParseResult, urlparse
 
-from pydantic import AnyUrl
+from oteapi.utils._pydantic import AnyUrl
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Union

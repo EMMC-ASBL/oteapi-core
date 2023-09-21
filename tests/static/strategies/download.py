@@ -1,15 +1,14 @@
 """Download test strategy class."""
 from typing import TYPE_CHECKING
 
-from pydantic.dataclasses import dataclass
-
 from oteapi.models import ResourceConfig
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class DownloadTestStrategy:
     """Test download strategy."""
 
