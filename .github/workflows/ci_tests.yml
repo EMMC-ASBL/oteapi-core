@@ -52,6 +52,9 @@ jobs:
         (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
+      exclude_files: |
+        __init__.py
+        _pydantic.py
       warnings_as_errors: true
 
   ruff:
@@ -96,21 +99,10 @@ jobs:
       run: |
         python -m pip install -U pip
         pip install -U setuptools wheel
-        pip install -e .[dev]
+        pip install -e .[testing]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
-
-    - name: Upload coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
-      with:
-        files: coverage.xml
-        flags: linux
-
-    - name: Test with optional libs
       run: |
-        pip install ase numpy
         pytest -vvv --cov-report=xml --cov=oteapi --durations=10
         pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
@@ -119,7 +111,7 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
-        flags: linux-extra_libs
+        flags: linux
 
     - name: Upload strategies coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
@@ -158,21 +150,10 @@ jobs:
       run: |
         python -m pip install -U pip
         pip install -U setuptools wheel
-        pip install -e .[dev]
+        pip install -e .[testing]
 
     - name: Test with pytest
-      run: pytest -vvv --cov-report=xml --cov=oteapi --durations=10
-
-    - name: Upload coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
-      with:
-        files: coverage.xml
-        flags: windows
-
-    - name: Test with optional libs
       run: |
-        pip install ase numpy
         pytest -vvv --cov-report=xml --cov=oteapi --durations=10
         pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
@@ -181,7 +162,7 @@ jobs:
       uses: codecov/codecov-action@v3
       with:
         files: coverage.xml
-        flags: windows-extra_libs
+        flags: windows
 
     - name: Upload strategies coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
