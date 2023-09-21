@@ -28,6 +28,12 @@ repos:
     hooks:
     - id: black
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.289
+    hooks:
+    - id: ruff
+      args: ["--fix", "--exit-non-zero-on-fix"]
+
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.5
     hooks:
@@ -67,31 +73,3 @@ repos:
       - --replacement=(oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
       - --replacement=(oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
       - --replacement=(oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
-
-  - repo: local
-    hooks:
-    - id: pylint
-      name: pylint
-      entry: pylint
-      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'"]
-      language: python
-      types: [python]
-      require_serial: true
-      files: ^.*$
-      exclude: ^(tests|oteapi/strategies)/.*$
-    - id: pylint-strategies
-      name: pylint - oteapi/strategies/
-      entry: pylint
-      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=R,C"]
-      language: python
-      types: [python]
-      require_serial: true
-      files: ^oteapi/strategies/.*$
-    - id: pylint-tests
-      name: pylint - tests
-      entry: pylint
-      args: ["--rcfile=pyproject.toml", "--extension-pkg-whitelist='pydantic'", "--disable=C0415,W0621,import-error"]
-      language: python
-      types: [python]
-      require_serial: true
-      files: ^tests/.*$

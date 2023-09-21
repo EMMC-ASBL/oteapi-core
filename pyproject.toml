@@ -53,7 +53,6 @@ dev = [
     "mkdocstrings[python]~=0.23.0",
     "pre-commit>=2.21.0,<3; python_version<'3.8'",
     "pre-commit~=3.4; python_version>='3.8'",
-    "pylint~=2.17",
     "pytest~=7.4",
     "pytest-celery",
     "pytest-cov~=4.1",
@@ -122,13 +121,4 @@ addopts = "-rs --cov-report=term"
 filterwarnings = [
     "ignore:.*imp module.*:DeprecationWarning",
     "ignore:.*_yaml extension module.*:DeprecationWarning"
-]
-
-[tool.pylint.messages_control]
-max-line-length = 88
-disable = [
-    "no-name-in-module",
-    "no-self-argument",
-    "duplicate-code",
-    "too-few-public-methods",
 ]

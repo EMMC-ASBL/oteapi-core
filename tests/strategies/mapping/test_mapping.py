@@ -1,5 +1,4 @@
 """Test mapping strategy."""
-# pylint: disable=invalid-name
 
 
 def test_mapping() -> None:
