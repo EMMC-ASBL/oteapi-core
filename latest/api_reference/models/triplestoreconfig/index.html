@@ -1691,6 +1691,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../../utils/_pydantic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    _pydantic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../utils/config_updater/" class="md-nav__link">
         
   
@@ -1898,7 +1918,8 @@ a configuration object.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+<span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
@@ -1937,8 +1958,7 @@ a configuration object.</p>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TripleStoreConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TripleStoreConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TripleStore Configuration.</span>
 
 <span class="sd">    This is a configuration for the</span>
@@ -2075,7 +2095,8 @@ a configuration object.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
@@ -2083,8 +2104,7 @@ a configuration object.</p>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pydantic configuration for TripleStoreConfig.&quot;&quot;&quot;</span>
 
     <span class="n">fields</span> <span class="o">=</span> <span class="p">{</span>
@@ -2161,13 +2181,13 @@ SecretConfig.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_user_pass</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure that user/password are set, since they are optional in the</span>
 <span class="sd">    SecretConfig.&quot;&quot;&quot;</span>
