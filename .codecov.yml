@@ -15,18 +15,10 @@ coverage:
         threshold: 1%
         flags:
           - linux
-      linux-extra_libs:
-        threshold: 1%
-        flags:
-          - linux-extra_libs
       windows:
         threshold: 1%
         flags:
           - windows
-      windows-extra_libs:
-        threshold: 1%
-        flags:
-          - windows-extra_libs
       linux-strategies:
         threshold: 1%
         flags:
