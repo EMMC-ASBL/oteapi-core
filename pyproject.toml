@@ -29,7 +29,6 @@ dependencies = [
 
     # Strategy dependencies
     "celery>=5.2.3,<6",
-    "numpy>=1.21,<2",
     "openpyxl>=3.0.9,<4",
     "Pillow>=9.0.0,<11",
     "psycopg~=3.1.10",
@@ -48,6 +47,7 @@ docs = [
 ]
 testing = [
     "ase~=3.22.1",
+    "numpy>=1.21,<2",
     "pytest~=7.4",
     "pytest-celery",
     "pytest-cov~=4.1",
@@ -61,6 +61,7 @@ dev = [
     "mkdocs-material~=9.3",
     "mkdocstrings[python]~=0.23.0",
     "ase~=3.22.1",
+    "numpy>=1.21,<2",
     "pytest~=7.4",
     "pytest-celery",
     "pytest-cov~=4.1",

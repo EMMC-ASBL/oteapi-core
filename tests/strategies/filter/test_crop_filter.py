@@ -13,6 +13,9 @@ def test_crop_filter(static_files: "Path") -> None:
     Note: This test incorporates much of the contents of the test
     'test_jpeg.py', so if that test fails, this one should fail too.
     """
+    import numpy as np
+    from PIL import Image
+
     from oteapi.datacache import DataCache
     from oteapi.strategies.filter.crop_filter import CropImageFilter
     from oteapi.strategies.parse.image import ImageDataParseStrategy
@@ -46,6 +49,12 @@ def test_crop_filter(static_files: "Path") -> None:
 
     try:
         data = cache.get(image_key)
-        assert data.shape == (400, 700, 3)
     finally:
         del cache[image_key]
+
+    data = np.asarray(
+        Image.frombytes(
+            data=data, mode=session["image_mode"], size=session["image_size"]
+        )
+    )
+    assert data.shape == (400, 700, 3)
