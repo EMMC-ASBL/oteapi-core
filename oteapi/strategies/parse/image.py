@@ -8,7 +8,6 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import Literal
 
-import numpy as np
 from PIL import Image
 
 from oteapi.datacache import DataCache
@@ -194,18 +193,14 @@ class ImageDataParseStrategy:
                         {"version": image.info.get("version", b"")[len(b"GIF") :]}
                     )
 
-            # Use the buffer protocol to store the image in the datacache
-            data = np.asarray(image)
             image_key = cache.add(
-                data,
+                image.tobytes(),
                 key=config.image_key,
                 tag=str(id(session)),
             )
 
             if image.mode == "P":
-                image_palette_key = cache.add(
-                    np.asarray(image.getpalette()), tag=str(id(session))
-                )
+                image_palette_key = cache.add(image.getpalette(), tag=str(id(session)))
             else:
                 image_palette_key = None
 
