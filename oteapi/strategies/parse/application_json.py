@@ -2,12 +2,11 @@
 import json
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import Field
-from pydantic.dataclasses import dataclass
-
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -44,7 +43,7 @@ class SessionUpdateJSONParse(SessionUpdate):
     content: dict = Field(..., description="Content of the JSON document.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class JSONDataParseStrategy:
     """Parse strategy for JSON.
 
