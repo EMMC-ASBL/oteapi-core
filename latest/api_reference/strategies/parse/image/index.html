@@ -2750,7 +2750,8 @@ for more info.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -2776,8 +2777,7 @@ for more info.</p>
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration data model for</span>
 <span class="sd">    [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy].&quot;&quot;&quot;</span>
 
@@ -2954,7 +2954,8 @@ for more info.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+<span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
@@ -2971,8 +2972,7 @@ for more info.</p>
 <span class="normal">69</span>
 <span class="normal">70</span>
 <span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ImageParserResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Image parse strategy resource config.&quot;&quot;&quot;</span>
 
     <span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span>
@@ -3074,12 +3074,14 @@ for more info.</p>
 
   
       <p>Configuration model for ImageParse.</p>
-<p>See <a href="https://pillow.readthedocs.io/en/stable/handbook/concepts.html">Pillow handbook</a> for more details
-on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</code>.</p>
+<p>See
+<a href="https://pillow.readthedocs.io/en/stable/handbook/concepts.html">Pillow handbook</a>
+for more details on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</code>.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
+<span class="normal"> 88</span>
 <span class="normal"> 89</span>
 <span class="normal"> 90</span>
 <span class="normal"> 91</span>
@@ -3108,8 +3110,9 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 <span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateImageParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration model for ImageParse.</span>
 
-<span class="sd">    See [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details</span>
-<span class="sd">    on `image_mode`, `image_palette`, and `image_info`.</span>
+<span class="sd">    See</span>
+<span class="sd">    [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html)</span>
+<span class="sd">    for more details on `image_mode`, `image_palette`, and `image_info`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">image_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -3281,7 +3284,8 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/image.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
@@ -3289,8 +3293,7 @@ on <code>image_mode</code>, <code>image_palette</code>, and <code>image_info</co
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SupportedFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SupportedFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Supported formats for `ImageDataParseStrategy`.&quot;&quot;&quot;</span>
 
     <span class="n">jpeg</span> <span class="o">=</span> <span class="s2">&quot;JPEG&quot;</span>

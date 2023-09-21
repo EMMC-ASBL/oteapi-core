@@ -4789,7 +4789,7 @@ subscription, like with a dictionary.</p>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">:</span>
                 <span class="c1"># Reset field to default and remove from set of set fields</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__fields_set__</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># pylint: disable=no-member</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__fields_set__</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="fm">__delattr__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -6329,7 +6329,8 @@ a configuration object.</p>
 </details>
             <details class="quote">
               <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+<span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
@@ -6404,8 +6405,7 @@ a configuration object.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
@@ -6663,7 +6663,8 @@ a configuration object.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
+<span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
@@ -6676,8 +6677,7 @@ a configuration object.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
@@ -8374,7 +8374,7 @@ subscription, like with a dictionary.</p>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">:</span>
                 <span class="c1"># Reset field to default and remove from set of set fields</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">default</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__fields_set__</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>  <span class="c1"># pylint: disable=no-member</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">__fields_set__</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="fm">__delattr__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -9588,10 +9588,10 @@ initializing the model.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
 <span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HostlessAnyUrl</span><span class="p">(</span><span class="n">AnyUrl</span><span class="p">):</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HostlessAnyUrl</span><span class="p">(</span><span class="n">AnyUrl</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;AnyUrl, but allow not having a host.&quot;&quot;&quot;</span>
 
     <span class="n">host_required</span> <span class="o">=</span> <span class="kc">False</span>
@@ -9665,7 +9665,8 @@ initializing the model.</p>
 </details>
             <details class="quote">
               <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+<span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
@@ -9740,8 +9741,7 @@ initializing the model.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
@@ -9999,7 +9999,8 @@ initializing the model.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
+<span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
@@ -10012,8 +10013,7 @@ initializing the model.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
 <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
