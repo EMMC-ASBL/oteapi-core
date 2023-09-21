@@ -23,7 +23,6 @@ jobs:
       update_pre-commit: true
       python_version: "3.9"
       install_extras: "[dev]"
-      skip_pre-commit_hooks: pylint,pylint-strategies,pylint-tests
 
       # Create single dependencies PR
       permanent_dependencies_branch: ci/dependabot-updates

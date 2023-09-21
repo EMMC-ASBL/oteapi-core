@@ -1,5 +1,4 @@
 """Strategy class for application/vnd.postgresql"""
-# pylint: disable=unused-argument
 from typing import Any, Dict, Optional
 
 import psycopg
@@ -174,5 +173,4 @@ class PostgresResourceStrategy:
             if not isinstance(session["sqlquery"], str):
                 raise TypeError("sqlquery (found in session) must be a string")
             # Use SQL query available in session
-            # pylint: disable=assigning-non-slot
             self.resource_config.configuration.sqlquery = session["sqlquery"]

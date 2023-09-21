@@ -83,9 +83,9 @@ class AttrDict(BaseModel, MutableMapping):
         for field in self.model_dump():
             del self[field]
 
-    def update(  # type: ignore[override]  # pylint: disable=arguments-differ
+    def update(  # type: ignore[override]
         self,
-        other: "Optional[Union[Mapping[str, Any], AttrDict, Iterable[tuple[str, Any]]]]" = None,  # pylint: disable=line-too-long
+        other: "Optional[Union[Mapping[str, Any], Iterable[tuple[str, Any]]]]" = None,
         **kwargs,
     ) -> None:
         """MutableMapping `update`-method."""

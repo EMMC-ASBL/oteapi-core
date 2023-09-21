@@ -1,5 +1,4 @@
 """Tests the transformation strategy for Celery."""
-# pylint: disable=invalid-name
 from typing import TYPE_CHECKING
 
 import pytest

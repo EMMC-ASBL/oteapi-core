@@ -1,5 +1,4 @@
 """Strategy class for sftp/ftp"""
-# pylint: disable=unused-argument
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING, Annotated, Optional
@@ -24,7 +23,10 @@ class SFTPConfig(AttrDict):
 
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 

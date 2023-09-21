@@ -2,7 +2,6 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
-# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig
@@ -116,7 +115,11 @@ class StrategyFactory:
 
         """
         if strategy_type == StrategyType.DOWNLOAD:
-            return config.downloadUrl.scheme if config.downloadUrl is not None else ""  # type: ignore[union-attr]  # pylint: disable=line-too-long
+            return (
+                config.downloadUrl.scheme  # type: ignore[union-attr]
+                if config.downloadUrl is not None  # type: ignore[union-attr]
+                else ""
+            )
         return getattr(config, strategy_type.map_to_field(), "")
 
     @classmethod
@@ -152,7 +155,6 @@ class StrategyFactory:
 
 
 def load_strategies(test_for_uniqueness: bool = True) -> None:
-    # pylint: disable=line-too-long
     """Proxy function for
     [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].
 

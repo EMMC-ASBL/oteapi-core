@@ -134,7 +134,7 @@ def test_create_strategy(
                     strategy_type=strategy_type,
                     config=config.model_dump() if config_type == "dict" else config,
                 )
-            except Exception:  # pylint: disable=broad-except
+            except Exception:
                 pytest.fail(
                     f"Failed to create strategy. strategy_type={strategy_type} "
                     f"entry_point={entry_point}\n\n{traceback.format_exc()}"

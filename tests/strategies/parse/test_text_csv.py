@@ -1,5 +1,4 @@
 """Tests the parse strategy for CSV."""
-# pylint: disable=too-many-locals
 from typing import TYPE_CHECKING
 
 import pytest

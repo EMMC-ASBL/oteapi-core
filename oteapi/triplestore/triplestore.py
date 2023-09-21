@@ -9,7 +9,6 @@ Features:
 - AllegroGraph has a well documented python API package
 
 """
-# pylint: disable=too-many-arguments
 from typing import TYPE_CHECKING
 
 from franz.miniclient.request import RequestError
@@ -76,7 +75,7 @@ class TripleStore:
             host=self.config.agraphHost,
             port=self.config.agraphPort,
             user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
-            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # pylint: disable=line-too-long
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # noqa: E501
         ) as connection:
             connection.addData(triples)
             connection.close()
@@ -129,7 +128,7 @@ class TripleStore:
             host=self.config.agraphHost,
             port=self.config.agraphPort,
             user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
-            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # pylint: disable=line-too-long
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # noqa: E501
         ) as connection:
             update_query = connection.prepareUpdate(query=sparql_query)
             update_query.evaluate()

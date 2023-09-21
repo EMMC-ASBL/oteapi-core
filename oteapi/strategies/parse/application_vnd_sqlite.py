@@ -1,5 +1,4 @@
 """Strategy class for application/vnd.sqlite3."""
-# pylint: disable=unused-argument
 import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal, Optional
@@ -112,5 +111,4 @@ class SqliteParseStrategy:
             if not isinstance(session["sqlquery"], str):
                 raise TypeError("sqlquery (found in session) must be a string.")
             # Use SQL query available in session
-            # pylint: disable=assigning-non-slot
             self.parse_config.configuration.sqlquery = session["sqlquery"]
