@@ -1,5 +1,35 @@
 # Changelog
 
+## [v0.5.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.1) (2023-09-21)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.5.0...v0.5.1)
+
+**Implemented enhancements:**
+
+- Use ruff instead of pylint [\#331](https://github.com/EMMC-ASBL/oteapi-core/issues/331)
+- Consider using `flit` [\#267](https://github.com/EMMC-ASBL/oteapi-core/issues/267)
+
+**Fixed bugs:**
+
+- Update `full_docs_dirs` input for CI/CD [\#322](https://github.com/EMMC-ASBL/oteapi-core/issues/322)
+
+**Closed issues:**
+
+- Revert update of codecov-action from v4 to v3 [\#328](https://github.com/EMMC-ASBL/oteapi-core/issues/328)
+- Make the code-base compatible with pydantic version 2 and above [\#308](https://github.com/EMMC-ASBL/oteapi-core/issues/308)
+- Document that oteapi-core must be installed editable in order to test with pytest [\#62](https://github.com/EMMC-ASBL/oteapi-core/issues/62)
+
+**Merged pull requests:**
+
+- Sort dependencies [\#337](https://github.com/EMMC-ASBL/oteapi-core/pull/337) ([CasperWA](https://github.com/CasperWA))
+- Support pydantic v1 & v2 [\#336](https://github.com/EMMC-ASBL/oteapi-core/pull/336) ([CasperWA](https://github.com/CasperWA))
+- Extend codecov uploads with strategies-specific flag [\#335](https://github.com/EMMC-ASBL/oteapi-core/pull/335) ([CasperWA](https://github.com/CasperWA))
+- Use flit instead of setuptools [\#334](https://github.com/EMMC-ASBL/oteapi-core/pull/334) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#333](https://github.com/EMMC-ASBL/oteapi-core/pull/333) ([TEAM4-0](https://github.com/TEAM4-0))
+- Use ruff instead of pylint [\#332](https://github.com/EMMC-ASBL/oteapi-core/pull/332) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#324](https://github.com/EMMC-ASBL/oteapi-core/pull/324) ([TEAM4-0](https://github.com/TEAM4-0))
+- Add strategies folders to CI/CD workflows docs update [\#323](https://github.com/EMMC-ASBL/oteapi-core/pull/323) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.5.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.0) (2023-09-12)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.4.5...v0.5.0)
