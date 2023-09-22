@@ -1,5 +1,4 @@
 """Tests for `oteapi.datacache.datacache`."""
-# pylint: disable=invalid-name,import-error
 from typing import TYPE_CHECKING
 
 import pytest
@@ -24,22 +23,31 @@ def test_cache(tmp_path: "Path") -> None:
     val2 = 42
     val3 = {"a": [1, 2, 3], "pi": 3.14, "s": (0, "a")}
     val4 = (1, 2, 3)
+    val5 = "a value that is a string"
 
     key1 = cache.add(val1, tag="test_cache")
     key2 = cache.add(val2, tag="test_cache")
     key3 = cache.add(val3, key="a", tag="test_cache")
     key4 = cache.add(val4)
+    key5 = cache.add(val5)
 
     assert cache[key1] == val1
     assert cache.get(key2) == val2
     assert cache.get(key3) == val3
     assert cache.get(key4) == val4
+    assert cache.get(key5) == val5
 
-    assert len(cache) == 4
+    assert key1 == "4156a30496df3b38ad4b7d8995a08431"
+    assert key2 == "a1d0c6e83f027327d8461063f4ac58a6"
+    assert key3 == "a"
+    assert key4 == "49a5a960c5714c2e29dd1a7e7b950741"
+    assert key5 == "12a8301d7e779c96309cff7adde26808"
+
+    assert len(cache) == 5
     del cache[key1]
-    assert len(cache) == 3
+    assert len(cache) == 4
     cache.evict("test_cache")
-    assert len(cache) == 1
+    assert len(cache) == 2
     cache.clear()
     assert len(cache) == 0
 

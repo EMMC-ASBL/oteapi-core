@@ -4,7 +4,7 @@ from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING
 from urllib.parse import ParseResult, urlparse
 
-from pydantic import AnyUrl
+from oteapi.utils._pydantic import AnyUrl
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Union
@@ -31,13 +31,10 @@ def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
         A properly converted URI/IRI/URL to `pathlib.Path`.
 
     """
-    if isinstance(uri, (AnyUrl, ParseResult)):
-        uri_path = uri.path
-    elif isinstance(uri, str):
-        uri = urlparse(uri)
-        uri_path = uri.path
-    else:
-        raise TypeError("uri is expected to be either a string or parsed URI/IRI/URL.")
+    if not isinstance(uri, ParseResult):
+        uri = urlparse(uri)  # type: ignore
+
+    uri_path = (uri.netloc + uri.path) if uri.scheme == "file" else uri.path
 
     if uri.scheme != "file":
         warnings.warn(

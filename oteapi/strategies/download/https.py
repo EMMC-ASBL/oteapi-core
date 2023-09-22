@@ -1,13 +1,12 @@
 """Download strategy class for http/https"""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
 
 import requests
-from pydantic import AnyHttpUrl, Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils._pydantic import AnyHttpUrl, Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -18,7 +17,10 @@ class HTTPSConfig(AttrDict):
 
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 
@@ -39,7 +41,7 @@ class SessionUpdateHTTPS(SessionUpdate):
     key: str = Field(..., description="Key to access the data in the cache.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class HTTPSStrategy:
     """Strategy for retrieving data via http.
 

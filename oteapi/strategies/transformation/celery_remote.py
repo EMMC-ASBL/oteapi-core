@@ -4,8 +4,6 @@ from typing import TYPE_CHECKING, Dict
 
 from celery import Celery
 from celery.result import AsyncResult
-from pydantic import Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.models import (
     AttrDict,
@@ -13,6 +11,8 @@ from oteapi.models import (
     TransformationConfig,
     TransformationStatus,
 )
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Union
@@ -70,7 +70,7 @@ class CeleryStrategyConfig(TransformationConfig):
     )
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class CeleryRemoteStrategy:
     """Submit job to remote Celery runner.
 
@@ -93,7 +93,6 @@ class CeleryRemoteStrategy:
         return SessionUpdateCelery(celery_task_id=result.task_id)
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
-        # pylint: disable=unused-argument
         """Initialize a job."""
         return SessionUpdate()
 

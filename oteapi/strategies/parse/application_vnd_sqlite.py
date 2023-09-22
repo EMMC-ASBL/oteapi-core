@@ -1,15 +1,13 @@
 """Strategy class for application/vnd.sqlite3."""
-# pylint: disable=unused-argument
 import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import Field
-from pydantic.dataclasses import dataclass
-
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -65,7 +63,7 @@ class SessionUpdateSqLiteParse(SessionUpdate):
     result: list = Field(..., description="List of results from the query.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class SqliteParseStrategy:
     """Parse strategy for SQLite.
 

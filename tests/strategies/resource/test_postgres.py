@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    from pathlib import Path
     from typing import Tuple
 
     from oteapi.interfaces import IResourceStrategy
@@ -88,7 +87,7 @@ def test_postgres(
     """
     import psycopg
 
-    from oteapi.strategies.resource.postgres import PostgresResourceStrategy
+    from oteapi.strategies.parse.postgres import PostgresResourceStrategy
 
     def mock_connect(connect_str):
         connect_str = str(connect_str)

@@ -7,7 +7,7 @@ on:
 jobs:
   updates-to-master:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_cd_updated_default_branch.yml@v2.4.0
+    uses: SINTEF/ci-cd/.github/workflows/ci_cd_updated_default_branch.yml@v2.5.1
     if: github.repository_owner == 'EMMC-ASBL'
     with:
       # General
@@ -25,7 +25,14 @@ jobs:
       update_docs_landing_page: true
       python_version: "3.9"
       doc_extras: "[docs]"
-      full_docs_dirs: models
+      full_docs_dirs: |
+        models
+        strategies/download
+        strategies/filter
+        strategies/mapping
+        strategies/parse
+        strategies/resource
+        strategies/transformation
       landing_page_replacements: |
         (LICENSE),(LICENSE.md)
         scheme\`](oteapi/models/resourceconfig.py),scheme\`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl]
@@ -35,5 +42,8 @@ jobs:
         (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
+      exclude_files: |
+        __init__.py
+        _pydantic.py
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}

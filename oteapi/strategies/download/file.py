@@ -1,12 +1,11 @@
 """Download strategy class for the `file` scheme."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Optional
-
-from pydantic import Field, FileUrl, validator
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils._pydantic import Field, FileUrl
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from oteapi.utils._pydantic import validator
 from oteapi.utils.paths import uri_to_path
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -31,7 +30,10 @@ class FileConfig(AttrDict):
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 
@@ -59,7 +61,7 @@ class SessionUpdateFile(SessionUpdate):
     key: str = Field(..., description="Key to access the data in the cache.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class FileStrategy:
     """Strategy for retrieving data from a local file.
 

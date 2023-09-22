@@ -1,14 +1,13 @@
 """Strategy class for workbook/xlsx."""
-# pylint: disable=unused-argument
 from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
-from pydantic import Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Iterable
@@ -76,17 +75,20 @@ class XLSXParseConfig(AttrDict):
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for retrieving the downloaded content.",
+        description=(
+            "Configurations for the data cache for retrieving the downloaded file "
+            "content."
+        ),
     )
 
 
-class XLSXParseResourceConfig(ResourceConfig):
+class XLSXParseParserConfig(ParserConfig):
     """XLSX parse strategy resource config."""
 
-    mediaType: str = Field(
+    parserType: str = Field(
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ParserConfig.__fields__["parserType"].field_info.description,
     )
     configuration: XLSXParseConfig = Field(
         ..., description="SQLite parse strategy-specific configuration."
@@ -150,17 +152,17 @@ def get_column_indices(
     return range(model.col_from, model.col_to + 1)
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class XLSXParseStrategy:
     """Parse strategy for Excel XLSX files.
 
     **Registers strategies**:
 
-    - `("mediaType", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")`
+    - `("parserType", "excel_xlsx")`
 
     """
 
-    parse_config: XLSXParseResourceConfig
+    parse_config: XLSXParseParserConfig
 
     def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
         """Initialize."""
@@ -212,7 +214,8 @@ class XLSXParseStrategy:
             nhead = len(header) if header else len(data[0]) if data else 0
             if len(self.parse_config.configuration.new_header) != nhead:
                 raise TypeError(
-                    f"length of `new_header` (={len(self.parse_config.configuration.new_header)}) "
+                    "length of `new_header` "
+                    f"(={len(self.parse_config.configuration.new_header)}) "
                     f"doesn't match number of columns (={len(header) if header else 0})"
                 )
             if header:

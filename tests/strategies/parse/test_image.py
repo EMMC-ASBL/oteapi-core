@@ -1,5 +1,4 @@
 """Test the image formats in the image parse strategy."""
-# pylint: disable=too-many-locals
 from typing import TYPE_CHECKING
 
 import pytest
@@ -36,6 +35,7 @@ def test_image(
     static_files: "Path",
 ) -> None:
     """Test parsing an image format."""
+
     import numpy as np
     from PIL import Image
 
@@ -102,6 +102,12 @@ def test_image(
             data = cache.get(image_key)
         finally:
             del cache[image_key]
+
+        data = np.asarray(
+            Image.frombytes(
+                data=data, mode=session["image_mode"], size=session["image_size"]
+            )
+        )
 
         if crop:
             mode = session["image_mode"]

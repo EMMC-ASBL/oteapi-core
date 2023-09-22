@@ -1,11 +1,9 @@
 """Pydantic Resource Configuration Data Model."""
-# pylint: disable=line-too-long
 from typing import TYPE_CHECKING, Optional
-
-from pydantic import AnyUrl, Field, root_validator
 
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
+from oteapi.utils._pydantic import AnyUrl, Field, root_validator
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict

@@ -1,16 +1,15 @@
 """Strategy class for text/csv."""
-# pylint: disable=unused-argument
 import csv
 from collections import defaultdict
 from enum import Enum
 from typing import Any, Hashable, Optional, Type, Union
 
-from pydantic import BaseModel, Field, validator
-from pydantic.dataclasses import dataclass
-
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
+from oteapi.utils._pydantic import BaseModel, Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from oteapi.utils._pydantic import validator
 
 
 class QuoteConstants(str, Enum):
@@ -208,7 +207,10 @@ class CSVConfig(AttrDict):
 
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
     dialect: DialectFormatting = Field(
         DialectFormatting(),
@@ -249,7 +251,7 @@ class SessionUpdateCSVParse(SessionUpdate):
     )
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class CSVParseStrategy:
     """Parse strategy for CSV files.
 

@@ -1,15 +1,14 @@
 """Strategy class for sftp/ftp"""
-# pylint: disable=unused-argument
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING, Optional
 
 import pysftp
-from pydantic import AnyUrl, Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.utils._pydantic import AnyUrl, Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -26,7 +25,10 @@ class SFTPConfig(AttrDict):
 
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
-        description="Configurations for the data cache for storing the downloaded file content.",
+        description=(
+            "Configurations for the data cache for storing the downloaded file "
+            "content."
+        ),
     )
 
 
@@ -47,7 +49,7 @@ class SessionUpdateSFTP(SessionUpdate):
     key: str = Field(..., description="Key to access the data in the cache.")
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class SFTPStrategy:
     """Strategy for retrieving data via sftp.
 

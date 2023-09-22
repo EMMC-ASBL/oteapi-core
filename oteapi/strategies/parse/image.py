@@ -1,5 +1,4 @@
 """Strategy class for image/jpg."""
-# pylint: disable=unused-argument
 import sys
 from enum import Enum
 from typing import TYPE_CHECKING, Optional, Tuple
@@ -9,14 +8,13 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import Literal
 
-import numpy as np
 from PIL import Image
-from pydantic import Field
-from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
 from oteapi.plugins import create_strategy
+from oteapi.utils._pydantic import Field
+from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -88,8 +86,9 @@ class SupportedFormat(Enum):
 class SessionUpdateImageParse(SessionUpdate):
     """Configuration model for ImageParse.
 
-    See [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html) for more details
-    on `image_mode`, `image_palette`, and `image_info`.
+    See
+    [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html)
+    for more details on `image_mode`, `image_palette`, and `image_info`.
     """
 
     image_key: str = Field(
@@ -114,7 +113,7 @@ class SessionUpdateImageParse(SessionUpdate):
     )
 
 
-@dataclass
+@pydantic_dataclasses.dataclass
 class ImageDataParseStrategy:
     """Parse strategy for images.
 
@@ -194,18 +193,14 @@ class ImageDataParseStrategy:
                         {"version": image.info.get("version", b"")[len(b"GIF") :]}
                     )
 
-            # Use the buffer protocol to store the image in the datacache
-            data = np.asarray(image)
             image_key = cache.add(
-                data,
+                image.tobytes(),
                 key=config.image_key,
                 tag=str(id(session)),
             )
 
             if image.mode == "P":
-                image_palette_key = cache.add(
-                    np.asarray(image.getpalette()), tag=str(id(session))
-                )
+                image_palette_key = cache.add(image.getpalette(), tag=str(id(session)))
             else:
                 image_palette_key = None
 

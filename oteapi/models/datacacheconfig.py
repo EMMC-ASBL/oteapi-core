@@ -2,9 +2,8 @@
 from pathlib import Path
 from typing import Optional
 
-from pydantic import Field
-
 from oteapi.models.genericconfig import AttrDict
+from oteapi.utils._pydantic import Field
 
 
 class DataCacheConfig(AttrDict):

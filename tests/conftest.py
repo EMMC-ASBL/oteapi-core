@@ -77,7 +77,6 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
 
 @pytest.fixture
 def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]":
-    # pylint: disable=line-too-long
     """Generate `importlib.metadata.EntryPoint`s from a parsed `setup.cfg` file's
     `[options.entry_points]` group.
 
@@ -92,7 +91,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
           oteapi.celery/remote = oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy
         ```
 
-    """
+    """  # noqa: E501
     import re
     from importlib.metadata import EntryPoint
 
@@ -111,7 +110,8 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
         entry_point_lines = entry_points.splitlines()
         if len(entry_point_lines) <= 1:
             raise ValueError(
-                "Two lines or more were expected from `entry_points` (group + entry point)."
+                "Two lines or more were expected from `entry_points` "
+                "(group + entry point)."
             )
 
         parsed_entry_points: "Dict[str, List[str]]" = {}
@@ -132,7 +132,8 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
                 # Entry point-entry line
                 if not current_group:
                     raise RuntimeError(
-                        f"`current_group` is not set. This shouldn't happen! Current line: {line!r}"
+                        "`current_group` is not set. This shouldn't happen! "
+                        f"Current line: {line!r}"
                     )
                 parsed_entry_points[current_group].append(
                     {"name": match.group("name"), "value": match.group("value")}

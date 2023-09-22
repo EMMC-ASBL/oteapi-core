@@ -1,9 +1,123 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "oteapi-core"
+authors = [
+    {name = "SINTEF", email = "Team4.0@SINTEF.no"},
 ]
-build-backend = "setuptools.build_meta"
+description = "Open Translation Environment (OTE) API."
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+]
+keywords = ["OTE", "OTE-API"]
+requires-python = ">=3.9"
+dynamic = ["version"]
+
+dependencies = [
+    # Core dependencies
+    "agraph-python>=101.0.7,<103",
+    "diskcache>=5.4.0,<6",
+    "pydantic>=1.10.12,<3",
+    "typing-extensions~=4.8; python_version<'3.10'",
+
+    # Strategy dependencies
+    "celery>=5.2.3,<6",
+    "openpyxl>=3.0.9,<4",
+    "Pillow>=9.0.0,<11",
+    "psycopg~=3.1.10",
+    "pysftp~=0.2.9",
+    "requests>=2.26.0,<3",
+    "urllib3<2",
+]
+
+[project.optional-dependencies]
+docs = [
+    "mike~=1.1",
+    "mkdocs~=1.5",
+    "mkdocs-awesome-pages-plugin~=2.9",
+    "mkdocs-material~=9.3",
+    "mkdocstrings[python]~=0.23.0",
+]
+testing = [
+    "ase~=3.22.1",
+    "numpy>=1.21,<2",
+    "pytest~=7.4",
+    "pytest-celery",
+    "pytest-cov~=4.1",
+    "redis~=5.0",
+    "requests-mock~=1.11",
+]
+dev = [
+    "mike~=1.1",
+    "mkdocs~=1.5",
+    "mkdocs-awesome-pages-plugin~=2.9",
+    "mkdocs-material~=9.3",
+    "mkdocstrings[python]~=0.23.0",
+    "ase~=3.22.1",
+    "numpy>=1.21,<2",
+    "pytest~=7.4",
+    "pytest-celery",
+    "pytest-cov~=4.1",
+    "redis~=5.0",
+    "requests-mock~=1.11",
+    "pre-commit>=2.21.0,<3; python_version<'3.8'",
+    "pre-commit~=3.4; python_version>='3.8'",
+]
+
+[project.urls]
+Home = "https://github.com/EMMC-ASBL/oteapi-core"
+Documentation = "https://EMMC-ASBL.github.io/oteapi-core"
+Source = "https://github.com/EMMC-ASBL/oteapi-core"
+"Issue Tracker" = "https://github.com/EMMC-ASBL/oteapi-core/issues"
+Changelog = "https://github.com/EMMC-ASBL/oteapi-core/blob/master/CHANGELOG.md"
+Package = "https://pypi.org/project/oteapi-core"
+
+# Entry points, i.e., strategy registration
+[project.entry-points."oteapi.download"]
+"oteapi.file" = "oteapi.strategies.download.file:FileStrategy"
+"oteapi.http" = "oteapi.strategies.download.https:HTTPSStrategy"
+"oteapi.https" = "oteapi.strategies.download.https:HTTPSStrategy"
+"oteapi.ftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
+"oteapi.sftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
+[project.entry-points."oteapi.filter"]
+"oteapi.filter/crop" = "oteapi.strategies.filter.crop_filter:CropImageFilter"
+"oteapi.filter/sql" = "oteapi.strategies.filter.sql_query_filter:SQLQueryFilter"
+[project.entry-points."oteapi.mapping"]
+"oteapi.triples" = "oteapi.strategies.mapping.mapping:MappingStrategy"
+[project.entry-points."oteapi.parse"]
+"oteapi.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
+"oteapi.image/jpg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/jpeg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/jp2" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/png" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/gif" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/tiff" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.image/eps" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.application/vnd.sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
+"oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
+"oteapi.application/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
+"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
+[project.entry-points."oteapi.transformation"]
+"oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"
+
+[tool.flit.module]
+name = "oteapi"
+
+[tool.flit.sdist]
+exclude = [
+    ".github/",
+    "tests/",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".codecov.yml",
+]
 
 [tool.mypy]
 python_version = "3.9"
@@ -15,18 +129,9 @@ allow_redefinition = true
 plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-rs --cov=oteapi --cov-report=term --durations=10"
+minversion = "7.0"
+addopts = "-rs --cov-report=term"
 filterwarnings = [
     "ignore:.*imp module.*:DeprecationWarning",
     "ignore:.*_yaml extension module.*:DeprecationWarning"
-]
-
-[tool.pylint.messages_control]
-max-line-length = 88
-disable = [
-    "no-name-in-module",
-    "no-self-argument",
-    "duplicate-code",
-    "too-few-public-methods",
 ]

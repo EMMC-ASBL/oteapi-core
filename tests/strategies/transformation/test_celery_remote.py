@@ -1,5 +1,4 @@
 """Tests the transformation strategy for Celery."""
-# pylint: disable=invalid-name
 from typing import TYPE_CHECKING
 
 import pytest
@@ -19,9 +18,10 @@ def celery_config() -> dict[str, str]:
 
     host = os.getenv("OTEAPI_REDIS_HOST", "localhost")
     port = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
-    client = redis.Redis(host=host, port=port)
+
     try:
-        client.ping()
+        with redis.Redis(host=host, port=port) as client:
+            client.ping()
     except redis.ConnectionError:
         if os.getenv("CI") and platform.system() == "Linux":
             # Starting services (like redis) is only supported in GH Actions for the

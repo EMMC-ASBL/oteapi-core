@@ -1,5 +1,4 @@
 """Tests the parse strategy for CSV."""
-# pylint: disable=too-many-locals
 from typing import TYPE_CHECKING
 
 import pytest
@@ -145,10 +144,9 @@ def test_csv_dialect_enum_fails() -> None:
     """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
     import csv
 
-    from pydantic import ValidationError
-
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
+    from oteapi.utils._pydantic import ValidationError
 
     non_existant_dialect = "test"
     available_dialects = csv.list_dialects()
@@ -172,6 +170,6 @@ def test_csv_dialect_enum_fails() -> None:
         "value is not a valid enumeration member; permitted: "
         f"{', '.join(repr(dialect) for dialect in available_dialects)} "
         "(type=type_error.enum; enum_values=["
-        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # pylint: disable=line-too-long
+        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # noqa: E501
         "])"
     ) in exception.exconly()

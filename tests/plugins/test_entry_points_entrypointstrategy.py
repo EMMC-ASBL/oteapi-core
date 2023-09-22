@@ -1,5 +1,4 @@
 """Test the `oteapi.plugins.entry_points` module's `EntryPointStrategy*` classes."""
-# pylint: disable=pointless-statement,expression-not-assigned,protected-access
 from typing import TYPE_CHECKING
 
 import pytest
