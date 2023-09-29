@@ -52,9 +52,6 @@ jobs:
         (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
-      exclude_files: |
-        __init__.py
-        _pydantic.py
       warnings_as_errors: true
 
   ruff:
