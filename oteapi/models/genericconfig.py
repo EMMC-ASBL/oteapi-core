@@ -1,7 +1,8 @@
 """Generic data model for configuration attributes."""
 from typing import TYPE_CHECKING, Iterable, Mapping
 
-from oteapi.utils._pydantic import BaseModel, Field, Undefined
+from pydantic import BaseModel, Field
+from pydantic.fields import Undefined
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Tuple, Union

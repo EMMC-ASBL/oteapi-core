@@ -1,9 +1,10 @@
 """Pydantic TripleStore Configuration Data Model."""
 from typing import TYPE_CHECKING
 
+from pydantic import Field, root_validator
+
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
-from oteapi.utils._pydantic import Field, root_validator
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict

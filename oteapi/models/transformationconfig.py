@@ -8,9 +8,10 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
+from pydantic import BaseModel, Field
+
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
-from oteapi.utils._pydantic import BaseModel, Field
 
 
 class ProcessPriority(str, Enum):

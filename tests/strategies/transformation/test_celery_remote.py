@@ -18,10 +18,9 @@ def celery_config() -> dict[str, str]:
 
     host = os.getenv("OTEAPI_REDIS_HOST", "localhost")
     port = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
-
+    client = redis.Redis(host=host, port=port)
     try:
-        with redis.Redis(host=host, port=port) as client:
-            client.ping()
+        client.ping()
     except redis.ConnectionError:
         if os.getenv("CI") and platform.system() == "Linux":
             # Starting services (like redis) is only supported in GH Actions for the
