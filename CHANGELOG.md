@@ -1,6 +1,23 @@
 # Changelog
 
-## [v0.5.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.1) (2023-09-21)
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.5.2...HEAD)
+
+**Fixed bugs:**
+
+- Integrated support for pydantic v1 and v2 is wrong [\#341](https://github.com/EMMC-ASBL/oteapi-core/issues/341)
+
+## [v0.5.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.2) (2023-09-29)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.5.1...v0.5.2)
+
+**Merged pull requests:**
+
+- Revert pydantic 2 false support [\#343](https://github.com/EMMC-ASBL/oteapi-core/pull/343) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#342](https://github.com/EMMC-ASBL/oteapi-core/pull/342) ([TEAM4-0](https://github.com/TEAM4-0))
+
+## [v0.5.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.1) (2023-09-22)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.5.0...v0.5.1)
 
