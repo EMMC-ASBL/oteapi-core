@@ -2,8 +2,9 @@
 import json
 from typing import TYPE_CHECKING, Optional
 
+from pydantic import BaseModel, Field, SecretStr
+
 from oteapi.settings import settings
-from oteapi.utils._pydantic import BaseModel, Field, SecretStr
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Callable

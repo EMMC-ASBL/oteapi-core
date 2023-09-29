@@ -1,6 +1,7 @@
 """Pydantic Parser Configuration Data Model."""
+from pydantic import Field
+
 from oteapi.models.genericconfig import GenericConfig
-from oteapi.utils._pydantic import Field
 
 
 class ParserConfig(GenericConfig):

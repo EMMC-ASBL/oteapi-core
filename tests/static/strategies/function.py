@@ -1,14 +1,15 @@
 """Function test strategy class."""
 from typing import TYPE_CHECKING
 
+from pydantic.dataclasses import dataclass
+
 from oteapi.models import FunctionConfig
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class FunctionTestStrategy:
     """Test function strategy."""
 

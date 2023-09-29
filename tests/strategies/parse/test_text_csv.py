@@ -144,9 +144,10 @@ def test_csv_dialect_enum_fails() -> None:
     """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
     import csv
 
+    from pydantic import ValidationError
+
     from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
-    from oteapi.utils._pydantic import ValidationError
 
     non_existant_dialect = "test"
     available_dialects = csv.list_dialects()

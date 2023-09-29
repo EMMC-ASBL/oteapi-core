@@ -1,9 +1,9 @@
 """Mapping filter strategy."""
 from typing import TYPE_CHECKING, Dict, List
 
+from pydantic.dataclasses import Field, dataclass
+
 from oteapi.models import MappingConfig, RDFTriple, SessionUpdate
-from oteapi.utils._pydantic import Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional
@@ -25,7 +25,7 @@ class MappingSessionUpdate(SessionUpdate):
     )
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class MappingStrategy:
     """Strategy for a mapping.
 

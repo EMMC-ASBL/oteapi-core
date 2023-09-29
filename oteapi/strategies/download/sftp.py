@@ -4,11 +4,11 @@ from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING, Optional
 
 import pysftp
+from pydantic import AnyUrl, Field
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-from oteapi.utils._pydantic import AnyUrl, Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
@@ -49,7 +49,7 @@ class SessionUpdateSFTP(SessionUpdate):
     key: str = Field(..., description="Key to access the data in the cache.")
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class SFTPStrategy:
     """Strategy for retrieving data via sftp.
 
