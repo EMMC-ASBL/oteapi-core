@@ -65,6 +65,7 @@ dev = [
     "pytest~=7.4",
     "pytest-celery",
     "pytest-cov~=4.1",
+    "redis~=5.0",
     "requests-mock~=1.11",
     "pre-commit>=2.21.0,<3; python_version<'3.8'",
     "pre-commit~=3.4; python_version>='3.8'",
@@ -115,6 +116,7 @@ exclude = [
     "tests/",
     ".gitignore",
     ".pre-commit-config.yaml",
+    ".codecov.yml",
 ]
 
 [tool.mypy]
