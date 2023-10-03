@@ -6,6 +6,7 @@ on:
     branches:
       - 'master'
       - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
+      - 'release/pydantic-v1-support'
 
 jobs:
   basic_tests:
