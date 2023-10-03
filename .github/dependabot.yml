@@ -6,7 +6,7 @@ updates:
     interval: weekly
     day: monday
     time: "05:18"
-  # Should be bigger than or equal to the total number of dependencies (currently 19)
+  # Should be bigger than or equal to the total number of dependencies (currently 25)
   open-pull-requests-limit: 30
   target-branch: ci/dependabot-updates
   labels:
@@ -17,5 +17,27 @@ updates:
     interval: daily
     time: "05:24"
   target-branch: ci/dependabot-updates
+  labels:
+    - CI/CD
+
+# For pydantic v1 support branch - Should be removed after this is no longer being
+# supported (end of 2023)
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: monday
+    time: "04:18"
+  # Should be bigger than or equal to the total number of dependencies (currently 25)
+  open-pull-requests-limit: 30
+  target-branch: release/pydantic-v1-support
+  labels:
+    - CI/CD
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:24"
+  target-branch: release/pydantic-v1-support
   labels:
     - CI/CD

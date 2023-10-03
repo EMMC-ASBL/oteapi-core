@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "30 5 * * 1"
   workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Target branch"
+        required: true
+        default: "ci/dependabot-updates"
+        type: choice
+        options:
+          - ci/dependabot-updates
+          - release/pydantic-v1-support
 
 jobs:
   check-dependencies:
@@ -13,7 +22,7 @@ jobs:
     with:
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
-      permanent_dependencies_branch: ci/dependabot-updates
+      permanent_dependencies_branch: ${{ inputs.target_branch }}
       python_version: "3.9"
       install_extras: "dev"
       pr_labels: "CI/CD"
