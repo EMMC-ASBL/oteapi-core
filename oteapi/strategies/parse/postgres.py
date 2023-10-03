@@ -16,7 +16,6 @@ class PostgresConfig(AttrDict):
     user: Optional[str] = Field(None, description="postgres server username")
     dbname: Optional[str] = Field(None, description="postgres dbname name")
     password: Optional[str] = Field(None, description="postgres password")
-
     sqlquery: Optional[str] = Field("", description="A SQL query string.")
 
 

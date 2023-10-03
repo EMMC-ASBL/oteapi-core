@@ -24,7 +24,7 @@ dependencies = [
     # Core dependencies
     "agraph-python>=101.0.7,<103",
     "diskcache>=5.4.0,<6",
-    "pydantic~=2.3",
+    "pydantic~=2.4",
     "pydantic-settings~=2.0",
     "typing-extensions~=4.8; python_version<'3.10'",
 

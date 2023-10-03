@@ -24,7 +24,7 @@ jobs:
         dependency-name=numpy...version==>=2
         dependency-name=openpyxl...version==>=4
         dependency-name=Pillow...version==>=11
-        dependency-name=pydantic...version==>=3
+        dependency-name=pydantic...version==>=2
         dependency-name=requests...version==>=3
         dependency-name=urllib3
     secrets:
