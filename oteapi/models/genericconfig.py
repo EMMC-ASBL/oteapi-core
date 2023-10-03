@@ -16,7 +16,7 @@ class AttrDict(BaseModel, MutableMapping):
         extra="allow", validate_assignment=True, arbitrary_types_allowed=True
     )
 
-    # Conllection methods
+    # Collection methods
     def __contains__(self, key: object) -> bool:
         """Mapping `__contains__`-method."""
         if not isinstance(key, str):
