@@ -51,7 +51,7 @@ repos:
       - "pydantic<2"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.5.1
+    rev: v2.5.2
     hooks:
     - id: docs-api-reference
       args:
