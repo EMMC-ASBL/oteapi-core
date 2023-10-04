@@ -50,8 +50,10 @@ class PostgresResourceConfig(ResourceConfig):
         if "accessUrl" not in data:
             raise ValueError("missing accessUrl in PostgreSQL resource configuration")
 
+        # Copy model-state into placeholders
         accessUrl = AnyUrl(data["accessUrl"])
         default_config = PostgresConfig()
+        current_config: dict[str, Any] = data.get("configuration", {})
 
         if not accessUrl.host:
             raise ValueError("missing host in accessUrl")
@@ -60,37 +62,33 @@ class PostgresResourceConfig(ResourceConfig):
         user = (
             accessUrl.username
             if accessUrl.username
-            else data.get("configuration", {}).get("user", default_config.user)
+            else current_config.get("user", default_config.user)
         )
-        if data.get("configuration", {}).get(
+        if current_config.get(
             "user", default_config.user
-        ) and user != data.get("configuration", {}).get("user", default_config.user):
+        ) and user != current_config.get("user", default_config.user):
             raise ValueError("mismatching username in accessUrl and configuration")
 
         # Check and merge password configuration
         password = (
             accessUrl.password
             if accessUrl.password
-            else data.get("configuration", {}).get("password", default_config.password)
+            else current_config.get("password", default_config.password)
         )
-        if data.get("configuration", {}).get(
+        if current_config.get(
             "password", default_config.password
-        ) and password != data.get("configuration", {}).get(
-            "password", default_config.password
-        ):
+        ) and password != current_config.get("password", default_config.password):
             raise ValueError("mismatching password in accessUrl and configuration")
 
         # Check and merge database name configuration
         dbname = (
             accessUrl.path
             if accessUrl.path
-            else data.get("configuration", {}).get("dbname", default_config.dbname)
+            else current_config.get("dbname", default_config.dbname)
         )
-        if data.get("configuration", {}).get(
+        if current_config.get(
             "dbname", default_config.dbname
-        ) and dbname != data.get("configuration", {}).get(
-            "dbname", default_config.dbname
-        ):
+        ) and dbname != current_config.get("dbname", default_config.dbname):
             raise ValueError("mismatching dbname in accessUrl and configuration")
 
         # Reconstruct accessUrl from the updated properties
