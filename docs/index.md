@@ -10,8 +10,22 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity)
 [![DOI](https://zenodo.org/badge/447260507.svg)](https://zenodo.org/badge/latestdoi/447260507)
 
-
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
+
+---
+
+## IMPORTANT - This is a pydantic v1 ONLY release branch
+
+This branch is meant to host "hotfixes" and similar for the OTEAPI Core version that only supports pydantic v1.
+Any releases from this branch will be tagged with a `v0.5.x` version number, which is the last version series to support pydantic v1.
+
+Support for this branch is expected to be dropped by the end of 2023.
+
+**All plugins should update to pydantic v2 as soon as possible.**
+
+**All new development should be done against v0.6.x or later.**
+
+---
 
 ## About OTEAPI Core
 
