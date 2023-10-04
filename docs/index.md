@@ -10,8 +10,12 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github)](https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity)
 [![DOI](https://zenodo.org/badge/447260507.svg)](https://zenodo.org/badge/latestdoi/447260507)
 
-
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
+
+**Important**: As of **v0.6.0**, OTEAPI Core is no longer compatible with pydantic v1, but only with pydantic v2.
+For more information about migrating your plugin repository to pydantic v2, see the [pydantic documentation's migration guide](https://docs.pydantic.dev/latest/migration/).  
+Until the end of 2023, pydantic v1 will still be supported with security updates, but no new features will be added.
+To keep using pydantic v1, one should use the **v0.5.x** versions of OTEAPI Core.
 
 ## About OTEAPI Core
 
@@ -239,18 +243,20 @@ pytest
 
 If you run into issues at this stage, please [open an issue](https://github.com/EMMC-ASBL/oteapi-core/issues/new).
 
-
-
 ## Using Docker with PostgreSQL
-Docker is an effective tool for creating portable, isolated environments for your applications. Here's an example of setting up a PostgreSQL instance using Docker:
 
-1. **Create a Docker volume**: Docker volumes enable data to persist across uses of Docker containers. In this context, we create a volume called pgdata to store database data.
+Docker is an effective tool for creating portable, isolated environments for your applications.
+Here's an example of setting up a PostgreSQL instance using Docker:
 
-```shell
-docker volume create pgdata
-```
+1. **Create a Docker volume**: Docker volumes enable data to persist across uses of Docker containers.
+   In this context, we create a volume called pgdata to store database data.
 
-2. **Start a Docker container**: Use the `docker run` command to initiate a new Docker container using the postgres image. Here's a breakdown of the options used in the command:
+   ```shell
+   docker volume create pgdata
+   ```
+
+2. **Start a Docker container**: Use the `docker run` command to initiate a new Docker container using the postgres image.
+   Here's a breakdown of the options used in the command:
 
    `-d`: Runs the container in the background (detached mode), freeing up your terminal.
 
@@ -264,13 +270,13 @@ docker volume create pgdata
 
    `--restart always`: Ensures the container restarts whenever it stops, unless it is manually stopped, in which case it only restarts when the Docker daemon starts, usually on system boot.
 
-```shell
-docker run  -d --name postgres \
-                   -e POSTGRES_PASSWORD=postgres \
-                   -p 5432:5432 \
-                   -v pgdata:/var/lib/postgresql/data \
-                   --restart always postgres
-```
+   ```shell
+   docker run  -d --name postgres \
+       -e POSTGRES_PASSWORD=postgres \
+       -p 5432:5432 \
+       -v pgdata:/var/lib/postgresql/data \
+       --restart always postgres
+   ```
 
 ## License
 
@@ -280,8 +286,8 @@ OTEAPI Core is released under the [MIT license](LICENSE.md) with copyright &copy
 
 OTEAPI Core has been supported by the following projects:
 
-* __OntoTrans__ (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement no. 862136.
+* **OntoTrans** (2020-2024) that receives funding from the European Union’s Horizon 2020 Research and Innovation Programme, under Grant Agreement no. 862136.
 
-* __VIPCOAT__ (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 952903.
+* **VIPCOAT** (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 952903.
 
-* __OpenModel__ (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 953167.
+* **OpenModel** (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 953167.
