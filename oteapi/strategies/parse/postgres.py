@@ -58,38 +58,26 @@ class PostgresResourceConfig(ResourceConfig):
         if not accessUrl.host:
             raise ValueError("missing host in accessUrl")
 
-        # Check and merge user configuration
-        user = (
-            accessUrl.username
-            if accessUrl.username
-            else current_config.get("user", default_config.user)
-        )
-        if current_config.get(
-            "user", default_config.user
-        ) and user != current_config.get("user", default_config.user):
-            raise ValueError("mismatching username in accessUrl and configuration")
+        def _get_and_validate_config_value(url_parameter: str, config_key: str) -> str:
+            """Get value from accessUrl or current_config, and check for mismatches."""
+            value_from_url = getattr(accessUrl, url_parameter, None)
+            value_from_config = current_config.get(
+                config_key, getattr(default_config, config_key)
+            )
 
-        # Check and merge password configuration
-        password = (
-            accessUrl.password
-            if accessUrl.password
-            else current_config.get("password", default_config.password)
-        )
-        if current_config.get(
-            "password", default_config.password
-        ) and password != current_config.get("password", default_config.password):
-            raise ValueError("mismatching password in accessUrl and configuration")
+            final_value = value_from_url or value_from_config
 
-        # Check and merge database name configuration
-        dbname = (
-            accessUrl.path
-            if accessUrl.path
-            else current_config.get("dbname", default_config.dbname)
-        )
-        if current_config.get(
-            "dbname", default_config.dbname
-        ) and dbname != current_config.get("dbname", default_config.dbname):
-            raise ValueError("mismatching dbname in accessUrl and configuration")
+            if value_from_config and final_value != value_from_config:
+                raise ValueError(
+                    f"mismatching {url_parameter} in accessUrl and {config_key} in "
+                    "configuration"
+                )
+
+            return final_value
+
+        user = _get_and_validate_config_value("username", "user")
+        password = _get_and_validate_config_value("password", "password")
+        dbname = _get_and_validate_config_value("path", "dbname")
 
         # Reconstruct accessUrl from the updated properties
         data["accessUrl"] = accessUrl.__class__.build(
