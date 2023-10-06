@@ -1,3 +1,23 @@
+# This workflow consists of two "equal" jobs, updating the dependencies in
+# `pyproject.toml` for the two different pydantic v1 and v2 development branches.
+
+# Essentially:
+# - When triggered by a schedule event, run both jobs.
+#   This will create 2 PRs: One against 'ci/dependabot-updates' and one against
+#   'release/pydantic-v1-support'.
+# - When triggered manually (workflow_dispatch), run only the job that corresponds
+#   to the user input "target_branch".
+#   This will create 1 PR: Either against 'ci/dependabot-updates' or against
+#   'release/pydantic-v1-support'.
+
+# The documentation for the callable workflow is here:
+# https://sintef.github.io/ci-cd/latest/workflows/ci_check_pyproject_dependencies
+
+# IMPORTANT: The "ignore" rules here are explicit and extensive due to a bug in
+#   SINTEF/ci-cd that doesn't respect version specifier constraints. See
+#   https://github.com/SINTEF/ci-cd/issues/141 for more information.
+#   The "ignore" rules ensure the explicit upper version limit is respected.
+
 name: CI - Check dependencies
 
 on:
@@ -18,6 +38,10 @@ jobs:
   check-dependencies:
     name: External
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
+    # Always only run this job if we're on the "origin" repository.
+    # If the workflow is triggered by a schedule event, run it no matter what.
+    # If the workflow is triggered manually (workflow_dispatch),
+    # ONLY run it if the user input "target_branch" is "ci/dependabot-updates".
     if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'ci/dependabot-updates' )
     with:
       git_username: "TEAM 4.0[bot]"
@@ -27,14 +51,14 @@ jobs:
       install_extras: "dev"
       pr_labels: "CI/CD"
       ignore: |
-        dependency-name=agraph-python...version=>101.0.7
-        dependency-name=celery...version==>=6
-        dependency-name=diskcache...version==>=6
-        dependency-name=numpy...version==>=2
-        dependency-name=openpyxl...version==>=4
-        dependency-name=Pillow...version==>=11
-        dependency-name=pydantic...version==>=2
-        dependency-name=requests...version==>=3
+        dependency-name=agraph-python...version=>=103
+        dependency-name=celery...version=>=6
+        dependency-name=diskcache...version=>=6
+        dependency-name=numpy...version=>=2
+        dependency-name=openpyxl...version=>=4
+        dependency-name=Pillow...version=>=11
+        dependency-name=pydantic...version=>=2
+        dependency-name=requests...version=>=3
         dependency-name=urllib3
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}
@@ -42,6 +66,10 @@ jobs:
   check-dependencies-release_pydantic-v1-support:
     name: External
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
+    # Always only run this job if we're on the "origin" repository.
+    # If the workflow is triggered by a schedule event, run it no matter what.
+    # If the workflow is triggered manually (workflow_dispatch),
+    # ONLY run it if the user input "target_branch" is "release/pydantic-v1-support".
     if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'release/pydantic-v1-support' )
     with:
       git_username: "TEAM 4.0[bot]"
@@ -51,14 +79,14 @@ jobs:
       install_extras: "dev"
       pr_labels: "CI/CD,pydantic-v1"
       ignore: |
-        dependency-name=agraph-python...version=>101.0.7
-        dependency-name=celery...version==>=6
-        dependency-name=diskcache...version==>=6
-        dependency-name=numpy...version==>=2
-        dependency-name=openpyxl...version==>=4
-        dependency-name=Pillow...version==>=11
-        dependency-name=pydantic...version==>=2
-        dependency-name=requests...version==>=3
+        dependency-name=agraph-python...version=>=103
+        dependency-name=celery...version=>=6
+        dependency-name=diskcache...version=>=6
+        dependency-name=numpy...version=>=2
+        dependency-name=openpyxl...version=>=4
+        dependency-name=Pillow...version=>=11
+        dependency-name=pydantic...version=>=2
+        dependency-name=requests...version=>=3
         dependency-name=urllib3
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}

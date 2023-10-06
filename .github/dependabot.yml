@@ -1,3 +1,8 @@
+# The dependabot checks are set on a schedule to run weekly and daily.
+# The time of day is set to be early in the morning to avoid working hours.
+# Furthermore, the time is set arbitrarily to avoid the general "high tide"
+# of all GH Actions being run at the top of the hour.
+
 version: 2
 updates:
 - package-ecosystem: pip
