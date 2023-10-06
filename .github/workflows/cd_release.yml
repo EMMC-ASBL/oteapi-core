@@ -8,13 +8,13 @@ on:
 jobs:
   publish:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.5.1
-    if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v')
+    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.5.2
+    if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v0.5.')
     with:
       # General
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
-      release_branch: master
+      release_branch: release/pydantic-v1-support
 
       # Publish to PyPI
       python_package: true
@@ -29,6 +29,7 @@ jobs:
       update_docs: true
       python_version_docs: "3.9"
       doc_extras: "[docs]"
+      mkdocs_update_latest: false
     secrets:
       PyPI_token: ${{ secrets.PYPI_TOKEN }}
       PAT: ${{ secrets.RELEASE_PAT }}
