@@ -244,16 +244,33 @@ def test_attrdict_update() -> None:
     final_data.update(update_data)
 
     testing_types = dict, AttrDict, SubAttrDict, SubSubAttrDict
-    non_update_method_testing_types = testing_types + (Foo,)
+    non_update_method_testing_types = testing_types + (Foo, tuple, list)
     for original_type in testing_types:
         for other_type in non_update_method_testing_types:
             original = original_type(**data)
-            other = other_type(**update_data)
+            try:
+                other = other_type(**update_data)
+            except TypeError:
+                other = other_type(update_data.items())
             original.update(other)
             assert {**original} == final_data, (
                 f"original type: {original_type.__name__}, "
                 f"other type: {other_type.__name__}"
             )
+
+    # Check TypeError is raised for invalid types
+    with pytest.raises(TypeError, match=r".*must be of type.*"):
+        AttrDict(**data).update(1)
+
+    # Check TypeError is raised if inner Iterable type is not a tuple
+    with pytest.raises(TypeError, match=r".*must be an iterable of tuples.*"):
+        AttrDict(**data).update(list(list(_) for _ in update_data.items()))
+
+    # Check ValueError is raised if inner Iterable type is not of length two
+    with pytest.raises(
+        ValueError, match=r".*must be an iterable of objects of length two.*"
+    ):
+        AttrDict(**data).update([("a", 1, 2)])
 
 
 def test_attrdict_pop_popitem() -> None:
@@ -290,3 +307,40 @@ def test_attrdict_pop_popitem() -> None:
     # Popitem - attrdict is empty, should raise KeyError
     with pytest.raises(KeyError, match=r"^'popitem\(\): .* is empty'$"):
         attrdict.popitem()
+
+
+def test_attrdict_values() -> None:
+    """Test the `values()` method for `AttrDict`."""
+    from oteapi.models.genericconfig import AttrDict
+
+    class SubAttrDict(AttrDict):
+        """1st level sub-class of AttrDict."""
+
+        test: str
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    attrdict = AttrDict(**data)
+
+    assert list(attrdict.values()) == list(data.values())
+
+    # Check values return both model schema field values as well as model extra
+    # field values
+    subattrdict = SubAttrDict(test="test", **data)
+
+    assert list(subattrdict.values()) == ["test"] + list(data.values())
+
+
+def test_attrdict_clear() -> None:
+    """Test the `clear()` method for `AttrDict`."""
+    from oteapi.models.genericconfig import AttrDict
+
+    data = {"a": 1, "b": "foo", "c": "bar"}
+    attrdict = AttrDict(**data)
+
+    assert len(attrdict) == len(data)
+    assert len(attrdict.model_fields_set) == len(data)
+
+    attrdict.clear()
+
+    assert len(attrdict) == 0
+    assert len(attrdict.model_fields_set) == 0
