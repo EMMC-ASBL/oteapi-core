@@ -25,8 +25,9 @@ from oteapi.models import (
 )
 
 if TYPE_CHECKING:  # pragma: no cover
+    from collections.abc import Iterator
     from importlib.metadata import EntryPoint
-    from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig

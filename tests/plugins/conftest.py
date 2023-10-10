@@ -4,8 +4,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, Tuple, Type, Union
+    from typing import Any, Dict, Tuple, Type, Union
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType

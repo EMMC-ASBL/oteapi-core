@@ -4,8 +4,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, List, Tuple, Union
+    from typing import Any, Dict, List, Tuple, Union
 
     MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
 

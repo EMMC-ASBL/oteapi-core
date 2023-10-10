@@ -10,7 +10,8 @@ from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Iterable
+    from collections.abc import Iterable
+    from typing import Any
 
     from openpyxl.worksheet.worksheet import Worksheet
 

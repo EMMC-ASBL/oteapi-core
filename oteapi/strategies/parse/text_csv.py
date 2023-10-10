@@ -1,8 +1,9 @@
 """Strategy class for text/csv."""
 import csv
 from collections import defaultdict
+from collections.abc import Hashable
 from enum import Enum
-from typing import Any, Hashable, Literal, Optional, Type, Union
+from typing import Any, Literal, Optional, Type, Union
 
 from pydantic import BaseModel, Field, field_validator
 from pydantic.dataclasses import dataclass
