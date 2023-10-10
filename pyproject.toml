@@ -34,7 +34,7 @@ dependencies = [
     "psycopg~=3.1.10",
     "pysftp~=0.2.9",
     "requests>=2.26.0,<3",
-    "urllib3<2",
+    "urllib3<3",
 ]
 
 [project.optional-dependencies]
