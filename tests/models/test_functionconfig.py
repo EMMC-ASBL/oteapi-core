@@ -31,6 +31,9 @@ def test_functionconfig() -> None:
         "functionType": "foo/bar",
     }
 
+    # NOTE: model_dump_json() returns a JSON string with no whitespace.
+    #       This is why we use json.dumps() with indent=None and separators=(",", ":")
+
     settings.expose_secrets = False
     assert FunctionConfig(**base_config).model_dump_json() == json.dumps(
         config_hidden, indent=None, separators=(",", ":")

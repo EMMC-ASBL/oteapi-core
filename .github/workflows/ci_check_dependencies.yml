@@ -26,5 +26,6 @@ jobs:
         dependency-name=Pillow...version==>=11
         dependency-name=pydantic...version==>=3
         dependency-name=requests...version==>=3
+        dependency-name=urllib3
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}

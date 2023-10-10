@@ -1,8 +1,13 @@
 """Pydantic TripleStore Configuration Data Model."""
+from typing import Annotated, Optional
+
 from pydantic import Field, model_validator
 
 from oteapi.models.genericconfig import GenericConfig
-from oteapi.models.secretconfig import SecretConfig
+from oteapi.models.secretconfig import SecretConfig, TogglableSecretStr
+
+ExcludeTogglableSecretStr = Annotated[Optional[TogglableSecretStr], Field(exclude=True)]
+"""Annotated type alias for excluding a togglable secret from serialization."""
 
 
 class TripleStoreConfig(GenericConfig, SecretConfig):
@@ -21,6 +26,17 @@ class TripleStoreConfig(GenericConfig, SecretConfig):
     )
     agraphHost: str = Field(..., description="AllegroGraph host name.")
     agraphPort: int = Field(..., description="AllegroGraph port number.")
+
+    # Exclude these inherited fields from serialization
+    token: Annotated[
+        ExcludeTogglableSecretStr, SecretConfig.model_fields["token"]
+    ] = SecretConfig.model_fields["token"].default
+    client_id: Annotated[
+        ExcludeTogglableSecretStr, SecretConfig.model_fields["client_id"]
+    ] = SecretConfig.model_fields["client_id"].default
+    client_secret: Annotated[
+        ExcludeTogglableSecretStr, SecretConfig.model_fields["client_secret"]
+    ] = SecretConfig.model_fields["client_secret"].default
 
     @model_validator(mode="after")
     def ensure_user_pass(self) -> "TripleStoreConfig":

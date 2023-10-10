@@ -40,8 +40,10 @@ class CeleryConfig(AttrDict):
         arguments, since this is the "original" field name. I.e., this is done for
         backwards compatibility.
 
-    Setting `allow_population_by_field_name=True` as pydantic model configuration in
-    order to allow populating it using `name` as well as `task_name`.
+    Special pydantic configuration settings:
+
+    - **`populate_by_name`**
+      Allow populating CeleryConfig.name using `name` as well as `task_name`.
 
     """
 
