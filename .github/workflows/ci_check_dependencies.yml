@@ -1,14 +1,11 @@
-# This workflow consists of two "equal" jobs, updating the dependencies in
+# This workflow consists of two "equal" jobs that each update the dependencies in
 # `pyproject.toml` for the two different pydantic v1 and v2 development branches.
 
-# Essentially:
-# - When triggered by a schedule event, run both jobs.
-#   This will create 2 PRs: One against 'ci/dependabot-updates' and one against
-#   'release/pydantic-v1-support'.
-# - When triggered manually (workflow_dispatch), run only the job that corresponds
-#   to the user input "target_branch".
-#   This will create 1 PR: Either against 'ci/dependabot-updates' or against
-#   'release/pydantic-v1-support'.
+# Trigger Details:
+# - Scheduled event: Both jobs run, resulting in 2 PRs targeting
+#   'ci/dependabot-updates' and 'release/pydantic-v1-support'.
+# - Manual trigger (workflow_dispatch): Runs the job matching the user's
+#   "target_branch" input, creating 1 PR.
 
 # The documentation for the callable workflow is here:
 # https://sintef.github.io/ci-cd/latest/workflows/ci_check_pyproject_dependencies
@@ -38,10 +35,10 @@ jobs:
   check-dependencies:
     name: External
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
-    # Always only run this job if we're on the "origin" repository.
-    # If the workflow is triggered by a schedule event, run it no matter what.
-    # If the workflow is triggered manually (workflow_dispatch),
-    # ONLY run it if the user input "target_branch" is "ci/dependabot-updates".
+    # Job Execution Criteria:
+    # - It must be executed within the "origin" repository (EMMC-ASBL).
+    # - Always run for scheduled events.
+    # - For manual triggers, it runs only if "target_branch" is "ci/dependabot-updates".
     if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'ci/dependabot-updates' )
     with:
       git_username: "TEAM 4.0[bot]"
@@ -66,10 +63,10 @@ jobs:
   check-dependencies-release_pydantic-v1-support:
     name: External
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
-    # Always only run this job if we're on the "origin" repository.
-    # If the workflow is triggered by a schedule event, run it no matter what.
-    # If the workflow is triggered manually (workflow_dispatch),
-    # ONLY run it if the user input "target_branch" is "release/pydantic-v1-support".
+    # Job Execution Criteria:
+    # - It must be executed within the "origin" repository (EMMC-ASBL).
+    # - Always run for scheduled events.
+    # - For manual triggers, it runs only if "target_branch" is "release/pydantic-v1-support".
     if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'release/pydantic-v1-support' )
     with:
       git_username: "TEAM 4.0[bot]"
