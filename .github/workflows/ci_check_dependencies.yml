@@ -47,6 +47,8 @@ jobs:
       python_version: "3.9"
       install_extras: "dev"
       pr_labels: "CI/CD"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
       ignore: |
         dependency-name=agraph-python...version=>=103
         dependency-name=celery...version=>=6
@@ -75,6 +77,8 @@ jobs:
       python_version: "3.9"
       install_extras: "dev"
       pr_labels: "CI/CD,pydantic-v1"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
       ignore: |
         dependency-name=agraph-python...version=>=103
         dependency-name=celery...version=>=6

@@ -35,6 +35,8 @@ dependencies = [
     "psycopg~=3.1.10",
     "pysftp~=0.2.9",
     "requests>=2.26.0,<3",
+
+    # Follow issue EMMC-ASBL/oteapi-services#328 for more information
     "urllib3<2",
 ]
 
