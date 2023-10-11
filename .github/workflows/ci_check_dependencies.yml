@@ -45,7 +45,7 @@ jobs:
       git_email: "Team4.0@SINTEF.no"
       permanent_dependencies_branch: ci/dependabot-updates
       python_version: "3.9"
-      install_extras: "dev"
+      install_extras: "[dev]"
       pr_labels: "CI/CD"
       # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
       # urllib3 dependency.
@@ -75,7 +75,7 @@ jobs:
       git_email: "Team4.0@SINTEF.no"
       permanent_dependencies_branch: release/pydantic-v1-support
       python_version: "3.9"
-      install_extras: "dev"
+      install_extras: "[dev]"
       pr_labels: "CI/CD,pydantic-v1"
       # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
       # urllib3 dependency.
