@@ -4,7 +4,7 @@
 #   pre-commit autoupdate
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
     - id: end-of-file-fixer
       exclude: ^tests/static/.*$
@@ -51,7 +51,7 @@ repos:
       - "pydantic>=2,<3"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.5.1
+    rev: v2.5.2
     hooks:
     - id: docs-api-reference
       args:
