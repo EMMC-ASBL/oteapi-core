@@ -34,7 +34,7 @@ on:
 jobs:
   check-dependencies:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.2
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
@@ -45,7 +45,7 @@ jobs:
       git_email: "Team4.0@SINTEF.no"
       permanent_dependencies_branch: ci/dependabot-updates
       python_version: "3.9"
-      install_extras: "dev"
+      install_extras: "[dev]"
       pr_labels: "CI/CD"
       ignore: |
         dependency-name=agraph-python...version=>=103
@@ -62,7 +62,7 @@ jobs:
 
   check-dependencies-release_pydantic-v1-support:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.2
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
@@ -73,7 +73,7 @@ jobs:
       git_email: "Team4.0@SINTEF.no"
       permanent_dependencies_branch: release/pydantic-v1-support
       python_version: "3.9"
-      install_extras: "dev"
+      install_extras: "[dev]"
       pr_labels: "CI/CD,pydantic-v1"
       ignore: |
         dependency-name=agraph-python...version=>=103
