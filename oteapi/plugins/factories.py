@@ -75,12 +75,20 @@ class StrategyFactory:
                 "strategy_type should be either of type StrategyType or a string."
             )
 
+        # 'config': Must be a dict when instantiating the strategy's implementation.
+        # 'config_model': Is used to retrieve the correct strategy requested.
+        # Furthermore, creating 'config_model' ensures that the config is valid with
+        # respect to the strategy type, further reducing the risk of incorrect logical
+        # conclusions.
         if isinstance(config, dict):
-            config = strategy_type.config_cls(**config)  # type: ignore[call-arg]
-        elif not isinstance(config, get_args(StrategyConfig)):
+            config_model = strategy_type.config_cls(**config)
+        elif isinstance(config, get_args(StrategyConfig)):
+            config_model = config
+            config = config.model_dump()
+        else:
             raise TypeError("config should be either of type StrategyConfig or a dict.")
 
-        strategy_name: str = cls._get_strategy_name(config, strategy_type)
+        strategy_name: str = cls._get_strategy_name(config_model, strategy_type)
 
         if (strategy_type, strategy_name) in cls.strategy_create_func[strategy_type]:
             return cls.strategy_create_func[strategy_type][

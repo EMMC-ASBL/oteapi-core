@@ -1,7 +1,7 @@
 """Download strategy class for the `file` scheme."""
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import Field, FileUrl, validator
+from pydantic import Field, FileUrl, field_validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
@@ -47,7 +47,8 @@ class FileResourceConfig(ResourceConfig):
         FileConfig(), description="File download strategy-specific configuration."
     )
 
-    @validator("downloadUrl")
+    @field_validator("downloadUrl")
+    @classmethod
     def ensure_path_exists(cls, value: FileUrl) -> FileUrl:
         """Ensure `path` is defined in `downloadUrl`."""
         if not value.path:

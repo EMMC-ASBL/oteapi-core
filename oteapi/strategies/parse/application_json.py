@@ -1,6 +1,6 @@
 """Strategy class for application/json."""
 import json
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Literal, Optional
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -28,10 +28,9 @@ class JSONConfig(AttrDict):
 class JSONResourceConfig(ResourceConfig):
     """JSON parse strategy filter config."""
 
-    mediaType: str = Field(
+    mediaType: Literal["application/json"] = Field(
         "application/json",
-        const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+        description=ResourceConfig.model_fields["mediaType"].description,
     )
     configuration: JSONConfig = Field(
         JSONConfig(), description="JSON parse strategy-specific configuration."

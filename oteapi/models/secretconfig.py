@@ -1,59 +1,41 @@
 """AttrDict for specifying user credentials or secrets."""
-import json
-from typing import TYPE_CHECKING, Optional
+from typing import Annotated, Optional
 
-from pydantic import BaseModel, Field, SecretStr
+from pydantic import BaseModel, Field, PlainSerializer, SecretStr
 
 from oteapi.settings import settings
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Callable
+TogglableSecretStr = Annotated[
+    SecretStr,
+    PlainSerializer(
+        lambda value: value.get_secret_value()
+        if settings.expose_secrets
+        else str(value),
+        return_type=str,
+        when_used="json-unless-none",
+    ),
+]
+"""Annotated type alias for a secret string that can be toggled to be exposed or not."""
 
 
-def json_dumps(model: dict, default: "Callable[[Any], Any]") -> "str":
-    """Alternative function for dumping exposed
-    secrets to json when model is serialized.
-
-    Parameters:
-        model: The pydantic model to serialize.
-        default: A pass-through to the standard `json.dumps()`'s `default` parameter.
-            From the `json.dumps()` doc-string: `default(obj)` is a function that should
-            return a serializable version of `obj` or raise `TypeError`.
-            The default simply raises `TypeError`.
-
-    Returns:
-        The result of `json.dumps()` after handling possible secrets.
-
-    """
-    return json.dumps(
-        {
-            key: (
-                value.get_secret_value()
-                if settings.expose_secrets and isinstance(value, SecretStr)
-                else value
-            )
-            for key, value in model.items()
-        },
-        default=default,
-    )
-
-
-class SecretConfig(BaseModel, json_dumps=json_dumps):
+class SecretConfig(BaseModel):
     """Simple model for handling secret in other config-models."""
 
-    user: Optional[SecretStr] = Field(None, description="User name for authentication.")
-    password: Optional[SecretStr] = Field(
+    user: Optional[TogglableSecretStr] = Field(
+        None, description="User name for authentication."
+    )
+    password: Optional[TogglableSecretStr] = Field(
         None, description="Password for authentication."
     )
-    token: Optional[SecretStr] = Field(
+    token: Optional[TogglableSecretStr] = Field(
         None,
         description=(
             "An access token for providing access and meta data to an application."
         ),
     )
-    client_id: Optional[SecretStr] = Field(
+    client_id: Optional[TogglableSecretStr] = Field(
         None, description="Client ID for an OAUTH2 client."
     )
-    client_secret: Optional[SecretStr] = Field(
+    client_secret: Optional[TogglableSecretStr] = Field(
         None, description="Client secret for an OAUTH2 client."
     )

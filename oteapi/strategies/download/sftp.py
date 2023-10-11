@@ -1,11 +1,12 @@
 """Strategy class for sftp/ftp"""
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Annotated, Optional
 
 import pysftp
-from pydantic import AnyUrl, Field
+from pydantic import Field
 from pydantic.dataclasses import dataclass
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
@@ -14,10 +15,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Dict
 
 
-class AnyFtpUrl(AnyUrl):
-    """A (S)FTP URL model."""
-
-    allowed_schemes = {"ftp", "sftp"}
+AnyFtpUrl = Annotated[Url, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 
 
 class SFTPConfig(AttrDict):
@@ -79,7 +77,7 @@ class SFTPStrategy:
             # open connection and store data locally
             with pysftp.Connection(
                 host=self.download_config.downloadUrl.host,
-                username=self.download_config.downloadUrl.user,
+                username=self.download_config.downloadUrl.username,
                 password=self.download_config.downloadUrl.password,
                 port=self.download_config.downloadUrl.port,
                 cnopts=cnopts,

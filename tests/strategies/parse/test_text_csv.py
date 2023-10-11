@@ -78,20 +78,19 @@ def test_csv(
     import csv
     import json
 
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
 
     sample_file = static_files / sample_filename
 
-    config = ResourceConfig(
-        downloadUrl=sample_file.as_uri(),
-        mediaType="text/csv",
-        **{"configuration": extra_config} if extra_config else {},
-    )
+    config = {
+        "downloadUrl": sample_file.as_uri(),
+        "mediaType": "text/csv",
+    }
+    config.update({"configuration": extra_config} if extra_config else {})
     session = CSVParseStrategy(config).initialize()
 
     parser = CSVParseStrategy(config)
-    parsed_content = parser.get(session.dict()).content
+    parsed_content = parser.get(session.model_dump()).content
 
     kwargs = {}
     if extra_config:
@@ -146,7 +145,6 @@ def test_csv_dialect_enum_fails() -> None:
 
     from pydantic import ValidationError
 
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
 
     non_existant_dialect = "test"
@@ -158,19 +156,14 @@ def test_csv_dialect_enum_fails() -> None:
         "These things are a mystery beyond me now."
     )
 
-    config = ResourceConfig(
-        downloadUrl="file:///test.csv",
-        mediaType="text/csv",
-        configuration={"dialect": {"base": non_existant_dialect}},
-    )
+    config = {
+        "downloadUrl": "file:///test.csv",
+        "mediaType": "text/csv",
+        "configuration": {"dialect": {"base": non_existant_dialect}},
+    }
 
     with pytest.raises(ValidationError) as exception:
         CSVParseStrategy(config)
 
-    assert (
-        "value is not a valid enumeration member; permitted: "
-        f"{', '.join(repr(dialect) for dialect in available_dialects)} "
-        "(type=type_error.enum; enum_values=["
-        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # noqa: E501
-        "])"
-    ) in exception.exconly()
+    for dialect in available_dialects:
+        assert repr(dialect) in exception.exconly()

@@ -47,6 +47,8 @@ jobs:
       python_version: "3.9"
       install_extras: "[dev]"
       pr_labels: "CI/CD"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
       ignore: |
         dependency-name=agraph-python...version=>=103
         dependency-name=celery...version=>=6
@@ -54,7 +56,7 @@ jobs:
         dependency-name=numpy...version=>=2
         dependency-name=openpyxl...version=>=4
         dependency-name=Pillow...version=>=11
-        dependency-name=pydantic...version=>=2
+        dependency-name=pydantic...version=>=3
         dependency-name=requests...version=>=3
         dependency-name=urllib3
     secrets:
@@ -75,6 +77,8 @@ jobs:
       python_version: "3.9"
       install_extras: "[dev]"
       pr_labels: "CI/CD,pydantic-v1"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
       ignore: |
         dependency-name=agraph-python...version=>=103
         dependency-name=celery...version=>=6

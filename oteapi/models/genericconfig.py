@@ -1,104 +1,141 @@
 """Generic data model for configuration attributes."""
-from typing import TYPE_CHECKING, Iterable, Mapping
+import warnings
+from collections.abc import Iterable, Mapping, MutableMapping
+from typing import TYPE_CHECKING
 
-from pydantic import BaseModel, Field
-from pydantic.fields import Undefined
+from pydantic import BaseModel, ConfigDict, Field
+from pydantic.fields import PydanticUndefined
 
 if TYPE_CHECKING:  # pragma: no cover
     from typing import Any, Optional, Tuple, Union
 
 
-class AttrDict(BaseModel, Mapping):
+class AttrDict(BaseModel, MutableMapping):
     """An object whose attributes can also be accessed through
-    subscription, like with a dictionary."""
+    subscription, like with a dictionary.
 
-    def __contains__(self, name: "Any") -> bool:
-        """Enable using the 'in' operator on this object."""
-        return self.__dict__.__contains__(name)
+    Special pydantic configuration settings:
 
-    def __delitem__(self, key: str) -> None:
-        """Enable deletion access through subscription.
+    - **`extra`**
+      Allow any attributes/fields to be defined - this is what makes this pydantic
+      model an attribute dictionary.
+    - **`validate_assignment`**
+      Validate and cast set values.
+      This is mainly relevant for sub-classes of `AttrDict`, where specific
+      attributes have been defined.
+    - **`arbitrary_types_allowed`**
+      If a custom type is used for an attribute that doesn't have a `validate()`
+      method, don't fail setting the attribute.
 
-        If the item is a pydantic field, reset it and remove it from the set of set
-        fields. Otherwise, delete the attribute.
+    """
 
-        """
-        if key in self.__dict__:
-            if key in self.__fields__:
-                # Reset field to default and remove from set of set fields
-                setattr(self, key, self.__fields__[key].default)
-                self.__fields_set__.remove(key)
-            else:
-                self.__delattr__(key)
-        else:
-            raise KeyError(key)
+    model_config = ConfigDict(
+        extra="allow", validate_assignment=True, arbitrary_types_allowed=True
+    )
 
-    def __getitem__(self, key: str) -> "Any":
-        """Enable read access through subscription."""
-        if key in self.__dict__:
+    # Collection methods
+    def __contains__(self, key: object) -> bool:
+        if not isinstance(key, str):
+            raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
+        return hasattr(self, key)
+
+    def __len__(self) -> int:
+        return len(self.model_dump())
+
+    # Mapping methods
+    def __getitem__(self, key: "Any") -> "Any":
+        if not isinstance(key, str):
+            raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
+        try:
             return getattr(self, key)
-        raise KeyError(key)
-
-    def __setitem__(self, key: str, value: "Any") -> None:
-        """Enable write access through subscription."""
-        setattr(self, key, value)
-
-    def __len__(self):
-        """Return number of items."""
-        return self.__dict__.__len__()
-
-    def __iter__(self):
-        """Enable **unpacking."""
-        return self.__dict__.__iter__()
+        except AttributeError as exc:
+            raise KeyError(key) from exc
 
     def items(self):
-        """Return a view of all (key, value) pairs."""
-        return self.__dict__.items()
+        return self.model_dump().items()
 
     def keys(self):
-        """Return a view of all keys."""
-        return self.__dict__.keys()
+        return self.model_dump().keys()
 
     def values(self):
-        """Return a view of all values."""
-        return self.__dict__.values()
+        return self.model_dump().values()
 
     def get(self, key: str, default: "Optional[Any]" = None) -> "Any":
-        """Mapping `get`-method."""
-        return self.__dict__.get(key, default)
+        return getattr(self, key, default)
 
-    def __ne__(self, other: "Any") -> bool:
-        """Implement the != operator."""
-        if isinstance(other, BaseModel):
-            return self.dict() != other.dict()
-        return self.dict() != other
+    def __eq__(self, value: object) -> bool:
+        if isinstance(value, Mapping):
+            return self.model_dump() == value
+        if isinstance(value, BaseModel):
+            return BaseModel.__eq__(self, value)
+        return False
 
-    def update(
-        self, other: "Optional[Union[dict, AttrDict, Iterable[Any]]]" = None, **kwargs
+    # MutableMapping methods
+    def __setitem__(self, key: "Any", value: "Any") -> None:
+        if not isinstance(key, str):
+            raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
+        try:
+            return self.__setattr__(key, value)
+        except AttributeError as exc:
+            raise KeyError(key) from exc
+
+    def __delitem__(self, key: "Any") -> None:
+        warnings.warn(
+            "Item deletion used to reset fields to their default values. To keep using"
+            " this functionality, use the `reset_field()` method.",
+            DeprecationWarning,
+        )
+
+        if not isinstance(key, str):
+            raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
+        try:
+            res = self.__delattr__(key)
+        except AttributeError as exc:
+            raise KeyError(key) from exc
+        else:
+            if key in self.model_fields_set:
+                self.model_fields_set.remove(key)
+            return res
+
+    def clear(self) -> None:
+        for field in self.model_dump():
+            del self[field]
+
+    def update(  # type: ignore[override]
+        self,
+        other: "Optional[Union[Mapping[str, Any], Iterable[tuple[str, Any]]]]" = None,
+        **kwargs,
     ) -> None:
-        """MutableMapping `update`-method."""
-        if other and isinstance(other, (dict, Mapping)):
+        if other and isinstance(other, Mapping):
             for key, value in other.items():
                 setattr(self, key, value)
         elif other and isinstance(other, BaseModel):
-            for key, value in other.dict().items():
+            for key, value in other:
                 setattr(self, key, value)
         elif other and isinstance(other, Iterable):
             for entry in other:
+                if not isinstance(entry, tuple):
+                    raise TypeError(
+                        "`other` must be an iterable of tuples of length two."
+                    )
                 if not len(entry) == 2:
                     raise ValueError(
                         "`other` must be an iterable of objects of length two."
                     )
-            for key, value in other:
+            for key, value in other:  # type: ignore[misc]
                 setattr(self, key, value)
+        elif other:
+            raise TypeError(
+                "`other` must be of type `dict`, `Mapping`, `BaseModel` or "
+                "`Iterable`, not `{type(other).__name__}`."
+            )
         if kwargs:
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-    def pop(self, key: str, default: "Optional[Any]" = Undefined) -> "Any":
-        """MutableMapping `pop`-method."""
+    def pop(self, key: str, default: "Optional[Any]" = PydanticUndefined) -> "Any":
         value = self.get(key, default)
-        if value == Undefined:
+        if value == PydanticUndefined:
             raise KeyError(key)
         if key in self:
             del self[key]
@@ -113,39 +150,86 @@ class AttrDict(BaseModel, Mapping):
             This is due to the fact that attributes are stored in a random order when
             initializing the model.
 
-            However, it will respect LIFO with respect to the internal `__dict__`.
+            However, it will respect LIFO with respect to the internal `model_fields`.
 
         """
         if not self:
             raise KeyError(f"popitem(): {self.__class__.__name__} is empty")
 
-        key = list(self.__dict__)[-1]
+        key = list(self.keys())[-1]
         value = self.pop(key)
         return key, value
 
-    class Config:
-        """Pydantic configuration for `AttrDict`.
+    def reset_field(self, field: str) -> None:
+        """Reset a field to its default value.
 
-        * **`extra`**
-          Allow any attributes/fields to be defined - this is what makes this pydantic
-          model an attribute dictionary.
-        * **`validate_assignment`**
-          Validate and cast set values.
-          This is mainly relevant for sub-classes of `AttrDict`, where specific
-          attributes have been defined.
-        * **`arbitrary_types_allowed`**
-          If a custom type is used for an attribute that doesn't have a `validate()`
-          method, don't fail setting the attribute.
+        Warning:
+            This will remove/delete a field that is not part of the model schema.
+
+        Parameters:
+            field: The field to reset.
 
         """
+        if field not in self:
+            raise KeyError(f"Field {field!r} does not exist.")
 
-        extra = "allow"
-        validate_assignment = True
-        arbitrary_types_allowed = True
+        if field in self.model_fields:
+            # Part of the model schema
+            schema_field = True
+
+            # Set the field to its default value
+            setattr(self, field, self.model_fields[field].default)
+        else:
+            # Not part of the model schema, but part of the extras
+            schema_field = False
+
+            # Remove the field altogether
+            if self.model_extra is None:
+                raise RuntimeError("Model has no extra fields.")
+
+            try:
+                self.model_extra.pop(field)
+            except KeyError as exc:
+                raise RuntimeError(
+                    f"Field {field!r} can not be found in the model fields or extras."
+                ) from exc
+
+        # Remove it from fields set by the user
+        if field in self.model_fields_set:
+            self.model_fields_set.remove(field)
+
+        # Check the field has been properly reset
+        if schema_field:
+            if field not in self:
+                raise RuntimeError(f"Field {field!r} was not reset as expected.")
+            if self[field] != self.model_fields[field].default:
+                raise RuntimeError(
+                    f"Field {field!r} was not reset to its default value as expected."
+                )
+        else:
+            if field in self:
+                raise RuntimeError(f"Field {field!r} was not removed as expected.")
+        if field in self.model_fields_set:
+            raise RuntimeError(
+                f"Field {field!r} was not removed from the set of user-set fields as "
+                "expected."
+            )
 
 
 class GenericConfig(BaseModel):
-    """Generic class for configuration objects."""
+    """Generic class for configuration objects.
+
+    Special pydantic configuration settings:
+
+    - **`validate_assignment`**
+      Validate and cast set values.
+      This is mainly relevant for sub-classes of `AttrDict`, where specific
+      attributes have been defined.
+    - **`arbitrary_types_allowed`**
+      If a custom type is used for an attribute that doesn't have a `validate()`
+      method, don't fail setting the attribute.
+
+    """
 
     configuration: AttrDict = Field(
         AttrDict(),
@@ -159,22 +243,8 @@ class GenericConfig(BaseModel):
     )
 
     @classmethod
-    def __init_subclass__(cls) -> None:
+    def __init_subclass__(cls, **kwargs) -> None:
         """Initialize subclass descriptions with their docstrings."""
-        cls.__fields__["description"].default = cls.__doc__
+        cls.model_fields["description"].default = cls.__doc__
 
-    class Config:
-        """Pydantic configuration for `GenericConfig`.
-
-        * **`validate_assignment`**
-          Validate and cast set values.
-          This is mainly relevant for sub-classes of `AttrDict`, where specific
-          attributes have been defined.
-        * **`arbitrary_types_allowed`**
-          If a custom type is used for an attribute that doesn't have a `validate()`
-          method, don't fail setting the attribute.
-
-        """
-
-        validate_assignment = True
-        arbitrary_types_allowed = True
+    model_config = ConfigDict(validate_assignment=True, arbitrary_types_allowed=True)

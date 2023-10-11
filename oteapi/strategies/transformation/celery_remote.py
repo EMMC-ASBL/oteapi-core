@@ -1,10 +1,10 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 import os
-from typing import TYPE_CHECKING, Dict
+from typing import TYPE_CHECKING, Dict, Literal
 
 from celery import Celery
 from celery.result import AsyncResult
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import (
@@ -28,7 +28,7 @@ CELERY_APP = Celery(
 )
 
 
-class CeleryConfig(AttrDict, allow_population_by_field_name=True):
+class CeleryConfig(AttrDict):
     """Celery configuration.
 
     All fields here (including those added from the session through the `get()` method,
@@ -40,10 +40,14 @@ class CeleryConfig(AttrDict, allow_population_by_field_name=True):
         arguments, since this is the "original" field name. I.e., this is done for
         backwards compatibility.
 
-    Setting `allow_population_by_field_name=True` as pydantic model configuration in
-    order to allow populating it using `name` as well as `task_name`.
+    Special pydantic configuration settings:
+
+    - **`populate_by_name`**
+      Allow populating CeleryConfig.name using `name` as well as `task_name`.
 
     """
+
+    model_config = ConfigDict(populate_by_name=True)
 
     name: str = Field(..., description="A task name.", alias="task_name")
     args: list = Field(..., description="List of arguments for the task.")
@@ -58,12 +62,9 @@ class SessionUpdateCelery(SessionUpdate):
 class CeleryStrategyConfig(TransformationConfig):
     """Celery strategy-specific configuration."""
 
-    transformationType: str = Field(
+    transformationType: Literal["celery/remote"] = Field(
         "celery/remote",
-        const=True,
-        description=TransformationConfig.__fields__[
-            "transformationType"
-        ].field_info.description,
+        description=TransformationConfig.model_fields["transformationType"].description,
     )
     configuration: CeleryConfig = Field(
         ..., description="Celery transformation strategy-specific configuration."
@@ -88,7 +89,7 @@ class CeleryRemoteStrategy:
             self._use_session(session)
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
-            **self.transformation_config.configuration
+            **self.transformation_config.configuration.model_dump()
         )
         return SessionUpdateCelery(celery_task_id=result.task_id)
 
@@ -114,12 +115,12 @@ class CeleryRemoteStrategy:
 
         """
         alias_mapping: dict[str, str] = {
-            field.alias: field_name
-            for field_name, field in CeleryConfig.__fields__.items()
+            getattr(field, "alias", field_name): field_name
+            for field_name, field in CeleryConfig.model_fields.items()
         }
 
-        fields = set(CeleryConfig.__fields__)
-        fields |= {_.alias for _ in CeleryConfig.__fields__.values()}
+        fields = set(CeleryConfig.model_fields)
+        fields |= {_.alias for _ in CeleryConfig.model_fields.values() if _.alias}
 
         for field in fields:
             if field in session:

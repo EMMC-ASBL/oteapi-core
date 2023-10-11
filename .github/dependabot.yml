@@ -38,6 +38,7 @@ updates:
   target-branch: release/pydantic-v1-support
   labels:
     - CI/CD
+    - pydantic-v1
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
@@ -46,3 +47,4 @@ updates:
   target-branch: release/pydantic-v1-support
   labels:
     - CI/CD
+    - pydantic-v1

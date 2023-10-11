@@ -4,8 +4,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, Type, Union
+    from typing import Any, Dict, Type, Union
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
@@ -132,7 +133,7 @@ def test_create_strategy(
                 )
                 strategy = create_strategy(
                     strategy_type=strategy_type,
-                    config=config.dict() if config_type == "dict" else config,
+                    config=config.model_dump() if config_type == "dict" else config,
                 )
             except Exception:
                 pytest.fail(

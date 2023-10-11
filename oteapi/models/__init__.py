@@ -10,7 +10,7 @@ from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig, RDFTriple
 from .parserconfig import ParserConfig
-from .resourceconfig import ResourceConfig
+from .resourceconfig import HostlessAnyUrl, ResourceConfig
 from .secretconfig import SecretConfig
 from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
@@ -22,6 +22,7 @@ __all__ = (
     "FilterConfig",
     "FunctionConfig",
     "GenericConfig",
+    "HostlessAnyUrl",
     "MappingConfig",
     "RDFTriple",
     "ResourceConfig",

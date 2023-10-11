@@ -1,5 +1,5 @@
 """Demo-filter strategy"""
-from typing import TYPE_CHECKING, Tuple
+from typing import TYPE_CHECKING, Literal, Tuple
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -21,10 +21,9 @@ class CropImageConfig(AttrDict):
 class CropImageFilterConfig(FilterConfig):
     """Crop filter strategy filter config."""
 
-    filterType: str = Field(
+    filterType: Literal["filter/crop"] = Field(
         "filter/crop",
-        const=True,
-        description=FilterConfig.__fields__["filterType"].field_info.description,
+        description=FilterConfig.model_fields["filterType"].description,
     )
     configuration: CropImageConfig = Field(
         ..., description="Image crop filter strategy-specific configuration."

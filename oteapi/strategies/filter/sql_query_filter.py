@@ -1,5 +1,5 @@
 """SQL query filter strategy."""
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -13,10 +13,9 @@ if TYPE_CHECKING:  # pragma: no cover
 class SqlQueryFilterConfig(FilterConfig):
     """SQL query filter strategy filter config."""
 
-    filterType: str = Field(
+    filterType: Literal["filter/sql"] = Field(
         "filter/sql",
-        const=True,
-        description=FilterConfig.__fields__["filterType"].field_info.description,
+        description=FilterConfig.model_fields["filterType"].description,
     )
     query: str = Field(..., description="A SQL query string.")
 

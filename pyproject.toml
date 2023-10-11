@@ -24,7 +24,8 @@ dependencies = [
     # Core dependencies
     "agraph-python>=101.0.7,<103",
     "diskcache>=5.4.0,<6",
-    "pydantic~=1.10",
+    "pydantic~=2.4",
+    "pydantic-settings~=2.0",
     "typing-extensions~=4.8; python_version<'3.10'",
 
     # Strategy dependencies
@@ -34,6 +35,8 @@ dependencies = [
     "psycopg~=3.1.10",
     "pysftp~=0.2.9",
     "requests>=2.26.0,<3",
+
+    # Follow issue EMMC-ASBL/oteapi-services#328 for more information
     "urllib3<2",
 ]
 

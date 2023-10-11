@@ -1,5 +1,5 @@
 """Strategy class for workbook/xlsx."""
-from typing import TYPE_CHECKING, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Dict, List, Literal, Optional, Union
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
@@ -10,7 +10,8 @@ from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Iterable
+    from collections.abc import Iterable
+    from typing import Any
 
     from openpyxl.worksheet.worksheet import Worksheet
 
@@ -85,10 +86,11 @@ class XLSXParseConfig(AttrDict):
 class XLSXParseParserConfig(ParserConfig):
     """XLSX parse strategy resource config."""
 
-    parserType: str = Field(
+    parserType: Literal[
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ] = Field(
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        const=True,
-        description=ParserConfig.__fields__["parserType"].field_info.description,
+        description=ParserConfig.model_fields["parserType"].description,
     )
     configuration: XLSXParseConfig = Field(
         ..., description="SQLite parse strategy-specific configuration."
