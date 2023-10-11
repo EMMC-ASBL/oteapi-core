@@ -83,12 +83,13 @@ def test_attribute_set(generic_config: "CustomConfig") -> None:
     dict key/value-pair), then it should be fine to change the value type for that
     given key.
 
-    NOTE: Pydantic v2 will not coerce all types, e.g. any type to `str`.
-    One should instead use Annotated to create custom types.
+    NOTE: Start from Pydantic v2, automatic type coercion for all types is not
+    supported. For instance, `float` or `int` to `str`.
+    One should instead use `typing.Annotated` to create custom types.
     Example: generic_config.configuration["string"] = 3.14 will NOT result in
     generic_config.configuration["string"] == "3.14"
     See https://docs.pydantic.dev/latest/usage/types/custom/ for more information.
-    UPDATE: As of v2.4 there's a new config setting that re-implements this behaviour:
+    UPDATE: In v2.4, a new configuration was introduced to restore this behavior:
     https://docs.pydantic.dev/latest/api/config/#pydantic.config.ConfigDict.coerce_numbers_to_str
 
     """
@@ -115,8 +116,11 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     """Test configuration.__delitem__."""
     # "float" is not defined as a pydantic model field, i.e., it's not part of the
     # model schema, but rather the model extras.
-    # This means it **should** be deleted from the model extras,
-    # and it **should** be removed from the instance.
+    # Therefore, when deleted:
+    # - It should no longer exist in the model's extras.
+    # - It should also be absent from the model instance itself.
+    # - It should also be removed from the set of user-set fields.
+    assert "float" in generic_config.configuration
     assert "float" in generic_config.configuration.model_fields_set
     assert "float" not in generic_config.configuration.model_json_schema()["properties"]
 
@@ -128,20 +132,18 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
     # "string" is defined as a pydantic model field, i.e., it's part of the model
     # schema.
-    # This means it **should not** be deleted from the model schema,
-    # but it **should** be removed from the model instance.
-    generic_config.configuration["string"] = "my secret string"
-    assert generic_config.configuration.string == "my secret string"
-    assert (
-        generic_config.configuration.string
-        != generic_config.configuration.model_fields["string"].default
-    )
+    # Therefore, when deleted:
+    # - It should still exist in the model's schema.
+    # - It should be removed from the model instance itself.
+    # - It should also be removed from the set of user-set fields.
+    assert "string" in generic_config.configuration
     assert "string" in generic_config.configuration.model_fields_set
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
     del generic_config.configuration["string"]
 
     assert "string" not in generic_config.configuration
+    assert "string" not in generic_config.configuration.model_fields_set
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
 
@@ -149,8 +151,11 @@ def test_attribute_reset_field(generic_config: "CustomConfig") -> None:
     """Test configuration.reset_field()."""
     # "float" is not defined as a pydantic model field, i.e., it's not part of the
     # model schema, but rather the model extras.
-    # This means it **should** be deleted from the model extras,
-    # and it **should** be removed from the instance.
+    # Resetting it should behave similarly to deleting it.
+    # Therefore, when reset:
+    # - It should no longer exist in the model's extras.
+    # - It should also be absent from the model instance itself.
+    # - It should also be removed from the set of user-set fields.
     assert "float" in generic_config.configuration.model_fields_set
     assert "float" not in generic_config.configuration.model_json_schema()["properties"]
 
@@ -162,15 +167,23 @@ def test_attribute_reset_field(generic_config: "CustomConfig") -> None:
 
     # "string" is defined as a pydantic model field, i.e., it's part of the model
     # schema.
-    # This means it **should not** be deleted, but reset to its default value
-    # and removed from the set of user-set fields.
+    # Therefore, when reset:
+    # - It should still exist in the model's schema.
+    # - It should be reset to its default value.
+    # - It should be removed from the set of user-set fields.
     generic_config.configuration["string"] = "my secret string"
     assert generic_config.configuration.string == "my secret string"
+    assert (
+        generic_config.configuration.string
+        != generic_config.configuration.model_fields["string"].default
+    )
     assert "string" in generic_config.configuration.model_fields_set
+    assert "float" not in generic_config.configuration.model_json_schema()["properties"]
 
     generic_config.configuration.reset_field("string")
 
     assert "string" in generic_config.configuration
+    assert generic_config.configuration.string != "my secret string"
     assert (
         generic_config.configuration.string
         == generic_config.configuration.model_fields["string"].default
