@@ -2364,8 +2364,7 @@ for more info.</p>
 <span class="normal">225</span>
 <span class="normal">226</span>
 <span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ImageDataParseStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for images.</span>
 
@@ -2411,9 +2410,8 @@ for more info.</p>
         <span class="n">image_format</span> <span class="o">=</span> <span class="n">SupportedFormat</span><span class="p">[</span><span class="n">mime_format</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 
         <span class="c1"># Proper download configurations</span>
-        <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-        <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">download_config</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="n">download_config</span> <span class="o">=</span> <span class="n">ResourceConfig</span><span class="p">(</span><span class="o">**</span><span class="n">conf</span><span class="p">)</span>
+        <span class="n">download_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+        <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">download_config</span> <span class="ow">or</span> <span class="p">{}</span>
 
         <span class="n">downloader</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span>
         <span class="n">session</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">downloader</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="p">))</span>
@@ -2612,8 +2610,7 @@ for more info.</p>
 <span class="normal">225</span>
 <span class="normal">226</span>
 <span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateImageParse</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.&quot;&quot;&quot;</span>
@@ -2627,9 +2624,8 @@ for more info.</p>
     <span class="n">image_format</span> <span class="o">=</span> <span class="n">SupportedFormat</span><span class="p">[</span><span class="n">mime_format</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 
     <span class="c1"># Proper download configurations</span>
-    <span class="n">conf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-    <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">download_config</span> <span class="ow">or</span> <span class="p">{}</span>
-    <span class="n">download_config</span> <span class="o">=</span> <span class="n">ResourceConfig</span><span class="p">(</span><span class="o">**</span><span class="n">conf</span><span class="p">)</span>
+    <span class="n">download_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+    <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">download_config</span> <span class="ow">or</span> <span class="p">{}</span>
 
     <span class="n">downloader</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span>
     <span class="n">session</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">downloader</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="p">))</span>
@@ -2995,7 +2991,7 @@ for more info.</p>
         <span class="s2">&quot;image/eps&quot;</span><span class="p">,</span>
     <span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">field_info</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">ImageParserConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">ImageParserConfig</span><span class="p">(),</span>
@@ -3041,7 +3037,7 @@ for more info.</p>
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParserResourceConfig.mediaType" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;image/jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jp2&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">,</span> <span class="s1">&#39;image/gif&#39;</span><span class="p">,</span> <span class="s1">&#39;image/tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;image/eps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">__fields__</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">field_info</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;image/jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;image/jp2&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">,</span> <span class="s1">&#39;image/gif&#39;</span><span class="p">,</span> <span class="s1">&#39;image/tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;image/eps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

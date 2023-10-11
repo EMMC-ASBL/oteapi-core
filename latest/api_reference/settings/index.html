@@ -424,19 +424,6 @@
     OteApiCoreSettings
   </a>
   
-    <nav class="md-nav" aria-label="OteApiCoreSettings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.settings.OteApiCoreSettings.Config" class="md-nav__link">
-    Config
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1761,19 +1748,6 @@
     OteApiCoreSettings
   </a>
   
-    <nav class="md-nav" aria-label="OteApiCoreSettings">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.settings.OteApiCoreSettings.Config" class="md-nav__link">
-    Config
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1834,15 +1808,14 @@ instance.</p>
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseSettings">BaseSettings</span></code></p>
+            Bases: <code><span title="pydantic_settings.BaseSettings">BaseSettings</span></code></p>
 
   
       <p>Basic configuration for the oteapi-core.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/settings.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
-<span class="normal">14</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -1856,10 +1829,7 @@ instance.</p>
 <span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">OteApiCoreSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">OteApiCoreSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic configuration for the oteapi-core.&quot;&quot;&quot;</span>
 
     <span class="n">expose_secrets</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1873,11 +1843,7 @@ instance.</p>
 <span class="s2">    Hence be careful while using this option in production.</span>
 <span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-
-    <span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Pydantic config for the OteApiCoreSettings.&quot;&quot;&quot;</span>
-
-        <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">&quot;OTEAPI_&quot;</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;OTEAPI_&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -1891,55 +1857,6 @@ instance.</p>
 
 
 
-
-<div class="doc doc-object doc-class">
-
-
-
-
-<h3 id="oteapi.settings.OteApiCoreSettings.Config" class="doc doc-heading">
-          <code>Config</code>
-
-
-<a href="#oteapi.settings.OteApiCoreSettings.Config" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-  <div class="doc doc-contents ">
-
-  
-      <p>Pydantic config for the OteApiCoreSettings.</p>
-
-            <details class="quote">
-              <summary>Source code in <code>oteapi/settings.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pydantic config for the OteApiCoreSettings.&quot;&quot;&quot;</span>
-
-    <span class="n">env_prefix</span> <span class="o">=</span> <span class="s2">&quot;OTEAPI_&quot;</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
 
 
 

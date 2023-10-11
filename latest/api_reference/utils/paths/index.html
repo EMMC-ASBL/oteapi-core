@@ -1928,7 +1928,7 @@ when parsing a file URL for an absolute path on Windows.</p>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">ParseResult</span><span class="p">):</span>
-        <span class="n">uri</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">uri</span><span class="p">))</span>
 
     <span class="n">uri_path</span> <span class="o">=</span> <span class="p">(</span><span class="n">uri</span><span class="o">.</span><span class="n">netloc</span> <span class="o">+</span> <span class="n">uri</span><span class="o">.</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">uri</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span> <span class="k">else</span> <span class="n">uri</span><span class="o">.</span><span class="n">path</span>
 

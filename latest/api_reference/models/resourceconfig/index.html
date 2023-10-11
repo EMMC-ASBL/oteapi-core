@@ -850,19 +850,6 @@
     HostlessAnyUrl
   </a>
   
-    <nav class="md-nav" aria-label="HostlessAnyUrl">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.models.resourceconfig.HostlessAnyUrl.host_required" class="md-nav__link">
-    host_required
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1832,19 +1819,6 @@
     HostlessAnyUrl
   </a>
   
-    <nav class="md-nav" aria-label="HostlessAnyUrl">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#oteapi.models.resourceconfig.HostlessAnyUrl.host_required" class="md-nav__link">
-    host_required
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1953,62 +1927,19 @@
 
 
 
-
-<div class="doc doc-object doc-class">
-
-
-
-
-<h2 id="oteapi.models.resourceconfig.HostlessAnyUrl" class="doc doc-heading">
-          <code>HostlessAnyUrl</code>
-
-
-<a href="#oteapi.models.resourceconfig.HostlessAnyUrl" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.AnyUrl">AnyUrl</span></code></p>
-
-  
-      <p>AnyUrl, but allow not having a host.</p>
-
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">HostlessAnyUrl</span><span class="p">(</span><span class="n">AnyUrl</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;AnyUrl, but allow not having a host.&quot;&quot;&quot;</span>
-
-    <span class="n">host_required</span> <span class="o">=</span> <span class="kc">False</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
 <div class="doc doc-object doc-attribute">
 
 
 
 
-<h3 id="oteapi.models.resourceconfig.HostlessAnyUrl.host_required" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">host_required</span> <span class="o">=</span> <span class="kc">False</span></code>
+<h2 id="oteapi.models.resourceconfig.HostlessAnyUrl" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">HostlessAnyUrl</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Url</span><span class="p">,</span> <span class="n">UrlConstraints</span><span class="p">(</span><span class="n">host_required</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span></code>
   
   <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+      <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
 
-<a href="#oteapi.models.resourceconfig.HostlessAnyUrl.host_required" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.models.resourceconfig.HostlessAnyUrl" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
@@ -2016,15 +1947,6 @@
 
 </div>
 
-
-
-
-
-  </div>
-
-  </div>
-
-</div>
 
 <div class="doc doc-object doc-class">
 
@@ -2052,7 +1974,13 @@
 </details>
             <details class="quote">
               <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
@@ -2122,13 +2050,7 @@
 <span class="normal">86</span>
 <span class="normal">87</span>
 <span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource Strategy Data Configuration.</span>
 
 <span class="sd">    Important:</span>
@@ -2190,21 +2112,21 @@
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The entity responsible for making the resource/item available.&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="nd">@root_validator</span>
-    <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ResourceConfig&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
 <span class="sd">        It&#39;s fine to define them all, but at least one complete pair MUST be specified.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
-            <span class="nb">all</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;mediaType&quot;</span><span class="p">])</span>
-            <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accessUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;accessService&quot;</span><span class="p">])</span>
+            <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;mediaType&quot;</span><span class="p">])</span>
+            <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accessUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;accessService&quot;</span><span class="p">])</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;Either of the pairs of attributes downloadUrl/mediaType or &quot;</span>
                 <span class="s2">&quot;accessUrl/accessService MUST be specified.&quot;</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">values</span>
+        <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2374,7 +2296,7 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ensure_unique_url_pairs</span><span class="p">(</span><span class="n">values</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">ensure_unique_url_pairs</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -2386,7 +2308,13 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
@@ -2394,27 +2322,21 @@
 <span class="normal">86</span>
 <span class="normal">87</span>
 <span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@root_validator</span>
-<span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[str, Any]&quot;</span><span class="p">:</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ensure_unique_url_pairs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ResourceConfig&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</span>
 
 <span class="sd">    It&#39;s fine to define them all, but at least one complete pair MUST be specified.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span>
-        <span class="nb">all</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;mediaType&quot;</span><span class="p">])</span>
-        <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accessUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;accessService&quot;</span><span class="p">])</span>
+        <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;mediaType&quot;</span><span class="p">])</span>
+        <span class="ow">or</span> <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;accessUrl&quot;</span><span class="p">,</span> <span class="s2">&quot;accessService&quot;</span><span class="p">])</span>
     <span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;Either of the pairs of attributes downloadUrl/mediaType or &quot;</span>
             <span class="s2">&quot;accessUrl/accessService MUST be specified.&quot;</span>
         <span class="p">)</span>
-    <span class="k">return</span> <span class="n">values</span>
+    <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
