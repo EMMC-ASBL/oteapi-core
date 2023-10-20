@@ -174,8 +174,15 @@ class EntryPointStrategy:
     """
 
     ENTRY_POINT_NAME_REGEX = re.compile(
-        r"^(?P<package_name>[a-z_]+)\.(?P<strategy_name>.+)$"
+        r"^(?P<package_name>[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9._-]*[A-Za-z0-9])\.(?P<strategy_name>.+)$"
     )
+    """Regex for entry point names.
+
+    The package_name group is a valid non-normalized package name regex adapted from
+    PEP 508.
+    For more information, see: https://peps.python.org/pep-0508/#names.
+    """
+
     ENTRY_POINT_NAME_SEPARATOR = ":"
 
     def __init__(self, entry_point: "EntryPoint") -> None:

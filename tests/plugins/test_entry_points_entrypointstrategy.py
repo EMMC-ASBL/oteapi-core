@@ -43,18 +43,31 @@ def test_entry_point_name_syntax(
     # Invalid entry points:
     # - Entry name doesn't start with package name.
     # - Wrong package + strategy type value separator
+    # - Invalid package name (must start/end with a letter or number)
     invalid_entry_points = """\
 oteapi.download =
   test = test_package:TestStrategy
 oteapi.parse =
   test_package:test = test_package:TestStrategy
+oteapi.mapping =
+  _test_package.test = test_package:TestStrategy
 """
 
     # Edge-case entry points:
     # - Weird chars for strategy value
+    # - Valid non-normalized package names
     edge_case_entry_points = """\
 oteapi.download =
   package.$t/\\123## = package.weird.name.chars:Test
+oteapi.parse =
+  Friendly-Bard.test = friendly_bard:TestStrategy
+  FRIENDLY-BARD.test = friendly_bard:TestStrategy
+  friendly.bard.test = friendly_bard:TestStrategy
+  friendly_bard.test = friendly_bard:TestStrategy
+  friendly--bard.test = friendly_bard:TestStrategy
+  FrIeNdLy-._.-bArD.test = friendly_bard:TestStrategy
+oteapi.mapping =
+  7.8-_9.test = 7_8_9:TestStrategy
 """
 
     for entry_point in create_importlib_entry_points(invalid_entry_points):
