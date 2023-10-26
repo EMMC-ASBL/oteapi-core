@@ -34,7 +34,7 @@ on:
 jobs:
   check-dependencies:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.2
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.3
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
@@ -64,7 +64,7 @@ jobs:
 
   check-dependencies-release_pydantic-v1-support:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.2
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.3
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
