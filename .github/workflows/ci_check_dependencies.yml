@@ -40,7 +40,7 @@ jobs:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
     # - For manual triggers, it runs only if "target_branch" is "ci/dependabot-updates".
-    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'ci/dependabot-updates' )
+    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'push' || inputs.target_branch == 'ci/dependabot-updates' )
     with:
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
@@ -71,7 +71,7 @@ jobs:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
     # - Always run for scheduled events.
     # - For manual triggers, it runs only if "target_branch" is "release/pydantic-v1-support".
-    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'release/pydantic-v1-support' )
+    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'push' || inputs.target_branch == 'release/pydantic-v1-support' )
     with:
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
