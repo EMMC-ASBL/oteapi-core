@@ -59,6 +59,7 @@ jobs:
         dependency-name=pydantic...versions=>=3
         dependency-name=requests...versions=>=3
         dependency-name=urllib3
+      branch_name_extension: "master"
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}
 
