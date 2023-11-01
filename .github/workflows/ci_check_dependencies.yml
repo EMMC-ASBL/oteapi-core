@@ -18,6 +18,7 @@
 name: CI - Check dependencies
 
 on:
+  push:
   schedule:
     - cron: "30 5 * * 1"
   workflow_dispatch:
