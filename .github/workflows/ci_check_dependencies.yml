@@ -33,7 +33,7 @@ on:
 
 jobs:
   check-dependencies:
-    name: External
+    name: master
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.3
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
@@ -59,11 +59,12 @@ jobs:
         dependency-name=pydantic...versions=>=3
         dependency-name=requests...versions=>=3
         dependency-name=urllib3
+      branch_name_extension: "master"
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}
 
   check-dependencies-release_pydantic-v1-support:
-    name: External (pydantic v1 support)
+    name: release/pydantic-v1-support
     uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.3
     # Job Execution Criteria:
     # - It must be executed within the "origin" repository (EMMC-ASBL).
