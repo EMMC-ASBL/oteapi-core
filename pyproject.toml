@@ -39,7 +39,7 @@ dependencies = [
 
 [project.optional-dependencies]
 docs = [
-    "mike~=1.1",
+    "mike~=2.0",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material~=9.4",
@@ -55,7 +55,7 @@ testing = [
     "requests-mock~=1.11",
 ]
 dev = [
-    "mike~=1.1",
+    "mike~=2.0",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material~=9.4",
@@ -67,7 +67,7 @@ dev = [
     "pytest-cov~=4.1",
     "redis~=5.0",
     "requests-mock~=1.11",
-    "pre-commit>=2.21.0,<3; python_version<'3.8'",
+    "pre-commit>=3.5.0,<3; python_version<'3.8'",
     "pre-commit~=3.5; python_version>='3.8'",
 ]
 
