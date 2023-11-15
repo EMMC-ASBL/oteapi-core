@@ -28,7 +28,7 @@ dependencies = [
     "typing-extensions~=4.8; python_version<'3.10'",
 
     # Strategy dependencies
-    "celery>=5.3.4,<6",
+    "celery>=5.3.5,<6",
     "openpyxl>=3.1.2,<4",
     "Pillow>=10.1.0,<11",
     "psycopg~=3.1.12",
@@ -43,7 +43,7 @@ docs = [
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material~=9.4",
-    "mkdocstrings[python]~=0.23.0",
+    "mkdocstrings[python]~=0.24.0",
 ]
 testing = [
     "ase~=3.22.1",
@@ -59,7 +59,7 @@ dev = [
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material~=9.4",
-    "mkdocstrings[python]~=0.23.0",
+    "mkdocstrings[python]~=0.24.0",
     "ase~=3.22.1",
     "numpy>=1.26,<2",
     "pytest~=7.4",
@@ -67,7 +67,7 @@ dev = [
     "pytest-cov~=4.1",
     "redis~=5.0",
     "requests-mock~=1.11",
-    "pre-commit>=2.21.0,<3; python_version<'3.8'",
+    "pre-commit>=3.5.0,<3; python_version<'3.8'",
     "pre-commit~=3.5; python_version>='3.8'",
 ]
 
