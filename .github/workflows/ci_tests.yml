@@ -10,7 +10,7 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.5.3
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.6.0
     with:
       # pre-commit
       run_pre-commit: true
