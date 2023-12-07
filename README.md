@@ -86,6 +86,35 @@ transformation with the `get()` method to unify the strategy interfaces.
 `get()` is intended to start an asynchronous process and return a
 *task_id* which can be queried using the `status()` method (outside of a pipeline).
 
+## Plugins avilable as separate python packages
+
+### oteapi-dlite
+
+_description_:
+_homepage_:
+_availability_: pip isntallable from pypi
+_interoperability sytem_:
+
+## cuds-dlite:
+
+_description_:
+_homepage_:
+_availability_: pip isntallable from pypi
+_interoperability sytem_:
+
+## oteapi-optimade:
+
+## otaepi-asmod
+_description_:
+_homepage_:
+_availability_: pip isntallable from pypi
+_interoperability sytem_:
+
+##
+
+
+
+
 ## Entry points for plugins
 
 The way strategies are registered and found is through [entry points](https://packaging.python.org/en/latest/specifications/entry-points/).
