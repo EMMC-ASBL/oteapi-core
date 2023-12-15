@@ -10,7 +10,7 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.6.0
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.7.1
     with:
       # pre-commit
       run_pre-commit: true
@@ -79,7 +79,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version}}
 
@@ -124,7 +124,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version}}
 
