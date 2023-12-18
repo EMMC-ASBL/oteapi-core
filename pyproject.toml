@@ -26,13 +26,13 @@ dependencies = [
     "diskcache>=5.6.3,<6",
     "pydantic~=2.5",
     "pydantic-settings~=2.1",
-    "typing-extensions~=4.8; python_version<'3.10'",
+    "typing-extensions~=4.9; python_version < '3.10'",
 
     # Strategy dependencies
     "celery>=5.3.5,<6",
     "openpyxl>=3.1.2,<4",
     "Pillow>=10.1.0,<11",
-    "psycopg~=3.1.13",
+    "psycopg~=3.1.15",
     "pysftp~=0.2.9",
     "requests>=2.31.0,<3",
 
@@ -45,7 +45,7 @@ docs = [
     "mike~=2.0",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.4",
+    "mkdocs-material~=9.5",
     "mkdocstrings[python]~=0.24.0",
 ]
 testing = [
@@ -58,7 +58,7 @@ testing = [
     "requests-mock~=1.11",
 ]
 dev = [
-    "pre-commit~=3.5",
+    "pre-commit~=3.6",
     "oteapi-core[docs,testing]",
 ]
 
