@@ -1977,7 +1977,6 @@
 
 
 
-
 <h2 id="oteapi.models.secretconfig.TogglableSecretStr" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">TogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">,</span> <span class="n">PlainSerializer</span><span class="p">(</span><span class="k">lambda</span> <span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">expose_secrets</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">return_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s1">&#39;json-unless-none&#39;</span><span class="p">)]</span></code>
   
@@ -1997,7 +1996,6 @@
 
 
 <div class="doc doc-object doc-class">
-
 
 
 
@@ -2075,7 +2073,6 @@
 
 
 
-
 <h3 id="oteapi.models.secretconfig.SecretConfig.client_id" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Client ID for an OAUTH2 client.&#39;</span><span class="p">)</span></code>
   
@@ -2093,7 +2090,6 @@
 </div>
 
 <div class="doc doc-object doc-attribute">
-
 
 
 
@@ -2117,7 +2113,6 @@
 
 
 
-
 <h3 id="oteapi.models.secretconfig.SecretConfig.password" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Password for authentication.&#39;</span><span class="p">)</span></code>
   
@@ -2138,7 +2133,6 @@
 
 
 
-
 <h3 id="oteapi.models.secretconfig.SecretConfig.token" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;An access token for providing access and meta data to an application.&#39;</span><span class="p">)</span></code>
   
@@ -2156,7 +2150,6 @@
 </div>
 
 <div class="doc doc-object doc-attribute">
-
 
 
 
@@ -2183,6 +2176,7 @@
   </div>
 
   </div>
+
 
 </div>
 

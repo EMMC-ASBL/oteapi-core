@@ -1671,7 +1671,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.get" class="md-nav__link">
     <span class="md-ellipsis">
-      get()
+      get
     </span>
   </a>
   
@@ -1680,7 +1680,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.initialize" class="md-nav__link">
     <span class="md-ellipsis">
-      initialize()
+      initialize
     </span>
   </a>
   
@@ -1689,7 +1689,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.status" class="md-nav__link">
     <span class="md-ellipsis">
-      status()
+      status
     </span>
   </a>
   
@@ -2068,7 +2068,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.get" class="md-nav__link">
     <span class="md-ellipsis">
-      get()
+      get
     </span>
   </a>
   
@@ -2077,7 +2077,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.initialize" class="md-nav__link">
     <span class="md-ellipsis">
-      initialize()
+      initialize
     </span>
   </a>
   
@@ -2086,7 +2086,7 @@
           <li class="md-nav__item">
   <a href="#oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.status" class="md-nav__link">
     <span class="md-ellipsis">
-      status()
+      status
     </span>
   </a>
   
@@ -2195,7 +2195,6 @@
 
 
 
-
 <h2 id="oteapi.strategies.transformation.celery_remote.CELERY_APP" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">CELERY_APP</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="n">broker</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></code>
   
@@ -2212,7 +2211,6 @@
 </div>
 
 <div class="doc doc-object doc-attribute">
-
 
 
 
@@ -2235,7 +2233,6 @@
 
 
 
-
 <h2 id="oteapi.strategies.transformation.celery_remote.REDIS_PORT" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">REDIS_PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OTEAPI_REDIS_PORT&#39;</span><span class="p">,</span> <span class="s1">&#39;6379&#39;</span><span class="p">))</span></code>
   
@@ -2253,7 +2250,6 @@
 
 
 <div class="doc doc-object doc-class">
-
 
 
 
@@ -2349,7 +2345,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.args" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">args</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of arguments for the task.&#39;</span><span class="p">)</span></code>
   
@@ -2370,7 +2365,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.model_config" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">populate_by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
   
@@ -2388,7 +2382,6 @@ backwards compatibility.</p>
 </div>
 
 <div class="doc doc-object doc-attribute">
-
 
 
 
@@ -2416,10 +2409,10 @@ backwards compatibility.</p>
 
   </div>
 
+
 </div>
 
 <div class="doc doc-object doc-class">
-
 
 
 
@@ -2573,7 +2566,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.transformation_config" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">transformation_config</span><span class="p">:</span> <span class="n">CeleryStrategyConfig</span></code>
   
@@ -2593,7 +2585,6 @@ backwards compatibility.</p>
 
 
 <div class="doc doc-object doc-function">
-
 
 
 
@@ -2637,7 +2628,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryRemoteStrategy.initialize" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
@@ -2663,7 +2653,6 @@ backwards compatibility.</p>
 
 
 <div class="doc doc-object doc-function">
-
 
 
 
@@ -2698,10 +2687,10 @@ backwards compatibility.</p>
 
   </div>
 
+
 </div>
 
 <div class="doc doc-object doc-class">
-
 
 
 
@@ -2757,7 +2746,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryStrategyConfig.configuration" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">configuration</span><span class="p">:</span> <span class="n">CeleryConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Celery transformation strategy-specific configuration.&#39;</span><span class="p">)</span></code>
   
@@ -2775,7 +2763,6 @@ backwards compatibility.</p>
 </div>
 
 <div class="doc doc-object doc-attribute">
-
 
 
 
@@ -2803,10 +2790,10 @@ backwards compatibility.</p>
 
   </div>
 
+
 </div>
 
 <div class="doc doc-object doc-class">
-
 
 
 
@@ -2850,7 +2837,6 @@ backwards compatibility.</p>
 
 
 
-
 <h3 id="oteapi.strategies.transformation.celery_remote.SessionUpdateCelery.celery_task_id" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">celery_task_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A Celery task identifier.&#39;</span><span class="p">)</span></code>
   
@@ -2874,6 +2860,7 @@ backwards compatibility.</p>
   </div>
 
   </div>
+
 
 </div>
 
