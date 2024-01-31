@@ -1,4 +1,5 @@
 """Tests for `oteapi.models.triplestoreconfig`"""
+
 import pytest
 
 

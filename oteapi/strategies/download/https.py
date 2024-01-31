@@ -1,4 +1,5 @@
 """Download strategy class for http/https"""
+
 from typing import TYPE_CHECKING, Optional
 
 import requests

@@ -1,4 +1,5 @@
 """Tests the transformation strategy for Celery."""
+
 from typing import TYPE_CHECKING
 
 import pytest

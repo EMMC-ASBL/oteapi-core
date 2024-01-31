@@ -1,4 +1,5 @@
 """Strategy class for workbook/xlsx."""
+
 from typing import TYPE_CHECKING, Dict, List, Literal, Optional, Union
 
 from openpyxl import load_workbook

@@ -1,4 +1,5 @@
 """Pydantic Mapping Configuration Data Model."""
+
 from typing import Dict, Optional, Set, Tuple
 
 from pydantic import Field

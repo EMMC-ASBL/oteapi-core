@@ -1,4 +1,5 @@
 """Mapping filter strategy."""
+
 from typing import TYPE_CHECKING, Dict, List
 
 from pydantic.dataclasses import Field, dataclass
