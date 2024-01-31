@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.5">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
     
     
       
@@ -2595,8 +2595,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">207</span>
-<span class="normal">208</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">208</span>
 <span class="normal">209</span>
 <span class="normal">210</span>
 <span class="normal">211</span>
@@ -2620,7 +2619,8 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
-<span class="normal">232</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+<span class="normal">232</span>
+<span class="normal">233</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse-specific Configuration Data Model.&quot;&quot;&quot;</span>
 
     <span class="n">datacache_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataCacheConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -2752,8 +2752,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">255</span>
-<span class="normal">256</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">256</span>
 <span class="normal">257</span>
 <span class="normal">258</span>
 <span class="normal">259</span>
@@ -2824,7 +2823,12 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span>
-<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">CSVParseStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for CSV files.</span>
 
@@ -2881,18 +2885,22 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
             <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
                 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
                     <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                        <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                        <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                        <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                        <span class="p">(</span>
+                            <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                            <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                            <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                        <span class="p">)</span>
                         <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                     <span class="p">]</span>
                     <span class="k">continue</span>
                 <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
                     <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                        <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                        <span class="k">else</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                        <span class="p">(</span>
+                            <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                            <span class="k">else</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                        <span class="p">)</span>
                         <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                     <span class="p">]</span>
 
@@ -2948,8 +2956,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">271</span>
-<span class="normal">272</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">272</span>
 <span class="normal">273</span>
 <span class="normal">274</span>
 <span class="normal">275</span>
@@ -3004,7 +3011,12 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">324</span>
 <span class="normal">325</span>
 <span class="normal">326</span>
-<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCSVParse</span><span class="p">:</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateCSVParse</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
     <span class="n">downloader</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">downloader</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
@@ -3045,18 +3057,22 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
         <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
                 <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                    <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                    <span class="p">(</span>
+                        <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                        <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                    <span class="p">)</span>
                     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                 <span class="p">]</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]):</span>
                 <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                    <span class="k">else</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                    <span class="p">(</span>
+                        <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                        <span class="k">else</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
+                    <span class="p">)</span>
                     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                 <span class="p">]</span>
 
@@ -3084,9 +3100,9 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -3124,8 +3140,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">235</span>
-<span class="normal">236</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">236</span>
 <span class="normal">237</span>
 <span class="normal">238</span>
 <span class="normal">239</span>
@@ -3133,7 +3148,8 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">241</span>
 <span class="normal">242</span>
 <span class="normal">243</span>
-<span class="normal">244</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
+<span class="normal">244</span>
+<span class="normal">245</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CSVResourceConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;text/csv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -3234,8 +3250,7 @@ this model.</p>
 </details>
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 48</span>
-<span class="normal"> 49</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 49</span>
 <span class="normal"> 50</span>
 <span class="normal"> 51</span>
 <span class="normal"> 52</span>
@@ -3352,7 +3367,8 @@ this model.</p>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
-<span class="normal">166</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DialectFormatting</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DialectFormatting</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Dialect and formatting parameters for CSV.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv-fmt-params)</span>
@@ -3667,8 +3683,7 @@ this model.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
-<span class="normal">158</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
@@ -3676,7 +3691,8 @@ this model.</p>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
-<span class="normal">166</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
 <span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">validate_dialect_base</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
@@ -3721,8 +3737,7 @@ this model.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
-<span class="normal">17</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
@@ -3736,7 +3751,8 @@ this model.</p>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">QuoteConstants</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">QuoteConstants</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV module `QUOTE_*` constants.&quot;&quot;&quot;</span>
 
     <span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_ALL&quot;</span>
@@ -3864,14 +3880,14 @@ this model.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">,</span>
@@ -3916,8 +3932,7 @@ for more information.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
-<span class="normal">170</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
 <span class="normal">173</span>
@@ -3951,7 +3966,8 @@ for more information.</p>
 <span class="normal">201</span>
 <span class="normal">202</span>
 <span class="normal">203</span>
-<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReaderConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="normal">204</span>
+<span class="normal">205</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReaderConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV DictReader configuration parameters.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv.DictReader)</span>
@@ -4111,12 +4127,12 @@ for more information.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">247</span>
-<span class="normal">248</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">248</span>
 <span class="normal">249</span>
 <span class="normal">250</span>
 <span class="normal">251</span>
-<span class="normal">252</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCSVParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+<span class="normal">252</span>
+<span class="normal">253</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateCSVParse</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from CSV Parse.&quot;&quot;&quot;</span>
 
     <span class="n">content</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -4245,7 +4261,7 @@ for more information.</p>
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.c18c5fb9.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.e1c3ead8.min.js"></script>
       
     
   </body>
