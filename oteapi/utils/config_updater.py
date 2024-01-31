@@ -1,4 +1,5 @@
 """Utility functions for updating GenericConfig instances."""
+
 from typing import TYPE_CHECKING
 
 from oteapi.models.genericconfig import GenericConfig

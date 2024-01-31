@@ -1,4 +1,5 @@
 """AttrDict for specifying user credentials or secrets."""
+
 from typing import Annotated, Optional
 
 from pydantic import BaseModel, Field, PlainSerializer, SecretStr
@@ -8,9 +9,9 @@ from oteapi.settings import settings
 TogglableSecretStr = Annotated[
     SecretStr,
     PlainSerializer(
-        lambda value: value.get_secret_value()
-        if settings.expose_secrets
-        else str(value),
+        lambda value: (
+            value.get_secret_value() if settings.expose_secrets else str(value)
+        ),
         return_type=str,
         when_used="json-unless-none",
     ),

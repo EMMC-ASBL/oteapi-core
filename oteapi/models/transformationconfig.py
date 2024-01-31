@@ -4,6 +4,7 @@ A transformation status data model is provided as well.
 This data model represents what should be returned from the strategy's `status()`
 method.
 """
+
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional

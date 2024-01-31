@@ -1,4 +1,5 @@
 """Strategy class for text/csv."""
+
 import csv
 from collections import defaultdict
 from collections.abc import Hashable
@@ -309,18 +310,22 @@ class CSVParseStrategy:
             for key in list(content):
                 if any(isinstance(value, float) for value in content[key]):
                     content[key] = [
-                        float(value)
-                        if (value or value == 0.0 or value == 0)
-                        and value != csvreader.restval
-                        else float("nan")
+                        (
+                            float(value)
+                            if (value or value == 0.0 or value == 0)
+                            and value != csvreader.restval
+                            else float("nan")
+                        )
                         for value in content[key]
                     ]
                     continue
                 if any(isinstance(value, int) for value in content[key]):
                     content[key] = [
-                        int(value)
-                        if (value or value == 0) and value != csvreader.restval
-                        else csvreader.restval
+                        (
+                            int(value)
+                            if (value or value == 0) and value != csvreader.restval
+                            else csvreader.restval
+                        )
                         for value in content[key]
                     ]
 

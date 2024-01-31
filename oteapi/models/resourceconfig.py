@@ -1,4 +1,5 @@
 """Pydantic Resource Configuration Data Model."""
+
 from typing import Annotated, Optional
 
 from pydantic import Field, model_validator

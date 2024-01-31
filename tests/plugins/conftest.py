@@ -1,4 +1,5 @@
 """Pytest fixture for all `oteapi.plugins` tests."""
+
 from typing import TYPE_CHECKING
 
 import pytest

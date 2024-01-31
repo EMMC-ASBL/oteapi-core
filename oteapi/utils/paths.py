@@ -1,4 +1,5 @@
 """Utility functions for handling paths."""
+
 import warnings
 from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING
