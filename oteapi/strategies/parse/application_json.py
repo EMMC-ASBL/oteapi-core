@@ -1,16 +1,14 @@
 """Strategy class for application/json."""
 import json
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import Literal, Optional
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig
+from oteapi.models.parserconfig import ParserConfig
 from oteapi.plugins import create_strategy
-
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
 
 
 class JSONConfig(AttrDict):
@@ -25,19 +23,19 @@ class JSONConfig(AttrDict):
     )
 
 
-class JSONResourceConfig(ResourceConfig):
+class JSONParserConfig(ParserConfig):
     """JSON parse strategy filter config."""
 
-    mediaType: Literal["application/json"] = Field(
-        "application/json",
-        description=ResourceConfig.model_fields["mediaType"].description,
+    parserType: Literal["parser/json"] = Field(
+        "parser/json",
+        description=ParserConfig.model_fields["parserType"].description,
     )
     configuration: JSONConfig = Field(
-        JSONConfig(), description="JSON parse strategy-specific configuration."
+        ..., description="JSON parse strategy-specific configuration."
     )
 
 
-class SessionUpdateJSONParse(SessionUpdate):
+class AttrDictJSONParse(AttrDict):
     """Class for returning values from JSON Parse."""
 
     content: dict = Field(..., description="Content of the JSON document.")
@@ -49,17 +47,17 @@ class JSONDataParseStrategy:
 
     **Registers strategies**:
 
-    - `("mediaType", "application/json")`
+    - `("strategyType", "parser/json")`
 
     """
 
-    parse_config: JSONResourceConfig
+    parse_config: JSONParserConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDictJSONParse:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDictJSONParse(content={})
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateJSONParse:
+    def get(self) -> AttrDictJSONParse:
         """Parse json."""
         downloader = create_strategy("download", self.parse_config)
         output = downloader.get()
@@ -67,5 +65,5 @@ class JSONDataParseStrategy:
         content = cache.get(output["key"])
 
         if isinstance(content, dict):
-            return SessionUpdateJSONParse(content=content)
-        return SessionUpdateJSONParse(content=json.loads(content))
+            return AttrDictJSONParse(content=content)
+        return AttrDictJSONParse(content=json.loads(content))

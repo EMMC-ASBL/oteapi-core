@@ -1,7 +1,7 @@
 """Utility functions for updating GenericConfig instances."""
 from typing import TYPE_CHECKING
 
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.genericconfig import AttrDict
 
 if TYPE_CHECKING:
     from typing import Any, Dict
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 def populate_config_from_session(
     session: "Dict[str, Any]",
-    config: GenericConfig,
+    config: AttrDict,
 ) -> None:
     """
     Update the configuration attributes of a GenericConfig object
@@ -25,13 +25,17 @@ def populate_config_from_session(
     keys_to_update = list(session.keys())
 
     for key in keys_to_update:
-        if key in config.configuration and session[key] != config.configuration[key]:
+        if (
+            "configuration" in config
+            and key in config["configuration"]
+            and session[key] != config["configuration"][key]
+        ):
             raise ValueError(
                 f"Key '{key}' in config has different value than in session."
             )
 
         try:
-            config.configuration[key] = session[key]
+            config["configuration"][key] = session[key]
         except Exception as error:
             raise RuntimeError(
                 f"Failed to update key '{key}' in the config. Reason: {str(error)}"

@@ -5,11 +5,11 @@ from pydantic import Field, FileUrl, field_validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.utils.paths import uri_to_path
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    pass
 
 
 class FileConfig(AttrDict):
@@ -56,7 +56,7 @@ class FileResourceConfig(ResourceConfig):
         return value
 
 
-class SessionUpdateFile(SessionUpdate):
+class AttrDictFile(AttrDict):
     """Class for returning values from Download File strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
@@ -74,11 +74,11 @@ class FileStrategy:
 
     download_config: FileResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateFile:
+    def get(self) -> AttrDictFile:
         """Read local file."""
         filename = uri_to_path(self.download_config.downloadUrl).resolve()
 
@@ -95,4 +95,4 @@ class FileStrategy:
                 else filename.read_bytes()
             )
 
-        return SessionUpdateFile(key=key)
+        return AttrDictFile(key=key)

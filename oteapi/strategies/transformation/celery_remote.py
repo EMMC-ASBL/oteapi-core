@@ -1,21 +1,16 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 import os
-from typing import TYPE_CHECKING, Dict, Literal
+from typing import TYPE_CHECKING, Literal
 
 from celery import Celery
 from celery.result import AsyncResult
 from pydantic import ConfigDict, Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import (
-    AttrDict,
-    SessionUpdate,
-    TransformationConfig,
-    TransformationStatus,
-)
+from oteapi.models import AttrDict, TransformationConfig, TransformationStatus
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Optional, Union
+    from typing import Any, Union
 
 # Connect Celery to the currently running Redis instance
 
@@ -53,7 +48,7 @@ class CeleryConfig(AttrDict):
     args: list = Field(..., description="List of arguments for the task.")
 
 
-class SessionUpdateCelery(SessionUpdate):
+class AttrDictCelery(AttrDict):
     """Class for returning values from a Celery task."""
 
     celery_task_id: str = Field(..., description="A Celery task identifier.")
@@ -83,49 +78,19 @@ class CeleryRemoteStrategy:
 
     transformation_config: CeleryStrategyConfig
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateCelery:
+    def get(self) -> AttrDictCelery:
         """Run a job, return a job ID."""
-        if session:
-            self._use_session(session)
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
             **self.transformation_config.configuration.model_dump()
         )
-        return SessionUpdateCelery(celery_task_id=result.task_id)
+        return AttrDictCelery(celery_task_id=result.task_id)
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize a job."""
-        return SessionUpdate()
+        return AttrDict()
 
     def status(self, task_id: str) -> TransformationStatus:
         """Get job status."""
         result = AsyncResult(id=task_id, app=CELERY_APP)
         return TransformationStatus(id=task_id, status=result.state)
-
-    def _use_session(self, session: "Dict[str, Any]") -> None:
-        """Update the configuration with values from the sesssion.
-
-        Check all fields (non-aliased and aliased) in `CeleryConfig` if they exist in
-        the session. Override the given field values in the current strategy-specific
-        configuration (the `CeleryConfig` instance) with the values found in the
-        session.
-
-        Parameters:
-            session: The current OTE session.
-
-        """
-        alias_mapping: dict[str, str] = {
-            getattr(field, "alias", field_name): field_name
-            for field_name, field in CeleryConfig.model_fields.items()
-        }
-
-        fields = set(CeleryConfig.model_fields)
-        fields |= {_.alias for _ in CeleryConfig.model_fields.values() if _.alias}
-
-        for field in fields:
-            if field in session:
-                setattr(
-                    self.transformation_config.configuration,
-                    alias_mapping[field],
-                    session[field],
-                )

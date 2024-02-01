@@ -93,7 +93,7 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.image/eps" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
 "oteapi.application/vnd.sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
 "oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
-"oteapi.application/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
+"oteapi.parser/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
 "oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
 [project.entry-points."oteapi.transformation"]
 "oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"

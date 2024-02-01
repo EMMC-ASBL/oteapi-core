@@ -4,10 +4,10 @@ from typing import TYPE_CHECKING, Literal
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import FilterConfig, SessionUpdate
+from oteapi.models import AttrDict, FilterConfig
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    pass
 
 
 class SqlQueryFilterConfig(FilterConfig):
@@ -20,7 +20,7 @@ class SqlQueryFilterConfig(FilterConfig):
     query: str = Field(..., description="A SQL query string.")
 
 
-class SessionUpdateSqlQuery(SessionUpdate):
+class AttrDictSqlQuery(AttrDict):
     """Class for returning values from SQL Query data model."""
 
     sqlquery: str = Field(..., description="A SQL query string.")
@@ -38,13 +38,10 @@ class SQLQueryFilter:
 
     filter_config: SqlQueryFilterConfig
 
-    def initialize(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdateSqlQuery:
+    def initialize(self) -> AttrDictSqlQuery:
         """Initialize strategy."""
-        return SessionUpdateSqlQuery(sqlquery=self.filter_config.query)
+        return AttrDictSqlQuery(sqlquery=self.filter_config.query)
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def get(self) -> AttrDict:
         """Execute strategy and return a dictionary."""
-        return SessionUpdate()
+        return AttrDict()

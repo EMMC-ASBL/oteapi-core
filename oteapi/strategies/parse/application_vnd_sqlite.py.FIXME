@@ -7,11 +7,11 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    pass
 
 
 class SqliteParseConfig(AttrDict):
@@ -57,7 +57,7 @@ def create_connection(db_file: Path) -> sqlite3.Connection:
         raise sqlite3.Error("Could not connect to given SQLite DB.") from exc
 
 
-class SessionUpdateSqLiteParse(SessionUpdate):
+class AttrDictSqLiteParse(AttrDict):
     """Configuration model for SqLiteParse."""
 
     result: list = Field(..., description="List of results from the query.")
@@ -78,23 +78,18 @@ class SqliteParseStrategy:
 
     parse_config: SqliteParserResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdateSqLiteParse:
+    def get(self) -> AttrDictSqLiteParse:
         """Parse SQLite query responses."""
-        if session:
-            self._use_filters(session)
-        session = session if session else {}
 
         # Retrieve SQLite file
         download_config = self.parse_config.model_copy(deep=True)
         del download_config.configuration
         downloader = create_strategy("download", download_config)
-        session.update(downloader.initialize(session))
+        downloader.initialize(session)
         cache_key = downloader.get(session).get("key", "")
 
         cache = DataCache(self.parse_config.configuration.datacache_config)
@@ -103,12 +98,4 @@ class SqliteParseStrategy:
             cursor = connection.cursor()
             result = cursor.execute(self.parse_config.configuration.sqlquery).fetchall()
             connection.close()
-        return SessionUpdateSqLiteParse(result=result)
-
-    def _use_filters(self, session: "Dict[str, Any]") -> None:
-        """Update `config` according to filter values found in the session."""
-        if "sqlquery" in session and not self.parse_config.configuration.sqlquery:
-            if not isinstance(session["sqlquery"], str):
-                raise TypeError("sqlquery (found in session) must be a string.")
-            # Use SQL query available in session
-            self.parse_config.configuration.sqlquery = session["sqlquery"]
+        return AttrDictSqLiteParse(result=result)

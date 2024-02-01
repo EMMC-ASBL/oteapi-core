@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field, field_validator
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
 
@@ -244,7 +244,7 @@ class CSVResourceConfig(ResourceConfig):
     )
 
 
-class SessionUpdateCSVParse(SessionUpdate):
+class AttrDictCSVParse(AttrDict):
     """Class for returning values from CSV Parse."""
 
     content: dict[Union[str, None], list[Any]] = Field(
@@ -264,11 +264,11 @@ class CSVParseStrategy:
 
     parse_config: CSVResourceConfig
 
-    def initialize(self, session: "Optional[dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[dict[str, Any]]" = None) -> SessionUpdateCSVParse:
+    def get(self) -> AttrDictCSVParse:
         """Parse CSV."""
         downloader = create_strategy("download", self.parse_config)
         output = downloader.get()
@@ -324,4 +324,4 @@ class CSVParseStrategy:
                         for value in content[key]
                     ]
 
-            return SessionUpdateCSVParse(content=content)
+            return AttrDictCSVParse(content=content)

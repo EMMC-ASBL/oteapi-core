@@ -68,7 +68,7 @@ class StrategyType(Enum):
             "filter": "filterType",
             "function": "functionType",
             "mapping": "mappingType",
-            "parse": "mediaType",
+            "parse": "parserType",
             "resource": "accessService",
             "transformation": "transformationType",
         }[self.value]

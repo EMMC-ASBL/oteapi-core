@@ -7,16 +7,15 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterable
-    from typing import Any
 
     from openpyxl.worksheet.worksheet import Worksheet
 
 
-class SessionUpdateXLSXParse(SessionUpdate):
+class AttrDictXLSXParse(AttrDict):
     """Class for returning values from XLSXParse."""
 
     data: Dict[str, list] = Field(
@@ -166,11 +165,11 @@ class XLSXParseStrategy:
 
     parse_config: XLSXParseParserConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateXLSXParse:
+    def get(self) -> AttrDictXLSXParse:
         """Parses selected region of an excel file.
 
         Returns:
@@ -231,6 +230,6 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return SessionUpdateXLSXParse(
+        return AttrDictXLSXParse(
             data={key: value for key, value in zip(header, transposed)}
         )

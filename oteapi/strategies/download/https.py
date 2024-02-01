@@ -6,10 +6,10 @@ from pydantic import AnyHttpUrl, Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    pass
 
 
 class HTTPSConfig(AttrDict):
@@ -35,7 +35,7 @@ class HTTPSResourceConfig(ResourceConfig):
     )
 
 
-class SessionUpdateHTTPS(SessionUpdate):
+class AttrDictHTTPS(AttrDict):
     """Class for returning values from Download HTTPS strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
@@ -54,11 +54,11 @@ class HTTPSStrategy:
 
     download_config: HTTPSResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateHTTPS:
+    def get(self) -> AttrDictHTTPS:
         """Download via http/https and store on local cache."""
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -71,4 +71,4 @@ class HTTPSStrategy:
             )
             key = cache.add(req.content)
 
-        return SessionUpdateHTTPS(key=key)
+        return AttrDictHTTPS(key=key)

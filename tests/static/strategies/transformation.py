@@ -1,12 +1,8 @@
 """Transformation test strategy class."""
-from typing import TYPE_CHECKING
 
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import TransformationConfig, TransformationStatus
-
-if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+from oteapi.models import AttrDict, TransformationConfig, TransformationStatus
 
 
 @dataclass
@@ -15,15 +11,13 @@ class TransformationTestStrategy:
 
     transformation_config: TransformationConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run transformation strategy."""
-        return {}
+        return AttrDict()
 
     def status(self, task_id: str) -> TransformationStatus:
         """Return status for transformation job."""

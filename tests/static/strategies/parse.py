@@ -3,10 +3,10 @@ from typing import TYPE_CHECKING
 
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import ResourceConfig
+from oteapi.models import AttrDict, ResourceConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+    pass
 
 
 @dataclass
@@ -15,12 +15,10 @@ class ParseTestStrategy:
 
     parse_config: ResourceConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run parse strategy."""
-        return {}
+        return AttrDict()

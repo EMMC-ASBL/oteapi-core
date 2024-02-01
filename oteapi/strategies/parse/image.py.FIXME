@@ -13,11 +13,11 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
+    pass
 
 
 class ImageParserConfig(AttrDict):
@@ -83,7 +83,7 @@ class SupportedFormat(Enum):
     eps = "EPS"
 
 
-class SessionUpdateImageParse(SessionUpdate):
+class AttrDictImageParse(AttrDict):
     """Configuration model for ImageParse.
 
     See
@@ -124,7 +124,7 @@ class ImageDataParseStrategy:
     It also supports simple cropping and image conversions.
 
     The key to the new array and other metadata is stored in the session. See
-    [`SessionUpdateImageParse`][oteapi.strategies.parse.image.SessionUpdateImageParse]
+    [`AttrDictImageParse`][oteapi.strategies.parse.image.AttrDictImageParse]
     for more info.
 
     **Registers strategies**:
@@ -141,19 +141,15 @@ class ImageDataParseStrategy:
 
     parse_config: ImageParserResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdateImageParse:
+    def get(self) -> AttrDictImageParse:
         """Execute the strategy."""
-        if not session:
-            session = {}
 
         config = self.parse_config.configuration
-        crop = config.crop if config.crop else session.get("imagecrop")
+        crop = config.crop
 
         mime_format = self.parse_config.mediaType.split("/")[1]
         image_format = SupportedFormat[mime_format].value
@@ -214,7 +210,7 @@ class ImageDataParseStrategy:
             else:
                 image_info = {}
 
-            session_update = SessionUpdateImageParse(
+            session_update = AttrDictImageParse(
                 image_key=image_key,
                 image_size=image.size,
                 image_mode=image.mode,

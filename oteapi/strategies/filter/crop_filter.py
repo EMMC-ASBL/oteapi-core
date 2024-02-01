@@ -4,10 +4,10 @@ from typing import TYPE_CHECKING, Literal, Tuple
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, FilterConfig, SessionUpdate
+from oteapi.models import AttrDict, FilterConfig
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+    pass
 
 
 class CropImageConfig(AttrDict):
@@ -30,7 +30,7 @@ class CropImageFilterConfig(FilterConfig):
     )
 
 
-class SessionUpdateCropFilter(SessionUpdate):
+class AttrDictCropFilter(AttrDict):
     """Return model for `CropImageFilter`."""
 
     imagecrop: Tuple[int, int, int, int] = Field(
@@ -50,18 +50,12 @@ class CropImageFilter:
 
     filter_config: CropImageFilterConfig
 
-    def initialize(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdateCropFilter:
+    def initialize(self) -> AttrDictCropFilter:
         """Initialize strategy and return a dictionary."""
-        return SessionUpdateCropFilter(
+        return AttrDictCropFilter(
             imagecrop=self.filter_config.configuration.crop,
         )
 
-    def get(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdate:
+    def get(self) -> AttrDict:
         """Execute strategy and return a dictionary"""
-        return SessionUpdate()
+        return AttrDict()

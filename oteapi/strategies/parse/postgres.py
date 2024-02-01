@@ -1,11 +1,11 @@
 """Strategy class for application/vnd.postgresql"""
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 import psycopg
 from pydantic import AnyUrl, BaseModel, Field, model_validator
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
 
 class PostgresConfig(AttrDict):
@@ -113,7 +113,7 @@ def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connec
         raise psycopg.Error("Could not connect to given Postgres DB.") from exc
 
 
-class SessionUpdatePostgresResource(SessionUpdate):
+class AttrDictPostgresResource(AttrDict):
     """Configuration model for PostgresResource."""
 
     result: list = Field(..., description="List of results from the query.")
@@ -134,28 +134,15 @@ class PostgresResourceStrategy:
 
     resource_config: PostgresResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdatePostgresResource:
+    def get(self) -> AttrDictPostgresResource:
         """Resource Postgres query responses."""
-        if session:
-            self._use_filters(session)
-        session = session if session else {}
 
         connection = create_connection(self.resource_config)
         cursor = connection.cursor()
         result = cursor.execute(self.resource_config.configuration.sqlquery).fetchall()
         connection.close()
-        return SessionUpdatePostgresResource(result=result)
-
-    def _use_filters(self, session: "Dict[str, Any]") -> None:
-        """Update `config` according to filter values found in the session."""
-        if "sqlquery" in session and not self.resource_config.configuration.sqlquery:
-            if not isinstance(session["sqlquery"], str):
-                raise TypeError("sqlquery (found in session) must be a string")
-            # Use SQL query available in session
-            self.resource_config.configuration.sqlquery = session["sqlquery"]
+        return AttrDictPostgresResource(result=result)

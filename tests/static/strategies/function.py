@@ -3,10 +3,10 @@ from typing import TYPE_CHECKING
 
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import FunctionConfig
+from oteapi.models import AttrDict, FunctionConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+    pass
 
 
 @dataclass
@@ -15,12 +15,10 @@ class FunctionTestStrategy:
 
     function_config: FunctionConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run function strategy."""
-        return {}
+        return AttrDict()
