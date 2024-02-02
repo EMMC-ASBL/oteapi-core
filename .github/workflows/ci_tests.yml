@@ -101,6 +101,7 @@ jobs:
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: linux
 
@@ -108,6 +109,7 @@ jobs:
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: linux-strategies
 
@@ -152,6 +154,7 @@ jobs:
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: windows
 
@@ -159,5 +162,6 @@ jobs:
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: windows-strategies
