@@ -71,9 +71,7 @@ class JSONDataParseStrategy:
         """Parse json."""
         downloader = create_strategy("download", dict(self.parse_config.configuration))
         output = downloader.get()
-        print(output)
-        # cache = DataCache(self.parse_config.configuration.datacache_config)
-        cache = DataCache(downloader.download_config.configuration.datacache_config)
+        cache = DataCache(self.parse_config.configuration.datacache_config)
         content = cache.get(output["key"])
 
         if isinstance(content, dict):
