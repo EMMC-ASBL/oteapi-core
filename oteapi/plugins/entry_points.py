@@ -70,7 +70,7 @@ class StrategyType(Enum):
             "function": "functionType",
             "mapping": "mappingType",
             "parse": "parserType",
-            "resource": "accessService",
+            "resource": "resourceType",
             "transformation": "transformationType",
         }[self.value]
 
@@ -95,7 +95,7 @@ class StrategyType(Enum):
             "functionType": cls.FUNCTION,
             "mappingType": cls.MAPPING,
             "parserType": cls.PARSE,
-            "accessService": cls.RESOURCE,
+            "resourceType": cls.RESOURCE,
             "transformationType": cls.TRANSFORMATION,
         }[strategy_type_field]
 
