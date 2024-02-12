@@ -8,15 +8,15 @@ from pydantic.dataclasses import dataclass
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig
 from oteapi.models.parserconfig import ParserConfig
-from oteapi.models.resourceconfig import ResourceConfig
 from oteapi.plugins import create_strategy
 
 
 class JSONConfig(AttrDict):
     """JSON parse-specific Configuration Data Model."""
-    
-    downloadUrl: AnyHttpUrl = Field(  # type: ignore[assignment]
-        ..., description="The HTTP(S) URL, which will be downloaded."
+        
+    downloadUrl: Optional[AnyHttpUrl] = Field(
+        None,
+        description="The HTTP(S) URL, which will be downloaded."
     )
     mediaType: Optional[str] = Field(
         "application/json",
