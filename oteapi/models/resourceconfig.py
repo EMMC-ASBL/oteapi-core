@@ -23,34 +23,43 @@ class ResourceConfig(GenericConfig, SecretConfig):
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
-            "Definition: The URL of the downloadable file in a given format. E.g. CSV "
-            "file or RDF file.\n\nUsage: `downloadURL` *SHOULD* be used for the URL at"
-            " which this distribution is available directly, typically through a HTTPS"
-            " GET request or SFTP.\n\n"
-            "Ref: cdat:downloadURL"
+            "The URL of the downloadable file in a given format. E.g. CSV "
+            "file or RDF file.\n\n"
+            "Usage: `downloadURL` *SHOULD* be used for the URL at which this "
+            "distribution is available directly, typically through a HTTPS "
+            "GET request or SFTP.\n\n"
+            "Range: Resource\n\n"
+            "Example: http://dcat.example.org/files/001.csv\n\n"
+            "Reference: cdat:downloadURL"
         ),
     )
     mediaType: Optional[str] = Field(
         None,
         description=(
             "The media type of the distribution as defined by IANA "
-            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]"
-            ".\n\nUsage: This property *SHOULD* be used when the media"
+            "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]\n\n"
+            ".Usage: This property *SHOULD* be used when the media"
             " type of the distribution is defined in IANA "
             "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].\n\n"
-            "Ref: dcat:mediaType"
+            "Example: text/csv\n\n"
+            "Note: In a data catalog should the full IRI be used, i.e. "
+            "`http://www.iana.org/assignments/media-types/` should be "
+            "pre-pended to the value in this field."
+            "Reference: dcat:mediaType"
         ),
     )
     accessUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
             "A URL of the resource that gives access to a distribution of "
-            "the dataset. E.g. landing page, feed, SPARQL endpoint.\n\nUsage: "
-            "`accessURL` *SHOULD* be used for the URL of a service or location that "
-            "can provide access to this distribution, typically through a Web form, "
-            "query or API call.\n`downloadURL` is preferred for direct links to "
-            "downloadable resources.\n\n"
-            "Ref: dcat:accessURL"
+            "the dataset. E.g. landing page, feed, SPARQL endpoint.\n\n"
+            "Usage: `accessURL` *SHOULD* be used for the URL of a service "
+            "or location that can provide access to this distribution, "
+            "typically through a Web form, query or API call.\n"
+            "`downloadURL` is preferred for direct links to downloadable "
+            "resources.\n\n"
+            "Example: http://dcat.example.org/dataset-002.html\n\n"
+            "Reference: dcat:accessURL"
         ),
     )
     accessService: Optional[str] = Field(
@@ -60,7 +69,9 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "dataset.\n\n"
             "Usage: SHOULD be used to link to a description of a "
             "dcat:DataService that can provide access to this distribution.\n\n"
-            "Ref: dcat:accessService"
+            "Range: Resource\n\n"
+            "Example: http://dcat.example.org/table-service-005\n\n"
+            "Reference: dcat:accessService"
         ),
     )
     license: Optional[str] = Field(
@@ -70,8 +81,10 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "available.\n\n"
             "Usage: Information about licenses and rights MAY be provided "
             "for the Resource. See also guidance at [9. License and rights "
-            "statements](https://www.w3.org/TR/vocab-dcat-3/#license-rights)."
-            "\n\nRef: dcterms:license"
+            "statements](https://www.w3.org/TR/vocab-dcat-3/#license-rights).\n\n"
+            "Range: URL to license document (dcterms:LicenseDocument).\n\n"
+            "Example: https://creativecommons.org/licenses/by/4.0/\n\n"
+            "Reference: dcterms:license"
         ),
     )
     accessRights: Optional[str] = Field(
@@ -81,8 +94,11 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "of its security status.\n\n"
             "Usage: Information about licenses and rights MAY be provided "
             "for the Resource. See also guidance at [9. License and rights "
-            "statements](https://www.w3.org/TR/vocab-dcat-3/#license-rights)."
-            "\n\nRef:dcterms:accessRights"
+            "statements](https://www.w3.org/TR/vocab-dcat-3/#license-rights).\n\n"
+            "Range: URL to document describing the license rights "
+            "(dcterm:RightsStatement).\n\n"
+            "Example: http://publications.europa.eu/resource/authority/access-right/PUBLIC\n\n"
+            "Reference: dcterms:accessRights"
         ),
     )
     publisher: Optional[str] = Field(
@@ -91,14 +107,27 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "The entity responsible for making the resource/item "
             "available.\n\n"
             "Usage: Resources of type "
-            "[foaf:Agent](http://xmlns.com/foaf/0.1/Agent) are recommended as "
-            "values for this property.\n\n"
-            "Ref: dcterms:publisher"
+            "[foaf:Agent](http://xmlns.com/foaf/0.1/Agent) are recommended "
+            "as values for this property.\n\n"
+            "Example: http://emmc.eu/\n\n"
+            "Reference: dcterms:publisher"
+        ),
+    )
+    creator: Optional[str] = Field(
+        None,
+        description=(
+            "The entity responsible for producing the resource.\n\n"
+            "Usage: Resources of type foaf:Agent are recommended as values "
+            "for this property.\n\n"
+            "Note: For a researcher, this could be the orcid.  For an "
+            "instrument, it would be an URL identifying the instrument.\n\n"
+            "Example: https://orcid.org/0000-0002-1560-809X\n\n"
+            "Reference: dcterms:creator"
         ),
     )
     title: Optional[str] = Field(
         None,
-        description="A name given to the resource.\n\nRef: dcterms:title",
+        description="A name given to the resource.\n\nReference: dcterms:title",
     )
     #
     # For now `description` is commented out to avoid name conflice
@@ -108,7 +137,8 @@ class ResourceConfig(GenericConfig, SecretConfig):
     # description: Optional[str] = Field(
     #     None,
     #     description=(
-    #         "A free-text account of the resource.\n\nRef: dcterms:description"
+    #         "A free-text account of the resource.\n\n"
+    #         "Reference: dcterms:description"
     #     ),
     # )
     keyword: Optional[List[str]] = Field(
@@ -117,20 +147,32 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "A keyword or tag describing the resource.\n\n"
             "Note: Keywords are useful for making the resource easier "
             "searchable.\n\n"
-            "Ref: dcat:keyword"
+            "Reference: dcat:keyword"
         ),
     )
     conformsTo: Optional[str] = Field(
         None,
         description=(
-            "An established standard to which the distribution "
-            "conforms.\n\n"
+            "An established standard to which the distribution conforms.\n\n"
             "Usage: This property SHOULD be used to indicate the model, "
             "schema, ontology, view or profile that this representation "
             "of a dataset conforms to.\n"
             "This is (generally) a complementary concern to the media-type "
             "or format.\n\n"
-            "Ref: dcterms:conformsTo"
+            "Range: URL to the standard (dcterms:Standard).\n\n"
+            "Example: https://www.w3.org/TR/owl2-overview/\n\n"
+            "Reference: dcterms:conformsTo"
+        ),
+    )
+    wasGeneratedBy: Optional[str] = Field(
+        None,
+        description=(
+            "Generation is the completion of production of a new entity by "
+            "an activity. This entity did not exist before generation and "
+            "becomes available for usage after this generation.\n\n"
+            "Range: URL referring generating activity (prov:Activity)\n\n"
+            "Example: http://www.ntnu.edu/temgemini/transmission-electron-microscopy\n\n"
+            "Reference: prov:wasGeneratedBy"
         ),
     )
 
