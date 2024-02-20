@@ -20,10 +20,6 @@ def test_json(static_files: "Path") -> None:
 
     sample_file = static_files / "sample2.json"
 
-    config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "application/json",
-    }
     parser: "IParseStrategy" = JSONDataParseStrategy(
         JSONParserConfig(
             parserType="parser/json", configuration=JSONConfig(datacache_config=None)

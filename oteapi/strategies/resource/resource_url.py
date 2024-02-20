@@ -36,8 +36,8 @@ class ResourceURLStrategy:
 
     def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
     def get(self) -> AttrDict:
         """resource distribution."""
-        return dict(self.resource_config)
+        return AttrDict(self.resource_config)
