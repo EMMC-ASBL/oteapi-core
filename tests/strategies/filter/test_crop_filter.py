@@ -40,10 +40,10 @@ def test_crop_filter(static_files: "Path") -> None:
 
     # Run pipeline = image_parser > crop_filter
     session = {}
-    session.update(crop_filter.initialize(session))
-    session.update(image_parser.initialize(session))
-    session.update(image_parser.get(session))
-    session.update(crop_filter.get(session))
+    session.update(crop_filter.initialize())
+    session.update(image_parser.initialize())
+    session.update(image_parser.get())
+    session.update(crop_filter.get())
 
     cache = DataCache()
     image_key = session["image_key"]

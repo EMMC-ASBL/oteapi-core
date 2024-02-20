@@ -35,18 +35,18 @@ def test_mapping() -> None:
 
     session = {}
 
-    session.update(MappingStrategy(conf2).initialize(session))
+    session.update(MappingStrategy(conf2).initialize())
 
     assert session["prefixes"] == conf2.prefixes
     assert sorted(session["triples"]) == sorted(conf2.triples)
 
-    session.update(MappingStrategy(conf1).initialize(session))
+    session.update(MappingStrategy(conf1).initialize())
 
     assert session["prefixes"] == all_prefixes
     assert sorted(session["triples"]) == sorted(all_triples)
 
-    session.update(MappingStrategy(conf1).get(session))
-    session.update(MappingStrategy(conf2).get(session))
+    session.update(MappingStrategy(conf1).get())
+    session.update(MappingStrategy(conf2).get())
 
     assert session["prefixes"] == all_prefixes
     assert sorted(session["triples"]) == sorted(all_triples)
