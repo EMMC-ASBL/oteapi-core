@@ -5,7 +5,6 @@ from typing import Literal
 from pydantic import AnyHttpUrl, Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict
 from oteapi.models.resourceconfig import ResourceConfig
 
 
