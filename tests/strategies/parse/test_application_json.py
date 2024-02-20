@@ -1,4 +1,5 @@
 """Tests the parse strategy for JSON."""
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:

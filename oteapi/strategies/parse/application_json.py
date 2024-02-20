@@ -1,4 +1,5 @@
 """Strategy class for application/json."""
+
 import json
 from typing import Literal, Optional
 

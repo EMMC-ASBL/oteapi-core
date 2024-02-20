@@ -1,4 +1,5 @@
 """Pydantic TripleStore Configuration Data Model."""
+
 from typing import Annotated, Optional
 
 from pydantic import Field, model_validator
@@ -28,9 +29,9 @@ class TripleStoreConfig(GenericConfig, SecretConfig):
     agraphPort: int = Field(..., description="AllegroGraph port number.")
 
     # Exclude these inherited fields from serialization
-    token: Annotated[
-        ExcludeTogglableSecretStr, SecretConfig.model_fields["token"]
-    ] = SecretConfig.model_fields["token"].default
+    token: Annotated[ExcludeTogglableSecretStr, SecretConfig.model_fields["token"]] = (
+        SecretConfig.model_fields["token"].default
+    )
     client_id: Annotated[
         ExcludeTogglableSecretStr, SecretConfig.model_fields["client_id"]
     ] = SecretConfig.model_fields["client_id"].default

@@ -1,4 +1,5 @@
 """Tests the download strategy for 'sftp://'."""
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:

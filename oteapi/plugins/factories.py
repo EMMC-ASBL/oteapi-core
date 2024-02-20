@@ -2,6 +2,7 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
+
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig

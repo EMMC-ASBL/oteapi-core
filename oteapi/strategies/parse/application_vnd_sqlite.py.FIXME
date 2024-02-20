@@ -1,4 +1,5 @@
 """Strategy class for application/vnd.sqlite3."""
+
 import sqlite3
 from pathlib import Path
 from typing import TYPE_CHECKING, Literal, Optional

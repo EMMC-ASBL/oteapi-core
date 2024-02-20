@@ -1,4 +1,5 @@
 """Pydantic DataCache Configuration Data Model."""
+
 from pathlib import Path
 from typing import Optional
 

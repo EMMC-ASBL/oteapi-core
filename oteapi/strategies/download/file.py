@@ -1,4 +1,5 @@
 """Download strategy class for the `file` scheme."""
+
 from typing import TYPE_CHECKING, Optional
 
 from pydantic import Field, FileUrl, field_validator

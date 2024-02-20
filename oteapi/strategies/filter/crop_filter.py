@@ -1,4 +1,5 @@
 """Demo-filter strategy"""
+
 from typing import TYPE_CHECKING, Literal, Tuple
 
 from pydantic import Field

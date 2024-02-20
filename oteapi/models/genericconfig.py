@@ -1,4 +1,5 @@
 """Generic data model for configuration attributes."""
+
 import warnings
 from collections.abc import Iterable, Mapping, MutableMapping
 from typing import TYPE_CHECKING
