@@ -34,10 +34,10 @@ class ResourceURLStrategy:
 
     resource_config: ResourceURLConfig
 
-    def initialize(self) -> AttrDict:
+    def initialize(self) -> dict:
         """Initialize."""
-        return AttrDict()
+        return {}
 
-    def get(self) -> AttrDict:
+    def get(self) -> dict:
         """resource distribution."""
-        return AttrDict(self.resource_config)
+        return dict(self.resource_config)
