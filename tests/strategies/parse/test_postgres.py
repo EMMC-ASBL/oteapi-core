@@ -2,7 +2,32 @@ import psycopg
 import pytest
 
 from oteapi.strategies.parse.postgres import PostgresResourceStrategy
-
+sqlite_queries = [
+    (
+        "SELECT * FROM user_details WHERE user_details.user_id = 19;",
+        (
+            19,
+            "jenny0988",
+            "maria",
+            "morgan",
+            "Female",
+            "ec9ed18ae2a13fef709964af24bb60e6",
+            1,
+        ),
+    ),
+    (
+        "SELECT * FROM user_details WHERE user_details.user_id = 72;",
+        (
+            72,
+            "brown84",
+            "john",
+            "ross",
+            "Male",
+            "738cb4da81a2790a9a845f902a811ea2",
+            1,
+        ),
+    ),
+]
 
 @pytest.mark.parametrize(
     "query,expected",
