@@ -1,17 +1,14 @@
-"""Tests the parse strategy for JSON."""
-
 from typing import TYPE_CHECKING
+import json
+import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
-
     from oteapi.interfaces import IParseStrategy
 
 
 def test_json(static_files: "Path") -> None:
     """Test `application/json` parse strategy on local file."""
-    import json
-
     from oteapi.strategies.parse.application_json import (
         JSONConfig,
         JSONDataParseStrategy,
@@ -20,13 +17,20 @@ def test_json(static_files: "Path") -> None:
 
     sample_file = static_files / "sample2.json"
 
-    parser: "IParseStrategy" = JSONDataParseStrategy(
-        JSONParserConfig(
-            parserType="parser/json", configuration=JSONConfig(datacache_config=None)
-        )
+    # Initialize the JSONDataParseStrategy with the appropriate configuration
+    parser_config = JSONParserConfig(
+        parserType="parser/json",
+        configuration=JSONConfig(datacache_config=None, downloadUrl=sample_file.as_uri()),
     )
-    parser.initialize()
+    parser_strategy = JSONDataParseStrategy(parser_config)
+    parser_strategy.initialize()
 
-    test_data = json.loads(sample_file.read_text())
+    # Read the sample file content and parse it as JSON
+    with open(sample_file, "r") as file:
+        expected_content = json.load(file)
 
-    assert parser.get().content == test_data
+    # Get the parsed content from the strategy
+    parsed_content = parser_strategy.get().content
+
+    # Assert that the parsed content matches the expected content
+    assert parsed_content == expected_content
