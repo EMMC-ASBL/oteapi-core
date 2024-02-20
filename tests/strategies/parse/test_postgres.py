@@ -2,6 +2,7 @@ import psycopg
 import pytest
 
 from oteapi.strategies.parse.postgres import PostgresResourceStrategy
+
 sqlite_queries = [
     (
         "SELECT * FROM user_details WHERE user_details.user_id = 19;",
@@ -28,6 +29,7 @@ sqlite_queries = [
         ),
     ),
 ]
+
 
 @pytest.mark.parametrize(
     "query,expected",

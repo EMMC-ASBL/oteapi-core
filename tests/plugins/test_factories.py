@@ -121,6 +121,9 @@ def test_create_strategy(
                             if entry_point.type == StrategyType.RESOURCE
                             else "example.org"
                         ),
+                        entity="https://example.org",
+                        parserType="parser/json",
+                        resourceType="resource/url",
                     )
                     if strategy_type
                     in (

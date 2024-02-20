@@ -1,10 +1,8 @@
-from typing import TYPE_CHECKING
 import json
-import pytest
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pathlib import Path
-    from oteapi.interfaces import IParseStrategy
 
 
 def test_json(static_files: "Path") -> None:
@@ -20,7 +18,9 @@ def test_json(static_files: "Path") -> None:
     # Initialize the JSONDataParseStrategy with the appropriate configuration
     parser_config = JSONParserConfig(
         parserType="parser/json",
-        configuration=JSONConfig(datacache_config=None, downloadUrl=sample_file.as_uri()),
+        configuration=JSONConfig(
+            datacache_config=None, downloadUrl=sample_file.as_uri()
+        ),
     )
     parser_strategy = JSONDataParseStrategy(parser_config)
     parser_strategy.initialize()

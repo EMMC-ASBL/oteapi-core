@@ -103,8 +103,8 @@ def test_strategytype_methods() -> None:
         "filter": "filterType",
         "function": "functionType",
         "mapping": "mappingType",
-        "parse": "mediaType",
-        "resource": "accessService",
+        "parse": "parseType",
+        "resource": "resourceType",
         "transformation": "transformationType",
     }
 
