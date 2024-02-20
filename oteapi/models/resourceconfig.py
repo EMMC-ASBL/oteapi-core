@@ -19,10 +19,11 @@ class ResourceConfig(GenericConfig, SecretConfig):
         `accessUrl`/`accessService` MUST be specified.
 
     """
-    resourceType:  Optional[str] = Field(
-        None,
-       description="Type of registered resource strategy.")
-    
+
+    resourceType: Optional[str] = Field(
+        None, description="Type of registered resource strategy."
+    )
+
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(

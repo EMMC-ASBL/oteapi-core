@@ -12,7 +12,11 @@ def test_json(static_files: "Path") -> None:
     """Test `application/json` parse strategy on local file."""
     import json
 
-    from oteapi.strategies.parse.application_json import JSONDataParseStrategy,JSONConfig,JSONParserConfig
+    from oteapi.strategies.parse.application_json import (
+        JSONConfig,
+        JSONDataParseStrategy,
+        JSONParserConfig,
+    )
 
     sample_file = static_files / "sample2.json"
 
@@ -20,10 +24,11 @@ def test_json(static_files: "Path") -> None:
         "downloadUrl": sample_file.as_uri(),
         "mediaType": "application/json",
     }
-    parser: "IParseStrategy" = JSONDataParseStrategy(JSONParserConfig(
-        parserType="parser/json",
-        configuration=JSONConfig(datacache_config=None)
-    ))
+    parser: "IParseStrategy" = JSONDataParseStrategy(
+        JSONParserConfig(
+            parserType="parser/json", configuration=JSONConfig(datacache_config=None)
+        )
+    )
     parser.initialize()
 
     test_data = json.loads(sample_file.read_text())

@@ -3,7 +3,7 @@
 import json
 from typing import Literal, Optional
 
-from pydantic import Field, AnyHttpUrl
+from pydantic import AnyHttpUrl, Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
@@ -14,16 +14,13 @@ from oteapi.plugins import create_strategy
 
 class JSONConfig(AttrDict):
     """JSON parse-specific Configuration Data Model."""
-        
+
     downloadUrl: Optional[AnyHttpUrl] = Field(
-        None,
-        description="The HTTP(S) URL, which will be downloaded."
+        None, description="The HTTP(S) URL, which will be downloaded."
     )
     mediaType: Optional[str] = Field(
         "application/json",
-        description=(
-            "The media type"
-        ),
+        description=("The media type"),
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
@@ -78,4 +75,3 @@ class JSONDataParseStrategy:
         if isinstance(content, dict):
             return AttrDictJSONParse(content=content)
         return AttrDictJSONParse(content=json.loads(content))
-    

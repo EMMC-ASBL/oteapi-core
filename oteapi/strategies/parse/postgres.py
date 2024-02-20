@@ -1,4 +1,5 @@
 """Strategy class for application/vnd.postgresql"""
+
 from typing import Any, Optional
 
 import psycopg
