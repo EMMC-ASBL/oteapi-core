@@ -50,7 +50,7 @@ def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
         "mediaType": "image/jpeg",
     }
 
-    datacache_key: str = SFTPStrategy(config).get().get("key", "")
+    datacache_key: str = SFTPStrategy(config).get().get()
     datacache = DataCache()
     content = datacache.get(datacache_key)
     del datacache[datacache_key]
