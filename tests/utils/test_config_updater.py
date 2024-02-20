@@ -23,8 +23,8 @@ def test_populate_config_from_session_success():
     populate_config_from_session(session, config)
 
     # Assert
-    assert config.configuration["key1"] == "value1"
-    assert config.configuration["key2"] == "value2"
+    assert config["configuration"]["key1"] == "value1"
+    assert config["configuration"]["key2"] == "value2"
 
 
 def test_populate_config_from_session_conflict():
