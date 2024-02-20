@@ -1,21 +1,24 @@
 """Strategy class for application/json."""
 
 import json
-from typing import Literal, Optional
+from typing import Annotated, Literal, Optional
 
-from pydantic import AnyHttpUrl, Field
+from pydantic import Field
 from pydantic.dataclasses import dataclass
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig
 from oteapi.models.parserconfig import ParserConfig
 from oteapi.plugins import create_strategy
 
+HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
+
 
 class JSONConfig(AttrDict):
     """JSON parse-specific Configuration Data Model."""
 
-    downloadUrl: Optional[AnyHttpUrl] = Field(
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
         None, description="The HTTP(S) URL, which will be downloaded."
     )
     mediaType: Optional[str] = Field(

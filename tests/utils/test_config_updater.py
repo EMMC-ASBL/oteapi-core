@@ -2,7 +2,7 @@
 
 import pytest
 
-from oteapi.models.genericconfig import GenericConfig
+from oteapi.models.genericconfig import AttrDict
 
 
 def test_populate_config_from_session_success():
@@ -13,7 +13,7 @@ def test_populate_config_from_session_success():
     from oteapi.utils.config_updater import populate_config_from_session
 
     # Setup
-    config = GenericConfig()
+    config = AttrDict()
     session = {
         "key1": "value1",
         "key2": "value2",
@@ -35,7 +35,7 @@ def test_populate_config_from_session_conflict():
     from oteapi.utils.config_updater import populate_config_from_session
 
     # Setup
-    config = GenericConfig(configuration={"key1": "conflicting_value"})
+    config = AttrDict(configuration={"key1": "conflicting_value"})
     session = {
         "key1": "value1",
     }

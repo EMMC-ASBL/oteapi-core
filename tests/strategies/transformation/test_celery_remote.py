@@ -1,12 +1,54 @@
-from time import sleep, time
+"""Tests the transformation strategy for Celery."""
+
+from typing import TYPE_CHECKING
 
 import pytest
-from celery.result import AsyncResult
 
-from oteapi.strategies.transformation.celery_remote import CeleryRemoteStrategy
+if TYPE_CHECKING:
+    from celery import Celery
+    from celery.contrib.testing.worker import TestWorkController
 
 
-def test_celery_remote(celery_app, celery_worker, monkeypatch):
+@pytest.fixture(scope="session")
+def celery_config() -> dict[str, str]:
+    """Set Celery fixture configuration."""
+    import os
+    import platform
+
+    import redis
+
+    host = os.getenv("OTEAPI_REDIS_HOST", "localhost")
+    port = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
+
+    try:
+        with redis.Redis(host=host, port=port) as client:
+            client.ping()
+    except redis.ConnectionError:
+        if os.getenv("CI") and platform.system() == "Linux":
+            # Starting services (like redis) is only supported in GH Actions for the
+            # Linux OS
+            pytest.fail("In CI environment - this test MUST run !")
+        else:
+            pytest.skip(f"No redis connection at {host}:{port} for testing celery.")
+
+    return {
+        "broker_url": f"redis://{host}:{port}",
+        "result_backend": f"redis://{host}:{port}",
+    }
+
+
+def test_celery_remote(
+    celery_app: "Celery",
+    celery_worker: "TestWorkController",
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test `celery/remote` transformation strategy."""
+    from time import sleep, time
+
+    from celery.result import AsyncResult
+
+    from oteapi.strategies.transformation import celery_remote
+
     @celery_app.task
     def add(x: float, y: float) -> float:
         """Simple addition task to test Celery."""
@@ -14,10 +56,10 @@ def test_celery_remote(celery_app, celery_worker, monkeypatch):
 
     celery_worker.reload()
 
-    # Mock the Celery app to use the test celery app instead of the strategy's celery app
-    monkeypatch.setattr(CeleryRemoteStrategy, "CELERY_APP", celery_app)
+    # Use the test celery app instead of the strategy's celery app
+    # The strategy's celery app has not registered the `add()` task...
+    monkeypatch.setattr(celery_remote, "CELERY_APP", celery_app)
 
-    # Configuration for the transformation strategy
     config = {
         "transformationType": "celery/remote",
         "configuration": {
@@ -25,20 +67,13 @@ def test_celery_remote(celery_app, celery_worker, monkeypatch):
             "args": [1, 2],
         },
     }
+    transformation = celery_remote.CeleryRemoteStrategy(config)
 
-    # Initialize the Celery strategy with the configuration
-    transformation = CeleryRemoteStrategy(config)
-
-    # Initialize the job
     session = transformation.initialize({})
+    session = transformation.get(session)
 
-    # Submit the job
-    session = transformation.get()
-
-    # Check if the Celery task ID is returned
     assert session.get("celery_task_id", "")
 
-    # Check the status of the job until it completes or until timeout (5 seconds)
     start_time = time()
     while (
         transformation.status(session.celery_task_id).status != "SUCCESS"
@@ -46,12 +81,22 @@ def test_celery_remote(celery_app, celery_worker, monkeypatch):
     ):
         sleep(1)
 
-    # Verify if the job completed successfully
     if transformation.status(session.celery_task_id).status != "SUCCESS":
         pytest.fail("Status never changed to 'SUCCESS' !")
 
-    # Get the result of the Celery task
     result = AsyncResult(id=session.celery_task_id, app=celery_app)
-
-    # Verify the result
     assert result.result == add(1, 2)
+
+
+def test_celery_config_name() -> None:
+    """Check `CeleryConfig` can be populated with/-out alias use."""
+    from oteapi.strategies.transformation.celery_remote import CeleryConfig
+
+    aliased_keys = ("task_name", "args")
+    non_aliased_keys = ("name", "args")
+
+    values = ("app.add", [1, 2])
+
+    assert CeleryConfig(**dict(zip(aliased_keys, values))) == CeleryConfig(
+        **dict(zip(non_aliased_keys, values))
+    )
