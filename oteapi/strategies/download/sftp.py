@@ -38,7 +38,7 @@ class SFTPResourceConfig(ResourceConfig):
     )
 
 
-class AttrDictSFTP(AttrDict):
+class SFTPContent(AttrDict):
     """Class for returning values from Download SFTP strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
@@ -61,7 +61,7 @@ class SFTPStrategy:
         """Initialize."""
         return AttrDict()
 
-    def get(self) -> AttrDictSFTP:
+    def get(self) -> SFTPContent:
         """Download via sftp"""
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -89,4 +89,4 @@ class SFTPStrategy:
                 finally:
                     localpath.unlink()
 
-        return AttrDictSFTP(key=key)
+        return SFTPContent(key=key)
