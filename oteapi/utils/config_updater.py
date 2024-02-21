@@ -2,7 +2,7 @@
 
 from typing import TYPE_CHECKING
 
-from oteapi.models.genericconfig import AttrDict
+from oteapi.models.genericconfig import GenericConfig
 
 if TYPE_CHECKING:
     from typing import Any, Dict
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 def populate_config_from_session(
     session: "Dict[str, Any]",
-    config: AttrDict,
+    config: GenericConfig,
 ) -> None:
     """
     Update the configuration attributes of a GenericConfig object

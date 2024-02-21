@@ -2,7 +2,7 @@
 
 import pytest
 
-from oteapi.models.genericconfig import AttrDict
+from oteapi.models.genericconfig import AttrDict, GenericConfig
 
 
 def test_populate_config_from_session_success():
@@ -13,7 +13,7 @@ def test_populate_config_from_session_success():
     from oteapi.utils.config_updater import populate_config_from_session
 
     # Setup
-    config = AttrDict()
+    config = GenericConfig()
     session = {
         "key1": "value1",
         "key2": "value2",
@@ -23,8 +23,8 @@ def test_populate_config_from_session_success():
     populate_config_from_session(session, config)
 
     # Assert
-    assert config["configuration"]["key1"] == "value1"
-    assert config["configuration"]["key2"] == "value2"
+    assert config.configuration["key1"] == "value1"
+    assert config.configuration["key2"] == "value2"
 
 
 def test_populate_config_from_session_conflict():
@@ -35,7 +35,7 @@ def test_populate_config_from_session_conflict():
     from oteapi.utils.config_updater import populate_config_from_session
 
     # Setup
-    config = AttrDict(configuration={"key1": "conflicting_value"})
+    config = GenericConfig(configuration={"key1": "conflicting_value"})
     session = {
         "key1": "value1",
     }
@@ -45,3 +45,8 @@ def test_populate_config_from_session_conflict():
         populate_config_from_session(session, config)
 
     assert "has different value than in session" in str(exc_info.value)
+
+
+if __name__ == "__main__":
+    test_populate_config_from_session_success()
+    test_populate_config_from_session_conflict()
