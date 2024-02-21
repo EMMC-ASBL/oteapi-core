@@ -1,6 +1,6 @@
 """Download strategy class for the `file` scheme."""
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 from pydantic import Field, FileUrl, field_validator
 from pydantic.dataclasses import dataclass
@@ -8,9 +8,6 @@ from pydantic.dataclasses import dataclass
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.utils.paths import uri_to_path
-
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
 
 class FileConfig(AttrDict):

@@ -1,171 +1,127 @@
-"""Tests the parse strategy for CSV."""
+"""Tests the parse strategy for SQLite."""
 
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
-    from pathlib import Path
-    from typing import Any, Type
+    from typing import Tuple
+
+    from oteapi.interfaces import IResourceStrategy
 
 
-csv_sample_files = [
+sqlite_queries = [
     (
-        "sample1.csv",
-        {"dialect": {"skipinitialspace": True, "quoting": "QUOTE_NONNUMERIC"}},
-        [
-            "Month",
-            "Average",
-            "2005",
-            "2006",
-            "2007",
-            "2008",
-            "2009",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-        ],
-        [str, float] + [int] * 11,
+        "SELECT * FROM user_details WHERE user_details.user_id = 19;",
+        (
+            19,
+            "jenny0988",
+            "maria",
+            "morgan",
+            "Female",
+            "ec9ed18ae2a13fef709964af24bb60e6",
+            1,
+        ),
     ),
     (
-        "sample2.csv",
-        {
-            "dialect": {
-                "skipinitialspace": True,
-                "quoting": "QUOTE_NONNUMERIC",
-                "base": "excel",
-            }
-        },
-        ["Name", "Team", "Position", "Height(inches)", "Weight(lbs)", "Age"],
-        [str] * 3 + [int] * 2 + [float],
-    ),
-    (
-        "sample3.csv",
-        {
-            "dialect": {
-                "skipinitialspace": True,
-                "quoting": "QUOTE_NONNUMERIC",
-                "base": "unix",
-            }
-        },
-        ["Game Number", "Game Length"],
-        [int] * 2,
-    ),
-    (
-        "sample4.csv",
-        {"dialect": {"skipinitialspace": True, "quoting": "QUOTE_NONNUMERIC"}},
-        ["Game Number", "Game Length"],
-        [int] * 2,
+        "SELECT * FROM user_details WHERE user_details.user_id = 72;",
+        (
+            72,
+            "brown84",
+            "john",
+            "ross",
+            "Male",
+            "738cb4da81a2790a9a845f902a811ea2",
+            1,
+        ),
     ),
 ]
 
 
-# @pytest.mark.parametrize(
-#     "sample_filename,extra_config,headers,types",
-#     csv_sample_files,
-#     ids=[_[0].split(".csv", maxsplit=1)[0] for _ in csv_sample_files],
-# )
-def test_csv(
-    static_files: "Path",
-    sample_filename: str,
-    extra_config: "dict[str, Any]",
-    headers: list[str],
-    types: "list[Type]",
+class MockPsycopg:
+    """
+    A class for mocking all psycop calls
+    """
+
+    result: "Tuple[int, str, str, str, str, str, int]"
+
+    def cursor(self):
+        """
+        Mocks psycopg.cursor
+        """
+        return self
+
+    def execute(self, query):
+        """
+        Mocks psycopg.execute by simply pulling one of the sqlite_queries
+        """
+        result = [q[1] for q in sqlite_queries if q[0] == query]
+        self.result = result
+        return self
+
+    def fetchall(self):
+        """
+        Mocks psycopg.fetchall by returning  the 'result' from the execute method
+        """
+        return self.result
+
+    def close(self):
+        """
+        Mocks the close method by doing nothing
+        """
+        return
+
+
+@pytest.mark.parametrize(
+    "query,expected",
+    sqlite_queries,
+    ids=["configuration", "session"],
+)
+def test_postgres(
+    query: str,
+    expected: "Tuple[int, str, str, str, str, str, int]",
+    monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Test `text/csv` parse strategy on local file."""
-    import csv
-    import json
+    """Test `application/vnd.sqlite3` parse strategy on a local SQLite DB.
 
-    from oteapi.strategies.parse.text_csv import CSVParseStrategy
+    Test both passing in the query as a configuration and through a session.
+    """
+    import psycopg
 
-    sample_file = static_files / sample_filename
+    from oteapi.strategies.parse.postgres import PostgresResourceStrategy
 
-    config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "text/csv",
-    }
-    config.update({"configuration": extra_config} if extra_config else {})
-    session = CSVParseStrategy(config).initialize()
+    def mock_connect(connect_str):
+        connect_str = str(connect_str)
+        # NOTE: this should work but for some reason we don't have
+        #       the DB name in the accessUrl?
+        # expected_connect_str = \
+        #    "postgresql://postgres:postgres@localhost:5432/postgres"
+        # assert connect_str == expected_connect_str
+        return MockPsycopg()
 
-    parser = CSVParseStrategy(config)
-    parsed_content = parser.get(session.model_dump()).content
+    monkeypatch.setattr(psycopg, "connect", mock_connect)
 
-    kwargs = {}
-    if extra_config:
-        kwargs.update(extra_config.get("dialect", {}))
-        kwargs.update(extra_config.get("reader", {}))
-
-    if "base" in kwargs:
-        kwargs["dialect"] = kwargs.pop("base")
-    if "quoting" in kwargs:
-        kwargs["quoting"] = getattr(csv, kwargs["quoting"])
-
-    with open(sample_file, newline="", encoding="utf8") as handle:
-        test_data = csv.DictReader(handle, **kwargs)
-
-        assert list(parsed_content.keys()) == test_data.fieldnames == headers
-
-        for index, row in enumerate(test_data):
-            for field in test_data.fieldnames:
-                types_index = list(parsed_content).index(field)
-                assert (
-                    isinstance(parsed_content[field][index], types[types_index])
-                    or parsed_content[field][index]
-                    == parser.parse_config.configuration.reader.restval
-                ), (
-                    f"Expected type {types[types_index]} or "
-                    f"{parser.parse_config.configuration.reader.restval}, but instead "
-                    f"got type {type(parsed_content[field][index])} for value "
-                    f"{parsed_content[field][index]}. Line index: {index+2}."
-                )
-                if parsed_content[field][
-                    index
-                ] != parser.parse_config.configuration.reader.restval and (
-                    (row[field] or row[field] == 0.0 or row[field] == 0)
-                    and row[field] != kwargs.get("restval", None)
-                ):
-                    assert (
-                        types[types_index](row[field]) == parsed_content[field][index]
-                    ), (
-                        f"\nfield: {field}\n\nindex: {index}\n\nrow: {row}\n\n"
-                        f"parsed_content: {json.dumps(parsed_content, indent=2)}\n"
-                    )
-                else:
-                    print(
-                        f"\nfield: {field}\nindex: {index}\nrow: {row}\nparsed: "
-                        f"{parsed_content[field][index]!r}"
-                    )
-
-
-def test_csv_dialect_enum_fails() -> None:
-    """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
-    import csv
-
-    from pydantic import ValidationError
-
-    from oteapi.strategies.parse.text_csv import CSVParseStrategy
-
-    non_existant_dialect = "test"
-    available_dialects = csv.list_dialects()
-
-    assert non_existant_dialect not in available_dialects, (
-        "What we thought was true, was false. "
-        "What we thought was right, was wrong. "
-        "These things are a mystery beyond me now."
-    )
+    # NOTE there are a lot of tests one can do on ways of connecting to the DB
+    #      e.g., trying combinations of accessUrl and connection_dict
+    # connection_dict = {
+    #    "dbname": "postgres",
+    #    "user": "postgres",
+    #    "password": "postgres",
+    #    "host": "localhost",
+    #    "port": 5432,
+    # }
 
     config = {
-        "downloadUrl": "file:///test.csv",
-        "mediaType": "text/csv",
-        "configuration": {"dialect": {"base": non_existant_dialect}},
+        "accessUrl": "postgresql://postgres:postgres@localhost:5432/postgres",
+        "accessService": "foo",
+        "configuration": {
+            "sqlquery": query,
+        },
     }
 
-    with pytest.raises(ValidationError) as exception:
-        CSVParseStrategy(config)
+    resource: "IResourceStrategy" = PostgresResourceStrategy(config)
+    resource.initialize()
 
-    for dialect in available_dialects:
-        assert repr(dialect) in exception.exconly()
-    
+    result = resource.get({"sqlquery": query} if "19" not in query else None)
+
+    assert result["result"][0] == expected

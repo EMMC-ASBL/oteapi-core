@@ -1,6 +1,6 @@
 """Download strategy class for http/https"""
 
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 
 import requests
 from pydantic import AnyHttpUrl, Field
@@ -8,9 +8,6 @@ from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
-
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
 
 class HTTPSConfig(AttrDict):
@@ -36,7 +33,7 @@ class HTTPSResourceConfig(ResourceConfig):
     )
 
 
-class AttrDictHTTPS(AttrDict):
+class HTTPDownloadContent(AttrDict):
     """Class for returning values from Download HTTPS strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
@@ -59,7 +56,7 @@ class HTTPSStrategy:
         """Initialize."""
         return AttrDict()
 
-    def get(self) -> AttrDictHTTPS:
+    def get(self) -> HTTPDownloadContent:
         """Download via http/https and store on local cache."""
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -72,4 +69,4 @@ class HTTPSStrategy:
             )
             key = cache.add(req.content)
 
-        return AttrDictHTTPS(key=key)
+        return HTTPDownloadContent(key=key)

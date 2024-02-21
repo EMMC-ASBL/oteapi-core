@@ -1,13 +1,8 @@
 """Filter test strategy class."""
 
-from typing import TYPE_CHECKING
-
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, FilterConfig
-
-if TYPE_CHECKING:
-    pass
 
 
 @dataclass

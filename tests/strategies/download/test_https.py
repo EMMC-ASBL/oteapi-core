@@ -44,7 +44,7 @@ def test_https(
     # Mock requests call in the download strategy
     requests_mock.get(config["downloadUrl"], content=sample_file.read_bytes())
 
-    download = HTTPSStrategy(**config)
+    download = HTTPSStrategy(config)
     download.initialize()  # Initialize the strategy
     downloaded_data = download.get()  # Execute the download
     datacache = DataCache()

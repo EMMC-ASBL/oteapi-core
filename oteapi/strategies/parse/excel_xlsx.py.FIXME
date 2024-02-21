@@ -16,7 +16,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from openpyxl.worksheet.worksheet import Worksheet
 
 
-class AttrDictXLSXParse(AttrDict):
+class XLSXParseContent(AttrDict):
     """Class for returning values from XLSXParse."""
 
     data: Dict[str, list] = Field(
@@ -170,7 +170,7 @@ class XLSXParseStrategy:
         """Initialize."""
         return AttrDict()
 
-    def get(self) -> AttrDictXLSXParse:
+    def get(self) -> XLSXParseContent:
         """Parses selected region of an excel file.
 
         Returns:
@@ -231,6 +231,6 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return AttrDictXLSXParse(
+        return XLSXParseContent(
             data={key: value for key, value in zip(header, transposed)}
         )

@@ -17,8 +17,6 @@ from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
 
 class ImageParserConfig(AttrDict):
@@ -84,7 +82,7 @@ class SupportedFormat(Enum):
     eps = "EPS"
 
 
-class AttrDictImageParse(AttrDict):
+class ImageParseContent(AttrDict):
     """Configuration model for ImageParse.
 
     See
@@ -125,7 +123,7 @@ class ImageDataParseStrategy:
     It also supports simple cropping and image conversions.
 
     The key to the new array and other metadata is stored in the session. See
-    [`AttrDictImageParse`][oteapi.strategies.parse.image.AttrDictImageParse]
+    [`ImageParseContent`][oteapi.strategies.parse.image.ImageParseContent]
     for more info.
 
     **Registers strategies**:
@@ -146,7 +144,7 @@ class ImageDataParseStrategy:
         """Initialize strategy."""
         return AttrDict()
 
-    def get(self) -> AttrDictImageParse:
+    def get(self) -> ImageParseContent:
         """Execute the strategy."""
 
         config = self.parse_config.configuration
@@ -211,7 +209,7 @@ class ImageDataParseStrategy:
             else:
                 image_info = {}
 
-            session_update = AttrDictImageParse(
+            session_update = ImageParseContent(
                 image_key=image_key,
                 image_size=image.size,
                 image_mode=image.mode,

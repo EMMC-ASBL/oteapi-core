@@ -114,7 +114,7 @@ def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connec
         raise psycopg.Error("Could not connect to given Postgres DB.") from exc
 
 
-class AttrDictPostgresResource(AttrDict):
+class PostgresResourceContent(AttrDict):
     """Configuration model for PostgresResource."""
 
     result: list = Field(..., description="List of results from the query.")
@@ -139,11 +139,11 @@ class PostgresResourceStrategy:
         """Initialize strategy."""
         return AttrDict()
 
-    def get(self) -> AttrDictPostgresResource:
+    def get(self) -> PostgresResourceContent:
         """Resource Postgres query responses."""
 
         connection = create_connection(self.resource_config)
         cursor = connection.cursor()
         result = cursor.execute(self.resource_config.configuration.sqlquery).fetchall()
         connection.close()
-        return AttrDictPostgresResource(result=result)
+        return PostgresResourceContent(result=result)

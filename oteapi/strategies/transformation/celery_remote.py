@@ -49,7 +49,7 @@ class CeleryConfig(AttrDict):
     args: list = Field(..., description="List of arguments for the task.")
 
 
-class AttrDictCelery(AttrDict):
+class CeleryContent(AttrDict):
     """Class for returning values from a Celery task."""
 
     celery_task_id: str = Field(..., description="A Celery task identifier.")
@@ -79,13 +79,13 @@ class CeleryRemoteStrategy:
 
     transformation_config: CeleryStrategyConfig
 
-    def get(self) -> AttrDictCelery:
+    def get(self) -> CeleryContent:
         """Run a job, return a job ID."""
 
         result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
             **self.transformation_config.configuration.model_dump()
         )
-        return AttrDictCelery(celery_task_id=result.task_id)
+        return CeleryContent(celery_task_id=result.task_id)
 
     def initialize(self) -> AttrDict:
         """Initialize a job."""

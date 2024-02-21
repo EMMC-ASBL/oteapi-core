@@ -27,16 +27,16 @@ def populate_config_from_session(
 
     for key in keys_to_update:
         if (
-            "configuration" in config
-            and key in config["configuration"]
-            and session[key] != config["configuration"][key]
+            # "configuration" in config
+            key in config.configuration
+            and session[key] != config.configuration[key]
         ):
             raise ValueError(
                 f"Key '{key}' in config has different value than in session."
             )
 
         try:
-            config["configuration"][key] = session[key]
+            config.configuration[key] = session[key]
         except Exception as error:
             raise RuntimeError(
                 f"Failed to update key '{key}' in the config. Reason: {str(error)}"

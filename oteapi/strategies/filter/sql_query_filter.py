@@ -1,14 +1,11 @@
 """SQL query filter strategy."""
 
-from typing import TYPE_CHECKING, Literal
+from typing import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, FilterConfig
-
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
 
 class SqlQueryFilterConfig(FilterConfig):
@@ -21,7 +18,7 @@ class SqlQueryFilterConfig(FilterConfig):
     query: str = Field(..., description="A SQL query string.")
 
 
-class AttrDictSqlQuery(AttrDict):
+class SqlQueryContent(AttrDict):
     """Class for returning values from SQL Query data model."""
 
     sqlquery: str = Field(..., description="A SQL query string.")
@@ -39,9 +36,9 @@ class SQLQueryFilter:
 
     filter_config: SqlQueryFilterConfig
 
-    def initialize(self) -> AttrDictSqlQuery:
+    def initialize(self) -> SqlQueryContent:
         """Initialize strategy."""
-        return AttrDictSqlQuery(sqlquery=self.filter_config.query)
+        return SqlQueryContent(sqlquery=self.filter_config.query)
 
     def get(self) -> AttrDict:
         """Execute strategy and return a dictionary."""

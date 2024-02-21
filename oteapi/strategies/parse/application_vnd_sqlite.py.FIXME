@@ -11,8 +11,6 @@ from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
 
 class SqliteParseConfig(AttrDict):
@@ -58,7 +56,7 @@ def create_connection(db_file: Path) -> sqlite3.Connection:
         raise sqlite3.Error("Could not connect to given SQLite DB.") from exc
 
 
-class AttrDictSqLiteParse(AttrDict):
+class SqLiteParseContent(AttrDict):
     """Configuration model for SqLiteParse."""
 
     result: list = Field(..., description="List of results from the query.")
@@ -83,7 +81,7 @@ class SqliteParseStrategy:
         """Initialize strategy."""
         return AttrDict()
 
-    def get(self) -> AttrDictSqLiteParse:
+    def get(self) -> SqLiteParseContent:
         """Parse SQLite query responses."""
 
         # Retrieve SQLite file
@@ -99,4 +97,4 @@ class SqliteParseStrategy:
             cursor = connection.cursor()
             result = cursor.execute(self.parse_config.configuration.sqlquery).fetchall()
             connection.close()
-        return AttrDictSqLiteParse(result=result)
+        return SqLiteParseContent(result=result)

@@ -2,7 +2,7 @@
 
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, Annotated, Optional
+from typing import Annotated, Optional
 
 import pysftp
 from pydantic import Field
@@ -11,10 +11,6 @@ from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
-
-if TYPE_CHECKING:  # pragma: no cover
-    pass
-
 
 AnyFtpUrl = Annotated[Url, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 

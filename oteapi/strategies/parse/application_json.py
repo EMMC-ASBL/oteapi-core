@@ -46,7 +46,7 @@ class JSONParserConfig(ParserConfig):
     )
 
 
-class AttrDictJSONParse(AttrDict):
+class JSONParseContent(AttrDict):
     """Class for returning values from JSON Parse."""
 
     content: dict = Field(..., description="Content of the JSON document.")
@@ -64,11 +64,11 @@ class JSONDataParseStrategy:
 
     parse_config: JSONParserConfig
 
-    def initialize(self) -> AttrDictJSONParse:
+    def initialize(self) -> JSONParseContent:
         """Initialize."""
-        return AttrDictJSONParse(content={})
+        return JSONParseContent(content={})
 
-    def get(self) -> AttrDictJSONParse:
+    def get(self) -> JSONParseContent:
         """Parse json."""
         downloader = create_strategy("download", dict(self.parse_config.configuration))
         output = downloader.get()
@@ -76,5 +76,5 @@ class JSONDataParseStrategy:
         content = cache.get(output["key"])
 
         if isinstance(content, dict):
-            return AttrDictJSONParse(content=content)
-        return AttrDictJSONParse(content=json.loads(content))
+            return JSONParseContent(content=content)
+        return JSONParseContent(content=json.loads(content))

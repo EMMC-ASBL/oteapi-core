@@ -1,16 +1,13 @@
 """Mapping filter strategy."""
 
-from typing import TYPE_CHECKING, Dict, List
+from typing import Dict, List
 
 from pydantic.dataclasses import Field, dataclass
 
 from oteapi.models import AttrDict, MappingConfig, RDFTriple
 
-if TYPE_CHECKING:  # pragma: no cover
-    pass
 
-
-class MappingAttrDict(AttrDict):
+class MappingStrategyConfig(AttrDict):
     """AttrDict model for mappings."""
 
     prefixes: Dict[str, str] = Field(
@@ -45,10 +42,10 @@ class MappingStrategy:
 
     mapping_config: MappingConfig
 
-    def initialize(self) -> MappingAttrDict:
+    def initialize(self) -> MappingStrategyConfig:
         """Initialize strategy."""
 
-        return MappingAttrDict(
+        return MappingStrategyConfig(
             prefixes=self.mapping_config.prefixes, triples=self.mapping_config.triples
         )
 

@@ -2,7 +2,7 @@
 
 import pytest
 
-from oteapi.models.genericconfig import AttrDict, GenericConfig
+from oteapi.models.genericconfig import GenericConfig
 
 
 def test_populate_config_from_session_success():
@@ -45,8 +45,3 @@ def test_populate_config_from_session_conflict():
         populate_config_from_session(session, config)
 
     assert "has different value than in session" in str(exc_info.value)
-
-
-if __name__ == "__main__":
-    test_populate_config_from_session_success()
-    test_populate_config_from_session_conflict()

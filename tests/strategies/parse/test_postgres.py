@@ -1,4 +1,5 @@
 """Tests the parse strategy for SQLite."""
+
 import psycopg
 import pytest
 
@@ -63,7 +64,7 @@ def test_postgres(
             return
 
     # Mock the psycopg.connect method
-    def mock_connect(connect_str):
+    def mock_connect(connect_str: str) -> MockPsycopg:
         return MockPsycopg()
 
     monkeypatch.setattr(psycopg, "connect", mock_connect)

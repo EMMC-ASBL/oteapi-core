@@ -245,7 +245,7 @@ class CSVResourceConfig(ResourceConfig):
     )
 
 
-class AttrDictCSVParse(AttrDict):
+class CSVParseContent(AttrDict):
     """Class for returning values from CSV Parse."""
 
     content: dict[Union[str, None], list[Any]] = Field(
@@ -269,7 +269,7 @@ class CSVParseStrategy:
         """Initialize."""
         return AttrDict()
 
-    def get(self) -> AttrDictCSVParse:
+    def get(self) -> CSVParseContent:
         """Parse CSV."""
         downloader = create_strategy("download", self.parse_config)
         output = downloader.get()
@@ -329,4 +329,4 @@ class CSVParseStrategy:
                         for value in content[key]
                     ]
 
-            return AttrDictCSVParse(content=content)
+            return CSVParseContent(content=content)

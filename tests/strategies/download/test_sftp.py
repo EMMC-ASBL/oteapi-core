@@ -51,7 +51,7 @@ def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
     }
 
     # Call the strategy and get the datacache key
-    datacache_key: str = SFTPStrategy(config).get().key
+    datacache_key: str = SFTPStrategy(config).get().get("key", "")
 
     # Retrieve the content from the datacache using the key
     datacache = DataCache()
