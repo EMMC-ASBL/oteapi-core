@@ -1,11 +1,13 @@
-import csv
-import json
-from pathlib import Path
-from typing import Any, Type
+"""Tests the parse strategy for CSV."""
+
+from typing import TYPE_CHECKING
 
 import pytest
 
-from oteapi.strategies.parse.text_csv import CSVParseStrategy
+if TYPE_CHECKING:
+    from pathlib import Path
+    from typing import Any, Type
+
 
 csv_sample_files = [
     (
@@ -61,19 +63,24 @@ csv_sample_files = [
 ]
 
 
-@pytest.mark.parametrize(
-    "sample_filename,extra_config,headers,types",
-    csv_sample_files,
-    ids=[_[0].split(".csv", maxsplit=1)[0] for _ in csv_sample_files],
-)
+# @pytest.mark.parametrize(
+#     "sample_filename,extra_config,headers,types",
+#     csv_sample_files,
+#     ids=[_[0].split(".csv", maxsplit=1)[0] for _ in csv_sample_files],
+# )
 def test_csv(
-    static_files: Path,
+    static_files: "Path",
     sample_filename: str,
-    extra_config: dict[str, Any],
+    extra_config: "dict[str, Any]",
     headers: list[str],
-    types: list[Type],
+    types: "list[Type]",
 ) -> None:
     """Test `text/csv` parse strategy on local file."""
+    import csv
+    import json
+
+    from oteapi.strategies.parse.text_csv import CSVParseStrategy
+
     sample_file = static_files / sample_filename
 
     config = {
@@ -81,24 +88,26 @@ def test_csv(
         "mediaType": "text/csv",
     }
     config.update({"configuration": extra_config} if extra_config else {})
+    session = CSVParseStrategy(config).initialize()
 
-    # Initialize and parse the CSV file
     parser = CSVParseStrategy(config)
-    parsed_content = parser.get().content
+    parsed_content = parser.get(session.model_dump()).content
 
     kwargs = {}
     if extra_config:
         kwargs.update(extra_config.get("dialect", {}))
         kwargs.update(extra_config.get("reader", {}))
 
-    # Open the CSV file and compare with parsed content
+    if "base" in kwargs:
+        kwargs["dialect"] = kwargs.pop("base")
+    if "quoting" in kwargs:
+        kwargs["quoting"] = getattr(csv, kwargs["quoting"])
+
     with open(sample_file, newline="", encoding="utf8") as handle:
         test_data = csv.DictReader(handle, **kwargs)
 
-        # Check if headers match
         assert list(parsed_content.keys()) == test_data.fieldnames == headers
 
-        # Check data types and values
         for index, row in enumerate(test_data):
             for field in test_data.fieldnames:
                 types_index = list(parsed_content).index(field)
@@ -133,9 +142,20 @@ def test_csv(
 
 def test_csv_dialect_enum_fails() -> None:
     """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
+    import csv
+
     from pydantic import ValidationError
 
+    from oteapi.strategies.parse.text_csv import CSVParseStrategy
+
     non_existant_dialect = "test"
+    available_dialects = csv.list_dialects()
+
+    assert non_existant_dialect not in available_dialects, (
+        "What we thought was true, was false. "
+        "What we thought was right, was wrong. "
+        "These things are a mystery beyond me now."
+    )
 
     config = {
         "downloadUrl": "file:///test.csv",
@@ -146,4 +166,6 @@ def test_csv_dialect_enum_fails() -> None:
     with pytest.raises(ValidationError) as exception:
         CSVParseStrategy(config)
 
-    assert "ValidationError" in exception.__class__.__name__
+    for dialect in available_dialects:
+        assert repr(dialect) in exception.exconly()
+    

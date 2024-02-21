@@ -1,3 +1,4 @@
+"""Tests the parse strategy for SQLite."""
 import psycopg
 import pytest
 
