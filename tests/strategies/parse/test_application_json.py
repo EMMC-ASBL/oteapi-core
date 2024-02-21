@@ -1,36 +1,29 @@
-import json
-from typing import TYPE_CHECKING
+"""Tests the parse strategy for JSON."""
 
-if TYPE_CHECKING:
-    from pathlib import Path
+from pathlib import Path
+
+from oteapi.interfaces import IParseStrategy
 
 
 def test_json(static_files: "Path") -> None:
     """Test `application/json` parse strategy on local file."""
-    from oteapi.strategies.parse.application_json import (
-        JSONConfig,
-        JSONDataParseStrategy,
-        JSONParserConfig,
-    )
+    import json
+
+    from oteapi.strategies.parse.application_json import JSONDataParseStrategy
 
     sample_file = static_files / "sample2.json"
+    config = {
+        "parserType": "parser/json",
+        "configuration": {
+            "datacache_config": None,
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "application/json",
+        },
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+    }
+    parser: "IParseStrategy" = JSONDataParseStrategy(config)
+    parser.initialize()
 
-    # Initialize the JSONDataParseStrategy with the appropriate configuration
-    parser_config = JSONParserConfig(
-        parserType="parser/json",
-        configuration=JSONConfig(
-            datacache_config=None, downloadUrl=sample_file.as_uri()
-        ),
-    )
-    parser_strategy = JSONDataParseStrategy(parser_config)
-    parser_strategy.initialize()
+    test_data = json.loads(sample_file.read_text())
 
-    # Read the sample file content and parse it as JSON
-    with open(sample_file, "r") as file:
-        expected_content = json.load(file)
-
-    # Get the parsed content from the strategy
-    parsed_content = parser_strategy.get().content
-
-    # Assert that the parsed content matches the expected content
-    assert parsed_content == expected_content
+    assert parser.get().get("content", {}) == test_data

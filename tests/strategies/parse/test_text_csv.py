@@ -88,10 +88,10 @@ def test_csv(
         "mediaType": "text/csv",
     }
     config.update({"configuration": extra_config} if extra_config else {})
-    session = CSVParseStrategy(config).initialize()
+    CSVParseStrategy(config).initialize()
 
     parser = CSVParseStrategy(config)
-    parsed_content = parser.get(session.model_dump()).content
+    parsed_content = parser.get().content
 
     kwargs = {}
     if extra_config:
