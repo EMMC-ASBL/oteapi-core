@@ -161,12 +161,16 @@ def test_csv_dialect_enum_fails() -> None:
     )
 
     config = {
-        "downloadUrl": "file:///test.csv",
-        "mediaType": "text/csv",
-        "configuration": {"dialect": {"base": non_existant_dialect}},
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": "file:///test.csv",
+            "mediaType": "text/csv",
+            "dialect": {"base": non_existant_dialect},
+        },
     }
 
-    with pytest.raises(ValidationError) as exception:
+    with pytest.raises(ValidationError, match=r".*1 validation error.*") as exception:
         CSVParseStrategy(config)
 
     for dialect in available_dialects:
