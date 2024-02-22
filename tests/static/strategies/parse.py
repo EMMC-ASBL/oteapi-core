@@ -2,14 +2,14 @@
 
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, ResourceConfig
+from oteapi.models import AttrDict, ParserConfig
 
 
 @dataclass
 class ParseTestStrategy:
     """Test parse strategy."""
 
-    parse_config: ResourceConfig
+    parse_config: ParserConfig
 
     def initialize(self) -> AttrDict:
         """Initialize."""

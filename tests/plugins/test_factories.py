@@ -113,7 +113,7 @@ def test_create_strategy(
                         mediaType=(
                             entry_point.name
                             if entry_point.type == StrategyType.PARSE
-                            else "text/html"
+                            else "application/json"
                         ),
                         accessUrl="https://example.org",
                         accessService=(
