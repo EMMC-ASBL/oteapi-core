@@ -1,18 +1,22 @@
 """Strategy class for application/json."""
 
 import json
-from typing import Annotated, Literal, Optional
+import sys
+from typing import Optional
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
-from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig
 from oteapi.models.parserconfig import ParserConfig
+from oteapi.models.resourceconfig import HostlessAnyUrl
 from oteapi.plugins import create_strategy
-
-HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
 
 
 class JSONConfig(AttrDict):

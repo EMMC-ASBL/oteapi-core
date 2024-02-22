@@ -1,7 +1,7 @@
 """Strategy class for workbook/xlsx."""
 
 import sys
-from typing import TYPE_CHECKING, Annotated, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Dict, List, Optional, Union
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -12,7 +12,6 @@ from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import Field
 from pydantic.dataclasses import dataclass
-from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
@@ -23,7 +22,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from openpyxl.worksheet.worksheet import Worksheet
 
-HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
+from oteapi.models.resourceconfig import HostlessAnyUrl
 
 
 class XLSXParseContent(AttrDict):

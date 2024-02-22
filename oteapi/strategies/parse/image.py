@@ -2,7 +2,7 @@
 
 import sys
 from enum import Enum
-from typing import Annotated, Optional, Tuple
+from typing import Optional, Tuple
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -12,13 +12,11 @@ else:
 from PIL import Image
 from pydantic import AliasChoices, Field
 from pydantic.dataclasses import dataclass
-from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
+from oteapi.models.resourceconfig import HostlessAnyUrl
 from oteapi.plugins import create_strategy
-
-HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
 
 
 class ImageConfig(AttrDict):

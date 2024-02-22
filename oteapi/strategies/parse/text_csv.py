@@ -1,4 +1,4 @@
-"""Strategy class for text/csv."""
+"""Strategy class for parser/csv."""
 
 import csv
 import sys

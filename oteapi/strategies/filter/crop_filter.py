@@ -1,11 +1,17 @@
 """Demo-filter strategy"""
 
-from typing import Literal, Optional, Tuple
+import sys
+from typing import Optional, Tuple
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, FilterConfig
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 
 class CropImageConfig(AttrDict):

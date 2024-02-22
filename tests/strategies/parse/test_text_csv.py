@@ -75,7 +75,7 @@ def test_csv(
     headers: list[str],
     types: "list[Type]",
 ) -> None:
-    """Test `text/csv` parse strategy on local file."""
+    """Test `parser/csv` parse strategy on local file."""
     import csv
     import json
 
@@ -162,7 +162,7 @@ def test_csv_dialect_enum_fails() -> None:
 
     config = {
         "downloadUrl": "file:///test.csv",
-        "mediaType": "text/csv",
+        "mediaType": "parser/csv",
         "configuration": {"dialect": {"base": non_existant_dialect}},
     }
 

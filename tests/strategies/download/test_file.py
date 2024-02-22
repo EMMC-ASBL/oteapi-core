@@ -7,7 +7,7 @@ import pytest
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from oteapi.strategies.download.file import AttrDictFile
+    from oteapi.strategies.download.file import DownloadFileConfig
 
 
 @pytest.mark.parametrize(
@@ -31,7 +31,7 @@ def test_file(filename: str, mediaType: str, static_files: "Path") -> None:
         "downloadUrl": sample_file.as_uri(),
         "mediaType": mediaType,
     }
-    output: "AttrDictFile" = FileStrategy(config).get()
+    output: "DownloadFileConfig" = FileStrategy(config).get()
     content: bytes = DataCache().get(output.key)
 
     if mediaType.startswith("image"):

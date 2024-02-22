@@ -1,6 +1,11 @@
 """Strategy class for resource/url."""
 
-from typing import Literal
+import sys
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 from pydantic import AnyHttpUrl, Field
 from pydantic.dataclasses import dataclass

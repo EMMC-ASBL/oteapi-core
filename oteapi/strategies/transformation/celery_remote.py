@@ -1,7 +1,13 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 
 import os
-from typing import TYPE_CHECKING, Literal
+import sys
+from typing import TYPE_CHECKING
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 from celery import Celery
 from celery.result import AsyncResult
