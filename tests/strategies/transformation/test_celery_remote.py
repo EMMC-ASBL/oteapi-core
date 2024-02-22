@@ -69,7 +69,7 @@ def test_celery_remote(
     }
     transformation = celery_remote.CeleryRemoteStrategy(config)
 
-    session = transformation.initialize({})
+    session = transformation.initialize()
     session = transformation.get(session)
 
     assert session.get("celery_task_id", "")
