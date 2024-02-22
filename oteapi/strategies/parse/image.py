@@ -56,10 +56,6 @@ class ImageConfig(AttrDict):
         None,
         description="Configuration options for the local data cache.",
     )
-    download_config: AttrDict = Field(
-        AttrDict(),
-        description="Configurations passed to the downloader.",
-    )
     image_key: Optional[str] = Field(
         None,
         description="Key to use when storing the image data in datacache.",
@@ -164,7 +160,7 @@ class ImageDataParseStrategy:
 
         # Download the image
         download_config = config.model_dump()
-        download_config["configuration"] = config.download_config.model_dump()
+        download_config["configuration"] = config.model_dump()
         output = create_strategy("download", download_config).get()
 
         if config.datacache_config and config.datacache_config.accessKey:

@@ -84,11 +84,14 @@ def test_csv(
     sample_file = static_files / sample_filename
 
     config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "text/csv",
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "text/csv",
+        },
     }
-    config.update({"configuration": extra_config} if extra_config else {})
-    CSVParseStrategy(config).initialize()
+    config["configuration"].update(extra_config if extra_config else {})
 
     parser = CSVParseStrategy(config)
     parsed_content = parser.get().content
