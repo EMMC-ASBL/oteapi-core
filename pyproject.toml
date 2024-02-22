@@ -92,6 +92,7 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"
 [project.entry-points."oteapi.resource"]
 "oteapi.resource/url" = "oteapi.strategies.resource.resource_url:ResourceURLStrategy"
+
 [tool.flit.module]
 name = "oteapi"
 
