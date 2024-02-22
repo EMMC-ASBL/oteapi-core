@@ -162,7 +162,7 @@ def test_csv_dialect_enum_fails() -> None:
 
     config = {
         "downloadUrl": "file:///test.csv",
-        "mediaType": "parser/csv",
+        "mediaType": "text/csv",
         "configuration": {"dialect": {"base": non_existant_dialect}},
     }
 
