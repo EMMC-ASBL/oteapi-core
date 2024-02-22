@@ -64,13 +64,15 @@ class JSONDataParseStrategy:
 
     parse_config: JSONParserConfig
 
-    def initialize(self) -> JSONParseContent:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return JSONParseContent(content={})
+        return AttrDict()
 
     def get(self) -> JSONParseContent:
         """Parse json."""
-        downloader = create_strategy("download", dict(self.parse_config.configuration))
+        downloader = create_strategy(
+            "download", self.parse_config.configuration.model_dump()
+        )
         output = downloader.get()
         cache = DataCache(self.parse_config.configuration.datacache_config)
         content = cache.get(output["key"])

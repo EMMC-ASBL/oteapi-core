@@ -2,7 +2,7 @@
 
 import sys
 from enum import Enum
-from typing import TYPE_CHECKING, Optional, Tuple
+from typing import Annotated, Optional, Tuple
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -10,22 +10,47 @@ else:
     from typing_extensions import Literal
 
 from PIL import Image
-from pydantic import Field
+from pydantic import AliasChoices, Field
 from pydantic.dataclasses import dataclass
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
 from oteapi.plugins import create_strategy
 
+HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
 
 
-class ImageParserConfig(AttrDict):
+class ImageConfig(AttrDict):
     """Configuration data model for
     [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""
+
+    # Resource config
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
+        None, description=ResourceConfig.model_fields["downloadUrl"].description
+    )
+
+    mediaType: Optional[
+        Literal[
+            "image/jpg",
+            "image/jpeg",
+            "image/jp2",
+            "image/png",
+            "image/gif",
+            "image/tiff",
+            "image/eps",
+        ]
+    ] = Field(
+        None,
+        description=ResourceConfig.model_fields["mediaType"].description,
+    )
 
     crop: Optional[Tuple[int, int, int, int]] = Field(
         None,
         description="Box cropping parameters (left, top, right, bottom).",
+        # Effectively mapping 'imagecrop' to 'crop'.
+        # 'imagecrop' is used by the crop filter strategy.
+        validation_alias=AliasChoices("crop", "imagecrop"),
     )
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
@@ -49,23 +74,15 @@ class ImageParserConfig(AttrDict):
     )
 
 
-class ImageParserResourceConfig(ResourceConfig):
+class ImageParserConfig(ParserConfig):
     """Image parse strategy resource config."""
 
-    mediaType: Literal[
-        "image/jpg",
-        "image/jpeg",
-        "image/jp2",
-        "image/png",
-        "image/gif",
-        "image/tiff",
-        "image/eps",
-    ] = Field(
-        ...,
-        description=ResourceConfig.model_fields["mediaType"].description,
+    parserType: Literal["parser/image"] = Field(
+        "parser/image",
+        description=ParserConfig.model_fields["parserType"].description,
     )
-    configuration: ImageParserConfig = Field(
-        ImageParserConfig(),
+    configuration: ImageConfig = Field(
+        ...,
         description="Image parse strategy-specific configuration.",
     )
 
@@ -83,7 +100,7 @@ class SupportedFormat(Enum):
 
 
 class ImageParseContent(AttrDict):
-    """Configuration model for ImageParse.
+    """Configuration model for the returned content from the Image parser.
 
     See
     [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html)
@@ -122,23 +139,13 @@ class ImageDataParseStrategy:
 
     It also supports simple cropping and image conversions.
 
-    The key to the new array and other metadata is stored in the session. See
+    The key to the new array and other metadata is returned. See
     [`ImageParseContent`][oteapi.strategies.parse.image.ImageParseContent]
     for more info.
 
-    **Registers strategies**:
-
-    - `("mediaType", "image/jpg")`
-    - `("mediaType", "image/jpeg")`
-    - `("mediaType", "image/jp2")`
-    - `("mediaType", "image/png")`
-    - `("mediaType", "image/gif")`
-    - `("mediaType", "image/tiff")`
-    - `("mediaType", "image/eps")`
-
     """
 
-    parse_config: ImageParserResourceConfig
+    parse_config: ImageParserConfig
 
     def initialize(self) -> AttrDict:
         """Initialize strategy."""
@@ -148,21 +155,17 @@ class ImageDataParseStrategy:
         """Execute the strategy."""
 
         config = self.parse_config.configuration
-        crop = config.crop
 
-        mime_format = self.parse_config.mediaType.split("/")[1]
+        if config.mediaType is None:
+            raise ValueError("No media type provided to the image parser")
+
+        mime_format = config.mediaType.split("/")[1]
         image_format = SupportedFormat[mime_format].value
 
         # Proper download configurations
-        download_config = self.parse_config.model_dump()
-        download_config["configuration"] = config.download_config or {}
-
-        downloader = create_strategy("download", download_config)
-        session.update(downloader.initialize(session))
-
-        downloader = create_strategy("download", download_config)
-        output = downloader.get(session)
-        session.update(output)
+        download_config = config.model_dump()
+        download_config["configuration"] = config.download_config.model_dump()
+        output = create_strategy("download", download_config).get()
 
         if config.datacache_config and config.datacache_config.accessKey:
             cache_key = config.datacache_config.accessKey
@@ -176,29 +179,29 @@ class ImageDataParseStrategy:
         # Treat image according to filter values
         with cache.getfile(cache_key, suffix=mime_format) as filename:
             image = Image.open(filename, formats=[image_format])
-            if crop:
-                image = image.crop(crop)
+            if config.crop:
+                image = image.crop(config.crop)
             if config.image_mode:
                 image = image.convert(mode=config.image_mode)
 
-            if image_format == "GIF":
-                if image.info.get("version", b"").startswith(b"GIF"):
-                    image.info.update(
-                        {"version": image.info.get("version", b"")[len(b"GIF") :]}
-                    )
+            if image_format == "GIF" and image.info.get("version", b"").startswith(
+                b"GIF"
+            ):
+                image.info.update(
+                    {"version": image.info.get("version", b"")[len(b"GIF") :]}
+                )
 
             image_key = cache.add(
                 image.tobytes(),
                 key=config.image_key,
-                tag=str(id(session)),
             )
 
             if image.mode == "P":
-                image_palette_key = cache.add(image.getpalette(), tag=str(id(session)))
+                image_palette_key = cache.add(image.getpalette())
             else:
                 image_palette_key = None
 
-            # The session must be json serialisable - filter out all
+            # The returned content must be json serialisable - filter out all
             # non-json serialisable fields in image.info
             if image.info:
                 image_info = {
@@ -209,7 +212,7 @@ class ImageDataParseStrategy:
             else:
                 image_info = {}
 
-            session_update = ImageParseContent(
+            content = ImageParseContent(
                 image_key=image_key,
                 image_size=image.size,
                 image_mode=image.mode,
@@ -220,4 +223,4 @@ class ImageDataParseStrategy:
             # Explicitly close the image to avoid crashes on Windows
             image.close()
 
-        return session_update
+        return content

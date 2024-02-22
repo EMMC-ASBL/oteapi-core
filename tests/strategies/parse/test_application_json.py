@@ -1,8 +1,9 @@
 """Tests the parse strategy for JSON."""
 
-from pathlib import Path
+from typing import TYPE_CHECKING
 
-from oteapi.interfaces import IParseStrategy
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 def test_json(static_files: "Path") -> None:
@@ -21,7 +22,7 @@ def test_json(static_files: "Path") -> None:
         },
         "entity": "http://onto-ns.com/meta/0.4/example_iri",
     }
-    parser: "IParseStrategy" = JSONDataParseStrategy(config)
+    parser = JSONDataParseStrategy(config)
     parser.initialize()
 
     test_data = json.loads(sample_file.read_text())

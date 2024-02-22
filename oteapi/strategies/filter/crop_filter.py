@@ -1,6 +1,6 @@
 """Demo-filter strategy"""
 
-from typing import Literal, Tuple
+from typing import Literal, Optional, Tuple
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -11,8 +11,8 @@ from oteapi.models import AttrDict, FilterConfig
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Tuple[int, int, int, int] = Field(
-        ..., description="Box cropping parameters (left, top, right, bottom)."
+    crop: Optional[Tuple[int, int, int, int]] = Field(
+        None, description="Box cropping parameters (left, top, right, bottom)."
     )
 
 
@@ -50,6 +50,9 @@ class CropImageFilter:
 
     def initialize(self) -> CropFilterContent:
         """Initialize strategy and return a dictionary."""
+        if self.filter_config.configuration.crop is None:
+            raise ValueError("Crop filter requires crop configuration.")
+
         return CropFilterContent(
             imagecrop=self.filter_config.configuration.crop,
         )
