@@ -21,7 +21,7 @@ class JSONConfig(AttrDict):
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None, description="The HTTP(S) URL, which will be downloaded."
     )
-    mediaType: Optional[str] = Field(
+    mediaType: Literal["application/json"] = Field(
         "application/json",
         description=("The media type"),
     )
