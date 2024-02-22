@@ -76,20 +76,25 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.https" = "oteapi.strategies.download.https:HTTPSStrategy"
 "oteapi.ftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
 "oteapi.sftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
+
 [project.entry-points."oteapi.filter"]
 "oteapi.filter/crop" = "oteapi.strategies.filter.crop_filter:CropImageFilter"
 "oteapi.filter/sql" = "oteapi.strategies.filter.sql_query_filter:SQLQueryFilter"
+
 [project.entry-points."oteapi.mapping"]
 "oteapi.triples" = "oteapi.strategies.mapping.mapping:MappingStrategy"
+
 [project.entry-points."oteapi.parse"]
-"oteapi.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
-"oteapi.application/vnd.sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
-"oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
+"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
+"oteapi.parser/excel_xlsx" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
 "oteapi.parser/image" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
 "oteapi.parser/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
-"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
+"oteapi.parser/sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
+"oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
+
 [project.entry-points."oteapi.transformation"]
 "oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"
+
 [project.entry-points."oteapi.resource"]
 "oteapi.resource/url" = "oteapi.strategies.resource.resource_url:ResourceURLStrategy"
 

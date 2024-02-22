@@ -1,19 +1,29 @@
 """Strategy class for workbook/xlsx."""
 
-from typing import TYPE_CHECKING, Dict, List, Literal, Optional, Union
+import sys
+from typing import TYPE_CHECKING, Annotated, Dict, List, Optional, Union
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
 from pydantic import Field
 from pydantic.dataclasses import dataclass
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ParserConfig
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
+from oteapi.plugins import create_strategy
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterable
 
     from openpyxl.worksheet.worksheet import Worksheet
+
+HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
 
 
 class XLSXParseContent(AttrDict):
@@ -28,6 +38,18 @@ class XLSXParseContent(AttrDict):
 class XLSXParseConfig(AttrDict):
     """Data model for retrieving a rectangular section of an Excel sheet."""
 
+    # Resource config
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
+        None, description=ResourceConfig.model_fields["downloadUrl"].description
+    )
+    mediaType: Literal[
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ] = Field(
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        description=ResourceConfig.model_fields["mediaType"].description,
+    )
+
+    # XLSX parse strategy-specific config
     worksheet: str = Field(..., description="Name of worksheet to load.")
     row_from: Optional[int] = Field(
         None,
@@ -86,10 +108,8 @@ class XLSXParseConfig(AttrDict):
 class XLSXParseParserConfig(ParserConfig):
     """XLSX parse strategy resource config."""
 
-    parserType: Literal[
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    ] = Field(
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    parserType: Literal["parser/excel_xlsx"] = Field(
+        "parser/excel_xlsx",
         description=ParserConfig.model_fields["parserType"].description,
     )
     configuration: XLSXParseConfig = Field(
@@ -178,33 +198,46 @@ class XLSXParseStrategy:
 
         """
 
-        cache = DataCache(self.parse_config.configuration.datacache_config)
-        if session is None:
-            raise ValueError("Missing session")
-        with cache.getfile(key=session["key"], suffix=".xlsx") as filename:
+        config = self.parse_config.configuration
+
+        # Download the file
+        download_config = config.model_dump()
+        download_config["configuration"] = config.download_config.model_dump()
+        output = create_strategy("download", download_config).get()
+
+        if config.datacache_config and config.datacache_config.accessKey:
+            cache_key = config.datacache_config.accessKey
+        elif "key" in output:
+            cache_key = output["key"]
+        else:
+            raise RuntimeError("No data cache key provided to the downloaded content")
+
+        cache = DataCache(config.datacache_config)
+
+        with cache.getfile(key=cache_key, suffix=".xlsx") as filename:
             # Note that we have to set read_only=False to ensure that
             # load_workbook() properly closes the xlsx file after reading.
             # Otherwise Windows will fail when the temporary file is removed
             # when leaving the with statement.
             workbook = load_workbook(filename=filename, read_only=False, data_only=True)
 
-        worksheet = workbook[self.parse_config.configuration.worksheet]
-        set_model_defaults(self.parse_config.configuration, worksheet)
-        columns = get_column_indices(self.parse_config.configuration, worksheet)
+        worksheet = workbook[config.worksheet]
+        set_model_defaults(config, worksheet)
+        columns = get_column_indices(config, worksheet)
 
         data = []
         for row in worksheet.iter_rows(
-            min_row=self.parse_config.configuration.row_from,
-            max_row=self.parse_config.configuration.row_to,
+            min_row=config.row_from,
+            max_row=config.row_to,
             min_col=min(columns),
             max_col=max(columns),
         ):
             data.append([row[c - 1].value for c in columns])
 
-        if self.parse_config.configuration.header_row:
+        if config.header_row:
             row = worksheet.iter_rows(
-                min_row=self.parse_config.configuration.header_row,
-                max_row=self.parse_config.configuration.header_row,
+                min_row=config.header_row,
+                max_row=config.header_row,
                 min_col=min(columns),
                 max_col=max(columns),
             ).__next__()
@@ -212,20 +245,20 @@ class XLSXParseStrategy:
         else:
             header = None
 
-        if self.parse_config.configuration.new_header:
+        if config.new_header:
             nhead = len(header) if header else len(data[0]) if data else 0
-            if len(self.parse_config.configuration.new_header) != nhead:
+            if len(config.new_header) != nhead:
                 raise TypeError(
                     "length of `new_header` "
-                    f"(={len(self.parse_config.configuration.new_header)}) "
+                    f"(={len(config.new_header)}) "
                     f"doesn't match number of columns (={len(header) if header else 0})"
                 )
             if header:
-                for i, val in enumerate(self.parse_config.configuration.new_header):
+                for i, val in enumerate(config.new_header):
                     if val is not None:
                         header[i] = val
             elif data:
-                header = self.parse_config.configuration.new_header
+                header = config.new_header
 
         if header is None:
             header = [get_column_letter(col + 1) for col in range(len(data))]

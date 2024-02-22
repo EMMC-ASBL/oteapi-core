@@ -29,7 +29,6 @@ class ImageConfig(AttrDict):
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None, description=ResourceConfig.model_fields["downloadUrl"].description
     )
-
     mediaType: Optional[
         Literal[
             "image/jpg",
@@ -45,6 +44,7 @@ class ImageConfig(AttrDict):
         description=ResourceConfig.model_fields["mediaType"].description,
     )
 
+    # Image parse strategy-specific config
     crop: Optional[Tuple[int, int, int, int]] = Field(
         None,
         description="Box cropping parameters (left, top, right, bottom).",
@@ -162,7 +162,7 @@ class ImageDataParseStrategy:
         mime_format = config.mediaType.split("/")[1]
         image_format = SupportedFormat[mime_format].value
 
-        # Proper download configurations
+        # Download the image
         download_config = config.model_dump()
         download_config["configuration"] = config.download_config.model_dump()
         output = create_strategy("download", download_config).get()
