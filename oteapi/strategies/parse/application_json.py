@@ -58,7 +58,7 @@ class JSONDataParseStrategy:
 
     **Registers strategies**:
 
-    - `("strategyType", "parser/json")`
+    - `("parserType", "parser/json")`
 
     """
 
