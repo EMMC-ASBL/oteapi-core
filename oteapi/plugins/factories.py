@@ -168,12 +168,13 @@ class StrategyFactory:
             loaded strategy names for each type.
 
         Raises:
-            StrategiesNotLoaded: If the strategies are not loaded or `strategy_create_func`
-            is not properly initialized.
+            StrategiesNotLoaded: If the strategies are not loaded or
+                `strategy_create_func` is not properly initialized.
         """
         if not hasattr(cls, "strategy_create_func") or not cls.strategy_create_func:
             raise StrategiesNotLoaded(
-                "Strategies are not loaded or `strategy_create_func` is not properly initialized."
+                "Strategies are not loaded or `strategy_create_func` is not properly "
+                "initialized."
             )
 
         loaded_strategies = {}
