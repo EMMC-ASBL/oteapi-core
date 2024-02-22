@@ -1,9 +1,6 @@
 """Tests the parse strategy for SQLite."""
 
-import psycopg
 import pytest
-
-from oteapi.strategies.parse.postgres import PostgresResourceStrategy
 
 sqlite_queries = [
     (
@@ -44,6 +41,9 @@ def test_postgres(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Test `application/vnd.postgresql` parse strategy with different SQL queries."""
+    import psycopg
+
+    from oteapi.strategies.parse.postgres import PostgresParserStrategy
 
     # Define a mock psycopg connection class
     class MockPsycopg:
@@ -69,21 +69,19 @@ def test_postgres(
 
     monkeypatch.setattr(psycopg, "connect", mock_connect)
 
-    # Configuration for the PostgresResourceStrategy
+    # Configuration for the PostgresParserStrategy
     config = {
-        "accessUrl": "postgresql://postgres:postgres@localhost:5432/postgres",
-        "accessService": "foo",
+        "parserType": "parser/postgres",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
         "configuration": {
             "sqlquery": query,
+            "accessUrl": "postgresql://postgres:postgres@localhost:5432/postgres",
+            "accessService": "postgres",
         },
     }
 
-    # Initialize the PostgresResourceStrategy
-    resource_strategy = PostgresResourceStrategy(config)
-    resource_strategy.initialize()
-
     # Execute the SQL query and get the result
-    result = resource_strategy.get()
+    result = PostgresParserStrategy(config).get()
 
     # Ensure that the result matches the expected output
     assert result.result[0] == expected

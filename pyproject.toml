@@ -85,10 +85,10 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.triples" = "oteapi.strategies.mapping.mapping:MappingStrategy"
 
 [project.entry-points."oteapi.parse"]
-"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
 "oteapi.parser/excel_xlsx" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
 "oteapi.parser/image" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
 "oteapi.parser/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
+"oteapi.parser/postgres" = "oteapi.strategies.parse.postgres:PostgresParserStrategy"
 "oteapi.parser/sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
 "oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
 
