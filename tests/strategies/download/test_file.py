@@ -7,7 +7,7 @@ import pytest
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from oteapi.strategies.download.file import SessionUpdateFile
+    from oteapi.strategies.download.file import DownloadFileContent
 
 
 @pytest.mark.parametrize(
@@ -31,7 +31,7 @@ def test_file(filename: str, mediaType: str, static_files: "Path") -> None:
         "downloadUrl": sample_file.as_uri(),
         "mediaType": mediaType,
     }
-    output: "SessionUpdateFile" = FileStrategy(config).get()
+    output: "DownloadFileContent" = FileStrategy(config).get()
     content: bytes = DataCache().get(output.key)
 
     if mediaType.startswith("image"):

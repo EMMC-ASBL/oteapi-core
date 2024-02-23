@@ -69,9 +69,9 @@ oteapi.function =
 oteapi.mapping =
   oteapi_tests.html = static.strategies.mapping:MappingTestStrategy
 oteapi.parse =
-  oteapi_tests.text/html = static.strategies.parse:ParseTestStrategy
+  oteapi_tests.parser/json = static.strategies.parse:ParseTestStrategy
 oteapi.resource =
-  oteapi_tests.example = static.strategies.resource:ResourceTestStrategy
+  oteapi_tests.resource/url = static.strategies.resource:ResourceTestStrategy
 oteapi.transformation =
   oteapi_tests.render = static.strategies.transformation:TransformationTestStrategy
 """
@@ -92,6 +92,7 @@ def get_strategy_config() -> (
         FilterConfig,
         FunctionConfig,
         MappingConfig,
+        ParserConfig,
         ResourceConfig,
         TransformationConfig,
     )
@@ -121,7 +122,7 @@ def get_strategy_config() -> (
             StrategyType.FILTER: FilterConfig,
             StrategyType.FUNCTION: FunctionConfig,
             StrategyType.MAPPING: MappingConfig,
-            StrategyType.PARSE: ResourceConfig,
+            StrategyType.PARSE: ParserConfig,
             StrategyType.RESOURCE: ResourceConfig,
             StrategyType.TRANSFORMATION: TransformationConfig,
         }[strategy]

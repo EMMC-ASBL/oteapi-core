@@ -1,27 +1,20 @@
 """Parse test strategy class."""
 
-from typing import TYPE_CHECKING
-
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import ResourceConfig
-
-if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+from oteapi.models import AttrDict, ParserConfig
 
 
 @dataclass
 class ParseTestStrategy:
     """Test parse strategy."""
 
-    parse_config: ResourceConfig
+    parse_config: ParserConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run parse strategy."""
-        return {}
+        return AttrDict()

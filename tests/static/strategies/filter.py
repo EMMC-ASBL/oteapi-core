@@ -1,13 +1,8 @@
 """Filter test strategy class."""
 
-from typing import TYPE_CHECKING
-
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import FilterConfig
-
-if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+from oteapi.models import AttrDict, FilterConfig
 
 
 @dataclass
@@ -16,12 +11,10 @@ class FilterTestStrategy:
 
     filter_config: FilterConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run filter strategy."""
-        return {}
+        return AttrDict()
