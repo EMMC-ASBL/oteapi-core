@@ -850,27 +850,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sessionupdate/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    sessionupdate
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../models/transformationconfig/" class="md-nav__link">
         
   
@@ -1053,6 +1032,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_loaded_strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="md-nav__link">
     <span class="md-ellipsis">
       load_strategies
@@ -1079,6 +1067,15 @@
   <a href="#oteapi.plugins.factories.create_strategy" class="md-nav__link">
     <span class="md-ellipsis">
       create_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.plugins.factories.list_strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_strategies
     </span>
   </a>
   
@@ -1590,7 +1587,7 @@
             
   
   <span class="md-ellipsis">
-    transformation
+    resource
   </span>
   
 
@@ -1599,6 +1596,70 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            resource
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/resource/resource_url/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    resource_url
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6_6" id="__nav_6_6_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    transformation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6_6">
             <span class="md-nav__icon md-icon"></span>
             transformation
           </label>
@@ -1852,6 +1913,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_loaded_strategies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="md-nav__link">
     <span class="md-ellipsis">
       load_strategies
@@ -1878,6 +1948,15 @@
   <a href="#oteapi.plugins.factories.create_strategy" class="md-nav__link">
     <span class="md-ellipsis">
       create_strategy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oteapi.plugins.factories.list_strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_strategies
     </span>
   </a>
   
@@ -2147,7 +2226,34 @@ in-memory cache of all registered strategies.</p>
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
-<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyFactory</span><span class="p">:</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategyFactory</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator-based Factory class.</span>
 
 <span class="sd">    Attributes:</span>
@@ -2285,6 +2391,33 @@ in-memory cache of all registered strategies.</p>
             <span class="p">)</span>
             <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
         <span class="p">}</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">list_loaded_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[StrategyType, List[str]]&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lists all loaded strategy plugins (endpoints).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary where keys are strategy types and values are lists of</span>
+<span class="sd">            loaded strategy names for each type.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            StrategiesNotLoaded: If the strategies are not loaded or</span>
+<span class="sd">                `strategy_create_func` is not properly initialized.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
+                <span class="s2">&quot;Strategies are not loaded or `strategy_create_func` is not properly &quot;</span>
+                <span class="s2">&quot;initialized.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">loaded_strategies</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">strategy_type</span><span class="p">,</span> <span class="n">strategy_collection</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># Assuming each item in the collection has a &#39;name&#39; attribute or similar</span>
+            <span class="n">loaded_strategies</span><span class="p">[</span><span class="n">strategy_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">strategy</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategy_collection</span>
+            <span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">loaded_strategies</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2299,6 +2432,143 @@ in-memory cache of all registered strategies.</p>
 
 
 
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">list_loaded_strategies</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
+  </span>
+
+<a href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Lists all loaded strategy plugins (endpoints).</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary where keys are strategy types and values are lists of</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>loaded strategy names for each type.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If the strategies are not loaded or
+<code>strategy_create_func</code> is not properly initialized.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">list_loaded_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[StrategyType, List[str]]&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lists all loaded strategy plugins (endpoints).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary where keys are strategy types and values are lists of</span>
+<span class="sd">        loaded strategy names for each type.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        StrategiesNotLoaded: If the strategies are not loaded or</span>
+<span class="sd">            `strategy_create_func` is not properly initialized.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
+            <span class="s2">&quot;Strategies are not loaded or `strategy_create_func` is not properly &quot;</span>
+            <span class="s2">&quot;initialized.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">loaded_strategies</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">strategy_type</span><span class="p">,</span> <span class="n">strategy_collection</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># Assuming each item in the collection has a &#39;name&#39; attribute or similar</span>
+        <span class="n">loaded_strategies</span><span class="p">[</span><span class="n">strategy_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">strategy</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategy_collection</span>
+        <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">loaded_strategies</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
 
 
 <div class="doc doc-object doc-function">
@@ -2844,24 +3114,24 @@ enumeration for a definition of valid strategy types.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span>
-<span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span>
-<span class="normal">189</span>
-<span class="normal">190</span>
-<span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_strategy</span><span class="p">(</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">create_strategy</span><span class="p">(</span>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyType, str]&quot;</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="s2">&quot;Union[StrategyConfig, Dict[str, Any]]&quot;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IStrategy&quot;</span><span class="p">:</span>
@@ -2879,6 +3149,81 @@ enumeration for a definition of valid strategy types.</p>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="oteapi.plugins.factories.list_strategies" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">list_strategies</span><span class="p">()</span></code>
+
+<a href="#oteapi.plugins.factories.list_strategies" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Proxy function for
+<a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies"><code>StrategyFactory.list_loaded_strategies()</code></a>.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>A dictionary where keys are strategy types and values are lists of</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>loaded strategy names for each type.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">list_strategies</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="s2">&quot;Dict[StrategyType, List[str]]&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="sd">    [`StrategyFactory.list_loaded_strategies()`][oteapi.plugins.factories.StrategyFactory.list_loaded_strategies].</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A dictionary where keys are strategy types and values are lists of</span>
+<span class="sd">        loaded strategy names for each type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">list_loaded_strategies</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -2936,18 +3281,18 @@ duplicated strategy and the duplicates will be ignored.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span>
-<span class="normal">171</span>
-<span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
 <span class="sd">    [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].</span>
 

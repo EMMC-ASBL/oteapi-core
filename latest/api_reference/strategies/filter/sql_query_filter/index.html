@@ -850,27 +850,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../models/sessionupdate/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    sessionupdate
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../../models/transformationconfig/" class="md-nav__link">
         
   
@@ -1304,17 +1283,17 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent" class="md-nav__link">
     <span class="md-ellipsis">
-      SessionUpdateSqlQuery
+      SqlQueryContent
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SessionUpdateSqlQuery">
+    <nav class="md-nav" aria-label="SqlQueryContent">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.sqlquery" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent.sqlquery" class="md-nav__link">
     <span class="md-ellipsis">
       sqlquery
     </span>
@@ -1631,7 +1610,7 @@
             
   
   <span class="md-ellipsis">
-    transformation
+    resource
   </span>
   
 
@@ -1640,6 +1619,70 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            resource
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resource/resource_url/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    resource_url
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6_6" id="__nav_6_6_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    transformation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6_6">
             <span class="md-nav__icon md-icon"></span>
             transformation
           </label>
@@ -1916,17 +1959,17 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent" class="md-nav__link">
     <span class="md-ellipsis">
-      SessionUpdateSqlQuery
+      SqlQueryContent
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SessionUpdateSqlQuery">
+    <nav class="md-nav" aria-label="SqlQueryContent">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.sqlquery" class="md-nav__link">
+  <a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent.sqlquery" class="md-nav__link">
     <span class="md-ellipsis">
       sqlquery
     </span>
@@ -2032,9 +2075,7 @@
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -2052,8 +2093,7 @@
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">SQLQueryFilter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for a SQL query filter.</span>
 
@@ -2065,16 +2105,13 @@
 
     <span class="n">filter_config</span><span class="p">:</span> <span class="n">SqlQueryFilterConfig</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SqlQueryContent</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SqlQueryContent</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -2115,7 +2152,7 @@
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.get" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">get</span><span class="p">()</span></code>
 
 <a href="#oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -2126,11 +2163,11 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdate</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">SessionUpdate</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -2143,7 +2180,7 @@
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.initialize" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">initialize</span><span class="p">()</span></code>
 
 <a href="#oteapi.strategies.filter.sql_query_filter.SQLQueryFilter.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -2154,17 +2191,11 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">:</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SqlQueryContent</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SqlQueryContent</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -2184,26 +2215,26 @@
 
 
 
-<h2 id="oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="doc doc-heading">
-          <code>SessionUpdateSqlQuery</code>
+<h2 id="oteapi.strategies.filter.sql_query_filter.SqlQueryContent" class="doc doc-heading">
+          <code>SqlQueryContent</code>
 
 
-<a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
 
   
       <p>Class for returning values from SQL Query data model.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SessionUpdateSqlQuery</span><span class="p">(</span><span class="n">SessionUpdate</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqlQueryContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from SQL Query data model.&quot;&quot;&quot;</span>
 
     <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
@@ -2224,7 +2255,7 @@
 
 
 
-<h3 id="oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.sqlquery" class="doc doc-heading">
+<h3 id="oteapi.strategies.filter.sql_query_filter.SqlQueryContent.sqlquery" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A SQL query string.&#39;</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
@@ -2232,7 +2263,7 @@
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#oteapi.strategies.filter.sql_query_filter.SessionUpdateSqlQuery.sqlquery" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#oteapi.strategies.filter.sql_query_filter.SqlQueryContent.sqlquery" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
   <div class="doc doc-contents ">
@@ -2271,14 +2302,14 @@
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/filter/sql_query_filter.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqlQueryFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SqlQueryFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SQL query filter strategy filter config.&quot;&quot;&quot;</span>
 
     <span class="n">filterType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;filter/sql&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>

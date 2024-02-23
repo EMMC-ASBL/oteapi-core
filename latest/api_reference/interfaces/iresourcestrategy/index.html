@@ -934,27 +934,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../models/sessionupdate/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    sessionupdate
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../models/transformationconfig/" class="md-nav__link">
         
   
@@ -1563,7 +1542,7 @@
             
   
   <span class="md-ellipsis">
-    transformation
+    resource
   </span>
   
 
@@ -1572,6 +1551,70 @@
         
         <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            resource
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../strategies/resource/resource_url/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    resource_url
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6_6" id="__nav_6_6_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    transformation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_6_6_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_6_6">
             <span class="md-nav__icon md-icon"></span>
             transformation
           </label>
@@ -1900,7 +1943,9 @@
 
             <details class="quote">
               <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
@@ -1923,25 +1968,14 @@
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>  <span class="c1"># type: ignore[misc]</span>
 <span class="k">class</span> <span class="nc">IResourceStrategy</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource Strategy Interface.&quot;&quot;&quot;</span>
 
     <span class="n">resource_config</span><span class="p">:</span> <span class="s2">&quot;ResourceConfig&quot;</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            session: A session-specific dictionary context.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            An update model of key/value-pairs to be stored in the</span>
@@ -1949,14 +1983,11 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">        This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">        Services.</span>
-
-<span class="sd">        Parameters:</span>
-<span class="sd">            session: A session-specific dictionary context.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            An update model of key/value-pairs to be stored in the</span>
@@ -1984,7 +2015,7 @@
 
 
 <h3 id="oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">get</span><span class="p">()</span></code>
 
 <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -1992,36 +2023,6 @@
   <div class="doc doc-contents ">
   
       <p>Execute the strategy.</p>
-
-
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>session</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A session-specific dictionary context.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
 
 
 
@@ -2036,7 +2037,7 @@
     <tbody>
         <tr>
           <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
+                <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -2046,7 +2047,7 @@
         </tr>
         <tr>
           <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
+                <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -2059,21 +2060,15 @@
 
           <details class="quote">
             <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        An update model of key/value-pairs to be stored in the</span>
@@ -2092,7 +2087,7 @@
 
 
 <h3 id="oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">initialize</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">initialize</span><span class="p">()</span></code>
 
 <a href="#oteapi.interfaces.iresourcestrategy.IResourceStrategy.initialize" class="headerlink" title="Permanent link">&para;</a></h3>
 
@@ -2102,36 +2097,6 @@
       <p>Initialize data class.</p>
 <p>This method will be called through the <code>/initialize</code> endpoint of the OTE-API
 Services.</p>
-
-
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td><code>session</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A session-specific dictionary context.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
 
 
 
@@ -2146,7 +2111,7 @@ Services.</p>
     <tbody>
         <tr>
           <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
+                <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -2156,7 +2121,7 @@ Services.</p>
         </tr>
         <tr>
           <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.SessionUpdate" href="../../../all_models/#oteapi.models.SessionUpdate">SessionUpdate</a></code>
+                <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -2169,27 +2134,21 @@ Services.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/interfaces/iresourcestrategy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="s2">&quot;Optional[Dict[str, Any]]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;SessionUpdate&quot;</span><span class="p">:</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize data class.</span>
 
 <span class="sd">    This method will be called through the `/initialize` endpoint of the OTE-API</span>
 <span class="sd">    Services.</span>
-
-<span class="sd">    Parameters:</span>
-<span class="sd">        session: A session-specific dictionary context.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        An update model of key/value-pairs to be stored in the</span>
