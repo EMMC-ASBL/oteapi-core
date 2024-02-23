@@ -9,7 +9,7 @@ from oteapi.models import StrategyConfig
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Union
+    from typing import Any, Dict, List, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
@@ -159,6 +159,33 @@ class StrategyFactory:
             for strategy_type in StrategyType
         }
 
+    @classmethod
+    def list_loaded_strategies(cls) -> "Dict[StrategyType, List[str]]":
+        """Lists all loaded strategy plugins (endpoints).
+
+        Returns:
+            A dictionary where keys are strategy types and values are lists of
+            loaded strategy names for each type.
+
+        Raises:
+            StrategiesNotLoaded: If the strategies are not loaded or
+                `strategy_create_func` is not properly initialized.
+        """
+        if not hasattr(cls, "strategy_create_func") or not cls.strategy_create_func:
+            raise StrategiesNotLoaded(
+                "Strategies are not loaded or `strategy_create_func` is not properly "
+                "initialized."
+            )
+
+        loaded_strategies = {}
+        for strategy_type, strategy_collection in cls.strategy_create_func.items():
+            # Assuming each item in the collection has a 'name' attribute or similar
+            loaded_strategies[strategy_type] = [
+                strategy.name for strategy in strategy_collection
+            ]
+
+        return loaded_strategies
+
 
 def load_strategies(test_for_uniqueness: bool = True) -> None:
     """Proxy function for
@@ -172,6 +199,17 @@ def load_strategies(test_for_uniqueness: bool = True) -> None:
 
     """
     StrategyFactory.load_strategies(test_for_uniqueness)
+
+
+def list_strategies() -> "Dict[StrategyType, List[str]]":
+    """Proxy function for
+    [`StrategyFactory.list_loaded_strategies()`][oteapi.plugins.factories.StrategyFactory.list_loaded_strategies].
+
+    Returns:
+        A dictionary where keys are strategy types and values are lists of
+        loaded strategy names for each type.
+    """
+    return StrategyFactory.list_loaded_strategies()
 
 
 def create_strategy(

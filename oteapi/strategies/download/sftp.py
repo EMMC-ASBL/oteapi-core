@@ -2,7 +2,7 @@
 
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, Annotated, Optional
+from typing import Annotated, Optional
 
 import pysftp
 from pydantic import Field
@@ -10,11 +10,7 @@ from pydantic.dataclasses import dataclass
 from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
-
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
 AnyFtpUrl = Annotated[Url, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 
@@ -42,7 +38,7 @@ class SFTPResourceConfig(ResourceConfig):
     )
 
 
-class SessionUpdateSFTP(SessionUpdate):
+class SFTPContent(AttrDict):
     """Class for returning values from Download SFTP strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
@@ -61,11 +57,11 @@ class SFTPStrategy:
 
     download_config: SFTPResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSFTP:
+    def get(self) -> SFTPContent:
         """Download via sftp"""
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -93,4 +89,4 @@ class SFTPStrategy:
                 finally:
                     localpath.unlink()
 
-        return SessionUpdateSFTP(key=key)
+        return SFTPContent(key=key)

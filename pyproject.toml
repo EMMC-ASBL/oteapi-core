@@ -25,7 +25,7 @@ dependencies = [
     "agraph-python>=102.0.0,<103",
     "diskcache>=5.6.3,<6",
     "pydantic~=2.6",
-    "pydantic-settings~=2.1",
+    "pydantic-settings~=2.2",
     "typing-extensions~=4.9; python_version < '3.10'",
 
     # Strategy dependencies
@@ -77,26 +77,27 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.https" = "oteapi.strategies.download.https:HTTPSStrategy"
 "oteapi.ftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
 "oteapi.sftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
+
 [project.entry-points."oteapi.filter"]
 "oteapi.filter/crop" = "oteapi.strategies.filter.crop_filter:CropImageFilter"
 "oteapi.filter/sql" = "oteapi.strategies.filter.sql_query_filter:SQLQueryFilter"
+
 [project.entry-points."oteapi.mapping"]
 "oteapi.triples" = "oteapi.strategies.mapping.mapping:MappingStrategy"
+
 [project.entry-points."oteapi.parse"]
-"oteapi.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
-"oteapi.image/jpg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/jpeg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/jp2" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/png" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/gif" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/tiff" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/eps" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.application/vnd.sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
-"oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
-"oteapi.application/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
-"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
+"oteapi.parser/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
+"oteapi.parser/excel_xlsx" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
+"oteapi.parser/image" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.parser/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
+"oteapi.parser/postgres" = "oteapi.strategies.parse.postgres:PostgresParserStrategy"
+"oteapi.parser/sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
+
 [project.entry-points."oteapi.transformation"]
 "oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"
+
+[project.entry-points."oteapi.resource"]
+"oteapi.resource/url" = "oteapi.strategies.resource.resource_url:ResourceURLStrategy"
 
 [tool.flit.module]
 name = "oteapi"

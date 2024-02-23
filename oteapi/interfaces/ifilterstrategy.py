@@ -4,9 +4,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
-
-    from oteapi.models import FilterConfig, SessionUpdate
+    from oteapi.models import AttrDict, FilterConfig
 
 
 @dataclass  # type: ignore[misc]
@@ -15,11 +13,8 @@ class IFilterStrategy(Protocol):
 
     filter_config: "FilterConfig"
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
+    def get(self) -> "AttrDict":
         """Execute the strategy.
-
-        Parameters:
-            session: A session-specific dictionary context.
 
         Returns:
             An update model of key/value-pairs to be stored in the
@@ -27,14 +22,11 @@ class IFilterStrategy(Protocol):
 
         """
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
+    def initialize(self) -> "AttrDict":
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API
         Services.
-
-        Parameters:
-            session: A session-specific dictionary context.
 
         Returns:
             An update model of key/value-pairs to be stored in the

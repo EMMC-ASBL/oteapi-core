@@ -1,21 +1,24 @@
 """Demo-filter strategy"""
 
-from typing import TYPE_CHECKING, Literal, Tuple
+import sys
+from typing import Optional, Tuple
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, FilterConfig, SessionUpdate
+from oteapi.models import AttrDict, FilterConfig
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Tuple[int, int, int, int] = Field(
-        ..., description="Box cropping parameters (left, top, right, bottom)."
+    crop: Optional[Tuple[int, int, int, int]] = Field(
+        None, description="Box cropping parameters (left, top, right, bottom)."
     )
 
 
@@ -31,7 +34,7 @@ class CropImageFilterConfig(FilterConfig):
     )
 
 
-class SessionUpdateCropFilter(SessionUpdate):
+class CropFilterContent(AttrDict):
     """Return model for `CropImageFilter`."""
 
     imagecrop: Tuple[int, int, int, int] = Field(
@@ -51,18 +54,15 @@ class CropImageFilter:
 
     filter_config: CropImageFilterConfig
 
-    def initialize(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdateCropFilter:
+    def initialize(self) -> CropFilterContent:
         """Initialize strategy and return a dictionary."""
-        return SessionUpdateCropFilter(
+        if self.filter_config.configuration.crop is None:
+            raise ValueError("Crop filter requires crop configuration.")
+
+        return CropFilterContent(
             imagecrop=self.filter_config.configuration.crop,
         )
 
-    def get(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdate:
+    def get(self) -> AttrDict:
         """Execute strategy and return a dictionary"""
-        return SessionUpdate()
+        return AttrDict()

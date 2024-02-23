@@ -1,13 +1,8 @@
 """Download test strategy class."""
 
-from typing import TYPE_CHECKING
-
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import ResourceConfig
-
-if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+from oteapi.models import AttrDict, ResourceConfig
 
 
 @dataclass
@@ -16,12 +11,10 @@ class DownloadTestStrategy:
 
     download_config: ResourceConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run download strategy."""
-        return {}
+        return AttrDict()

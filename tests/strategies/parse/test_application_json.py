@@ -5,8 +5,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from oteapi.interfaces import IParseStrategy
-
 
 def test_json(static_files: "Path") -> None:
     """Test `application/json` parse strategy on local file."""
@@ -15,12 +13,16 @@ def test_json(static_files: "Path") -> None:
     from oteapi.strategies.parse.application_json import JSONDataParseStrategy
 
     sample_file = static_files / "sample2.json"
-
     config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "application/json",
+        "parserType": "parser/json",
+        "configuration": {
+            "datacache_config": None,
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "application/json",
+        },
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
     }
-    parser: "IParseStrategy" = JSONDataParseStrategy(config)
+    parser = JSONDataParseStrategy(config)
     parser.initialize()
 
     test_data = json.loads(sample_file.read_text())

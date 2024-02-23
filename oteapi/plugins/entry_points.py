@@ -21,6 +21,7 @@ from oteapi.models import (
     FilterConfig,
     FunctionConfig,
     MappingConfig,
+    ParserConfig,
     ResourceConfig,
     TransformationConfig,
 )
@@ -69,8 +70,8 @@ class StrategyType(Enum):
             "filter": "filterType",
             "function": "functionType",
             "mapping": "mappingType",
-            "parse": "mediaType",
-            "resource": "accessService",
+            "parse": "parserType",
+            "resource": "resourceType",
             "transformation": "transformationType",
         }[self.value]
 
@@ -94,8 +95,8 @@ class StrategyType(Enum):
             "filterType": cls.FILTER,
             "functionType": cls.FUNCTION,
             "mappingType": cls.MAPPING,
-            "mediaType": cls.PARSE,
-            "accessService": cls.RESOURCE,
+            "parserType": cls.PARSE,
+            "resourceType": cls.RESOURCE,
             "transformationType": cls.TRANSFORMATION,
         }[strategy_type_field]
 
@@ -136,7 +137,7 @@ class StrategyType(Enum):
             "filter": FilterConfig,
             "function": FunctionConfig,
             "mapping": MappingConfig,
-            "parse": ResourceConfig,
+            "parse": ParserConfig,
             "resource": ResourceConfig,
             "transformation": TransformationConfig,
         }[self.value]

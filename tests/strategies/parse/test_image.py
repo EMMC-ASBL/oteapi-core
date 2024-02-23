@@ -8,23 +8,51 @@ if TYPE_CHECKING:
     from pathlib import Path
     from typing import Optional, Tuple
 
-    from oteapi.interfaces.iparsestrategy import IParseStrategy
-
 
 image_formats = [
-    ("eps", "sample_700_400.eps", "parsed_eps.eps", None),
-    ("gif", "sample_1280_853.gif", "sample_700_400.gif", (200, 300, 900, 700)),
-    ("jpeg", "sample_1280_853.jpeg", "sample_700_400.jpeg", (200, 300, 900, 700)),
-    ("jpg", "sample_1280_853.jpg", "sample_700_400.jpeg", (200, 300, 900, 700)),
-    ("jp2", "sample1_1000_1000.jp2", None, None),
-    ("png", "sample_640_426.png", "sample_350_250.png", (100, 50, 450, 300)),
-    ("tiff", "sample_640_426.tiff", "sample_350_250.tiff", (100, 50, 450, 300)),
-    ("gif", "sample_700_400.gif", None, None),
+    ("eps", "sample_700_400.eps", "parsed_eps.eps", None, None),
+    (
+        "gif",
+        "sample_1280_853.gif",
+        "sample_700_400.gif",
+        (200, 300, 900, 700),
+        (400, 700),
+    ),
+    (
+        "jpeg",
+        "sample_1280_853.jpeg",
+        "sample_700_400.jpeg",
+        (200, 300, 900, 700),
+        (400, 700),
+    ),
+    (
+        "jpg",
+        "sample_1280_853.jpg",
+        "sample_700_400.jpeg",
+        (200, 300, 900, 700),
+        (400, 700),
+    ),
+    ("jp2", "sample1_1000_1000.jp2", None, None, None),
+    (
+        "png",
+        "sample_640_426.png",
+        "sample_350_250.png",
+        (100, 50, 450, 300),
+        (250, 350),
+    ),
+    (
+        "tiff",
+        "sample_640_426.tiff",
+        "sample_350_250.tiff",
+        (100, 50, 450, 300),
+        (250, 350),
+    ),
+    ("gif", "sample_700_400.gif", None, None, None),
 ]
 
 
 @pytest.mark.parametrize(
-    "image_format,filename,filename_cropped,crop",
+    "image_format,filename,filename_cropped,crop,cropped_size",
     image_formats,
     ids=[_[0] for _ in image_formats[:-1]] + [f"{image_formats[-1][0]}-no crop"],
 )
@@ -33,10 +61,10 @@ def test_image(
     filename: str,
     filename_cropped: "Optional[str]",
     crop: "Optional[Tuple[int, int, int, int]]",
+    cropped_size: "Optional[Tuple[int, int]]",
     static_files: "Path",
 ) -> None:
     """Test parsing an image format."""
-
     import numpy as np
     from PIL import Image
 
@@ -83,22 +111,24 @@ def test_image(
     assert reference_file.exists(), f"Test file not found at {reference_file} !"
 
     for itest in range(2):
-        print(f"itest={itest}")
+        print(f"crop from cropfilter (itest) = {'true' if itest else 'false'}")
+        # Test with and without mocking the crop filter strategy.
+        key = "imagecrop" if itest else "crop"
+        crop_config = {key: crop} if crop else {}
         config = {
-            "downloadUrl": sample_file.as_uri(),
-            "mediaType": f"image/{image_format}",
-            "configuration": {"crop": crop} if crop and itest == 0 else {},
+            "parserType": "parser/image",
+            "entity": "http://onto-ns.com/meta/0.4/example_iri",
+            "configuration": {
+                "downloadUrl": sample_file.as_uri(),
+                "mediaType": f"image/{image_format}",
+                **crop_config,
+            },
         }
-        session = {"imagecrop": crop} if crop and itest == 1 else {}
 
-        parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
-        session.update(parser.initialize(session))
-
-        parser: "IParseStrategy" = ImageDataParseStrategy(parse_config=config)
-        session.update(parser.get(session))
+        output = ImageDataParseStrategy(parse_config=config).get()
 
         cache = DataCache()
-        image_key = session["image_key"]
+        image_key = output["image_key"]
         try:
             data = cache.get(image_key)
         finally:
@@ -106,15 +136,36 @@ def test_image(
 
         data = np.asarray(
             Image.frombytes(
-                data=data, mode=session["image_mode"], size=session["image_size"]
+                data=data, mode=output["image_mode"], size=output["image_size"]
             )
         )
 
         if crop:
-            mode = session["image_mode"]
-            assert data.shape == (400, 700) if mode == "P" else (400, 700, 3)
+            mode = output["image_mode"]
+            assert data.shape == (cropped_size if mode == "P" else (*cropped_size, 3))
 
     if filename_cropped and image_format in ("png", "gif", "eps", "tiff"):
         cropped = Image.open(reference_file, formats=[image_format])
         arr = np.asarray(cropped)
         assert np.all(data == arr)
+
+
+@pytest.mark.parametrize("crop", [None, (100, 50, 450, 300)], ids=["no crop", "crop"])
+def test_initialize_returns_nothing(
+    crop: "Optional[tuple[int, int, int, int]]",
+) -> None:
+    """Assert that the initialize method returns nothing."""
+    from oteapi.models.genericconfig import AttrDict
+    from oteapi.strategies.parse.image import ImageDataParseStrategy
+
+    config = {
+        "parserType": "parser/image",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": "https://example.org",
+            "mediaType": "image/jpeg",
+            "imagecrop": crop,
+        },
+    }
+    parser = ImageDataParseStrategy(parse_config=config)
+    assert parser.initialize() == AttrDict()
