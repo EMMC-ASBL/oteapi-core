@@ -21,7 +21,9 @@ class ResourceConfig(GenericConfig, SecretConfig):
     """
 
     resourceType: Optional[str] = Field(
-        None, description="Type of registered resource strategy."
+        None,
+        description="Type of registered resource strategy.",
+        IRI="http://purl.org/dc/terms/type",  # type: ignore
     )
 
     downloadUrl: Optional[HostlessAnyUrl] = Field(
@@ -32,6 +34,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
             " which this distribution is available directly, typically through a HTTPS"
             " GET request or SFTP."
         ),
+        IRI="http://www.w3.org/ns/dcat#downloadURL",  # type: ignore
     )
     mediaType: Optional[str] = Field(
         None,
@@ -42,6 +45,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
             " type of the distribution is defined in IANA "
             "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]."
         ),
+        IRI="http://www.w3.org/ns/dcat#mediaType",  # type: ignore
     )
     accessUrl: Optional[HostlessAnyUrl] = Field(
         None,
@@ -53,28 +57,33 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "query or API call.\n`downloadURL` is preferred for direct links to "
             "downloadable resources."
         ),
+        IRI="http://www.w3.org/ns/dcat#accessURL",  # type: ignore
     )
     accessService: Optional[str] = Field(
         None,
         description=(
             "A data service that gives access to the distribution of the dataset."
         ),
+        IRI="http://www.w3.org/ns/dcat#accessService",  # type: ignore
     )
     license: Optional[str] = Field(
         None,
         description=(
             "A legal document under which the distribution is made available."
         ),
+        IRI="http://purl.org/dc/terms/license",  # type: ignore
     )
     accessRights: Optional[str] = Field(
         None,
         description=(
             "A rights statement that concerns how the distribution is accessed."
         ),
+        IRI="http://purl.org/dc/terms/accessRights",  # type: ignore
     )
     publisher: Optional[str] = Field(
         None,
         description="The entity responsible for making the resource/item available.",
+        IRI="http://purl.org/dc/terms/publisher",  # type: ignore
     )
 
     @model_validator(mode="after")
