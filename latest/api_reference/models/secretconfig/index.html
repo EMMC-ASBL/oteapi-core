@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11">
     
     
       
@@ -1995,7 +1995,7 @@
 
 
 <h2 id="oteapi.models.secretconfig.TogglableSecretStr" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">TogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">,</span> <span class="n">PlainSerializer</span><span class="p">(</span><span class="k">lambda</span> <span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">expose_secrets</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">return_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s1">&#39;json-unless-none&#39;</span><span class="p">)]</span></code>
+          <code class="highlight language-python"><span class="n">TogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">,</span> <span class="n">PlainSerializer</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">expose_secrets</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">return_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s1">&#39;json-unless-none&#39;</span><span class="p">)]</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
