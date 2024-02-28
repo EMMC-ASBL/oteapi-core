@@ -34,7 +34,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "GET request or SFTP.\n\n"
             "Range: Resource\n\n"
             "Example: http://dcat.example.org/files/001.csv\n\n"
-            "Reference: cdat:downloadURL"
+            "Reference: dcat:downloadURL"
         ),
     )
     mediaType: Optional[str] = Field(
