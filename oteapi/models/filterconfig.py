@@ -13,7 +13,7 @@ class FilterConfig(GenericConfig):
     filterType: str = Field(
         ...,
         description="Type of registered filter strategy. E.g., `filter/sql`.",
-        IRI="http://purl.org/dc/terms/type",  # type: ignore
+        json_schema_extra={"IRI": "http://purl.org/dc/terms/type"},
     )
     query: Optional[str] = Field(
         None,
