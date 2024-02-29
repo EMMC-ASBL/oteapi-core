@@ -23,7 +23,7 @@ class FilterConfig(GenericConfig):
     condition: Optional[str] = Field(
         None,
         description="Logical statement indicating when a filter should be applied.",
-        IRI="http://www.w3.org/2000/01/rdf-schema#comment",  # type: ignore
+        json_schema_extra={"IRI": "http://www.w3.org/2000/01/rdf-schema#comment"},
     )
     limit: Optional[int] = Field(
         None,
