@@ -28,5 +28,5 @@ class FilterConfig(GenericConfig):
     limit: Optional[int] = Field(
         None,
         description="Number of items remaining after a filter expression.",
-        IRI="http://schema.org/Integer",  # type: ignore
+        json_schema_extra={"IRI": "http://schema.org/Integer"},
     )
