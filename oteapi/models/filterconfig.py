@@ -18,7 +18,7 @@ class FilterConfig(GenericConfig):
     query: Optional[str] = Field(
         None,
         description="Define a query operation.",
-        IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement",  # type: ignore
+        json_schema_extra={"IRI": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"},
     )
     condition: Optional[str] = Field(
         None,
