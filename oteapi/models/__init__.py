@@ -13,7 +13,6 @@ from .mappingconfig import MappingConfig, RDFTriple
 from .parserconfig import ParserConfig
 from .resourceconfig import HostlessAnyUrl, ResourceConfig
 from .secretconfig import SecretConfig
-from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
 from .triplestoreconfig import TripleStoreConfig
 
@@ -28,7 +27,7 @@ __all__ = (
     "RDFTriple",
     "ResourceConfig",
     "ParserConfig",
-    "SessionUpdate",
+    "AttrDict",
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",

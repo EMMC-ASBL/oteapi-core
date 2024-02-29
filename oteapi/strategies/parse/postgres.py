@@ -1,42 +1,54 @@
 """Strategy class for application/vnd.postgresql"""
 
+import sys
 from typing import Any, Dict, Optional
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 import psycopg
 from pydantic import AnyUrl, BaseModel, Field, model_validator
 from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import (
+    AttrDict,
+    DataCacheConfig,
+    HostlessAnyUrl,
+    ParserConfig,
+    ResourceConfig,
+)
 
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
-    [`PostgresResourceStrategy`][oteapi.strategies.parse.postgres.PostgresResourceConfig].
+    [`PostgresParserStrategy`][oteapi.strategies.parse.postgres.PostgresParserConfig].
     """
 
-    user: Optional[str] = Field(None, description="postgres server username")
-    dbname: Optional[str] = Field(None, description="postgres dbname name")
-    password: Optional[str] = Field(None, description="postgres password")
-    sqlquery: Optional[str] = Field("", description="A SQL query string.")
-
-
-class PostgresResourceConfig(ResourceConfig):
-    """Postgresql parse strategy config"""
-
-    configuration: PostgresConfig = Field(
-        PostgresConfig(),
-        description=(
-            "Configuration for resource. " "Values in the accessURL take precedence."
-        ),
+    # Resource config
+    accessService: Literal["postgres"] = Field(
+        "postgres",
+        description=ResourceConfig.model_fields["accessService"].description,
     )
+    accessUrl: Optional[HostlessAnyUrl] = Field(
+        None,
+        description=ResourceConfig.model_fields["accessUrl"].description,
+    )
+
+    # Postgres specific config
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
     )
+    user: Optional[str] = Field(None, description="postgres server username")
+    dbname: Optional[str] = Field(None, description="postgres dbname name")
+    password: Optional[str] = Field(None, description="postgres password")
+    sqlquery: str = Field("", description="A SQL query string.")
 
     @model_validator(mode="before")
     @classmethod
-    def adjust_url(cls, data: Any) -> "PostgresResourceConfig":
+    def adjust_url(cls, data: Any) -> "Dict[str, Any]":
         """Model Validator
         Verifies configuration consistency, merge configurations
         and update the accessUrl property.
@@ -49,7 +61,7 @@ class PostgresResourceConfig(ResourceConfig):
             )
 
         if "accessUrl" not in data:
-            raise ValueError("missing accessUrl in PostgreSQL resource configuration")
+            return data
 
         # Copy model-state into placeholders
         accessUrl = AnyUrl(data["accessUrl"])
@@ -94,12 +106,26 @@ class PostgresResourceConfig(ResourceConfig):
         return data
 
 
-def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connection:
+class PostgresParserConfig(ParserConfig):
+    """Postgresql parse strategy config"""
+
+    parserType: Literal["parser/postgres"] = Field(
+        "parser/postgres",
+        description="Type of registered resource strategy.",
+    )
+    configuration: PostgresConfig = Field(
+        ...,
+        description=(
+            "Configuration for resource. Values in the accessURL take precedence."
+        ),
+    )
+
+
+def create_connection(url: str) -> psycopg.Connection:
     """Create a dbname connection to Postgres dbname.
 
     Parameters:
-        resource_config: A dictionary providing everything needed for a psycopg
-                     connection configuration
+        url: A valid PostgreSQL URL.
 
     Raises:
         psycopg.Error: If a DB connection cannot be made.
@@ -109,54 +135,40 @@ def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connec
 
     """
     try:
-        return psycopg.connect(resource_config.accessUrl)
+        return psycopg.connect(url)
     except psycopg.Error as exc:
         raise psycopg.Error("Could not connect to given Postgres DB.") from exc
 
 
-class SessionUpdatePostgresResource(SessionUpdate):
-    """Configuration model for PostgresResource."""
+class PostgresParserContent(AttrDict):
+    """Configuration model for PostgresParser."""
 
     result: list = Field(..., description="List of results from the query.")
 
 
 @dataclass
-class PostgresResourceStrategy:
+class PostgresParserStrategy:
     """Resource strategy for Postgres.
-
-    **Registers strategies**:
-
-    - `("accessService", "postgres")`
 
     Purpose of this strategy: Connect to a postgres DB and run a
     SQL query on the dbname to return all relevant rows.
 
     """
 
-    resource_config: PostgresResourceConfig
+    parser_config: PostgresParserConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdatePostgresResource:
+    def get(self) -> PostgresParserContent:
         """Resource Postgres query responses."""
-        if session:
-            self._use_filters(session)
-        session = session if session else {}
 
-        connection = create_connection(self.resource_config)
+        if self.parser_config.configuration.accessUrl is None:
+            raise ValueError("accessUrl is required for PostgresParserStrategy")
+
+        connection = create_connection(str(self.parser_config.configuration.accessUrl))
         cursor = connection.cursor()
-        result = cursor.execute(self.resource_config.configuration.sqlquery).fetchall()
+        result = cursor.execute(self.parser_config.configuration.sqlquery).fetchall()
         connection.close()
-        return SessionUpdatePostgresResource(result=result)
-
-    def _use_filters(self, session: "Dict[str, Any]") -> None:
-        """Update `config` according to filter values found in the session."""
-        if "sqlquery" in session and not self.resource_config.configuration.sqlquery:
-            if not isinstance(session["sqlquery"], str):
-                raise TypeError("sqlquery (found in session) must be a string")
-            # Use SQL query available in session
-            self.resource_config.configuration.sqlquery = session["sqlquery"]
+        return PostgresParserContent(result=result)

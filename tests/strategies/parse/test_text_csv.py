@@ -75,7 +75,7 @@ def test_csv(
     headers: list[str],
     types: "list[Type]",
 ) -> None:
-    """Test `text/csv` parse strategy on local file."""
+    """Test `parser/csv` parse strategy on local file."""
     import csv
     import json
 
@@ -84,14 +84,17 @@ def test_csv(
     sample_file = static_files / sample_filename
 
     config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "text/csv",
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "text/csv",
+        },
     }
-    config.update({"configuration": extra_config} if extra_config else {})
-    session = CSVParseStrategy(config).initialize()
+    config["configuration"].update(extra_config if extra_config else {})
 
     parser = CSVParseStrategy(config)
-    parsed_content = parser.get(session.model_dump()).content
+    parsed_content = parser.get().content
 
     kwargs = {}
     if extra_config:
@@ -158,12 +161,16 @@ def test_csv_dialect_enum_fails() -> None:
     )
 
     config = {
-        "downloadUrl": "file:///test.csv",
-        "mediaType": "text/csv",
-        "configuration": {"dialect": {"base": non_existant_dialect}},
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": "file:///test.csv",
+            "mediaType": "text/csv",
+            "dialect": {"base": non_existant_dialect},
+        },
     }
 
-    with pytest.raises(ValidationError) as exception:
+    with pytest.raises(ValidationError, match=r".*1 validation error.*") as exception:
         CSVParseStrategy(config)
 
     for dialect in available_dialects:

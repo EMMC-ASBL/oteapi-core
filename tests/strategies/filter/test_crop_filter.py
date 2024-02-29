@@ -5,8 +5,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from oteapi.interfaces import IFilterStrategy, IParseStrategy
-
 
 def test_crop_filter(static_files: "Path") -> None:
     """Test the crop filter strategy on a local file.
@@ -14,6 +12,8 @@ def test_crop_filter(static_files: "Path") -> None:
     Note: This test incorporates much of the contents of the test
     'test_jpeg.py', so if that test fails, this one should fail too.
     """
+    from copy import deepcopy
+
     import numpy as np
     from PIL import Image
 
@@ -30,20 +30,31 @@ def test_crop_filter(static_files: "Path") -> None:
         "filterType": "filter/crop",
         "configuration": {"crop": crop},
     }
-    crop_filter: "IFilterStrategy" = CropImageFilter(filter_config)
 
     image_config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "image/jpeg",
+        "parserType": "parser/image",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "image/jpeg",
+        },
     }
-    image_parser: "IParseStrategy" = ImageDataParseStrategy(image_config)
 
     # Run pipeline = image_parser > crop_filter
     session = {}
-    session.update(crop_filter.initialize(session))
-    session.update(image_parser.initialize(session))
-    session.update(image_parser.get(session))
-    session.update(crop_filter.get(session))
+
+    session.update(CropImageFilter(filter_config=filter_config).initialize())
+
+    (pipeline_image_config := deepcopy(image_config))["configuration"].update(session)
+    session.update(
+        ImageDataParseStrategy(parse_config=pipeline_image_config).initialize()
+    )
+
+    (pipeline_image_config := deepcopy(image_config))["configuration"].update(session)
+    session.update(ImageDataParseStrategy(parse_config=pipeline_image_config).get())
+
+    (pipeline_filter_config := deepcopy(image_config))["configuration"].update(session)
+    session.update(CropImageFilter(filter_config=pipeline_filter_config).get())
 
     cache = DataCache()
     image_key = session["image_key"]

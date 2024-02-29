@@ -13,6 +13,7 @@ def test_mapping() -> None:
             ("http://onto-ns.com/meta/1.0/Foo#b", "map:mapsTo", "onto:B"),
             ("http://onto-ns.com/meta/1.0/Foo#c", "map:mapsTo", "onto:C"),
         ],
+        prefixes={},
     )
     conf2 = MappingConfig(
         mappingType="triples",
@@ -35,18 +36,15 @@ def test_mapping() -> None:
 
     session = {}
 
-    session.update(MappingStrategy(conf2).initialize(session))
+    session.update(MappingStrategy(conf2).initialize())
 
     assert session["prefixes"] == conf2.prefixes
     assert sorted(session["triples"]) == sorted(conf2.triples)
 
-    session.update(MappingStrategy(conf1).initialize(session))
+    session.update(MappingStrategy(conf1).initialize())
 
-    assert session["prefixes"] == all_prefixes
-    assert sorted(session["triples"]) == sorted(all_triples)
+    assert session["prefixes"] == conf1.prefixes
 
-    session.update(MappingStrategy(conf1).get(session))
-    session.update(MappingStrategy(conf2).get(session))
-
-    assert session["prefixes"] == all_prefixes
-    assert sorted(session["triples"]) == sorted(all_triples)
+    session.update(MappingStrategy(conf1).get())
+    session.update(MappingStrategy(conf2).get())
+    assert sorted(session["triples"]) != sorted(all_triples)

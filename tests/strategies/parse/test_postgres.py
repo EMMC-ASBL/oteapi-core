@@ -1,14 +1,6 @@
 """Tests the parse strategy for SQLite."""
 
-from typing import TYPE_CHECKING
-
 import pytest
-
-if TYPE_CHECKING:
-    from typing import Tuple
-
-    from oteapi.interfaces import IResourceStrategy
-
 
 sqlite_queries = [
     (
@@ -38,90 +30,58 @@ sqlite_queries = [
 ]
 
 
-class MockPsycopg:
-    """
-    A class for mocking all psycop calls
-    """
-
-    result: "Tuple[int, str, str, str, str, str, int]"
-
-    def cursor(self):
-        """
-        Mocks psycopg.cursor
-        """
-        return self
-
-    def execute(self, query):
-        """
-        Mocks psycopg.execute by simply pulling one of the sqlite_queries
-        """
-        result = [q[1] for q in sqlite_queries if q[0] == query]
-        self.result = result
-        return self
-
-    def fetchall(self):
-        """
-        Mocks psycopg.fetchall by returning  the 'result' from the execute method
-        """
-        return self.result
-
-    def close(self):
-        """
-        Mocks the close method by doing nothing
-        """
-        return
-
-
 @pytest.mark.parametrize(
     "query,expected",
     sqlite_queries,
-    ids=["configuration", "session"],
+    ids=["user_id=19", "user_id=72"],
 )
 def test_postgres(
     query: str,
-    expected: "Tuple[int, str, str, str, str, str, int]",
+    expected: tuple,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """Test `application/vnd.sqlite3` parse strategy on a local SQLite DB.
-
-    Test both passing in the query as a configuration and through a session.
-    """
+    """Test `application/vnd.postgresql` parse strategy with different SQL queries."""
     import psycopg
 
-    from oteapi.strategies.parse.postgres import PostgresResourceStrategy
+    from oteapi.strategies.parse.postgres import PostgresParserStrategy
 
-    def mock_connect(connect_str):
-        connect_str = str(connect_str)
-        # NOTE: this should work but for some reason we don't have
-        #       the DB name in the accessUrl?
-        # expected_connect_str = \
-        #    "postgresql://postgres:postgres@localhost:5432/postgres"
-        # assert connect_str == expected_connect_str
+    # Define a mock psycopg connection class
+    class MockPsycopg:
+        result: tuple
+
+        def cursor(self):
+            return self
+
+        def execute(self, query):
+            result = [q[1] for q in sqlite_queries if q[0] == query]
+            self.result = result
+            return self
+
+        def fetchall(self):
+            return self.result
+
+        def close(self):
+            return
+
+    # Mock the psycopg.connect method
+    def mock_connect(connect_str: str) -> MockPsycopg:
         return MockPsycopg()
 
     monkeypatch.setattr(psycopg, "connect", mock_connect)
 
-    # NOTE there are a lot of tests one can do on ways of connecting to the DB
-    #      e.g., trying combinations of accessUrl and connection_dict
-    # connection_dict = {
-    #    "dbname": "postgres",
-    #    "user": "postgres",
-    #    "password": "postgres",
-    #    "host": "localhost",
-    #    "port": 5432,
-    # }
-
+    # Configuration for the PostgresParserStrategy
     config = {
-        "accessUrl": "postgresql://postgres:postgres@localhost:5432/postgres",
-        "accessService": "foo",
+        "parserType": "parser/postgres",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
         "configuration": {
             "sqlquery": query,
+            "accessUrl": "postgresql://postgres:postgres@localhost:5432/postgres",
+            "accessService": "postgres",
         },
     }
 
-    resource: "IResourceStrategy" = PostgresResourceStrategy(config)
-    resource.initialize()
+    # Execute the SQL query and get the result
+    result = PostgresParserStrategy(config).get()
 
-    result = resource.get({"sqlquery": query} if "19" not in query else None)
-
-    assert result["result"][0] == expected
+    # Ensure that the result matches the expected output
+    assert result.result[0] == expected

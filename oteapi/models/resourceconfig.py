@@ -20,6 +20,10 @@ class ResourceConfig(GenericConfig, SecretConfig):
 
     """
 
+    resourceType: Optional[str] = Field(
+        None, description="Type of registered resource strategy."
+    )
+
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
         description=(
