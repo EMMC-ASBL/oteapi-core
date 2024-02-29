@@ -44,7 +44,7 @@ class TransformationConfig(GenericConfig, SecretConfig):
     name: Optional[str] = Field(
         None,
         description="Human-readable name of the transformation strategy.",
-        IRI="http://purl.org/dc/elements/1.1/title",  # type: ignore
+        IRI="http://purl.org/dc/terms/title",  # type: ignore
     )
     due: Optional[datetime] = Field(
         None,
