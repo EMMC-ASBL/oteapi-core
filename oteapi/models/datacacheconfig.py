@@ -10,6 +10,7 @@ from oteapi.models.genericconfig import AttrDict
 
 class DataCacheConfig(AttrDict):
     """DataCache Configuration.
+
     This class should not be used directly as a configuration object
     for a strategy object, but only as a configuration field inside
     a configuration object.
