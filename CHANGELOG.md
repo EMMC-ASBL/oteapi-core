@@ -1,5 +1,27 @@
 # Changelog
 
+## [v0.7.0.dev0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev0) (2024-02-29)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.6.1...v0.7.0.dev0)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#439](https://github.com/EMMC-ASBL/oteapi-core/pull/439) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#435](https://github.com/EMMC-ASBL/oteapi-core/pull/435) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#431](https://github.com/EMMC-ASBL/oteapi-core/pull/431) ([TEAM4-0](https://github.com/TEAM4-0))
+- Major/410 session removal [\#429](https://github.com/EMMC-ASBL/oteapi-core/pull/429) ([Treesarj](https://github.com/Treesarj))
+- \[Auto-generated\] Update dependencies [\#422](https://github.com/EMMC-ASBL/oteapi-core/pull/422) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#417](https://github.com/EMMC-ASBL/oteapi-core/pull/417) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#414](https://github.com/EMMC-ASBL/oteapi-core/pull/414) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#413](https://github.com/EMMC-ASBL/oteapi-core/pull/413) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#409](https://github.com/EMMC-ASBL/oteapi-core/pull/409) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#407](https://github.com/EMMC-ASBL/oteapi-core/pull/407) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#405](https://github.com/EMMC-ASBL/oteapi-core/pull/405) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#403](https://github.com/EMMC-ASBL/oteapi-core/pull/403) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#394](https://github.com/EMMC-ASBL/oteapi-core/pull/394) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#392](https://github.com/EMMC-ASBL/oteapi-core/pull/392) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#391](https://github.com/EMMC-ASBL/oteapi-core/pull/391) ([TEAM4-0](https://github.com/TEAM4-0))
+
 ## [v0.6.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.6.1) (2023-11-14)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.6.0...v0.6.1)
