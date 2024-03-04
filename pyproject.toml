@@ -25,13 +25,13 @@ dependencies = [
     "agraph-python>=102.0.0,<103",
     "diskcache>=5.6.3,<6",
     "pydantic~=1.10",
-    "typing-extensions~=4.8; python_version<'3.10'",
+    "typing-extensions~=4.10; python_version < '3.10'",
 
     # Strategy dependencies
     "celery>=5.3.5,<6",
     "openpyxl>=3.1.2,<4",
     "Pillow>=10.1.0,<11",
-    "psycopg~=3.1.13",
+    "psycopg~=3.1.18",
     "pysftp~=0.2.9",
     "requests>=2.31.0,<3",
     "urllib3<2",
@@ -42,13 +42,13 @@ docs = [
     "mike~=2.0",
     "mkdocs~=1.5",
     "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.4",
-    "mkdocstrings[python]~=0.24.0",
+    "mkdocs-material~=9.5",
+    "mkdocstrings[python]~=0.24.1",
 ]
 testing = [
     "ase~=3.22.1",
     "numpy>=1.26,<2",
-    "pytest~=8.0",
+    "pytest~=8.1",
     "pytest-celery",
     "pytest-cov~=4.1",
     "redis~=5.0",
