@@ -85,7 +85,7 @@ class StrategyFactory:
             config_model = strategy_type.config_cls(**config)
         elif isinstance(config, get_args(StrategyConfig)):
             config_model = config
-            config = config.model_dump()
+            config = config.model_dump(mode="json", exclude_unset=True)
         else:
             raise TypeError("config should be either of type StrategyConfig or a dict.")
 
