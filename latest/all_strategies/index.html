@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.12">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
     
     
       
@@ -2737,6 +2737,15 @@
   <a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.downloadUrl" class="md-nav__link">
     <span class="md-ellipsis">
       downloadUrl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.mediaType" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaType
     </span>
   </a>
   
@@ -6825,6 +6834,15 @@
   <a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.downloadUrl" class="md-nav__link">
     <span class="md-ellipsis">
       downloadUrl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.mediaType" class="md-nav__link">
+    <span class="md-ellipsis">
+      mediaType
     </span>
   </a>
   
@@ -16876,10 +16894,10 @@ for more information.</p>
 
   <div class="doc doc-contents ">
           <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.resourceconfig.ResourceConfig" href="../api_reference/models/resourceconfig/#oteapi.models.resourceconfig.ResourceConfig">ResourceConfig</a></code></p>
+            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.ResourceConfig" href="../all_models/#oteapi.models.ResourceConfig">ResourceConfig</a></code></p>
 
   
-      <p>JSON parse strategy filter config.</p>
+      <p>Resource URL strategy config.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/resource/resource_url.py</code></summary>
@@ -16893,16 +16911,24 @@ for more information.</p>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceURLConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;JSON parse strategy filter config.&quot;&quot;&quot;</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ResourceURLConfig</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource URL strategy config.&quot;&quot;&quot;</span>
 
     <span class="n">resourceType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;resource/url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="s2">&quot;resource/url&quot;</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;resourceType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">AnyHttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -16922,7 +16948,7 @@ for more information.</p>
 
 
 <h5 id="oteapi.strategies.resource.resource_url.ResourceURLConfig.downloadUrl" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">AnyHttpUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
   
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -16930,6 +16956,26 @@ for more information.</p>
   </span>
 
 <a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.downloadUrl" class="headerlink" title="Permanent link">&para;</a></h5>
+
+
+  <div class="doc doc-contents ">
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h5 id="oteapi.strategies.resource.resource_url.ResourceURLConfig.mediaType" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#oteapi.strategies.resource.resource_url.ResourceURLConfig.mediaType" class="headerlink" title="Permanent link">&para;</a></h5>
 
 
   <div class="doc doc-contents ">
@@ -16982,19 +17028,11 @@ for more information.</p>
   <div class="doc doc-contents ">
 
   
-      <p>Parse strategy for JSON.</p>
-<p><strong>Registers strategies</strong>:</p>
-<ul>
-<li><code>("strategyType", "resource/url")</code></li>
-</ul>
+      <p>Basic resource strategy targeting downloadUrl resources.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/strategies/resource/resource_url.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
@@ -17008,25 +17046,25 @@ for more information.</p>
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ResourceURLStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for JSON.</span>
-
-<span class="sd">    **Registers strategies**:</span>
-
-<span class="sd">    - `(&quot;strategyType&quot;, &quot;resource/url&quot;)`</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic resource strategy targeting downloadUrl resources.&quot;&quot;&quot;</span>
 
     <span class="n">resource_config</span><span class="p">:</span> <span class="n">ResourceURLConfig</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;resource distribution.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AttrDict</span><span class="p">(</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span>
+                <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;resourceType&quot;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -17078,11 +17116,19 @@ for more information.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/resource/resource_url.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;resource distribution.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">AttrDict</span><span class="p">(</span>
+        <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">resource_config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span>
+            <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;resourceType&quot;</span><span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -17106,11 +17152,11 @@ for more information.</p>
 
           <details class="quote">
             <summary>Source code in <code>oteapi/strategies/resource/resource_url.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AttrDict&quot;</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
