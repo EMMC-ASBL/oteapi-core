@@ -2318,7 +2318,7 @@ in-memory cache of all registered strategies.</p>
             <span class="n">config_model</span> <span class="o">=</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">config_cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">get_args</span><span class="p">(</span><span class="n">StrategyConfig</span><span class="p">)):</span>
             <span class="n">config_model</span> <span class="o">=</span> <span class="n">config</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;config should be either of type StrategyConfig or a dict.&quot;</span><span class="p">)</span>
 
@@ -2995,7 +2995,7 @@ enumeration for a definition of valid strategy types.</p>
         <span class="n">config_model</span> <span class="o">=</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">config_cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">get_args</span><span class="p">(</span><span class="n">StrategyConfig</span><span class="p">)):</span>
         <span class="n">config_model</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;config should be either of type StrategyConfig or a dict.&quot;</span><span class="p">)</span>
 
