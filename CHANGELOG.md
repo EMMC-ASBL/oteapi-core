@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.7.0.dev1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev1) (2024-03-08)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev0...v0.7.0.dev1)
+
+**Merged pull requests:**
+
+- \[Auto-generated\] Update dependencies [\#444](https://github.com/EMMC-ASBL/oteapi-core/pull/444) ([TEAM4-0](https://github.com/TEAM4-0))
+- Ensure config models are dumped safely [\#443](https://github.com/EMMC-ASBL/oteapi-core/pull/443) ([CasperWA](https://github.com/CasperWA))
+- Update resource/url strategy [\#440](https://github.com/EMMC-ASBL/oteapi-core/pull/440) ([CasperWA](https://github.com/CasperWA))
+
 ## [v0.7.0.dev0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev0) (2024-02-29)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.6.1...v0.7.0.dev0)
