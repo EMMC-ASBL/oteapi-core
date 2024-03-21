@@ -238,6 +238,7 @@ class GenericConfig(BaseModel):
         "be given as key/value-pairs or set as attributes.",
     )
 
+    # Consider to rename to modelDescription
     description: str = Field(
         __doc__,
         description="A description of the configuration model.",
