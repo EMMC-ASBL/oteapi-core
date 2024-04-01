@@ -55,7 +55,7 @@ testing = [
     "pytest-celery",
     "pytest-cov>=4.1,<6.0",
     "redis~=5.0",
-    "requests-mock~=1.11",
+    "requests-mock~=1.12",
 ]
 dev = [
     "pre-commit~=3.7",
