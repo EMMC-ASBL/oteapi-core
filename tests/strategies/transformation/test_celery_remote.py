@@ -5,41 +5,24 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    from celery import Celery
-    from celery.contrib.testing.worker import TestWorkController
+    from pytest_celery.api.setup import CeleryTestSetup
 
 
-@pytest.fixture(scope="session")
-def celery_config() -> dict[str, str]:
-    """Set Celery fixture configuration."""
-    import os
-    import platform
+@pytest.fixture()
+def skip_if_no_docker() -> bool:
+    """Skip a test if `docker` is not available."""
+    from subprocess import run
 
-    import redis
-
-    host = os.getenv("OTEAPI_REDIS_HOST", "localhost")
-    port = int(os.getenv("OTEAPI_REDIS_PORT", "6379"))
-
-    try:
-        with redis.Redis(host=host, port=port) as client:
-            client.ping()
-    except redis.ConnectionError:
-        if os.getenv("CI") and platform.system() == "Linux":
-            # Starting services (like redis) is only supported in GH Actions for the
-            # Linux OS
-            pytest.fail("In CI environment - this test MUST run !")
-        else:
-            pytest.skip(f"No redis connection at {host}:{port} for testing celery.")
-
-    return {
-        "broker_url": f"redis://{host}:{port}",
-        "result_backend": f"redis://{host}:{port}",
-    }
+    (
+        pytest.skip("Docker is not available!")
+        if run(["docker", "--version"]).returncode != 0
+        else None
+    )
 
 
+@pytest.mark.usefixtures("skip_if_no_docker")
 def test_celery_remote(
-    celery_app: "Celery",
-    celery_worker: "TestWorkController",
+    celery_setup: "CeleryTestSetup",
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Test `celery/remote` transformation strategy."""
@@ -49,22 +32,19 @@ def test_celery_remote(
 
     from oteapi.strategies.transformation import celery_remote
 
-    @celery_app.task
-    def add(x: float, y: float) -> float:
-        """Simple addition task to test Celery."""
-        return x + y
-
-    celery_worker.reload()
+    assert celery_setup.ready()
 
     # Use the test celery app instead of the strategy's celery app
     # The strategy's celery app has not registered the `add()` task...
-    monkeypatch.setattr(celery_remote, "CELERY_APP", celery_app)
+    monkeypatch.setattr(celery_remote, "CELERY_APP", celery_setup.app)
+
+    args = [1, 2]
 
     config = {
         "transformationType": "celery/remote",
         "configuration": {
-            "task_name": add.name,
-            "args": [1, 2],
+            "task_name": "pytest_celery.vendors.worker.tasks.add",
+            "args": args,
         },
     }
     transformation = celery_remote.CeleryRemoteStrategy(config)
@@ -80,11 +60,11 @@ def test_celery_remote(
     ):
         sleep(1)
 
-    if transformation.status(session.celery_task_id).status != "SUCCESS":
-        pytest.fail("Status never changed to 'SUCCESS' !")
+    if (status := transformation.status(session.celery_task_id).status) != "SUCCESS":
+        pytest.fail(f"Status never changed to 'SUCCESS'! Status: {status}")
 
-    result = AsyncResult(id=session.celery_task_id, app=celery_app)
-    assert result.result == add(1, 2)
+    result = AsyncResult(id=session.celery_task_id, app=celery_setup.app)
+    assert result.result == sum(args)
 
 
 def test_celery_config_name() -> None:
