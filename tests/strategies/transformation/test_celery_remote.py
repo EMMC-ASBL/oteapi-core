@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture()
-def skip_if_no_docker_or_windows() -> bool:
+def skip_if_no_docker_or_windows() -> None:
     """Skip a test if `docker` is not available."""
     import platform
     from subprocess import run
@@ -18,11 +18,9 @@ def skip_if_no_docker_or_windows() -> bool:
 
     is_windows = platform.system() == "Windows"
 
-    return (
-        pytest.mark.skip("Docker is not available or using Windows!")
-        if is_windows or not docker_exists
-        else None
-    )
+    if is_windows or not docker_exists:
+        print("Skip!")
+        pytest.skip("Docker is not available or using Windows!")
 
 
 @pytest.mark.usefixtures("skip_if_no_docker_or_windows")
