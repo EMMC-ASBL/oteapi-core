@@ -20,7 +20,7 @@ def skip_if_no_docker_or_windows() -> bool:
 
     return (
         pytest.mark.skip("Docker is not available or using Windows!")
-        if (not docker_exists or is_windows)
+        if is_windows or not docker_exists
         else None
     )
 
