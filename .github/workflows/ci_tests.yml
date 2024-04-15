@@ -23,6 +23,12 @@ jobs:
       run_pylint: false
       run_safety: true
 
+      # Safety #51457
+      #   Info: https://data.safetycli.com/v/51457/97c
+      #   Regarding `py` package. Currently all versions are affected.
+      #   This is a sub-dependency for this package.
+      safety_options: --ignore=51457
+
       # Build package
       run_build_package: true
       python_version_package: "3.9"

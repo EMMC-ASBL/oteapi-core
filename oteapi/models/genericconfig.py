@@ -90,13 +90,12 @@ class AttrDict(BaseModel, MutableMapping):
         if not isinstance(key, str):
             raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
         try:
-            res = self.__delattr__(key)
+            self.__delattr__(key)
         except AttributeError as exc:
             raise KeyError(key) from exc
         else:
             if key in self.model_fields_set:
                 self.model_fields_set.remove(key)
-            return res
 
     def clear(self) -> None:
         for field in self.model_dump():
