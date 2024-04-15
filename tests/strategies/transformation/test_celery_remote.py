@@ -9,18 +9,23 @@ if TYPE_CHECKING:
 
 
 @pytest.fixture()
-def skip_if_no_docker() -> bool:
+def skip_if_no_docker_or_windows() -> bool:
     """Skip a test if `docker` is not available."""
+    import platform
     from subprocess import run
 
-    (
-        pytest.skip("Docker is not available!")
-        if run(["docker", "--version"]).returncode != 0
+    docker_exists = run(["docker", "--version"]).returncode == 0
+
+    is_windows = platform.system() == "Windows"
+
+    return (
+        pytest.mark.skip("Docker is not available or using Windows!")
+        if not docker_exists or is_windows
         else None
     )
 
 
-@pytest.mark.usefixtures("skip_if_no_docker")
+@pytest.mark.usefixtures("skip_if_no_docker_or_windows")
 def test_celery_remote(
     celery_setup: "CeleryTestSetup",
     monkeypatch: pytest.MonkeyPatch,
