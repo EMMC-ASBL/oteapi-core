@@ -1,4 +1,5 @@
 """Fixtures and configuration for pytest framework."""
+
 from typing import TYPE_CHECKING
 
 import pytest

@@ -1,4 +1,5 @@
 """Pydantic SessionUpdate Data Model."""
+
 from oteapi.models.genericconfig import AttrDict
 
 

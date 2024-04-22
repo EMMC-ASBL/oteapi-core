@@ -1,4 +1,5 @@
 """Test the `oteapi.plugins.entry_points` module generally."""
+
 from typing import TYPE_CHECKING
 
 import pytest

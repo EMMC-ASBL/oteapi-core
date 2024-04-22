@@ -9,6 +9,7 @@ Since the entry points are information complete in and of themselves, there is n
 to import actual strategy classes until they are truly needed.
 This therefore implements lazy loading of all plugin strategies.
 """
+
 import importlib
 import re
 from collections import abc

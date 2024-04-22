@@ -1,4 +1,5 @@
 """Strategy class for image/jpg."""
+
 import sys
 from enum import Enum
 from typing import TYPE_CHECKING, Optional, Tuple

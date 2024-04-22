@@ -1,4 +1,5 @@
 """Generic data model for configuration attributes."""
+
 from typing import TYPE_CHECKING, Iterable, Mapping
 
 from pydantic import BaseModel, Field
