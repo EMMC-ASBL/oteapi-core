@@ -4,6 +4,7 @@ This module hosts the strategy interfaces.
 The strategy interfaces can be considered to be the abstract classes for the
 strategies.
 """
+
 from typing import Union
 
 from .idownloadstrategy import IDownloadStrategy

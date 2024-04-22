@@ -1,4 +1,5 @@
 """Test `oteapi.utils.paths` module."""
+
 import pytest
 
 

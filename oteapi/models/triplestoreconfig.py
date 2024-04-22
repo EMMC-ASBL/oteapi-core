@@ -1,4 +1,5 @@
 """Pydantic TripleStore Configuration Data Model."""
+
 from typing import TYPE_CHECKING
 
 from pydantic import Field, root_validator

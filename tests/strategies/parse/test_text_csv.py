@@ -1,4 +1,5 @@
 """Tests the parse strategy for CSV."""
+
 from typing import TYPE_CHECKING
 
 import pytest

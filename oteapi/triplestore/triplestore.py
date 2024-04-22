@@ -9,6 +9,7 @@ Features:
 - AllegroGraph has a well documented python API package
 
 """
+
 from typing import TYPE_CHECKING
 
 from franz.miniclient.request import RequestError

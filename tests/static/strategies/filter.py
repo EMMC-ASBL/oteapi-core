@@ -1,4 +1,5 @@
 """Filter test strategy class."""
+
 from typing import TYPE_CHECKING
 
 from pydantic.dataclasses import dataclass

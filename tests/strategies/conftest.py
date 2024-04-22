@@ -1,4 +1,5 @@
 """Pytest fixtures for `strategies/`."""
+
 import pytest
 
 

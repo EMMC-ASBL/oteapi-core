@@ -1,4 +1,5 @@
 """SQL query filter strategy."""
+
 from typing import TYPE_CHECKING
 
 from pydantic import Field

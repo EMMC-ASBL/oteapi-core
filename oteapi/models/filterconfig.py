@@ -1,4 +1,5 @@
 """Pydantic Filter Configuration Data Model."""
+
 from typing import Optional
 
 from pydantic import Field

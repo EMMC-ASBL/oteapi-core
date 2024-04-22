@@ -1,4 +1,5 @@
 """Test the image formats in the image parse strategy."""
+
 from typing import TYPE_CHECKING
 
 import pytest
