@@ -9,6 +9,7 @@ Since the entry points are information complete in and of themselves, there is n
 to import actual strategy classes until they are truly needed.
 This therefore implements lazy loading of all plugin strategies.
 """
+
 import importlib
 import re
 from collections import abc
@@ -20,13 +21,15 @@ from oteapi.models import (
     FilterConfig,
     FunctionConfig,
     MappingConfig,
+    ParserConfig,
     ResourceConfig,
     TransformationConfig,
 )
 
 if TYPE_CHECKING:  # pragma: no cover
+    from collections.abc import Iterator
     from importlib.metadata import EntryPoint
-    from typing import Any, Dict, Iterator, Optional, Set, Tuple, Type, Union
+    from typing import Any, Dict, Optional, Set, Tuple, Type, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
@@ -67,8 +70,8 @@ class StrategyType(Enum):
             "filter": "filterType",
             "function": "functionType",
             "mapping": "mappingType",
-            "parse": "mediaType",
-            "resource": "accessService",
+            "parse": "parserType",
+            "resource": "resourceType",
             "transformation": "transformationType",
         }[self.value]
 
@@ -92,8 +95,8 @@ class StrategyType(Enum):
             "filterType": cls.FILTER,
             "functionType": cls.FUNCTION,
             "mappingType": cls.MAPPING,
-            "mediaType": cls.PARSE,
-            "accessService": cls.RESOURCE,
+            "parserType": cls.PARSE,
+            "resourceType": cls.RESOURCE,
             "transformationType": cls.TRANSFORMATION,
         }[strategy_type_field]
 
@@ -134,7 +137,7 @@ class StrategyType(Enum):
             "filter": FilterConfig,
             "function": FunctionConfig,
             "mapping": MappingConfig,
-            "parse": ResourceConfig,
+            "parse": ParserConfig,
             "resource": ResourceConfig,
             "transformation": TransformationConfig,
         }[self.value]
@@ -173,8 +176,15 @@ class EntryPointStrategy:
     """
 
     ENTRY_POINT_NAME_REGEX = re.compile(
-        r"^(?P<package_name>[a-z_]+)\.(?P<strategy_name>.+)$"
+        r"^(?P<package_name>[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9._-]*[A-Za-z0-9])\.(?P<strategy_name>.+)$"
     )
+    """Regex for entry point names.
+
+    The package_name group is a valid non-normalized package name regex adapted from
+    PEP 508.
+    For more information, see: https://peps.python.org/pep-0508/#names.
+    """
+
     ENTRY_POINT_NAME_SEPARATOR = ":"
 
     def __init__(self, entry_point: "EntryPoint") -> None:

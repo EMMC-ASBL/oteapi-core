@@ -2,13 +2,14 @@
 
 Factory wrapper methods for creating the individual strategies.
 """
+
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Union
+    from typing import Any, Dict, List, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
@@ -75,12 +76,20 @@ class StrategyFactory:
                 "strategy_type should be either of type StrategyType or a string."
             )
 
+        # 'config': Must be a dict when instantiating the strategy's implementation.
+        # 'config_model': Is used to retrieve the correct strategy requested.
+        # Furthermore, creating 'config_model' ensures that the config is valid with
+        # respect to the strategy type, further reducing the risk of incorrect logical
+        # conclusions.
         if isinstance(config, dict):
-            config = strategy_type.config_cls(**config)  # type: ignore[call-arg]
-        elif not isinstance(config, get_args(StrategyConfig)):
+            config_model = strategy_type.config_cls(**config)
+        elif isinstance(config, get_args(StrategyConfig)):
+            config_model = config
+            config = config.model_dump(mode="json", exclude_unset=True)
+        else:
             raise TypeError("config should be either of type StrategyConfig or a dict.")
 
-        strategy_name: str = cls._get_strategy_name(config, strategy_type)
+        strategy_name: str = cls._get_strategy_name(config_model, strategy_type)
 
         if (strategy_type, strategy_name) in cls.strategy_create_func[strategy_type]:
             return cls.strategy_create_func[strategy_type][
@@ -150,6 +159,33 @@ class StrategyFactory:
             for strategy_type in StrategyType
         }
 
+    @classmethod
+    def list_loaded_strategies(cls) -> "Dict[StrategyType, List[str]]":
+        """Lists all loaded strategy plugins (endpoints).
+
+        Returns:
+            A dictionary where keys are strategy types and values are lists of
+            loaded strategy names for each type.
+
+        Raises:
+            StrategiesNotLoaded: If the strategies are not loaded or
+                `strategy_create_func` is not properly initialized.
+        """
+        if not hasattr(cls, "strategy_create_func") or not cls.strategy_create_func:
+            raise StrategiesNotLoaded(
+                "Strategies are not loaded or `strategy_create_func` is not properly "
+                "initialized."
+            )
+
+        loaded_strategies = {}
+        for strategy_type, strategy_collection in cls.strategy_create_func.items():
+            # Assuming each item in the collection has a 'name' attribute or similar
+            loaded_strategies[strategy_type] = [
+                strategy.name for strategy in strategy_collection
+            ]
+
+        return loaded_strategies
+
 
 def load_strategies(test_for_uniqueness: bool = True) -> None:
     """Proxy function for
@@ -163,6 +199,17 @@ def load_strategies(test_for_uniqueness: bool = True) -> None:
 
     """
     StrategyFactory.load_strategies(test_for_uniqueness)
+
+
+def list_strategies() -> "Dict[StrategyType, List[str]]":
+    """Proxy function for
+    [`StrategyFactory.list_loaded_strategies()`][oteapi.plugins.factories.StrategyFactory.list_loaded_strategies].
+
+    Returns:
+        A dictionary where keys are strategy types and values are lists of
+        loaded strategy names for each type.
+    """
+    return StrategyFactory.list_loaded_strategies()
 
 
 def create_strategy(

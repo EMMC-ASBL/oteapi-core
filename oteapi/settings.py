@@ -7,7 +7,9 @@ Otherwise, check `https://github.com/EMMC-ASBL/oteapi-services/blob/master/app/m
 for a direct example of an inclusion of the OTE api and its settings into an FastAPI
 instance.
 """
-from oteapi.utils._pydantic import BaseSettings, Field
+
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class OteApiCoreSettings(BaseSettings):
@@ -24,11 +26,7 @@ class OteApiCoreSettings(BaseSettings):
     Hence be careful while using this option in production.
 """,
     )
-
-    class Config:
-        """Pydantic config for the OteApiCoreSettings."""
-
-        env_prefix = "OTEAPI_"
+    model_config = SettingsConfigDict(env_prefix="OTEAPI_")
 
 
 settings = OteApiCoreSettings()

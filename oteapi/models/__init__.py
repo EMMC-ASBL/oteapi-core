@@ -2,6 +2,7 @@
 
 This module contains all the `pydantic` configuration models.
 """
+
 from typing import Union
 
 from .datacacheconfig import DataCacheConfig
@@ -10,9 +11,8 @@ from .functionconfig import FunctionConfig
 from .genericconfig import AttrDict, GenericConfig
 from .mappingconfig import MappingConfig, RDFTriple
 from .parserconfig import ParserConfig
-from .resourceconfig import ResourceConfig
+from .resourceconfig import HostlessAnyUrl, ResourceConfig
 from .secretconfig import SecretConfig
-from .sessionupdate import SessionUpdate
 from .transformationconfig import TransformationConfig, TransformationStatus
 from .triplestoreconfig import TripleStoreConfig
 
@@ -22,11 +22,12 @@ __all__ = (
     "FilterConfig",
     "FunctionConfig",
     "GenericConfig",
+    "HostlessAnyUrl",
     "MappingConfig",
     "RDFTriple",
     "ResourceConfig",
     "ParserConfig",
-    "SessionUpdate",
+    "AttrDict",
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",

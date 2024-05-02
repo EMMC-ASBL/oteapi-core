@@ -10,18 +10,25 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.5.1
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.7.4
     with:
-      # pre-commit
-      run_pre-commit: true
-      python_version_pre-commit: "3.9"
+      # General
       install_extras: "[dev]"
+
+      # pre-commit
+      run_pre-commit: false
 
       # pylint & safety
       python_version_pylint_safety: "3.9"
 
       run_pylint: false
       run_safety: true
+
+      # Safety #51457
+      #   Info: https://data.safetycli.com/v/51457/97c
+      #   Regarding `py` package. Currently all versions are affected.
+      #   This is a sub-dependency for this package.
+      safety_options: --ignore=51457
 
       # Build package
       run_build_package: true
@@ -52,16 +59,7 @@ jobs:
         (oteapi/models/functionconfig.py),[oteapi.models.functionconfig.FunctionConfig.functionType]
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
-      exclude_files: |
-        __init__.py
-        _pydantic.py
       warnings_as_errors: true
-
-  ruff:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: chartboost/ruff-action@v1
 
   pytest-linux:
     name: pytest (linux-py${{ matrix.python-version }})
@@ -88,7 +86,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version}}
 
@@ -108,15 +106,17 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: linux
 
     - name: Upload strategies coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: linux-strategies
 
@@ -133,7 +133,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version}}
 
@@ -159,14 +159,16 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: windows
 
     - name: Upload strategies coverage to Codecov
       if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: windows-strategies

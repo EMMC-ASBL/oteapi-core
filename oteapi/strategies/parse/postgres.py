@@ -1,121 +1,131 @@
 """Strategy class for application/vnd.postgresql"""
+
+import sys
 from typing import Any, Dict, Optional
-from urllib.parse import urlunparse
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 import psycopg
+from pydantic import AnyUrl, BaseModel, Field, model_validator
+from pydantic.dataclasses import dataclass
 
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-from oteapi.utils._pydantic import AnyUrl, Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
-from oteapi.utils._pydantic import parse_obj_as, root_validator
+from oteapi.models import (
+    AttrDict,
+    DataCacheConfig,
+    HostlessAnyUrl,
+    ParserConfig,
+    ResourceConfig,
+)
 
 
 class PostgresConfig(AttrDict):
     """Configuration data model for
-    [`PostgresResourceStrategy`][oteapi.strategies.parse.postgres.PostgresResourceConfig].
+    [`PostgresParserStrategy`][oteapi.strategies.parse.postgres.PostgresParserConfig].
     """
 
-    user: Optional[str] = Field(None, description="postgres server username")
-    dbname: Optional[str] = Field(None, description="postgres dbname name")
-    password: Optional[str] = Field(None, description="postgres password")
-
-    sqlquery: Optional[str] = Field("", description="A SQL query string.")
-
-
-class PostgresResourceConfig(ResourceConfig):
-    """Postgresql parse strategy config"""
-
-    configuration: PostgresConfig = Field(
-        PostgresConfig(),
-        description=(
-            "Configuration for resource. " "Values in the accessURL take precedence."
-        ),
+    # Resource config
+    accessService: Literal["postgres"] = Field(
+        "postgres",
+        description=ResourceConfig.model_fields["accessService"].description,
     )
+    accessUrl: Optional[HostlessAnyUrl] = Field(
+        None,
+        description=ResourceConfig.model_fields["accessUrl"].description,
+    )
+
+    # Postgres specific config
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description="Configuration options for the local data cache.",
     )
+    user: Optional[str] = Field(None, description="postgres server username")
+    dbname: Optional[str] = Field(None, description="postgres dbname name")
+    password: Optional[str] = Field(None, description="postgres password")
+    sqlquery: str = Field("", description="A SQL query string.")
 
+    @model_validator(mode="before")
     @classmethod
-    def _urlconstruct(
-        cls,  # PEP8 - Always use cls for the first argument to class methods.
-        scheme: Optional[str] = "",  # Schema defining link format
-        user: Optional[str] = None,  # Username
-        password: Optional[str] = None,  # Password
-        host: Optional[str] = None,
-        port: Optional[int] = None,
-        path: Optional[str] = "",
-        params: Optional[str] = "",
-        query: Optional[str] = "",
-        fragment: Optional[str] = "",
-    ):
-        """Construct a pydantic AnyUrl based on the given URL properties"""
-
-        # Hostname should always be given
-        if not host:
-            raise ValueError("hostname must be specified")
-
-        # Update netloc of username or username|password pair is defined
-        netloc = host
-        if user and not password:  # Only username is provided. OK
-            netloc = f"{user}@{host}"
-        elif user and password:  # Username and password is provided. OK
-            netloc = f"{user}:{password}@{host}"
-        else:  # Password and no username is provided. ERROR
-            raise ValueError("username not provided")
-
-        # Append port if port is defined
-        netloc = netloc if not port else f"{netloc}:{port}"
-
-        # Construct a URL from a tuple of URL-properties
-        unparsed = urlunparse([scheme, netloc, path, params, query, fragment])
-
-        # Populate and return a Pydantic URL
-        return parse_obj_as(AnyUrl, unparsed)
-
-    @root_validator
-    def adjust_url(cls, values):
-        """Root Validator
+    def adjust_url(cls, data: Any) -> "Dict[str, Any]":
+        """Model Validator
         Verifies configuration consistency, merge configurations
         and update the accessUrl property.
         """
+        if isinstance(data, BaseModel):
+            data = data.model_dump()
+        elif not isinstance(data, dict):
+            raise TypeError(
+                "invalid data type, should be either dict or pydantic model"
+            )
+
+        if "accessUrl" not in data:
+            return data
 
         # Copy model-state into placeholders
-        config = values.get("configuration")
-        accessUrl = values["accessUrl"]
+        accessUrl = AnyUrl(data["accessUrl"])
+        default_config = PostgresConfig()
+        current_config: dict[str, Any] = data.get("configuration", {})
 
-        # Check and merge user configuration
-        user = accessUrl.user if accessUrl.user else config["user"]
-        if config["user"] and user != config["user"]:
-            raise ValueError("mismatching username in accessUrl and configuration")
+        if not accessUrl.host:
+            raise ValueError("missing host in accessUrl")
 
-        # Check and merge password configuration
-        password = accessUrl.password if accessUrl.password else config["password"]
-        if config["password"] and password != config["password"]:
-            raise ValueError("mismatching password in accessUrl and configuration")
+        def _get_and_validate_config_value(url_parameter: str, config_key: str) -> str:
+            """Get value from accessUrl or current_config, and check for mismatches."""
+            value_from_url = getattr(accessUrl, url_parameter, None)
+            value_from_config = current_config.get(
+                config_key, getattr(default_config, config_key)
+            )
 
-        # Check and merge database name configuration
-        dbname = accessUrl.path if accessUrl.path else config["dbname"]
-        if config["dbname"] and dbname != config["dbname"]:
-            raise ValueError("mismatching dbname in accessUrl and configuration")
+            final_value = value_from_url or value_from_config
+
+            if value_from_config and final_value != value_from_config:
+                raise ValueError(
+                    f"mismatching {url_parameter} in accessUrl and {config_key} in "
+                    "configuration"
+                )
+
+            return final_value
+
+        user = _get_and_validate_config_value("username", "user")
+        password = _get_and_validate_config_value("password", "password")
+        dbname = _get_and_validate_config_value("path", "dbname")
 
         # Reconstruct accessUrl from the updated properties
-        values["accessUrl"] = cls._urlconstruct(
+        data["accessUrl"] = accessUrl.__class__.build(
             scheme=accessUrl.scheme,
+            username=user,
+            password=password,
             host=accessUrl.host,
             port=accessUrl.port,
-            user=user,
-            password=password,
+            path=dbname,
+            query=accessUrl.query,
+            fragment=accessUrl.fragment,
         )
-        return values
+        return data
 
 
-def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connection:
+class PostgresParserConfig(ParserConfig):
+    """Postgresql parse strategy config"""
+
+    parserType: Literal["parser/postgres"] = Field(
+        "parser/postgres",
+        description="Type of registered resource strategy.",
+    )
+    configuration: PostgresConfig = Field(
+        ...,
+        description=(
+            "Configuration for resource. Values in the accessURL take precedence."
+        ),
+    )
+
+
+def create_connection(url: str) -> psycopg.Connection:
     """Create a dbname connection to Postgres dbname.
 
     Parameters:
-        resource_config: A dictionary providing everything needed for a psycopg
-                     connection configuration
+        url: A valid PostgreSQL URL.
 
     Raises:
         psycopg.Error: If a DB connection cannot be made.
@@ -125,52 +135,40 @@ def create_connection(resource_config: PostgresResourceConfig) -> psycopg.Connec
 
     """
     try:
-        return psycopg.connect(resource_config.accessUrl)
+        return psycopg.connect(url)
     except psycopg.Error as exc:
         raise psycopg.Error("Could not connect to given Postgres DB.") from exc
 
 
-class SessionUpdatePostgresResource(SessionUpdate):
-    """Configuration model for PostgresResource."""
+class PostgresParserContent(AttrDict):
+    """Configuration model for PostgresParser."""
 
     result: list = Field(..., description="List of results from the query.")
 
 
-@pydantic_dataclasses.dataclass
-class PostgresResourceStrategy:
+@dataclass
+class PostgresParserStrategy:
     """Resource strategy for Postgres.
-
-    **Registers strategies**:
-
-    - `("accessService", "postgres")`
 
     Purpose of this strategy: Connect to a postgres DB and run a
     SQL query on the dbname to return all relevant rows.
 
     """
 
-    resource_config: PostgresResourceConfig
+    parser_config: PostgresParserConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdatePostgresResource:
+    def get(self) -> PostgresParserContent:
         """Resource Postgres query responses."""
-        if session:
-            self._use_filters(session)
-        session = session if session else {}
 
-        connection = create_connection(self.resource_config)
+        if self.parser_config.configuration.accessUrl is None:
+            raise ValueError("accessUrl is required for PostgresParserStrategy")
+
+        connection = create_connection(str(self.parser_config.configuration.accessUrl))
         cursor = connection.cursor()
-        result = cursor.execute(self.resource_config.configuration.sqlquery).fetchall()
+        result = cursor.execute(self.parser_config.configuration.sqlquery).fetchall()
         connection.close()
-        return SessionUpdatePostgresResource(result=result)
-
-    def _use_filters(self, session: "Dict[str, Any]") -> None:
-        """Update `config` according to filter values found in the session."""
-        if "sqlquery" in session and not self.resource_config.configuration.sqlquery:
-            # Use SQL query available in session
-            self.resource_config.configuration.sqlquery = session["sqlquery"]
+        return PostgresParserContent(result=result)

@@ -1,4 +1,5 @@
 """Utility functions for updating GenericConfig instances."""
+
 from typing import TYPE_CHECKING
 
 from oteapi.models.genericconfig import GenericConfig
@@ -25,7 +26,11 @@ def populate_config_from_session(
     keys_to_update = list(session.keys())
 
     for key in keys_to_update:
-        if key in config.configuration and session[key] != config.configuration[key]:
+        if (
+            # "configuration" in config
+            key in config.configuration
+            and session[key] != config.configuration[key]
+        ):
             raise ValueError(
                 f"Key '{key}' in config has different value than in session."
             )

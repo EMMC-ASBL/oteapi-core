@@ -1,8 +1,10 @@
 """Pydantic Mapping Configuration Data Model."""
+
 from typing import Dict, Optional, Set, Tuple
 
+from pydantic import Field
+
 from oteapi.models.genericconfig import GenericConfig
-from oteapi.utils._pydantic import Field
 
 RDFTriple = Tuple[str, str, str]
 

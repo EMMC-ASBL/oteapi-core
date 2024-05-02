@@ -1,11 +1,13 @@
 """Test the `oteapi.plugins.entry_points` module generally."""
+
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, Tuple, Union
+    from typing import Any, Dict, Tuple, Union
 
     MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
 
@@ -101,8 +103,8 @@ def test_strategytype_methods() -> None:
         "filter": "filterType",
         "function": "functionType",
         "mapping": "mappingType",
-        "parse": "mediaType",
-        "resource": "accessService",
+        "parse": "parserType",
+        "resource": "resourceType",
         "transformation": "transformationType",
     }
 

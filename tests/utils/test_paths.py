@@ -1,4 +1,5 @@
 """Test `oteapi.utils.paths` module."""
+
 import pytest
 
 
@@ -7,7 +8,8 @@ def test_uri_to_path() -> None:
     from pathlib import Path
     from urllib.parse import urlparse
 
-    from oteapi.utils._pydantic import BaseModel, FileUrl
+    from pydantic import BaseModel, FileUrl
+
     from oteapi.utils.paths import uri_to_path
 
     class MyModel(BaseModel):

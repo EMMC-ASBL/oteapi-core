@@ -4,13 +4,15 @@ A transformation status data model is provided as well.
 This data model represents what should be returned from the strategy's `status()`
 method.
 """
+
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
+from pydantic import BaseModel, Field
+
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
-from oteapi.utils._pydantic import BaseModel, Field
 
 
 class ProcessPriority(str, Enum):

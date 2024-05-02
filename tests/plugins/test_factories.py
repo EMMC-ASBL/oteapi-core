@@ -1,11 +1,13 @@
 """Test the `oteapi.plugins.factories` module generally."""
+
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
+    from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Callable, Dict, Iterable, Type, Union
+    from typing import Any, Dict, Type, Union
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
@@ -111,7 +113,7 @@ def test_create_strategy(
                         mediaType=(
                             entry_point.name
                             if entry_point.type == StrategyType.PARSE
-                            else "text/html"
+                            else "application/json"
                         ),
                         accessUrl="https://example.org",
                         accessService=(
@@ -119,6 +121,9 @@ def test_create_strategy(
                             if entry_point.type == StrategyType.RESOURCE
                             else "example.org"
                         ),
+                        entity="https://example.org",
+                        parserType="parser/json",
+                        resourceType="resource/url",
                     )
                     if strategy_type
                     in (
@@ -132,7 +137,7 @@ def test_create_strategy(
                 )
                 strategy = create_strategy(
                     strategy_type=strategy_type,
-                    config=config.dict() if config_type == "dict" else config,
+                    config=config.model_dump() if config_type == "dict" else config,
                 )
             except Exception:
                 pytest.fail(

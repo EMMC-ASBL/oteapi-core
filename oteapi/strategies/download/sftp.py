@@ -1,23 +1,18 @@
 """Strategy class for sftp/ftp"""
+
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import TYPE_CHECKING, Optional
+from typing import Annotated, Optional
 
 import pysftp
+from pydantic import Field
+from pydantic.dataclasses import dataclass
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
-from oteapi.utils._pydantic import AnyUrl, Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
-
-
-class AnyFtpUrl(AnyUrl):
-    """A (S)FTP URL model."""
-
-    allowed_schemes = {"ftp", "sftp"}
+AnyFtpUrl = Annotated[Url, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 
 
 class SFTPConfig(AttrDict):
@@ -43,13 +38,13 @@ class SFTPResourceConfig(ResourceConfig):
     )
 
 
-class SessionUpdateSFTP(SessionUpdate):
+class SFTPContent(AttrDict):
     """Class for returning values from Download SFTP strategy."""
 
     key: str = Field(..., description="Key to access the data in the cache.")
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class SFTPStrategy:
     """Strategy for retrieving data via sftp.
 
@@ -62,11 +57,11 @@ class SFTPStrategy:
 
     download_config: SFTPResourceConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdateSFTP:
+    def get(self) -> SFTPContent:
         """Download via sftp"""
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
@@ -79,7 +74,7 @@ class SFTPStrategy:
             # open connection and store data locally
             with pysftp.Connection(
                 host=self.download_config.downloadUrl.host,
-                username=self.download_config.downloadUrl.user,
+                username=self.download_config.downloadUrl.username,
                 password=self.download_config.downloadUrl.password,
                 port=self.download_config.downloadUrl.port,
                 cnopts=cnopts,
@@ -94,4 +89,4 @@ class SFTPStrategy:
                 finally:
                     localpath.unlink()
 
-        return SessionUpdateSFTP(key=key)
+        return SFTPContent(key=key)

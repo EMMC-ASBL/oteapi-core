@@ -1,25 +1,20 @@
 """Mapping test strategy class."""
-from typing import TYPE_CHECKING
 
-from oteapi.models import MappingConfig
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from pydantic.dataclasses import dataclass
 
-if TYPE_CHECKING:
-    from typing import Any, Dict, Optional
+from oteapi.models import AttrDict, MappingConfig
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class MappingTestStrategy:
     """Test mapping strategy."""
 
     mapping_config: MappingConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> "Dict[str, Any]":
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return {}
+        return AttrDict()
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
+    def get(self) -> AttrDict:
         """Run mapping strategy."""
-        return {}
+        return AttrDict()

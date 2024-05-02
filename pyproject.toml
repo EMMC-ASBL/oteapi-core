@@ -22,53 +22,44 @@ dynamic = ["version"]
 
 dependencies = [
     # Core dependencies
-    "agraph-python>=101.0.7,<103",
-    "diskcache>=5.4.0,<6",
-    "pydantic>=1.10.12,<3",
-    "typing-extensions~=4.8; python_version<'3.10'",
+    "agraph-python>=102.0.0,<103",
+    "diskcache>=5.6.3,<6",
+    "pydantic~=2.7",
+    "pydantic-settings~=2.2",
+    "typing-extensions~=4.11; python_version < '3.10'",
 
     # Strategy dependencies
-    "celery>=5.2.3,<6",
-    "openpyxl>=3.0.9,<4",
-    "Pillow>=9.0.0,<11",
-    "psycopg~=3.1.10",
+    "celery>=5.3.5,<6",
+    "openpyxl>=3.1.2,<4",
+    "Pillow>=10.1.0,<11",
+    "psycopg~=3.1.18",
     "pysftp~=0.2.9",
-    "requests>=2.26.0,<3",
+    "requests>=2.31.0,<3",
+
+    # Follow issue EMMC-ASBL/oteapi-services#328 for more information
     "urllib3<2",
 ]
 
 [project.optional-dependencies]
 docs = [
-    "mike~=1.1",
-    "mkdocs~=1.5",
+    "mike~=2.0",
+    "mkdocs>=1.5.3,<1.7",
     "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.3",
-    "mkdocstrings[python]~=0.23.0",
+    "mkdocs-material>=9.5.5,<10",
+    "mkdocstrings[python]~=0.24.3",
 ]
 testing = [
     "ase~=3.22.1",
-    "numpy>=1.21,<2",
-    "pytest~=7.4",
-    "pytest-celery",
-    "pytest-cov~=4.1",
+    "numpy>=1.26,<2",
+    "pytest~=8.1",
+    "pytest-celery[redis]~=1.0",
+    "pytest-cov~=5.0",
     "redis~=5.0",
-    "requests-mock~=1.11",
+    "requests-mock~=1.12",
 ]
 dev = [
-    "mike~=1.1",
-    "mkdocs~=1.5",
-    "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material~=9.3",
-    "mkdocstrings[python]~=0.23.0",
-    "ase~=3.22.1",
-    "numpy>=1.21,<2",
-    "pytest~=7.4",
-    "pytest-celery",
-    "pytest-cov~=4.1",
-    "redis~=5.0",
-    "requests-mock~=1.11",
-    "pre-commit>=2.21.0,<3; python_version<'3.8'",
-    "pre-commit~=3.4; python_version>='3.8'",
+    "pre-commit~=3.7",
+    "oteapi-core[docs,testing]",
 ]
 
 [project.urls]
@@ -86,26 +77,27 @@ Package = "https://pypi.org/project/oteapi-core"
 "oteapi.https" = "oteapi.strategies.download.https:HTTPSStrategy"
 "oteapi.ftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
 "oteapi.sftp" = "oteapi.strategies.download.sftp:SFTPStrategy"
+
 [project.entry-points."oteapi.filter"]
 "oteapi.filter/crop" = "oteapi.strategies.filter.crop_filter:CropImageFilter"
 "oteapi.filter/sql" = "oteapi.strategies.filter.sql_query_filter:SQLQueryFilter"
+
 [project.entry-points."oteapi.mapping"]
 "oteapi.triples" = "oteapi.strategies.mapping.mapping:MappingStrategy"
+
 [project.entry-points."oteapi.parse"]
-"oteapi.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
-"oteapi.image/jpg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/jpeg" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/jp2" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/png" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/gif" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/tiff" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.image/eps" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
-"oteapi.application/vnd.sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
-"oteapi.text/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
-"oteapi.application/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
-"oteapi.application/postgres" = "oteapi.strategies.parse.postgres:PostgresResourceStrategy"
+"oteapi.parser/csv" = "oteapi.strategies.parse.text_csv:CSVParseStrategy"
+"oteapi.parser/excel_xlsx" = "oteapi.strategies.parse.excel_xlsx:XLSXParseStrategy"
+"oteapi.parser/image" = "oteapi.strategies.parse.image:ImageDataParseStrategy"
+"oteapi.parser/json" = "oteapi.strategies.parse.application_json:JSONDataParseStrategy"
+"oteapi.parser/postgres" = "oteapi.strategies.parse.postgres:PostgresParserStrategy"
+"oteapi.parser/sqlite3" = "oteapi.strategies.parse.application_vnd_sqlite:SqliteParseStrategy"
+
 [project.entry-points."oteapi.transformation"]
 "oteapi.celery/remote" = "oteapi.strategies.transformation.celery_remote:CeleryRemoteStrategy"
+
+[project.entry-points."oteapi.resource"]
+"oteapi.resource/url" = "oteapi.strategies.resource.resource_url:ResourceURLStrategy"
 
 [tool.flit.module]
 name = "oteapi"

@@ -1,23 +1,39 @@
 """Strategy class for application/vnd.sqlite3."""
+
 import sqlite3
+import sys
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
+
+from pydantic import Field
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
+from oteapi.models.resourceconfig import HostlessAnyUrl
 from oteapi.plugins import create_strategy
-from oteapi.utils._pydantic import Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
-
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
 
 
-class SqliteParseConfig(AttrDict):
+class SqliteConfig(AttrDict):
     """Configuration data model for
     [`SqliteParseStrategy`][oteapi.strategies.parse.application_vnd_sqlite.SqliteParseStrategy].
     """
 
+    # Resource config
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
+        None, description=ResourceConfig.model_fields["downloadUrl"].description
+    )
+    mediaType: Literal["application/vnd.sqlite3"] = Field(
+        "application/vnd.sqlite3",
+        description=ResourceConfig.model_fields["mediaType"].description,
+    )
+
+    # SQLite parse strategy-specific config
     sqlquery: str = Field("", description="A SQL query string.")
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
@@ -25,16 +41,15 @@ class SqliteParseConfig(AttrDict):
     )
 
 
-class SqliteParserResourceConfig(ResourceConfig):
+class SqliteParserConfig(ParserConfig):
     """SQLite parse strategy resource config."""
 
-    mediaType: str = Field(
-        "application/vnd.sqlite3",
-        const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    parserType: Literal["parser/sqlite3"] = Field(
+        "parser/sqlite3",
+        description=ParserConfig.model_fields["parserType"].description,
     )
-    configuration: SqliteParseConfig = Field(
-        SqliteParseConfig(), description="SQLite parse strategy-specific configuration."
+    configuration: SqliteConfig = Field(
+        ..., description="SQLite parse strategy-specific configuration."
     )
 
 
@@ -57,45 +72,41 @@ def create_connection(db_file: Path) -> sqlite3.Connection:
         raise sqlite3.Error("Could not connect to given SQLite DB.") from exc
 
 
-class SessionUpdateSqLiteParse(SessionUpdate):
+class SqLiteParseContent(AttrDict):
     """Configuration model for SqLiteParse."""
 
     result: list = Field(..., description="List of results from the query.")
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class SqliteParseStrategy:
     """Parse strategy for SQLite.
-
-    **Registers strategies**:
-
-    - `("mediaType", "application/vnd.sqlite3")`
 
     Purpose of this strategy: Download a SQLite database using `downloadUrl` and run a
     SQL query on the database to return all relevant rows.
 
     """
 
-    parse_config: SqliteParserResourceConfig
+    parse_config: SqliteParserConfig
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize strategy."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> SessionUpdateSqLiteParse:
+    def get(self) -> SqLiteParseContent:
         """Parse SQLite query responses."""
-        if session:
-            self._use_filters(session)
-        session = session if session else {}
+
+        if self.parse_config.configuration.downloadUrl is None:
+            raise ValueError("No download URL provided.")
+
+        if self.parse_config.configuration.mediaType != "application/vnd.sqlite3":
+            raise ValueError("Invalid media type.")
 
         # Retrieve SQLite file
-        download_config = self.parse_config.copy()
-        del download_config.configuration
-        downloader = create_strategy("download", download_config)
-        session.update(downloader.initialize(session))
-        cache_key = downloader.get(session).get("key", "")
+        downloader = create_strategy(
+            "download", self.parse_config.configuration.model_dump()
+        )
+        cache_key = downloader.get()["key"]
 
         cache = DataCache(self.parse_config.configuration.datacache_config)
         with cache.getfile(cache_key, suffix="db") as filename:
@@ -103,10 +114,4 @@ class SqliteParseStrategy:
             cursor = connection.cursor()
             result = cursor.execute(self.parse_config.configuration.sqlquery).fetchall()
             connection.close()
-        return SessionUpdateSqLiteParse(result=result)
-
-    def _use_filters(self, session: "Dict[str, Any]") -> None:
-        """Update `config` according to filter values found in the session."""
-        if "sqlquery" in session and not self.parse_config.configuration.sqlquery:
-            # Use SQL query available in session
-            self.parse_config.configuration.sqlquery = session["sqlquery"]
+        return SqLiteParseContent(result=result)

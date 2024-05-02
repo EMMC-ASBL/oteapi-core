@@ -1,31 +1,95 @@
+# This workflow consists of two "equal" jobs that each update the dependencies in
+# `pyproject.toml` for the two different pydantic v1 and v2 development branches.
+
+# Trigger Details:
+# - Scheduled event: Both jobs run, resulting in 2 PRs targeting
+#   'ci/dependabot-updates' and 'release/pydantic-v1-support'.
+# - Manual trigger (workflow_dispatch): Runs the job matching the user's
+#   "target_branch" input, creating 1 PR.
+
+# The documentation for the callable workflow is here:
+# https://sintef.github.io/ci-cd/latest/workflows/ci_check_pyproject_dependencies
+
+# IMPORTANT: The "ignore" rules here are explicit and extensive due to a bug in
+#   SINTEF/ci-cd that doesn't respect version specifier constraints. See
+#   https://github.com/SINTEF/ci-cd/issues/141 for more information.
+#   The "ignore" rules ensure the explicit upper version limit is respected.
+
 name: CI - Check dependencies
 
 on:
   schedule:
     - cron: "30 5 * * 1"
   workflow_dispatch:
+    inputs:
+      target_branch:
+        description: "Target branch"
+        required: true
+        default: "ci/dependabot-updates"
+        type: choice
+        options:
+          - ci/dependabot-updates
+          - release/pydantic-v1-support
 
 jobs:
   check-dependencies:
-    name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.5.1
-    if: github.repository_owner == 'EMMC-ASBL'
+    name: master
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.7.4
+    # Job Execution Criteria:
+    # - It must be executed within the "origin" repository (EMMC-ASBL).
+    # - Always run for scheduled events.
+    # - For manual triggers, it runs only if "target_branch" is "ci/dependabot-updates".
+    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'ci/dependabot-updates' )
     with:
       git_username: "TEAM 4.0[bot]"
       git_email: "Team4.0@SINTEF.no"
       permanent_dependencies_branch: ci/dependabot-updates
       python_version: "3.9"
-      install_extras: "dev"
+      install_extras: "[dev]"
       pr_labels: "CI/CD"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
       ignore: |
-        dependency-name=agraph-python...version=>101.0.7
-        dependency-name=celery...version==>=6
-        dependency-name=diskcache...version==>=6
-        dependency-name=numpy...version==>=2
-        dependency-name=openpyxl...version==>=4
-        dependency-name=Pillow...version==>=11
-        dependency-name=pydantic...version==>=3
-        dependency-name=requests...version==>=3
+        dependency-name=agraph-python...versions=>=103
+        dependency-name=celery...versions=>=6
+        dependency-name=diskcache...versions=>=6
+        dependency-name=numpy...versions=>=2
+        dependency-name=openpyxl...versions=>=4
+        dependency-name=Pillow...versions=>=11
+        dependency-name=pydantic...versions=>=3
+        dependency-name=requests...versions=>=3
         dependency-name=urllib3
+      branch_name_extension: "master"
+    secrets:
+      PAT: ${{ secrets.RELEASE_PAT }}
+
+  check-dependencies-release_pydantic-v1-support:
+    name: release/pydantic-v1-support
+    uses: SINTEF/ci-cd/.github/workflows/ci_check_pyproject_dependencies.yml@v2.7.4
+    # Job Execution Criteria:
+    # - It must be executed within the "origin" repository (EMMC-ASBL).
+    # - Always run for scheduled events.
+    # - For manual triggers, it runs only if "target_branch" is "release/pydantic-v1-support".
+    if: github.repository_owner == 'EMMC-ASBL' && ( github.event_name == 'schedule' || inputs.target_branch == 'release/pydantic-v1-support' )
+    with:
+      git_username: "TEAM 4.0[bot]"
+      git_email: "Team4.0@SINTEF.no"
+      permanent_dependencies_branch: release/pydantic-v1-support
+      python_version: "3.9"
+      install_extras: "[dev]"
+      pr_labels: "CI/CD,pydantic-v1"
+      # Follow issue EMMC-ASBL/oteapi-services#328 for more information about the
+      # urllib3 dependency.
+      ignore: |
+        dependency-name=agraph-python...versions=>=103
+        dependency-name=celery...versions=>=6
+        dependency-name=diskcache...versions=>=6
+        dependency-name=numpy...versions=>=2
+        dependency-name=openpyxl...versions=>=4
+        dependency-name=Pillow...versions=>=11
+        dependency-name=pydantic...versions=>=2
+        dependency-name=requests...versions=>=3
+        dependency-name=urllib3
+      branch_name_extension: "release/pydantic-v1-support"
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}

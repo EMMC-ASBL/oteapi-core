@@ -1,36 +1,40 @@
 """Demo-filter strategy"""
-from typing import TYPE_CHECKING, Tuple
 
-from oteapi.models import AttrDict, FilterConfig, SessionUpdate
-from oteapi.utils._pydantic import Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+import sys
+from typing import Optional, Tuple
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
+from pydantic import Field
+from pydantic.dataclasses import dataclass
+
+from oteapi.models import AttrDict, FilterConfig
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
 
 
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Tuple[int, int, int, int] = Field(
-        ..., description="Box cropping parameters (left, top, right, bottom)."
+    crop: Optional[Tuple[int, int, int, int]] = Field(
+        None, description="Box cropping parameters (left, top, right, bottom)."
     )
 
 
 class CropImageFilterConfig(FilterConfig):
     """Crop filter strategy filter config."""
 
-    filterType: str = Field(
+    filterType: Literal["filter/crop"] = Field(
         "filter/crop",
-        const=True,
-        description=FilterConfig.__fields__["filterType"].field_info.description,
+        description=FilterConfig.model_fields["filterType"].description,
     )
     configuration: CropImageConfig = Field(
         ..., description="Image crop filter strategy-specific configuration."
     )
 
 
-class SessionUpdateCropFilter(SessionUpdate):
+class CropFilterContent(AttrDict):
     """Return model for `CropImageFilter`."""
 
     imagecrop: Tuple[int, int, int, int] = Field(
@@ -38,7 +42,7 @@ class SessionUpdateCropFilter(SessionUpdate):
     )
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class CropImageFilter:
     """Strategy for cropping an image.
 
@@ -50,18 +54,15 @@ class CropImageFilter:
 
     filter_config: CropImageFilterConfig
 
-    def initialize(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdateCropFilter:
+    def initialize(self) -> CropFilterContent:
         """Initialize strategy and return a dictionary."""
-        return SessionUpdateCropFilter(
+        if self.filter_config.configuration.crop is None:
+            raise ValueError("Crop filter requires crop configuration.")
+
+        return CropFilterContent(
             imagecrop=self.filter_config.configuration.crop,
         )
 
-    def get(
-        self,
-        session: "Optional[Dict[str, Any]]" = None,
-    ) -> SessionUpdate:
+    def get(self) -> AttrDict:
         """Execute strategy and return a dictionary"""
-        return SessionUpdate()
+        return AttrDict()

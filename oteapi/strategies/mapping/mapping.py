@@ -1,16 +1,14 @@
 """Mapping filter strategy."""
-from typing import TYPE_CHECKING, Dict, List
 
-from oteapi.models import MappingConfig, RDFTriple, SessionUpdate
-from oteapi.utils._pydantic import Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
+from typing import Dict, List
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Optional
+from pydantic.dataclasses import Field, dataclass
+
+from oteapi.models import AttrDict, MappingConfig, RDFTriple
 
 
-class MappingSessionUpdate(SessionUpdate):
-    """SessionUpdate model for mappings."""
+class MappingStrategyConfig(AttrDict):
+    """AttrDict model for mappings."""
 
     prefixes: Dict[str, str] = Field(
         ...,
@@ -25,7 +23,7 @@ class MappingSessionUpdate(SessionUpdate):
     )
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class MappingStrategy:
     """Strategy for a mapping.
 
@@ -44,20 +42,13 @@ class MappingStrategy:
 
     mapping_config: MappingConfig
 
-    def initialize(
-        self, session: "Optional[Dict[str, Any]]" = None
-    ) -> MappingSessionUpdate:
+    def initialize(self) -> MappingStrategyConfig:
         """Initialize strategy."""
-        prefixes = session.get("prefixes", {}) if session else {}
-        triples = set(session.get("triples", []) if session else [])
 
-        if self.mapping_config.prefixes:
-            prefixes.update(self.mapping_config.prefixes)
-        if self.mapping_config.triples:
-            triples.update(self.mapping_config.triples)
+        return MappingStrategyConfig(
+            prefixes=self.mapping_config.prefixes, triples=self.mapping_config.triples
+        )
 
-        return MappingSessionUpdate(prefixes=prefixes, triples=triples)
-
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> SessionUpdate:
+    def get(self) -> AttrDict:
         """Execute strategy and return a dictionary."""
-        return SessionUpdate()
+        return AttrDict()

@@ -1,4 +1,5 @@
 """Tests the parse strategy for SQLite."""
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -6,8 +7,6 @@ import pytest
 if TYPE_CHECKING:
     from pathlib import Path
     from typing import Tuple
-
-    from oteapi.interfaces import IParseStrategy
 
 
 sqlite_queries = [
@@ -55,14 +54,15 @@ def test_sqlite(
     sample_file = static_files / "sample1.db"
 
     config = {
-        "downloadUrl": sample_file.as_uri(),
-        "mediaType": "application/vnd.sqlite3",
-        "configuration": {"sqlquery": query} if "19" in query else {},
+        "parserType": "parser/sqlite3",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "application/vnd.sqlite3",
+            "sqlquery": query,
+        },
     }
 
-    parser: "IParseStrategy" = SqliteParseStrategy(config)
-    parser.initialize()
-
-    result = parser.get({"sqlquery": query} if "19" not in query else None)
+    result = SqliteParseStrategy(parse_config=config).get()
 
     assert result["result"][0] == expected

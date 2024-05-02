@@ -1,11 +1,10 @@
 """Tranformation Strategy Interface"""
+
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Optional
-
-    from oteapi.models import SessionUpdate, TransformationConfig, TransformationStatus
+    from oteapi.models import AttrDict, TransformationConfig, TransformationStatus
 
 
 @dataclass  # type: ignore[misc]
@@ -26,11 +25,8 @@ class ITransformationStrategy(Protocol):
 
         """
 
-    def get(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
+    def get(self) -> "AttrDict":
         """Execute the strategy i.e. running a transformation job.
-
-        Parameters:
-            session: A session-specific dictionary context.
 
         Returns:
             An update model of key/value-pairs to be stored in the
@@ -38,14 +34,11 @@ class ITransformationStrategy(Protocol):
 
         """
 
-    def initialize(self, session: "Optional[Dict[str, Any]]" = None) -> "SessionUpdate":
+    def initialize(self) -> "AttrDict":
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API
         Services.
-
-        Parameters:
-            session: A session-specific dictionary context.
 
         Returns:
             An update model of key/value-pairs to be stored in the

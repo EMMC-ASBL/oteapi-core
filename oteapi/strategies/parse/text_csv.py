@@ -1,15 +1,29 @@
-"""Strategy class for text/csv."""
+"""Strategy class for parser/csv."""
+
 import csv
+import sys
 from collections import defaultdict
+from collections.abc import Hashable
 from enum import Enum
-from typing import Any, Hashable, Optional, Type, Union
+from typing import Any, Optional, Type, Union
+
+if sys.version_info >= (3, 10):
+    from typing import Literal
+else:
+    from typing_extensions import Literal
+
+from pydantic import BaseModel, Field, field_validator
+from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig, SessionUpdate
+from oteapi.models import (
+    AttrDict,
+    DataCacheConfig,
+    HostlessAnyUrl,
+    ParserConfig,
+    ResourceConfig,
+)
 from oteapi.plugins import create_strategy
-from oteapi.utils._pydantic import BaseModel, Field
-from oteapi.utils._pydantic import dataclasses as pydantic_dataclasses
-from oteapi.utils._pydantic import validator
 
 
 class QuoteConstants(str, Enum):
@@ -153,7 +167,8 @@ class DialectFormatting(BaseModel):
         ),
     )
 
-    @validator("base")
+    @field_validator("base")
+    @classmethod
     def validate_dialect_base(cls, value: str) -> str:
         """Ensure the given `base` dialect is registered locally."""
         if value not in csv.list_dialects():
@@ -205,6 +220,17 @@ class ReaderConfig(BaseModel):
 class CSVConfig(AttrDict):
     """CSV parse-specific Configuration Data Model."""
 
+    # Resource config
+    downloadUrl: Optional[HostlessAnyUrl] = Field(
+        None,
+        description=ResourceConfig.model_fields["downloadUrl"].description,
+    )
+    mediaType: Literal["text/csv"] = Field(
+        "text/csv",
+        description=ResourceConfig.model_fields["mediaType"].description,
+    )
+
+    # CSV parse strategy-specific configuration
     datacache_config: Optional[DataCacheConfig] = Field(
         None,
         description=(
@@ -230,20 +256,19 @@ class CSVConfig(AttrDict):
     )
 
 
-class CSVResourceConfig(ResourceConfig):
+class CSVParserConfig(ParserConfig):
     """CSV parse strategy filter config."""
 
-    mediaType: str = Field(
-        "text/csv",
-        const=True,
-        description=ResourceConfig.__fields__["mediaType"].field_info.description,
+    parserType: Literal["parser/csv"] = Field(
+        "parser/csv",
+        description=ParserConfig.model_fields["parserType"].description,
     )
     configuration: CSVConfig = Field(
-        CSVConfig(), description="CSV parse strategy-specific configuration."
+        ..., description="CSV parse strategy-specific configuration."
     )
 
 
-class SessionUpdateCSVParse(SessionUpdate):
+class CSVParseContent(AttrDict):
     """Class for returning values from CSV Parse."""
 
     content: dict[Union[str, None], list[Any]] = Field(
@@ -251,48 +276,52 @@ class SessionUpdateCSVParse(SessionUpdate):
     )
 
 
-@pydantic_dataclasses.dataclass
+@dataclass
 class CSVParseStrategy:
-    """Parse strategy for CSV files.
+    """Parse strategy for CSV files."""
 
-    **Registers strategies**:
+    parse_config: CSVParserConfig
 
-    - `("mediaType", "text/csv")`
-
-    """
-
-    parse_config: CSVResourceConfig
-
-    def initialize(self, session: "Optional[dict[str, Any]]" = None) -> SessionUpdate:
+    def initialize(self) -> AttrDict:
         """Initialize."""
-        return SessionUpdate()
+        return AttrDict()
 
-    def get(self, session: "Optional[dict[str, Any]]" = None) -> SessionUpdateCSVParse:
+    def get(self) -> CSVParseContent:
         """Parse CSV."""
-        downloader = create_strategy("download", self.parse_config)
-        output = downloader.get()
-        cache = DataCache(self.parse_config.configuration.datacache_config)
+        config = self.parse_config.configuration
 
-        with cache.getfile(output["key"]) as csvfile_path:
-            kwargs = self.parse_config.configuration.dialect.dict(
+        # Download the file
+        download_config = config.model_dump()
+        download_config["configuration"] = config.model_dump()
+        output = create_strategy("download", download_config).get()
+
+        if config.datacache_config and config.datacache_config.accessKey:
+            cache_key = config.datacache_config.accessKey
+        elif "key" in output:
+            cache_key = output["key"]
+        else:
+            raise RuntimeError("No data cache key provided to the downloaded content")
+
+        cache = DataCache(config.datacache_config)
+
+        with cache.getfile(cache_key) as csvfile_path:
+            kwargs = config.dialect.model_dump(
                 exclude={"base", "quoting"}, exclude_unset=True
             )
 
-            dialect = self.parse_config.configuration.dialect.base
+            dialect = config.dialect.base
             if dialect:
                 kwargs["dialect"] = dialect.value
-            quoting = self.parse_config.configuration.dialect.quoting
+            quoting = config.dialect.quoting
             if quoting:
                 kwargs["quoting"] = quoting.csv_constant()
 
-            kwargs.update(
-                self.parse_config.configuration.reader.dict(exclude_unset=True)
-            )
+            kwargs.update(config.reader.model_dump(exclude_unset=True))
 
             with open(
                 csvfile_path,
                 newline="",
-                encoding=self.parse_config.configuration.reader.encoding,
+                encoding=config.reader.encoding,
             ) as csvfile:
                 csvreader = csv.DictReader(csvfile, **kwargs)
                 content: dict[Union[str, None], list[Any]] = defaultdict(list)
@@ -305,22 +334,27 @@ class CSVParseStrategy:
                         ):
                             value = int(value)
                         content[field].append(value)
-            for key in list(content):
-                if any(isinstance(value, float) for value in content[key]):
-                    content[key] = [
+
+        for key in list(content):
+            if any(isinstance(value, float) for value in content[key]):
+                content[key] = [
+                    (
                         float(value)
                         if (value or value == 0.0 or value == 0)
                         and value != csvreader.restval
                         else float("nan")
-                        for value in content[key]
-                    ]
-                    continue
-                if any(isinstance(value, int) for value in content[key]):
-                    content[key] = [
+                    )
+                    for value in content[key]
+                ]
+                continue
+            if any(isinstance(value, int) for value in content[key]):
+                content[key] = [
+                    (
                         int(value)
                         if (value or value == 0) and value != csvreader.restval
                         else csvreader.restval
-                        for value in content[key]
-                    ]
+                    )
+                    for value in content[key]
+                ]
 
-            return SessionUpdateCSVParse(content=content)
+        return CSVParseContent(content=content)

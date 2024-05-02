@@ -1,18 +1,14 @@
 """Pydantic Resource Configuration Data Model."""
-from typing import TYPE_CHECKING, Optional
+
+from typing import Annotated, Optional
+
+from pydantic import Field, model_validator
+from pydantic.networks import Url, UrlConstraints
 
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
-from oteapi.utils._pydantic import AnyUrl, Field, root_validator
 
-if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict
-
-
-class HostlessAnyUrl(AnyUrl):
-    """AnyUrl, but allow not having a host."""
-
-    host_required = False
+HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
 
 
 class ResourceConfig(GenericConfig, SecretConfig):
@@ -23,6 +19,10 @@ class ResourceConfig(GenericConfig, SecretConfig):
         `accessUrl`/`accessService` MUST be specified.
 
     """
+
+    resourceType: Optional[str] = Field(
+        None, description="Type of registered resource strategy."
+    )
 
     downloadUrl: Optional[HostlessAnyUrl] = Field(
         None,
@@ -77,18 +77,18 @@ class ResourceConfig(GenericConfig, SecretConfig):
         description="The entity responsible for making the resource/item available.",
     )
 
-    @root_validator
-    def ensure_unique_url_pairs(cls, values: "Dict[str, Any]") -> "Dict[str, Any]":
+    @model_validator(mode="after")
+    def ensure_unique_url_pairs(self) -> "ResourceConfig":
         """Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.
 
         It's fine to define them all, but at least one complete pair MUST be specified.
         """
         if not (
-            all(values.get(_) for _ in ["downloadUrl", "mediaType"])
-            or all(values.get(_) for _ in ["accessUrl", "accessService"])
+            all(getattr(self, _) for _ in ["downloadUrl", "mediaType"])
+            or all(getattr(self, _) for _ in ["accessUrl", "accessService"])
         ):
             raise ValueError(
                 "Either of the pairs of attributes downloadUrl/mediaType or "
                 "accessUrl/accessService MUST be specified."
             )
-        return values
+        return self

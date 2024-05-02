@@ -12,6 +12,7 @@ Features:
 - High performance.
 
 """
+
 import hashlib
 import json
 import tempfile
@@ -25,7 +26,8 @@ from diskcache import Cache as DiskCache
 from oteapi.models import AttrDict, DataCacheConfig
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Iterator, Optional, Type, Union
+    from collections.abc import Iterator
+    from typing import Any, Dict, Optional, Type, Union
 
 
 def gethash(

@@ -1,4 +1,5 @@
 """Tests the parse strategy for CSV."""
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -74,24 +75,26 @@ def test_csv(
     headers: list[str],
     types: "list[Type]",
 ) -> None:
-    """Test `text/csv` parse strategy on local file."""
+    """Test `parser/csv` parse strategy on local file."""
     import csv
     import json
 
-    from oteapi.models.resourceconfig import ResourceConfig
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
 
     sample_file = static_files / sample_filename
 
-    config = ResourceConfig(
-        downloadUrl=sample_file.as_uri(),
-        mediaType="text/csv",
-        **{"configuration": extra_config} if extra_config else {},
-    )
-    session = CSVParseStrategy(config).initialize()
+    config = {
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": sample_file.as_uri(),
+            "mediaType": "text/csv",
+        },
+    }
+    config["configuration"].update(extra_config if extra_config else {})
 
     parser = CSVParseStrategy(config)
-    parsed_content = parser.get(session.dict()).content
+    parsed_content = parser.get().content
 
     kwargs = {}
     if extra_config:
@@ -144,9 +147,9 @@ def test_csv_dialect_enum_fails() -> None:
     """Test `CSVDialect` is created properly and raises for invalid dialect Enum."""
     import csv
 
-    from oteapi.models.resourceconfig import ResourceConfig
+    from pydantic import ValidationError
+
     from oteapi.strategies.parse.text_csv import CSVParseStrategy
-    from oteapi.utils._pydantic import ValidationError
 
     non_existant_dialect = "test"
     available_dialects = csv.list_dialects()
@@ -157,19 +160,18 @@ def test_csv_dialect_enum_fails() -> None:
         "These things are a mystery beyond me now."
     )
 
-    config = ResourceConfig(
-        downloadUrl="file:///test.csv",
-        mediaType="text/csv",
-        configuration={"dialect": {"base": non_existant_dialect}},
-    )
+    config = {
+        "parserType": "parser/csv",
+        "entity": "http://onto-ns.com/meta/0.4/example_iri",
+        "configuration": {
+            "downloadUrl": "file:///test.csv",
+            "mediaType": "text/csv",
+            "dialect": {"base": non_existant_dialect},
+        },
+    }
 
-    with pytest.raises(ValidationError) as exception:
+    with pytest.raises(ValidationError, match=r".*1 validation error.*") as exception:
         CSVParseStrategy(config)
 
-    assert (
-        "value is not a valid enumeration member; permitted: "
-        f"{', '.join(repr(dialect) for dialect in available_dialects)} "
-        "(type=type_error.enum; enum_values=["
-        f"{', '.join(f'<CSVDialect.{dialect.upper()}: {dialect!r}>' for dialect in available_dialects)}"  # noqa: E501
-        "])"
-    ) in exception.exconly()
+    for dialect in available_dialects:
+        assert repr(dialect) in exception.exconly()
