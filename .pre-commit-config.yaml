@@ -1,10 +1,20 @@
-# To install the git pre-commit hook run:
-#   pre-commit install
-# To update the pre-commit hooks run:
-#   pre-commit autoupdate
+# pre-commit.ci
+ci:
+  autofix_commit_msg: |
+      [pre-commit.ci] auto fixes from pre-commit hooks
+
+      For more information, see https://pre-commit.ci
+  autofix_prs: false
+  autoupdate_branch: 'main'
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: 'weekly'
+  skip: []
+  submodules: false
+
+# hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
     - id: end-of-file-fixer
       exclude: ^tests/static/.*$
@@ -17,19 +27,19 @@ repos:
       exclude: ^tests/static/.*$
       args: [--markdown-linebreak-ext=md]
 
-  - repo: https://github.com/timothycrosley/isort
+  - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
     hooks:
     - id: isort
       args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
 
-  - repo: https://github.com/ambv/black
-    rev: 24.3.0
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
     hooks:
     - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.3
+    rev: v0.4.2
     hooks:
     - id: ruff
       args: ["--fix", "--exit-non-zero-on-fix"]
@@ -42,7 +52,7 @@ repos:
       files: ^oteapi/.*$
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
     - id: mypy
       exclude: ^tests/.*$
