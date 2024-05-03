@@ -47,12 +47,12 @@ docs = [
     "mkdocs>=1.5.3,<1.7",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material>=9.5.5,<10",
-    "mkdocstrings[python]~=0.24.3",
+    "mkdocstrings[python]~=0.25.0",
 ]
 testing = [
     "ase~=3.22.1",
     "numpy>=1.26,<2",
-    "pytest~=8.1",
+    "pytest~=8.2",
     "pytest-celery[redis]~=1.0",
     "pytest-cov~=5.0",
     "redis~=5.0",
