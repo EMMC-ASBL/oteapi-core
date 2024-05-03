@@ -27,6 +27,7 @@ dependencies = [
     "pydantic~=2.7",
     "pydantic-settings~=2.2",
     "typing-extensions~=4.11; python_version < '3.10'",
+    "rdflib>=6.3",
 
     # Strategy dependencies
     "celery>=5.3.5,<6",
