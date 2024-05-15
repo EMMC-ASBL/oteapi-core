@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -2288,8 +2288,8 @@
 
 
 <a id="oteapi.plugins.entry_points"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Load plugins through entry points.</p>
 <p>This module deals with handling all plugged in strategies through the entry points API
 and importlib metadata API.</p>
@@ -2298,7 +2298,7 @@ and importlib metadata API.</p>
 to import actual strategy classes until they are truly needed.
 This therefore implements lazy loading of all plugin strategies.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2314,32 +2314,31 @@ This therefore implements lazy loading of all plugin strategies.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointNotFound" class="doc doc-heading">
-          <code>EntryPointNotFound</code>
+            <code>EntryPointNotFound</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointNotFound" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code>Exception</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
 
-  
+
       <p>A given strategy implementation (class) cannot be found from the given entry
 point value.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EntryPointNotFound</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A given strategy implementation (class) cannot be found from the given entry</span>
 <span class="sd">    point value.&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2348,15 +2347,15 @@ point value.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointStrategy" class="doc doc-heading">
-          <code>EntryPointStrategy</code>
+            <code>EntryPointStrategy</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>A strategy realized from an entry point.</p>
 <p>An entry point strategy is made unique by its "strategy", i.e., its
 (strategy type, strategy name)-tuple, e.g., <code>("download", "https")</code>.
@@ -2364,6 +2363,7 @@ This tuple can be retrieved from the
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.entry_points.EntryPointStrategy.strategy"><code>strategy</code></a> property,
 where the strategy type is represented by the
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a> enumeration.</p>
+
 
 <details class="note" open>
   <summary>Note</summary>
@@ -2382,32 +2382,31 @@ according to the condition of uniqueness explained above).</p>
 ambiguity.</p>
 </details>
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the entry point name is not properly defined.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the entry point name is not properly defined.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
@@ -2773,9 +2772,9 @@ ambiguity.</p>
             <span class="sa">f</span><span class="s2">&quot;Less than comparison is not implemented for </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2"> type objects.&quot;</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2790,8 +2789,8 @@ ambiguity.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.ENTRY_POINT_NAME_REGEX" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ENTRY_POINT_NAME_REGEX</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;^(?P&lt;package_name&gt;[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9._-]*[A-Za-z0-9])</span><span class="se">\\</span><span class="s1">.(?P&lt;strategy_name&gt;.+)$&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">ENTRY_POINT_NAME_REGEX</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;^(?P&lt;package_name&gt;[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9._-]*[A-Za-z0-9])</span><span class="se">\\</span><span class="s1">.(?P&lt;strategy_name&gt;.+)$&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2800,13 +2799,13 @@ ambiguity.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.ENTRY_POINT_NAME_REGEX" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Regex for entry point names.</p>
 <p>The package_name group is a valid non-normalized package name regex adapted from
 PEP 508.
 For more information, see: https://peps.python.org/pep-0508/#names.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2815,8 +2814,8 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.full_name" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">full_name</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">full_name</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2824,10 +2823,10 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.full_name" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The full entry point name.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2836,8 +2835,8 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.implementation" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">implementation</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">IStrategy</span><span class="p">]</span></code>
-  
+            <code class="highlight language-python"><span class="n">implementation</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">IStrategy</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2845,10 +2844,10 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.implementation" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The actual strategy implementation.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2857,8 +2856,8 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.implementation_name" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">implementation_name</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">implementation_name</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2866,11 +2865,11 @@ For more information, see: https://peps.python.org/pep-0508/#names.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.implementation_name" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The EntryPoint attr, which should be the strategy implementation class
 name.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2879,8 +2878,8 @@ name.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.module" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">module</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">module</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2888,10 +2887,10 @@ name.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.module" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The fully resolved importable module path.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2900,8 +2899,8 @@ name.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.name" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2909,11 +2908,11 @@ name.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.name" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The strategy name.</p>
 <p>One part of the (strategy type, strategy name)-tuple.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2922,8 +2921,8 @@ name.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.package" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">package</span><span class="p">:</span> <span class="nb">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">package</span><span class="p">:</span> <span class="nb">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2931,10 +2930,10 @@ name.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.package" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The importable base package name for the strategy plugin.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2943,8 +2942,8 @@ name.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.strategy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">strategy</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
-  
+            <code class="highlight language-python"><span class="n">strategy</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2952,10 +2951,10 @@ name.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.strategy" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The unique index identifier for the strategy.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2964,8 +2963,8 @@ name.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategy.type" class="doc doc-heading">
-          <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">StrategyType</span></code>
-  
+            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">StrategyType</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -2973,11 +2972,11 @@ name.</p>
 <a href="#oteapi.plugins.entry_points.EntryPointStrategy.type" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The strategy type.</p>
 <p>One part of the (strategy type, strategy name)-tuple.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2987,8 +2986,7 @@ name.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2997,23 +2995,23 @@ name.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.EntryPointStrategyCollection" class="doc doc-heading">
-          <code>EntryPointStrategyCollection</code>
+            <code>EntryPointStrategyCollection</code>
 
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="collections.abc.Collection">Collection</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="collections.abc.Collection">Collection</span></code></p>
 
-  
+
       <p>A collection of
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.entry_points.EntryPointStrategy"><code>EntryPointStrategy</code></a>s.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">331</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">331</span>
 <span class="normal">332</span>
 <span class="normal">333</span>
 <span class="normal">334</span>
@@ -3375,12 +3373,11 @@ name.</p>
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(*</span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span><span class="p">))</span><span class="si">!r}</span><span class="s2">)&quot;</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -3393,51 +3390,49 @@ name.</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategyCollection.add" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection.add" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Add entry points to the collection.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>*entry_points</code></td>
-          <td>
-                <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Entry points to add to the
-collection.</p>
-            </div>
-          </td>
-          <td>
-                <code>()</code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>*entry_points</code></td>
+            <td>
+                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Entry points to add to the
+collection.</p>
+              </div>
+            </td>
+            <td>
+                  <code>()</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">340</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">340</span>
 <span class="normal">341</span>
 <span class="normal">342</span>
 <span class="normal">343</span>
@@ -3455,84 +3450,80 @@ collection.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategyCollection.exclusive_add" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">exclusive_add</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">exclusive_add</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection.exclusive_add" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Exclusively add entry points to the collection.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>*entry_points</code></td>
-          <td>
-                <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Entry points to add to the
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>*entry_points</code></td>
+            <td>
+                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Entry points to add to the
 collection.</p>
-            </div>
-          </td>
-          <td>
-                <code>()</code>
-          </td>
+              </div>
+            </td>
+            <td>
+                  <code>()</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>KeyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If an entry point to be added already exists in the collection.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>KeyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If an entry point to be added already exists in the collection.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">360</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">360</span>
 <span class="normal">361</span>
 <span class="normal">362</span>
 <span class="normal">363</span>
@@ -3568,118 +3559,113 @@ collection.</p>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">entry_point</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategyCollection.get_entry_point" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_entry_point</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_entry_point</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection.get_entry_point" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Retrieve an entry point from the collection.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>key</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>, str, <span title="typing.Tuple">Tuple</span>[<span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str], str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The key to check for in the collection.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>, str, <span title="typing.Tuple">Tuple</span>[<span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str], str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The key to check for in the collection.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>KeyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If an entry point cannot be found in the collection.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>TypeError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the <code>key</code> is not of an expected type. See the <code>key</code> parameter
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>KeyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If an entry point cannot be found in the collection.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>TypeError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the <code>key</code> is not of an expected type. See the <code>key</code> parameter
 above for the expected types.</p>
-            </div>
-          </td>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An entry point in the collection representing the key.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An entry point in the collection representing the key.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">426</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">426</span>
 <span class="normal">427</span>
 <span class="normal">428</span>
 <span class="normal">429</span>
@@ -3731,60 +3717,57 @@ above for the expected types.</p>
         <span class="s2">&quot;name or a strategy tuple.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.EntryPointStrategyCollection.remove" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="n">entry_points</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.entry_points.EntryPointStrategyCollection.remove" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Remove entry points from the collection.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>*entry_points</code></td>
-          <td>
-                <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Entry points to remove from
-the collection.</p>
-            </div>
-          </td>
-          <td>
-                <code>()</code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>*entry_points</code></td>
+            <td>
+                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Entry points to remove from
+the collection.</p>
+              </div>
+            </td>
+            <td>
+                  <code>()</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">350</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">350</span>
 <span class="normal">351</span>
 <span class="normal">352</span>
 <span class="normal">353</span>
@@ -3802,8 +3785,8 @@ the collection.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_entry_points</span> <span class="o">-=</span> <span class="nb">set</span><span class="p">(</span><span class="n">entry_points</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3811,8 +3794,7 @@ the collection.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3821,17 +3803,17 @@ the collection.</p>
 
 
 <h2 id="oteapi.plugins.entry_points.StrategyType" class="doc doc-heading">
-          <code>StrategyType</code>
+            <code>StrategyType</code>
 
 
 <a href="#oteapi.plugins.entry_points.StrategyType" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="enum.Enum">Enum</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
 
-  
+
       <p>An enumeration of available strategy types.</p>
 <p>Available strategy types:</p>
 <ul>
@@ -3844,9 +3826,9 @@ the collection.</p>
 <li>transformation</li>
 </ul>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 43</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
 <span class="normal"> 46</span>
@@ -4048,9 +4030,9 @@ the collection.</p>
             <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="n">TransformationConfig</span><span class="p">,</span>
         <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4065,8 +4047,8 @@ the collection.</p>
 
 
 <h3 id="oteapi.plugins.entry_points.StrategyType.config_cls" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">config_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">StrategyConfig</span><span class="p">]</span></code>
-  
+            <code class="highlight language-python"><span class="n">config_cls</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">StrategyConfig</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4074,23 +4056,21 @@ the collection.</p>
 <a href="#oteapi.plugins.entry_points.StrategyType.config_cls" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Return the strategy-specific <code>*Config</code> class.</p>
-  </div>
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.StrategyType.all_values" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">all_values</span><span class="p">()</span></code>
-  
+            <code class="highlight language-python"><span class="n">all_values</span><span class="p">()</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -4098,13 +4078,13 @@ the collection.</p>
 <a href="#oteapi.plugins.entry_points.StrategyType.all_values" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Return all values.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
 <span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
@@ -4112,19 +4092,17 @@ the collection.</p>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return all values.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.StrategyType.init" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">init</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">init</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -4132,39 +4110,38 @@ the collection.</p>
 <a href="#oteapi.plugins.entry_points.StrategyType.init" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize a StrategyType with more than just the enumeration value.</p>
 <p>This method allows one to also initialize a StrategyType with an actual
 strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>As normal if the enumeration value is not valid.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>As normal if the enumeration value is not valid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
@@ -4198,19 +4175,17 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
             <span class="k">pass</span>
     <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.StrategyType.map_from_field" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">map_from_field</span><span class="p">(</span><span class="n">strategy_type_field</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">map_from_field</span><span class="p">(</span><span class="n">strategy_type_field</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -4218,92 +4193,89 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
 <a href="#oteapi.plugins.entry_points.StrategyType.map_from_field" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Map the strategy type's field to enumeration.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>strategy_type_field</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The strategy type's field. E.g., <code>scheme</code> for
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>strategy_type_field</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The strategy type's field. E.g., <code>scheme</code> for
 <code>download</code>.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>KeyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the <code>strategy_type_field</code> is not valid.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>KeyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the <code>strategy_type_field</code> is not valid.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An enumeration instance representing the strategy type's field.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An enumeration instance representing the strategy type's field.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 78</span>
 <span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
@@ -4351,29 +4323,27 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
         <span class="s2">&quot;transformationType&quot;</span><span class="p">:</span> <span class="bp">cls</span><span class="o">.</span><span class="n">TRANSFORMATION</span><span class="p">,</span>
     <span class="p">}[</span><span class="n">strategy_type_field</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.entry_points.StrategyType.map_to_field" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">map_to_field</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">map_to_field</span><span class="p">()</span></code>
 
 <a href="#oteapi.plugins.entry_points.StrategyType.map_to_field" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Map enumeration value to the strategy type's field.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
@@ -4395,8 +4365,8 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
         <span class="s2">&quot;transformation&quot;</span><span class="p">:</span> <span class="s2">&quot;transformationType&quot;</span><span class="p">,</span>
     <span class="p">}[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -4404,134 +4374,128 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
-
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.plugins.entry_points.get_strategy_entry_points" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_strategy_entry_points</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">enforce_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_strategy_entry_points</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">enforce_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.entry_points.get_strategy_entry_points" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Retrieve all entry points from a specific strategy type.</p>
 
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the strategy type is not supported.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>KeyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>enforce_uniqueness</code> is <code>True</code> and an entry point strategy is
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the strategy type is not supported.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>KeyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>enforce_uniqueness</code> is <code>True</code> and an entry point strategy is
 duplicated.</p>
-            </div>
-          </td>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>strategy_type</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A strategy type for which the entry points will be retrieved.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>enforce_uniqueness</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Whether or not duplicate entry point strategies are
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>strategy_type</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A strategy type for which the entry points will be retrieved.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>enforce_uniqueness</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether or not duplicate entry point strategies are
 allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allowed.</p>
-            </div>
-          </td>
-          <td>
-                <code>True</code>
-          </td>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A collection of entry points for the specific strategy type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A collection of entry points for the specific strategy type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">514</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">514</span>
 <span class="normal">515</span>
 <span class="normal">516</span>
 <span class="normal">517</span>
@@ -4617,8 +4581,8 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
 
     <span class="k">return</span> <span class="n">collection</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -4626,7 +4590,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -4700,7 +4664,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

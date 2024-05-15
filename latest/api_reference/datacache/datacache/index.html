@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1976,8 +1976,8 @@
 
 
 <a id="oteapi.datacache.datacache"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Data cache based on DiskCache.
 See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a>.</p>
 <p>Features:</p>
@@ -1991,7 +1991,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <li>High performance.</li>
 </ul>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2007,103 +2007,101 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 
 
 <h2 id="oteapi.datacache.datacache.DataCache" class="doc doc-heading">
-          <code>DataCache</code>
+            <code>DataCache</code>
 
 
 <a href="#oteapi.datacache.datacache.DataCache" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>Initialize a cache instance with the given download configuration.</p>
 <p>This class is also available to import from <code>oteapi.datacache</code>, e.g.:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">oteapi.datacache</span> <span class="kn">import</span> <span class="n">DataCache</span>
 </code></pre></div>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>config</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.DataCacheConfig" href="../../../all_models/#oteapi.models.DataCacheConfig">DataCacheConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Download configurations.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>cache_dir</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Cache directory overriding the config.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>config</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.DataCacheConfig" href="../../../all_models/#oteapi.models.DataCacheConfig">DataCacheConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Download configurations.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>cache_dir</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cache directory overriding the config.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="oteapi.datacache.datacache.DataCache.config">config</span></code></td>
-          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>DataCacheConfig instance.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code><span title="oteapi.datacache.datacache.DataCache.cache_dir">cache_dir</span></code></td>
-          <td>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Subdirectory used for the Path to cache directory, e.g.,
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="oteapi.datacache.datacache.DataCache.config">config</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataCacheConfig instance.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><span title="oteapi.datacache.datacache.DataCache.cache_dir">cache_dir</span></code></td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Subdirectory used for the Path to cache directory, e.g.,
 <code>"my_oteapi"</code>.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
 <span class="normal"> 82</span>
@@ -2547,12 +2545,11 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -2565,154 +2562,151 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.datacache.datacache.DataCache.add" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expire</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">expire</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.DataCache.add" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Add a value to cache.</p>
 <p>Existing value is overwritten if <code>key</code> is given and it already
 exists in the cache.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value to add to the cache.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>key</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If given, use this as the retrieval key. Otherwise the key is either
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value to add to the cache.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If given, use this as the retrieval key. Otherwise the key is either
 taken from the <code>accessKey</code> configuration or generated as a hash of
 <code>value</code>.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>expire</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[int]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If given, the number of seconds before the value expire. Otherwise
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>expire</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[int]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If given, the number of seconds before the value expire. Otherwise
 it is taken from the configuration.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>tag</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Tag used with <a class="autorefs autorefs-internal" href="#oteapi.datacache.datacache.DataCache.evict"><code>evict()</code></a>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>tag</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tag used with <a class="autorefs autorefs-internal" href="#oteapi.datacache.datacache.DataCache.evict"><code>evict()</code></a>
 for cleaning up a session.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>bind</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Remove <code>value</code> from the cache when the object provided with
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>bind</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Remove <code>value</code> from the cache when the object provided with
 this argument goes out of scope.  Note that <code>bind</code> must be a
 weakref'able object.</p>
 <p>The argument name refers to that we bind <code>value</code> to this
 argument.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>json_encoder</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Customised json encoder forcomplex Python objects.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>json_encoder</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Customised json encoder forcomplex Python objects.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A key that can be used to retrieve <code>value</code> from cache later.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A key that can be used to retrieve <code>value</code> from cache later.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
@@ -2838,88 +2832,83 @@ argument.</p>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">key</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.datacache.datacache.DataCache.clear" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">clear</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear</span><span class="p">()</span></code>
 
 <a href="#oteapi.datacache.datacache.DataCache.clear" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Remove all items from cache.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
 <span class="normal">299</span>
 <span class="normal">300</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.datacache.datacache.DataCache.evict" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.DataCache.evict" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Remove all cache items with the given tag.</p>
 <p>Useful for cleaning up a session.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>tag</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Tag identifying objects.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>tag</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tag identifying objects.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">287</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">287</span>
 <span class="normal">288</span>
 <span class="normal">289</span>
 <span class="normal">290</span>
@@ -2939,83 +2928,79 @@ argument.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.datacache.datacache.DataCache.get" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.DataCache.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Return the value corresponding to <code>key</code>.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>key</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The requested cached object to retrieve a value for.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The requested cached object to retrieve a value for.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The value corresponding to the <code>key</code> value.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The value corresponding to the <code>key</code> value.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">210</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">210</span>
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span>
@@ -3041,29 +3026,28 @@ argument.</p>
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.datacache.datacache.DataCache.getfile" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">getfile</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">getfile</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.DataCache.getfile" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Write the value for <code>key</code> to file and return the filename.</p>
 <p>The file is created in the default directory for temporary
 files (which can be controlled by the <code>TEMPDIR</code>, <code>TEMP</code> or <code>TMP</code>
 environment variables). It is readable and writable only for
 the current user.</p>
+
 
 <details class="example" open>
   <summary>Example</summary>
@@ -3076,135 +3060,133 @@ automatically delete the file when leaving the context:</p>
 </code></pre></div>
 </details>
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>key</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Key of value to write to file.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>delete</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Whether to automatically delete the created file when leaving the
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>key</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Key of value to write to file.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>delete</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to automatically delete the created file when leaving the
 context.</p>
-            </div>
-          </td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>filename</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Full path to created file. If not given, a unique filename will
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>filename</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Full path to created file. If not given, a unique filename will
 be created.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>prefix</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Prefix to prepend to the returned file name (default is
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>prefix</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Prefix to prepend to the returned file name (default is
 <code>"oteapi-download-"</code>).</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>suffix</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Suffix to append to the returned file name.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>directory</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>File directory if <code>filename</code> is not provided (is <code>None</code>).</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>suffix</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Suffix to append to the returned file name.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>directory</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>File directory if <code>filename</code> is not provided (is <code>None</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Yields:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="pathlib.Path">Path</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Path object, referencing and representing the created file.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Yields:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path object, referencing and representing the created file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
 <span class="normal">225</span>
 <span class="normal">226</span>
 <span class="normal">227</span>
@@ -3328,8 +3310,8 @@ be created.</p>
         <span class="k">if</span> <span class="n">delete</span><span class="p">:</span>
             <span class="n">filename</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3337,130 +3319,125 @@ be created.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
-
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.datacache.datacache.gethash" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">gethash</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">hashtype</span><span class="o">=</span><span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">gethash</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">hashtype</span><span class="o">=</span><span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.gethash" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Return a hash of <code>value</code>.</p>
 <p>Can hash most python objects. Bytes and bytearrays are hashed directly.
 Strings are converted to bytes with the given encoding.
 All other objects are first serialised using json.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Any">Any</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Value to hash.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>hashtype</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Any of the hash algorithms supported by hashlib.</p>
-            </div>
-          </td>
-          <td>
-                <code>&#39;sha256&#39;</code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>encoding</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Encoding used to convert strings to bytes before
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Value to hash.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>hashtype</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Any of the hash algorithms supported by hashlib.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;sha256&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>encoding</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Encoding used to convert strings to bytes before
 calculating the hash.</p>
-            </div>
-          </td>
-          <td>
-                <code>&#39;utf-8&#39;</code>
-          </td>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;utf-8&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>json_encoder</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Customised json encoder for complex Python objects.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>json_encoder</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[<span title="typing.Type">Type</span>[<span title="json.JSONEncoder">JSONEncoder</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Customised json encoder for complex Python objects.</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A hash of the input <code>value</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A hash of the input <code>value</code>.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/datacache/datacache.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
@@ -3548,8 +3525,8 @@ calculating the hash.</p>
 
     <span class="k">return</span> <span class="n">hash_</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3557,7 +3534,7 @@ calculating the hash.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3631,7 +3608,7 @@ calculating the hash.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

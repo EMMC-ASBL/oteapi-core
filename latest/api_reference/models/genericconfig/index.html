@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -2132,11 +2132,11 @@
 
 
 <a id="oteapi.models.genericconfig"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Generic data model for configuration attributes.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2152,17 +2152,17 @@
 
 
 <h2 id="oteapi.models.genericconfig.AttrDict" class="doc doc-heading">
-          <code>AttrDict</code>
+            <code>AttrDict</code>
 
 
 <a href="#oteapi.models.genericconfig.AttrDict" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="collections.abc.MutableMapping">MutableMapping</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="collections.abc.MutableMapping">MutableMapping</span></code></p>
 
-  
+
       <p>An object whose attributes can also be accessed through
 subscription, like with a dictionary.</p>
 <p>Special pydantic configuration settings:</p>
@@ -2179,9 +2179,9 @@ subscription, like with a dictionary.</p>
   method, don't fail setting the attribute.</li>
 </ul>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 14</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 14</span>
 <span class="normal"> 15</span>
 <span class="normal"> 16</span>
 <span class="normal"> 17</span>
@@ -2587,9 +2587,9 @@ subscription, like with a dictionary.</p>
                 <span class="s2">&quot;expected.&quot;</span>
             <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2604,8 +2604,8 @@ subscription, like with a dictionary.</p>
 
 
 <h3 id="oteapi.models.genericconfig.AttrDict.model_config" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s1">&#39;allow&#39;</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s1">&#39;allow&#39;</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2614,127 +2614,117 @@ subscription, like with a dictionary.</p>
 <a href="#oteapi.models.genericconfig.AttrDict.model_config" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.clear" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">clear</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">clear</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.clear" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">():</span>
         <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">field</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.get" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.get" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
 <span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="s2">&quot;Optional[Any]&quot;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Any&quot;</span><span class="p">:</span>
     <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.items" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">items</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">items</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.items" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
 <span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.keys" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">keys</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">keys</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.keys" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">58</span>
 <span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.pop" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">PydanticUndefined</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">PydanticUndefined</span><span class="p">)</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.pop" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">136</span>
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
@@ -2748,25 +2738,24 @@ subscription, like with a dictionary.</p>
         <span class="k">del</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.popitem" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">popitem</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">popitem</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.popitem" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>MutableMapping <code>popitem</code>-method.</p>
+
 
 <details class="important" open>
   <summary>Important</summary>
@@ -2776,9 +2765,9 @@ This is due to the fact that attributes are stored in a random order when
 initializing the model.</p>
 <p>However, it will respect LIFO with respect to the internal <code>model_fields</code>.</p>
 </details>
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span>
@@ -2814,63 +2803,61 @@ initializing the model.</p>
     <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.reset_field" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">reset_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">reset_field</span><span class="p">(</span><span class="n">field</span><span class="p">)</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.reset_field" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Reset a field to its default value.</p>
+
 
 <details class="warning" open>
   <summary>Warning</summary>
   <p>This will remove/delete a field that is not part of the model schema.</p>
 </details>
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>field</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The field to reset.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>field</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The field to reset.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
@@ -2978,27 +2965,25 @@ initializing the model.</p>
             <span class="s2">&quot;expected.&quot;</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.update" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.update" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
@@ -3060,32 +3045,30 @@ initializing the model.</p>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.genericconfig.AttrDict.values" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">values</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">values</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.genericconfig.AttrDict.values" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3093,8 +3076,7 @@ initializing the model.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3103,17 +3085,17 @@ initializing the model.</p>
 
 
 <h2 id="oteapi.models.genericconfig.GenericConfig" class="doc doc-heading">
-          <code>GenericConfig</code>
+            <code>GenericConfig</code>
 
 
 <a href="#oteapi.models.genericconfig.GenericConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
 
-  
+
       <p>Generic class for configuration objects.</p>
 <p>Special pydantic configuration settings:</p>
 <ul>
@@ -3126,9 +3108,9 @@ initializing the model.</p>
   method, don't fail setting the attribute.</li>
 </ul>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
 <span class="normal">222</span>
@@ -3192,9 +3174,9 @@ initializing the model.</p>
 
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3209,8 +3191,8 @@ initializing the model.</p>
 
 
 <h3 id="oteapi.models.genericconfig.GenericConfig.configuration" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">configuration</span><span class="p">:</span> <span class="n">AttrDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Model-specific configuration options which can either be given as key/value-pairs or set as attributes.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">configuration</span><span class="p">:</span> <span class="n">AttrDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Model-specific configuration options which can either be given as key/value-pairs or set as attributes.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -3219,8 +3201,8 @@ initializing the model.</p>
 <a href="#oteapi.models.genericconfig.GenericConfig.configuration" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -3229,8 +3211,8 @@ initializing the model.</p>
 
 
 <h3 id="oteapi.models.genericconfig.GenericConfig.description" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A description of the configuration model.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A description of the configuration model.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -3239,8 +3221,8 @@ initializing the model.</p>
 <a href="#oteapi.models.genericconfig.GenericConfig.description" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -3249,8 +3231,8 @@ initializing the model.</p>
 
 
 <h3 id="oteapi.models.genericconfig.GenericConfig.model_config" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -3259,8 +3241,8 @@ initializing the model.</p>
 <a href="#oteapi.models.genericconfig.GenericConfig.model_config" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -3270,8 +3252,7 @@ initializing the model.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3280,7 +3261,7 @@ initializing the model.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3354,7 +3335,7 @@ initializing the model.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1854,14 +1854,13 @@
 
 
 <a id="oteapi.utils.paths"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Utility functions for handling paths.</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1874,17 +1873,17 @@
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.utils.paths.uri_to_path" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">uri_to_path</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">uri_to_path</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span></code>
 
 <a href="#oteapi.utils.paths.uri_to_path" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Convert URI to pathlib.Path.</p>
 <p>Support both Windows and Posix path types.</p>
+
 
 <details class="information" open>
   <summary>Information</summary>
@@ -1895,62 +1894,60 @@ when parsing a file URL for an absolute path on Windows.</p>
 <code>pathlib.Path</code>.</p>
 </details>
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>uri</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[str, <span title="pydantic.AnyUrl">AnyUrl</span>, <span title="urllib.parse.ParseResult">ParseResult</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The URI/IRI/URL. Either as a string or a parsed URL.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>uri</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[str, <span title="pydantic.AnyUrl">AnyUrl</span>, <span title="urllib.parse.ParseResult">ParseResult</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The URI/IRI/URL. Either as a string or a parsed URL.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="pathlib.Path">Path</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A properly converted URI/IRI/URL to <code>pathlib.Path</code>.</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A properly converted URI/IRI/URL to <code>pathlib.Path</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/utils/paths.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/utils/paths.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -2024,8 +2021,8 @@ when parsing a file URL for an absolute path on Windows.</p>
         <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">uri_path</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">path</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2033,7 +2030,7 @@ when parsing a file URL for an absolute path on Windows.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2107,7 +2104,7 @@ when parsing a file URL for an absolute path on Windows.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1856,14 +1856,13 @@
 
 
 <a id="oteapi.utils.config_updater"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Utility functions for updating GenericConfig instances.</p>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -1876,67 +1875,65 @@
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.utils.config_updater.populate_config_from_session" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">populate_config_from_session</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">populate_config_from_session</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></code>
 
 <a href="#oteapi.utils.config_updater.populate_config_from_session" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Update the configuration attributes of a GenericConfig object
 using values from a session. If a key already exists in the
 config's configuration and has a different value from the session,
 an exception will be raised.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>session</code></td>
-          <td>
-                <code><span title="typing.Dict">Dict</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A session containing configuration attributes.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>config</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../../models/genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A GenericConfig object to be updated.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>session</code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A session containing configuration attributes.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>config</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../../models/genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A GenericConfig object to be updated.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/utils/config_updater.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/utils/config_updater.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -2002,8 +1999,8 @@ an exception will be raised.</p>
                 <span class="sa">f</span><span class="s2">&quot;Failed to update key &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; in the config. Reason: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">)</span> <span class="kn">from</span> <span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2011,7 +2008,7 @@ an exception will be raised.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2085,7 +2082,7 @@ an exception will be raised.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

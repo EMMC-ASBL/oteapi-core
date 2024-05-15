@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -2012,11 +2012,11 @@
 
 
 <a id="oteapi.models.triplestoreconfig"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Pydantic TripleStore Configuration Data Model.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2031,8 +2031,8 @@
 
 
 <h2 id="oteapi.models.triplestoreconfig.ExcludeTogglableSecretStr" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ExcludeTogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">],</span> <span class="n">Field</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span></code>
-  
+            <code class="highlight language-python"><span class="n">ExcludeTogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">],</span> <span class="n">Field</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -2040,10 +2040,10 @@
 <a href="#oteapi.models.triplestoreconfig.ExcludeTogglableSecretStr" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Annotated type alias for excluding a togglable secret from serialization.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2053,17 +2053,17 @@
 
 
 <h2 id="oteapi.models.triplestoreconfig.TripleStoreConfig" class="doc doc-heading">
-          <code>TripleStoreConfig</code>
+            <code>TripleStoreConfig</code>
 
 
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="../secretconfig/#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="../secretconfig/#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
 
-  
+
       <p>TripleStore Configuration.</p>
 <p>This is a configuration for the
 <a class="autorefs autorefs-internal" href="../../triplestore/triplestore/#oteapi.triplestore.triplestore.TripleStore"><code>TripleStore</code></a>.</p>
@@ -2071,9 +2071,9 @@
 for a strategy object, but only as a configuration field inside
 a configuration object.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -2143,9 +2143,9 @@ a configuration object.</p>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User and password must be defined.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2160,8 +2160,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.agraphHost" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">agraphHost</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;AllegroGraph host name.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">agraphHost</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;AllegroGraph host name.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2170,8 +2170,8 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.agraphHost" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2180,8 +2180,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.agraphPort" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">agraphPort</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;AllegroGraph port number.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">agraphPort</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;AllegroGraph port number.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2190,8 +2190,8 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.agraphPort" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2200,8 +2200,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.client_id" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_id</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
-  
+            <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_id</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2210,8 +2210,8 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.client_id" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2220,8 +2220,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.client_secret" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_secret</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_secret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
-  
+            <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_secret</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_secret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2230,8 +2230,8 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.client_secret" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2240,8 +2240,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.repositoryName" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">repositoryName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The repository name, where the mappings are stored.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">repositoryName</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The repository name, where the mappings are stored.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2250,8 +2250,8 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.repositoryName" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2260,8 +2260,8 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.token" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">token</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
-  
+            <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">token</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2270,32 +2270,30 @@ a configuration object.</p>
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.token" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.ensure_user_pass" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ensure_user_pass</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">ensure_user_pass</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.triplestoreconfig.TripleStoreConfig.ensure_user_pass" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Ensure that user/password are set, since they are optional in the
 SecretConfig.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
@@ -2309,8 +2307,8 @@ SecretConfig.</p>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User and password must be defined.&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2318,8 +2316,7 @@ SecretConfig.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2328,7 +2325,7 @@ SecretConfig.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2402,7 +2399,7 @@ SecretConfig.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

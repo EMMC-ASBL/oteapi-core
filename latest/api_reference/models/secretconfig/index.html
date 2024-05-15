@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1976,11 +1976,11 @@
 
 
 <a id="oteapi.models.secretconfig"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>AttrDict for specifying user credentials or secrets.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1995,8 +1995,8 @@
 
 
 <h2 id="oteapi.models.secretconfig.TogglableSecretStr" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">TogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">,</span> <span class="n">PlainSerializer</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">expose_secrets</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">return_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s1">&#39;json-unless-none&#39;</span><span class="p">)]</span></code>
-  
+            <code class="highlight language-python"><span class="n">TogglableSecretStr</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">SecretStr</span><span class="p">,</span> <span class="n">PlainSerializer</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get_secret_value</span><span class="p">()</span> <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">expose_secrets</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">return_type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">when_used</span><span class="o">=</span><span class="s1">&#39;json-unless-none&#39;</span><span class="p">)]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -2004,10 +2004,10 @@
 <a href="#oteapi.models.secretconfig.TogglableSecretStr" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Annotated type alias for a secret string that can be toggled to be exposed or not.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -2017,22 +2017,22 @@
 
 
 <h2 id="oteapi.models.secretconfig.SecretConfig" class="doc doc-heading">
-          <code>SecretConfig</code>
+            <code>SecretConfig</code>
 
 
 <a href="#oteapi.models.secretconfig.SecretConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
 
-  
+
       <p>Simple model for handling secret in other config-models.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/secretconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/models/secretconfig.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
@@ -2074,9 +2074,9 @@
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Client secret for an OAUTH2 client.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2091,8 +2091,8 @@
 
 
 <h3 id="oteapi.models.secretconfig.SecretConfig.client_id" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Client ID for an OAUTH2 client.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Client ID for an OAUTH2 client.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2101,8 +2101,8 @@
 <a href="#oteapi.models.secretconfig.SecretConfig.client_id" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2111,8 +2111,8 @@
 
 
 <h3 id="oteapi.models.secretconfig.SecretConfig.client_secret" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Client secret for an OAUTH2 client.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Client secret for an OAUTH2 client.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2121,8 +2121,8 @@
 <a href="#oteapi.models.secretconfig.SecretConfig.client_secret" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2131,8 +2131,8 @@
 
 
 <h3 id="oteapi.models.secretconfig.SecretConfig.password" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Password for authentication.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">password</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Password for authentication.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2141,8 +2141,8 @@
 <a href="#oteapi.models.secretconfig.SecretConfig.password" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2151,8 +2151,8 @@
 
 
 <h3 id="oteapi.models.secretconfig.SecretConfig.token" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;An access token for providing access and meta data to an application.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;An access token for providing access and meta data to an application.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2161,8 +2161,8 @@
 <a href="#oteapi.models.secretconfig.SecretConfig.token" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2171,8 +2171,8 @@
 
 
 <h3 id="oteapi.models.secretconfig.SecretConfig.user" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;User name for authentication.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">user</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TogglableSecretStr</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;User name for authentication.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2181,8 +2181,8 @@
 <a href="#oteapi.models.secretconfig.SecretConfig.user" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2192,8 +2192,7 @@
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2202,7 +2201,7 @@
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2276,7 +2275,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

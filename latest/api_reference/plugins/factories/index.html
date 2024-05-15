@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -1994,12 +1994,12 @@
 
 
 <a id="oteapi.plugins.factories"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Factory class for registering and creating strategy instances.</p>
 <p>Factory wrapper methods for creating the individual strategies.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2015,32 +2015,31 @@
 
 
 <h2 id="oteapi.plugins.factories.StrategiesNotLoaded" class="doc doc-heading">
-          <code>StrategiesNotLoaded</code>
+            <code>StrategiesNotLoaded</code>
 
 
 <a href="#oteapi.plugins.factories.StrategiesNotLoaded" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code>Exception</code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
 
-  
+
       <p>Entry point strategies have not been loaded, run
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.load_strategies"><code>load_strategies()</code></a>.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
 <span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies].&quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2049,47 +2048,46 @@
 
 
 <h2 id="oteapi.plugins.factories.StrategyFactory" class="doc doc-heading">
-          <code>StrategyFactory</code>
+            <code>StrategyFactory</code>
 
 
 <a href="#oteapi.plugins.factories.StrategyFactory" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
+    <div class="doc doc-contents ">
 
-  
+
       <p>Decorator-based Factory class.</p>
 
 
-
-  <p><span class="doc-section-title">Attributes:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code><span title="oteapi.plugins.factories.StrategyFactory.strategy_create_func">strategy_create_func</span></code></td>
-          <td>
-                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="../entry_points/#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An
-in-memory cache of all registered strategies.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Attributes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><span title="oteapi.plugins.factories.StrategyFactory.strategy_create_func">strategy_create_func</span></code></td>
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="../entry_points/#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An
+in-memory cache of all registered strategies.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-            <details class="quote">
-              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 23</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 23</span>
 <span class="normal"> 24</span>
 <span class="normal"> 25</span>
 <span class="normal"> 26</span>
@@ -2419,12 +2417,11 @@ in-memory cache of all registered strategies.</p>
 
         <span class="k">return</span> <span class="n">loaded_strategies</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
-
 
 
 
@@ -2437,10 +2434,9 @@ in-memory cache of all registered strategies.</p>
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">list_loaded_strategies</span><span class="p">()</span></code>
-  
+            <code class="highlight language-python"><span class="n">list_loaded_strategies</span><span class="p">()</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -2448,72 +2444,70 @@ in-memory cache of all registered strategies.</p>
 <a href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Lists all loaded strategy plugins (endpoints).</p>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary where keys are strategy types and values are lists of</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>loaded strategy names for each type.</p>
-            </div>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary where keys are strategy types and values are lists of</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>loaded strategy names for each type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the strategies are not loaded or
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the strategies are not loaded or
 <code>strategy_create_func</code> is not properly initialized.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span>
 <span class="normal">165</span>
@@ -2565,19 +2559,17 @@ in-memory cache of all registered strategies.</p>
 
     <span class="k">return</span> <span class="n">loaded_strategies</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.factories.StrategyFactory.load_strategies" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -2585,9 +2577,10 @@ in-memory cache of all registered strategies.</p>
 <a href="#oteapi.plugins.factories.StrategyFactory.load_strategies" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Load strategies from entry points and store in class attribute.</p>
+
 
 <details class="important" open>
   <summary>Important</summary>
@@ -2595,72 +2588,71 @@ in-memory cache of all registered strategies.</p>
 The importlib.metadata API will be re-requested to load the entry points
 and strategies.</p>
 </details>
+
 <details class="note" open>
   <summary>Note</summary>
   <p>This does <em>not</em> import the actual strategy implementations (classes).
 It only loads the strategies from the registerred OTE-API entry points.</p>
 </details>
 
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>KeyError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>test_for_uniqueness</code> is <code>True</code> and an entry point strategy is
-duplicated.</p>
-            </div>
-          </td>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>KeyError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>test_for_uniqueness</code> is <code>True</code> and an entry point strategy is
+duplicated.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>test_for_uniqueness</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>test_for_uniqueness</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
 point strategy be duplicated. Otherwise, the first loaded entry point
 strategy will silently become the implementation of choice for the
 duplicated strategy and the duplicates will be ignored.</p>
-            </div>
-          </td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
 <span class="normal">132</span>
 <span class="normal">133</span>
 <span class="normal">134</span>
@@ -2720,19 +2712,17 @@ duplicated strategy and the duplicates will be ignored.</p>
         <span class="k">for</span> <span class="n">strategy_type</span> <span class="ow">in</span> <span class="n">StrategyType</span>
     <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.plugins.factories.StrategyFactory.make_strategy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -2740,140 +2730,137 @@ duplicated strategy and the duplicates will be ignored.</p>
 <a href="#oteapi.plugins.factories.StrategyFactory.make_strategy" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Instantiate a strategy in a context class.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>config</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A strategy configuration.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>strategy_type</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The strategy type, e.g., <code>"scheme"</code>, <code>"mediaType"</code>, ... or
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>config</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A strategy configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>strategy_type</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The strategy type, e.g., <code>"scheme"</code>, <code>"mediaType"</code>, ... or
 <code>"download"</code>, <code>"parse"</code>, ...
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
 enumeration for a definition of valid strategy types.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
-
-
-
-  <p><span class="doc-section-title">Raises:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code>NotImplementedError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the strategy cannot be found.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code>ValueError</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the <code>strategy_type</code> is not a valid strategy type.
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>NotImplementedError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the strategy cannot be found.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ValueError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the <code>strategy_type</code> is not a valid strategy type.
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
 enumeration for a definition of valid strategy types.</p>
-            </div>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If the entry point strategies have not been loaded.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the entry point strategies have not been loaded.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>An instantiated strategy. The strategy is instantiated with the provided</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>configuration, through the <code>config</code> parameter.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An instantiated strategy. The strategy is instantiated with the provided</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>configuration, through the <code>config</code> parameter.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
 <span class="normal"> 35</span>
 <span class="normal"> 36</span>
 <span class="normal"> 37</span>
@@ -3011,8 +2998,8 @@ enumeration for a definition of valid strategy types.</p>
         <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3020,101 +3007,96 @@ enumeration for a definition of valid strategy types.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
-
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.plugins.factories.create_strategy" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">create_strategy</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">create_strategy</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.factories.create_strategy" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Proxy function for
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.make_strategy"><code>StrategyFactory.make_strategy()</code></a>.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>strategy_type</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A valid strategy type.
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>strategy_type</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A valid strategy type.
 See the <a class="autorefs autorefs-internal" href="../entry_points/#oteapi.plugins.entry_points.StrategyType"><code>StrategyType</code></a>
 enumeration for a definition of valid strategy types.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>config</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A strategy configuration.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>config</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="typing.Dict">Dict</span>[str, <span title="typing.Any">Any</span>]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A strategy configuration.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The created strategy.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>The created strategy.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span>
@@ -3150,64 +3132,61 @@ enumeration for a definition of valid strategy types.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.plugins.factories.list_strategies" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">list_strategies</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">list_strategies</span><span class="p">()</span></code>
 
 <a href="#oteapi.plugins.factories.list_strategies" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Proxy function for
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.list_loaded_strategies"><code>StrategyFactory.list_loaded_strategies()</code></a>.</p>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A dictionary where keys are strategy types and values are lists of</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>loaded strategy names for each type.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A dictionary where keys are strategy types and values are lists of</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Dict">Dict</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="typing.List">List</span>[str]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>loaded strategy names for each type.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">204</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
 <span class="normal">207</span>
@@ -3225,63 +3204,60 @@ enumeration for a definition of valid strategy types.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">list_loaded_strategies</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="oteapi.plugins.factories.load_strategies" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 <a href="#oteapi.plugins.factories.load_strategies" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Proxy function for
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.StrategyFactory.load_strategies"><code>StrategyFactory.load_strategies()</code></a>.</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>test_for_uniqueness</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>test_for_uniqueness</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code>, this will raise <code>KeyError</code> should an entry
 point strategy be duplicated. Otherwise, the first loaded entry point
 strategy will silently become the implementation of choice for the
 duplicated strategy and the duplicates will be ignored.</p>
-            </div>
-          </td>
-          <td>
-                <code>True</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
@@ -3305,8 +3281,8 @@ duplicated strategy and the duplicates will be ignored.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -3314,7 +3290,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -3388,7 +3364,7 @@ duplicated strategy and the duplicates will be ignored.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>

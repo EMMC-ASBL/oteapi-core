@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.22">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.732c4fb1.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
@@ -2048,11 +2048,11 @@
 
 
 <a id="oteapi.models.resourceconfig"></a>
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Pydantic Resource Configuration Data Model.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2067,8 +2067,8 @@
 
 
 <h2 id="oteapi.models.resourceconfig.HostlessAnyUrl" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">HostlessAnyUrl</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Url</span><span class="p">,</span> <span class="n">UrlConstraints</span><span class="p">(</span><span class="n">host_required</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span></code>
-  
+            <code class="highlight language-python"><span class="n">HostlessAnyUrl</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">Url</span><span class="p">,</span> <span class="n">UrlConstraints</span><span class="p">(</span><span class="n">host_required</span><span class="o">=</span><span class="kc">False</span><span class="p">)]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
   </span>
@@ -2076,8 +2076,8 @@
 <a href="#oteapi.models.resourceconfig.HostlessAnyUrl" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2087,27 +2087,28 @@
 
 
 <h2 id="oteapi.models.resourceconfig.ResourceConfig" class="doc doc-heading">
-          <code>ResourceConfig</code>
+            <code>ResourceConfig</code>
 
 
 <a href="#oteapi.models.resourceconfig.ResourceConfig" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="../secretconfig/#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="../genericconfig/#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="../secretconfig/#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
 
-  
+
       <p>Resource Strategy Data Configuration.</p>
+
 
 <details class="important" open>
   <summary>Important</summary>
   <p>Either of the pairs of attributes <code>downloadUrl</code>/<code>mediaType</code> or
 <code>accessUrl</code>/<code>accessService</code> MUST be specified.</p>
 </details>
-            <details class="quote">
-              <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+              <details class="quote">
+                <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -2269,9 +2270,9 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2286,8 +2287,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.accessRights" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">accessRights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A rights statement that concerns how the distribution is accessed.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">accessRights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A rights statement that concerns how the distribution is accessed.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2296,8 +2297,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.accessRights" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2306,8 +2307,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.accessService" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">accessService</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A data service that gives access to the distribution of the dataset.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">accessService</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A data service that gives access to the distribution of the dataset.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2316,8 +2317,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.accessService" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2326,8 +2327,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.accessUrl" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">accessUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A URL of the resource that gives access to a distribution of the dataset. E.g. landing page, feed, SPARQL endpoint.</span><span class="se">\n\n</span><span class="s1">Usage: `accessURL` *SHOULD* be used for the URL of a service or location that can provide access to this distribution, typically through a Web form, query or API call.</span><span class="se">\n</span><span class="s1">`downloadURL` is preferred for direct links to downloadable resources.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">accessUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A URL of the resource that gives access to a distribution of the dataset. E.g. landing page, feed, SPARQL endpoint.</span><span class="se">\n\n</span><span class="s1">Usage: `accessURL` *SHOULD* be used for the URL of a service or location that can provide access to this distribution, typically through a Web form, query or API call.</span><span class="se">\n</span><span class="s1">`downloadURL` is preferred for direct links to downloadable resources.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2336,8 +2337,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.accessUrl" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2346,8 +2347,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.downloadUrl" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Definition: The URL of the downloadable file in a given format. E.g. CSV file or RDF file.</span><span class="se">\n\n</span><span class="s1">Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is available directly, typically through a HTTPS GET request or SFTP.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Definition: The URL of the downloadable file in a given format. E.g. CSV file or RDF file.</span><span class="se">\n\n</span><span class="s1">Usage: `downloadURL` *SHOULD* be used for the URL at which this distribution is available directly, typically through a HTTPS GET request or SFTP.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2356,8 +2357,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.downloadUrl" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2366,8 +2367,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.license" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">license</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A legal document under which the distribution is made available.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">license</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A legal document under which the distribution is made available.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2376,8 +2377,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.license" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2386,8 +2387,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.mediaType" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The media type of the distribution as defined by IANA [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].</span><span class="se">\n\n</span><span class="s1">Usage: This property *SHOULD* be used when the media type of the distribution is defined in IANA [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The media type of the distribution as defined by IANA [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].</span><span class="se">\n\n</span><span class="s1">Usage: This property *SHOULD* be used when the media type of the distribution is defined in IANA [[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2396,8 +2397,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.mediaType" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2406,8 +2407,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.publisher" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">publisher</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The entity responsible for making the resource/item available.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">publisher</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The entity responsible for making the resource/item available.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2416,8 +2417,8 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.publisher" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
 
@@ -2426,8 +2427,8 @@
 
 
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.resourceType" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">resourceType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered resource strategy.&#39;</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">resourceType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered resource strategy.&#39;</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -2436,32 +2437,30 @@
 <a href="#oteapi.models.resourceconfig.ResourceConfig.resourceType" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">ensure_unique_url_pairs</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">ensure_unique_url_pairs</span><span class="p">()</span></code>
 
 <a href="#oteapi.models.resourceconfig.ResourceConfig.ensure_unique_url_pairs" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.</p>
 <p>It's fine to define them all, but at least one complete pair MUST be specified.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
+            <details class="quote">
+              <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">80</span>
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span>
@@ -2491,8 +2490,8 @@
         <span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2500,8 +2499,7 @@
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2510,7 +2508,7 @@
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
@@ -2584,7 +2582,7 @@
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.5cfa9459.min.js"></script>
       
     
   </body>
