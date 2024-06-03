@@ -28,7 +28,13 @@ jobs:
       #   Info: https://data.safetycli.com/v/51457/97c
       #   Regarding `py` package. Currently all versions are affected.
       #   This is a sub-dependency for this package.
-      safety_options: --ignore=51457
+      # ID: 70612
+      #   Package: Jinja2
+      #   Has been disputed by the maintainer and multiple third parties.
+      #   For more information see: https://github.com/advisories/GHSA-f6pv-j8mr-w6rr
+      safety_options: |
+        --ignore=51457
+        --ignore=70612
 
       # Build package
       run_build_package: true
