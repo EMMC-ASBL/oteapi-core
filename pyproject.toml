@@ -47,7 +47,7 @@ docs = [
 ]
 testing = [
     "ase~=3.23.0",
-    "numpy>=1.26,<2",
+    "numpy>=1.26,<3",
     "pytest~=8.2",
     "pytest-celery[redis]~=1.0",
     "pytest-cov>=4.1.0,<6",
