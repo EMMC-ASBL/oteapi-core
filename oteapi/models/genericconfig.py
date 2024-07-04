@@ -98,8 +98,12 @@ class AttrDict(BaseModel, MutableMapping):
                 self.model_fields_set.remove(key)
 
     def clear(self) -> None:
-        for field in self.model_dump():
-            del self[field]
+        # Ignore the deprecation warning from `__delitem__`
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", DeprecationWarning)
+
+            for field in self.model_dump():
+                del self[field]
 
     def update(  # type: ignore[override]
         self,
@@ -138,7 +142,11 @@ class AttrDict(BaseModel, MutableMapping):
         if value == PydanticUndefined:
             raise KeyError(key)
         if key in self:
-            del self[key]
+            # Ignore the deprecation warning from `__delitem__`
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", DeprecationWarning)
+
+                del self[key]
         return value
 
     def popitem(self) -> "Tuple[str, Any]":
