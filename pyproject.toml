@@ -131,7 +131,8 @@ filterwarnings = [
     # Treat all warnings as errors
     "error",
 
-
-    # "ignore:.*imp module.*:DeprecationWarning",
-    # "ignore:.*_yaml extension module.*:DeprecationWarning"
+    # Ignore UserWarning from pysftp concerning known_hosts
+    # This is usually only a problem in testing environments,
+    # but we don't want to fail the tests locally if a known_hosts file is missing
+    "ignore:.*Failed to load HostKeys.*:UserWarning",
 ]
