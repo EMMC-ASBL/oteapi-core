@@ -1,5 +1,7 @@
 """Strategy class for sftp/ftp"""
 
+from __future__ import annotations
+
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Annotated, Optional

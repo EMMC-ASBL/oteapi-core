@@ -8,6 +8,8 @@ for a direct example of an inclusion of the OTE api and its settings into an Fas
 instance.
 """
 
+from __future__ import annotations
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 

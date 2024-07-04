@@ -1,11 +1,13 @@
 """Strategy class for parser/csv."""
 
+from __future__ import annotations
+
 import csv
 import sys
 from collections import defaultdict
 from collections.abc import Hashable
 from enum import Enum
-from typing import Any, Optional, Type, Union
+from typing import Any, Optional, Union
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -45,7 +47,7 @@ class QuoteConstants(str, Enum):
 
 
 # mypy is unable to recognize a DictComprehension for the 2nd arg.
-CSVDialect: Type[Enum] = Enum(  # type: ignore[misc]
+CSVDialect: type[Enum] = Enum(  # type: ignore[misc]
     value="CSVDialect",
     names={dialect.upper(): dialect for dialect in csv.list_dialects()},
     module=__name__,
@@ -318,8 +320,7 @@ class CSVParseStrategy:
 
             kwargs.update(config.reader.model_dump(exclude_unset=True))
 
-            with open(
-                csvfile_path,
+            with csvfile_path.open(
                 newline="",
                 encoding=config.reader.encoding,
             ) as csvfile:
@@ -332,8 +333,9 @@ class CSVParseStrategy:
                             and isinstance(value, float)
                             and value.is_integer()
                         ):
-                            value = int(value)
-                        content[field].append(value)
+                            content[field].append(int(value))
+                        else:
+                            content[field].append(value)
 
         for key in list(content):
             if any(isinstance(value, float) for value in content[key]):

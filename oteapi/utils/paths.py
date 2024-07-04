@@ -1,5 +1,7 @@
 """Utility functions for handling paths."""
 
+from __future__ import annotations
+
 import warnings
 from pathlib import Path, PureWindowsPath
 from typing import TYPE_CHECKING
@@ -11,7 +13,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from pydantic import AnyUrl
 
 
-def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
+def uri_to_path(uri: Union[str, AnyUrl, ParseResult]) -> Path:
     """Convert URI to pathlib.Path.
 
     Support both Windows and Posix path types.
@@ -41,7 +43,8 @@ def uri_to_path(uri: "Union[str, AnyUrl, ParseResult]") -> Path:
         warnings.warn(
             "A 'file'-scheme was expected for the 'uri' in 'uri_to_path()', instead a "
             f"{uri.scheme!r} was received. Still converting to `pathlib.Path` using "
-            "the 'path' of the URI."
+            "the 'path' of the URI.",
+            stacklevel=2,
         )
 
     path = Path(uri_path)

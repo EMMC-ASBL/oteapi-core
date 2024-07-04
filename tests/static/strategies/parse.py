@@ -1,5 +1,7 @@
 """Parse test strategy class."""
 
+from __future__ import annotations
+
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, ParserConfig

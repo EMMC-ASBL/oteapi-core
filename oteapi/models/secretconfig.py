@@ -1,5 +1,7 @@
 """AttrDict for specifying user credentials or secrets."""
 
+from __future__ import annotations
+
 from typing import Annotated, Optional
 
 from pydantic import BaseModel, Field, PlainSerializer, SecretStr

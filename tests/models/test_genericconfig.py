@@ -1,5 +1,7 @@
 """Tests for `oteapi.models.genericconfig`"""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -18,8 +20,8 @@ if TYPE_CHECKING:
         configuration: CustomConfiguration
 
 
-@pytest.fixture
-def generic_config() -> "CustomConfig":
+@pytest.fixture()
+def generic_config() -> CustomConfig:
     """Return a usable `CustomConfig` for test purposes."""
     from pydantic import Field
 
@@ -62,12 +64,12 @@ def test_subclass_description() -> None:
     assert instance.description == instance.__doc__
 
 
-def test_attribute_get_item(generic_config: "CustomConfig") -> None:
+def test_attribute_get_item(generic_config: CustomConfig) -> None:
     """Test configuration.__getitem__."""
     assert generic_config.configuration["integer"] == 5
 
 
-def test_attribute_get_item_fail(generic_config: "CustomConfig") -> None:
+def test_attribute_get_item_fail(generic_config: CustomConfig) -> None:
     """Ensure KeyError is raised for a non-existent key."""
     non_existent_key = "non_existent_key"
     assert non_existent_key not in generic_config.configuration
@@ -75,7 +77,7 @@ def test_attribute_get_item_fail(generic_config: "CustomConfig") -> None:
         generic_config.configuration[non_existent_key]
 
 
-def test_attribute_set(generic_config: "CustomConfig") -> None:
+def test_attribute_set(generic_config: CustomConfig) -> None:
     """Test configuration.__setitem__, and thus also configuration.__setattr__.
 
     Assign different values to test dynamic type-casting.
@@ -108,13 +110,13 @@ def test_attribute_set(generic_config: "CustomConfig") -> None:
     assert generic_config.configuration["float"] == "0"
 
 
-def test_attribute_contains(generic_config: "CustomConfig") -> None:
+def test_attribute_contains(generic_config: CustomConfig) -> None:
     """Test confguration.__contains__."""
     assert "float" in generic_config.configuration
 
 
 @pytest.mark.filterwarnings("")
-def test_attribute_del_item(generic_config: "CustomConfig") -> None:
+def test_attribute_del_item(generic_config: CustomConfig) -> None:
     """Test configuration.__delitem__."""
     # "float" is not defined as a pydantic model field, i.e., it's not part of the
     # model schema, but rather the model extras.
@@ -128,7 +130,10 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
     with pytest.warns(
         DeprecationWarning,
-        match=r"^Item deletion used to reset fields to their default values\. To keep using this functionality, use the `reset_field\(\)` method\.$",
+        match=(
+            r"^Item deletion used to reset fields to their default values\. "
+            r"To keep using this functionality, use the `reset_field\(\)` method\.$"
+        ),
     ):
         del generic_config.configuration["float"]
 
@@ -148,7 +153,10 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
 
     with pytest.warns(
         DeprecationWarning,
-        match=r"^Item deletion used to reset fields to their default values\. To keep using this functionality, use the `reset_field\(\)` method\.$",
+        match=(
+            r"^Item deletion used to reset fields to their default values\. "
+            r"To keep using this functionality, use the `reset_field\(\)` method\.$"
+        ),
     ):
         del generic_config.configuration["string"]
 
@@ -157,7 +165,7 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
 
-def test_attribute_reset_field(generic_config: "CustomConfig") -> None:
+def test_attribute_reset_field(generic_config: CustomConfig) -> None:
     """Test configuration.reset_field()."""
     # "float" is not defined as a pydantic model field, i.e., it's not part of the
     # model schema, but rather the model extras.
@@ -202,7 +210,7 @@ def test_attribute_reset_field(generic_config: "CustomConfig") -> None:
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
 
-def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
+def test_attribute_del_item_fail(generic_config: CustomConfig) -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
@@ -214,7 +222,7 @@ def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
         del generic_config.configuration["required_string"]
 
 
-def test_attribute_ne(generic_config: "CustomConfig") -> None:
+def test_attribute_ne(generic_config: CustomConfig) -> None:
     """Test configuration.__ne__()."""
     from pydantic import BaseModel
 
@@ -240,7 +248,7 @@ def test_attrdict() -> None:
     assert config.a == config["a"] == config.get("a") == data["a"]
     assert config.b == config["b"] == config.get("b") == data["b"]
 
-    assert {**config} == data
+    assert data == {**config}
 
 
 def test_attrdict_update() -> None:
@@ -268,7 +276,7 @@ def test_attrdict_update() -> None:
     final_data.update(update_data)
 
     testing_types = dict, AttrDict, SubAttrDict, SubSubAttrDict
-    non_update_method_testing_types = testing_types + (Foo, tuple, list)
+    non_update_method_testing_types = (*testing_types, Foo, tuple, list)
     for original_type in testing_types:
         for other_type in non_update_method_testing_types:
             original = original_type(**data)
@@ -277,7 +285,7 @@ def test_attrdict_update() -> None:
             except TypeError:
                 other = other_type(update_data.items())
             original.update(other)
-            assert {**original} == final_data, (
+            assert final_data == {**original}, (
                 f"original type: {original_type.__name__}, "
                 f"other type: {other_type.__name__}"
             )
@@ -288,7 +296,7 @@ def test_attrdict_update() -> None:
 
     # Check TypeError is raised if inner Iterable type is not a tuple
     with pytest.raises(TypeError, match=r".*must be an iterable of tuples.*"):
-        AttrDict(**data).update(list(list(_) for _ in update_data.items()))
+        AttrDict(**data).update([list(_) for _ in update_data.items()])
 
     # Check ValueError is raised if inner Iterable type is not of length two
     with pytest.raises(
@@ -351,7 +359,7 @@ def test_attrdict_values() -> None:
     # field values
     subattrdict = SubAttrDict(test="test", **data)
 
-    assert list(subattrdict.values()) == ["test"] + list(data.values())
+    assert list(subattrdict.values()) == ["test", *list(data.values())]
 
 
 def test_attrdict_clear() -> None:

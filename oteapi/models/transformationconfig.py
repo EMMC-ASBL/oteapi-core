@@ -5,9 +5,11 @@ This data model represents what should be returned from the strategy's `status()
 method.
 """
 
+from __future__ import annotations
+
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -63,7 +65,7 @@ class TransformationStatus(BaseModel):
     status: Optional[str] = Field(
         None, description="Status for the transformation process."
     )
-    messages: Optional[List[str]] = Field(
+    messages: Optional[list[str]] = Field(
         None, description="Messages related to the transformation process."
     )
     created: Optional[datetime] = Field(

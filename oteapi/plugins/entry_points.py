@@ -10,6 +10,8 @@ to import actual strategy classes until they are truly needed.
 This therefore implements lazy loading of all plugin strategies.
 """
 
+from __future__ import annotations
+
 import importlib
 import re
 import sys
@@ -34,7 +36,7 @@ from oteapi.models import (
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from typing import Any, Dict, Optional, Set, Tuple, Type, Union
+    from typing import Any, Optional, Union
 
     if sys.version_info < (3, 10):
         from importlib_metadata import EntryPoint
@@ -43,6 +45,11 @@ if TYPE_CHECKING:  # pragma: no cover
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
+
+    # These are defined here to avoid having to change the method name `type` for
+    # `StrategyType`.
+    StrategyConfigType = type[StrategyConfig]
+    IStrategyType = type[IStrategy]
 
 
 class EntryPointNotFound(Exception):
@@ -86,7 +93,7 @@ class StrategyType(Enum):
         }[self.value]
 
     @classmethod
-    def map_from_field(cls, strategy_type_field: str) -> "StrategyType":
+    def map_from_field(cls, strategy_type_field: str) -> StrategyType:
         """Map the strategy type's field to enumeration.
 
         Parameters:
@@ -111,7 +118,7 @@ class StrategyType(Enum):
         }[strategy_type_field]
 
     @classmethod
-    def init(cls, value: "Union[str, StrategyType]") -> "StrategyType":
+    def init(cls, value: Union[str, StrategyType]) -> StrategyType:
         """Initialize a StrategyType with more than just the enumeration value.
 
         This method allows one to also initialize a StrategyType with an actual
@@ -129,7 +136,7 @@ class StrategyType(Enum):
         return cls(value)
 
     @classmethod
-    def all_values(cls) -> "Tuple[str, ...]":
+    def all_values(cls) -> tuple[str, ...]:
         """Return all values."""
         return tuple(strategy_type.value for strategy_type in cls)
 
@@ -140,7 +147,7 @@ class StrategyType(Enum):
         return repr(str(self))
 
     @property
-    def config_cls(self) -> "Type[StrategyConfig]":
+    def config_cls(self) -> StrategyConfigType:
         """Return the strategy-specific `*Config` class."""
         return {  # type: ignore[return-value]
             "download": ResourceConfig,
@@ -197,7 +204,7 @@ class EntryPointStrategy:
 
     ENTRY_POINT_NAME_SEPARATOR = ":"
 
-    def __init__(self, entry_point: "EntryPoint") -> None:
+    def __init__(self, entry_point: EntryPoint) -> None:
         self._entry_point = entry_point
 
         match = self.ENTRY_POINT_NAME_REGEX.match(self._entry_point.name)
@@ -209,7 +216,7 @@ class EntryPointStrategy:
 
         self._match = match
         self._type = StrategyType(self._entry_point.group[len("oteapi.") :])
-        self._implementation: "Optional[Type[IStrategy]]" = None
+        self._implementation: Optional[IStrategyType] = None
 
     @property
     def type(self) -> StrategyType:
@@ -228,7 +235,7 @@ class EntryPointStrategy:
         return self._match.group("strategy_name")
 
     @property
-    def strategy(self) -> "Tuple[StrategyType, str]":
+    def strategy(self) -> tuple[StrategyType, str]:
         """The unique index identifier for the strategy."""
         return self.type, self.name
 
@@ -263,13 +270,13 @@ class EntryPointStrategy:
         return self._entry_point.attr  # type: ignore[attr-defined]
 
     @property
-    def implementation(self) -> "Type[IStrategy]":
+    def implementation(self) -> IStrategyType:
         """The actual strategy implementation."""
         if self._implementation is None:
             self._implementation = self._load_implementation()
         return self._implementation
 
-    def _load_implementation(self) -> "Type[IStrategy]":
+    def _load_implementation(self) -> IStrategyType:
         """Load the strategy implementation.
 
         Because the actual importing of the module does not happen until this method is
@@ -302,7 +309,7 @@ class EntryPointStrategy:
             f"{self.implementation_name} cannot be found in {self.module}"
         )
 
-    def __eq__(self, other: "Any") -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, self.__class__):
             return hash(self) == hash(other)
         return False
@@ -310,7 +317,7 @@ class EntryPointStrategy:
     def __hash__(self) -> int:
         return hash(self.strategy)
 
-    def __lt__(self, other: "Any") -> bool:
+    def __lt__(self, other: Any) -> bool:
         """Whether or not `self` is less than (`<`) `other`.
 
         This is implemented to allow sorting (using `sorted()`).
@@ -342,8 +349,8 @@ class EntryPointStrategyCollection(abc.Collection):
     """A collection of
     [`EntryPointStrategy`][oteapi.plugins.entry_points.EntryPointStrategy]s."""
 
-    def __init__(self, *entry_points: "EntryPointStrategy") -> None:
-        self._entry_points: "Set[EntryPointStrategy]" = (
+    def __init__(self, *entry_points: EntryPointStrategy) -> None:
+        self._entry_points: set[EntryPointStrategy] = (
             set(entry_points) if entry_points else set()
         )
 
@@ -389,7 +396,7 @@ class EntryPointStrategyCollection(abc.Collection):
     def __len__(self) -> int:
         return len(self._entry_points)
 
-    def __contains__(self, item: "Any") -> bool:
+    def __contains__(self, item: Any) -> bool:
         """Whether or not `item` is contained in the collection.
 
         One can test with an `EntryPointStrategy`, a string of an entry point
@@ -427,15 +434,15 @@ class EntryPointStrategyCollection(abc.Collection):
         # For any other type:
         return False
 
-    def __iter__(self) -> "Iterator[EntryPointStrategy]":
+    def __iter__(self) -> Iterator[EntryPointStrategy]:
         yield from self._entry_points
 
-    def __getitem__(self, key: "Any") -> EntryPointStrategy:
+    def __getitem__(self, key: Any) -> EntryPointStrategy:
         return self.get_entry_point(key)
 
     def get_entry_point(
         self,
-        key: "Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]",
+        key: Union[EntryPointStrategy, str, tuple[Union[StrategyType, str], str]],
     ) -> EntryPointStrategy:
         """Retrieve an entry point from the collection.
 
@@ -462,7 +469,7 @@ class EntryPointStrategyCollection(abc.Collection):
 
     def _get_entry_point(
         self,
-        key: "Union[EntryPointStrategy, str, Tuple[Union[StrategyType, str], str]]",
+        key: Union[EntryPointStrategy, str, tuple[Union[StrategyType, str], str]],
     ) -> EntryPointStrategy:
         """Helper method for retrieving an entry point from the collection.
 
@@ -497,7 +504,7 @@ class EntryPointStrategyCollection(abc.Collection):
             "_get_entry_point method."
         )
 
-    def __eq__(self, other: "Any") -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, self.__class__):
             return hash(self) == hash(other)
         return False
@@ -506,7 +513,7 @@ class EntryPointStrategyCollection(abc.Collection):
         return hash(tuple(_ for _ in sorted(self._entry_points)))
 
     def __str__(self) -> str:
-        number_of_strategies: "Dict[str, int]" = {}
+        number_of_strategies: dict[str, int] = {}
         for entry_point in self._entry_points:
             if entry_point.type.value in number_of_strategies:
                 number_of_strategies[entry_point.type.value] += 1
@@ -522,7 +529,7 @@ class EntryPointStrategyCollection(abc.Collection):
 
 
 def get_strategy_entry_points(
-    strategy_type: "Union[StrategyType, str]",
+    strategy_type: Union[StrategyType, str],
     enforce_uniqueness: bool = True,
 ) -> EntryPointStrategyCollection:
     """Retrieve all entry points from a specific strategy type.

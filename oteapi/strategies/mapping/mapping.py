@@ -1,6 +1,6 @@
 """Mapping filter strategy."""
 
-from typing import Dict, List
+from __future__ import annotations
 
 from pydantic.dataclasses import Field, dataclass
 
@@ -10,14 +10,14 @@ from oteapi.models import AttrDict, MappingConfig, RDFTriple
 class MappingStrategyConfig(AttrDict):
     """AttrDict model for mappings."""
 
-    prefixes: Dict[str, str] = Field(
+    prefixes: dict[str, str] = Field(
         ...,
         description=(
             "Dictionary of shortnames that expands to an IRI "
             "given as local value/IRI-expansion-pairs."
         ),
     )
-    triples: List[RDFTriple] = Field(
+    triples: list[RDFTriple] = Field(
         ...,
         description="List of semantic triples given as (subject, predicate, object).",
     )
