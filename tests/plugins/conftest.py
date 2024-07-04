@@ -18,7 +18,12 @@ if TYPE_CHECKING:
 @pytest.fixture
 def get_local_strategies() -> "Callable[[str], Tuple[EntryPoint, ...]]":
     """Retrieve all entry points for strategy type from oteapi-core."""
-    from importlib.metadata import entry_points
+    import sys
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import entry_points
+    else:
+        from importlib.metadata import entry_points
 
     from oteapi.plugins.entry_points import StrategyType
 
@@ -45,7 +50,7 @@ def get_local_strategies() -> "Callable[[str], Tuple[EntryPoint, ...]]":
 
         return tuple(
             _
-            for _ in entry_points()[f"oteapi.{strategy_type.value}"]
+            for _ in entry_points(group=f"oteapi.{strategy_type.value}")
             if _.name.startswith("oteapi.")
         )
 

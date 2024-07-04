@@ -1,5 +1,7 @@
 """Test the `oteapi.plugins.entry_points` module's `EntryPointStrategy*` classes."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -7,9 +9,9 @@ import pytest
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Dict, List, Tuple, Union
+    from typing import Any
 
-    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
+    MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
 def test_no_available_strategies(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -35,7 +37,7 @@ def test_no_available_strategies(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def test_entry_point_name_syntax(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test edge-case and invalid entry point names when initializing
     `EntryPointStrategy`s."""
@@ -91,7 +93,7 @@ oteapi.mapping =
 
 
 def test_collection_remove(
-    get_local_strategies: "Callable[[str], Tuple[EntryPoint, ...]]",
+    get_local_strategies: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategyCollection.remove()`."""
     from oteapi.plugins.entry_points import (
@@ -131,7 +133,7 @@ def test_collection_remove(
 
 
 def test_collection_contains(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategyCollection.__contains__()` /
     `x in EntryPointStrategyCollection()`."""
@@ -192,7 +194,7 @@ oteapi.parse =
 
 
 def test_invalid_module(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Ensure `EntryPointNotFound` is raised if a module cannot be imported."""
     from importlib import import_module
@@ -235,7 +237,7 @@ oteapi.download =
 
 
 def test_sorting_priority(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Ensure `EntryPointStrategy`s are sorted correctly according to the intended
     priority order in `__lt__()`."""
@@ -266,7 +268,7 @@ oteapi.parse =
     }
     collection = EntryPointStrategyCollection()
     collection.exclusive_add(*entry_point_strategies)
-    sorted_collection: "List[EntryPointStrategy]" = sorted(collection)
+    sorted_collection: list[EntryPointStrategy] = sorted(collection)
     assert sorted_collection == sorted(entry_point_strategies)
     for index, strategy in enumerate(expected_sorting):
         assert sorted_collection[index].strategy == strategy
@@ -279,7 +281,7 @@ oteapi.parse =
 
 
 def test_collection_getitem(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategyCollection.__getitem__()` /
     `EntryPointStrategyCollection()[x]`."""
@@ -348,7 +350,7 @@ oteapi.parse =
 
 
 def test_collection_eq(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategyCollection.__eq__()` /
     `EntryPointStrategyCollection() == EntryPointStrategyCollection()`."""
@@ -378,7 +380,7 @@ oteapi.download =
 
 
 def test_collection_str_repr(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategyCollection.__str__()` and `.__repr__()` /
     `str(EntryPointStrategyCollection())` or `repr()`."""
@@ -413,7 +415,7 @@ oteapi.parse =
 
 
 def test_strategy_eq(
-    create_importlib_entry_points: "Callable[[str], Tuple[EntryPoint, ...]]",
+    create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Test `EntryPointStrategy.__eq__()` /
     `EntryPointStrategy() == EntryPointStrategy()`."""

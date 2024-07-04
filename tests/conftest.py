@@ -1,5 +1,7 @@
 """Fixtures and configuration for pytest framework."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -8,9 +10,9 @@ if TYPE_CHECKING:
     from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
     from pathlib import Path
-    from typing import Any, Dict, List, Tuple, Union
+    from typing import Any
 
-    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
+    MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
 @pytest.fixture
@@ -22,12 +24,17 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
         This fixture should be called prior to importing anything from `oteapi`!
 
     """
-    from importlib.metadata import EntryPoint
+    import sys
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     from oteapi.plugins import entry_points as oteapi_entry_points
 
     def _mock_entry_points(
-        entry_points: "Iterable[Union[EntryPoint, Dict[str, Any]]]",
+        entry_points: Iterable[EntryPoint | dict[str, Any]],
     ) -> None:
         """Mock `importlib.metadata.entry_points()`.
 
@@ -44,7 +51,8 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
                 ```
 
         """
-        load_entry_points: "Dict[str, List[EntryPoint]]" = {}
+        load_entry_points: list[EntryPoint] = []
+
         for entry_point in entry_points:
             if isinstance(entry_point, dict):
                 if not all(
@@ -59,26 +67,27 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
             elif not isinstance(entry_point, EntryPoint):
                 raise TypeError(
                     "entry_points must be either an iterable of "
-                    "`importlib.metadata.EntryPoint`s or dicts. "
-                    f"Got an entry point of type {type(entry_point)}."
+                    "`importlib.metadata.EntryPoint`s (an `importlib.metadata.EntryPoints`) "
+                    f"or dicts. Got an entry point of type {type(entry_point)}."
                 )
 
-            if load_entry_points.get(entry_point.group, []):
-                load_entry_points[entry_point.group].append(entry_point)
-            else:
-                load_entry_points[entry_point.group] = [entry_point]
+            load_entry_points.append(entry_point)
 
         monkeypatch.setattr(
             oteapi_entry_points,
             "get_entry_points",
-            lambda: {key: tuple(value) for key, value in load_entry_points.items()},
+            lambda group: tuple(
+                entry_point
+                for entry_point in load_entry_points
+                if entry_point.group == group
+            ),
         )
 
     return _mock_entry_points
 
 
 @pytest.fixture
-def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]":
+def create_importlib_entry_points() -> Callable[[str], tuple[EntryPoint, ...]]:
     """Generate `importlib.metadata.EntryPoint`s from a parsed `setup.cfg` file's
     `[options.entry_points]` group.
 
@@ -97,7 +106,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
     import re
     from importlib.metadata import EntryPoint
 
-    def _create_entry_points(entry_points: str) -> "Tuple[EntryPoint, ...]":
+    def _create_entry_points(entry_points: str) -> tuple[EntryPoint, ...]:
         """Create EntryPoint.
 
         Parameters:
@@ -116,7 +125,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
                 "(group + entry point)."
             )
 
-        parsed_entry_points: "Dict[str, List[str]]" = {}
+        parsed_entry_points: dict[str, list[str]] = {}
         current_group = ""
 
         for line in entry_point_lines:
@@ -151,7 +160,7 @@ def create_importlib_entry_points() -> "Callable[[str], Tuple[EntryPoint, ...]]"
                     )
                 parsed_entry_points[current_group] = []
 
-        res: "List[EntryPoint]" = []
+        res: list[EntryPoint] = []
         for group, entries in parsed_entry_points.items():
             res.extend(
                 EntryPoint(name=entry["name"], value=entry["value"], group=group)

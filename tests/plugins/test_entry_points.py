@@ -1,5 +1,7 @@
 """Test the `oteapi.plugins.entry_points` module generally."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -7,13 +9,13 @@ import pytest
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Dict, Tuple, Union
+    from typing import Any
 
-    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
+    MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
 def test_get_strategy_entry_points(
-    get_local_strategies: "Callable[[str], Tuple[EntryPoint, ...]]",
+    get_local_strategies: Callable[[str], tuple[EntryPoint, ...]],
 ) -> None:
     """Simple test for `get_strategy_entry_points()`."""
     from oteapi.plugins.entry_points import (
@@ -54,7 +56,7 @@ def test_incorrect_strategy_type() -> None:
 
 
 def test_enforce_uniqueness_duplicate_strategies(
-    mock_importlib_entry_points: "MockEntryPoints",
+    mock_importlib_entry_points: MockEntryPoints,
 ) -> None:
     """Ensure `enforce_uniqueness=True` in `get_strategy_entry_points` ensures
     `KeyError` is raised for duplicate strategies, and doesn't raise if `False`."""
@@ -162,7 +164,7 @@ def test_eval_custom_classes() -> None:
     "enforce_uniqueness", (True, False), ids=("uniqueness", "no uniqueness")
 )
 def test_duplicate_entry_points(
-    mock_importlib_entry_points: "MockEntryPoints",
+    mock_importlib_entry_points: MockEntryPoints,
     enforce_uniqueness: bool,
 ) -> None:
     """Ensure duplicate entry points does not result in an error.
@@ -191,7 +193,7 @@ def test_duplicate_entry_points(
         get_strategy_entry_points,
     )
 
-    assert len(get_entry_points().get(f"oteapi.{strategy_type}", [])) == 2 * len(
+    assert len(get_entry_points(group=f"oteapi.{strategy_type}") or []) == 2 * len(
         test_entry_points
     )
 
