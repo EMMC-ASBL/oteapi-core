@@ -19,7 +19,6 @@ def skip_if_no_docker_or_windows() -> None:
     is_windows = platform.system() == "Windows"
 
     if is_windows or not docker_exists:
-        print("Skip!")
         pytest.skip("Docker is not available or using Windows!")
 
 
