@@ -7,6 +7,9 @@ on:
       - 'master'
       - 'push-action/**'  # Allow pushing to protected branches (using CasperWA/push-protected)
 
+env:
+  PYTEST_ADDOPTS: --color=yes
+
 jobs:
   basic_tests:
     name: External
