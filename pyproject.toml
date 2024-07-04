@@ -14,10 +14,12 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
 ]
 keywords = ["OTE", "OTE-API"]
-requires-python = ">=3.9"
+requires-python = ">=3.9,<3.13"
 dynamic = ["version"]
 
 dependencies = [
@@ -116,14 +118,19 @@ python_version = "3.9"
 ignore_missing_imports = true
 scripts_are_modules = true
 warn_unused_configs = true
-show_error_codes = true
+hide_error_codes = false
 allow_redefinition = true
+check_untyped_defs = true
 plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "-rs --cov-report=term"
+minversion = "8.2"
+addopts = "-rs --cov-report=term-missing:skip-covered --no-cov-on-fail"
 filterwarnings = [
-    "ignore:.*imp module.*:DeprecationWarning",
-    "ignore:.*_yaml extension module.*:DeprecationWarning"
+    # Treat all warnings as errors
+    "error",
+
+
+    # "ignore:.*imp module.*:DeprecationWarning",
+    # "ignore:.*_yaml extension module.*:DeprecationWarning"
 ]
