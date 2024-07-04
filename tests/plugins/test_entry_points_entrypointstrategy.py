@@ -7,9 +7,14 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    import sys
     from collections.abc import Callable, Iterable
-    from importlib.metadata import EntryPoint
     from typing import Any
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 

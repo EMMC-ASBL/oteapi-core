@@ -5,9 +5,14 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    import sys
     from collections.abc import Callable, Iterable
-    from importlib.metadata import EntryPoint
     from typing import Any, Dict, Type, Union
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType

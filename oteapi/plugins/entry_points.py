@@ -34,8 +34,12 @@ from oteapi.models import (
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from importlib.metadata import EntryPoint
     from typing import Any, Dict, Optional, Set, Tuple, Type, Union
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
