@@ -13103,8 +13103,7 @@ for more info.</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ImageDataParseStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for images.</span>
 
@@ -13152,8 +13151,10 @@ for more info.</p>
         <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
         <span class="c1"># Treat image according to filter values</span>
-        <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">mime_format</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">image_format</span><span class="p">])</span>
+        <span class="k">with</span> <span class="p">(</span>
+            <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">mime_format</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">,</span>
+            <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">image_format</span><span class="p">])</span> <span class="k">as</span> <span class="n">image</span><span class="p">,</span>
+        <span class="p">):</span>
             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">crop</span><span class="p">:</span>
                 <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">crop</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">image_mode</span><span class="p">:</span>
@@ -13194,9 +13195,6 @@ for more info.</p>
                 <span class="n">image_palette_key</span><span class="o">=</span><span class="n">image_palette_key</span><span class="p">,</span>
                 <span class="n">image_info</span><span class="o">=</span><span class="n">image_info</span><span class="p">,</span>
             <span class="p">)</span>
-
-            <span class="c1"># Explicitly close the image to avoid crashes on Windows</span>
-            <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">content</span>
 </code></pre></div></td></tr></table></div>
@@ -13319,8 +13317,7 @@ for more info.</p>
 <span class="normal">216</span>
 <span class="normal">217</span>
 <span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImageParseContent</span><span class="p">:</span>
+<span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImageParseContent</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.&quot;&quot;&quot;</span>
 
     <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
@@ -13346,8 +13343,10 @@ for more info.</p>
     <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
     <span class="c1"># Treat image according to filter values</span>
-    <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">mime_format</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">image_format</span><span class="p">])</span>
+    <span class="k">with</span> <span class="p">(</span>
+        <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">mime_format</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">,</span>
+        <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">image_format</span><span class="p">])</span> <span class="k">as</span> <span class="n">image</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">crop</span><span class="p">:</span>
             <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">crop</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">image_mode</span><span class="p">:</span>
@@ -13388,9 +13387,6 @@ for more info.</p>
             <span class="n">image_palette_key</span><span class="o">=</span><span class="n">image_palette_key</span><span class="p">,</span>
             <span class="n">image_info</span><span class="o">=</span><span class="n">image_info</span><span class="p">,</span>
         <span class="p">)</span>
-
-        <span class="c1"># Explicitly close the image to avoid crashes on Windows</span>
-        <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">content</span>
 </code></pre></div></td></tr></table></div>
