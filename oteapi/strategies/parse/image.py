@@ -171,8 +171,10 @@ class ImageDataParseStrategy:
         cache = DataCache(config.datacache_config)
 
         # Treat image according to filter values
-        with cache.getfile(cache_key, suffix=mime_format) as filename:
-            image = Image.open(filename, formats=[image_format])
+        with (
+            cache.getfile(cache_key, suffix=mime_format) as filename,
+            Image.open(filename, formats=[image_format]) as image,
+        ):
             if config.crop:
                 image = image.crop(config.crop)
             if config.image_mode:
@@ -213,8 +215,5 @@ class ImageDataParseStrategy:
                 image_palette_key=image_palette_key,
                 image_info=image_info,
             )
-
-            # Explicitly close the image to avoid crashes on Windows
-            image.close()
 
         return content

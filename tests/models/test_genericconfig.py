@@ -113,6 +113,7 @@ def test_attribute_contains(generic_config: "CustomConfig") -> None:
     assert "float" in generic_config.configuration
 
 
+@pytest.mark.filterwarnings("")
 def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     """Test configuration.__delitem__."""
     # "float" is not defined as a pydantic model field, i.e., it's not part of the
@@ -125,7 +126,11 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     assert "float" in generic_config.configuration.model_fields_set
     assert "float" not in generic_config.configuration.model_json_schema()["properties"]
 
-    del generic_config.configuration["float"]
+    with pytest.warns(
+        DeprecationWarning,
+        match=r"^Item deletion used to reset fields to their default values\. To keep using this functionality, use the `reset_field\(\)` method\.$",
+    ):
+        del generic_config.configuration["float"]
 
     assert "float" not in generic_config.configuration
     assert "float" not in generic_config.configuration.model_fields_set
@@ -141,7 +146,11 @@ def test_attribute_del_item(generic_config: "CustomConfig") -> None:
     assert "string" in generic_config.configuration.model_fields_set
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
-    del generic_config.configuration["string"]
+    with pytest.warns(
+        DeprecationWarning,
+        match=r"^Item deletion used to reset fields to their default values\. To keep using this functionality, use the `reset_field\(\)` method\.$",
+    ):
+        del generic_config.configuration["string"]
 
     assert "string" not in generic_config.configuration
     assert "string" not in generic_config.configuration.model_fields_set
@@ -197,11 +206,12 @@ def test_attribute_del_item_fail(generic_config: "CustomConfig") -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
-    with pytest.raises(KeyError):
+    with pytest.raises(KeyError), pytest.warns(DeprecationWarning):
         del generic_config.configuration[non_existent_key]
 
     # Required fields can also be deleted
-    del generic_config.configuration["required_string"]
+    with pytest.warns(DeprecationWarning):
+        del generic_config.configuration["required_string"]
 
 
 def test_attribute_ne(generic_config: "CustomConfig") -> None:

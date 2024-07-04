@@ -12,10 +12,16 @@ This therefore implements lazy loading of all plugin strategies.
 
 import importlib
 import re
+import sys
 from collections import abc
 from enum import Enum
-from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
+
+if sys.version_info < (3, 10):
+    from importlib_metadata import entry_points as get_entry_points
+else:
+    from importlib.metadata import entry_points as get_entry_points
+
 
 from oteapi.models import (
     FilterConfig,
@@ -28,8 +34,12 @@ from oteapi.models import (
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from importlib.metadata import EntryPoint
     from typing import Any, Dict, Optional, Set, Tuple, Type, Union
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
@@ -545,7 +555,7 @@ def get_strategy_entry_points(
 
     collection = EntryPointStrategyCollection()
     oteapi_entry_points = sorted(
-        set(get_entry_points().get(f"oteapi.{strategy_type.value}", []))
+        set(get_entry_points(group=f"oteapi.{strategy_type.value}"))
     )
 
     if enforce_uniqueness:

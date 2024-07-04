@@ -145,9 +145,9 @@ def test_image(
             assert data.shape == (cropped_size if mode == "P" else (*cropped_size, 3))
 
     if filename_cropped and image_format in ("png", "gif", "eps", "tiff"):
-        cropped = Image.open(reference_file, formats=[image_format])
-        arr = np.asarray(cropped)
-        assert np.all(data == arr)
+        with Image.open(reference_file, formats=[image_format]) as cropped:
+            arr = np.asarray(cropped)
+            assert np.all(data == arr)
 
 
 @pytest.mark.parametrize("crop", [None, (100, 50, 450, 300)], ids=["no crop", "crop"])

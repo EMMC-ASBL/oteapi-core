@@ -5,9 +5,14 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
+    import sys
     from collections.abc import Callable, Iterable
-    from importlib.metadata import EntryPoint
     from typing import Any, Dict, Type, Union
+
+    if sys.version_info < (3, 10):
+        from importlib_metadata import EntryPoint
+    else:
+        from importlib.metadata import EntryPoint
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
@@ -52,7 +57,10 @@ def test_load_strategies(mock_importlib_entry_points: "MockEntryPoints") -> None
     assert StrategyFactory.strategy_create_func[
         StrategyType(strategy_type)
     ] == EntryPointStrategyCollection(
-        *(EntryPointStrategy(_) for _ in get_entry_points()[f"oteapi.{strategy_type}"])
+        *(
+            EntryPointStrategy(_)
+            for _ in get_entry_points(group=f"oteapi.{strategy_type}")
+        )
     )
     for key in StrategyFactory.strategy_create_func:
         if key != StrategyType(strategy_type):
