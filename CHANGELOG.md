@@ -1,5 +1,38 @@
 # Changelog
 
+## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev2...HEAD)
+
+**Closed issues:**
+
+- Update use of `importlib.metadata.entry_points` [\#395](https://github.com/EMMC-ASBL/oteapi-core/issues/395)
+
+## [v0.7.0.dev2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev2) (2024-07-04)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev1...v0.7.0.dev2)
+
+**Merged pull requests:**
+
+- Expect `EntryPoints` from `importlib.metadata` [\#496](https://github.com/EMMC-ASBL/oteapi-core/pull/496) ([CasperWA](https://github.com/CasperWA))
+- \[Auto-generated\] Update dependencies [\#495](https://github.com/EMMC-ASBL/oteapi-core/pull/495) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#491](https://github.com/EMMC-ASBL/oteapi-core/pull/491) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#490](https://github.com/EMMC-ASBL/oteapi-core/pull/490) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#487](https://github.com/EMMC-ASBL/oteapi-core/pull/487) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#485](https://github.com/EMMC-ASBL/oteapi-core/pull/485) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#480](https://github.com/EMMC-ASBL/oteapi-core/pull/480) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#477](https://github.com/EMMC-ASBL/oteapi-core/pull/477) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#474](https://github.com/EMMC-ASBL/oteapi-core/pull/474) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#470](https://github.com/EMMC-ASBL/oteapi-core/pull/470) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[pre-commit.ci\] pre-commit autoupdate [\#468](https://github.com/EMMC-ASBL/oteapi-core/pull/468) ([pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci))
+- \[Auto-generated\] Update dependencies [\#463](https://github.com/EMMC-ASBL/oteapi-core/pull/463) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#460](https://github.com/EMMC-ASBL/oteapi-core/pull/460) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#457](https://github.com/EMMC-ASBL/oteapi-core/pull/457) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#454](https://github.com/EMMC-ASBL/oteapi-core/pull/454) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#452](https://github.com/EMMC-ASBL/oteapi-core/pull/452) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#447](https://github.com/EMMC-ASBL/oteapi-core/pull/447) ([TEAM4-0](https://github.com/TEAM4-0))
+- \[Auto-generated\] Update dependencies [\#446](https://github.com/EMMC-ASBL/oteapi-core/pull/446) ([TEAM4-0](https://github.com/TEAM4-0))
+
 ## [v0.7.0.dev1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev1) (2024-03-08)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev0...v0.7.0.dev1)
