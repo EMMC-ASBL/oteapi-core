@@ -43,19 +43,19 @@ docs = [
     "mkdocs>=1.5.3,<1.7",
     "mkdocs-awesome-pages-plugin~=2.9",
     "mkdocs-material>=9.5.5,<10",
-    "mkdocstrings[python]~=0.25.1",
+    "mkdocstrings[python]~=0.25.2",
 ]
 testing = [
     "ase~=3.23.0",
     "numpy>=1.26,<3",
-    "pytest~=8.2",
+    "pytest~=8.3",
     "pytest-celery[redis]~=1.0",
     "pytest-cov>=4.1.0,<6",
     "redis~=5.0",
     "requests-mock~=1.12",
 ]
 dev = [
-    "pre-commit~=3.7",
+    "pre-commit~=3.8",
     "oteapi-core[docs,testing]",
 ]
 
