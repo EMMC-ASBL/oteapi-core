@@ -39,7 +39,7 @@ repos:
     - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.4
+    rev: v0.5.5
     hooks:
     - id: ruff
       args: ["--fix", "--exit-non-zero-on-fix"]
@@ -61,7 +61,7 @@ repos:
       - "pydantic>=2,<3"
 
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.7.4
+    rev: v2.8.0
     hooks:
     - id: docs-api-reference
       args:
