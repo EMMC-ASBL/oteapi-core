@@ -45,7 +45,7 @@ repos:
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.4
+    rev: v0.5.5
     hooks:
     - id: ruff
       args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
@@ -88,7 +88,7 @@ repos:
   # The project's documentation can be found at:
   # https://SINTEF.github.io/ci-cd/
   - repo: https://github.com/SINTEF/ci-cd
-    rev: v2.7.4
+    rev: v2.8.0
     hooks:
     - id: docs-api-reference
       args:
