@@ -3,13 +3,15 @@
 Factory wrapper methods for creating the individual strategies.
 """
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, get_args
 
 from oteapi.models import StrategyConfig
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, List, Union
+    from typing import Any, Union
 
     from oteapi.interfaces import IStrategy
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
@@ -29,14 +31,14 @@ class StrategyFactory:
 
     """
 
-    strategy_create_func: "Dict[StrategyType, EntryPointStrategyCollection]"
+    strategy_create_func: dict[StrategyType, EntryPointStrategyCollection]
 
     @classmethod
     def make_strategy(
         cls,
-        config: "Union[StrategyConfig, Dict[str, Any]]",
-        strategy_type: "Union[StrategyType, str]",
-    ) -> "IStrategy":
+        config: Union[StrategyConfig, dict[str, Any]],
+        strategy_type: Union[StrategyType, str],
+    ) -> IStrategy:
         """Instantiate a strategy in a context class.
 
         Parameters:
@@ -104,7 +106,7 @@ class StrategyFactory:
     @classmethod
     def _get_strategy_name(
         cls,
-        config: "StrategyConfig",
+        config: StrategyConfig,
         strategy_type: StrategyType,
     ) -> str:
         """Return the strategy name through the config.
@@ -160,7 +162,7 @@ class StrategyFactory:
         }
 
     @classmethod
-    def list_loaded_strategies(cls) -> "Dict[StrategyType, List[str]]":
+    def list_loaded_strategies(cls) -> dict[StrategyType, list[str]]:
         """Lists all loaded strategy plugins (endpoints).
 
         Returns:
@@ -201,7 +203,7 @@ def load_strategies(test_for_uniqueness: bool = True) -> None:
     StrategyFactory.load_strategies(test_for_uniqueness)
 
 
-def list_strategies() -> "Dict[StrategyType, List[str]]":
+def list_strategies() -> dict[StrategyType, list[str]]:
     """Proxy function for
     [`StrategyFactory.list_loaded_strategies()`][oteapi.plugins.factories.StrategyFactory.list_loaded_strategies].
 
@@ -213,9 +215,9 @@ def list_strategies() -> "Dict[StrategyType, List[str]]":
 
 
 def create_strategy(
-    strategy_type: "Union[StrategyType, str]",
-    config: "Union[StrategyConfig, Dict[str, Any]]",
-) -> "IStrategy":
+    strategy_type: Union[StrategyType, str],
+    config: Union[StrategyConfig, dict[str, Any]],
+) -> IStrategy:
     """Proxy function for
     [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].
 

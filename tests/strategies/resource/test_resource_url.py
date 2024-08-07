@@ -1,5 +1,7 @@
 """Test the resource strategy for resource/url."""
 
+from __future__ import annotations
+
 
 def test_resource_url() -> None:
     """Test `resource/url` resource strategy."""

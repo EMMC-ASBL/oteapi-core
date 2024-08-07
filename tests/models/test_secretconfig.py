@@ -1,5 +1,7 @@
 """Tests for `oteapi.models.secretconfig`"""
 
+from __future__ import annotations
+
 
 def test_secretconfig():
     """Pytest for SecretConfig."""

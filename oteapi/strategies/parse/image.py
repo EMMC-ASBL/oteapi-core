@@ -1,8 +1,10 @@
 """Strategy class for image/jpg."""
 
+from __future__ import annotations
+
 import sys
 from enum import Enum
-from typing import Optional, Tuple
+from typing import Optional
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -43,7 +45,7 @@ class ImageConfig(AttrDict):
     )
 
     # Image parse strategy-specific config
-    crop: Optional[Tuple[int, int, int, int]] = Field(
+    crop: Optional[tuple[int, int, int, int]] = Field(
         None,
         description="Box cropping parameters (left, top, right, bottom).",
         # Effectively mapping 'imagecrop' to 'crop'.
@@ -85,7 +87,7 @@ class SupportedFormat(Enum):
     """Supported formats for `ImageDataParseStrategy`."""
 
     jpeg = "JPEG"
-    jpg = "JPEG"
+    jpg = "JPEG"  # noqa: PIE796
     jp2 = "JPEG2000"
     png = "PNG"
     gif = "GIF"
@@ -105,7 +107,7 @@ class ImageParseContent(AttrDict):
         ...,
         description="Key with which the image content is stored in the data cache.",
     )
-    image_size: Tuple[int, int] = Field(
+    image_size: tuple[int, int] = Field(
         ...,
         description="Image size (width, height).",
     )
@@ -175,45 +177,53 @@ class ImageDataParseStrategy:
             cache.getfile(cache_key, suffix=mime_format) as filename,
             Image.open(filename, formats=[image_format]) as image,
         ):
-            if config.crop:
-                image = image.crop(config.crop)
-            if config.image_mode:
-                image = image.convert(mode=config.image_mode)
+            final_image: Image.Image | None = None
 
-            if image_format == "GIF" and image.info.get("version", b"").startswith(
-                b"GIF"
-            ):
-                image.info.update(
-                    {"version": image.info.get("version", b"")[len(b"GIF") :]}
+            if config.crop:
+                final_image = image.crop(config.crop)
+
+            if config.image_mode:
+                final_image = (
+                    image.convert(mode=config.image_mode)
+                    if final_image is None
+                    else final_image.convert(mode=config.image_mode)
+                )
+
+            if final_image is None:
+                final_image = image
+
+            if image_format == "GIF" and final_image.info.get(
+                "version", b""
+            ).startswith(b"GIF"):
+                final_image.info.update(
+                    {"version": final_image.info.get("version", b"")[len(b"GIF") :]}
                 )
 
             image_key = cache.add(
-                image.tobytes(),
+                final_image.tobytes(),
                 key=config.image_key,
             )
 
-            if image.mode == "P":
-                image_palette_key = cache.add(image.getpalette())
+            if final_image.mode == "P":
+                image_palette_key = cache.add(final_image.getpalette())
             else:
                 image_palette_key = None
 
             # The returned content must be json serialisable - filter out all
-            # non-json serialisable fields in image.info
-            if image.info:
+            # non-json serialisable fields in final_image.info
+            if final_image.info:
                 image_info = {
                     key: val
-                    for key, val in image.info.items()
+                    for key, val in final_image.info.items()
                     if isinstance(val, (str, int, float, type(None), bool, tuple, list))
                 }
             else:
                 image_info = {}
 
-            content = ImageParseContent(
+            return ImageParseContent(
                 image_key=image_key,
-                image_size=image.size,
-                image_mode=image.mode,
+                image_size=final_image.size,
+                image_mode=final_image.mode,
                 image_palette_key=image_palette_key,
                 image_info=image_info,
             )
-
-        return content

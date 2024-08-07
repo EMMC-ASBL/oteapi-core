@@ -1,5 +1,7 @@
 """Pydantic Parser Configuration Data Model."""
 
+from __future__ import annotations
+
 from pydantic import AnyHttpUrl, Field
 
 from oteapi.models.genericconfig import GenericConfig

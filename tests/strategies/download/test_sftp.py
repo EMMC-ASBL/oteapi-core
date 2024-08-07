@@ -1,11 +1,13 @@
 """Tests the download strategy for 'sftp://'."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from pytest import MonkeyPatch
+    import pytest
 
 
 class MockSFTPConnection:
@@ -18,10 +20,10 @@ class MockSFTPConnection:
         """Entry into context manager."""
         return self
 
-    def __exit__(self, exc_type: str, exc_value: str, traceback: str) -> None:
+    def __exit__(self, exc_type: object, exc_value: object, traceback: object) -> None:
         """Dummy exit from context manager."""
 
-    def get(self, remotepath: str, localpath: "Path") -> None:
+    def get(self, remotepath: str, localpath: Path) -> None:
         """A mockup of pysftp.Connection.get() as called in SFTPStrategy.get()."""
         from pathlib import Path, PureWindowsPath
         from shutil import copyfile
@@ -33,7 +35,7 @@ class MockSFTPConnection:
         copyfile(remote_as_path, localpath)
 
 
-def test_sftp(monkeypatch: "MonkeyPatch", static_files: "Path") -> None:
+def test_sftp(monkeypatch: pytest.MonkeyPatch, static_files: Path) -> None:
     """Test `sftp.py` download strategy by mocking download, and comparing data mock
     downloaded from a local file with data obtained from opening the file directly."""
     import pysftp

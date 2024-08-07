@@ -1,5 +1,7 @@
 """Transformation Plugin that uses the Celery framework to call remote workers."""
 
+from __future__ import annotations
+
 import os
 import sys
 from typing import TYPE_CHECKING
@@ -88,7 +90,7 @@ class CeleryRemoteStrategy:
     def get(self) -> CeleryContent:
         """Run a job, return a job ID."""
 
-        result: "Union[AsyncResult, Any]" = CELERY_APP.send_task(
+        result: Union[AsyncResult, Any] = CELERY_APP.send_task(
             **self.transformation_config.configuration.model_dump()
         )
         return CeleryContent(celery_task_id=result.task_id)

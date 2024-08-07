@@ -5,6 +5,8 @@ The strategy interfaces can be considered to be the abstract classes for the
 strategies.
 """
 
+from __future__ import annotations
+
 from typing import Union
 
 from .idownloadstrategy import IDownloadStrategy

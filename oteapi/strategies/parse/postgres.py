@@ -1,7 +1,9 @@
 """Strategy class for application/vnd.postgresql"""
 
+from __future__ import annotations
+
 import sys
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -48,7 +50,7 @@ class PostgresConfig(AttrDict):
 
     @model_validator(mode="before")
     @classmethod
-    def adjust_url(cls, data: Any) -> "Dict[str, Any]":
+    def adjust_url(cls, data: Any) -> dict[str, Any]:
         """Model Validator
         Verifies configuration consistency, merge configurations
         and update the accessUrl property.

@@ -1,12 +1,14 @@
 """Tests the crop filter strategy."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 
-def test_crop_filter(static_files: "Path") -> None:
+def test_crop_filter(static_files: Path) -> None:
     """Test the crop filter strategy on a local file.
 
     Note: This test incorporates much of the contents of the test

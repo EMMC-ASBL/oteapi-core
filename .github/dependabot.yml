@@ -13,15 +13,25 @@ updates:
     time: "05:18"
   # Should be bigger than or equal to the total number of dependencies (currently 25)
   open-pull-requests-limit: 30
-  target-branch: ci/dependabot-updates
+  target-branch: master
   labels:
     - CI/CD
+  groups:
+    python-dependencies:
+      applies-to: version-updates
+      dependency-type: production
+    python-dependencies-dev:
+      applies-to: version-updates
+      dependency-type: development
+    python-dependencies-security:
+      applies-to: security-updates
+      dependency-type: production
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
     interval: daily
     time: "05:24"
-  target-branch: ci/dependabot-updates
+  target-branch: master
   labels:
     - CI/CD
 
@@ -39,6 +49,16 @@ updates:
   labels:
     - CI/CD
     - pydantic-v1
+  groups:
+    python-dependencies-legacy:
+      applies-to: version-updates
+      dependency-type: production
+    python-dependencies-dev-legacy:
+      applies-to: version-updates
+      dependency-type: development
+    python-dependencies-security-legacy:
+      applies-to: security-updates
+      dependency-type: production
 - package-ecosystem: github-actions
   directory: "/"
   schedule:

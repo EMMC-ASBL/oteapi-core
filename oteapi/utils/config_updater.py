@@ -1,15 +1,17 @@
 """Utility functions for updating GenericConfig instances."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from oteapi.models.genericconfig import GenericConfig
 
 if TYPE_CHECKING:
-    from typing import Any, Dict
+    from typing import Any
 
 
 def populate_config_from_session(
-    session: "Dict[str, Any]",
+    session: dict[str, Any],
     config: GenericConfig,
 ) -> None:
     """
@@ -39,5 +41,5 @@ def populate_config_from_session(
             config.configuration[key] = session[key]
         except Exception as error:
             raise RuntimeError(
-                f"Failed to update key '{key}' in the config. Reason: {str(error)}"
+                f"Failed to update key '{key}' in the config. Reason: {error!s}"
             ) from error

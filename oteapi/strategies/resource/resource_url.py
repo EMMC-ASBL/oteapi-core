@@ -1,5 +1,7 @@
 """Strategy class for resource/url."""
 
+from __future__ import annotations
+
 import sys
 
 if sys.version_info >= (3, 10):
@@ -36,11 +38,11 @@ class ResourceURLStrategy:
 
     resource_config: ResourceURLConfig
 
-    def initialize(self) -> "AttrDict":
+    def initialize(self) -> AttrDict:
         """Initialize."""
         return AttrDict()
 
-    def get(self) -> "AttrDict":
+    def get(self) -> AttrDict:
         """resource distribution."""
         return AttrDict(
             **self.resource_config.model_dump(

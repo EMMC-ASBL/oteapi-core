@@ -1,5 +1,7 @@
 """General tests for `oteapi.strategies`."""
 
+from __future__ import annotations
+
 
 def test_registered_entry_point_importability():
     """Ensure all registered entry points (strategies) can be imported."""

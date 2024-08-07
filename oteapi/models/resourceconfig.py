@@ -1,5 +1,7 @@
 """Pydantic Resource Configuration Data Model."""
 
+from __future__ import annotations
+
 from typing import Annotated, Optional
 
 from pydantic import Field, model_validator
@@ -78,7 +80,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
     )
 
     @model_validator(mode="after")
-    def ensure_unique_url_pairs(self) -> "ResourceConfig":
+    def ensure_unique_url_pairs(self) -> ResourceConfig:
         """Ensure either downloadUrl/mediaType or accessUrl/accessService are defined.
 
         It's fine to define them all, but at least one complete pair MUST be specified.

@@ -1,5 +1,7 @@
 """ test_config_updater.py """
 
+from __future__ import annotations
+
 import pytest
 
 from oteapi.models.genericconfig import GenericConfig
@@ -41,7 +43,5 @@ def test_populate_config_from_session_conflict():
     }
 
     # Execute & Assert
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError, match=r".*has different value than in session.*"):
         populate_config_from_session(session, config)
-
-    assert "has different value than in session" in str(exc_info.value)

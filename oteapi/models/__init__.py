@@ -3,6 +3,8 @@
 This module contains all the `pydantic` configuration models.
 """
 
+from __future__ import annotations
+
 from typing import Union
 
 from .datacacheconfig import DataCacheConfig

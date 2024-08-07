@@ -1,5 +1,7 @@
 """Test the `oteapi.plugins.factories` module generally."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -7,7 +9,7 @@ import pytest
 if TYPE_CHECKING:
     import sys
     from collections.abc import Callable, Iterable
-    from typing import Any, Dict, Type, Union
+    from typing import Any, Union
 
     if sys.version_info < (3, 10):
         from importlib_metadata import EntryPoint
@@ -17,7 +19,7 @@ if TYPE_CHECKING:
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
 
-    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, Dict[str, Any]]]], None]
+    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, dict[str, Any]]]], None]
 
 
 def test_create_strategy_not_loaded() -> None:
@@ -30,7 +32,7 @@ def test_create_strategy_not_loaded() -> None:
         create_strategy("filter", FilterConfig(filterType="test"))
 
 
-def test_load_strategies(mock_importlib_entry_points: "MockEntryPoints") -> None:
+def test_load_strategies(mock_importlib_entry_points: MockEntryPoints) -> None:
     """Test `StrategyFactory.load_strategies()`."""
     strategy_type = "download"
     entry_points = [
@@ -70,7 +72,7 @@ def test_load_strategies(mock_importlib_entry_points: "MockEntryPoints") -> None
             )
 
 
-def test_load_strategies_fails(mock_importlib_entry_points: "MockEntryPoints") -> None:
+def test_load_strategies_fails(mock_importlib_entry_points: MockEntryPoints) -> None:
     """Test `StrategyFactory.load_strategies()` fails when expected to."""
     strategy_type = "download"
     not_importable_entry_points = [
@@ -97,9 +99,9 @@ def test_load_strategies_fails(mock_importlib_entry_points: "MockEntryPoints") -
 
 
 @pytest.mark.parametrize("config_type", ["dict", "config_cls"])
-@pytest.mark.usefixtures("load_test_strategies")
+@pytest.mark.usefixtures("_load_test_strategies")
 def test_create_strategy(
-    get_strategy_config: "Callable[[Union[StrategyType, str]], Type[StrategyConfig]]",
+    get_strategy_config: Callable[[Union[StrategyType, str]], type[StrategyConfig]],
     config_type: str,
 ) -> None:
     """Test `StrategyFactory.make_strategy()`."""
@@ -155,7 +157,7 @@ def test_create_strategy(
             assert hasattr(strategy, f"{strategy_type.value}_config")
 
 
-@pytest.mark.usefixtures("load_test_strategies")
+@pytest.mark.usefixtures("_load_test_strategies")
 def test_create_strategy_fails() -> None:
     """Test `StrategyFactory.make_strategy()` fails when expected to."""
     from oteapi.models.filterconfig import FilterConfig

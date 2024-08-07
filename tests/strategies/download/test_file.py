@@ -1,5 +1,7 @@
 """Tests the download strategy for 'file://'."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -11,11 +13,11 @@ if TYPE_CHECKING:
 
 
 @pytest.mark.parametrize(
-    "filename,mediaType",
+    ("filename", "mediaType"),
     [("sample_1280_853.jpeg", "image/jpeg"), ("sample2.json", "application/json")],
     ids=["binary", "text"],
 )
-def test_file(filename: str, mediaType: str, static_files: "Path") -> None:
+def test_file(filename: str, mediaType: str, static_files: Path) -> None:
     """Test `file` download strategy on binary and text files.
 
     Test files are taken from filesamples.com.
@@ -31,7 +33,7 @@ def test_file(filename: str, mediaType: str, static_files: "Path") -> None:
         "downloadUrl": sample_file.as_uri(),
         "mediaType": mediaType,
     }
-    output: "DownloadFileContent" = FileStrategy(config).get()
+    output: DownloadFileContent = FileStrategy(config).get()
     content: bytes = DataCache().get(output.key)
 
     if mediaType.startswith("image"):

@@ -1,5 +1,7 @@
 """Pydantic Function Configuration Data Model."""
 
+from __future__ import annotations
+
 from pydantic import Field
 
 from oteapi.models.genericconfig import GenericConfig

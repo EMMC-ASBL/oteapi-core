@@ -1,5 +1,7 @@
 """Tests for `oteapi.datacache.datacache`."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -9,12 +11,12 @@ if TYPE_CHECKING:
 
     try:
         import ase
-        import numpy
+        import numpy  # noqa: ICN001
     except ImportError:
         pass
 
 
-def test_cache(tmp_path: "Path") -> None:
+def test_cache(tmp_path: Path) -> None:
     """Simple tests for the `DataCache`."""
     from oteapi.datacache import DataCache
 
@@ -53,9 +55,9 @@ def test_cache(tmp_path: "Path") -> None:
     assert len(cache) == 0
 
 
-def test_numpy(tmp_path: "Path") -> None:
+def test_numpy(tmp_path: Path) -> None:
     """Test adding numpy arrays to the datachache."""
-    np: "numpy" = pytest.importorskip("numpy", reason="numpy is not installed")
+    np: numpy = pytest.importorskip("numpy", reason="numpy is not installed")
 
     from oteapi.datacache import DataCache
 
@@ -67,9 +69,9 @@ def test_numpy(tmp_path: "Path") -> None:
     cache.clear()
 
 
-def test_ase_atoms(tmp_path: "Path") -> None:
+def test_ase_atoms(tmp_path: Path) -> None:
     """Test adding ase Atoms objects to the datachache."""
-    ase: "ase" = pytest.importorskip("ase", reason="ase is not installed")
+    ase: ase = pytest.importorskip("ase", reason="ase is not installed")
 
     from ase.io.jsonio import MyEncoder
 
@@ -85,14 +87,14 @@ def test_ase_atoms(tmp_path: "Path") -> None:
     )
     key = cache.add(atoms, json_encoder=MyEncoder)
 
-    atoms2: "ase.Atoms" = cache[key]
+    atoms2: ase.Atoms = cache[key]
     assert len(atoms2) == 3
     assert atoms2.get_chemical_symbols() == ["H", "H", "O"]
     assert all(atoms2.positions[2] == (0, 0, 0))
     cache.clear()
 
 
-def test_add_bind(tmp_path: "Path") -> None:
+def test_add_bind(tmp_path: Path) -> None:
     """Test the `bind` argument to DataCache.add()."""
     from oteapi.datacache import DataCache
 

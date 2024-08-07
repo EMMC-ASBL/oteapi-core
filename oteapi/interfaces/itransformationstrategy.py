@@ -1,5 +1,7 @@
 """Tranformation Strategy Interface"""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol
 
@@ -11,9 +13,9 @@ if TYPE_CHECKING:  # pragma: no cover
 class ITransformationStrategy(Protocol):
     """Transformation Strategy Interface."""
 
-    transformation_config: "TransformationConfig"
+    transformation_config: TransformationConfig
 
-    def status(self, task_id: str) -> "TransformationStatus":
+    def status(self, task_id: str) -> TransformationStatus:
         """Get job status.
 
         Parameters:
@@ -25,7 +27,7 @@ class ITransformationStrategy(Protocol):
 
         """
 
-    def get(self) -> "AttrDict":
+    def get(self) -> AttrDict:
         """Execute the strategy i.e. running a transformation job.
 
         Returns:
@@ -34,7 +36,7 @@ class ITransformationStrategy(Protocol):
 
         """
 
-    def initialize(self) -> "AttrDict":
+    def initialize(self) -> AttrDict:
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API

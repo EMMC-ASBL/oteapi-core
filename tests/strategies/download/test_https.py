@@ -1,5 +1,7 @@
 """Tests the download strategy for 'https://' and 'http://'."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -11,7 +13,7 @@ if TYPE_CHECKING:
 
 
 @pytest.mark.parametrize(
-    "scheme,mediaType,filename",
+    ("scheme", "mediaType", "filename"),
     [
         ("http", "image/jpeg", "sample_1280_853.jpeg"),
         ("https", "image/jpeg", "sample_1280_853.jpeg"),
@@ -24,8 +26,8 @@ def test_https(
     scheme: str,
     mediaType: str,
     filename: str,
-    static_files: "Path",
-    requests_mock: "Mocker",
+    static_files: Path,
+    requests_mock: Mocker,
 ) -> None:
     """Test `https.py` download strategy by mocking downloads and comparing data mock
     downloaded from local copies with data obtained from simply opening them

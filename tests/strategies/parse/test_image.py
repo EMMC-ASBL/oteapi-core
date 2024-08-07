@@ -1,12 +1,14 @@
 """Test the image formats in the image parse strategy."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
-    from typing import Optional, Tuple
+    from typing import Optional
 
 
 image_formats = [
@@ -52,17 +54,17 @@ image_formats = [
 
 
 @pytest.mark.parametrize(
-    "image_format,filename,filename_cropped,crop,cropped_size",
+    ("image_format", "filename", "filename_cropped", "crop", "cropped_size"),
     image_formats,
     ids=[_[0] for _ in image_formats[:-1]] + [f"{image_formats[-1][0]}-no crop"],
 )
 def test_image(
     image_format: str,
     filename: str,
-    filename_cropped: "Optional[str]",
-    crop: "Optional[Tuple[int, int, int, int]]",
-    cropped_size: "Optional[Tuple[int, int]]",
-    static_files: "Path",
+    filename_cropped: Optional[str],
+    crop: Optional[tuple[int, int, int, int]],
+    cropped_size: Optional[tuple[int, int]],
+    static_files: Path,
 ) -> None:
     """Test parsing an image format."""
     import numpy as np
@@ -152,7 +154,7 @@ def test_image(
 
 @pytest.mark.parametrize("crop", [None, (100, 50, 450, 300)], ids=["no crop", "crop"])
 def test_initialize_returns_nothing(
-    crop: "Optional[tuple[int, int, int, int]]",
+    crop: Optional[tuple[int, int, int, int]],
 ) -> None:
     """Assert that the initialize method returns nothing."""
     from oteapi.models.genericconfig import AttrDict

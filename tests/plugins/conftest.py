@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
-@pytest.fixture
+@pytest.fixture()
 def get_local_strategies() -> Callable[[str], tuple[EntryPoint, ...]]:
     """Retrieve all entry points for strategy type from oteapi-core."""
     import sys
@@ -64,8 +64,8 @@ def get_local_strategies() -> Callable[[str], tuple[EntryPoint, ...]]:
     return _get_local_strategies
 
 
-@pytest.fixture
-def load_test_strategies(
+@pytest.fixture()
+def _load_test_strategies(
     create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
     mock_importlib_entry_points: MockEntryPoints,
 ) -> None:
@@ -95,7 +95,7 @@ oteapi.transformation =
     load_strategies()
 
 
-@pytest.fixture
+@pytest.fixture()
 def get_strategy_config() -> Callable[[StrategyType | str], type[StrategyConfig]]:
     """Get the strategy configuration model class."""
     from oteapi.models import (

@@ -1,5 +1,7 @@
 """Test mapping strategy."""
 
+from __future__ import annotations
+
 
 def test_mapping() -> None:
     """Test mapping strategy."""

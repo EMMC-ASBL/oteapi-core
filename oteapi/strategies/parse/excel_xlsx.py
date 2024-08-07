@@ -1,7 +1,9 @@
 """Strategy class for workbook/xlsx."""
 
+from __future__ import annotations
+
 import sys
-from typing import TYPE_CHECKING, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Optional, Union
 
 if sys.version_info >= (3, 10):
     from typing import Literal
@@ -28,7 +30,7 @@ from oteapi.models.resourceconfig import HostlessAnyUrl
 class XLSXParseContent(AttrDict):
     """Class for returning values from XLSXParse."""
 
-    data: Dict[str, list] = Field(
+    data: dict[str, list] = Field(
         ...,
         description="A dict with column-name/column-value pairs. The values are lists.",
     )
@@ -78,14 +80,14 @@ class XLSXParseConfig(AttrDict):
             "otherwise `None`."
         ),
     )
-    header: Optional[List[str]] = Field(
+    header: Optional[list[str]] = Field(
         None,
         description=(
             "Optional list of column names, specifying the columns to return. "
             "These names they should match cells in `header_row`."
         ),
     )
-    new_header: Optional[List[str]] = Field(
+    new_header: Optional[list[str]] = Field(
         None,
         description=(
             "Optional list of new column names replacing `header` in the output."
@@ -116,7 +118,7 @@ class XLSXParseParserConfig(ParserConfig):
     )
 
 
-def set_model_defaults(model: XLSXParseConfig, worksheet: "Worksheet") -> None:
+def set_model_defaults(model: XLSXParseConfig, worksheet: Worksheet) -> None:
     """Update data model `model` with default values obtained from `worksheet`.
 
     Parameters:
@@ -148,9 +150,7 @@ def set_model_defaults(model: XLSXParseConfig, worksheet: "Worksheet") -> None:
         model.header_row = 1
 
 
-def get_column_indices(
-    model: XLSXParseConfig, worksheet: "Worksheet"
-) -> "Iterable[int]":
+def get_column_indices(model: XLSXParseConfig, worksheet: Worksheet) -> Iterable[int]:
     """Helper function returning a list of column indices.
 
     Parameters:
@@ -263,6 +263,4 @@ class XLSXParseStrategy:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
         transposed = [list(datum) for datum in zip(*data)]
-        return XLSXParseContent(
-            data={key: value for key, value in zip(header, transposed)}
-        )
+        return XLSXParseContent(data=dict(zip(header, transposed)))

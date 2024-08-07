@@ -1,5 +1,7 @@
 """Generic data model for configuration attributes."""
 
+from __future__ import annotations
+
 import warnings
 from collections.abc import Iterable, Mapping, MutableMapping
 from typing import TYPE_CHECKING
@@ -8,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from pydantic.fields import PydanticUndefined
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Optional, Tuple, Union
+    from typing import Any, Optional, Union
 
 
 class AttrDict(BaseModel, MutableMapping):
@@ -44,7 +46,7 @@ class AttrDict(BaseModel, MutableMapping):
         return len(self.model_dump())
 
     # Mapping methods
-    def __getitem__(self, key: "Any") -> "Any":
+    def __getitem__(self, key: Any) -> Any:
         if not isinstance(key, str):
             raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
         try:
@@ -61,7 +63,7 @@ class AttrDict(BaseModel, MutableMapping):
     def values(self):
         return self.model_dump().values()
 
-    def get(self, key: str, default: "Optional[Any]" = None) -> "Any":
+    def get(self, key: str, default: Optional[Any] = None) -> Any:
         return getattr(self, key, default)
 
     def __eq__(self, value: object) -> bool:
@@ -72,7 +74,7 @@ class AttrDict(BaseModel, MutableMapping):
         return False
 
     # MutableMapping methods
-    def __setitem__(self, key: "Any", value: "Any") -> None:
+    def __setitem__(self, key: Any, value: Any) -> None:
         if not isinstance(key, str):
             raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
         try:
@@ -80,11 +82,12 @@ class AttrDict(BaseModel, MutableMapping):
         except AttributeError as exc:
             raise KeyError(key) from exc
 
-    def __delitem__(self, key: "Any") -> None:
+    def __delitem__(self, key: Any) -> None:
         warnings.warn(
             "Item deletion used to reset fields to their default values. To keep using"
             " this functionality, use the `reset_field()` method.",
             DeprecationWarning,
+            stacklevel=2,
         )
 
         if not isinstance(key, str):
@@ -107,7 +110,7 @@ class AttrDict(BaseModel, MutableMapping):
 
     def update(  # type: ignore[override]
         self,
-        other: "Optional[Union[Mapping[str, Any], Iterable[tuple[str, Any]]]]" = None,
+        other: Optional[Union[Mapping[str, Any], Iterable[tuple[str, Any]]]] = None,
         **kwargs,
     ) -> None:
         if other and isinstance(other, Mapping):
@@ -137,7 +140,7 @@ class AttrDict(BaseModel, MutableMapping):
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-    def pop(self, key: str, default: "Optional[Any]" = PydanticUndefined) -> "Any":
+    def pop(self, key: str, default: Optional[Any] = PydanticUndefined) -> Any:
         value = self.get(key, default)
         if value == PydanticUndefined:
             raise KeyError(key)
@@ -149,7 +152,7 @@ class AttrDict(BaseModel, MutableMapping):
                 del self[key]
         return value
 
-    def popitem(self) -> "Tuple[str, Any]":
+    def popitem(self) -> tuple[str, Any]:
         """MutableMapping `popitem`-method.
 
         Important:

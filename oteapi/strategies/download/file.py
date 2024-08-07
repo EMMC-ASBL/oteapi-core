@@ -1,5 +1,7 @@
 """Download strategy class for the `file` scheme."""
 
+from __future__ import annotations
+
 from typing import Optional
 
 from pydantic import Field, FileUrl, field_validator

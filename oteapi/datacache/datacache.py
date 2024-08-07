@@ -13,6 +13,8 @@ Features:
 
 """
 
+from __future__ import annotations
+
 import hashlib
 import json
 import tempfile
@@ -27,14 +29,14 @@ from oteapi.models import AttrDict, DataCacheConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from typing import Any, Dict, Optional, Type, Union
+    from typing import Any, Optional, Union
 
 
 def gethash(
-    value: "Any",
+    value: Any,
     hashtype: str = "sha256",
     encoding: str = "utf-8",
-    json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
+    json_encoder: Optional[type[json.JSONEncoder]] = None,
 ) -> str:
     """Return a hash of `value`.
 
@@ -55,10 +57,7 @@ def gethash(
     """
     hash_ = hashlib.new(hashtype)
 
-    if isinstance(value, str):
-        data = value.encode(encoding)
-    else:
-        data = value
+    data = value.encode(encoding) if isinstance(value, str) else value
 
     try:
         hash_.update(data)
@@ -98,8 +97,8 @@ class DataCache:
 
     def __init__(
         self,
-        config: "Optional[Union[DataCacheConfig, Dict[str, Any]]]" = None,
-        cache_dir: "Optional[Union[Path, str]]" = None,
+        config: Optional[Union[DataCacheConfig, dict[str, Any]]] = None,
+        cache_dir: Optional[Union[Path, str]] = None,
     ) -> None:
         if config is None:
             self.config = DataCacheConfig()
@@ -130,7 +129,7 @@ class DataCache:
     def __len__(self) -> int:
         return len(self.diskcache)
 
-    def __getitem__(self, key) -> "Any":
+    def __getitem__(self, key) -> Any:
         return self.get(key)
 
     def __setitem__(self, key, value) -> None:
@@ -145,12 +144,12 @@ class DataCache:
 
     def add(
         self,
-        value: "Any",
-        key: "Optional[str]" = None,
-        expire: "Optional[int]" = None,
-        tag: "Optional[str]" = None,
-        bind: "Any" = None,
-        json_encoder: "Optional[Type[json.JSONEncoder]]" = None,
+        value: Any,
+        key: Optional[str] = None,
+        expire: Optional[int] = None,
+        tag: Optional[str] = None,
+        bind: Any = None,
+        json_encoder: Optional[type[json.JSONEncoder]] = None,
     ) -> str:
         """Add a value to cache.
 
@@ -207,7 +206,7 @@ class DataCache:
         )
         return key
 
-    def get(self, key: str) -> "Any":
+    def get(self, key: str) -> Any:
         """Return the value corresponding to `key`.
 
         Args:
@@ -226,11 +225,11 @@ class DataCache:
         self,
         key: str,
         delete: bool = True,
-        filename: "Optional[Union[Path, str]]" = None,
-        prefix: "Optional[str]" = None,
-        suffix: "Optional[str]" = None,
-        directory: "Optional[str]" = None,
-    ) -> "Iterator[Path]":
+        filename: Optional[Union[Path, str]] = None,
+        prefix: Optional[str] = None,
+        suffix: Optional[str] = None,
+        directory: Optional[str] = None,
+    ) -> Iterator[Path]:
         """Write the value for `key` to file and return the filename.
 
         The file is created in the default directory for temporary

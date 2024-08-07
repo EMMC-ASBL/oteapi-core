@@ -193,7 +193,7 @@ oteapi.parse =
     )
     assert ("download", "file", "test") not in collection
     assert ("download",) not in collection
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError):  # noqa: PT011
         StrategyType("test")
     assert ("test", "file") not in collection
 

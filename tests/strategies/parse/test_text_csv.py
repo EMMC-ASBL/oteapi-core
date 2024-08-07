@@ -1,12 +1,14 @@
 """Tests the parse strategy for CSV."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
-    from typing import Any, Type
+    from typing import Any
 
 
 csv_sample_files = [
@@ -64,16 +66,16 @@ csv_sample_files = [
 
 
 @pytest.mark.parametrize(
-    "sample_filename,extra_config,headers,types",
+    ("sample_filename", "extra_config", "headers", "types"),
     csv_sample_files,
     ids=[_[0].split(".csv", maxsplit=1)[0] for _ in csv_sample_files],
 )
 def test_csv(
-    static_files: "Path",
+    static_files: Path,
     sample_filename: str,
-    extra_config: "dict[str, Any]",
+    extra_config: dict[str, Any],
     headers: list[str],
-    types: "list[Type]",
+    types: list[type],
 ) -> None:
     """Test `parser/csv` parse strategy on local file."""
     import csv
@@ -106,7 +108,7 @@ def test_csv(
     if "quoting" in kwargs:
         kwargs["quoting"] = getattr(csv, kwargs["quoting"])
 
-    with open(sample_file, newline="", encoding="utf8") as handle:
+    with sample_file.open(newline="", encoding="utf8") as handle:
         test_data = csv.DictReader(handle, **kwargs)
 
         assert list(parsed_content.keys()) == test_data.fieldnames == headers
@@ -128,7 +130,7 @@ def test_csv(
                     index
                 ] != parser.parse_config.configuration.reader.restval and (
                     (row[field] or row[field] == 0.0 or row[field] == 0)
-                    and row[field] != kwargs.get("restval", None)
+                    and row[field] != kwargs.get("restval")
                 ):
                     assert (
                         types[types_index](row[field]) == parsed_content[field][index]

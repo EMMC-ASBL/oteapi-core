@@ -1,12 +1,13 @@
 """Tests the parse strategy for SQLite."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
-    from typing import Tuple
 
 
 sqlite_queries = [
@@ -38,12 +39,12 @@ sqlite_queries = [
 
 
 @pytest.mark.parametrize(
-    "query,expected", sqlite_queries, ids=["configuration", "session"]
+    ("query", "expected"), sqlite_queries, ids=["configuration", "session"]
 )
 def test_sqlite(
     query: str,
-    expected: "Tuple[int, str, str, str, str, str, int]",
-    static_files: "Path",
+    expected: tuple[int, str, str, str, str, str, int],
+    static_files: Path,
 ) -> None:
     """Test `application/vnd.sqlite3` parse strategy on a local SQLite DB.
 

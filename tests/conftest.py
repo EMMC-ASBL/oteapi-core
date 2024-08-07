@@ -20,8 +20,8 @@ if TYPE_CHECKING:
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
-@pytest.fixture
-def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPoints":
+@pytest.fixture()
+def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> MockEntryPoints:
     """Mock `importlib.metadata.entry_points()` to return a specific set of entry
     points.
 
@@ -68,12 +68,15 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
                         "The entry_point dicts must include the keys 'name', 'value', "
                         f"and 'group'. Checked entry_point dict: {entry_point}"
                     )
-                entry_point = EntryPoint(**entry_point)
-            elif not isinstance(entry_point, EntryPoint):
+                load_entry_points.append(EntryPoint(**entry_point))
+                continue
+
+            if not isinstance(entry_point, EntryPoint):
                 raise TypeError(
                     "entry_points must be either an iterable of "
-                    "`importlib.metadata.EntryPoint`s (an `importlib.metadata.EntryPoints`) "
-                    f"or dicts. Got an entry point of type {type(entry_point)}."
+                    "`importlib.metadata.EntryPoint`s (an "
+                    "`importlib.metadata.EntryPoints`) or dicts. Got an entry point "
+                    f"of type {type(entry_point)}."
                 )
 
             load_entry_points.append(entry_point)
@@ -91,7 +94,7 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> "MockEntryPo
     return _mock_entry_points
 
 
-@pytest.fixture
+@pytest.fixture()
 def create_importlib_entry_points() -> Callable[[str], tuple[EntryPoint, ...]]:
     """Generate `importlib.metadata.EntryPoint`s from a parsed `setup.cfg` file's
     `[options.entry_points]` group.
@@ -182,7 +185,7 @@ def create_importlib_entry_points() -> Callable[[str], tuple[EntryPoint, ...]]:
 
 
 @pytest.fixture(scope="session")
-def static_files() -> "Path":
+def static_files() -> Path:
     """Path to `static` folder containing static test files."""
     from pathlib import Path
 
@@ -190,7 +193,7 @@ def static_files() -> "Path":
 
 
 @pytest.fixture(autouse=True)
-def add_mock_strategies_to_path() -> None:
+def _add_mock_strategies_to_path() -> None:
     """Add test strategies to global PATH."""
     import sys
     from pathlib import Path
