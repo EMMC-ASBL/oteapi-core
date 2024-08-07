@@ -45,6 +45,7 @@ class JSONParserConfig(ParserConfig):
         "parser/json",
         description=ParserConfig.model_fields["parserType"].description,
     )
+
     configuration: JSONConfig = Field(
         ..., description="JSON parse strategy-specific configuration."
     )
