@@ -11,7 +11,7 @@ on:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.8.0
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.8.1
     with:
       # pre-commit
       run_pre-commit: true
