@@ -65,7 +65,7 @@ def get_local_strategies() -> Callable[[str], tuple[EntryPoint, ...]]:
 
 
 @pytest.fixture
-def load_test_strategies(
+def _load_test_strategies(
     create_importlib_entry_points: Callable[[str], tuple[EntryPoint, ...]],
     mock_importlib_entry_points: MockEntryPoints,
 ) -> None:

@@ -1,5 +1,7 @@
 """Tests for `oteapi.models.resourceconfig`"""
 
+from __future__ import annotations
+
 import pytest
 
 

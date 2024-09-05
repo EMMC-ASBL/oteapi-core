@@ -1,5 +1,7 @@
 """Pydantic TripleStore Configuration Data Model."""
 
+from __future__ import annotations
+
 from typing import Annotated, Optional
 
 from pydantic import Field, model_validator
@@ -40,7 +42,7 @@ class TripleStoreConfig(GenericConfig, SecretConfig):
     ] = SecretConfig.model_fields["client_secret"].default
 
     @model_validator(mode="after")
-    def ensure_user_pass(self) -> "TripleStoreConfig":
+    def ensure_user_pass(self) -> TripleStoreConfig:
         """Ensure that user/password are set, since they are optional in the
         SecretConfig."""
         if not all(getattr(self, _) for _ in ["user", "password"]):

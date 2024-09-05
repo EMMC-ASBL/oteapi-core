@@ -1,7 +1,9 @@
 """Demo-filter strategy"""
 
+from __future__ import annotations
+
 import sys
-from typing import Optional, Tuple
+from typing import Optional
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -17,7 +19,7 @@ else:
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Optional[Tuple[int, int, int, int]] = Field(
+    crop: Optional[tuple[int, int, int, int]] = Field(
         None, description="Box cropping parameters (left, top, right, bottom)."
     )
 
@@ -37,7 +39,7 @@ class CropImageFilterConfig(FilterConfig):
 class CropFilterContent(AttrDict):
     """Return model for `CropImageFilter`."""
 
-    imagecrop: Tuple[int, int, int, int] = Field(
+    imagecrop: tuple[int, int, int, int] = Field(
         ..., description="Box cropping parameters (left, top, right, bottom)."
     )
 

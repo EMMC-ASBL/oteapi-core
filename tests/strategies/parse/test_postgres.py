@@ -1,5 +1,7 @@
 """Tests the parse strategy for SQLite."""
 
+from __future__ import annotations
+
 import pytest
 
 sqlite_queries = [
@@ -31,7 +33,7 @@ sqlite_queries = [
 
 
 @pytest.mark.parametrize(
-    "query,expected",
+    ("query", "expected"),
     sqlite_queries,
     ids=["user_id=19", "user_id=72"],
 )
@@ -64,7 +66,7 @@ def test_postgres(
             return
 
     # Mock the psycopg.connect method
-    def mock_connect(connect_str: str) -> MockPsycopg:
+    def mock_connect(connect_str: str) -> MockPsycopg:  # noqa: ARG001
         return MockPsycopg()
 
     monkeypatch.setattr(psycopg, "connect", mock_connect)

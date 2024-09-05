@@ -1,5 +1,7 @@
 """Resource Strategy Interface"""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Protocol
 
@@ -11,9 +13,9 @@ if TYPE_CHECKING:  # pragma: no cover
 class IResourceStrategy(Protocol):
     """Resource Strategy Interface."""
 
-    resource_config: "ResourceConfig"
+    resource_config: ResourceConfig
 
-    def get(self) -> "AttrDict":
+    def get(self) -> AttrDict:
         """Execute the strategy.
 
         Returns:
@@ -22,7 +24,7 @@ class IResourceStrategy(Protocol):
 
         """
 
-    def initialize(self) -> "AttrDict":
+    def initialize(self) -> AttrDict:
         """Initialize data class.
 
         This method will be called through the `/initialize` endpoint of the OTE-API

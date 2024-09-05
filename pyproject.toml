@@ -137,3 +137,40 @@ filterwarnings = [
     # but we don't want to fail the tests locally if a known_hosts file is missing
     "ignore:.*Failed to load HostKeys.*:UserWarning",
 ]
+
+[tool.ruff.lint]
+extend-select = [
+  "E",  # pycodestyle
+  "F",  # pyflakes
+  "B",  # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "I",  # isort
+  "ARG",  # flake8-unused-arguments
+  "C4",  # flake8-comprehensions
+  "ICN",  # flake8-import-conventions
+  "G",  # flake8-logging-format
+  "PGH",  # pygrep-hooks
+  "PIE",  # flake8-pie
+  "PL",  # pylint
+  "PT",  # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "RET",  # flake8-return
+  "RUF",  # Ruff-specific
+  "SIM",  # flake8-simplify
+  "T20",  # flake8-print
+  "YTT",  # flake8-2020
+  "EXE",  # flake8-executable
+  "PYI",  # flake8-pyi
+]
+ignore = [
+  "PLR",  # Design related pylint codes
+]
+isort.required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "B018",  # Useless attribute access
+    "B015",  # Pointless comparison
+    "BLE",  # flake8-blind-except
+    "T201",  # flake8-print
+]

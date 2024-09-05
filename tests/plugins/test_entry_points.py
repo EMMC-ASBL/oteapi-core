@@ -50,7 +50,7 @@ def test_incorrect_strategy_type() -> None:
 
     invalid_strategy_type = "test"
 
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError):  # noqa: PT011
         StrategyType(invalid_strategy_type)
 
     with pytest.raises(
@@ -123,7 +123,7 @@ def test_strategytype_methods() -> None:
         assert strategy == StrategyType.init(strategy_name)
         assert strategy == StrategyType.init(strategy)
 
-        with pytest.raises(ValueError):
+        with pytest.raises(ValueError):  # noqa: PT011
             StrategyType(strategy_type)
 
     assert set(expected_values.keys()) == set(StrategyType.all_values())
@@ -171,7 +171,7 @@ def test_eval_custom_classes() -> None:
 
 
 @pytest.mark.parametrize(
-    "enforce_uniqueness", (True, False), ids=("uniqueness", "no uniqueness")
+    "enforce_uniqueness", [True, False], ids=("uniqueness", "no uniqueness")
 )
 def test_duplicate_entry_points(
     mock_importlib_entry_points: MockEntryPoints,

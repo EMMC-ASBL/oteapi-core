@@ -10,6 +10,8 @@ Features:
 
 """
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from franz.miniclient.request import RequestError
@@ -22,7 +24,7 @@ from oteapi.models import AttrDict, TripleStoreConfig
 from oteapi.models.mappingconfig import RDFTriple
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Dict, Union
+    from typing import Any, Union
 
 
 class TripleStore:
@@ -45,7 +47,7 @@ class TripleStore:
 
     def __init__(
         self,
-        config: "Union[TripleStoreConfig, Dict[str, Any]]",
+        config: Union[TripleStoreConfig, dict[str, Any]],
     ) -> None:
         if isinstance(config, (dict, AttrDict)):
             self.config = TripleStoreConfig(**config)
@@ -76,12 +78,12 @@ class TripleStore:
             host=self.config.agraphHost,
             port=self.config.agraphPort,
             user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
-            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # noqa: E501
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]
         ) as connection:
             connection.addData(triples)
             connection.close()
 
-    def get(self, sparql_query: str) -> "Any":
+    def get(self, sparql_query: str) -> Any:
         """Return the query result.
 
         Args:
@@ -129,7 +131,7 @@ class TripleStore:
             host=self.config.agraphHost,
             port=self.config.agraphPort,
             user=self.config.user.get_secret_value(),  # type: ignore [union-attr]
-            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]  # noqa: E501
+            password=self.config.password.get_secret_value(),  # type: ignore [union-attr]
         ) as connection:
             update_query = connection.prepareUpdate(query=sparql_query)
             update_query.evaluate()

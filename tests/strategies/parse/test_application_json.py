@@ -1,12 +1,14 @@
 """Tests the parse strategy for JSON."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pathlib import Path
 
 
-def test_json(static_files: "Path") -> None:
+def test_json(static_files: Path) -> None:
     """Test `application/json` parse strategy on local file."""
     import json
 

@@ -5,7 +5,7 @@ ci:
 
       For more information, see https://pre-commit.ci
   autofix_prs: false
-  autoupdate_branch: 'main'
+  autoupdate_branch: 'master'
   autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
   autoupdate_schedule: 'weekly'
   skip: []
@@ -13,6 +13,9 @@ ci:
 
 # hooks
 repos:
+  # pre-commit-hooks supplies a multitude of small hooks
+  # To get an overview of them all as well as the ones used here, please see
+  # https://github.com/pre-commit/pre-commit-hooks#hooks-available
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
@@ -26,24 +29,38 @@ repos:
     - id: trailing-whitespace
       exclude: ^tests/static/.*$
       args: [--markdown-linebreak-ext=md]
+    - id: mixed-line-ending
+      exclude: ^CHANGELOG.md$
+    - id: name-tests-test
+      args: ["--pytest-test-first"]
+      exclude: ^tests/static/.*$
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2
-    hooks:
-    - id: isort
-      args: ["--profile", "black", "--filter-files", "--skip-gitignore"]
-
+  # Black is a code style and formatter
+  # It works on files in-place
   - repo: https://github.com/psf/black
     rev: 24.8.0
     hooks:
     - id: black
 
+  # Ruff is a code style and formatter
+  # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.3
     hooks:
     - id: ruff
-      args: ["--fix", "--exit-non-zero-on-fix"]
+      args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
 
+  # Pyupgrade is a code upgrade tool
+  # It works on files in-place
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.17.0
+    hooks:
+    - id: pyupgrade
+      args: [--py39-plus, --keep-runtime-typing]
+
+  # Bandit is a security linter
+  # More information can be found in its documentation:
+  # https://bandit.readthedocs.io/en/latest/
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.9
     hooks:
@@ -51,6 +68,11 @@ repos:
       args: ["-r"]
       files: ^oteapi/.*$
 
+  # mypy is a static typing linter
+  # The main code repository can be found at:
+  # https://github.com/python/mypy
+  # The project's documentation can be found at:
+  # https://mypy.readthedocs.io/en/stable/index.html
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.11.2
     hooks:
@@ -60,6 +82,11 @@ repos:
       - "types-requests"
       - "pydantic>=2,<3"
 
+  # ci-cd is a collection of hooks to help with CI/CD
+  # The main code repository can be found at:
+  # https://github.com/SINTEF/ci-cd
+  # The project's documentation can be found at:
+  # https://SINTEF.github.io/ci-cd/
   - repo: https://github.com/SINTEF/ci-cd
     rev: v2.8.2
     hooks:

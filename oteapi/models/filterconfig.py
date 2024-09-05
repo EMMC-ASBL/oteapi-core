@@ -1,5 +1,7 @@
 """Pydantic Filter Configuration Data Model."""
 
+from __future__ import annotations
+
 from typing import Optional
 
 from pydantic import Field

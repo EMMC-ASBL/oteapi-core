@@ -1,5 +1,7 @@
 """Tests for `oteapi.models.functionconfig`"""
 
+from __future__ import annotations
+
 
 def test_functionconfig() -> None:
     """Pytest for FunctionConfig, mainly for testing the included secrets."""

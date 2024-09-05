@@ -1,5 +1,7 @@
 """Tests the transformation strategy for Celery."""
 
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 import pytest
@@ -8,13 +10,13 @@ if TYPE_CHECKING:
     from pytest_celery.api.setup import CeleryTestSetup
 
 
-@pytest.fixture()
-def skip_if_no_docker_or_windows() -> None:
+@pytest.fixture
+def _skip_if_no_docker_or_windows() -> None:
     """Skip a test if `docker` is not available."""
     import platform
     from subprocess import run
 
-    docker_exists = run(["docker", "--version"]).returncode == 0
+    docker_exists = run(["docker", "--version"], check=False).returncode == 0
 
     is_windows = platform.system() == "Windows"
 
@@ -22,9 +24,9 @@ def skip_if_no_docker_or_windows() -> None:
         pytest.skip("Docker is not available or using Windows!")
 
 
-@pytest.mark.usefixtures("skip_if_no_docker_or_windows")
+@pytest.mark.usefixtures("_skip_if_no_docker_or_windows")
 def test_celery_remote(
-    celery_setup: "CeleryTestSetup",
+    celery_setup: CeleryTestSetup,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Test `celery/remote` transformation strategy."""
