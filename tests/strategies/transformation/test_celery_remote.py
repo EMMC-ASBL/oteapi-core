@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from pytest_celery.api.setup import CeleryTestSetup
 
 
-@pytest.fixture()
+@pytest.fixture
 def _skip_if_no_docker_or_windows() -> None:
     """Skip a test if `docker` is not available."""
     import platform

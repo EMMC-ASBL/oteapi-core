@@ -20,7 +20,7 @@ if TYPE_CHECKING:
         configuration: CustomConfiguration
 
 
-@pytest.fixture()
+@pytest.fixture
 def generic_config() -> CustomConfig:
     """Return a usable `CustomConfig` for test purposes."""
     from pydantic import Field

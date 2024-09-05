@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
-@pytest.fixture()
+@pytest.fixture
 def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> MockEntryPoints:
     """Mock `importlib.metadata.entry_points()` to return a specific set of entry
     points.
@@ -94,7 +94,7 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> MockEntryPoi
     return _mock_entry_points
 
 
-@pytest.fixture()
+@pytest.fixture
 def create_importlib_entry_points() -> Callable[[str], tuple[EntryPoint, ...]]:
     """Generate `importlib.metadata.EntryPoint`s from a parsed `setup.cfg` file's
     `[options.entry_points]` group.
