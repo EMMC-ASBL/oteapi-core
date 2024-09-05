@@ -1,0 +1,7 @@
+nav:
+  - Home: index.md
+  - License: LICENSE.md
+  - Changelog: CHANGELOG.md
+  - all_models.md
+  - all_strategies.md
+  - ... | api_reference/**
