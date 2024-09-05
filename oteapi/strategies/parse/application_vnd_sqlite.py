@@ -16,8 +16,13 @@ from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.datacache import DataCache
-from oteapi.models import AttrDict, DataCacheConfig, ParserConfig, ResourceConfig
-from oteapi.models.resourceconfig import HostlessAnyUrl
+from oteapi.models import (
+    AttrDict,
+    DataCacheConfig,
+    HostlessAnyUrl,
+    ParserConfig,
+    ResourceConfig,
+)
 from oteapi.plugins import create_strategy
 
 
