@@ -534,9 +534,7 @@ a configuration object.</p>
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
@@ -568,7 +566,9 @@ a configuration object.</p>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TripleStoreConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TripleStoreConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;TripleStore Configuration.</span>
 
 <span class="sd">    This is a configuration for the</span>
@@ -597,7 +597,7 @@ a configuration object.</p>
     <span class="p">]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;client_secret&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span>
 
     <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">ensure_user_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TripleStoreConfig&quot;</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">ensure_user_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TripleStoreConfig</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure that user/password are set, since they are optional in the</span>
 <span class="sd">        SecretConfig.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">]):</span>
@@ -661,7 +661,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.client_id" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_id</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+            <code class="highlight language-python"><span class="n">client_id</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -681,7 +681,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.client_secret" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">client_secret</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_secret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+            <code class="highlight language-python"><span class="n">client_secret</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_secret&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;client_secret&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -721,7 +721,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.triplestoreconfig.TripleStoreConfig.token" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">token</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
+            <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="n">ExcludeTogglableSecretStr</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">SecretConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -754,14 +754,14 @@ SecretConfig.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">ensure_user_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;TripleStoreConfig&quot;</span><span class="p">:</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ensure_user_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TripleStoreConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure that user/password are set, since they are optional in the</span>
 <span class="sd">    SecretConfig.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">]):</span>

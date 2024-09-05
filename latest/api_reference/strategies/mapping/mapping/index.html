@@ -696,14 +696,14 @@ between data models.</p>
 <span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MappingStrategyConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;AttrDict model for mappings.&quot;&quot;&quot;</span>
 
-    <span class="n">prefixes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">prefixes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;Dictionary of shortnames that expands to an IRI &quot;</span>
             <span class="s2">&quot;given as local value/IRI-expansion-pairs.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">triples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">triples</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of semantic triples given as (subject, predicate, object).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
@@ -725,7 +725,7 @@ between data models.</p>
 
 
 <h3 id="oteapi.strategies.mapping.mapping.MappingStrategyConfig.prefixes" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">prefixes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Dictionary of shortnames that expands to an IRI given as local value/IRI-expansion-pairs.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">prefixes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Dictionary of shortnames that expands to an IRI given as local value/IRI-expansion-pairs.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -745,7 +745,7 @@ between data models.</p>
 
 
 <h3 id="oteapi.strategies.mapping.mapping.MappingStrategyConfig.triples" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">triples</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of semantic triples given as (subject, predicate, object).&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">triples</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">RDFTriple</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of semantic triples given as (subject, predicate, object).&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
