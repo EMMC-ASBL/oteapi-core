@@ -90,7 +90,7 @@ plugins:
             # Signatures/annotations options
             line_length: 88
   - awesome-pages
-  - autoref:
+  - autorefs:
       resolve_closest: true
 
 watch:
