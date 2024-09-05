@@ -30,6 +30,7 @@ jobs:
       update_docs: true
       python_version_docs: "3.9"
       doc_extras: "[docs]"
+      changelog_exclude_labels: "skip-changelog,duplicate,question,invalid,wontfix"
 
     secrets:
       PAT: ${{ secrets.RELEASE_PAT }}
