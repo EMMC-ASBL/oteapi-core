@@ -90,14 +90,8 @@ plugins:
             # Signatures/annotations options
             line_length: 88
   - awesome-pages
-
-nav:
-  - Home: index.md
-  - License: LICENSE.md
-  - Changelog: CHANGELOG.md
-  - all_models.md
-  - all_strategies.md
-  - ... | api_reference/**
+  - autorefs:
+      resolve_closest: true
 
 watch:
   - oteapi
