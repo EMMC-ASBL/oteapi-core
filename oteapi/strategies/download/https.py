@@ -142,6 +142,8 @@ class HTTPSStrategy:
                 headers=self.download_config.configuration.headers,
                 cookies=self.download_config.configuration.cookies,
                 params=self.download_config.configuration.query_parameters,
+                # No reason to check the method is correct for sending content (POST),
+                # since this is validated in the config model.
                 data=self.download_config.configuration.post_body,
                 json=self.download_config.configuration.post_body_json,
             )
