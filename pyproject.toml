@@ -40,7 +40,7 @@ dependencies = [
     "requests>=2.31.0,<3",
 
     # Follow issue EMMC-ASBL/oteapi-services#328 for more information
-    "urllib3<2",
+    "urllib3<3",
 ]
 
 [project.optional-dependencies]
