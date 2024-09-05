@@ -16,6 +16,7 @@ updates:
   target-branch: master
   labels:
     - CI/CD
+    - skip-changelog
   groups:
     python-dependencies:
       applies-to: version-updates
@@ -34,6 +35,7 @@ updates:
   target-branch: master
   labels:
     - CI/CD
+    - skip-changelog
 
 # For pydantic v1 support branch - Should be removed after this is no longer being
 # supported (end of 2023)
@@ -49,6 +51,7 @@ updates:
   labels:
     - CI/CD
     - pydantic-v1
+    - skip-changelog
   groups:
     python-dependencies-legacy:
       applies-to: version-updates
@@ -68,3 +71,4 @@ updates:
   labels:
     - CI/CD
     - pydantic-v1
+    - skip-changelog

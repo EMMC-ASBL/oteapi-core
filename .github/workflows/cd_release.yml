@@ -6,7 +6,7 @@ on:
     - published
 
 jobs:
-  publish:
+  build:
     name: External
     uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.8.2
     if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v')
@@ -23,12 +23,39 @@ jobs:
       install_extras: "[dev]"
       build_libs: "flit"
       build_cmd: "flit build"
-      publish_on_pypi: true
+      publish_on_pypi: false
+      upload_distribution: true
 
       # Documentation
       update_docs: true
       python_version_docs: "3.9"
       doc_extras: "[docs]"
+      changelog_exclude_labels: "skip-changelog,duplicate,question,invalid,wontfix"
+
     secrets:
-      PyPI_token: ${{ secrets.PYPI_TOKEN }}
       PAT: ${{ secrets.RELEASE_PAT }}
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+
+    # Using environments is recommended by PyPI when using Trusted Publishers
+    environment:
+      name: pypi
+      url: https://pypi.org/project/oteapi-core
+
+    # The id-token:write permission is required by the PyPI upload action for
+    # Trusted Publishers
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download distribution
+        uses: actions/download-artifact@v4
+        with:
+          name: dist  # The artifact will always be called 'dist'
+          path: dist
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

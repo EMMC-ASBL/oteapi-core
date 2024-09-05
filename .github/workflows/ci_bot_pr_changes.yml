@@ -1,0 +1,45 @@
+name: CI - Update [bot] PR
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches:
+      - 'master'
+
+jobs:
+  add_skip-changelog_label:
+    name: Add 'skip-changelog' label
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.user.type == 'Bot'
+
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
+    steps:
+    - name: Add 'skip-changelog' label
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const labels = await github.rest.issues.listLabelsOnIssue({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number
+          })
+
+          for (const label of labels.data) {
+            if (label.name === 'skip-changelog') {
+              console.log("Label 'skip-changelog' already exists 👌")
+              return  // Skip adding the label if it already exists
+            }
+          }
+
+          await github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            labels: ['skip-changelog']
+          })
+          console.log("Label 'skip-changelog' added 🎉")
