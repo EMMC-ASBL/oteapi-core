@@ -87,6 +87,8 @@ class HTTPSConfig(AttrDict):
                 "POST body is provided for a GET requests - it will be ignored.",
                 stacklevel=2,
             )
+            self.post_body = None
+            self.post_body_json = None
         if self.post_body and self.post_body_json:
             raise ValueError(
                 "Only one of post_body and post_body_json can be provided."
