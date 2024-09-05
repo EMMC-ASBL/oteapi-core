@@ -23,20 +23,22 @@ class SecretConfig(BaseModel):
     """Simple model for handling secret in other config-models."""
 
     user: Optional[TogglableSecretStr] = Field(
-        None, description="User name for authentication."
+        None,
+        description="User name for authentication.",
     )
     password: Optional[TogglableSecretStr] = Field(
-        None, description="Password for authentication."
+        None,
+        description="Password for authentication.",
     )
     token: Optional[TogglableSecretStr] = Field(
         None,
-        description=(
-            "An access token for providing access and meta data to an application."
-        ),
+        description="An access token for providing access and meta data to an application.",
     )
     client_id: Optional[TogglableSecretStr] = Field(
-        None, description="Client ID for an OAUTH2 client."
+        None,
+        description="Client ID for an OAUTH2 client.",
     )
     client_secret: Optional[TogglableSecretStr] = Field(
-        None, description="Client secret for an OAUTH2 client."
+        None,
+        description="Client secret for an OAUTH2 client.",
     )

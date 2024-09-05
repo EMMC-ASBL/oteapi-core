@@ -16,7 +16,10 @@ class DataCacheConfig(AttrDict):
     a configuration object.
     """
 
-    cacheDir: Path = Field(Path("oteapi"), description="Cache directory.")
+    cacheDir: Path = Field(
+        Path("oteapi"),
+        description="Cache directory.",
+    )
     accessKey: Optional[str] = Field(
         None,
         description="Key with which the downloaded content can be accessed. "
@@ -36,6 +39,5 @@ class DataCacheConfig(AttrDict):
     tag: Optional[str] = Field(
         None,
         description="Tag assigned to the downloaded content, typically "
-        "identifying a session. Used with the `evict()` method to clean up a "
-        "all cache entries with a given tag.",
+        "identifying a session. Used with the `evict()` method to clean up all cache entries with a given tag.",
     )
