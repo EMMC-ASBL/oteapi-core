@@ -25,6 +25,7 @@ jobs:
       update_docs_landing_page: true
       python_version: "3.9"
       doc_extras: "[docs]"
+      changelog_exclude_labels: "skip-changelog,duplicate,question,invalid,wontfix"
       full_docs_dirs: |
         models
         strategies/download
