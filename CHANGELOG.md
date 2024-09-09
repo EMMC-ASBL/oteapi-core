@@ -2,36 +2,60 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev2...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev3...HEAD)
+
+## Extend customization for `http(s)` download strategy
+
+The `http`/`https` download strategy now supports several strategy-specific configurations for customizing the HTTP request.
+
+### DX updates
+
+The CI/CD system has been overhauled, removing usage of the permanent dependencies branch and instead using dependabot's `groups` feature.
+Furthermore, Trusted Publishers for PyPI has been implemented.
+
+**Implemented enhancements:**
+
+- Support headers and more for download strategy [\#524](https://github.com/EMMC-ASBL/oteapi-core/issues/524)
+
+**Closed issues:**
+
+- Use Trusted Publishers from PyPI [\#526](https://github.com/EMMC-ASBL/oteapi-core/issues/526)
+
+## [v0.7.0.dev3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev3) (2024-09-05)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev2...v0.7.0.dev3)
+
+## Extend customization for `http(s)` download strategy
+
+The `http`/`https` download strategy now supports several strategy-specific configurations for customizing the HTTP request.
+
+### DX updates
+
+The CI/CD system has been overhauled, removing usage of the permanent dependencies branch and instead using dependabot's `groups` feature.
+Furthermore, Trusted Publishers for PyPI has been implemented.
+
+**Fixed bugs:**
+
+- pre-commit config should be updated to state `master` instead of `main` [\#469](https://github.com/EMMC-ASBL/oteapi-core/issues/469)
+
+**Merged pull requests:**
+
+- Use Trusted Publishers for PyPI [\#527](https://github.com/EMMC-ASBL/oteapi-core/pull/527) ([CasperWA](https://github.com/CasperWA))
+- Extend inputs for http/https download strategy [\#525](https://github.com/EMMC-ASBL/oteapi-core/pull/525) ([CasperWA](https://github.com/CasperWA))
+- Update dev tools and CI/CD workflows [\#497](https://github.com/EMMC-ASBL/oteapi-core/pull/497) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.7.0.dev2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev2) (2024-07-05)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev1...v0.7.0.dev2)
 
 **Closed issues:**
 
 - Update use of `importlib.metadata.entry_points` [\#395](https://github.com/EMMC-ASBL/oteapi-core/issues/395)
 
-## [v0.7.0.dev2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev2) (2024-07-04)
-
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev1...v0.7.0.dev2)
-
 **Merged pull requests:**
 
 - Expect `EntryPoints` from `importlib.metadata` [\#496](https://github.com/EMMC-ASBL/oteapi-core/pull/496) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#495](https://github.com/EMMC-ASBL/oteapi-core/pull/495) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#491](https://github.com/EMMC-ASBL/oteapi-core/pull/491) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#490](https://github.com/EMMC-ASBL/oteapi-core/pull/490) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#487](https://github.com/EMMC-ASBL/oteapi-core/pull/487) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#485](https://github.com/EMMC-ASBL/oteapi-core/pull/485) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#480](https://github.com/EMMC-ASBL/oteapi-core/pull/480) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#477](https://github.com/EMMC-ASBL/oteapi-core/pull/477) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#474](https://github.com/EMMC-ASBL/oteapi-core/pull/474) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#470](https://github.com/EMMC-ASBL/oteapi-core/pull/470) ([TEAM4-0](https://github.com/TEAM4-0))
 - \[pre-commit.ci\] pre-commit autoupdate [\#468](https://github.com/EMMC-ASBL/oteapi-core/pull/468) ([pre-commit-ci[bot]](https://github.com/apps/pre-commit-ci))
-- \[Auto-generated\] Update dependencies [\#463](https://github.com/EMMC-ASBL/oteapi-core/pull/463) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#460](https://github.com/EMMC-ASBL/oteapi-core/pull/460) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#457](https://github.com/EMMC-ASBL/oteapi-core/pull/457) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#454](https://github.com/EMMC-ASBL/oteapi-core/pull/454) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#452](https://github.com/EMMC-ASBL/oteapi-core/pull/452) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#447](https://github.com/EMMC-ASBL/oteapi-core/pull/447) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#446](https://github.com/EMMC-ASBL/oteapi-core/pull/446) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.7.0.dev1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev1) (2024-03-08)
 
@@ -39,7 +63,6 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#444](https://github.com/EMMC-ASBL/oteapi-core/pull/444) ([TEAM4-0](https://github.com/TEAM4-0))
 - Ensure config models are dumped safely [\#443](https://github.com/EMMC-ASBL/oteapi-core/pull/443) ([CasperWA](https://github.com/CasperWA))
 - Update resource/url strategy [\#440](https://github.com/EMMC-ASBL/oteapi-core/pull/440) ([CasperWA](https://github.com/CasperWA))
 
@@ -49,21 +72,7 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#439](https://github.com/EMMC-ASBL/oteapi-core/pull/439) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#435](https://github.com/EMMC-ASBL/oteapi-core/pull/435) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#431](https://github.com/EMMC-ASBL/oteapi-core/pull/431) ([TEAM4-0](https://github.com/TEAM4-0))
 - Major/410 session removal [\#429](https://github.com/EMMC-ASBL/oteapi-core/pull/429) ([Treesarj](https://github.com/Treesarj))
-- \[Auto-generated\] Update dependencies [\#422](https://github.com/EMMC-ASBL/oteapi-core/pull/422) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#417](https://github.com/EMMC-ASBL/oteapi-core/pull/417) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#414](https://github.com/EMMC-ASBL/oteapi-core/pull/414) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#413](https://github.com/EMMC-ASBL/oteapi-core/pull/413) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#409](https://github.com/EMMC-ASBL/oteapi-core/pull/409) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#407](https://github.com/EMMC-ASBL/oteapi-core/pull/407) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#405](https://github.com/EMMC-ASBL/oteapi-core/pull/405) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#403](https://github.com/EMMC-ASBL/oteapi-core/pull/403) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#394](https://github.com/EMMC-ASBL/oteapi-core/pull/394) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#392](https://github.com/EMMC-ASBL/oteapi-core/pull/392) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#391](https://github.com/EMMC-ASBL/oteapi-core/pull/391) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.6.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.6.1) (2023-11-14)
 
@@ -82,15 +91,10 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#385](https://github.com/EMMC-ASBL/oteapi-core/pull/385) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#381](https://github.com/EMMC-ASBL/oteapi-core/pull/381) ([TEAM4-0](https://github.com/TEAM4-0))
 - Add branch name extension for CI workflow [\#376](https://github.com/EMMC-ASBL/oteapi-core/pull/376) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#374](https://github.com/EMMC-ASBL/oteapi-core/pull/374) ([TEAM4-0](https://github.com/TEAM4-0))
 - Use `branch_name_extension` and auto-merge dependency PRs [\#369](https://github.com/EMMC-ASBL/oteapi-core/pull/369) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#366](https://github.com/EMMC-ASBL/oteapi-core/pull/366) ([TEAM4-0](https://github.com/TEAM4-0))
 - Fix workflow ignore rules key name [\#364](https://github.com/EMMC-ASBL/oteapi-core/pull/364) ([CasperWA](https://github.com/CasperWA))
 - Implement PEP 508 regex for package\_name [\#362](https://github.com/EMMC-ASBL/oteapi-core/pull/362) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#360](https://github.com/EMMC-ASBL/oteapi-core/pull/360) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.6.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.6.0) (2023-10-12)
 
@@ -108,9 +112,7 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#358](https://github.com/EMMC-ASBL/oteapi-core/pull/358) ([TEAM4-0](https://github.com/TEAM4-0))
 - Update README to include info about pydantic v1 vs v2 [\#353](https://github.com/EMMC-ASBL/oteapi-core/pull/353) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#352](https://github.com/EMMC-ASBL/oteapi-core/pull/352) ([TEAM4-0](https://github.com/TEAM4-0))
 - Update CI/CD workflows for updating dependencies [\#351](https://github.com/EMMC-ASBL/oteapi-core/pull/351) ([CasperWA](https://github.com/CasperWA))
 - Upgrade to pydantic v2 [\#330](https://github.com/EMMC-ASBL/oteapi-core/pull/330) ([CasperWA](https://github.com/CasperWA))
 
@@ -125,7 +127,6 @@
 **Merged pull requests:**
 
 - Revert pydantic 2 false support [\#343](https://github.com/EMMC-ASBL/oteapi-core/pull/343) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#342](https://github.com/EMMC-ASBL/oteapi-core/pull/342) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.5.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.1) (2023-09-22)
 
@@ -152,9 +153,7 @@
 - Support pydantic v1 & v2 [\#336](https://github.com/EMMC-ASBL/oteapi-core/pull/336) ([CasperWA](https://github.com/CasperWA))
 - Extend codecov uploads with strategies-specific flag [\#335](https://github.com/EMMC-ASBL/oteapi-core/pull/335) ([CasperWA](https://github.com/CasperWA))
 - Use flit instead of setuptools [\#334](https://github.com/EMMC-ASBL/oteapi-core/pull/334) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#333](https://github.com/EMMC-ASBL/oteapi-core/pull/333) ([TEAM4-0](https://github.com/TEAM4-0))
 - Use ruff instead of pylint [\#332](https://github.com/EMMC-ASBL/oteapi-core/pull/332) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#324](https://github.com/EMMC-ASBL/oteapi-core/pull/324) ([TEAM4-0](https://github.com/TEAM4-0))
 - Add strategies folders to CI/CD workflows docs update [\#323](https://github.com/EMMC-ASBL/oteapi-core/pull/323) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.5.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.5.0) (2023-09-12)
@@ -173,11 +172,9 @@
 **Merged pull requests:**
 
 - Added support for relative file paths [\#318](https://github.com/EMMC-ASBL/oteapi-core/pull/318) ([jesper-friis](https://github.com/jesper-friis))
-- \[Auto-generated\] Update dependencies [\#315](https://github.com/EMMC-ASBL/oteapi-core/pull/315) ([TEAM4-0](https://github.com/TEAM4-0))
 - Fully document strategies [\#313](https://github.com/EMMC-ASBL/oteapi-core/pull/313) ([CasperWA](https://github.com/CasperWA))
 - Update .pre-commit-config.yaml [\#307](https://github.com/EMMC-ASBL/oteapi-core/pull/307) ([Treesarj](https://github.com/Treesarj))
 - Introduce ParserConfig Model  [\#306](https://github.com/EMMC-ASBL/oteapi-core/pull/306) ([daniel-sintef](https://github.com/daniel-sintef))
-- \[Auto-generated\] Update dependencies [\#282](https://github.com/EMMC-ASBL/oteapi-core/pull/282) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.4.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.5) (2023-08-11)
 
@@ -186,8 +183,6 @@
 **Merged pull requests:**
 
 - update key in datacachewhen value is added as string [\#299](https://github.com/EMMC-ASBL/oteapi-core/pull/299) ([francescalb](https://github.com/francescalb))
-- \[Auto-generated\] Update dependencies [\#280](https://github.com/EMMC-ASBL/oteapi-core/pull/280) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#278](https://github.com/EMMC-ASBL/oteapi-core/pull/278) ([TEAM4-0](https://github.com/TEAM4-0))
 - Added DOI badge to readme [\#273](https://github.com/EMMC-ASBL/oteapi-core/pull/273) ([jesper-friis](https://github.com/jesper-friis))
 
 ## [v0.4.4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.4) (2023-05-24)
@@ -208,7 +203,6 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#272](https://github.com/EMMC-ASBL/oteapi-core/pull/272) ([TEAM4-0](https://github.com/TEAM4-0))
 - Use typing-extensions for Python \<= 3.9 [\#270](https://github.com/EMMC-ASBL/oteapi-core/pull/270) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.4.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.2) (2023-05-12)
@@ -232,14 +226,7 @@
 **Merged pull requests:**
 
 - Update to SINTEF/ci-cd v2 [\#266](https://github.com/EMMC-ASBL/oteapi-core/pull/266) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#264](https://github.com/EMMC-ASBL/oteapi-core/pull/264) ([TEAM4-0](https://github.com/TEAM4-0))
 - Pin urllib3 to v1.x [\#262](https://github.com/EMMC-ASBL/oteapi-core/pull/262) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#260](https://github.com/EMMC-ASBL/oteapi-core/pull/260) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#258](https://github.com/EMMC-ASBL/oteapi-core/pull/258) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#256](https://github.com/EMMC-ASBL/oteapi-core/pull/256) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#252](https://github.com/EMMC-ASBL/oteapi-core/pull/252) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#246](https://github.com/EMMC-ASBL/oteapi-core/pull/246) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#244](https://github.com/EMMC-ASBL/oteapi-core/pull/244) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.4.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.1) (2023-03-10)
 
@@ -247,11 +234,7 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#242](https://github.com/EMMC-ASBL/oteapi-core/pull/242) ([TEAM4-0](https://github.com/TEAM4-0))
 - Polish `celery/remote` transformation strategy [\#240](https://github.com/EMMC-ASBL/oteapi-core/pull/240) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#239](https://github.com/EMMC-ASBL/oteapi-core/pull/239) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#235](https://github.com/EMMC-ASBL/oteapi-core/pull/235) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#234](https://github.com/EMMC-ASBL/oteapi-core/pull/234) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.4.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.4.0) (2023-02-07)
 
@@ -269,8 +252,6 @@
 
 - Updated the interfaces and implementation of the transformation strat… [\#233](https://github.com/EMMC-ASBL/oteapi-core/pull/233) ([quaat](https://github.com/quaat))
 - Move pylint config file to pyproject.toml [\#230](https://github.com/EMMC-ASBL/oteapi-core/pull/230) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#228](https://github.com/EMMC-ASBL/oteapi-core/pull/228) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#226](https://github.com/EMMC-ASBL/oteapi-core/pull/226) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.3.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.3.0) (2023-01-24)
 
@@ -293,27 +274,14 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#223](https://github.com/EMMC-ASBL/oteapi-core/pull/223) ([TEAM4-0](https://github.com/TEAM4-0))
 - Enh/secrets json encoders [\#222](https://github.com/EMMC-ASBL/oteapi-core/pull/222) ([MBueschelberger](https://github.com/MBueschelberger))
-- \[Auto-generated\] Update dependencies [\#220](https://github.com/EMMC-ASBL/oteapi-core/pull/220) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#217](https://github.com/EMMC-ASBL/oteapi-core/pull/217) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#215](https://github.com/EMMC-ASBL/oteapi-core/pull/215) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#214](https://github.com/EMMC-ASBL/oteapi-core/pull/214) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#213](https://github.com/EMMC-ASBL/oteapi-core/pull/213) ([TEAM4-0](https://github.com/TEAM4-0))
 - add optional secret to functionconfig and resourceconfig [\#212](https://github.com/EMMC-ASBL/oteapi-core/pull/212) ([MBueschelberger](https://github.com/MBueschelberger))
 - Updated documentation of prefixes in MappingConfig [\#209](https://github.com/EMMC-ASBL/oteapi-core/pull/209) ([jesper-friis](https://github.com/jesper-friis))
 - Use SINTEF/ci-cd [\#206](https://github.com/EMMC-ASBL/oteapi-core/pull/206) ([CasperWA](https://github.com/CasperWA))
 - Revert removing `--strict` and fix docs build [\#204](https://github.com/EMMC-ASBL/oteapi-core/pull/204) ([CasperWA](https://github.com/CasperWA))
 - removed --strict option [\#202](https://github.com/EMMC-ASBL/oteapi-core/pull/202) ([daniel-sintef](https://github.com/daniel-sintef))
-- \[Auto-generated\] Update dependencies [\#199](https://github.com/EMMC-ASBL/oteapi-core/pull/199) ([TEAM4-0](https://github.com/TEAM4-0))
 - added a small clarification to the docs [\#198](https://github.com/EMMC-ASBL/oteapi-core/pull/198) ([daniel-sintef](https://github.com/daniel-sintef))
 - Use recursive option for pylint-tests CI [\#194](https://github.com/EMMC-ASBL/oteapi-core/pull/194) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#190](https://github.com/EMMC-ASBL/oteapi-core/pull/190) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#189](https://github.com/EMMC-ASBL/oteapi-core/pull/189) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#186](https://github.com/EMMC-ASBL/oteapi-core/pull/186) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#184](https://github.com/EMMC-ASBL/oteapi-core/pull/184) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#182](https://github.com/EMMC-ASBL/oteapi-core/pull/182) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#174](https://github.com/EMMC-ASBL/oteapi-core/pull/174) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.2.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.1) (2022-07-20)
 
@@ -326,7 +294,6 @@
 **Merged pull requests:**
 
 - Test and fix registered strategies [\#171](https://github.com/EMMC-ASBL/oteapi-core/pull/171) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#169](https://github.com/EMMC-ASBL/oteapi-core/pull/169) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.2.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.2.0) (2022-07-11)
 
@@ -346,12 +313,7 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#165](https://github.com/EMMC-ASBL/oteapi-core/pull/165) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#163](https://github.com/EMMC-ASBL/oteapi-core/pull/163) ([TEAM4-0](https://github.com/TEAM4-0))
 - CSV parse strategy [\#160](https://github.com/EMMC-ASBL/oteapi-core/pull/160) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#155](https://github.com/EMMC-ASBL/oteapi-core/pull/155) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#152](https://github.com/EMMC-ASBL/oteapi-core/pull/152) ([TEAM4-0](https://github.com/TEAM4-0))
-- \[Auto-generated\] Update dependencies [\#150](https://github.com/EMMC-ASBL/oteapi-core/pull/150) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.6) (2022-04-20)
 
@@ -367,13 +329,9 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#149](https://github.com/EMMC-ASBL/oteapi-core/pull/149) ([TEAM4-0](https://github.com/TEAM4-0))
 - Modify excel parse [\#148](https://github.com/EMMC-ASBL/oteapi-core/pull/148) ([daniel-sintef](https://github.com/daniel-sintef))
-- \[Auto-generated\] Update dependencies [\#147](https://github.com/EMMC-ASBL/oteapi-core/pull/147) ([TEAM4-0](https://github.com/TEAM4-0))
 - Fix deleting entries in AttrDict [\#144](https://github.com/EMMC-ASBL/oteapi-core/pull/144) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#142](https://github.com/EMMC-ASBL/oteapi-core/pull/142) ([TEAM4-0](https://github.com/TEAM4-0))
 - Added PR template with checklist for reviewers. [\#139](https://github.com/EMMC-ASBL/oteapi-core/pull/139) ([francescalb](https://github.com/francescalb))
-- \[Auto-generated\] Update dependencies [\#136](https://github.com/EMMC-ASBL/oteapi-core/pull/136) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.5) (2022-03-23)
 
@@ -391,7 +349,6 @@
 **Merged pull requests:**
 
 - Update README.md [\#134](https://github.com/EMMC-ASBL/oteapi-core/pull/134) ([quaat](https://github.com/quaat))
-- \[Auto-generated\] Update dependencies [\#130](https://github.com/EMMC-ASBL/oteapi-core/pull/130) ([TEAM4-0](https://github.com/TEAM4-0))
 - triplestore class which does add, delete/update and get mappings/triples [\#128](https://github.com/EMMC-ASBL/oteapi-core/pull/128) ([Treesarj](https://github.com/Treesarj))
 - Add links to badges in README [\#126](https://github.com/EMMC-ASBL/oteapi-core/pull/126) ([CasperWA](https://github.com/CasperWA))
 - Fix pydantic model type and default values [\#125](https://github.com/EMMC-ASBL/oteapi-core/pull/125) ([CasperWA](https://github.com/CasperWA))
@@ -426,7 +383,6 @@
 **Merged pull requests:**
 
 - Implement and test `pop()` and `popitem()` for AttrDict [\#119](https://github.com/EMMC-ASBL/oteapi-core/pull/119) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#116](https://github.com/EMMC-ASBL/oteapi-core/pull/116) ([TEAM4-0](https://github.com/TEAM4-0))
 - Allow to bind the lifetime of datacache values to the lifetime of the session [\#115](https://github.com/EMMC-ASBL/oteapi-core/pull/115) ([jesper-friis](https://github.com/jesper-friis))
 - Added mapping strategy [\#112](https://github.com/EMMC-ASBL/oteapi-core/pull/112) ([jesper-friis](https://github.com/jesper-friis))
 - Corrected the sql\_query\_filter. [\#110](https://github.com/EMMC-ASBL/oteapi-core/pull/110) ([jesper-friis](https://github.com/jesper-friis))
@@ -450,7 +406,6 @@
 
 - Update "ignore" statements [\#103](https://github.com/EMMC-ASBL/oteapi-core/pull/103) ([CasperWA](https://github.com/CasperWA))
 - Add test for AttrDict.update\(\) method [\#102](https://github.com/EMMC-ASBL/oteapi-core/pull/102) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#100](https://github.com/EMMC-ASBL/oteapi-core/pull/100) ([TEAM4-0](https://github.com/TEAM4-0))
 - Use `ID!` type instead of `String!` [\#97](https://github.com/EMMC-ASBL/oteapi-core/pull/97) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.1.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.1) (2022-02-24)
@@ -469,7 +424,6 @@
 **Merged pull requests:**
 
 - Update data cache invocation [\#94](https://github.com/EMMC-ASBL/oteapi-core/pull/94) ([CasperWA](https://github.com/CasperWA))
-- \[Auto-generated\] Update dependencies [\#92](https://github.com/EMMC-ASBL/oteapi-core/pull/92) ([TEAM4-0](https://github.com/TEAM4-0))
 
 ## [v0.1.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.1.0) (2022-02-22)
 
@@ -495,7 +449,6 @@
 
 - EntryPoint duplicity [\#87](https://github.com/EMMC-ASBL/oteapi-core/pull/87) ([CasperWA](https://github.com/CasperWA))
 - Added support for dumping numpy arrays to the datacache [\#83](https://github.com/EMMC-ASBL/oteapi-core/pull/83) ([jesper-friis](https://github.com/jesper-friis))
-- \[Auto-generated\] Update dependencies [\#82](https://github.com/EMMC-ASBL/oteapi-core/pull/82) ([TEAM4-0](https://github.com/TEAM4-0))
 - Pydantic dataclasses [\#81](https://github.com/EMMC-ASBL/oteapi-core/pull/81) ([CasperWA](https://github.com/CasperWA))
 - Made datacache accepting AttrDict configuration [\#70](https://github.com/EMMC-ASBL/oteapi-core/pull/70) ([jesper-friis](https://github.com/jesper-friis))
 
@@ -526,7 +479,6 @@
 - Sg/session update model [\#78](https://github.com/EMMC-ASBL/oteapi-core/pull/78) ([sygout](https://github.com/sygout))
 - New Function strategy [\#73](https://github.com/EMMC-ASBL/oteapi-core/pull/73) ([CasperWA](https://github.com/CasperWA))
 - Made ResourceConfig.configuration a dict [\#67](https://github.com/EMMC-ASBL/oteapi-core/pull/67) ([jesper-friis](https://github.com/jesper-friis))
-- \[Auto-generated\] Update dependencies [\#66](https://github.com/EMMC-ASBL/oteapi-core/pull/66) ([TEAM4-0](https://github.com/TEAM4-0))
 - Add some dictionary functionality to configuration models [\#53](https://github.com/EMMC-ASBL/oteapi-core/pull/53) ([TorgeirUstad](https://github.com/TorgeirUstad))
 - All new tests [\#35](https://github.com/EMMC-ASBL/oteapi-core/pull/35) ([TorgeirUstad](https://github.com/TorgeirUstad))
 
@@ -548,7 +500,6 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#56](https://github.com/EMMC-ASBL/oteapi-core/pull/56) ([TEAM4-0](https://github.com/TEAM4-0))
 - Add Windows pytest CI job [\#52](https://github.com/EMMC-ASBL/oteapi-core/pull/52) ([CasperWA](https://github.com/CasperWA))
 - Start implementing entry point logic [\#47](https://github.com/EMMC-ASBL/oteapi-core/pull/47) ([CasperWA](https://github.com/CasperWA))
 
@@ -574,7 +525,6 @@
 
 **Merged pull requests:**
 
-- \[Auto-generated\] Update dependencies [\#45](https://github.com/EMMC-ASBL/oteapi-core/pull/45) ([TEAM4-0](https://github.com/TEAM4-0))
 - Add pytest options to pyproject.toml [\#43](https://github.com/EMMC-ASBL/oteapi-core/pull/43) ([CasperWA](https://github.com/CasperWA))
 - Install the `dev` extra in publish workflow [\#41](https://github.com/EMMC-ASBL/oteapi-core/pull/41) ([CasperWA](https://github.com/CasperWA))
 - Use the updated @TEAM4-0 email address [\#39](https://github.com/EMMC-ASBL/oteapi-core/pull/39) ([CasperWA](https://github.com/CasperWA))
