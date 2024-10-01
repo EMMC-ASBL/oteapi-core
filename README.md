@@ -293,3 +293,4 @@ OTEAPI Core has been supported by the following projects:
 * **OpenModel** (2021-2025) receives funding from the European Union’s Horizon 2020 Research and Innovation Programme - DT-NMBP-11-2020 Open Innovation Platform for Materials Modelling, under Grant Agreement no: 953167.
 
 * **MatCHMaker** (2022-2026) receives funding from the European Union’s Horizon Europe Research and Innovation Programme, under Grant Agreement no: 101091687.
+
