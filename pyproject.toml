@@ -62,7 +62,7 @@ testing = [
     "requests-mock~=1.12",
 ]
 dev = [
-    "pre-commit~=3.8",
+    "pre-commit~=4.0",
     "oteapi-core[docs,testing]",
 ]
 
