@@ -114,20 +114,28 @@ jobs:
         pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: linux
+        env_vars: OS,PYTHON
+      env:
+        OS: Linux
+        PYTHON: ${{ matrix.python-version }}
 
     - name: Upload strategies coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: linux-strategies
+        env_vars: OS,PYTHON
+      env:
+        OS: Linux
+        PYTHON: ${{ matrix.python-version }}
 
   pytest-win:
     name: pytest (windows-py${{ matrix.python-version }})
@@ -167,17 +175,25 @@ jobs:
         pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
 
     - name: Upload coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: coverage.xml
         flags: windows
+        env_vars: OS,PYTHON
+      env:
+        OS: Windows
+        PYTHON: ${{ matrix.python-version }}
 
     - name: Upload strategies coverage to Codecov
-      if: matrix.python-version == '3.9' && github.repository == 'EMMC-ASBL/oteapi-core'
+      if: github.repository == 'EMMC-ASBL/oteapi-core'
       uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: strategies.xml
         flags: windows-strategies
+        env_vars: OS,PYTHON
+      env:
+        OS: Windows
+        PYTHON: ${{ matrix.python-version }}
