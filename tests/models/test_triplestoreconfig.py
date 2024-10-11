@@ -12,16 +12,6 @@ def test_triplestoreconfig() -> None:
     from oteapi.models.triplestoreconfig import TripleStoreConfig
     from oteapi.settings import settings
 
-    description = """TripleStore Configuration.
-
-This is a configuration for the
-[`TripleStore`][oteapi.triplestore.triplestore.TripleStore].
-
-This class should not be used directly as a configuration object
-for a strategy object, but only as a configuration field inside
-a configuration object.
-"""
-
     config = {
         "agraphHost": "localhost",
         "agraphPort": 8080,
@@ -45,7 +35,7 @@ a configuration object.
         "user": "**********",
         "password": "**********",
         "configuration": {},
-        "description": description,
+        "description": TripleStoreConfig.__doc__,
         "repositoryName": "test",
         "agraphHost": "localhost",
         "agraphPort": 8080,
@@ -54,7 +44,7 @@ a configuration object.
         "user": "abc",
         "password": "pass",
         "configuration": {},
-        "description": description,
+        "description": TripleStoreConfig.__doc__,
         "repositoryName": "test",
         "agraphHost": "localhost",
         "agraphPort": 8080,
