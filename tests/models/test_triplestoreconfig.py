@@ -14,13 +14,13 @@ def test_triplestoreconfig() -> None:
 
     description = """TripleStore Configuration.
 
-    This is a configuration for the
-    [`TripleStore`][oteapi.triplestore.triplestore.TripleStore].
+This is a configuration for the
+[`TripleStore`][oteapi.triplestore.triplestore.TripleStore].
 
-    This class should not be used directly as a configuration object
-    for a strategy object, but only as a configuration field inside
-    a configuration object.
-    """
+This class should not be used directly as a configuration object
+for a strategy object, but only as a configuration field inside
+a configuration object.
+"""
 
     config = {
         "agraphHost": "localhost",
