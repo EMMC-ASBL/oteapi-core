@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -441,6 +441,11 @@ https://franz.com/agraph/support/documentation/current/agraph-introduction.html<
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -482,9 +487,11 @@ Init must initialize the triple store connection</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>config</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.TripleStoreConfig" href="../../../all_models/#oteapi.models.TripleStoreConfig">TripleStoreConfig</a>, Dict[str, <span title="typing.Any">Any</span>]]</code>
+                <code>config</code>
+            </td>
+            <td>
+                  <code>Union[TripleStoreConfig, Dict[str, Any]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -513,7 +520,7 @@ configuration.</p>
           <tr class="doc-section-item">
             <td><code><span title="oteapi.triplestore.triplestore.TripleStore.config">config</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.models.TripleStoreConfig" href="../../../all_models/#oteapi.models.TripleStoreConfig">TripleStoreConfig</a></code>
+                  <code>TripleStoreConfig</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -523,6 +530,11 @@ configuration.</p>
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/triplestore/triplestore.py</code></summary>
@@ -784,9 +796,11 @@ configuration.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>triples</code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.models.mappingconfig.RDFTriple" href="../../models/mappingconfig/#oteapi.models.mappingconfig.RDFTriple">RDFTriple</a></code>
+                <code>triples</code>
+            </td>
+            <td>
+                  <code>RDFTriple</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -867,7 +881,9 @@ configuration.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>sparql_query</code></td>
+            <td>
+                <code>sparql_query</code>
+            </td>
             <td>
                   <code>str</code>
             </td>
@@ -895,7 +911,7 @@ configuration.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="typing.Any">Any</span></code>
+                  <code>Any</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1002,7 +1018,9 @@ configuration.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>sparql_query</code></td>
+            <td>
+                <code>sparql_query</code>
+            </td>
             <td>
                   <code>str</code>
             </td>

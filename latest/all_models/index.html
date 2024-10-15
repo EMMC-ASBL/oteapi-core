@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -3798,6 +3798,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -3877,7 +3882,7 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="collections.abc.MutableMapping">MutableMapping</span></code></p>
+              Bases: <code>BaseModel</code>, <code>MutableMapping</code></p>
 
 
         <p>An object whose attributes can also be accessed through
@@ -3895,6 +3900,11 @@ subscription, like with a dictionary.</p>
   If a custom type is used for an attribute that doesn't have a <code>validate()</code>
   method, don't fail setting the attribute.</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
@@ -4590,7 +4600,9 @@ initializing the model.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>field</code></td>
+            <td>
+                <code>field</code>
+            </td>
             <td>
                   <code>str</code>
             </td>
@@ -4844,13 +4856,18 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.AttrDict" href="#oteapi.models.genericconfig.AttrDict">AttrDict</a></code></p>
+              Bases: <code>AttrDict</code></p>
 
 
         <p>DataCache Configuration.</p>
 <p>This class should not be used directly as a configuration object
 for a strategy object, but only as a configuration field inside
 a configuration object.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/datacacheconfig.py</code></summary>
@@ -5051,10 +5068,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Filter Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/filterconfig.py</code></summary>
@@ -5201,10 +5223,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Function Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
@@ -5277,7 +5304,7 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Generic class for configuration objects.</p>
@@ -5291,6 +5318,11 @@ a configuration object.</p>
   If a custom type is used for an attribute that doesn't have a <code>validate()</code>
   method, don't fail setting the attribute.</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
@@ -5453,10 +5485,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Mapping Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/mappingconfig.py</code></summary>
@@ -5591,10 +5628,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Parser Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/parserconfig.py</code></summary>
@@ -5683,7 +5725,7 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Resource Strategy Data Configuration.</p>
@@ -5694,6 +5736,11 @@ a configuration object.</p>
   <p>Either of the pairs of attributes <code>downloadUrl</code>/<code>mediaType</code> or
 <code>accessUrl</code>/<code>accessService</code> MUST be specified.</p>
 </details>
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
@@ -6104,10 +6151,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Simple model for handling secret in other config-models.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/secretconfig.py</code></summary>
@@ -6288,10 +6340,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Transformation Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
@@ -6456,10 +6513,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Return from transformation status.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
@@ -6658,7 +6720,7 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>TripleStore Configuration.</p>
@@ -6667,6 +6729,11 @@ a configuration object.</p>
 <p>This class should not be used directly as a configuration object
 for a strategy object, but only as a configuration field inside
 a configuration object.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>
@@ -6935,6 +7002,11 @@ SecretConfig.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -6957,13 +7029,18 @@ SecretConfig.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.AttrDict" href="#oteapi.models.genericconfig.AttrDict">AttrDict</a></code></p>
+              Bases: <code>AttrDict</code></p>
 
 
         <p>DataCache Configuration.</p>
 <p>This class should not be used directly as a configuration object
 for a strategy object, but only as a configuration field inside
 a configuration object.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/datacacheconfig.py</code></summary>
@@ -7176,6 +7253,11 @@ a configuration object.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7198,10 +7280,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Filter Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/filterconfig.py</code></summary>
@@ -7360,6 +7447,11 @@ a configuration object.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7382,10 +7474,15 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Function Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/functionconfig.py</code></summary>
@@ -7470,6 +7567,11 @@ a configuration object.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -7492,7 +7594,7 @@ a configuration object.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code>, <code><span title="collections.abc.MutableMapping">MutableMapping</span></code></p>
+              Bases: <code>BaseModel</code>, <code>MutableMapping</code></p>
 
 
         <p>An object whose attributes can also be accessed through
@@ -7510,6 +7612,11 @@ subscription, like with a dictionary.</p>
   If a custom type is used for an attribute that doesn't have a <code>validate()</code>
   method, don't fail setting the attribute.</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
@@ -8205,7 +8312,9 @@ initializing the model.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>field</code></td>
+            <td>
+                <code>field</code>
+            </td>
             <td>
                   <code>str</code>
             </td>
@@ -8459,7 +8568,7 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Generic class for configuration objects.</p>
@@ -8473,6 +8582,11 @@ initializing the model.</p>
   If a custom type is used for an attribute that doesn't have a <code>validate()</code>
   method, don't fail setting the attribute.</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/genericconfig.py</code></summary>
@@ -8647,6 +8761,11 @@ initializing the model.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -8688,10 +8807,15 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Mapping Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/mappingconfig.py</code></summary>
@@ -8838,6 +8962,11 @@ initializing the model.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -8860,10 +8989,15 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code></p>
+              Bases: <code>GenericConfig</code></p>
 
 
         <p>Parser Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/parserconfig.py</code></summary>
@@ -8964,6 +9098,11 @@ initializing the model.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -9005,7 +9144,7 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Resource Strategy Data Configuration.</p>
@@ -9016,6 +9155,11 @@ initializing the model.</p>
   <p>Either of the pairs of attributes <code>downloadUrl</code>/<code>mediaType</code> or
 <code>accessUrl</code>/<code>accessService</code> MUST be specified.</p>
 </details>
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/resourceconfig.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
@@ -9438,6 +9582,11 @@ initializing the model.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -9481,10 +9630,15 @@ initializing the model.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Simple model for handling secret in other config-models.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/secretconfig.py</code></summary>
@@ -9680,6 +9834,11 @@ method.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -9702,7 +9861,7 @@ method.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code>str</code>, <code><span title="enum.Enum">Enum</span></code></p>
+              Bases: <code>str</code>, <code>Enum</code></p>
 
 
         <p>Defining process priority enumerators.</p>
@@ -9712,6 +9871,11 @@ method.</p>
 <li>Medium</li>
 <li>High</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
@@ -9838,10 +10002,15 @@ method.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>Transformation Strategy Data Configuration.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
@@ -10006,10 +10175,15 @@ method.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+              Bases: <code>BaseModel</code></p>
 
 
         <p>Return from transformation status.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/transformationconfig.py</code></summary>
@@ -10220,6 +10394,11 @@ method.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -10263,7 +10442,7 @@ method.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.genericconfig.GenericConfig" href="#oteapi.models.genericconfig.GenericConfig">GenericConfig</a></code>, <code><a class="autorefs autorefs-internal" title="oteapi.models.secretconfig.SecretConfig" href="#oteapi.models.secretconfig.SecretConfig">SecretConfig</a></code></p>
+              Bases: <code>GenericConfig</code>, <code>SecretConfig</code></p>
 
 
         <p>TripleStore Configuration.</p>
@@ -10272,6 +10451,11 @@ method.</p>
 <p>This class should not be used directly as a configuration object
 for a strategy object, but only as a configuration field inside
 a configuration object.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/models/triplestoreconfig.py</code></summary>

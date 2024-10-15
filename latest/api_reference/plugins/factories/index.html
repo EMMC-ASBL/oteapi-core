@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -471,6 +471,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -498,6 +503,11 @@
 
         <p>Entry point strategies have not been loaded, run
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.factories.load_strategies"><code>load_strategies()</code></a>.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
@@ -543,7 +553,7 @@
           <tr class="doc-section-item">
             <td><code><span title="oteapi.plugins.factories.StrategyFactory.strategy_create_func">strategy_create_func</span></code></td>
             <td>
-                  <code>Dict[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="../entry_points/#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a>]</code>
+                  <code>Dict[StrategyType, EntryPointStrategyCollection]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -554,6 +564,11 @@ in-memory cache of all registered strategies.</p>
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/factories.py</code></summary>
@@ -930,7 +945,7 @@ in-memory cache of all registered strategies.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code>dict[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, list[str]]</code>
+                  <code>dict[StrategyType, list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -940,7 +955,7 @@ in-memory cache of all registered strategies.</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code>dict[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, list[str]]</code>
+                  <code>dict[StrategyType, list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -963,7 +978,7 @@ in-memory cache of all registered strategies.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
+                  <code>StrategiesNotLoaded</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1101,7 +1116,9 @@ duplicated.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>test_for_uniqueness</code></td>
+            <td>
+                <code>test_for_uniqueness</code>
+            </td>
             <td>
                   <code>bool</code>
             </td>
@@ -1217,9 +1234,11 @@ duplicated strategy and the duplicates will be ignored.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>config</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, dict[str, <span title="typing.Any">Any</span>]]</code>
+                <code>config</code>
+            </td>
+            <td>
+                  <code>Union[StrategyConfig, dict[str, Any]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1231,9 +1250,11 @@ duplicated strategy and the duplicates will be ignored.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>strategy_type</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+                <code>strategy_type</code>
+            </td>
+            <td>
+                  <code>Union[StrategyType, str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1284,7 +1305,7 @@ enumeration for a definition of valid strategy types.</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.factories.StrategiesNotLoaded" href="#oteapi.plugins.factories.StrategiesNotLoaded">StrategiesNotLoaded</a></code>
+                  <code>StrategiesNotLoaded</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1307,7 +1328,7 @@ enumeration for a definition of valid strategy types.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+                  <code>IStrategy</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1317,7 +1338,7 @@ enumeration for a definition of valid strategy types.</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+                  <code>IStrategy</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1509,9 +1530,11 @@ enumeration for a definition of valid strategy types.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>strategy_type</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+                <code>strategy_type</code>
+            </td>
+            <td>
+                  <code>Union[StrategyType, str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1525,9 +1548,11 @@ enumeration for a definition of valid strategy types.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>config</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.models.StrategyConfig" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, dict[str, <span title="typing.Any">Any</span>]]</code>
+                <code>config</code>
+            </td>
+            <td>
+                  <code>Union[StrategyConfig, dict[str, Any]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1553,7 +1578,7 @@ enumeration for a definition of valid strategy types.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="oteapi.interfaces.IStrategy">IStrategy</span></code>
+                  <code>IStrategy</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1633,7 +1658,7 @@ enumeration for a definition of valid strategy types.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code>dict[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, list[str]]</code>
+                  <code>dict[StrategyType, list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1643,7 +1668,7 @@ enumeration for a definition of valid strategy types.</p>
           </tr>
           <tr class="doc-section-item">
             <td>
-                  <code>dict[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, list[str]]</code>
+                  <code>dict[StrategyType, list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1706,7 +1731,9 @@ enumeration for a definition of valid strategy types.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>test_for_uniqueness</code></td>
+            <td>
+                <code>test_for_uniqueness</code>
+            </td>
             <td>
                   <code>bool</code>
             </td>

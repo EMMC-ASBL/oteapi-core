@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -587,6 +587,11 @@
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -609,11 +614,16 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
+              Bases: <code>AttrDict</code></p>
 
 
         <p>Configuration data model for
 <a class="autorefs autorefs-internal" href="#oteapi.strategies.parse.postgres.PostgresParserConfig"><code>PostgresParserStrategy</code></a>.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/strategies/parse/postgres.py</code></summary>
@@ -1100,10 +1110,15 @@ and update the accessUrl property.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.ParserConfig" href="../../../../all_models/#oteapi.models.ParserConfig">ParserConfig</a></code></p>
+              Bases: <code>ParserConfig</code></p>
 
 
         <p>Postgresql parse strategy config</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/strategies/parse/postgres.py</code></summary>
@@ -1208,10 +1223,15 @@ and update the accessUrl property.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="oteapi.models.AttrDict" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
+              Bases: <code>AttrDict</code></p>
 
 
         <p>Configuration model for PostgresParser.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/strategies/parse/postgres.py</code></summary>
@@ -1282,6 +1302,11 @@ and update the accessUrl property.</p>
         <p>Resource strategy for Postgres.</p>
 <p>Purpose of this strategy: Connect to a postgres DB and run a
 SQL query on the dbname to return all relevant rows.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/strategies/parse/postgres.py</code></summary>
@@ -1473,7 +1498,9 @@ SQL query on the dbname to return all relevant rows.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>url</code></td>
+            <td>
+                <code>url</code>
+            </td>
             <td>
                   <code>str</code>
             </td>
@@ -1501,7 +1528,7 @@ SQL query on the dbname to return all relevant rows.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="psycopg.Error">Error</span></code>
+                  <code>Error</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1524,7 +1551,7 @@ SQL query on the dbname to return all relevant rows.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="psycopg.Connection">Connection</span></code>
+                  <code>Connection</code>
             </td>
             <td>
               <div class="doc-md-description">

@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.39">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
     
     
       
@@ -623,6 +623,11 @@ This therefore implements lazy loading of all plugin strategies.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -650,6 +655,11 @@ This therefore implements lazy loading of all plugin strategies.</p>
 
         <p>A given strategy implementation (class) cannot be found from the given entry
 point value.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
@@ -726,6 +736,11 @@ ambiguity.</p>
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
@@ -1326,11 +1341,16 @@ name.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="collections.abc.Collection">Collection</span></code></p>
+              Bases: <code>Collection</code></p>
 
 
         <p>A collection of
 <a class="autorefs autorefs-internal" href="#oteapi.plugins.entry_points.EntryPointStrategy"><code>EntryPointStrategy</code></a>s.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
@@ -1736,9 +1756,11 @@ name.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>*entry_points</code></td>
             <td>
-                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+                <code>*entry_points</code>
+            </td>
+            <td>
+                  <code>Iterable[EntryPointStrategy]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1804,9 +1826,11 @@ collection.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>*entry_points</code></td>
             <td>
-                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+                <code>*entry_points</code>
+            </td>
+            <td>
+                  <code>Iterable[EntryPointStrategy]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1913,9 +1937,11 @@ collection.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>key</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>, str, tuple[<span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str], str]]</code>
+                <code>key</code>
+            </td>
+            <td>
+                  <code>Union[EntryPointStrategy, str, tuple[Union[StrategyType, str], str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1975,7 +2001,7 @@ above for the expected types.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a></code>
+                  <code>EntryPointStrategy</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2071,9 +2097,11 @@ above for the expected types.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>*entry_points</code></td>
             <td>
-                  <code>Iterable[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategy" href="#oteapi.plugins.entry_points.EntryPointStrategy">EntryPointStrategy</a>]</code>
+                <code>*entry_points</code>
+            </td>
+            <td>
+                  <code>Iterable[EntryPointStrategy]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2134,7 +2162,7 @@ the collection.</p>
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+              Bases: <code>Enum</code></p>
 
 
         <p>An enumeration of available strategy types.</p>
@@ -2148,6 +2176,11 @@ the collection.</p>
 <li>resource</li>
 <li>transformation</li>
 </ul>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>oteapi/plugins/entry_points.py</code></summary>
@@ -2533,7 +2566,9 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>strategy_type_field</code></td>
+            <td>
+                <code>strategy_type_field</code>
+            </td>
             <td>
                   <code>str</code>
             </td>
@@ -2585,7 +2620,7 @@ strategy type string, e.g., <code>scheme</code>, <code>mediaType</code>, etc.</p
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a></code>
+                  <code>StrategyType</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2762,9 +2797,11 @@ duplicated.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>strategy_type</code></td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.StrategyType" href="#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, str]</code>
+                <code>strategy_type</code>
+            </td>
+            <td>
+                  <code>Union[StrategyType, str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2776,7 +2813,9 @@ duplicated.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>enforce_uniqueness</code></td>
+            <td>
+                <code>enforce_uniqueness</code>
+            </td>
             <td>
                   <code>bool</code>
             </td>
@@ -2805,7 +2844,7 @@ allowed. Defaults to <code>True</code>, meaning duplicates are <em>not</em> allo
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="oteapi.plugins.entry_points.EntryPointStrategyCollection" href="#oteapi.plugins.entry_points.EntryPointStrategyCollection">EntryPointStrategyCollection</a></code>
+                  <code>EntryPointStrategyCollection</code>
             </td>
             <td>
               <div class="doc-md-description">
