@@ -13,7 +13,7 @@ env:
 jobs:
   basic_tests:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.8.2
+    uses: SINTEF/ci-cd/.github/workflows/ci_tests.yml@v2.8.3
     with:
       # General
       install_extras: "[dev]"
