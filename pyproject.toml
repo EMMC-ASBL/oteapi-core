@@ -16,10 +16,11 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
 ]
 keywords = ["OTE", "OTE-API"]
-requires-python = ">=3.9,<3.13"
+requires-python = "~=3.9"
 dynamic = ["version"]
 
 dependencies = [
@@ -35,7 +36,7 @@ dependencies = [
     "celery>=5.3.5,<6",
     "openpyxl>=3.1.2,<4",
     "Pillow>=10.1.0,<11",
-    "psycopg~=3.2.1",
+    "psycopg[binary]~=3.2.1",
     "pysftp~=0.2.9",
     "requests>=2.31.0,<3",
 
