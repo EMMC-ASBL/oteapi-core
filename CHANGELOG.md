@@ -2,7 +2,45 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev3...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev4...HEAD)
+
+# Support Python 3.13
+
+Add support for Python 3.13 in both the package metadata, but also through testing and minor code fixes.
+
+## Miscellaneous
+
+Add [MatCHMaker](https://he-matchmaker.eu/) to the [Acknowledgement](https://github.com/EMMC-ASBL/oteapi-core?tab=readme-ov-file#acknowledgment) section of the README.
+
+Update Python dependencies and GitHub Actions.
+
+## [v0.7.0.dev4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev4) (2024-11-19)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev3...v0.7.0.dev4)
+
+# Support Python 3.13
+
+Add support for Python 3.13 in both the package metadata, but also through testing and minor code fixes.
+
+## Miscellaneous
+
+Add [MatCHMaker](https://he-matchmaker.eu/) to the [Acknowledgement](https://github.com/EMMC-ASBL/oteapi-core?tab=readme-ov-file#acknowledgment) section of the README.
+
+Update Python dependencies and GitHub Actions.
+
+**Implemented enhancements:**
+
+- Support Python 3.13 [\#538](https://github.com/EMMC-ASBL/oteapi-core/issues/538)
+
+**Merged pull requests:**
+
+- Support Python 3.13 [\#539](https://github.com/EMMC-ASBL/oteapi-core/pull/539) ([CasperWA](https://github.com/CasperWA))
+- Update acknowledgements [\#534](https://github.com/EMMC-ASBL/oteapi-core/pull/534) ([Treesarj](https://github.com/Treesarj))
+- Update acknowledgements [\#532](https://github.com/EMMC-ASBL/oteapi-core/pull/532) ([Treesarj](https://github.com/Treesarj))
+
+## [v0.7.0.dev3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev3) (2024-09-09)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev2...v0.7.0.dev3)
 
 ## Extend customization for `http(s)` download strategy
 
@@ -17,26 +55,13 @@ Furthermore, Trusted Publishers for PyPI has been implemented.
 
 - Support headers and more for download strategy [\#524](https://github.com/EMMC-ASBL/oteapi-core/issues/524)
 
-**Closed issues:**
-
-- Use Trusted Publishers from PyPI [\#526](https://github.com/EMMC-ASBL/oteapi-core/issues/526)
-
-## [v0.7.0.dev3](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev3) (2024-09-05)
-
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev2...v0.7.0.dev3)
-
-## Extend customization for `http(s)` download strategy
-
-The `http`/`https` download strategy now supports several strategy-specific configurations for customizing the HTTP request.
-
-### DX updates
-
-The CI/CD system has been overhauled, removing usage of the permanent dependencies branch and instead using dependabot's `groups` feature.
-Furthermore, Trusted Publishers for PyPI has been implemented.
-
 **Fixed bugs:**
 
 - pre-commit config should be updated to state `master` instead of `main` [\#469](https://github.com/EMMC-ASBL/oteapi-core/issues/469)
+
+**Closed issues:**
+
+- Use Trusted Publishers from PyPI [\#526](https://github.com/EMMC-ASBL/oteapi-core/issues/526)
 
 **Merged pull requests:**
 
