@@ -2,11 +2,33 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev5...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...HEAD)
 
-# Fix `pydantic` import issues
+# Patch update - avoid Pydantic v2.10
 
-Minor patch release to fix imports from `pydantic.networks` for the latest Pydantic version (2.10).
+This version of Pydantic currently breaks a lot of functionality around the `Url` models/classes.
+
+Currently, we avoid v2.10.0 and v2.10.1.
+This means the v2.10.2 (when released) should open a dependabot PR and it can be tested.
+
+Note, it should be tested from [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services), because this is where it failed most recently.
+
+## [v0.7.0.dev6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev6) (2024-11-25)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev5...v0.7.0.dev6)
+
+# Patch update - avoid Pydantic v2.10
+
+This version of Pydantic currently breaks a lot of functionality around the `Url` models/classes.
+
+Currently, we avoid v2.10.0 and v2.10.1.
+This means the v2.10.2 (when released) should open a dependabot PR and it can be tested.
+
+Note, it should be tested from [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services), because this is where it failed most recently.
+
+**Fixed bugs:**
+
+- Avoid current pydantic v2.10 versions [\#560](https://github.com/EMMC-ASBL/oteapi-core/pull/560) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.7.0.dev5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev5) (2024-11-25)
 
