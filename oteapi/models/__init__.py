@@ -20,21 +20,21 @@ from .triplestoreconfig import TripleStoreConfig
 
 __all__ = (
     "AttrDict",
+    "AttrDict",
     "DataCacheConfig",
     "FilterConfig",
     "FunctionConfig",
     "GenericConfig",
     "HostlessAnyUrl",
     "MappingConfig",
+    "ParserConfig",
     "RDFTriple",
     "ResourceConfig",
-    "ParserConfig",
-    "AttrDict",
+    "SecretConfig",
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
     "TripleStoreConfig",
-    "SecretConfig",
 )
 
 StrategyConfig = Union[

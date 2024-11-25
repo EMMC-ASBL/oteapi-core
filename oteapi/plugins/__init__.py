@@ -4,4 +4,4 @@ from __future__ import annotations
 
 from .factories import create_strategy, list_strategies, load_strategies
 
-__all__ = ("create_strategy", "load_strategies", "list_strategies")
+__all__ = ("create_strategy", "list_strategies", "load_strategies")
