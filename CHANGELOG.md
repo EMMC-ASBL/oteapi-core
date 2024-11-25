@@ -2,19 +2,25 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev4...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev5...HEAD)
 
-# Support Python 3.13
+# Fix `pydantic` import issues
 
-Add support for Python 3.13 in both the package metadata, but also through testing and minor code fixes.
+Minor patch release to fix imports from `pydantic.networks` for the latest Pydantic version (2.10).
 
-## Miscellaneous
+## [v0.7.0.dev5](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev5) (2024-11-25)
 
-Add [MatCHMaker](https://he-matchmaker.eu/) to the [Acknowledgement](https://github.com/EMMC-ASBL/oteapi-core?tab=readme-ov-file#acknowledgment) section of the README.
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev4...v0.7.0.dev5)
 
-Update Python dependencies and GitHub Actions.
+# Fix `pydantic` import issues
 
-## [v0.7.0.dev4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev4) (2024-11-19)
+Minor patch release to fix imports from `pydantic.networks` for the latest Pydantic version (2.10).
+
+**Fixed bugs:**
+
+- Fix pydantic.networks imports [\#558](https://github.com/EMMC-ASBL/oteapi-core/pull/558) ([CasperWA](https://github.com/CasperWA))
+
+## [v0.7.0.dev4](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev4) (2024-11-20)
 
 [Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev3...v0.7.0.dev4)
 
