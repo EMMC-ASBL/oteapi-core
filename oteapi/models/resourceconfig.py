@@ -5,12 +5,12 @@ from __future__ import annotations
 from typing import Annotated, Optional
 
 from pydantic import Field, model_validator
-from pydantic.networks import Url, UrlConstraints
+from pydantic.networks import AnyUrl, UrlConstraints
 
 from oteapi.models.genericconfig import GenericConfig
 from oteapi.models.secretconfig import SecretConfig
 
-HostlessAnyUrl = Annotated[Url, UrlConstraints(host_required=False)]
+HostlessAnyUrl = Annotated[AnyUrl, UrlConstraints(host_required=False)]
 
 
 class ResourceConfig(GenericConfig, SecretConfig):

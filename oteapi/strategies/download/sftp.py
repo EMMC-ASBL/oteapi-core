@@ -9,12 +9,12 @@ from typing import Annotated, Optional
 import pysftp
 from pydantic import Field
 from pydantic.dataclasses import dataclass
-from pydantic.networks import Url, UrlConstraints
+from pydantic.networks import AnyUrl, UrlConstraints
 
 from oteapi.datacache import DataCache
 from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 
-AnyFtpUrl = Annotated[Url, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
+AnyFtpUrl = Annotated[AnyUrl, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 
 
 class SFTPConfig(AttrDict):
