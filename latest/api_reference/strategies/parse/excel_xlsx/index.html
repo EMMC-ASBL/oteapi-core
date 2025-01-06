@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -738,7 +738,7 @@
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">XLSXParseConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">XLSXParseConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Data model for retrieving a rectangular section of an Excel sheet.&quot;&quot;&quot;</span>
 
     <span class="c1"># Resource config</span>
@@ -824,7 +824,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.col_from" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">col_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel column number or label of first column. Defaults to first assigned column.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">col_from</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel column number or label of first column. Defaults to first assigned column.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -844,7 +844,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.col_to" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">col_to</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel column number or label of last column. Defaults to last assigned column.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">col_to</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel column number or label of last column. Defaults to last assigned column.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -864,7 +864,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.datacache_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">datacache_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataCacheConfig</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configurations for the data cache for retrieving the downloaded file content.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">datacache_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configurations for the data cache for retrieving the downloaded file content.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -884,7 +884,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.downloadUrl" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">downloadUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -904,7 +904,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.download_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">download_config</span><span class="p">:</span> <span class="n">AttrDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configurations provided to a download strategy.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">download_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configurations provided to a download strategy.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -924,7 +924,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.header" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">header</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional list of column names, specifying the columns to return. These names they should match cells in `header_row`.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">header</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional list of column names, specifying the columns to return. These names they should match cells in `header_row`.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -944,7 +944,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.header_row" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">header_row</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Row number with the headers. Defaults to `1` if header is given, otherwise `None`.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">header_row</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Row number with the headers. Defaults to `1` if header is given, otherwise `None`.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -964,7 +964,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.mediaType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">mediaType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -984,7 +984,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.new_header" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">new_header</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional list of new column names replacing `header` in the output.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">new_header</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional list of new column names replacing `header` in the output.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1004,7 +1004,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.row_from" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">row_from</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel row number of first row. Defaults to first assigned row.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">row_from</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel row number of first row. Defaults to first assigned row.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1024,7 +1024,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.row_to" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">row_to</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel row number of last row. Defaults to last assigned row.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">row_to</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Excel row number of last row. Defaults to last assigned row.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1044,7 +1044,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseConfig.worksheet" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">worksheet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Name of worksheet to load.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">worksheet</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Name of worksheet to load.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1100,7 +1100,7 @@
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">XLSXParseContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">XLSXParseContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from XLSXParse.&quot;&quot;&quot;</span>
 
     <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1125,7 +1125,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseContent.data" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A dict with column-name/column-value pairs. The values are lists.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">data</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A dict with column-name/column-value pairs. The values are lists.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1184,7 +1184,7 @@
 <span class="normal">115</span>
 <span class="normal">116</span>
 <span class="normal">117</span>
-<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">XLSXParseParserConfig</span><span class="p">(</span><span class="n">ParserConfig</span><span class="p">):</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">XLSXParseParserConfig</span><span class="p">(</span><span class="n">ParserConfig</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;XLSX parse strategy resource config.&quot;&quot;&quot;</span>
 
     <span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;parser/excel_xlsx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
@@ -1212,7 +1212,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseParserConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span><span class="p">:</span> <span class="n">XLSXParseConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;SQLite parse strategy-specific configuration.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;SQLite parse strategy-specific configuration.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1232,7 +1232,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseParserConfig.parserType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;parser/excel_xlsx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;parser/excel_xlsx&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;parserType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">parserType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;parser/excel_xlsx&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;parserType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1375,7 +1375,7 @@
 <span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">XLSXParseStrategy</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">XLSXParseStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for Excel XLSX files.</span>
 
 <span class="sd">    **Registers strategies**:</span>
@@ -1386,11 +1386,11 @@
 
     <span class="n">parse_config</span><span class="p">:</span> <span class="n">XLSXParseParserConfig</span>
 
-    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XLSXParseContent</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XLSXParseContent</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Parses selected region of an excel file.</span>
 
 <span class="sd">        Returns:</span>
@@ -1483,7 +1483,7 @@
 
 
 <h3 id="oteapi.strategies.parse.excel_xlsx.XLSXParseStrategy.parse_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">parse_config</span><span class="p">:</span> <span class="n">XLSXParseParserConfig</span></code>
+            <code class="highlight language-python"><span class="n">parse_config</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -1611,7 +1611,7 @@
 <span class="normal">263</span>
 <span class="normal">264</span>
 <span class="normal">265</span>
-<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XLSXParseContent</span><span class="p">:</span>
+<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">XLSXParseContent</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parses selected region of an excel file.</span>
 
 <span class="sd">    Returns:</span>
@@ -1709,7 +1709,7 @@
               <summary>Source code in <code>oteapi/strategies/parse/excel_xlsx.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">188</span>
 <span class="normal">189</span>
-<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
+<span class="normal">190</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -1832,7 +1832,7 @@
 <span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
-<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_column_indices</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">XLSXParseConfig</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">:</span> <span class="n">Worksheet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="normal">173</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_column_indices</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">XLSXParseConfig</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">:</span> <span class="n">Worksheet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Helper function returning a list of column indices.</span>
 
 <span class="sd">    Parameters:</span>
@@ -1950,7 +1950,7 @@
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">set_model_defaults</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">XLSXParseConfig</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">:</span> <span class="n">Worksheet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_model_defaults</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">XLSXParseConfig</span><span class="p">,</span> <span class="n">worksheet</span><span class="p">:</span> <span class="n">Worksheet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update data model `model` with default values obtained from `worksheet`.</span>
 
 <span class="sd">    Parameters:</span>
@@ -2064,7 +2064,7 @@
     <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

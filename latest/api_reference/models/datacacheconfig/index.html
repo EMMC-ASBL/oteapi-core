@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -524,7 +524,7 @@ a configuration object.</p>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
-<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DataCacheConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DataCacheConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;DataCache Configuration.</span>
 
 <span class="sd">    This class should not be used directly as a configuration object</span>
@@ -573,7 +573,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.accessKey" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">accessKey</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key with which the downloaded content can be accessed. Should preferable be the hash (corresponding to `hashType`) of the content if it is known.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">accessKey</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key with which the downloaded content can be accessed. Should preferable be the hash (corresponding to `hashType`) of the content if it is known.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -593,7 +593,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.cacheDir" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">cacheDir</span><span class="p">:</span> <span class="n">Path</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;oteapi&#39;</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cache directory.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">cacheDir</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;oteapi&#39;</span><span class="p">),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Cache directory.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -613,7 +613,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.expireTime" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">expireTime</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Number of seconds before the cache entry expires. Zero means no expiration. Default is two weeks.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">expireTime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Number of seconds before the cache entry expires. Zero means no expiration. Default is two weeks.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -633,7 +633,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.hashType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">hashType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Hash algorithm to use for creating hash keys for stored data. Can be any algorithm supported by hashlib.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">hashType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Hash algorithm to use for creating hash keys for stored data. Can be any algorithm supported by hashlib.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -653,7 +653,7 @@ a configuration object.</p>
 
 
 <h3 id="oteapi.models.datacacheconfig.DataCacheConfig.tag" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">tag</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tag assigned to the downloaded content, typically identifying a session. Used with the `evict()` method to clean up a all cache entries with a given tag.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">tag</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Tag assigned to the downloaded content, typically identifying a session. Used with the `evict()` method to clean up a all cache entries with a given tag.&#39;</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -757,7 +757,7 @@ a configuration object.</p>
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.top"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>
