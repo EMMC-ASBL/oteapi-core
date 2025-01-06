@@ -47,7 +47,7 @@ docs = [
     "mkdocstrings[python]~=0.27.0",
 ]
 testing = [
-    "ase>=3.23,<3.25",
+    "ase~=3.24",
     "numpy>=1.26,<3",
     "pytest~=8.3",
     "pytest-celery[redis]~=1.1",
