@@ -1,4 +1,4 @@
-""" test_config_updater.py """
+"""test_config_updater.py"""
 
 from __future__ import annotations
 
