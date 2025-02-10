@@ -83,8 +83,6 @@ plugins:
 
             # Docstrings options
             docstring_style: google
-            docstring_options:
-              replace_admonitions: true
             show_if_no_docstring: false
 
             # Signatures/annotations options
