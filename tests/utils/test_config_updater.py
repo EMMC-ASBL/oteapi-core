@@ -1,4 +1,4 @@
-""" test_config_updater.py """
+"""test_config_updater.py"""
 
 import pytest
 
