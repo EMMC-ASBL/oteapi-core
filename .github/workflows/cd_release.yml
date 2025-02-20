@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: External
-    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.9.0
+    uses: SINTEF/ci-cd/.github/workflows/cd_release.yml@v2.9.1
     if: github.repository == 'EMMC-ASBL/oteapi-core' && startsWith(github.ref, 'refs/tags/v0.5.')
     with:
       # General
