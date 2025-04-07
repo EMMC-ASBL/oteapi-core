@@ -22,7 +22,7 @@ jobs:
       run_pre-commit: false
 
       # pylint & safety
-      python_version_pylint_safety: "3.9"
+      python_version_pylint_safety: "3.10"
 
       run_pylint: false
       run_safety: true
@@ -41,13 +41,13 @@ jobs:
 
       # Build package
       run_build_package: true
-      python_version_package: "3.9"
+      python_version_package: "3.10"
       build_libs: "flit"
       build_cmd: "flit build"
 
       # Build documentation
       run_build_docs: true
-      python_version_docs: "3.9"
+      python_version_docs: "3.10"
       update_python_api_ref: true
       update_docs_landing_page: true
       package_dirs: oteapi
@@ -77,7 +77,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     services:
       redis:
@@ -144,7 +144,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v4

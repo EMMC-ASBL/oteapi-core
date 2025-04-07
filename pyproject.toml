@@ -12,7 +12,6 @@ readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -20,7 +19,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 keywords = ["OTE", "OTE-API"]
-requires-python = "~=3.9"
+requires-python = "~=3.10"
 dynamic = ["version"]
 
 dependencies = [
@@ -117,7 +116,7 @@ exclude = [
 ]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.10"
 ignore_missing_imports = true
 scripts_are_modules = true
 warn_unused_configs = true

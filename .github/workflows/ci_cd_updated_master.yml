@@ -23,7 +23,7 @@ jobs:
       update_python_api_ref: true
       package_dirs: oteapi
       update_docs_landing_page: true
-      python_version: "3.9"
+      python_version: "3.10"
       doc_extras: "[docs]"
       changelog_exclude_labels: "skip-changelog,duplicate,question,invalid,wontfix"
       full_docs_dirs: |
