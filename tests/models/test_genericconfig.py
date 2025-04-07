@@ -193,7 +193,7 @@ def test_attribute_reset_field(generic_config: CustomConfig) -> None:
     assert generic_config.configuration.string == "my secret string"
     assert (
         generic_config.configuration.string
-        != generic_config.configuration.model_fields["string"].default
+        != generic_config.configuration.__class__.model_fields["string"].default
     )
     assert "string" in generic_config.configuration.model_fields_set
     assert "float" not in generic_config.configuration.model_json_schema()["properties"]
@@ -204,7 +204,7 @@ def test_attribute_reset_field(generic_config: CustomConfig) -> None:
     assert generic_config.configuration.string != "my secret string"
     assert (
         generic_config.configuration.string
-        == generic_config.configuration.model_fields["string"].default
+        == generic_config.configuration.__class__.model_fields["string"].default
     )
     assert "string" not in generic_config.configuration.model_fields_set
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
