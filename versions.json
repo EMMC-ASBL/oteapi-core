@@ -7,11 +7,16 @@
     ]
   },
   {
-    "version": "0.7.0.dev6",
-    "title": "0.7.0.dev6",
+    "version": "0.7.0",
+    "title": "0.7.0",
     "aliases": [
       "stable"
     ]
+  },
+  {
+    "version": "0.7.0.dev6",
+    "title": "0.7.0.dev6",
+    "aliases": []
   },
   {
     "version": "0.7.0.dev5",
