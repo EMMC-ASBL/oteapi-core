@@ -2,7 +2,7 @@ name: CI - Activate auto-merging for Dependabot PRs
 
 on:
   pull_request_target:
-    branches: [master, release/pydantic-v1-support]
+    branches: [master]
 
 jobs:
   update-dependabot-branch:

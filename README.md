@@ -12,11 +12,6 @@
 
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
-**Important**: As of **v0.6.0**, OTEAPI Core is no longer compatible with pydantic v1, but only with pydantic v2.
-For more information about migrating your plugin repository to pydantic v2, see the [pydantic documentation's migration guide](https://docs.pydantic.dev/latest/migration/).  
-Until the end of 2023, pydantic v1 will still be supported with security updates, but no new features will be added.
-To keep using pydantic v1, one should use the **v0.5.x** versions of OTEAPI Core.
-
 ## About OTEAPI Core
 
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
