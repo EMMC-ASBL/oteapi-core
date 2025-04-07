@@ -184,12 +184,12 @@ class AttrDict(BaseModel, MutableMapping):
         if field not in self:
             raise KeyError(f"Field {field!r} does not exist.")
 
-        if field in self.model_fields:
+        if field in self.__class__.model_fields:
             # Part of the model schema
             schema_field = True
 
             # Set the field to its default value
-            setattr(self, field, self.model_fields[field].default)
+            setattr(self, field, self.__class__.model_fields[field].default)
         else:
             # Not part of the model schema, but part of the extras
             schema_field = False
@@ -213,7 +213,7 @@ class AttrDict(BaseModel, MutableMapping):
         if schema_field:
             if field not in self:
                 raise RuntimeError(f"Field {field!r} was not reset as expected.")
-            if self[field] != self.model_fields[field].default:
+            if self[field] != self.__class__.model_fields[field].default:
                 raise RuntimeError(
                     f"Field {field!r} was not reset to its default value as expected."
                 )
