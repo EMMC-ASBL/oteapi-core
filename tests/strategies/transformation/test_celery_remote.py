@@ -80,6 +80,6 @@ def test_celery_config_name() -> None:
 
     values = ("app.add", [1, 2])
 
-    assert CeleryConfig(**dict(zip(aliased_keys, values))) == CeleryConfig(
-        **dict(zip(non_aliased_keys, values))
-    )
+    assert CeleryConfig(
+        **dict(zip(aliased_keys, values, strict=False))
+    ) == CeleryConfig(**dict(zip(non_aliased_keys, values, strict=False)))
