@@ -2,16 +2,35 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...HEAD)
 
-# Patch update - avoid Pydantic v2.10
+# Use Pydantic v2 and a more minimized usage of `session`
 
-This version of Pydantic currently breaks a lot of functionality around the `Url` models/classes.
+Pydantic has been updated to use v2. This is a breaking change for existing plugins relying on pydantic v1, and the transition period has been longer than expected for letting plugin developers migrate.
 
-Currently, we avoid v2.10.0 and v2.10.1.
-This means the v2.10.2 (when released) should open a dependabot PR and it can be tested.
+A larger change is the change in the manner `session` is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.
 
-Note, it should be tested from [OTEAPI Services](https://github.com/EMMC-ASBL/oteapi-services), because this is where it failed most recently.
+See the full list of v0.7.0.devX changelog entries for a complete list of changes since v0.6.
+
+**Closed issues:**
+
+- Remove maintenance \(and support\) for pydantic v1 [\#522](https://github.com/EMMC-ASBL/oteapi-core/issues/522)
+
+## [v0.7.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0) (2025-04-07)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...v0.7.0)
+
+# Use Pydantic v2 and a more minimized usage of `session`
+
+Pydantic has been updated to use v2. This is a breaking change for existing plugins relying on pydantic v1, and the transition period has been longer than expected for letting plugin developers migrate.
+
+A larger change is the change in the manner `session` is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.
+
+See the full list of v0.7.0.devX changelog entries for a complete list of changes since v0.6.
+
+**Merged pull requests:**
+
+- Remove all things about keeping pydantic v1 support [\#591](https://github.com/EMMC-ASBL/oteapi-core/pull/591) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.7.0.dev6](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0.dev6) (2024-11-25)
 
