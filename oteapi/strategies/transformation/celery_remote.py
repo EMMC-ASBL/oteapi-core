@@ -3,13 +3,7 @@
 from __future__ import annotations
 
 import os
-import sys
-from typing import TYPE_CHECKING
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import TYPE_CHECKING, Literal
 
 from celery import Celery
 from celery.result import AsyncResult
@@ -19,7 +13,7 @@ from pydantic.dataclasses import dataclass
 from oteapi.models import AttrDict, TransformationConfig, TransformationStatus
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Union
+    from typing import Any
 
 # Connect Celery to the currently running Redis instance
 
@@ -90,7 +84,7 @@ class CeleryRemoteStrategy:
     def get(self) -> CeleryContent:
         """Run a job, return a job ID."""
 
-        result: Union[AsyncResult, Any] = CELERY_APP.send_task(
+        result: AsyncResult | Any = CELERY_APP.send_task(
             **self.transformation_config.configuration.model_dump()
         )
         return CeleryContent(celery_task_id=result.task_id)

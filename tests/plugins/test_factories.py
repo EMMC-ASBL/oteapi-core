@@ -7,14 +7,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    import sys
     from collections.abc import Callable, Iterable
+    from importlib.metadata import EntryPoint
     from typing import Any, Union
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
@@ -101,7 +96,7 @@ def test_load_strategies_fails(mock_importlib_entry_points: MockEntryPoints) -> 
 @pytest.mark.parametrize("config_type", ["dict", "config_cls"])
 @pytest.mark.usefixtures("_load_test_strategies")
 def test_create_strategy(
-    get_strategy_config: Callable[[Union[StrategyType, str]], type[StrategyConfig]],
+    get_strategy_config: Callable[[StrategyType | str], type[StrategyConfig]],
     config_type: str,
 ) -> None:
     """Test `StrategyFactory.make_strategy()`."""

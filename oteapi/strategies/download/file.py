@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import Field, FileUrl, field_validator
 from pydantic.dataclasses import dataclass
 
@@ -22,13 +20,13 @@ class FileConfig(AttrDict):
             " be opened in bytes mode."
         ),
     )
-    encoding: Optional[str] = Field(
+    encoding: str | None = Field(
         None,
         description=(
             "Encoding used when opening the file. The default is platform dependent."
         ),
     )
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description=(
             "Configurations for the data cache for storing the downloaded file "

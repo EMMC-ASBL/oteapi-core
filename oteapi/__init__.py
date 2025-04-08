@@ -1,4 +1,4 @@
-"""OTE-API Core package."""
+"""OTEAPI Core package."""
 
 from __future__ import annotations
 

@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-from typing import Any, Optional
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import Any, Literal
 
 import psycopg
 from pydantic import AnyUrl, BaseModel, Field, model_validator
@@ -33,19 +27,19 @@ class PostgresConfig(AttrDict):
         "postgres",
         description=ResourceConfig.model_fields["accessService"].description,
     )
-    accessUrl: Optional[HostlessAnyUrl] = Field(
+    accessUrl: HostlessAnyUrl | None = Field(
         None,
         description=ResourceConfig.model_fields["accessUrl"].description,
     )
 
     # Postgres specific config
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description="Configuration options for the local data cache.",
     )
-    user: Optional[str] = Field(None, description="postgres server username")
-    dbname: Optional[str] = Field(None, description="postgres dbname name")
-    password: Optional[str] = Field(None, description="postgres password")
+    user: str | None = Field(None, description="postgres server username")
+    dbname: str | None = Field(None, description="postgres dbname name")
+    password: str | None = Field(None, description="postgres password")
     sqlquery: str = Field("", description="A SQL query string.")
 
     @model_validator(mode="before")

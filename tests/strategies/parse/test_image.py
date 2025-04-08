@@ -8,7 +8,6 @@ import pytest
 
 if TYPE_CHECKING:
     from pathlib import Path
-    from typing import Optional
 
 
 image_formats = [
@@ -61,9 +60,9 @@ image_formats = [
 def test_image(
     image_format: str,
     filename: str,
-    filename_cropped: Optional[str],
-    crop: Optional[tuple[int, int, int, int]],
-    cropped_size: Optional[tuple[int, int]],
+    filename_cropped: str | None,
+    crop: tuple[int, int, int, int] | None,
+    cropped_size: tuple[int, int] | None,
     static_files: Path,
 ) -> None:
     """Test parsing an image format."""
@@ -154,7 +153,7 @@ def test_image(
 
 @pytest.mark.parametrize("crop", [None, (100, 50, 450, 300)], ids=["no crop", "crop"])
 def test_initialize_returns_nothing(
-    crop: Optional[tuple[int, int, int, int]],
+    crop: tuple[int, int, int, int] | None,
 ) -> None:
     """Assert that the initialize method returns nothing."""
     from oteapi.models.genericconfig import AttrDict

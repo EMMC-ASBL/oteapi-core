@@ -3,13 +3,7 @@
 from __future__ import annotations
 
 import json
-import sys
-from typing import Optional
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -22,14 +16,14 @@ from oteapi.plugins import create_strategy
 class JSONConfig(AttrDict):
     """JSON parse-specific Configuration Data Model."""
 
-    downloadUrl: Optional[HostlessAnyUrl] = Field(
+    downloadUrl: HostlessAnyUrl | None = Field(
         None, description="The HTTP(S) URL, which will be downloaded."
     )
     mediaType: Literal["application/json"] = Field(
         "application/json",
         description=("The media type"),
     )
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description=(
             "Configurations for the data cache for storing the downloaded file "

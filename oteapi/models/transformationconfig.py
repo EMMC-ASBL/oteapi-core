@@ -9,7 +9,6 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -42,17 +41,17 @@ class TransformationConfig(GenericConfig, SecretConfig):
             "Type of registered transformation strategy. E.g., `celery/remote`."
         ),
     )
-    name: Optional[str] = Field(
+    name: str | None = Field(
         None, description="Human-readable name of the transformation strategy."
     )
-    due: Optional[datetime] = Field(
+    due: datetime | None = Field(
         None,
         description=(
             "Optional field to indicate a due data/time for when a transformation "
             "should finish."
         ),
     )
-    priority: Optional[ProcessPriority] = Field(
+    priority: ProcessPriority | None = Field(
         ProcessPriority.MEDIUM,
         description="Define the process priority of the transformation execution.",
     )
@@ -62,19 +61,19 @@ class TransformationStatus(BaseModel):
     """Return from transformation status."""
 
     id: str = Field(..., description="ID for the given transformation process.")
-    status: Optional[str] = Field(
+    status: str | None = Field(
         None, description="Status for the transformation process."
     )
-    messages: Optional[list[str]] = Field(
+    messages: list[str] | None = Field(
         None, description="Messages related to the transformation process."
     )
-    created: Optional[datetime] = Field(
+    created: datetime | None = Field(
         None,
         description="Time of creation for the transformation process. Given in UTC.",
     )
-    startTime: Optional[datetime] = Field(
+    startTime: datetime | None = Field(
         None, description="Time when the transformation process started. Given in UTC."
     )
-    finishTime: Optional[datetime] = Field(
+    finishTime: datetime | None = Field(
         None, description="Time when the tranformation process finished. Given in UTC."
     )

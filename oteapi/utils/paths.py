@@ -8,12 +8,11 @@ from typing import TYPE_CHECKING
 from urllib.parse import ParseResult, urlparse
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Union
 
     from pydantic import AnyUrl
 
 
-def uri_to_path(uri: Union[str, AnyUrl, ParseResult]) -> Path:
+def uri_to_path(uri: str | AnyUrl | ParseResult) -> Path:
     """Convert URI to pathlib.Path.
 
     Support both Windows and Posix path types.

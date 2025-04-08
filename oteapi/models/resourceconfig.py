@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated, Optional
+from typing import Annotated
 
 from pydantic import Field, model_validator
 from pydantic.networks import AnyUrl, UrlConstraints
@@ -22,11 +22,11 @@ class ResourceConfig(GenericConfig, SecretConfig):
 
     """
 
-    resourceType: Optional[str] = Field(
+    resourceType: str | None = Field(
         None, description="Type of registered resource strategy."
     )
 
-    downloadUrl: Optional[HostlessAnyUrl] = Field(
+    downloadUrl: HostlessAnyUrl | None = Field(
         None,
         description=(
             "Definition: The URL of the downloadable file in a given format. E.g. CSV "
@@ -35,7 +35,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
             " GET request or SFTP."
         ),
     )
-    mediaType: Optional[str] = Field(
+    mediaType: str | None = Field(
         None,
         description=(
             "The media type of the distribution as defined by IANA "
@@ -45,7 +45,7 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)]."
         ),
     )
-    accessUrl: Optional[HostlessAnyUrl] = Field(
+    accessUrl: HostlessAnyUrl | None = Field(
         None,
         description=(
             "A URL of the resource that gives access to a distribution of "
@@ -56,25 +56,25 @@ class ResourceConfig(GenericConfig, SecretConfig):
             "downloadable resources."
         ),
     )
-    accessService: Optional[str] = Field(
+    accessService: str | None = Field(
         None,
         description=(
             "A data service that gives access to the distribution of the dataset."
         ),
     )
-    license: Optional[str] = Field(
+    license: str | None = Field(
         None,
         description=(
             "A legal document under which the distribution is made available."
         ),
     )
-    accessRights: Optional[str] = Field(
+    accessRights: str | None = Field(
         None,
         description=(
             "A rights statement that concerns how the distribution is accessed."
         ),
     )
-    publisher: Optional[str] = Field(
+    publisher: str | None = Field(
         None,
         description="The entity responsible for making the resource/item available.",
     )

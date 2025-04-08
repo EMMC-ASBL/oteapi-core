@@ -128,14 +128,7 @@ def test_attribute_del_item(generic_config: CustomConfig) -> None:
     assert "float" in generic_config.configuration.model_fields_set
     assert "float" not in generic_config.configuration.model_json_schema()["properties"]
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=(
-            r"^Item deletion used to reset fields to their default values\. "
-            r"To keep using this functionality, use the `reset_field\(\)` method\.$"
-        ),
-    ):
-        del generic_config.configuration["float"]
+    del generic_config.configuration["float"]
 
     assert "float" not in generic_config.configuration
     assert "float" not in generic_config.configuration.model_fields_set
@@ -151,14 +144,7 @@ def test_attribute_del_item(generic_config: CustomConfig) -> None:
     assert "string" in generic_config.configuration.model_fields_set
     assert "string" in generic_config.configuration.model_json_schema()["properties"]
 
-    with pytest.warns(
-        DeprecationWarning,
-        match=(
-            r"^Item deletion used to reset fields to their default values\. "
-            r"To keep using this functionality, use the `reset_field\(\)` method\.$"
-        ),
-    ):
-        del generic_config.configuration["string"]
+    del generic_config.configuration["string"]
 
     assert "string" not in generic_config.configuration
     assert "string" not in generic_config.configuration.model_fields_set
@@ -214,12 +200,11 @@ def test_attribute_del_item_fail(generic_config: CustomConfig) -> None:
     """Ensure KeyError is raised if key does not exist in AttrDict."""
     non_existent_key = "non_existant_key"
     assert non_existent_key not in generic_config.configuration
-    with pytest.raises(KeyError), pytest.warns(DeprecationWarning):
+    with pytest.raises(KeyError):
         del generic_config.configuration[non_existent_key]
 
     # Required fields can also be deleted
-    with pytest.warns(DeprecationWarning):
-        del generic_config.configuration["required_string"]
+    del generic_config.configuration["required_string"]
 
 
 def test_attribute_ne(generic_config: CustomConfig) -> None:

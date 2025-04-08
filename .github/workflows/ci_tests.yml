@@ -70,17 +70,16 @@ jobs:
     services:
       redis:
         image: redis:latest
-        volumes:
-          - redis-persist:/data
         ports:
           - "6379:6379"
 
     env:
       OTEAPI_REDIS_HOST: localhost
-      OTEAPI_REDIST_PORT: 6379
+      OTEAPI_REDIS_PORT: 6379
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
       uses: actions/setup-python@v5
@@ -98,7 +97,7 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest -vvv --cov-report=xml --cov=oteapi
+        pytest -vv --cov-report=xml --cov=oteapi
         pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies
 
     - name: Upload coverage to Codecov
@@ -135,7 +134,8 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version}}
       uses: actions/setup-python@v5
@@ -159,8 +159,8 @@ jobs:
 
     - name: Test with pytest
       run: |
-        pytest -vvv --cov-report=xml --cov=oteapi --durations=10
-        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies --durations=10
+        pytest -vv --cov-report=xml --cov=oteapi
+        pytest --cov-report=xml:strategies.xml --cov=oteapi/strategies
 
     - name: Upload coverage to Codecov
       if: github.repository == 'EMMC-ASBL/oteapi-core'
