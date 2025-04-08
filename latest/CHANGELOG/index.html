@@ -332,9 +332,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
+  <a href="#v070-2025-04-07" class="md-nav__link">
     <span class="md-ellipsis">
-      Unreleased
+      v0.7.0 (2025-04-07)
     </span>
   </a>
   
@@ -419,9 +419,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
+  <a href="#v070-2025-04-07" class="md-nav__link">
     <span class="md-ellipsis">
-      Unreleased
+      v0.7.0 (2025-04-07)
     </span>
   </a>
   
@@ -444,8 +444,8 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<h2 id="unreleased"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD">Unreleased</a><a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...HEAD">Full Changelog</a></p>
+<h2 id="v070-2025-04-07"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0">v0.7.0</a> (2025-04-07)<a class="headerlink" href="#v070-2025-04-07" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...v0.7.0">Full Changelog</a></p>
 <h1 id="use-pydantic-v2-and-a-more-minimized-usage-of-session">Use Pydantic v2 and a more minimized usage of <code>session</code><a class="headerlink" href="#use-pydantic-v2-and-a-more-minimized-usage-of-session" title="Permanent link">&para;</a></h1>
 <p>Pydantic has been updated to use v2. This is a breaking change for existing plugins relying on pydantic v1, and the transition period has been longer than expected for letting plugin developers migrate.</p>
 <p>A larger change is the change in the manner <code>session</code> is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.</p>
@@ -454,12 +454,6 @@
 <ul>
 <li>Remove maintenance (and support) for pydantic v1 <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/522">#522</a></li>
 </ul>
-<h2 id="v070-2025-04-07"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0">v0.7.0</a> (2025-04-07)<a class="headerlink" href="#v070-2025-04-07" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...v0.7.0">Full Changelog</a></p>
-<h1 id="use-pydantic-v2-and-a-more-minimized-usage-of-session_1">Use Pydantic v2 and a more minimized usage of <code>session</code><a class="headerlink" href="#use-pydantic-v2-and-a-more-minimized-usage-of-session_1" title="Permanent link">&para;</a></h1>
-<p>Pydantic has been updated to use v2. This is a breaking change for existing plugins relying on pydantic v1, and the transition period has been longer than expected for letting plugin developers migrate.</p>
-<p>A larger change is the change in the manner <code>session</code> is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.</p>
-<p>See the full list of v0.7.0.devX changelog entries for a complete list of changes since v0.6.</p>
 <p><strong>Merged pull requests:</strong></p>
 <ul>
 <li>Remove all things about keeping pydantic v1 support <a href="https://github.com/EMMC-ASBL/oteapi-core/pull/591">#591</a> (<a href="https://github.com/CasperWA">CasperWA</a>)</li>
