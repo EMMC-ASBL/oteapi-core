@@ -262,5 +262,5 @@ class XLSXParseStrategy:
         if header is None:
             header = [get_column_letter(col + 1) for col in range(len(data))]
 
-        transposed = [list(datum) for datum in zip(*data)]
-        return XLSXParseContent(data=dict(zip(header, transposed)))
+        transposed = [list(datum) for datum in zip(*data, strict=False)]
+        return XLSXParseContent(data=dict(zip(header, transposed, strict=False)))
