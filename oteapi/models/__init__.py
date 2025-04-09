@@ -16,7 +16,6 @@ from .parserconfig import ParserConfig
 from .resourceconfig import HostlessAnyUrl, ResourceConfig
 from .secretconfig import SecretConfig
 from .transformationconfig import TransformationConfig, TransformationStatus
-from .triplestoreconfig import TripleStoreConfig
 
 __all__ = (
     "AttrDict",
@@ -34,7 +33,6 @@ __all__ = (
     "StrategyConfig",
     "TransformationConfig",
     "TransformationStatus",
-    "TripleStoreConfig",
 )
 
 StrategyConfig = Union[

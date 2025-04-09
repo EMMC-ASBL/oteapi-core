@@ -11,7 +11,7 @@ from oteapi.models import StrategyConfig
 from oteapi.plugins.entry_points import StrategyType, get_strategy_entry_points
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Union
+    from typing import Any
 
     from oteapi.interfaces import IStrategy
     from oteapi.plugins.entry_points import EntryPointStrategyCollection
@@ -36,8 +36,8 @@ class StrategyFactory:
     @classmethod
     def make_strategy(
         cls,
-        config: Union[StrategyConfig, dict[str, Any]],
-        strategy_type: Union[StrategyType, str],
+        config: StrategyConfig | dict[str, Any],
+        strategy_type: StrategyType | str,
     ) -> IStrategy:
         """Instantiate a strategy in a context class.
 
@@ -141,7 +141,7 @@ class StrategyFactory:
 
         Note:
             This does *not* import the actual strategy implementations (classes).
-            It only loads the strategies from the registerred OTE-API entry points.
+            It only loads the strategies from the registerred OTEAPI entry points.
 
         Raises:
             KeyError: If `test_for_uniqueness` is `True` and an entry point strategy is
@@ -215,8 +215,8 @@ def list_strategies() -> dict[StrategyType, list[str]]:
 
 
 def create_strategy(
-    strategy_type: Union[StrategyType, str],
-    config: Union[StrategyConfig, dict[str, Any]],
+    strategy_type: StrategyType | str,
+    config: StrategyConfig | dict[str, Any],
 ) -> IStrategy:
     """Proxy function for
     [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].

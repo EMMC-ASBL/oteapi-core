@@ -2,13 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-from typing import TYPE_CHECKING, Optional, Union
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import TYPE_CHECKING, Literal
 
 from openpyxl import load_workbook
 from openpyxl.utils import column_index_from_string, get_column_letter
@@ -40,7 +34,7 @@ class XLSXParseConfig(AttrDict):
     """Data model for retrieving a rectangular section of an Excel sheet."""
 
     # Resource config
-    downloadUrl: Optional[HostlessAnyUrl] = Field(
+    downloadUrl: HostlessAnyUrl | None = Field(
         None, description=ResourceConfig.model_fields["downloadUrl"].description
     )
     mediaType: Literal[
@@ -52,42 +46,42 @@ class XLSXParseConfig(AttrDict):
 
     # XLSX parse strategy-specific config
     worksheet: str = Field(..., description="Name of worksheet to load.")
-    row_from: Optional[int] = Field(
+    row_from: int | None = Field(
         None,
         description="Excel row number of first row. Defaults to first assigned row.",
     )
-    col_from: Optional[Union[int, str]] = Field(
+    col_from: int | str | None = Field(
         None,
         description=(
             "Excel column number or label of first column. Defaults to first assigned "
             "column."
         ),
     )
-    row_to: Optional[int] = Field(
+    row_to: int | None = Field(
         None, description="Excel row number of last row. Defaults to last assigned row."
     )
-    col_to: Optional[Union[int, str]] = Field(
+    col_to: int | str | None = Field(
         None,
         description=(
             "Excel column number or label of last column. Defaults to last assigned "
             "column."
         ),
     )
-    header_row: Optional[int] = Field(
+    header_row: int | None = Field(
         None,
         description=(
             "Row number with the headers. Defaults to `1` if header is given, "
             "otherwise `None`."
         ),
     )
-    header: Optional[list[str]] = Field(
+    header: list[str] | None = Field(
         None,
         description=(
             "Optional list of column names, specifying the columns to return. "
             "These names they should match cells in `header_row`."
         ),
     )
-    new_header: Optional[list[str]] = Field(
+    new_header: list[str] | None = Field(
         None,
         description=(
             "Optional list of new column names replacing `header` in the output."
@@ -97,7 +91,7 @@ class XLSXParseConfig(AttrDict):
         AttrDict(),
         description="Configurations provided to a download strategy.",
     )
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description=(
             "Configurations for the data cache for retrieving the downloaded file "

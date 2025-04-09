@@ -7,14 +7,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    import sys
     from collections.abc import Callable, Iterable
+    from importlib.metadata import EntryPoint
     from typing import Any
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
@@ -25,12 +20,7 @@ if TYPE_CHECKING:
 @pytest.fixture
 def get_local_strategies() -> Callable[[str], tuple[EntryPoint, ...]]:
     """Retrieve all entry points for strategy type from oteapi-core."""
-    import sys
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import entry_points
-    else:
-        from importlib.metadata import entry_points
+    from importlib.metadata import entry_points
 
     from oteapi.plugins.entry_points import StrategyType
 

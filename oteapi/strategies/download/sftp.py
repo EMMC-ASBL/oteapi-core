@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from tempfile import NamedTemporaryFile
-from typing import Annotated, Optional
+from typing import Annotated
 
 import pysftp
 from pydantic import Field
@@ -20,7 +20,7 @@ AnyFtpUrl = Annotated[AnyUrl, UrlConstraints(allowed_schemes=["ftp", "sftp"])]
 class SFTPConfig(AttrDict):
     """(S)FTP-specific Configuration Data Model."""
 
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description=(
             "Configurations for the data cache for storing the downloaded file "

@@ -2,12 +2,7 @@
 
 from __future__ import annotations
 
-import sys
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass

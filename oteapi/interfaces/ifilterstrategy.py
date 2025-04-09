@@ -27,7 +27,7 @@ class IFilterStrategy(Protocol):
     def initialize(self) -> AttrDict:
         """Initialize data class.
 
-        This method will be called through the `/initialize` endpoint of the OTE-API
+        This method will be called through the `/initialize` endpoint of the OTEAPI
         Services.
 
         Returns:

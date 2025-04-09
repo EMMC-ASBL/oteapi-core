@@ -3,7 +3,7 @@
 This module deals with handling all plugged in strategies through the entry points API
 and importlib metadata API.
 
-Special functionality is put in place to handle the OTE-API-specific entry points.
+Special functionality is put in place to handle the OTEAPI-specific entry points.
 
 Since the entry points are information complete in and of themselves, there is no need
 to import actual strategy classes until they are truly needed.
@@ -14,16 +14,10 @@ from __future__ import annotations
 
 import importlib
 import re
-import sys
 from collections import abc
 from enum import Enum
+from importlib.metadata import entry_points as get_entry_points
 from typing import TYPE_CHECKING
-
-if sys.version_info < (3, 10):
-    from importlib_metadata import entry_points as get_entry_points
-else:
-    from importlib.metadata import entry_points as get_entry_points
-
 
 from oteapi.models import (
     FilterConfig,
@@ -36,12 +30,8 @@ from oteapi.models import (
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from typing import Any, Optional, Union
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
+    from importlib.metadata import EntryPoint
+    from typing import Any
 
     from oteapi.interfaces import IStrategy
     from oteapi.models import StrategyConfig
@@ -118,7 +108,7 @@ class StrategyType(Enum):
         }[strategy_type_field]
 
     @classmethod
-    def init(cls, value: Union[str, StrategyType]) -> StrategyType:
+    def init(cls, value: str | StrategyType) -> StrategyType:
         """Initialize a StrategyType with more than just the enumeration value.
 
         This method allows one to also initialize a StrategyType with an actual
@@ -216,7 +206,7 @@ class EntryPointStrategy:
 
         self._match = match
         self._type = StrategyType(self._entry_point.group[len("oteapi.") :])
-        self._implementation: Optional[IStrategyType] = None
+        self._implementation: IStrategyType | None = None
 
     @property
     def type(self) -> StrategyType:
@@ -442,7 +432,7 @@ class EntryPointStrategyCollection(abc.Collection):
 
     def get_entry_point(
         self,
-        key: Union[EntryPointStrategy, str, tuple[Union[StrategyType, str], str]],
+        key: EntryPointStrategy | str | tuple[StrategyType | str, str],
     ) -> EntryPointStrategy:
         """Retrieve an entry point from the collection.
 
@@ -469,7 +459,7 @@ class EntryPointStrategyCollection(abc.Collection):
 
     def _get_entry_point(
         self,
-        key: Union[EntryPointStrategy, str, tuple[Union[StrategyType, str], str]],
+        key: EntryPointStrategy | str | tuple[StrategyType | str, str],
     ) -> EntryPointStrategy:
         """Helper method for retrieving an entry point from the collection.
 
@@ -529,7 +519,7 @@ class EntryPointStrategyCollection(abc.Collection):
 
 
 def get_strategy_entry_points(
-    strategy_type: Union[StrategyType, str],
+    strategy_type: StrategyType | str,
     enforce_uniqueness: bool = True,
 ) -> EntryPointStrategyCollection:
     """Retrieve all entry points from a specific strategy type.

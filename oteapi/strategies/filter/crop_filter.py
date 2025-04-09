@@ -2,24 +2,18 @@
 
 from __future__ import annotations
 
-import sys
-from typing import Optional
+from typing import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
 from oteapi.models import AttrDict, FilterConfig
 
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
-
 
 class CropImageConfig(AttrDict):
     """Configuration model for crop data."""
 
-    crop: Optional[tuple[int, int, int, int]] = Field(
+    crop: tuple[int, int, int, int] | None = Field(
         None, description="Box cropping parameters (left, top, right, bottom)."
     )
 

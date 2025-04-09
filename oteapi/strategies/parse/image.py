@@ -2,14 +2,8 @@
 
 from __future__ import annotations
 
-import sys
 from enum import Enum
-from typing import Optional
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import Literal
 
 from PIL import Image
 from pydantic import AliasChoices, Field
@@ -31,10 +25,10 @@ class ImageConfig(AttrDict):
     [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""
 
     # Resource config
-    downloadUrl: Optional[HostlessAnyUrl] = Field(
+    downloadUrl: HostlessAnyUrl | None = Field(
         None, description=ResourceConfig.model_fields["downloadUrl"].description
     )
-    mediaType: Optional[
+    mediaType: None | (
         Literal[
             "image/jpg",
             "image/jpeg",
@@ -44,28 +38,28 @@ class ImageConfig(AttrDict):
             "image/tiff",
             "image/eps",
         ]
-    ] = Field(
+    ) = Field(
         None,
         description=ResourceConfig.model_fields["mediaType"].description,
     )
 
     # Image parse strategy-specific config
-    crop: Optional[tuple[int, int, int, int]] = Field(
+    crop: tuple[int, int, int, int] | None = Field(
         None,
         description="Box cropping parameters (left, top, right, bottom).",
         # Effectively mapping 'imagecrop' to 'crop'.
         # 'imagecrop' is used by the crop filter strategy.
         validation_alias=AliasChoices("crop", "imagecrop"),
     )
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description="Configuration options for the local data cache.",
     )
-    image_key: Optional[str] = Field(
+    image_key: str | None = Field(
         None,
         description="Key to use when storing the image data in datacache.",
     )
-    image_mode: Optional[str] = Field(
+    image_mode: str | None = Field(
         None,
         description=(
             "Pillow mode to convert image into. See "
@@ -120,7 +114,7 @@ class ImageParseContent(AttrDict):
         ...,
         description="Image mode. Examples: 'L', 'P', 'RGB', 'RGBA'...",
     )
-    image_palette_key: Optional[str] = Field(
+    image_palette_key: str | None = Field(
         None,
         description="Datacache key for colour palette if mode is 'P'.",
     )

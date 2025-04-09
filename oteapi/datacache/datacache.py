@@ -29,14 +29,14 @@ from oteapi.models import AttrDict, DataCacheConfig
 
 if TYPE_CHECKING:  # pragma: no cover
     from collections.abc import Iterator
-    from typing import Any, Optional, Union
+    from typing import Any
 
 
 def gethash(
     value: Any,
     hashtype: str = "sha256",
     encoding: str = "utf-8",
-    json_encoder: Optional[type[json.JSONEncoder]] = None,
+    json_encoder: type[json.JSONEncoder] | None = None,
 ) -> str:
     """Return a hash of `value`.
 
@@ -97,8 +97,8 @@ class DataCache:
 
     def __init__(
         self,
-        config: Optional[Union[DataCacheConfig, dict[str, Any]]] = None,
-        cache_dir: Optional[Union[Path, str]] = None,
+        config: DataCacheConfig | dict[str, Any] | None = None,
+        cache_dir: Path | str | None = None,
     ) -> None:
         if config is None:
             self.config = DataCacheConfig()
@@ -145,11 +145,11 @@ class DataCache:
     def add(
         self,
         value: Any,
-        key: Optional[str] = None,
-        expire: Optional[int] = None,
-        tag: Optional[str] = None,
+        key: str | None = None,
+        expire: int | None = None,
+        tag: str | None = None,
         bind: Any = None,
-        json_encoder: Optional[type[json.JSONEncoder]] = None,
+        json_encoder: type[json.JSONEncoder] | None = None,
     ) -> str:
         """Add a value to cache.
 
@@ -225,10 +225,10 @@ class DataCache:
         self,
         key: str,
         delete: bool = True,
-        filename: Optional[Union[Path, str]] = None,
-        prefix: Optional[str] = None,
-        suffix: Optional[str] = None,
-        directory: Optional[str] = None,
+        filename: Path | str | None = None,
+        prefix: str | None = None,
+        suffix: str | None = None,
+        directory: str | None = None,
     ) -> Iterator[Path]:
         """Write the value for `key` to file and return the filename.
 

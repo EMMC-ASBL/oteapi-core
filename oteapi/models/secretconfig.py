@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated, Optional
+from typing import Annotated
 
 from pydantic import BaseModel, Field, PlainSerializer, SecretStr
 
@@ -24,21 +24,21 @@ TogglableSecretStr = Annotated[
 class SecretConfig(BaseModel):
     """Simple model for handling secret in other config-models."""
 
-    user: Optional[TogglableSecretStr] = Field(
+    user: TogglableSecretStr | None = Field(
         None, description="User name for authentication."
     )
-    password: Optional[TogglableSecretStr] = Field(
+    password: TogglableSecretStr | None = Field(
         None, description="Password for authentication."
     )
-    token: Optional[TogglableSecretStr] = Field(
+    token: TogglableSecretStr | None = Field(
         None,
         description=(
             "An access token for providing access and meta data to an application."
         ),
     )
-    client_id: Optional[TogglableSecretStr] = Field(
+    client_id: TogglableSecretStr | None = Field(
         None, description="Client ID for an OAUTH2 client."
     )
-    client_secret: Optional[TogglableSecretStr] = Field(
+    client_secret: TogglableSecretStr | None = Field(
         None, description="Client secret for an OAUTH2 client."
     )

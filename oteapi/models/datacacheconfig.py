@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
 
 from pydantic import Field
 
@@ -19,7 +18,7 @@ class DataCacheConfig(AttrDict):
     """
 
     cacheDir: Path = Field(Path("oteapi"), description="Cache directory.")
-    accessKey: Optional[str] = Field(
+    accessKey: str | None = Field(
         None,
         description="Key with which the downloaded content can be accessed. "
         "Should preferable be the hash (corresponding to `hashType`) of the "
@@ -35,7 +34,7 @@ class DataCacheConfig(AttrDict):
         description="Number of seconds before the cache entry expires. "
         "Zero means no expiration. Default is two weeks.",
     )
-    tag: Optional[str] = Field(
+    tag: str | None = Field(
         None,
         description="Tag assigned to the downloaded content, typically "
         "identifying a session. Used with the `evict()` method to clean up a "

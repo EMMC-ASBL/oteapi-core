@@ -7,14 +7,9 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    import sys
     from collections.abc import Callable, Iterable
+    from importlib.metadata import EntryPoint
     from typing import Any
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
 
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
@@ -131,12 +126,7 @@ def test_strategytype_methods() -> None:
 
 def test_eval_custom_classes() -> None:
     """Check the custom classes can be re-invoked using `eval(repr())`."""
-    import sys
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
+    from importlib.metadata import EntryPoint
 
     from oteapi.plugins.entry_points import (
         EntryPointStrategy,

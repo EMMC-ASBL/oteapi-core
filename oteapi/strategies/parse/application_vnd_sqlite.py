@@ -3,14 +3,8 @@
 from __future__ import annotations
 
 import sqlite3
-import sys
 from pathlib import Path
-from typing import Optional
-
-if sys.version_info >= (3, 10):
-    from typing import Literal
-else:
-    from typing_extensions import Literal
+from typing import Literal
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -32,7 +26,7 @@ class SqliteConfig(AttrDict):
     """
 
     # Resource config
-    downloadUrl: Optional[HostlessAnyUrl] = Field(
+    downloadUrl: HostlessAnyUrl | None = Field(
         None, description=ResourceConfig.model_fields["downloadUrl"].description
     )
     mediaType: Literal["application/vnd.sqlite3"] = Field(
@@ -42,7 +36,7 @@ class SqliteConfig(AttrDict):
 
     # SQLite parse strategy-specific config
     sqlquery: str = Field("", description="A SQL query string.")
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description="Configuration options for the local data cache.",
     )

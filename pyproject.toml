@@ -18,52 +18,46 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: MIT License",
 ]
-keywords = ["OTE", "OTE-API"]
+keywords = ["OTE", "OTEAPI"]
 requires-python = "~=3.10"
 dynamic = ["version"]
 
 dependencies = [
     # Core dependencies
-    "agraph-python>=102.0.0,<105",
     "diskcache>=5.6.3,<6",
-    "importlib_metadata; python_version < '3.10'",
-    "pydantic~=2.9,!=2.10.0,!=2.10.1",
-    "pydantic-settings~=2.6",
-    "typing-extensions~=4.12; python_version < '3.10'",
+    "pydantic~=2.11",
+    "pydantic-settings~=2.8",
 
     # Strategy dependencies
-    "celery>=5.4.0,<6",
+    "celery>=5.5.1,<6",
     "openpyxl>=3.1.5,<4",
     "Pillow>=10.4.0,<12",
-    "psycopg[binary]~=3.2",
+    "psycopg[binary]~=3.2.6",
     "pysftp~=0.2.9",
-    "requests>=2.32.0,<3",
-
-    # Follow issue EMMC-ASBL/oteapi-services#328 for more information
-    "urllib3<2",
+    "requests>=2.32.3,<3",
 ]
 
 [project.optional-dependencies]
 docs = [
     "mike~=2.1",
-    "mkdocs>=1.5.3,<1.7",
-    "mkdocs-autorefs~=1.2",
-    "mkdocs-awesome-pages-plugin~=2.9",
-    "mkdocs-material>=9.5.5,<10",
-    "mkdocstrings[python]~=0.29.0",
+    "mkdocs~=1.6",
+    "mkdocs-autorefs~=1.4",
+    "mkdocs-awesome-pages-plugin~=2.10",
+    "mkdocs-material~=9.6",
+    "mkdocstrings[python]~=0.29.1",
 ]
 testing = [
     "ase~=3.24",
     "numpy>=1.26,<3",
     "pytest~=8.3",
-    "pytest-celery[redis]~=1.1",
-    "pytest-cov~=6.0",
-    "redis~=5.0",
+    "pytest-celery[redis]~=1.2",
+    "pytest-cov~=6.1",
+    "redis~=5.2",
     "requests-mock~=1.12",
 ]
 dev = [
-    "pre-commit~=4.0",
     "oteapi-core[docs,testing]",
+    "pre-commit~=4.2",
 ]
 
 [project.urls]
@@ -126,7 +120,7 @@ check_untyped_defs = true
 plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
-minversion = "8.2"
+minversion = "8.3"
 addopts = "-rs --cov-report=term-missing:skip-covered --no-cov-on-fail"
 filterwarnings = [
     # Treat all warnings as errors

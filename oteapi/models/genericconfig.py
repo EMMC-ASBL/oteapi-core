@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import warnings
 from collections.abc import Iterable, Mapping, MutableMapping
 from typing import TYPE_CHECKING
 
@@ -10,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from pydantic.fields import PydanticUndefined
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any, Optional, Union
+    from typing import Any
 
 
 class AttrDict(BaseModel, MutableMapping):
@@ -63,7 +62,7 @@ class AttrDict(BaseModel, MutableMapping):
     def values(self):
         return self.model_dump().values()
 
-    def get(self, key: str, default: Optional[Any] = None) -> Any:
+    def get(self, key: str, default: Any | None = None) -> Any:
         return getattr(self, key, default)
 
     def __eq__(self, value: object) -> bool:
@@ -83,13 +82,6 @@ class AttrDict(BaseModel, MutableMapping):
             raise KeyError(key) from exc
 
     def __delitem__(self, key: Any) -> None:
-        warnings.warn(
-            "Item deletion used to reset fields to their default values. To keep using"
-            " this functionality, use the `reset_field()` method.",
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
         if not isinstance(key, str):
             raise TypeError(f"Keys must be of type `str`, not `{type(key).__name__}`.")
         try:
@@ -101,16 +93,12 @@ class AttrDict(BaseModel, MutableMapping):
                 self.model_fields_set.remove(key)
 
     def clear(self) -> None:
-        # Ignore the deprecation warning from `__delitem__`
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", DeprecationWarning)
-
-            for field in self.model_dump():
-                del self[field]
+        for field in self.model_dump():
+            del self[field]
 
     def update(  # type: ignore[override]
         self,
-        other: Optional[Union[Mapping[str, Any], Iterable[tuple[str, Any]]]] = None,
+        other: Mapping[str, Any] | Iterable[tuple[str, Any]] | None = None,
         **kwargs,
     ) -> None:
         if other and isinstance(other, Mapping):
@@ -140,16 +128,12 @@ class AttrDict(BaseModel, MutableMapping):
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-    def pop(self, key: str, default: Optional[Any] = PydanticUndefined) -> Any:
+    def pop(self, key: str, default: Any | None = PydanticUndefined) -> Any:
         value = self.get(key, default)
         if value == PydanticUndefined:
             raise KeyError(key)
         if key in self:
-            # Ignore the deprecation warning from `__delitem__`
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore", DeprecationWarning)
-
-                del self[key]
+            del self[key]
         return value
 
     def popitem(self) -> tuple[str, Any]:

@@ -7,15 +7,10 @@ from typing import TYPE_CHECKING
 import pytest
 
 if TYPE_CHECKING:
-    import sys
     from collections.abc import Callable, Iterable
+    from importlib.metadata import EntryPoint
     from pathlib import Path
     from typing import Any
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
 
     MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
@@ -29,12 +24,7 @@ def mock_importlib_entry_points(monkeypatch: pytest.MonkeyPatch) -> MockEntryPoi
         This fixture should be called prior to importing anything from `oteapi`!
 
     """
-    import sys
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
+    from importlib.metadata import EntryPoint
 
     from oteapi.plugins import entry_points as oteapi_entry_points
 
@@ -112,12 +102,7 @@ def create_importlib_entry_points() -> Callable[[str], tuple[EntryPoint, ...]]:
 
     """  # noqa: E501
     import re
-    import sys
-
-    if sys.version_info < (3, 10):
-        from importlib_metadata import EntryPoint
-    else:
-        from importlib.metadata import EntryPoint
+    from importlib.metadata import EntryPoint
 
     def _create_entry_points(entry_points: str) -> tuple[EntryPoint, ...]:
         """Create EntryPoint.

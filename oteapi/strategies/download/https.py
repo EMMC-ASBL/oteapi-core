@@ -2,14 +2,8 @@
 
 from __future__ import annotations
 
-import sys
 import warnings
-from typing import Any, Optional, Union
-
-if sys.version_info >= (3, 9, 1):
-    from typing import Literal
-else:
-    from typing_extensions import Literal  # type: ignore[assignment]
+from typing import Any, Literal
 
 import requests
 from pydantic import AnyHttpUrl, Field, field_validator, model_validator
@@ -22,7 +16,7 @@ from oteapi.models import AttrDict, DataCacheConfig, ResourceConfig
 class HTTPSConfig(AttrDict):
     """HTTP(S)-specific Configuration Data Model."""
 
-    datacache_config: Optional[DataCacheConfig] = Field(
+    datacache_config: DataCacheConfig | None = Field(
         None,
         description=(
             "Configurations for the data cache for storing the downloaded file "
@@ -38,17 +32,17 @@ class HTTPSConfig(AttrDict):
         ),
     )
 
-    headers: Optional[dict[str, str]] = Field(
+    headers: dict[str, str] | None = Field(
         None,
         description="HTTP headers to be included in the download request.",
     )
 
-    cookies: Optional[dict[str, str]] = Field(
+    cookies: dict[str, str] | None = Field(
         None,
         description="Cookies to be included in the download request.",
     )
 
-    query_parameters: Optional[dict[str, Union[str, list[str]]]] = Field(
+    query_parameters: dict[str, str | list[str]] | None = Field(
         None,
         description=(
             "Query parameters to be included in the download request. Note, these can "
@@ -56,7 +50,7 @@ class HTTPSConfig(AttrDict):
         ),
     )
 
-    post_body: Optional[Union[dict[str, Any], list[tuple[str, Any]], bytes]] = Field(
+    post_body: dict[str, Any] | list[tuple[str, Any]] | bytes | None = Field(
         None,
         description=(
             "The body of the POST request. This can be a a dictionary, list of tuples "
@@ -64,7 +58,7 @@ class HTTPSConfig(AttrDict):
         ),
     )
 
-    post_body_json: Optional[Any] = Field(
+    post_body_json: Any | None = Field(
         None,
         description=(
             "The body of the POST request as a JSON serializable Python object. This "

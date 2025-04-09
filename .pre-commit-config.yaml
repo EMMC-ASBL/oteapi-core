@@ -19,21 +19,44 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-    - id: end-of-file-fixer
-      exclude: ^tests/static/.*$
-    - id: debug-statements
-    - id: check-yaml
-      name: Check YAML
+    - id: check-json
+      name: Check JSON
     - id: check-toml
       name: Check TOML
-    - id: trailing-whitespace
+    - id: check-yaml
+      name: Check YAML
+    - id: debug-statements
+    - id: end-of-file-fixer
       exclude: ^tests/static/.*$
-      args: [--markdown-linebreak-ext=md]
     - id: mixed-line-ending
       exclude: ^CHANGELOG.md$
     - id: name-tests-test
       args: ["--pytest-test-first"]
       exclude: ^tests/static/.*$
+    - id: trailing-whitespace
+      exclude: ^tests/static/.*$
+      args: [--markdown-linebreak-ext=md]
+
+  # Markdown linter to ensure the quality of the documentation
+  # More information can be found in its source repository:
+  # https://github.com/DavidAnson/markdownlint-cli2
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.17.2
+    hooks:
+    - id: markdownlint-cli2
+      name: markdownlint
+      exclude: ^CHANGELOG.md$
+      args:
+      - --fix
+      - --config=.markdownlint.yaml
+
+  # Pyupgrade is a code upgrade tool
+  # It works on files in-place
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.1
+    hooks:
+    - id: pyupgrade
+      args: [--py310-plus]
 
   # Black is a code style and formatter
   # It works on files in-place
@@ -49,14 +72,6 @@ repos:
     hooks:
     - id: ruff
       args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
-
-  # Pyupgrade is a code upgrade tool
-  # It works on files in-place
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.19.1
-    hooks:
-    - id: pyupgrade
-      args: [--py39-plus, --keep-runtime-typing]
 
   # Bandit is a security linter
   # More information can be found in its documentation:
