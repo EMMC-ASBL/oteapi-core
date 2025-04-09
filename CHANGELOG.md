@@ -2,19 +2,40 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.0...HEAD)
 
-# Use Pydantic v2 and a more minimized usage of `session`
+**Merged pull requests:**
 
-Pydantic has been updated to use v2. This is a breaking change for existing plugins relying on pydantic v1, and the transition period has been longer than expected for letting plugin developers migrate.
+- Remove triplestore module ++ [\#597](https://github.com/EMMC-ASBL/oteapi-core/pull/597) ([CasperWA](https://github.com/CasperWA))
+- Drop Python 3.9 support [\#594](https://github.com/EMMC-ASBL/oteapi-core/pull/594) ([CasperWA](https://github.com/CasperWA))
 
-A larger change is the change in the manner `session` is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.
+## [v1.0.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.0) (2025-04-09)
 
-See the full list of v0.7.0.devX changelog entries for a complete list of changes since v0.6.
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...v1.0.0)
 
-**Closed issues:**
+# OTEAPI Core v1
 
-- Remove maintenance \(and support\) for pydantic v1 [\#522](https://github.com/EMMC-ASBL/oteapi-core/issues/522)
+This release marks the upgrade from in-development versions to a proper v1.
+It represents the vast work that has gone into the OTE work through various EU projects; developing and utilizing the technology to bring semantically documented data through to simulators and other software that can specify what they desire, semantically, and subsequently retrieve it through OTE pipelines.
+
+## Drop Python 3.9 support
+
+With this version Python 3.9 support is also dropped.
+This will be propagated through the other relevant OTE repositories.
+
+The minimum required Python version is now Python 3.10.
+Python 3.13 test runs are added to the CI workflows.
+
+## Remove triple store module
+
+The `oteapi.triplestore` module has been removed, along with all other triple store-related modules and files.
+This move is done because this feature had not been properly integrated and other tools have been developed since that can utilize triple stores, for example [tripper](https://github.com/EMMC-ASBL/tripper).
+Furthermore, this aspect should be supported by the utilized interoperability software, for example [DLite](https://github.com/SINTEF/dlite) og vanilla [SOFT](https://github.com/SINTEF/soft7).
+
+**Implemented enhancements:**
+
+- Drop Python 3.9 support [\#592](https://github.com/EMMC-ASBL/oteapi-core/issues/592)
+- Remove Session for the strategy interfaces [\#410](https://github.com/EMMC-ASBL/oteapi-core/issues/410)
 
 ## [v0.7.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0) (2025-04-07)
 
@@ -27,6 +48,10 @@ Pydantic has been updated to use v2. This is a breaking change for existing plug
 A larger change is the change in the manner `session` is implemented. It is no longer provided as a parameter to strategy methods, but rather it is an object that lives only on the side of the OTE client, meaning it is something that comes on top of/outside of the realm of invoking a strategy. As is the concept of a pipeline, as it has always been.
 
 See the full list of v0.7.0.devX changelog entries for a complete list of changes since v0.6.
+
+**Closed issues:**
+
+- Remove maintenance \(and support\) for pydantic v1 [\#522](https://github.com/EMMC-ASBL/oteapi-core/issues/522)
 
 **Merged pull requests:**
 
