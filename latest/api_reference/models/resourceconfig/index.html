@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for the OTE-API Core package">
+        <meta name="description" content="Documentation for the OTEAPI Core package">
       
       
       
@@ -24,7 +24,7 @@
     
     
       
-        <title>resourceconfig - OTE-API Core</title>
+        <title>resourceconfig - OTEAPI Core</title>
       
     
     
@@ -98,7 +98,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-header__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
@@ -112,7 +112,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OTE-API Core
+            OTEAPI Core
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -208,13 +208,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-nav__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
 
     </a>
-    OTE-API Core
+    OTEAPI Core
   </label>
   
     <div class="md-nav__source">
@@ -309,7 +309,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Configuration Models
+    OTEAPI Configuration Models
     
   </span>
   
@@ -331,7 +331,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Core Strategies
+    OTEAPI Core Strategies
     
   </span>
   
@@ -667,11 +667,11 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">resourceType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">resourceType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Type of registered resource strategy.&quot;</span>
     <span class="p">)</span>
 
-    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;Definition: The URL of the downloadable file in a given format. E.g. CSV &quot;</span>
@@ -680,7 +680,7 @@
             <span class="s2">&quot; GET request or SFTP.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">mediaType</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">mediaType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;The media type of the distribution as defined by IANA &quot;</span>
@@ -690,7 +690,7 @@
             <span class="s2">&quot;[[IANA-MEDIA-TYPES](https://www.w3.org/TR/vocab-dcat-2/#bib-iana-media-types)].&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">accessUrl</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">HostlessAnyUrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">accessUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;A URL of the resource that gives access to a distribution of &quot;</span>
@@ -701,25 +701,25 @@
             <span class="s2">&quot;downloadable resources.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">accessService</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">accessService</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;A data service that gives access to the distribution of the dataset.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">license</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">license</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;A legal document under which the distribution is made available.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">accessRights</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">accessRights</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
             <span class="s2">&quot;A rights statement that concerns how the distribution is accessed.&quot;</span>
         <span class="p">),</span>
     <span class="p">)</span>
-    <span class="n">publisher</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+    <span class="n">publisher</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The entity responsible for making the resource/item available.&quot;</span><span class="p">,</span>
     <span class="p">)</span>

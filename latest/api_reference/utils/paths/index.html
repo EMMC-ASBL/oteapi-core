@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for the OTE-API Core package">
+        <meta name="description" content="Documentation for the OTEAPI Core package">
       
       
       
@@ -22,7 +22,7 @@
     
     
       
-        <title>paths - OTE-API Core</title>
+        <title>paths - OTEAPI Core</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-header__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OTE-API Core
+            OTEAPI Core
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -206,13 +206,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-nav__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
 
     </a>
-    OTE-API Core
+    OTEAPI Core
   </label>
   
     <div class="md-nav__source">
@@ -307,7 +307,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Configuration Models
+    OTEAPI Configuration Models
     
   </span>
   
@@ -329,7 +329,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Core Strategies
+    OTEAPI Core Strategies
     
   </span>
   
@@ -469,7 +469,7 @@ when parsing a file URL for an absolute path on Windows.</p>
                 <code>uri</code>
             </td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<span title="str">str</span>, <span title="pydantic.AnyUrl">AnyUrl</span>, <span title="urllib.parse.ParseResult">ParseResult</span>]</code>
+                  <code><span title="str">str</span> | <span title="pydantic.AnyUrl">AnyUrl</span> | <span title="urllib.parse.ParseResult">ParseResult</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -509,7 +509,8 @@ when parsing a file URL for an absolute path on Windows.</p>
 
             <details class="quote">
               <summary>Source code in <code>oteapi/utils/paths.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
@@ -545,8 +546,7 @@ when parsing a file URL for an absolute path on Windows.</p>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">uri_to_path</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">AnyUrl</span><span class="p">,</span> <span class="n">ParseResult</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">uri_to_path</span><span class="p">(</span><span class="n">uri</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">AnyUrl</span> <span class="o">|</span> <span class="n">ParseResult</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert URI to pathlib.Path.</span>
 
 <span class="sd">    Support both Windows and Posix path types.</span>

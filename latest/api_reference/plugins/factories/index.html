@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for the OTE-API Core package">
+        <meta name="description" content="Documentation for the OTEAPI Core package">
       
       
       
@@ -24,7 +24,7 @@
     
     
       
-        <title>factories - OTE-API Core</title>
+        <title>factories - OTEAPI Core</title>
       
     
     
@@ -98,7 +98,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="OTE-API Core" class="md-header__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-header__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
@@ -112,7 +112,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OTE-API Core
+            OTEAPI Core
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -208,13 +208,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="OTE-API Core" class="md-nav__button md-logo" aria-label="OTE-API Core" data-md-component="logo">
+    <a href="../../.." title="OTEAPI Core" class="md-nav__button md-logo" aria-label="OTEAPI Core" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 9V1.5h-3V9h-3V1.5h-3V9h-3V1.5H4.65V9H3v1.5h18V9zm0 4.5h-3V21h-3v-7.5h-3V21h-3v-7.5H4.65V21H3v1.5h18V21h-1.5z"/></svg>
 
     </a>
-    OTE-API Core
+    OTEAPI Core
   </label>
   
     <div class="md-nav__source">
@@ -309,7 +309,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Configuration Models
+    OTEAPI Configuration Models
     
   </span>
   
@@ -331,7 +331,7 @@
   
   
   <span class="md-ellipsis">
-    OTE-API Core Strategies
+    OTEAPI Core Strategies
     
   </span>
   
@@ -767,8 +767,8 @@ in-memory cache of all registered strategies.</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_strategy</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyConfig</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-        <span class="n">strategy_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
 
@@ -872,7 +872,7 @@ in-memory cache of all registered strategies.</p>
 
 <span class="sd">        Note:</span>
 <span class="sd">            This does *not* import the actual strategy implementations (classes).</span>
-<span class="sd">            It only loads the strategies from the registerred OTE-API entry points.</span>
+<span class="sd">            It only loads the strategies from the registerred OTEAPI entry points.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            KeyError: If `test_for_uniqueness` is `True` and an entry point strategy is</span>
@@ -1095,7 +1095,7 @@ and strategies.</p>
 <details class="note" open>
   <summary>Note</summary>
   <p>This does <em>not</em> import the actual strategy implementations (classes).
-It only loads the strategies from the registerred OTE-API entry points.</p>
+It only loads the strategies from the registerred OTEAPI entry points.</p>
 </details>
 
 <p><span class="doc-section-title">Raises:</span></p>
@@ -1198,7 +1198,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 
 <span class="sd">    Note:</span>
 <span class="sd">        This does *not* import the actual strategy implementations (classes).</span>
-<span class="sd">        It only loads the strategies from the registerred OTE-API entry points.</span>
+<span class="sd">        It only loads the strategies from the registerred OTEAPI entry points.</span>
 
 <span class="sd">    Raises:</span>
 <span class="sd">        KeyError: If `test_for_uniqueness` is `True` and an entry point strategy is</span>
@@ -1257,11 +1257,11 @@ duplicated strategy and the duplicates will be ignored.</p>
                 <code>config</code>
             </td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="StrategyConfig = Union[FilterConfig, FunctionConfig, MappingConfig, ParserConfig, ResourceConfig, TransformationConfig]
+                  <code><a class="autorefs autorefs-internal" title="StrategyConfig = Union[FilterConfig, FunctionConfig, MappingConfig, ParserConfig, ResourceConfig, TransformationConfig]
 
   
       module-attribute
-   (oteapi.models.StrategyConfig)" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+   (oteapi.models.StrategyConfig)" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a> | <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1277,7 +1277,7 @@ duplicated strategy and the duplicates will be ignored.</p>
                 <code>strategy_type</code>
             </td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="StrategyType (oteapi.plugins.entry_points.StrategyType)" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="str">str</span>]</code>
+                  <code><a class="autorefs autorefs-internal" title="StrategyType (oteapi.plugins.entry_points.StrategyType)" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a> | <span title="str">str</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1446,8 +1446,8 @@ enumeration for a definition of valid strategy types.</p>
 <span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_strategy</span><span class="p">(</span>
     <span class="bp">cls</span><span class="p">,</span>
-    <span class="n">config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyConfig</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-    <span class="n">strategy_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
 
@@ -1562,7 +1562,7 @@ enumeration for a definition of valid strategy types.</p>
                 <code>strategy_type</code>
             </td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="StrategyType (oteapi.plugins.entry_points.StrategyType)" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a>, <span title="str">str</span>]</code>
+                  <code><a class="autorefs autorefs-internal" title="StrategyType (oteapi.plugins.entry_points.StrategyType)" href="../entry_points/#oteapi.plugins.entry_points.StrategyType">StrategyType</a> | <span title="str">str</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1580,11 +1580,11 @@ enumeration for a definition of valid strategy types.</p>
                 <code>config</code>
             </td>
             <td>
-                  <code><span title="typing.Union">Union</span>[<a class="autorefs autorefs-internal" title="StrategyConfig = Union[FilterConfig, FunctionConfig, MappingConfig, ParserConfig, ResourceConfig, TransformationConfig]
+                  <code><a class="autorefs autorefs-internal" title="StrategyConfig = Union[FilterConfig, FunctionConfig, MappingConfig, ParserConfig, ResourceConfig, TransformationConfig]
 
   
       module-attribute
-   (oteapi.models.StrategyConfig)" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a>, <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+   (oteapi.models.StrategyConfig)" href="../../../all_models/#oteapi.models.StrategyConfig">StrategyConfig</a> | <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1642,8 +1642,8 @@ enumeration for a definition of valid strategy types.</p>
 <span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_strategy</span><span class="p">(</span>
-    <span class="n">strategy_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span>
-    <span class="n">config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">StrategyConfig</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
 <span class="sd">    [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].</span>
