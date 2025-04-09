@@ -332,18 +332,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased-changes-2025-04-09" class="md-nav__link">
+  <a href="#unreleased" class="md-nav__link">
     <span class="md-ellipsis">
-      Unreleased changes (2025-04-09)
+      Unreleased
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#v070-2025-04-07" class="md-nav__link">
+  <a href="#v100-2025-04-09" class="md-nav__link">
     <span class="md-ellipsis">
-      v0.7.0 (2025-04-07)
+      v1.0.0 (2025-04-09)
     </span>
   </a>
   
@@ -428,18 +428,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased-changes-2025-04-09" class="md-nav__link">
+  <a href="#unreleased" class="md-nav__link">
     <span class="md-ellipsis">
-      Unreleased changes (2025-04-09)
+      Unreleased
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#v070-2025-04-07" class="md-nav__link">
+  <a href="#v100-2025-04-09" class="md-nav__link">
     <span class="md-ellipsis">
-      v0.7.0 (2025-04-07)
+      v1.0.0 (2025-04-09)
     </span>
   </a>
   
@@ -462,17 +462,31 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<h2 id="unreleased-changes-2025-04-09"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/Unreleased changes">Unreleased changes</a> (2025-04-09)<a class="headerlink" href="#unreleased-changes-2025-04-09" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...Unreleased changes">Full Changelog</a></p>
-<p><strong>Implemented enhancements:</strong></p>
-<ul>
-<li>Drop Python 3.9 support <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/592">#592</a></li>
-<li>Remove Session for the strategy interfaces <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/410">#410</a></li>
-</ul>
+<h2 id="unreleased"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD">Unreleased</a><a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.0...HEAD">Full Changelog</a></p>
 <p><strong>Merged pull requests:</strong></p>
 <ul>
 <li>Remove triplestore module ++ <a href="https://github.com/EMMC-ASBL/oteapi-core/pull/597">#597</a> (<a href="https://github.com/CasperWA">CasperWA</a>)</li>
 <li>Drop Python 3.9 support <a href="https://github.com/EMMC-ASBL/oteapi-core/pull/594">#594</a> (<a href="https://github.com/CasperWA">CasperWA</a>)</li>
+</ul>
+<h2 id="v100-2025-04-09"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.0">v1.0.0</a> (2025-04-09)<a class="headerlink" href="#v100-2025-04-09" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0...v1.0.0">Full Changelog</a></p>
+<h1 id="oteapi-core-v1">OTEAPI Core v1<a class="headerlink" href="#oteapi-core-v1" title="Permanent link">&para;</a></h1>
+<p>This release marks the upgrade from in-development versions to a proper v1.
+It represents the vast work that has gone into the OTE work through various EU projects; developing and utilizing the technology to bring semantically documented data through to simulators and other software that can specify what they desire, semantically, and subsequently retrieve it through OTE pipelines.</p>
+<h2 id="drop-python-39-support">Drop Python 3.9 support<a class="headerlink" href="#drop-python-39-support" title="Permanent link">&para;</a></h2>
+<p>With this version Python 3.9 support is also dropped.
+This will be propagated through the other relevant OTE repositories.</p>
+<p>The minimum required Python version is now Python 3.10.
+Python 3.13 test runs are added to the CI workflows.</p>
+<h2 id="remove-triple-store-module">Remove triple store module<a class="headerlink" href="#remove-triple-store-module" title="Permanent link">&para;</a></h2>
+<p>The <code>oteapi.triplestore</code> module has been removed, along with all other triple store-related modules and files.
+This move is done because this feature had not been properly integrated and other tools have been developed since that can utilize triple stores, for example <a href="https://github.com/EMMC-ASBL/tripper">tripper</a>.
+Furthermore, this aspect should be supported by the utilized interoperability software, for example <a href="https://github.com/SINTEF/dlite">DLite</a> og vanilla <a href="https://github.com/SINTEF/soft7">SOFT</a>.</p>
+<p><strong>Implemented enhancements:</strong></p>
+<ul>
+<li>Drop Python 3.9 support <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/592">#592</a></li>
+<li>Remove Session for the strategy interfaces <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/410">#410</a></li>
 </ul>
 <h2 id="v070-2025-04-07"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0">v0.7.0</a> (2025-04-07)<a class="headerlink" href="#v070-2025-04-07" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev6...v0.7.0">Full Changelog</a></p>
