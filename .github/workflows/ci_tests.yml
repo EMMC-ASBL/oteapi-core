@@ -22,10 +22,8 @@ jobs:
       run_pre-commit: false
 
       # pylint & safety
-      python_version_pylint_safety: "3.10"
-
       run_pylint: false
-      run_safety: true
+      run_safety: false
 
       # Build package
       run_build_package: true
@@ -57,6 +55,28 @@ jobs:
         (oteapi/models/mappingconfig.py),[oteapi.models.mappingconfig.MappingConfig.mappingType]
         (oteapi/models/transformationconfig.py),[oteapi.models.transformationconfig.TransformationConfig.transformationType]
       warnings_as_errors: true
+
+  pip-audit:
+    name: pip-audit
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout ${{ github.repository }}
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install -U pip
+        pip install -U setuptools wheel
+        pip install -e .[dev]
+
+    - name: Run pip-audit
+      uses: pypa/gh-action-pip-audit@v1.1.0
 
   pytest-linux:
     name: pytest (linux-py${{ matrix.python-version }})
