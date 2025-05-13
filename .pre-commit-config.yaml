@@ -41,11 +41,11 @@ repos:
   # More information can be found in its source repository:
   # https://github.com/DavidAnson/markdownlint-cli2
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.17.2
+    rev: v0.18.0
     hooks:
     - id: markdownlint-cli2
       name: markdownlint
-      exclude: ^CHANGELOG.md$
+      exclude: ^(docs/api_reference/*|.*CHANGELOG|docs/LICENSE).md$
       args:
       - --fix
       - --config=.markdownlint.yaml
@@ -68,7 +68,7 @@ repos:
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.8
+    rev: v0.11.9
     hooks:
     - id: ruff
       args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
