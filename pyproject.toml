@@ -157,7 +157,8 @@ extend-select = [
   "PYI",  # flake8-pyi
 ]
 ignore = [
-  "PLR",  # Design related pylint codes
+  "PLC",  # Convention related pylint codes
+  "PLR",  # Refactor related pylint codes
 ]
 isort.required-imports = ["from __future__ import annotations"]
 
