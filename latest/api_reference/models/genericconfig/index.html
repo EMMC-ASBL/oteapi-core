@@ -804,7 +804,7 @@ subscription, like with a dictionary.</p>
 <span class="normal">208</span>
 <span class="normal">209</span>
 <span class="normal">210</span>
-<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AttrDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">):</span>
+<span class="normal">211</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AttrDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">):</span>  <span class="c1"># noqa: PLW1641</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An object whose attributes can also be accessed through</span>
 <span class="sd">    subscription, like with a dictionary.</span>
 
