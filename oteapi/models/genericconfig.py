@@ -12,7 +12,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from typing import Any
 
 
-class AttrDict(BaseModel, MutableMapping):
+class AttrDict(BaseModel, MutableMapping):  # noqa: PLW1641
     """An object whose attributes can also be accessed through
     subscription, like with a dictionary.
 
