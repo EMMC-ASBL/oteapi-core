@@ -44,7 +44,7 @@ docs = [
     "mkdocs-autorefs~=1.4",
     "mkdocs-awesome-pages-plugin~=2.10",
     "mkdocs-material~=9.6",
-    "mkdocstrings[python]~=0.29.1",
+    "mkdocstrings[python]>=0.29.1,<0.31.0",
 ]
 testing = [
     "ase~=3.24",
