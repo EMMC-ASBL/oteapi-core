@@ -24,7 +24,8 @@ def _skip_if_no_docker_or_windows() -> None:
         pytest.skip("Docker is not available or using Windows!")
 
 
-@pytest.mark.usefixtures("_skip_if_no_docker_or_windows")
+# @pytest.mark.usefixtures("_skip_if_no_docker_or_windows")
+@pytest.mark.skip("Requires fix for pytest-celery, see #613")
 def test_celery_remote(
     celery_setup: CeleryTestSetup,
     monkeypatch: pytest.MonkeyPatch,
