@@ -52,7 +52,7 @@ testing = [
     "numpy>=1.26,<3",
     "pytest~=8.3",
     "pytest-celery[redis]~=1.2",
-    "pytest-cov~=6.1",
+    "pytest-cov~=7.0",
     "redis~=6.1",
     "requests-mock~=1.12",
 ]
