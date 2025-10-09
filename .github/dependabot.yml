@@ -6,7 +6,9 @@
 version: 2
 updates:
 - package-ecosystem: pip
-  directory: "/"
+  directories:
+    - "/"
+    - "/.github/utils"
   schedule:
     interval: weekly
     day: monday

@@ -60,7 +60,7 @@ repos:
 
   # Black is a code style and formatter
   # It works on files in-place
-  - repo: https://github.com/psf/black
+  - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 25.9.0
     hooks:
     - id: black
@@ -68,7 +68,7 @@ repos:
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.13.2
+    rev: v0.13.3
     hooks:
     - id: ruff-check
       name: ruff
