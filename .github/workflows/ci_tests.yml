@@ -73,10 +73,15 @@ jobs:
       run: |
         python -m pip install -U pip
         pip install -U setuptools wheel
-        pip install -e .[dev]
+        pip install -U -r .github/utils/requirements_audit.txt
+
+    - name: Create requirements.txt for pip-audit
+      run: pip-compile --output-file="${{ runner.temp }}/requirements.txt" --all-extras --verbose --color "${{ github.workspace }}/pyproject.toml"
 
     - name: Run pip-audit
       uses: pypa/gh-action-pip-audit@v1.1.0
+      with:
+        inputs: '${{ runner.temp }}/requirements.txt'
 
   pytest-linux:
     name: pytest (linux-py${{ matrix.python-version }})
