@@ -68,7 +68,7 @@ repos:
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.14.1
     hooks:
     - id: ruff-check
       name: ruff
