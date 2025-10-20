@@ -32,7 +32,7 @@ dependencies = [
     "celery>=5.5.1,<6",
     "openpyxl>=3.1.5,<4",
     "paramiko<4",
-    "Pillow>=10.4.0,<12",
+    "Pillow>=10.4.0,<13",
     "psycopg[binary]~=3.2.6",
     "pysftp~=0.2.9",
     "requests>=2.32.3,<3",
