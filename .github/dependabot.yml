@@ -36,3 +36,7 @@ updates:
   labels:
     - CI/CD
     - skip-changelog
+  groups:
+    github-actions:
+      patterns:
+        - "*"
