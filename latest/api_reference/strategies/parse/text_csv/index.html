@@ -801,7 +801,7 @@
 
 
 <h2 id="oteapi.strategies.parse.text_csv.CSVDialect" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">CSVDialect</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;CSVDialect&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">{(</span><span class="n">dialect</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span> <span class="n">dialectfor</span> <span class="n">dialect</span> <span class="ow">in</span> <span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())},</span> <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">CSVDialect</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;CSVDialect&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">{(</span><span class="n">dialect</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span> <span class="n">dialect</span> <span class="k">for</span> <span class="n">dialect</span> <span class="ow">in</span> <span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())},</span> <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -838,6 +838,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="AttrDict (oteapi.models.AttrDict)" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
 
 
+
         <p>CSV parse-specific Configuration Data Model.</p>
 
 
@@ -847,7 +848,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">216</span>
 <span class="normal">217</span>
@@ -1067,6 +1068,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="AttrDict (oteapi.models.AttrDict)" href="../../../../all_models/#oteapi.models.AttrDict">AttrDict</a></code></p>
 
 
+
         <p>Class for returning values from CSV Parse.</p>
 
 
@@ -1076,7 +1078,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">267</span>
 <span class="normal">268</span>
@@ -1148,6 +1150,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
     <div class="doc doc-contents ">
 
 
+
         <p>Parse strategy for CSV files.</p>
 
 
@@ -1157,7 +1160,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">275</span>
 <span class="normal">276</span>
@@ -1372,7 +1375,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
         <p>Parse CSV.</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">285</span>
 <span class="normal">286</span>
@@ -1537,7 +1540,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
         <p>Initialize.</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">281</span>
 <span class="normal">282</span>
@@ -1574,6 +1577,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
               Bases: <code><a class="autorefs autorefs-internal" title="ParserConfig (oteapi.models.ParserConfig)" href="../../../../all_models/#oteapi.models.ParserConfig">ParserConfig</a></code></p>
 
 
+
         <p>CSV parse strategy filter config.</p>
 
 
@@ -1583,7 +1587,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">255</span>
 <span class="normal">256</span>
@@ -1686,6 +1690,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
               Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
 
 
+
         <p>Dialect and formatting parameters for CSV.</p>
 <p>See <a href="https://docs.python.org/3/library/csv.html#csv-fmt-params">the Python docs</a>
 for more information.</p>
@@ -1703,7 +1708,7 @@ this model.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 57</span>
 <span class="normal"> 58</span>
@@ -2144,7 +2149,7 @@ this model.</p>
         <p>Ensure the given <code>base</code> dialect is registered locally.</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">166</span>
 <span class="normal">167</span>
@@ -2195,6 +2200,7 @@ this model.</p>
               Bases: <code><span title="str">str</span></code>, <code><span title="enum.Enum">Enum</span></code></p>
 
 
+
         <p>CSV module <code>QUOTE_*</code> constants.</p>
 
 
@@ -2204,7 +2210,7 @@ this model.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
@@ -2351,7 +2357,7 @@ this model.</p>
         <p>Return the CSV lib equivalent constant.</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
@@ -2398,6 +2404,7 @@ this model.</p>
               Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
 
 
+
         <p>CSV DictReader configuration parameters.</p>
 <p>See <a href="https://docs.python.org/3/library/csv.html#csv.DictReader">the Python docs</a>
 for more information.</p>
@@ -2409,7 +2416,7 @@ for more information.</p>
 
 
 
-              <details class="quote">
+              <details class="mkdocstrings-source">
                 <summary>Source code in <code>oteapi/strategies/parse/text_csv.py</code></summary>
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
 <span class="normal">179</span>
