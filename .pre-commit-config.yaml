@@ -41,7 +41,7 @@ repos:
   # More information can be found in its source repository:
   # https://github.com/DavidAnson/markdownlint-cli2
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.18.1
+    rev: v0.19.0
     hooks:
     - id: markdownlint-cli2
       name: markdownlint
@@ -68,7 +68,7 @@ repos:
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.4
+    rev: v0.14.5
     hooks:
     - id: ruff-check
       name: ruff
@@ -78,7 +78,7 @@ repos:
   # More information can be found in its documentation:
   # https://bandit.readthedocs.io/en/latest/
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.8.6
+    rev: 1.9.0
     hooks:
     - id: bandit
       args: ["-r"]
