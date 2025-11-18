@@ -192,7 +192,7 @@ To understand what the strategy type value should be, see [Table of entry point 
 ### Table of entry point strategies
 
 | Strategy Type Name | Strategy Type Value | Entry Point Group | Documentation Reference |
-|:---:|:---:|:---:|:--- |
+| :---: | :---: | :---: | :--- |
 | Download | [`scheme`][oteapi.models.resourceconfig.ResourceConfig.downloadUrl] | `oteapi.download` | [Download strategy](#download-strategy) |
 | Filter | [`filterType`][oteapi.models.filterconfig.FilterConfig.filterType] | `oteapi.filter` | [Filter strategy](#filter-strategy) |
 | Function | [`functionType`][oteapi.models.functionconfig.FunctionConfig.functionType] | `oteapi.function` | [Function strategy](#function-strategy) |
