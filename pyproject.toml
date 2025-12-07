@@ -25,15 +25,15 @@ dynamic = ["version"]
 dependencies = [
     # Core dependencies
     "diskcache>=5.6.3,<6",
-    "pydantic~=2.11",
-    "pydantic-settings~=2.8",
+    "pydantic~=2.12",
+    "pydantic-settings~=2.12",
 
     # Strategy dependencies
-    "celery>=5.5.1,<6",
+    "celery>=5.6.0,<6",
     "openpyxl>=3.1.5,<4",
     "paramiko<4",
     "Pillow>=10.4.0,<13",
-    "psycopg[binary]~=3.2.6",
+    "psycopg[binary]>=3.2.6,<4",
     "pysftp~=0.2.9",
     "requests>=2.32.3,<3",
 ]
@@ -44,11 +44,11 @@ docs = [
     "mkdocs~=1.6",
     "mkdocs-autorefs~=1.4",
     "mkdocs-awesome-pages-plugin~=2.10",
-    "mkdocs-material~=9.6",
+    "mkdocs-material~=9.7",
     "mkdocstrings[python]~=1.0",
 ]
 testing = [
-    "ase~=3.24",
+    "ase~=3.26",
     "numpy>=1.26,<3",
     "pytest~=9.0",
     "pytest-celery[redis]~=1.2",
@@ -58,7 +58,7 @@ testing = [
 ]
 dev = [
     "oteapi-core[docs,testing]",
-    "pre-commit~=4.2",
+    "pre-commit~=4.5",
 ]
 
 [project.urls]
