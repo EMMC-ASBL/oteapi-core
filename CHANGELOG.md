@@ -2,12 +2,39 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...HEAD)
+
+## Update dependencies and dev tools
+
+Auditing dependencies during CI/CD has been shifted from `safety` to `pip-audit`.
+Dependencies have been updated, some with new minimum versions, others with a widened version range.
+GH Actions and dev tools have been updated as well.
+
+**Fixed bugs:**
+
+- There is currently an issue with pytest-celery [\#613](https://github.com/EMMC-ASBL/oteapi-core/issues/613)
+
+## [v1.0.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.1) (2025-12-07)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.0...v1.0.1)
+
+## Update dependencies and dev tools
+
+Auditing dependencies during CI/CD has been shifted from `safety` to `pip-audit`.
+Dependencies have been updated, some with new minimum versions, others with a widened version range.
+GH Actions and dev tools have been updated as well.
+
+**Fixed bugs:**
+
+- pysftp is failing due to paramiko [\#617](https://github.com/EMMC-ASBL/oteapi-core/issues/617)
 
 **Merged pull requests:**
 
-- Remove triplestore module ++ [\#597](https://github.com/EMMC-ASBL/oteapi-core/pull/597) ([CasperWA](https://github.com/CasperWA))
-- Drop Python 3.9 support [\#594](https://github.com/EMMC-ASBL/oteapi-core/pull/594) ([CasperWA](https://github.com/CasperWA))
+- Revert "Skip celery tests using docker for now" [\#653](https://github.com/EMMC-ASBL/oteapi-core/pull/653) ([CasperWA](https://github.com/CasperWA))
+- Cwa/update deps [\#651](https://github.com/EMMC-ASBL/oteapi-core/pull/651) ([CasperWA](https://github.com/CasperWA))
+- Cap paramiko to below v4 [\#618](https://github.com/EMMC-ASBL/oteapi-core/pull/618) ([CasperWA](https://github.com/CasperWA))
+- Skip celery tests using docker for now [\#614](https://github.com/EMMC-ASBL/oteapi-core/pull/614) ([CasperWA](https://github.com/CasperWA))
+- Drop safety in favor of pip-audit [\#600](https://github.com/EMMC-ASBL/oteapi-core/pull/600) ([CasperWA](https://github.com/CasperWA))
 
 ## [v1.0.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.0) (2025-04-09)
 
@@ -36,6 +63,11 @@ Furthermore, this aspect should be supported by the utilized interoperability so
 
 - Drop Python 3.9 support [\#592](https://github.com/EMMC-ASBL/oteapi-core/issues/592)
 - Remove Session for the strategy interfaces [\#410](https://github.com/EMMC-ASBL/oteapi-core/issues/410)
+
+**Merged pull requests:**
+
+- Remove triplestore module ++ [\#597](https://github.com/EMMC-ASBL/oteapi-core/pull/597) ([CasperWA](https://github.com/CasperWA))
+- Drop Python 3.9 support [\#594](https://github.com/EMMC-ASBL/oteapi-core/pull/594) ([CasperWA](https://github.com/CasperWA))
 
 ## [v0.7.0](https://github.com/EMMC-ASBL/oteapi-core/tree/v0.7.0) (2025-04-07)
 
