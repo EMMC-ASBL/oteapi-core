@@ -31,7 +31,7 @@ dependencies = [
     # Strategy dependencies
     "celery>=5.6.0,<6",
     "openpyxl>=3.1.5,<4",
-    "paramiko<4",
+    "paramiko<5",
     "Pillow>=10.4.0,<13",
     "psycopg[binary]>=3.2.6,<4",
     "pysftp~=0.2.9",
