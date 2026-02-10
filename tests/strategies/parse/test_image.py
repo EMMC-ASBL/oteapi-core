@@ -85,7 +85,7 @@ def test_image(
                 "gswin64.exe -h",
                 "gswin64c.exe -h",
             ],
-        }.get(platform.system(), None)
+        }.get(platform.system())
 
         if not command:
             raise RuntimeError(
