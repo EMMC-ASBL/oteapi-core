@@ -12,6 +12,11 @@
 
 We highly recommend reading this page in [the official documentation](https://emmc-asbl.github.io/oteapi-core).
 
+!!! warning "Security Notice"
+    When using the `DataCache`, which is based on the [`diskcache`](https://grantjenks.com/diskcache/) library, it is important to note that the cache uses pickle for serialization.
+    If not properly secured, an attacker with write access to the cache directoy can achieve arbitrary code execution.
+    This issue is described in further detail in the [CVE-2025-69872](https://www.cve.org/CVERecord?id=CVE-2025-69872) vulnerability.
+
 ## About OTEAPI Core
 
 OTEAPI Core provides the core functionality of OTEAPI, which stands for the *Open Translation Environment API*.
