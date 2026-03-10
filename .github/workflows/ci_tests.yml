@@ -75,9 +75,6 @@ jobs:
         pip install -U setuptools wheel
         pip install -U -r .github/utils/requirements_audit.txt
 
-        # TEMPORARY: Install pip<25.3 to avoid issues with pip-compile and pip 25.3+
-        pip install "pip<25.3"
-
     - name: Create requirements.txt for pip-audit
       run: pip-compile --output-file="${{ runner.temp }}/requirements.txt" --all-extras --verbose --color "${{ github.workspace }}/pyproject.toml"
 
@@ -85,6 +82,12 @@ jobs:
       uses: pypa/gh-action-pip-audit@v1.1.0
       with:
         inputs: '${{ runner.temp }}/requirements.txt'
+        # CVE-2025-69872: DiskCache 5.6.3
+        #   DiskCache (python-diskcache) through 5.6.3 uses Python pickle for serialization by default.
+        #   An attacker with write access to the cache directory can achieve arbitrary code execution
+        #   when a victim application reads from the cache.
+        ignore-vulns: |
+          CVE-2025-69872
 
   pytest-linux:
     name: pytest (linux-py${{ matrix.python-version }})
