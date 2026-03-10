@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.4">
     
     
       
@@ -1056,6 +1056,12 @@
 <a href="https://github.com/EMMC-ASBL/oteapi-core/graphs/commit-activity"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/EMMC-ASBL/oteapi-core?logo=github" /></a>
 <a href="https://zenodo.org/badge/latestdoi/447260507"><img alt="DOI" src="https://zenodo.org/badge/447260507.svg" /></a></p>
 <p>We highly recommend reading this page in <a href="https://emmc-asbl.github.io/oteapi-core">the official documentation</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Security Notice</p>
+<p>When using the <code>DataCache</code>, which is based on the <a href="https://grantjenks.com/diskcache/"><code>diskcache</code></a> library, it is important to note that the cache uses pickle for serialization.
+If not properly secured, an attacker with write access to the cache directoy can achieve arbitrary code execution.
+This issue is described in further detail in the <a href="https://www.cve.org/CVERecord?id=CVE-2025-69872">CVE-2025-69872</a> vulnerability.</p>
+</div>
 <h2 id="about-oteapi-core">About OTEAPI Core<a class="headerlink" href="#about-oteapi-core" title="Permanent link">&para;</a></h2>
 <p>OTEAPI Core provides the core functionality of OTEAPI, which stands for the <em>Open Translation Environment API</em>.</p>
 <p>It uses the <a href="https://en.wikipedia.org/wiki/Strategy_pattern">strategy</a> software design pattern to implement a simple and easy to extend access to a large range of data resources.
