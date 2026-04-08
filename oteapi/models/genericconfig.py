@@ -9,7 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from pydantic.fields import PydanticUndefined
 
 if TYPE_CHECKING:  # pragma: no cover
-    from typing import Any
+    from typing import Any, cast
 
 
 class AttrDict(BaseModel, MutableMapping):  # noqa: PLW1641
@@ -103,6 +103,10 @@ class AttrDict(BaseModel, MutableMapping):  # noqa: PLW1641
     ) -> None:
         if other and isinstance(other, Mapping):
             for key, value in other.items():
+                if not isinstance(key, str):
+                    raise TypeError(
+                        "Keys must be of type `str`, not " f"`{type(key).__name__}`."
+                    )
                 setattr(self, key, value)
         elif other and isinstance(other, BaseModel):
             for key, value in other:
@@ -117,7 +121,11 @@ class AttrDict(BaseModel, MutableMapping):  # noqa: PLW1641
                     raise ValueError(
                         "`other` must be an iterable of objects of length two."
                     )
-            for key, value in other:  # type: ignore[misc]
+
+            if TYPE_CHECKING:  # pragma: no cover
+                other = cast(Iterable[tuple[str, Any]], other)
+
+            for key, value in other:
                 setattr(self, key, value)
         elif other:
             raise TypeError(
