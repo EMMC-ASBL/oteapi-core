@@ -66,7 +66,7 @@ class SFTPStrategy:
     def get(self) -> SFTPContent:
         """Download via sftp"""
         url = self.download_config.downloadUrl
-        if url.host is None or url.path is None:
+        if not url.host or not url.path:
             raise ValueError(f"Invalid (S)FTP URL (missing host or path): {url!r}")
 
         cache = DataCache(self.download_config.configuration.datacache_config)
