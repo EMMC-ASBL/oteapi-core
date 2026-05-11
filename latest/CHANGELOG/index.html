@@ -549,6 +549,10 @@
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
 <h2 id="unreleased-changes-2026-05-11"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/Unreleased changes">Unreleased changes</a> (2026-05-11)<a class="headerlink" href="#unreleased-changes-2026-05-11" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...Unreleased changes">Full Changelog</a></p>
+<p><strong>Fixed bugs:</strong></p>
+<ul>
+<li>Replace pysftp with paramiko to support paramiko &gt;=4 <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/682">#682</a></li>
+</ul>
 <p><strong>Closed issues:</strong></p>
 <ul>
 <li>Fix CI failure: RabbitMQ 4.x incompatible with Celery's transient_nonexcl_queues <a href="https://github.com/EMMC-ASBL/oteapi-core/issues/680">#680</a></li>
@@ -557,6 +561,7 @@
 </ul>
 <p><strong>Merged pull requests:</strong></p>
 <ul>
+<li>Replace pysftp with paramiko, lift paramiko ceiling to \&lt;6 <a href="https://github.com/EMMC-ASBL/oteapi-core/pull/683">#683</a> (<a href="https://github.com/CasperWA">CasperWA</a>)</li>
 <li>Pin RabbitMQ broker image to 3.x in Celery tests <a href="https://github.com/EMMC-ASBL/oteapi-core/pull/681">#681</a> (<a href="https://github.com/CasperWA">CasperWA</a>)</li>
 </ul>
 <h2 id="v101-2025-12-07"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.1">v1.0.1</a> (2025-12-07)<a class="headerlink" href="#v101-2025-12-07" title="Permanent link">&para;</a></h2>
