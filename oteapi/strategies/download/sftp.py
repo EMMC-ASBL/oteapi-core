@@ -6,7 +6,7 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Annotated
 
-import pysftp
+import paramiko
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 from pydantic.networks import AnyUrl, UrlConstraints
@@ -65,28 +65,34 @@ class SFTPStrategy:
 
     def get(self) -> SFTPContent:
         """Download via sftp"""
+        url = self.download_config.downloadUrl
+        if not url.host or not url.path:
+            raise ValueError(
+                "Invalid (S)FTP URL (missing host or path): "
+                f"host={url.host!r}, path={url.path!r}"
+            )
+
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
             key = cache.config.accessKey
         else:
-            # Setup connection options
-            cnopts = pysftp.CnOpts()
-            cnopts.hostkeys = None
-
-            # open connection and store data locally
-            with pysftp.Connection(
-                host=self.download_config.downloadUrl.host,
-                username=self.download_config.downloadUrl.username,
-                password=self.download_config.downloadUrl.password,
-                port=self.download_config.downloadUrl.port,
-                cnopts=cnopts,
-            ) as sftp:
+            with paramiko.SSHClient() as client:
+                client.set_missing_host_key_policy(
+                    paramiko.AutoAddPolicy()
+                )  # nosec B507
+                client.connect(
+                    hostname=url.host,
+                    username=url.username,
+                    password=url.password,
+                    port=url.port or 22,
+                )
                 # Because of insane locking on Windows, we have to close
                 # the downloaded file before adding it to the cache
                 with NamedTemporaryFile(prefix="oteapi-sftp-", delete=False) as handle:
                     localpath = Path(handle.name).resolve()
                 try:
-                    sftp.get(self.download_config.downloadUrl.path, localpath=localpath)
+                    with client.open_sftp() as sftp:
+                        sftp.get(url.path, str(localpath))
                     key = cache.add(localpath.read_bytes())
                 finally:
                     localpath.unlink()

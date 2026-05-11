@@ -4,6 +4,7 @@ data/**
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudio,vscode,emacs
 
 .docker
+.claude/
 
 ### Emacs ###
 # -*- mode: gitignore; -*-

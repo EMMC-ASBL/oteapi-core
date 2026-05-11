@@ -31,10 +31,9 @@ dependencies = [
     # Strategy dependencies
     "celery>=5.6.0,<6",
     "openpyxl>=3.1.5,<4",
-    "paramiko<4",  # version 4+ has some breaking changes and is not yet supported by pysftp
+    "paramiko>=4,<6",
     "Pillow>=10.4.0,<13",
     "psycopg[binary]>=3.2.6,<4",
-    "pysftp~=0.2.9",
     "requests>=2.32.3,<3",
 ]
 
@@ -129,11 +128,6 @@ addopts = "-rs --cov-report=term-missing:skip-covered --no-cov-on-fail"
 filterwarnings = [
     # Treat all warnings as errors
     "error",
-
-    # Ignore UserWarning from pysftp concerning known_hosts
-    # This is usually only a problem in testing environments,
-    # but we don't want to fail the tests locally if a known_hosts file is missing
-    "ignore:.*Failed to load HostKeys.*:UserWarning",
 ]
 
 [tool.ruff.lint]
