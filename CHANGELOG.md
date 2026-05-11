@@ -2,17 +2,58 @@
 
 ## [Unreleased](https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD)
 
-[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...HEAD)
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.2...HEAD)
 
-## Update dependencies and dev tools
+## Replace pysftp with paramiko
 
-Auditing dependencies during CI/CD has been shifted from `safety` to `pip-audit`.
-Dependencies have been updated, some with new minimum versions, others with a widened version range.
-GH Actions and dev tools have been updated as well.
+The unmaintained `pysftp` dependency has been replaced with direct `paramiko` calls in the SFTP download strategy.
+`pysftp 0.2.9` imported `DSSKey` from paramiko at module load time; paramiko 4.0 removed `DSSKey`, causing an `ImportError` whenever `paramiko>=4` was installed.
+The replacement also resolves the `pip-audit` advisory CVE-2026-44405, which was blocked by the old `paramiko<4` pin.
+The paramiko version constraint is now `>=4,<6`.
+
+## Fix Celery CI test failure against RabbitMQ 4.x
+
+The RabbitMQ Docker image used in the `test_celery_remote` integration tests is now pinned to `rabbitmq:3`.
+RabbitMQ 4.x removed support for the `transient_nonexcl_queues` feature that Celery/kombu requires during worker startup, causing all Linux CI runs to fail after `rabbitmq:latest` was promoted to the 4.x line.
+
+### Miscellaneous
+
+GitHub Actions runners and pre-commit hooks have been updated to their latest versions.
+
+## [v1.0.2](https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.2) (2026-05-11)
+
+[Full Changelog](https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...v1.0.2)
+
+## Replace pysftp with paramiko
+
+The unmaintained `pysftp` dependency has been replaced with direct `paramiko` calls in the SFTP download strategy.
+`pysftp 0.2.9` imported `DSSKey` from paramiko at module load time; paramiko 4.0 removed `DSSKey`, causing an `ImportError` whenever `paramiko>=4` was installed.
+The replacement also resolves the `pip-audit` advisory CVE-2026-44405, which was blocked by the old `paramiko<4` pin.
+The paramiko version constraint is now `>=4,<6`.
+
+## Fix Celery CI test failure against RabbitMQ 4.x
+
+The RabbitMQ Docker image used in the `test_celery_remote` integration tests is now pinned to `rabbitmq:3`.
+RabbitMQ 4.x removed support for the `transient_nonexcl_queues` feature that Celery/kombu requires during worker startup, causing all Linux CI runs to fail after `rabbitmq:latest` was promoted to the 4.x line.
+
+### Miscellaneous
+
+GitHub Actions runners and pre-commit hooks have been updated to their latest versions.
 
 **Fixed bugs:**
 
-- There is currently an issue with pytest-celery [\#613](https://github.com/EMMC-ASBL/oteapi-core/issues/613)
+- Replace pysftp with paramiko to support paramiko \>=4 [\#682](https://github.com/EMMC-ASBL/oteapi-core/issues/682)
+
+**Closed issues:**
+
+- Fix CI failure: RabbitMQ 4.x incompatible with Celery's transient\_nonexcl\_queues [\#680](https://github.com/EMMC-ASBL/oteapi-core/issues/680)
+- Fix CI failure: RabbitMQ 4.x incompatible with Celery's transient\_nonexcl\_queues [\#679](https://github.com/EMMC-ASBL/oteapi-core/issues/679)
+- Address diskcache safety issue [\#667](https://github.com/EMMC-ASBL/oteapi-core/issues/667)
+
+**Merged pull requests:**
+
+- Replace pysftp with paramiko, lift paramiko ceiling to \<6 [\#683](https://github.com/EMMC-ASBL/oteapi-core/pull/683) ([CasperWA](https://github.com/CasperWA))
+- Pin RabbitMQ broker image to 3.x in Celery tests [\#681](https://github.com/EMMC-ASBL/oteapi-core/pull/681) ([CasperWA](https://github.com/CasperWA))
 
 ## [v1.0.1](https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.1) (2025-12-07)
 
@@ -27,6 +68,7 @@ GH Actions and dev tools have been updated as well.
 **Fixed bugs:**
 
 - pysftp is failing due to paramiko [\#617](https://github.com/EMMC-ASBL/oteapi-core/issues/617)
+- There is currently an issue with pytest-celery [\#613](https://github.com/EMMC-ASBL/oteapi-core/issues/613)
 
 **Merged pull requests:**
 
