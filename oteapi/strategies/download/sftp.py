@@ -67,7 +67,10 @@ class SFTPStrategy:
         """Download via sftp"""
         url = self.download_config.downloadUrl
         if not url.host or not url.path:
-            raise ValueError(f"Invalid (S)FTP URL (missing host or path): {url!r}")
+            raise ValueError(
+                "Invalid (S)FTP URL (missing host or path): "
+                f"host={url.host!r}, path={url.path!r}"
+            )
 
         cache = DataCache(self.download_config.configuration.datacache_config)
         if cache.config.accessKey and cache.config.accessKey in cache:
