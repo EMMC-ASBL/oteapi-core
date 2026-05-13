@@ -354,10 +354,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
+  <a href="#v102-2026-05-11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Unreleased
+        v1.0.2 (2026-05-11)
       
     </span>
   </a>
@@ -389,56 +389,6 @@
         
           <li class="md-nav__item">
   <a href="#miscellaneous" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Miscellaneous
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v102-2026-05-11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v1.0.2 (2026-05-11)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#replace-pysftp-with-paramiko_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Replace pysftp with paramiko
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fix-celery-ci-test-failure-against-rabbitmq-4x_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fix Celery CI test failure against RabbitMQ 4.x
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Fix Celery CI test failure against RabbitMQ 4.x">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#miscellaneous_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Miscellaneous
@@ -575,10 +525,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
+  <a href="#v102-2026-05-11" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Unreleased
+        v1.0.2 (2026-05-11)
       
     </span>
   </a>
@@ -610,56 +560,6 @@
         
           <li class="md-nav__item">
   <a href="#miscellaneous" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Miscellaneous
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#v102-2026-05-11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        v1.0.2 (2026-05-11)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#replace-pysftp-with-paramiko_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Replace pysftp with paramiko
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fix-celery-ci-test-failure-against-rabbitmq-4x_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Fix Celery CI test failure against RabbitMQ 4.x
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Fix Celery CI test failure against RabbitMQ 4.x">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#miscellaneous_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Miscellaneous
@@ -725,8 +625,8 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<h2 id="unreleased"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/HEAD">Unreleased</a><a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.2...HEAD">Full Changelog</a></p>
+<h2 id="v102-2026-05-11"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.2">v1.0.2</a> (2026-05-11)<a class="headerlink" href="#v102-2026-05-11" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...v1.0.2">Full Changelog</a></p>
 <h2 id="replace-pysftp-with-paramiko">Replace pysftp with paramiko<a class="headerlink" href="#replace-pysftp-with-paramiko" title="Permanent link">&para;</a></h2>
 <p>The unmaintained <code>pysftp</code> dependency has been replaced with direct <code>paramiko</code> calls in the SFTP download strategy.
 <code>pysftp 0.2.9</code> imported <code>DSSKey</code> from paramiko at module load time; paramiko 4.0 removed <code>DSSKey</code>, causing an <code>ImportError</code> whenever <code>paramiko&gt;=4</code> was installed.
@@ -736,18 +636,6 @@ The paramiko version constraint is now <code>&gt;=4,&lt;6</code>.</p>
 <p>The RabbitMQ Docker image used in the <code>test_celery_remote</code> integration tests is now pinned to <code>rabbitmq:3</code>.
 RabbitMQ 4.x removed support for the <code>transient_nonexcl_queues</code> feature that Celery/kombu requires during worker startup, causing all Linux CI runs to fail after <code>rabbitmq:latest</code> was promoted to the 4.x line.</p>
 <h3 id="miscellaneous">Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permanent link">&para;</a></h3>
-<p>GitHub Actions runners and pre-commit hooks have been updated to their latest versions.</p>
-<h2 id="v102-2026-05-11"><a href="https://github.com/EMMC-ASBL/oteapi-core/tree/v1.0.2">v1.0.2</a> (2026-05-11)<a class="headerlink" href="#v102-2026-05-11" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v1.0.1...v1.0.2">Full Changelog</a></p>
-<h2 id="replace-pysftp-with-paramiko_1">Replace pysftp with paramiko<a class="headerlink" href="#replace-pysftp-with-paramiko_1" title="Permanent link">&para;</a></h2>
-<p>The unmaintained <code>pysftp</code> dependency has been replaced with direct <code>paramiko</code> calls in the SFTP download strategy.
-<code>pysftp 0.2.9</code> imported <code>DSSKey</code> from paramiko at module load time; paramiko 4.0 removed <code>DSSKey</code>, causing an <code>ImportError</code> whenever <code>paramiko&gt;=4</code> was installed.
-The replacement also resolves the <code>pip-audit</code> advisory CVE-2026-44405, which was blocked by the old <code>paramiko&lt;4</code> pin.
-The paramiko version constraint is now <code>&gt;=4,&lt;6</code>.</p>
-<h2 id="fix-celery-ci-test-failure-against-rabbitmq-4x_1">Fix Celery CI test failure against RabbitMQ 4.x<a class="headerlink" href="#fix-celery-ci-test-failure-against-rabbitmq-4x_1" title="Permanent link">&para;</a></h2>
-<p>The RabbitMQ Docker image used in the <code>test_celery_remote</code> integration tests is now pinned to <code>rabbitmq:3</code>.
-RabbitMQ 4.x removed support for the <code>transient_nonexcl_queues</code> feature that Celery/kombu requires during worker startup, causing all Linux CI runs to fail after <code>rabbitmq:latest</code> was promoted to the 4.x line.</p>
-<h3 id="miscellaneous_1">Miscellaneous<a class="headerlink" href="#miscellaneous_1" title="Permanent link">&para;</a></h3>
 <p>GitHub Actions runners and pre-commit hooks have been updated to their latest versions.</p>
 <p><strong>Fixed bugs:</strong></p>
 <ul>
@@ -844,7 +732,7 @@ This means the v2.10.2 (when released) should open a dependabot PR and it can be
 <p><a href="https://github.com/EMMC-ASBL/oteapi-core/compare/v0.7.0.dev3...v0.7.0.dev4">Full Changelog</a></p>
 <h1 id="support-python-313">Support Python 3.13<a class="headerlink" href="#support-python-313" title="Permanent link">&para;</a></h1>
 <p>Add support for Python 3.13 in both the package metadata, but also through testing and minor code fixes.</p>
-<h2 id="miscellaneous_2">Miscellaneous<a class="headerlink" href="#miscellaneous_2" title="Permanent link">&para;</a></h2>
+<h2 id="miscellaneous_1">Miscellaneous<a class="headerlink" href="#miscellaneous_1" title="Permanent link">&para;</a></h2>
 <p>Add <a href="https://he-matchmaker.eu/">MatCHMaker</a> to the <a href="https://github.com/EMMC-ASBL/oteapi-core?tab=readme-ov-file#acknowledgment">Acknowledgement</a> section of the README.</p>
 <p>Update Python dependencies and GitHub Actions.</p>
 <p><strong>Implemented enhancements:</strong></p>
