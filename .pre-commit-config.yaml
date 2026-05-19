@@ -61,14 +61,14 @@ repos:
   # Black is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.3.1
+    rev: 26.5.0
     hooks:
     - id: black
 
   # Ruff is a code style and formatter
   # It works on files in-place
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.12
+    rev: v0.15.13
     hooks:
     - id: ruff-check
       name: ruff
@@ -90,7 +90,7 @@ repos:
   # The project's documentation can be found at:
   # https://mypy.readthedocs.io/en/stable/index.html
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.0.0
+    rev: v2.1.0
     hooks:
     - id: mypy
       exclude: ^tests/.*$
