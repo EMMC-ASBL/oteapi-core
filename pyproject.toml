@@ -52,7 +52,7 @@ testing = [
     "pytest~=9.0",
     "pytest-celery[redis]~=1.2",
     "pytest-cov~=7.0",
-    "redis~=7.0",
+    "redis~=8.0",
     "requests-mock~=1.12",
 ]
 dev = [
