@@ -327,9 +327,9 @@ class EntryPointStrategy:
                         # Considered equal, i.e., one can by definition not be unequal
                         # with the other.
                         return False
-                    return sorted([self.name, other.name])[0] == self.name
-                return sorted([self.package, other.package])[0] == self.package
-            return sorted([self.type.value, other.type.value])[0] == self.type.value
+                    return min([self.name, other.name]) == self.name
+                return min([self.package, other.package]) == self.package
+            return min([self.type.value, other.type.value]) == self.type.value
         raise NotImplementedError(
             f"Less than comparison is not implemented for {type(other)} type objects."
         )

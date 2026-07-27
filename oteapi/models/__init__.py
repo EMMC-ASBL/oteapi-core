@@ -5,8 +5,6 @@ This module contains all the `pydantic` configuration models.
 
 from __future__ import annotations
 
-from typing import Union
-
 from .datacacheconfig import DataCacheConfig
 from .filterconfig import FilterConfig
 from .functionconfig import FunctionConfig
@@ -34,11 +32,11 @@ __all__ = (
     "TransformationStatus",
 )
 
-StrategyConfig = Union[
-    FilterConfig,
-    FunctionConfig,
-    MappingConfig,
-    ParserConfig,
-    ResourceConfig,
-    TransformationConfig,
-]
+StrategyConfig = (
+    FilterConfig
+    | FunctionConfig
+    | MappingConfig
+    | ParserConfig
+    | ResourceConfig
+    | TransformationConfig
+)
