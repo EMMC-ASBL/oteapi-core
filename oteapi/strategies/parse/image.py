@@ -28,7 +28,7 @@ class ImageConfig(AttrDict):
     downloadUrl: HostlessAnyUrl | None = Field(
         None, description=ResourceConfig.model_fields["downloadUrl"].description
     )
-    mediaType: None | (
+    mediaType: (
         Literal[
             "image/jpg",
             "image/jpeg",
@@ -38,6 +38,7 @@ class ImageConfig(AttrDict):
             "image/tiff",
             "image/eps",
         ]
+        | None
     ) = Field(
         None,
         description=ResourceConfig.model_fields["mediaType"].description,

@@ -7,8 +7,6 @@ strategies.
 
 from __future__ import annotations
 
-from typing import Union
-
 from .idownloadstrategy import IDownloadStrategy
 from .ifilterstrategy import IFilterStrategy
 from .ifunctionstrategy import IFunctionStrategy
@@ -28,12 +26,12 @@ __all__ = (
     "ITransformationStrategy",
 )
 
-IStrategy = Union[
-    IDownloadStrategy,
-    IFilterStrategy,
-    IFunctionStrategy,
-    IMappingStrategy,
-    IParseStrategy,
-    IResourceStrategy,
-    ITransformationStrategy,
-]
+IStrategy = (
+    IDownloadStrategy
+    | IFilterStrategy
+    | IFunctionStrategy
+    | IMappingStrategy
+    | IParseStrategy
+    | IResourceStrategy
+    | ITransformationStrategy
+)

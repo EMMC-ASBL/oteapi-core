@@ -9,12 +9,12 @@ import pytest
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable
     from importlib.metadata import EntryPoint
-    from typing import Any, Union
+    from typing import Any
 
     from oteapi.models import StrategyConfig
     from oteapi.plugins.entry_points import StrategyType
 
-    MockEntryPoints = Callable[[Iterable[Union[EntryPoint, dict[str, Any]]]], None]
+    MockEntryPoints = Callable[[Iterable[EntryPoint | dict[str, Any]]], None]
 
 
 def test_create_strategy_not_loaded() -> None:
