@@ -19,7 +19,6 @@ from .transformationconfig import TransformationConfig, TransformationStatus
 
 __all__ = (
     "AttrDict",
-    "AttrDict",
     "DataCacheConfig",
     "FilterConfig",
     "FunctionConfig",
