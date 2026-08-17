@@ -667,7 +667,7 @@
 
 
 <h2 id="oteapi.strategies.transformation.celery_remote.CELERY_APP" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">CELERY_APP</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="n">broker</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">CELERY_APP</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="n">broker</span><span class="o">=</span><span class="sa">f</span><span class="s1">'redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">'</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="sa">f</span><span class="s1">'redis://</span><span class="si">{</span><span class="n">REDIS_HOST</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">REDIS_PORT</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -687,7 +687,7 @@
 
 
 <h2 id="oteapi.strategies.transformation.celery_remote.REDIS_HOST" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">REDIS_HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OTEAPI_REDIS_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;redis&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">REDIS_HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'OTEAPI_REDIS_HOST'</span><span class="p">,</span> <span class="s1">'redis'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -707,7 +707,7 @@
 
 
 <h2 id="oteapi.strategies.transformation.celery_remote.REDIS_PORT" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">REDIS_PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;OTEAPI_REDIS_PORT&#39;</span><span class="p">,</span> <span class="s1">&#39;6379&#39;</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">REDIS_PORT</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'OTEAPI_REDIS_PORT'</span><span class="p">,</span> <span class="s1">'6379'</span><span class="p">))</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -790,15 +790,15 @@ backwards compatibility.</p>
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CeleryConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Celery configuration.</span>
+<span class="w">    </span><span class="sd">"""Celery configuration.</span>
 
 <span class="sd">    All fields here (including those added from the session through the `get()` method,</span>
-<span class="sd">    as well as those added &quot;anonymously&quot;) will be used as keyword arguments to the</span>
+<span class="sd">    as well as those added "anonymously") will be used as keyword arguments to the</span>
 <span class="sd">    `send_task()` method for the Celery App.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        Using `alias` for the `name` field to favor populating it with `task_name`</span>
-<span class="sd">        arguments, since this is the &quot;original&quot; field name. I.e., this is done for</span>
+<span class="sd">        arguments, since this is the "original" field name. I.e., this is done for</span>
 <span class="sd">        backwards compatibility.</span>
 
 <span class="sd">    Special pydantic configuration settings:</span>
@@ -806,12 +806,12 @@ backwards compatibility.</p>
 <span class="sd">    - **`populate_by_name`**</span>
 <span class="sd">      Allow populating CeleryConfig.name using `name` as well as `task_name`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">populate_by_name</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A task name.&quot;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;task_name&quot;</span><span class="p">)</span>
-    <span class="n">args</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;List of arguments for the task.&quot;</span><span class="p">)</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"A task name."</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s2">"task_name"</span><span class="p">)</span>
+    <span class="n">args</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"List of arguments for the task."</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -830,7 +830,7 @@ backwards compatibility.</p>
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.args" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">args</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of arguments for the task.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">args</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'List of arguments for the task.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -872,7 +872,7 @@ backwards compatibility.</p>
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryConfig.name" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A task name.&#39;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s1">&#39;task_name&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A task name.'</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s1">'task_name'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -931,9 +931,9 @@ backwards compatibility.</p>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CeleryContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from a Celery task.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Class for returning values from a Celery task."""</span>
 
-    <span class="n">celery_task_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A Celery task identifier.&quot;</span><span class="p">)</span>
+    <span class="n">celery_task_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"A Celery task identifier."</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -952,7 +952,7 @@ backwards compatibility.</p>
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryContent.celery_task_id" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">celery_task_id</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A Celery task identifier.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">celery_task_id</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A Celery task identifier.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1038,18 +1038,18 @@ backwards compatibility.</p>
 <span class="normal">98</span>
 <span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CeleryRemoteStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Submit job to remote Celery runner.</span>
+<span class="w">    </span><span class="sd">"""Submit job to remote Celery runner.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">    - `(&quot;transformationType&quot;, &quot;celery/remote&quot;)`</span>
+<span class="sd">    - `("transformationType", "celery/remote")`</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">transformation_config</span><span class="p">:</span> <span class="n">CeleryStrategyConfig</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CeleryContent</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run a job, return a job ID.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Run a job, return a job ID."""</span>
 
         <span class="n">result</span><span class="p">:</span> <span class="n">AsyncResult</span> <span class="o">|</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">CELERY_APP</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span>
             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
@@ -1057,11 +1057,11 @@ backwards compatibility.</p>
         <span class="k">return</span> <span class="n">CeleryContent</span><span class="p">(</span><span class="n">celery_task_id</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">task_id</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a job.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Initialize a job."""</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformationStatus</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get job status.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Get job status."""</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">CELERY_APP</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">TransformationStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1123,7 +1123,7 @@ backwards compatibility.</p>
 <span class="normal">88</span>
 <span class="normal">89</span>
 <span class="normal">90</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CeleryContent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a job, return a job ID.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Run a job, return a job ID."""</span>
 
     <span class="n">result</span><span class="p">:</span> <span class="n">AsyncResult</span> <span class="o">|</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">CELERY_APP</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span>
         <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
@@ -1154,7 +1154,7 @@ backwards compatibility.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a job.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Initialize a job."""</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1182,7 +1182,7 @@ backwards compatibility.</p>
 <span class="normal">97</span>
 <span class="normal">98</span>
 <span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransformationStatus</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get job status.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Get job status."""</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">app</span><span class="o">=</span><span class="n">CELERY_APP</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">TransformationStatus</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">task_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1237,14 +1237,14 @@ backwards compatibility.</p>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CeleryStrategyConfig</span><span class="p">(</span><span class="n">TransformationConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Celery strategy-specific configuration.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Celery strategy-specific configuration."""</span>
 
-    <span class="n">transformationType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;celery/remote&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;celery/remote&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">TransformationConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;transformationType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">transformationType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"celery/remote"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"celery/remote"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">TransformationConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"transformationType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">CeleryConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Celery transformation strategy-specific configuration.&quot;</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Celery transformation strategy-specific configuration."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1264,7 +1264,7 @@ backwards compatibility.</p>
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryStrategyConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Celery transformation strategy-specific configuration.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Celery transformation strategy-specific configuration.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1285,7 +1285,7 @@ backwards compatibility.</p>
 
 
 <h3 id="oteapi.strategies.transformation.celery_remote.CeleryStrategyConfig.transformationType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">transformationType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;celery/remote&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">TransformationConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;transformationType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">transformationType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'celery/remote'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">TransformationConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'transformationType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

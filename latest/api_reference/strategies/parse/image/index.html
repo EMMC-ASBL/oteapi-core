@@ -868,51 +868,51 @@
 <span class="normal">68</span>
 <span class="normal">69</span>
 <span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ImageConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration data model for</span>
-<span class="sd">    [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy].&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Configuration data model for</span>
+<span class="sd">    [`ImageDataParseStrategy`][oteapi.strategies.parse.image.ImageDataParseStrategy]."""</span>
 
     <span class="c1"># Resource config</span>
     <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"downloadUrl"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span>
     <span class="p">)</span>
     <span class="n">mediaType</span><span class="p">:</span> <span class="p">(</span>
         <span class="n">Literal</span><span class="p">[</span>
-            <span class="s2">&quot;image/jpg&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/jpeg&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/jp2&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/png&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/gif&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/tiff&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;image/eps&quot;</span><span class="p">,</span>
+            <span class="s2">"image/jpg"</span><span class="p">,</span>
+            <span class="s2">"image/jpeg"</span><span class="p">,</span>
+            <span class="s2">"image/jp2"</span><span class="p">,</span>
+            <span class="s2">"image/png"</span><span class="p">,</span>
+            <span class="s2">"image/gif"</span><span class="p">,</span>
+            <span class="s2">"image/tiff"</span><span class="p">,</span>
+            <span class="s2">"image/eps"</span><span class="p">,</span>
         <span class="p">]</span>
         <span class="o">|</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"mediaType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># Image parse strategy-specific config</span>
     <span class="n">crop</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Box cropping parameters (left, top, right, bottom).&quot;</span><span class="p">,</span>
-        <span class="c1"># Effectively mapping &#39;imagecrop&#39; to &#39;crop&#39;.</span>
-        <span class="c1"># &#39;imagecrop&#39; is used by the crop filter strategy.</span>
-        <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">&quot;crop&quot;</span><span class="p">,</span> <span class="s2">&quot;imagecrop&quot;</span><span class="p">),</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Box cropping parameters (left, top, right, bottom)."</span><span class="p">,</span>
+        <span class="c1"># Effectively mapping 'imagecrop' to 'crop'.</span>
+        <span class="c1"># 'imagecrop' is used by the crop filter strategy.</span>
+        <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s2">"crop"</span><span class="p">,</span> <span class="s2">"imagecrop"</span><span class="p">),</span>
     <span class="p">)</span>
     <span class="n">datacache_config</span><span class="p">:</span> <span class="n">DataCacheConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Configuration options for the local data cache.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Configuration options for the local data cache."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Key to use when storing the image data in datacache.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Key to use when storing the image data in datacache."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Pillow mode to convert image into. See &quot;</span>
-            <span class="s2">&quot;https://pillow.readthedocs.io/en/stable/handbook/concepts.html &quot;</span>
-            <span class="s2">&quot;for details.&quot;</span>
+            <span class="s2">"Pillow mode to convert image into. See "</span>
+            <span class="s2">"https://pillow.readthedocs.io/en/stable/handbook/concepts.html "</span>
+            <span class="s2">"for details."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -933,7 +933,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.crop" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">crop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Box cropping parameters (left, top, right, bottom).&#39;</span><span class="p">,</span> <span class="n">validation_alias</span><span class="o">=</span><span class="p">(</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s1">&#39;crop&#39;</span><span class="p">,</span> <span class="s1">&#39;imagecrop&#39;</span><span class="p">)))</span></code>
+            <code class="highlight language-python"><span class="n">crop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Box cropping parameters (left, top, right, bottom).'</span><span class="p">,</span> <span class="n">validation_alias</span><span class="o">=</span><span class="n">AliasChoices</span><span class="p">(</span><span class="s1">'crop'</span><span class="p">,</span> <span class="s1">'imagecrop'</span><span class="p">))</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -954,7 +954,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.datacache_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">datacache_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configuration options for the local data cache.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">datacache_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Configuration options for the local data cache.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -975,7 +975,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.downloadUrl" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">downloadUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">downloadUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'downloadUrl'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -996,7 +996,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.image_key" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key to use when storing the image data in datacache.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Key to use when storing the image data in datacache.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1017,7 +1017,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.image_mode" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_mode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Pillow mode to convert image into. See https://pillow.readthedocs.io/en/stable/handbook/concepts.html for details.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_mode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Pillow mode to convert image into. See https://pillow.readthedocs.io/en/stable/handbook/concepts.html for details.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1038,7 +1038,7 @@
 
 
 <h3 id="oteapi.strategies.parse.image.ImageConfig.mediaType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mediaType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">mediaType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'mediaType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1201,7 +1201,7 @@ for more info.</p>
 <span class="normal">228</span>
 <span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ImageDataParseStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for images.</span>
+<span class="w">    </span><span class="sd">"""Parse strategy for images.</span>
 
 <span class="sd">    This strategy uses Pillow to read a raw image from the data cache,</span>
 <span class="sd">    converts it into a NumPy array and stores the new array in the</span>
@@ -1213,36 +1213,36 @@ for more info.</p>
 <span class="sd">    [`ImageParseContent`][oteapi.strategies.parse.image.ImageParseContent]</span>
 <span class="sd">    for more info.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">parse_config</span><span class="p">:</span> <span class="n">ImageParserConfig</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Initialize strategy."""</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImageParseContent</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Execute the strategy."""</span>
 
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
 
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No media type provided to the image parser&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No media type provided to the image parser"</span><span class="p">)</span>
 
-        <span class="n">mime_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">mime_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">image_format</span> <span class="o">=</span> <span class="n">SupportedFormat</span><span class="p">[</span><span class="n">mime_format</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 
         <span class="c1"># Download the image</span>
         <span class="n">download_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-        <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">download_config</span><span class="p">[</span><span class="s2">"configuration"</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">"download"</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span><span class="p">:</span>
             <span class="n">cache_key</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span>
-        <span class="k">elif</span> <span class="s2">&quot;key&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
-            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s2">"key"</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">"key"</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No data cache key provided to the downloaded content&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"No data cache key provided to the downloaded content"</span><span class="p">)</span>
 
         <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
@@ -1266,11 +1266,11 @@ for more info.</p>
             <span class="k">if</span> <span class="n">final_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">final_image</span> <span class="o">=</span> <span class="n">image</span>
 
-            <span class="k">if</span> <span class="n">image_format</span> <span class="o">==</span> <span class="s2">&quot;GIF&quot;</span> <span class="ow">and</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GIF&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">image_format</span> <span class="o">==</span> <span class="s2">"GIF"</span> <span class="ow">and</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">"version"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">""</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">"GIF"</span><span class="p">):</span>
                 <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                    <span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GIF&quot;</span><span class="p">)</span> <span class="p">:]}</span>
+                    <span class="p">{</span><span class="s2">"version"</span><span class="p">:</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"version"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">""</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="sa">b</span><span class="s2">"GIF"</span><span class="p">)</span> <span class="p">:]}</span>
                 <span class="p">)</span>
 
             <span class="n">image_key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -1278,7 +1278,7 @@ for more info.</p>
                 <span class="n">key</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span>
             <span class="p">)</span>
 
-            <span class="k">if</span> <span class="n">final_image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">final_image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"P"</span><span class="p">:</span>
                 <span class="n">image_palette_key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">final_image</span><span class="o">.</span><span class="n">getpalette</span><span class="p">())</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">image_palette_key</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1433,27 +1433,27 @@ for more info.</p>
 <span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImageParseContent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Execute the strategy."""</span>
 
     <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
 
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No media type provided to the image parser&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"No media type provided to the image parser"</span><span class="p">)</span>
 
-    <span class="n">mime_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">mime_format</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">mediaType</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"/"</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">image_format</span> <span class="o">=</span> <span class="n">SupportedFormat</span><span class="p">[</span><span class="n">mime_format</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
 
     <span class="c1"># Download the image</span>
     <span class="n">download_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-    <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">download_config</span><span class="p">[</span><span class="s2">"configuration"</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">"download"</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span><span class="p">:</span>
         <span class="n">cache_key</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span>
-    <span class="k">elif</span> <span class="s2">&quot;key&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="s2">"key"</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">"key"</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No data cache key provided to the downloaded content&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"No data cache key provided to the downloaded content"</span><span class="p">)</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
@@ -1477,11 +1477,11 @@ for more info.</p>
         <span class="k">if</span> <span class="n">final_image</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">final_image</span> <span class="o">=</span> <span class="n">image</span>
 
-        <span class="k">if</span> <span class="n">image_format</span> <span class="o">==</span> <span class="s2">&quot;GIF&quot;</span> <span class="ow">and</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GIF&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">image_format</span> <span class="o">==</span> <span class="s2">"GIF"</span> <span class="ow">and</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">"version"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">""</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s2">"GIF"</span><span class="p">):</span>
             <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GIF&quot;</span><span class="p">)</span> <span class="p">:]}</span>
+                <span class="p">{</span><span class="s2">"version"</span><span class="p">:</span> <span class="n">final_image</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"version"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">""</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="sa">b</span><span class="s2">"GIF"</span><span class="p">)</span> <span class="p">:]}</span>
             <span class="p">)</span>
 
         <span class="n">image_key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -1489,7 +1489,7 @@ for more info.</p>
             <span class="n">key</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">image_key</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">final_image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;P&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">final_image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">"P"</span><span class="p">:</span>
             <span class="n">image_palette_key</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">final_image</span><span class="o">.</span><span class="n">getpalette</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">image_palette_key</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1537,7 +1537,7 @@ for more info.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">146</span>
 <span class="normal">147</span>
 <span class="normal">148</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Initialize strategy."""</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1612,32 +1612,32 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ImageParseContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration model for the returned content from the Image parser.</span>
+<span class="w">    </span><span class="sd">"""Configuration model for the returned content from the Image parser.</span>
 
 <span class="sd">    See</span>
 <span class="sd">    [Pillow handbook](https://pillow.readthedocs.io/en/stable/handbook/concepts.html)</span>
 <span class="sd">    for more details on `image_mode`, `image_palette`, and `image_info`.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">image_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Key with which the image content is stored in the data cache.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Key with which the image content is stored in the data cache."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_size</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image size (width, height).&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Image size (width, height)."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image mode. Examples: &#39;L&#39;, &#39;P&#39;, &#39;RGB&#39;, &#39;RGBA&#39;...&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Image mode. Examples: 'L', 'P', 'RGB', 'RGBA'..."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_palette_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Datacache key for colour palette if mode is &#39;P&#39;.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Datacache key for colour palette if mode is 'P'."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">image_info</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="p">{},</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Additional information about the image.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Additional information about the image."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1657,7 +1657,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParseContent.image_info" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_info</span> <span class="o">=</span> <span class="n">Field</span><span class="p">({},</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Additional information about the image.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_info</span> <span class="o">=</span> <span class="n">Field</span><span class="p">({},</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Additional information about the image.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1678,7 +1678,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParseContent.image_key" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Key with which the image content is stored in the data cache.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Key with which the image content is stored in the data cache.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1699,7 +1699,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParseContent.image_mode" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_mode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image mode. Examples: &#39;L&#39;, &#39;P&#39;, &#39;RGB&#39;, &#39;RGBA&#39;...&quot;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_mode</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Image mode. Examples: 'L', 'P', 'RGB', 'RGBA'..."</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1720,7 +1720,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParseContent.image_palette_key" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_palette_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Datacache key for colour palette if mode is &#39;P&#39;.&quot;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_palette_key</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Datacache key for colour palette if mode is 'P'."</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1741,7 +1741,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParseContent.image_size" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">image_size</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Image size (width, height).&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">image_size</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Image size (width, height).'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1807,15 +1807,15 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 <span class="normal">81</span>
 <span class="normal">82</span>
 <span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ImageParserConfig</span><span class="p">(</span><span class="n">ParserConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Image parse strategy resource config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Image parse strategy resource config."""</span>
 
-    <span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;parser/image&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;parser/image&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;parserType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"parser/image"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"parser/image"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"parserType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">ImageConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image parse strategy-specific configuration.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Image parse strategy-specific configuration."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1835,7 +1835,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParserConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Image parse strategy-specific configuration.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Image parse strategy-specific configuration.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1856,7 +1856,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.ImageParserConfig.parserType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">parserType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;parser/image&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;parserType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">parserType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'parser/image'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'parserType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1921,15 +1921,15 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 <span class="normal">93</span>
 <span class="normal">94</span>
 <span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SupportedFormat</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Supported formats for `ImageDataParseStrategy`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Supported formats for `ImageDataParseStrategy`."""</span>
 
-    <span class="n">jpeg</span> <span class="o">=</span> <span class="s2">&quot;JPEG&quot;</span>
-    <span class="n">jpg</span> <span class="o">=</span> <span class="s2">&quot;JPEG&quot;</span>  <span class="c1"># noqa: PIE796</span>
-    <span class="n">jp2</span> <span class="o">=</span> <span class="s2">&quot;JPEG2000&quot;</span>
-    <span class="n">png</span> <span class="o">=</span> <span class="s2">&quot;PNG&quot;</span>
-    <span class="n">gif</span> <span class="o">=</span> <span class="s2">&quot;GIF&quot;</span>
-    <span class="n">tiff</span> <span class="o">=</span> <span class="s2">&quot;TIFF&quot;</span>
-    <span class="n">eps</span> <span class="o">=</span> <span class="s2">&quot;EPS&quot;</span>
+    <span class="n">jpeg</span> <span class="o">=</span> <span class="s2">"JPEG"</span>
+    <span class="n">jpg</span> <span class="o">=</span> <span class="s2">"JPEG"</span>  <span class="c1"># noqa: PIE796</span>
+    <span class="n">jp2</span> <span class="o">=</span> <span class="s2">"JPEG2000"</span>
+    <span class="n">png</span> <span class="o">=</span> <span class="s2">"PNG"</span>
+    <span class="n">gif</span> <span class="o">=</span> <span class="s2">"GIF"</span>
+    <span class="n">tiff</span> <span class="o">=</span> <span class="s2">"TIFF"</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="s2">"EPS"</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1948,7 +1948,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.eps" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">eps</span> <span class="o">=</span> <span class="s1">&#39;EPS&#39;</span></code>
+            <code class="highlight language-python"><span class="n">eps</span> <span class="o">=</span> <span class="s1">'EPS'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1969,7 +1969,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.gif" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">gif</span> <span class="o">=</span> <span class="s1">&#39;GIF&#39;</span></code>
+            <code class="highlight language-python"><span class="n">gif</span> <span class="o">=</span> <span class="s1">'GIF'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1990,7 +1990,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.jp2" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">jp2</span> <span class="o">=</span> <span class="s1">&#39;JPEG2000&#39;</span></code>
+            <code class="highlight language-python"><span class="n">jp2</span> <span class="o">=</span> <span class="s1">'JPEG2000'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2011,7 +2011,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.jpeg" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">jpeg</span> <span class="o">=</span> <span class="s1">&#39;JPEG&#39;</span></code>
+            <code class="highlight language-python"><span class="n">jpeg</span> <span class="o">=</span> <span class="s1">'JPEG'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2032,7 +2032,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.jpg" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">jpg</span> <span class="o">=</span> <span class="s1">&#39;JPEG&#39;</span></code>
+            <code class="highlight language-python"><span class="n">jpg</span> <span class="o">=</span> <span class="s1">'JPEG'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2053,7 +2053,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.png" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">png</span> <span class="o">=</span> <span class="s1">&#39;PNG&#39;</span></code>
+            <code class="highlight language-python"><span class="n">png</span> <span class="o">=</span> <span class="s1">'PNG'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2074,7 +2074,7 @@ for more details on <code>image_mode</code>, <code>image_palette</code>, and <co
 
 
 <h3 id="oteapi.strategies.parse.image.SupportedFormat.tiff" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">tiff</span> <span class="o">=</span> <span class="s1">&#39;TIFF&#39;</span></code>
+            <code class="highlight language-python"><span class="n">tiff</span> <span class="o">=</span> <span class="s1">'TIFF'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

@@ -620,22 +620,22 @@
 <span class="normal">46</span>
 <span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SQLQueryFilter</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for a SQL query filter.</span>
+<span class="w">    </span><span class="sd">"""Strategy for a SQL query filter.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">    - `(&quot;filterType&quot;, &quot;filter/sql&quot;)`</span>
+<span class="sd">    - `("filterType", "filter/sql")`</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">filter_config</span><span class="p">:</span> <span class="n">SqlQueryFilterConfig</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SqlQueryContent</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Initialize strategy."""</span>
         <span class="k">return</span> <span class="n">SqlQueryContent</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Execute strategy and return a dictionary."""</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -692,7 +692,7 @@
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Execute strategy and return a dictionary."""</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -719,7 +719,7 @@
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SqlQueryContent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Initialize strategy."""</span>
     <span class="k">return</span> <span class="n">SqlQueryContent</span><span class="p">(</span><span class="n">sqlquery</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -767,9 +767,9 @@
 <span class="normal">24</span>
 <span class="normal">25</span>
 <span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SqlQueryContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from SQL Query data model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Class for returning values from SQL Query data model."""</span>
 
-    <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
+    <span class="n">sqlquery</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"A SQL query string."</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -788,7 +788,7 @@
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SqlQueryContent.sqlquery" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">sqlquery</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A SQL query string.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">sqlquery</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A SQL query string.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -851,13 +851,13 @@
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SqlQueryFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;SQL query filter strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""SQL query filter strategy filter config."""</span>
 
-    <span class="n">filterType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;filter/sql&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;filter/sql&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;filterType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">filterType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"filter/sql"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"filter/sql"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"filterType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A SQL query string.&quot;</span><span class="p">)</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"A SQL query string."</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -876,7 +876,7 @@
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SqlQueryFilterConfig.filterType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">filterType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;filter/sql&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;filterType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">filterType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'filter/sql'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'filterType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -897,7 +897,7 @@
 
 
 <h3 id="oteapi.strategies.filter.sql_query_filter.SqlQueryFilterConfig.query" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">query</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A SQL query string.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">query</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A SQL query string.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

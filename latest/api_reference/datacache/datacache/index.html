@@ -880,7 +880,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="normal">297</span>
 <span class="normal">298</span>
 <span class="normal">299</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DataCache</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize a cache instance with the given download configuration.</span>
+<span class="w">    </span><span class="sd">"""Initialize a cache instance with the given download configuration.</span>
 
 <span class="sd">    This class is also available to import from `oteapi.datacache`, e.g.:</span>
 
@@ -895,9 +895,9 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">    Attributes:</span>
 <span class="sd">        config: DataCacheConfig instance.</span>
 <span class="sd">        cache_dir: Subdirectory used for the Path to cache directory, e.g.,</span>
-<span class="sd">            `&quot;my_oteapi&quot;`.</span>
+<span class="sd">            `"my_oteapi"`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -912,8 +912,8 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
             <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;config should be either a `DataCacheConfig` data model or a &quot;</span>
-                <span class="s2">&quot;dictionary.&quot;</span>
+                <span class="s2">"config should be either a `DataCacheConfig` data model or a "</span>
+                <span class="s2">"dictionary."</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cache_dir</span><span class="p">:</span>
@@ -955,7 +955,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="n">bind</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">json_encoder</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
+<span class="w">        </span><span class="sd">"""Add a value to cache.</span>
 
 <span class="sd">        Existing value is overwritten if `key` is given and it already</span>
 <span class="sd">        exists in the cache.</span>
@@ -971,7 +971,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">                for cleaning up a session.</span>
 <span class="sd">            bind: Remove `value` from the cache when the object provided with</span>
 <span class="sd">                this argument goes out of scope.  Note that `bind` must be a</span>
-<span class="sd">                weakref&#39;able object.</span>
+<span class="sd">                weakref'able object.</span>
 
 <span class="sd">                The argument name refers to that we bind `value` to this</span>
 <span class="sd">                argument.</span>
@@ -980,7 +980,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">        Returns:</span>
 <span class="sd">            A key that can be used to retrieve `value` from cache later.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="n">key</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">key</span>
             <span class="k">if</span> <span class="n">key</span>
@@ -1011,7 +1011,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="k">return</span> <span class="n">key</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
+<span class="w">        </span><span class="sd">"""Return the value corresponding to `key`.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            key: The requested cached object to retrieve a value for.</span>
@@ -1019,7 +1019,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">        Returns:</span>
 <span class="sd">            The value corresponding to the `key` value.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -1034,7 +1034,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
         <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
+<span class="w">        </span><span class="sd">"""Write the value for `key` to file and return the filename.</span>
 
 <span class="sd">        The file is created in the default directory for temporary</span>
 <span class="sd">        files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`</span>
@@ -1047,7 +1047,7 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 
 <span class="sd">            ```python</span>
 <span class="sd">            cache = DataCache()</span>
-<span class="sd">            with cache.getfile(&#39;mykey&#39;) as filename:</span>
+<span class="sd">            with cache.getfile('mykey') as filename:</span>
 <span class="sd">                # do something with filename...</span>
 <span class="sd">            # filename is deleted</span>
 <span class="sd">            ```</span>
@@ -1059,19 +1059,19 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
 <span class="sd">            filename: Full path to created file. If not given, a unique filename will</span>
 <span class="sd">                be created.</span>
 <span class="sd">            prefix: Prefix to prepend to the returned file name (default is</span>
-<span class="sd">                `&quot;oteapi-download-&quot;`).</span>
+<span class="sd">                `"oteapi-download-"`).</span>
 <span class="sd">            suffix: Suffix to append to the returned file name.</span>
 <span class="sd">            directory: File directory if `filename` is not provided (is `None`).</span>
 
 <span class="sd">        Yields:</span>
 <span class="sd">            Path object, referencing and representing the created file.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
             <span class="n">filename</span><span class="o">.</span><span class="n">write_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">&quot;oteapi-download-&quot;</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">"oteapi-download-"</span>
             <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span>
                 <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span>
                 <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span>
@@ -1088,18 +1088,18 @@ See <a href="https://github.com/grantjenks/python-diskcache">Python-DiskCache</a
                 <span class="n">filename</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
+<span class="w">        </span><span class="sd">"""Remove all cache items with the given tag.</span>
 
 <span class="sd">        Useful for cleaning up a session.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tag: Tag identifying objects.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Remove all items from cache."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1348,7 +1348,7 @@ argument.</p>
     <span class="n">bind</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">json_encoder</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a value to cache.</span>
+<span class="w">    </span><span class="sd">"""Add a value to cache.</span>
 
 <span class="sd">    Existing value is overwritten if `key` is given and it already</span>
 <span class="sd">    exists in the cache.</span>
@@ -1364,7 +1364,7 @@ argument.</p>
 <span class="sd">            for cleaning up a session.</span>
 <span class="sd">        bind: Remove `value` from the cache when the object provided with</span>
 <span class="sd">            this argument goes out of scope.  Note that `bind` must be a</span>
-<span class="sd">            weakref&#39;able object.</span>
+<span class="sd">            weakref'able object.</span>
 
 <span class="sd">            The argument name refers to that we bind `value` to this</span>
 <span class="sd">            argument.</span>
@@ -1373,7 +1373,7 @@ argument.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        A key that can be used to retrieve `value` from cache later.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">key</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">key</span>
         <span class="k">if</span> <span class="n">key</span>
@@ -1427,7 +1427,7 @@ argument.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">297</span>
 <span class="normal">298</span>
 <span class="normal">299</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all items from cache.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Remove all items from cache."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1493,14 +1493,14 @@ argument.</p>
 <span class="normal">293</span>
 <span class="normal">294</span>
 <span class="normal">295</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">evict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove all cache items with the given tag.</span>
+<span class="w">    </span><span class="sd">"""Remove all cache items with the given tag.</span>
 
 <span class="sd">    Useful for cleaning up a session.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        tag: Tag identifying objects.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">evict</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1591,7 +1591,7 @@ argument.</p>
 <span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the value corresponding to `key`.</span>
+<span class="w">    </span><span class="sd">"""Return the value corresponding to `key`.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        key: The requested cached object to retrieve a value for.</span>
@@ -1599,7 +1599,7 @@ argument.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        The value corresponding to the `key` value.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">diskcache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -1632,7 +1632,7 @@ the current user.</p>
   <p>This method is intended to be used in a <code>with</code> statement, to
 automatically delete the file when leaving the context:</p>
 <div class="highlight"><pre><span></span><code><span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">()</span>
-<span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="s1">&#39;mykey&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="s1">'mykey'</span><span class="p">)</span> <span class="k">as</span> <span class="n">filename</span><span class="p">:</span>
     <span class="c1"># do something with filename...</span>
 <span class="c1"># filename is deleted</span>
 </code></pre></div>
@@ -1848,7 +1848,7 @@ be created.</p>
     <span class="n">suffix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">directory</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write the value for `key` to file and return the filename.</span>
+<span class="w">    </span><span class="sd">"""Write the value for `key` to file and return the filename.</span>
 
 <span class="sd">    The file is created in the default directory for temporary</span>
 <span class="sd">    files (which can be controlled by the `TEMPDIR`, `TEMP` or `TMP`</span>
@@ -1861,7 +1861,7 @@ be created.</p>
 
 <span class="sd">        ```python</span>
 <span class="sd">        cache = DataCache()</span>
-<span class="sd">        with cache.getfile(&#39;mykey&#39;) as filename:</span>
+<span class="sd">        with cache.getfile('mykey') as filename:</span>
 <span class="sd">            # do something with filename...</span>
 <span class="sd">        # filename is deleted</span>
 <span class="sd">        ```</span>
@@ -1873,19 +1873,19 @@ be created.</p>
 <span class="sd">        filename: Full path to created file. If not given, a unique filename will</span>
 <span class="sd">            be created.</span>
 <span class="sd">        prefix: Prefix to prepend to the returned file name (default is</span>
-<span class="sd">            `&quot;oteapi-download-&quot;`).</span>
+<span class="sd">            `"oteapi-download-"`).</span>
 <span class="sd">        suffix: Suffix to append to the returned file name.</span>
 <span class="sd">        directory: File directory if `filename` is not provided (is `None`).</span>
 
 <span class="sd">    Yields:</span>
 <span class="sd">        Path object, referencing and representing the created file.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
         <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
         <span class="n">filename</span><span class="o">.</span><span class="n">write_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">&quot;oteapi-download-&quot;</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span> <span class="k">if</span> <span class="n">prefix</span> <span class="k">else</span> <span class="s2">"oteapi-download-"</span>
         <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span>
             <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span>
             <span class="n">suffix</span><span class="o">=</span><span class="n">suffix</span><span class="p">,</span>
@@ -1919,7 +1919,7 @@ be created.</p>
 
 
 <h2 id="oteapi.datacache.datacache.gethash" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">gethash</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">hashtype</span><span class="o">=</span><span class="s1">&#39;sha256&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">gethash</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">hashtype</span><span class="o">=</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">'utf-8'</span><span class="p">,</span> <span class="n">json_encoder</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
 <a href="#oteapi.datacache.datacache.gethash" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -2079,11 +2079,11 @@ calculating the hash.</p>
 <span class="normal">74</span>
 <span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">gethash</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="n">hashtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sha256&quot;</span><span class="p">,</span>
-    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>
+    <span class="n">hashtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"sha256"</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"utf-8"</span><span class="p">,</span>
     <span class="n">json_encoder</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">json</span><span class="o">.</span><span class="n">JSONEncoder</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a hash of `value`.</span>
+<span class="w">    </span><span class="sd">"""Return a hash of `value`.</span>
 
 <span class="sd">    Can hash most python objects. Bytes and bytearrays are hashed directly.</span>
 <span class="sd">    Strings are converted to bytes with the given encoding.</span>
@@ -2099,7 +2099,7 @@ calculating the hash.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        A hash of the input `value`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">hash_</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">hashtype</span><span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span>

@@ -580,8 +580,8 @@
                 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StrategiesNotLoaded</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Entry point strategies have not been loaded, run</span>
-<span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies].&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Entry point strategies have not been loaded, run</span>
+<span class="sd">    [`load_strategies()`][oteapi.plugins.factories.load_strategies]."""</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -806,13 +806,13 @@ in-memory cache of all registered strategies.</p>
 <span class="normal">187</span>
 <span class="normal">188</span>
 <span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StrategyFactory</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decorator-based Factory class.</span>
+<span class="w">    </span><span class="sd">"""Decorator-based Factory class.</span>
 
 <span class="sd">    Attributes:</span>
 <span class="sd">        strategy_create_func (Dict[StrategyType, EntryPointStrategyCollection]): An</span>
 <span class="sd">            in-memory cache of all registered strategies.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">strategy_create_func</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="n">EntryPointStrategyCollection</span><span class="p">]</span>
 
@@ -822,12 +822,12 @@ in-memory cache of all registered strategies.</p>
         <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
+<span class="w">        </span><span class="sd">"""Instantiate a strategy in a context class.</span>
 
 <span class="sd">        Parameters:</span>
 <span class="sd">            config: A strategy configuration.</span>
-<span class="sd">            strategy_type: The strategy type, e.g., `&quot;scheme&quot;`, `&quot;mediaType&quot;`, ... or</span>
-<span class="sd">                `&quot;download&quot;`, `&quot;parse&quot;`, ...</span>
+<span class="sd">            strategy_type: The strategy type, e.g., `"scheme"`, `"mediaType"`, ... or</span>
+<span class="sd">                `"download"`, `"parse"`, ...</span>
 <span class="sd">                See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType]</span>
 <span class="sd">                enumeration for a definition of valid strategy types.</span>
 
@@ -842,11 +842,11 @@ in-memory cache of all registered strategies.</p>
 <span class="sd">            An instantiated strategy. The strategy is instantiated with the provided</span>
 <span class="sd">            configuration, through the `config` parameter.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">):</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">"strategy_create_func"</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
-                <span class="s2">&quot;Strategies have not been loaded, run `load_strategies()` or &quot;</span>
-                <span class="s2">&quot;`StrategyFactory.load_strategies()`.&quot;</span>
+                <span class="s2">"Strategies have not been loaded, run `load_strategies()` or "</span>
+                <span class="s2">"`StrategyFactory.load_strategies()`."</span>
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -854,25 +854,25 @@ in-memory cache of all registered strategies.</p>
                 <span class="n">strategy_type</span> <span class="o">=</span> <span class="n">StrategyType</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Strategy type </span><span class="si">{</span><span class="n">strategy_type</span><span class="si">!r}</span><span class="s2"> is not supported.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Strategy type </span><span class="si">{</span><span class="n">strategy_type</span><span class="si">!r}</span><span class="s2"> is not supported."</span>
                 <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
         <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">StrategyType</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;strategy_type should be either of type StrategyType or a string.&quot;</span>
+                <span class="s2">"strategy_type should be either of type StrategyType or a string."</span>
             <span class="p">)</span>
 
-        <span class="c1"># &#39;config&#39;: Must be a dict when instantiating the strategy&#39;s implementation.</span>
-        <span class="c1"># &#39;config_model&#39;: Is used to retrieve the correct strategy requested.</span>
-        <span class="c1"># Furthermore, creating &#39;config_model&#39; ensures that the config is valid with</span>
+        <span class="c1"># 'config': Must be a dict when instantiating the strategy's implementation.</span>
+        <span class="c1"># 'config_model': Is used to retrieve the correct strategy requested.</span>
+        <span class="c1"># Furthermore, creating 'config_model' ensures that the config is valid with</span>
         <span class="c1"># respect to the strategy type, further reducing the risk of incorrect logical</span>
         <span class="c1"># conclusions.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="n">config_model</span> <span class="o">=</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">config_cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">get_args</span><span class="p">(</span><span class="n">StrategyConfig</span><span class="p">)):</span>
             <span class="n">config_model</span> <span class="o">=</span> <span class="n">config</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"json"</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;config should be either of type StrategyConfig or a dict.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"config should be either of type StrategyConfig or a dict."</span><span class="p">)</span>
 
         <span class="n">strategy_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_strategy_name</span><span class="p">(</span><span class="n">config_model</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
 
@@ -883,7 +883,7 @@ in-memory cache of all registered strategies.</p>
                 <span class="n">config</span>  <span class="c1"># type: ignore[arg-type]</span>
             <span class="p">)</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span>
+            <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist."</span>
         <span class="p">)</span>
 
     <span class="nd">@classmethod</span>
@@ -892,7 +892,7 @@ in-memory cache of all registered strategies.</p>
         <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span><span class="p">,</span>
         <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the strategy name through the config.</span>
+<span class="w">        </span><span class="sd">"""Return the strategy name through the config.</span>
 
 <span class="sd">        This is a method to accommodate strategy type-specific quirks to retrieve the</span>
 <span class="sd">        strategy name.</span>
@@ -904,18 +904,18 @@ in-memory cache of all registered strategies.</p>
 <span class="sd">        Returns:</span>
 <span class="sd">            The strategy name provided in the configuration.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">strategy_type</span> <span class="o">==</span> <span class="n">StrategyType</span><span class="o">.</span><span class="n">DOWNLOAD</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span><span class="o">.</span><span class="n">scheme</span>  <span class="c1"># type: ignore[union-attr]</span>
                 <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">downloadUrl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># type: ignore[union-attr]</span>
-                <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">else</span> <span class="s2">""</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">map_to_field</span><span class="p">(),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">map_to_field</span><span class="p">(),</span> <span class="s2">""</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
+<span class="w">        </span><span class="sd">"""Load strategies from entry points and store in class attribute.</span>
 
 <span class="sd">        Important:</span>
 <span class="sd">            This is not a cached method.</span>
@@ -936,7 +936,7 @@ in-memory cache of all registered strategies.</p>
 <span class="sd">                strategy will silently become the implementation of choice for the</span>
 <span class="sd">                duplicated strategy and the duplicates will be ignored.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">strategy_type</span><span class="p">:</span> <span class="n">get_strategy_entry_points</span><span class="p">(</span>
                 <span class="n">strategy_type</span><span class="p">,</span> <span class="n">enforce_uniqueness</span><span class="o">=</span><span class="n">test_for_uniqueness</span>
@@ -946,7 +946,7 @@ in-memory cache of all registered strategies.</p>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">list_loaded_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lists all loaded strategy plugins (endpoints).</span>
+<span class="w">        </span><span class="sd">"""Lists all loaded strategy plugins (endpoints).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            A dictionary where keys are strategy types and values are lists of</span>
@@ -955,16 +955,16 @@ in-memory cache of all registered strategies.</p>
 <span class="sd">        Raises:</span>
 <span class="sd">            StrategiesNotLoaded: If the strategies are not loaded or</span>
 <span class="sd">                `strategy_create_func` is not properly initialized.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">"strategy_create_func"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
-                <span class="s2">&quot;Strategies are not loaded or `strategy_create_func` is not properly &quot;</span>
-                <span class="s2">&quot;initialized.&quot;</span>
+                <span class="s2">"Strategies are not loaded or `strategy_create_func` is not properly "</span>
+                <span class="s2">"initialized."</span>
             <span class="p">)</span>
 
         <span class="n">loaded_strategies</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">strategy_type</span><span class="p">,</span> <span class="n">strategy_collection</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="c1"># Assuming each item in the collection has a &#39;name&#39; attribute or similar</span>
+            <span class="c1"># Assuming each item in the collection has a 'name' attribute or similar</span>
             <span class="n">loaded_strategies</span><span class="p">[</span><span class="n">strategy_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">strategy</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategy_collection</span>
             <span class="p">]</span>
@@ -1090,7 +1090,7 @@ in-memory cache of all registered strategies.</p>
 <span class="normal">188</span>
 <span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">list_loaded_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lists all loaded strategy plugins (endpoints).</span>
+<span class="w">    </span><span class="sd">"""Lists all loaded strategy plugins (endpoints).</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A dictionary where keys are strategy types and values are lists of</span>
@@ -1099,16 +1099,16 @@ in-memory cache of all registered strategies.</p>
 <span class="sd">    Raises:</span>
 <span class="sd">        StrategiesNotLoaded: If the strategies are not loaded or</span>
 <span class="sd">            `strategy_create_func` is not properly initialized.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">"strategy_create_func"</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
-            <span class="s2">&quot;Strategies are not loaded or `strategy_create_func` is not properly &quot;</span>
-            <span class="s2">&quot;initialized.&quot;</span>
+            <span class="s2">"Strategies are not loaded or `strategy_create_func` is not properly "</span>
+            <span class="s2">"initialized."</span>
         <span class="p">)</span>
 
     <span class="n">loaded_strategies</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">strategy_type</span><span class="p">,</span> <span class="n">strategy_collection</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="c1"># Assuming each item in the collection has a &#39;name&#39; attribute or similar</span>
+        <span class="c1"># Assuming each item in the collection has a 'name' attribute or similar</span>
         <span class="n">loaded_strategies</span><span class="p">[</span><span class="n">strategy_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">strategy</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">strategy</span> <span class="ow">in</span> <span class="n">strategy_collection</span>
         <span class="p">]</span>
@@ -1242,7 +1242,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 <span class="normal">161</span>
 <span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_strategies</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load strategies from entry points and store in class attribute.</span>
+<span class="w">    </span><span class="sd">"""Load strategies from entry points and store in class attribute.</span>
 
 <span class="sd">    Important:</span>
 <span class="sd">        This is not a cached method.</span>
@@ -1263,7 +1263,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 <span class="sd">            strategy will silently become the implementation of choice for the</span>
 <span class="sd">            duplicated strategy and the duplicates will be ignored.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="bp">cls</span><span class="o">.</span><span class="n">strategy_create_func</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">strategy_type</span><span class="p">:</span> <span class="n">get_strategy_entry_points</span><span class="p">(</span>
             <span class="n">strategy_type</span><span class="p">,</span> <span class="n">enforce_uniqueness</span><span class="o">=</span><span class="n">test_for_uniqueness</span>
@@ -1502,12 +1502,12 @@ enumeration for a definition of valid strategy types.</p>
     <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiate a strategy in a context class.</span>
+<span class="w">    </span><span class="sd">"""Instantiate a strategy in a context class.</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">        config: A strategy configuration.</span>
-<span class="sd">        strategy_type: The strategy type, e.g., `&quot;scheme&quot;`, `&quot;mediaType&quot;`, ... or</span>
-<span class="sd">            `&quot;download&quot;`, `&quot;parse&quot;`, ...</span>
+<span class="sd">        strategy_type: The strategy type, e.g., `"scheme"`, `"mediaType"`, ... or</span>
+<span class="sd">            `"download"`, `"parse"`, ...</span>
 <span class="sd">            See the [`StrategyType`][oteapi.plugins.entry_points.StrategyType]</span>
 <span class="sd">            enumeration for a definition of valid strategy types.</span>
 
@@ -1522,11 +1522,11 @@ enumeration for a definition of valid strategy types.</p>
 <span class="sd">        An instantiated strategy. The strategy is instantiated with the provided</span>
 <span class="sd">        configuration, through the `config` parameter.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;strategy_create_func&quot;</span><span class="p">):</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">"strategy_create_func"</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">StrategiesNotLoaded</span><span class="p">(</span>
-            <span class="s2">&quot;Strategies have not been loaded, run `load_strategies()` or &quot;</span>
-            <span class="s2">&quot;`StrategyFactory.load_strategies()`.&quot;</span>
+            <span class="s2">"Strategies have not been loaded, run `load_strategies()` or "</span>
+            <span class="s2">"`StrategyFactory.load_strategies()`."</span>
         <span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -1534,25 +1534,25 @@ enumeration for a definition of valid strategy types.</p>
             <span class="n">strategy_type</span> <span class="o">=</span> <span class="n">StrategyType</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Strategy type </span><span class="si">{</span><span class="n">strategy_type</span><span class="si">!r}</span><span class="s2"> is not supported.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Strategy type </span><span class="si">{</span><span class="n">strategy_type</span><span class="si">!r}</span><span class="s2"> is not supported."</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
     <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">strategy_type</span><span class="p">,</span> <span class="n">StrategyType</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="s2">&quot;strategy_type should be either of type StrategyType or a string.&quot;</span>
+            <span class="s2">"strategy_type should be either of type StrategyType or a string."</span>
         <span class="p">)</span>
 
-    <span class="c1"># &#39;config&#39;: Must be a dict when instantiating the strategy&#39;s implementation.</span>
-    <span class="c1"># &#39;config_model&#39;: Is used to retrieve the correct strategy requested.</span>
-    <span class="c1"># Furthermore, creating &#39;config_model&#39; ensures that the config is valid with</span>
+    <span class="c1"># 'config': Must be a dict when instantiating the strategy's implementation.</span>
+    <span class="c1"># 'config_model': Is used to retrieve the correct strategy requested.</span>
+    <span class="c1"># Furthermore, creating 'config_model' ensures that the config is valid with</span>
     <span class="c1"># respect to the strategy type, further reducing the risk of incorrect logical</span>
     <span class="c1"># conclusions.</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">config_model</span> <span class="o">=</span> <span class="n">strategy_type</span><span class="o">.</span><span class="n">config_cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">get_args</span><span class="p">(</span><span class="n">StrategyConfig</span><span class="p">)):</span>
         <span class="n">config_model</span> <span class="o">=</span> <span class="n">config</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">"json"</span><span class="p">,</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;config should be either of type StrategyConfig or a dict.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">"config should be either of type StrategyConfig or a dict."</span><span class="p">)</span>
 
     <span class="n">strategy_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_strategy_name</span><span class="p">(</span><span class="n">config_model</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
 
@@ -1563,7 +1563,7 @@ enumeration for a definition of valid strategy types.</p>
             <span class="n">config</span>  <span class="c1"># type: ignore[arg-type]</span>
         <span class="p">)</span>
     <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span>
+        <span class="sa">f</span><span class="s2">"The </span><span class="si">{</span><span class="n">strategy_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> strategy </span><span class="si">{</span><span class="n">strategy_name</span><span class="si">!r}</span><span class="s2"> does not exist."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1698,7 +1698,7 @@ enumeration for a definition of valid strategy types.</p>
     <span class="n">strategy_type</span><span class="p">:</span> <span class="n">StrategyType</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">StrategyConfig</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="w">    </span><span class="sd">"""Proxy function for</span>
 <span class="sd">    [`StrategyFactory.make_strategy()`][oteapi.plugins.factories.StrategyFactory.make_strategy].</span>
 
 <span class="sd">    Parameters:</span>
@@ -1710,7 +1710,7 @@ enumeration for a definition of valid strategy types.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        The created strategy.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">make_strategy</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strategy_type</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1781,13 +1781,13 @@ enumeration for a definition of valid strategy types.</p>
 <span class="normal">212</span>
 <span class="normal">213</span>
 <span class="normal">214</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">list_strategies</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">StrategyType</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="w">    </span><span class="sd">"""Proxy function for</span>
 <span class="sd">    [`StrategyFactory.list_loaded_strategies()`][oteapi.plugins.factories.StrategyFactory.list_loaded_strategies].</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A dictionary where keys are strategy types and values are lists of</span>
 <span class="sd">        loaded strategy names for each type.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">list_loaded_strategies</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1862,7 +1862,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 <span class="normal">201</span>
 <span class="normal">202</span>
 <span class="normal">203</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Proxy function for</span>
+<span class="w">    </span><span class="sd">"""Proxy function for</span>
 <span class="sd">    [`StrategyFactory.load_strategies()`][oteapi.plugins.factories.StrategyFactory.load_strategies].</span>
 
 <span class="sd">    Parameters:</span>
@@ -1871,7 +1871,7 @@ duplicated strategy and the duplicates will be ignored.</p>
 <span class="sd">            strategy will silently become the implementation of choice for the</span>
 <span class="sd">            duplicated strategy and the duplicates will be ignored.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">StrategyFactory</span><span class="o">.</span><span class="n">load_strategies</span><span class="p">(</span><span class="n">test_for_uniqueness</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>

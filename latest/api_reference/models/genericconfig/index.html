@@ -877,7 +877,7 @@ subscription, like with a dictionary.</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AttrDict</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">,</span> <span class="n">MutableMapping</span><span class="p">):</span>  <span class="c1"># noqa: PLW1641</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An object whose attributes can also be accessed through</span>
+<span class="w">    </span><span class="sd">"""An object whose attributes can also be accessed through</span>
 <span class="sd">    subscription, like with a dictionary.</span>
 
 <span class="sd">    Special pydantic configuration settings:</span>
@@ -890,19 +890,19 @@ subscription, like with a dictionary.</p>
 <span class="sd">      This is mainly relevant for sub-classes of `AttrDict`, where specific</span>
 <span class="sd">      attributes have been defined.</span>
 <span class="sd">    - **`arbitrary_types_allowed`**</span>
-<span class="sd">      If a custom type is used for an attribute that doesn&#39;t have a `validate()`</span>
-<span class="sd">      method, don&#39;t fail setting the attribute.</span>
+<span class="sd">      If a custom type is used for an attribute that doesn't have a `validate()`</span>
+<span class="sd">      method, don't fail setting the attribute.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span>
-        <span class="n">extra</span><span class="o">=</span><span class="s2">&quot;allow&quot;</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">extra</span><span class="o">=</span><span class="s2">"allow"</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
     <span class="c1"># Collection methods</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
@@ -911,7 +911,7 @@ subscription, like with a dictionary.</p>
     <span class="c1"># Mapping methods</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
@@ -939,7 +939,7 @@ subscription, like with a dictionary.</p>
     <span class="c1"># MutableMapping methods</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
@@ -947,7 +947,7 @@ subscription, like with a dictionary.</p>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Keys must be of type `str`, not `</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="fm">__delattr__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
@@ -969,7 +969,7 @@ subscription, like with a dictionary.</p>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                        <span class="s2">&quot;Keys must be of type `str`, not &quot;</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span>
+                        <span class="s2">"Keys must be of type `str`, not "</span> <span class="sa">f</span><span class="s2">"`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span>
                     <span class="p">)</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">other</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
@@ -979,11 +979,11 @@ subscription, like with a dictionary.</p>
             <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
                     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                        <span class="s2">&quot;`other` must be an iterable of tuples of length two.&quot;</span>
+                        <span class="s2">"`other` must be an iterable of tuples of length two."</span>
                     <span class="p">)</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;`other` must be an iterable of objects of length two.&quot;</span>
+                        <span class="s2">"`other` must be an iterable of objects of length two."</span>
                     <span class="p">)</span>
 
             <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
@@ -993,8 +993,8 @@ subscription, like with a dictionary.</p>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">other</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                <span class="s2">&quot;`other` must be of type `dict`, `Mapping`, `BaseModel` or &quot;</span>
-                <span class="s2">&quot;`Iterable`, not `{type(other).__name__}`.&quot;</span>
+                <span class="s2">"`other` must be of type `dict`, `Mapping`, `BaseModel` or "</span>
+                <span class="s2">"`Iterable`, not `{type(other).__name__}`."</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1009,7 +1009,7 @@ subscription, like with a dictionary.</p>
         <span class="k">return</span> <span class="n">value</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">popitem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;MutableMapping `popitem`-method.</span>
+<span class="w">        </span><span class="sd">"""MutableMapping `popitem`-method.</span>
 
 <span class="sd">        Important:</span>
 <span class="sd">            Unlike the regular `dict.popitem()` method, this one does _not_ respect</span>
@@ -1019,16 +1019,16 @@ subscription, like with a dictionary.</p>
 
 <span class="sd">            However, it will respect LIFO with respect to the internal `model_fields`.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;popitem(): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is empty&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"popitem(): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is empty"</span><span class="p">)</span>
 
         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">reset_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset a field to its default value.</span>
+<span class="w">        </span><span class="sd">"""Reset a field to its default value.</span>
 
 <span class="sd">        Warning:</span>
 <span class="sd">            This will remove/delete a field that is not part of the model schema.</span>
@@ -1036,9 +1036,9 @@ subscription, like with a dictionary.</p>
 <span class="sd">        Parameters:</span>
 <span class="sd">            field: The field to reset.</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> does not exist."</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">model_fields</span><span class="p">:</span>
             <span class="c1"># Part of the model schema</span>
@@ -1052,13 +1052,13 @@ subscription, like with a dictionary.</p>
 
             <span class="c1"># Remove the field altogether</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model has no extra fields.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Model has no extra fields."</span><span class="p">)</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">model_extra</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> can not be found in the model fields or extras.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> can not be found in the model fields or extras."</span>
                 <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
         <span class="c1"># Remove it from fields set by the user</span>
@@ -1068,18 +1068,18 @@ subscription, like with a dictionary.</p>
         <span class="c1"># Check the field has been properly reset</span>
         <span class="k">if</span> <span class="n">schema_field</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset as expected.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset as expected."</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">default</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset to its default value as expected.&quot;</span>
+                    <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset to its default value as expected."</span>
                 <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed as expected.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed as expected."</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_fields_set</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed from the set of user-set fields as &quot;</span>
-                <span class="s2">&quot;expected.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed from the set of user-set fields as "</span>
+                <span class="s2">"expected."</span>
             <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1099,7 +1099,7 @@ subscription, like with a dictionary.</p>
 
 
 <h3 id="oteapi.models.genericconfig.AttrDict.model_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s1">&#39;allow&#39;</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s1">'allow'</span><span class="p">,</span> <span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1288,7 +1288,7 @@ initializing the model.</p>
 <span class="normal">162</span>
 <span class="normal">163</span>
 <span class="normal">164</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">popitem</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;MutableMapping `popitem`-method.</span>
+<span class="w">    </span><span class="sd">"""MutableMapping `popitem`-method.</span>
 
 <span class="sd">    Important:</span>
 <span class="sd">        Unlike the regular `dict.popitem()` method, this one does _not_ respect</span>
@@ -1298,9 +1298,9 @@ initializing the model.</p>
 
 <span class="sd">        However, it will respect LIFO with respect to the internal `model_fields`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;popitem(): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is empty&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"popitem(): </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is empty"</span><span class="p">)</span>
 
     <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -1417,7 +1417,7 @@ initializing the model.</p>
 <span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">reset_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset a field to its default value.</span>
+<span class="w">    </span><span class="sd">"""Reset a field to its default value.</span>
 
 <span class="sd">    Warning:</span>
 <span class="sd">        This will remove/delete a field that is not part of the model schema.</span>
@@ -1425,9 +1425,9 @@ initializing the model.</p>
 <span class="sd">    Parameters:</span>
 <span class="sd">        field: The field to reset.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> does not exist.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> does not exist."</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">model_fields</span><span class="p">:</span>
         <span class="c1"># Part of the model schema</span>
@@ -1441,13 +1441,13 @@ initializing the model.</p>
 
         <span class="c1"># Remove the field altogether</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model has no extra fields.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Model has no extra fields."</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model_extra</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> can not be found in the model fields or extras.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> can not be found in the model fields or extras."</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
 
     <span class="c1"># Remove it from fields set by the user</span>
@@ -1457,18 +1457,18 @@ initializing the model.</p>
     <span class="c1"># Check the field has been properly reset</span>
     <span class="k">if</span> <span class="n">schema_field</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset as expected.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset as expected."</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="n">field</span><span class="p">]</span><span class="o">.</span><span class="n">default</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset to its default value as expected.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not reset to its default value as expected."</span>
             <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed as expected.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed as expected."</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">model_fields_set</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed from the set of user-set fields as &quot;</span>
-            <span class="s2">&quot;expected.&quot;</span>
+            <span class="sa">f</span><span class="s2">"Field </span><span class="si">{</span><span class="n">field</span><span class="si">!r}</span><span class="s2"> was not removed from the set of user-set fields as "</span>
+            <span class="s2">"expected."</span>
         <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1537,7 +1537,7 @@ initializing the model.</p>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">other</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="s2">&quot;Keys must be of type `str`, not &quot;</span> <span class="sa">f</span><span class="s2">&quot;`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`.&quot;</span>
+                    <span class="s2">"Keys must be of type `str`, not "</span> <span class="sa">f</span><span class="s2">"`</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">`."</span>
                 <span class="p">)</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">other</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">BaseModel</span><span class="p">):</span>
@@ -1547,11 +1547,11 @@ initializing the model.</p>
         <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">other</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-                    <span class="s2">&quot;`other` must be an iterable of tuples of length two.&quot;</span>
+                    <span class="s2">"`other` must be an iterable of tuples of length two."</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;`other` must be an iterable of objects of length two.&quot;</span>
+                    <span class="s2">"`other` must be an iterable of objects of length two."</span>
                 <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
@@ -1561,8 +1561,8 @@ initializing the model.</p>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">other</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="s2">&quot;`other` must be of type `dict`, `Mapping`, `BaseModel` or &quot;</span>
-            <span class="s2">&quot;`Iterable`, not `{type(other).__name__}`.&quot;</span>
+            <span class="s2">"`other` must be of type `dict`, `Mapping`, `BaseModel` or "</span>
+            <span class="s2">"`Iterable`, not `{type(other).__name__}`."</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -1674,7 +1674,7 @@ initializing the model.</p>
 <span class="normal">251</span>
 <span class="normal">252</span>
 <span class="normal">253</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">GenericConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generic class for configuration objects.</span>
+<span class="w">    </span><span class="sd">"""Generic class for configuration objects.</span>
 
 <span class="sd">    Special pydantic configuration settings:</span>
 
@@ -1683,26 +1683,26 @@ initializing the model.</p>
 <span class="sd">      This is mainly relevant for sub-classes of `AttrDict`, where specific</span>
 <span class="sd">      attributes have been defined.</span>
 <span class="sd">    - **`arbitrary_types_allowed`**</span>
-<span class="sd">      If a custom type is used for an attribute that doesn&#39;t have a `validate()`</span>
-<span class="sd">      method, don&#39;t fail setting the attribute.</span>
+<span class="sd">      If a custom type is used for an attribute that doesn't have a `validate()`</span>
+<span class="sd">      method, don't fail setting the attribute.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">configuration</span><span class="p">:</span> <span class="n">AttrDict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">AttrDict</span><span class="p">(),</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Model-specific configuration options which can either &quot;</span>
-        <span class="s2">&quot;be given as key/value-pairs or set as attributes.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Model-specific configuration options which can either "</span>
+        <span class="s2">"be given as key/value-pairs or set as attributes."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="vm">__doc__</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A description of the configuration model.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"A description of the configuration model."</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize subclass descriptions with their docstrings.&quot;&quot;&quot;</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;description&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__doc__</span>
+<span class="w">        </span><span class="sd">"""Initialize subclass descriptions with their docstrings."""</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"description"</span><span class="p">]</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">validate_assignment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">arbitrary_types_allowed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1723,7 +1723,7 @@ initializing the model.</p>
 
 
 <h3 id="oteapi.models.genericconfig.GenericConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Model-specific configuration options which can either be given as key/value-pairs or set as attributes.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Model-specific configuration options which can either be given as key/value-pairs or set as attributes.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1744,7 +1744,7 @@ initializing the model.</p>
 
 
 <h3 id="oteapi.models.genericconfig.GenericConfig.description" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">description</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A description of the configuration model.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">description</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A description of the configuration model.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

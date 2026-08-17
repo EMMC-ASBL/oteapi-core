@@ -698,7 +698,7 @@ method.</p>
 <span class="normal">30</span>
 <span class="normal">31</span>
 <span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ProcessPriority</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Defining process priority enumerators.</span>
+<span class="w">    </span><span class="sd">"""Defining process priority enumerators.</span>
 
 <span class="sd">    Process priorities:</span>
 
@@ -706,11 +706,11 @@ method.</p>
 <span class="sd">    - Medium</span>
 <span class="sd">    - High</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="n">LOW</span> <span class="o">=</span> <span class="s2">&quot;Low&quot;</span>
-    <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s2">&quot;Medium&quot;</span>
-    <span class="n">HIGH</span> <span class="o">=</span> <span class="s2">&quot;High&quot;</span>
+    <span class="n">LOW</span> <span class="o">=</span> <span class="s2">"Low"</span>
+    <span class="n">MEDIUM</span> <span class="o">=</span> <span class="s2">"Medium"</span>
+    <span class="n">HIGH</span> <span class="o">=</span> <span class="s2">"High"</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -729,7 +729,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.ProcessPriority.HIGH" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">HIGH</span> <span class="o">=</span> <span class="s1">&#39;High&#39;</span></code>
+            <code class="highlight language-python"><span class="n">HIGH</span> <span class="o">=</span> <span class="s1">'High'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -750,7 +750,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.ProcessPriority.LOW" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">LOW</span> <span class="o">=</span> <span class="s1">&#39;Low&#39;</span></code>
+            <code class="highlight language-python"><span class="n">LOW</span> <span class="o">=</span> <span class="s1">'Low'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -771,7 +771,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.ProcessPriority.MEDIUM" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">&#39;Medium&#39;</span></code>
+            <code class="highlight language-python"><span class="n">MEDIUM</span> <span class="o">=</span> <span class="s1">'Medium'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -849,27 +849,27 @@ method.</p>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TransformationConfig</span><span class="p">(</span><span class="n">GenericConfig</span><span class="p">,</span> <span class="n">SecretConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Transformation Strategy Data Configuration.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Transformation Strategy Data Configuration."""</span>
 
     <span class="n">transformationType</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="o">...</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Type of registered transformation strategy. E.g., `celery/remote`.&quot;</span>
+            <span class="s2">"Type of registered transformation strategy. E.g., `celery/remote`."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Human-readable name of the transformation strategy.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Human-readable name of the transformation strategy."</span>
     <span class="p">)</span>
     <span class="n">due</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Optional field to indicate a due data/time for when a transformation &quot;</span>
-            <span class="s2">&quot;should finish.&quot;</span>
+            <span class="s2">"Optional field to indicate a due data/time for when a transformation "</span>
+            <span class="s2">"should finish."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">priority</span><span class="p">:</span> <span class="n">ProcessPriority</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">ProcessPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Define the process priority of the transformation execution.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Define the process priority of the transformation execution."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -889,7 +889,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.due" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">due</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Optional field to indicate a due data/time for when a transformation should finish.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">due</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Optional field to indicate a due data/time for when a transformation should finish.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -910,7 +910,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.name" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Human-readable name of the transformation strategy.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Human-readable name of the transformation strategy.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -931,7 +931,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.priority" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">priority</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ProcessPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Define the process priority of the transformation execution.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">priority</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ProcessPriority</span><span class="o">.</span><span class="n">MEDIUM</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Define the process priority of the transformation execution.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -952,7 +952,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationConfig.transformationType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">transformationType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Type of registered transformation strategy. E.g., `celery/remote`.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">transformationType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Type of registered transformation strategy. E.g., `celery/remote`.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1027,24 +1027,24 @@ method.</p>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TransformationStatus</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return from transformation status.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Return from transformation status."""</span>
 
-    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;ID for the given transformation process.&quot;</span><span class="p">)</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"ID for the given transformation process."</span><span class="p">)</span>
     <span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Status for the transformation process.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Status for the transformation process."</span>
     <span class="p">)</span>
     <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Messages related to the transformation process.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Messages related to the transformation process."</span>
     <span class="p">)</span>
     <span class="n">created</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Time of creation for the transformation process. Given in UTC.&quot;</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"Time of creation for the transformation process. Given in UTC."</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">startTime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Time when the transformation process started. Given in UTC.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Time when the transformation process started. Given in UTC."</span>
     <span class="p">)</span>
     <span class="n">finishTime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Time when the tranformation process finished. Given in UTC.&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Time when the tranformation process finished. Given in UTC."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1064,7 +1064,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.created" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">created</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time of creation for the transformation process. Given in UTC.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">created</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Time of creation for the transformation process. Given in UTC.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1085,7 +1085,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.finishTime" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">finishTime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time when the tranformation process finished. Given in UTC.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">finishTime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Time when the tranformation process finished. Given in UTC.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1106,7 +1106,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.id" class="doc doc-heading">
-            <code class="highlight language-python"><span class="nb">id</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;ID for the given transformation process.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="nb">id</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'ID for the given transformation process.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1127,7 +1127,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.messages" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">messages</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Messages related to the transformation process.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">messages</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Messages related to the transformation process.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1148,7 +1148,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.startTime" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">startTime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Time when the transformation process started. Given in UTC.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">startTime</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Time when the transformation process started. Given in UTC.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1169,7 +1169,7 @@ method.</p>
 
 
 <h3 id="oteapi.models.transformationconfig.TransformationStatus.status" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">status</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Status for the transformation process.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">status</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Status for the transformation process.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

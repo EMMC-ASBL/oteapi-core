@@ -632,10 +632,10 @@
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CropFilterContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return model for `CropImageFilter`.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Return model for `CropImageFilter`."""</span>
 
     <span class="n">imagecrop</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Box cropping parameters (left, top, right, bottom).&quot;</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Box cropping parameters (left, top, right, bottom)."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -655,7 +655,7 @@
 
 
 <h3 id="oteapi.strategies.filter.crop_filter.CropFilterContent.imagecrop" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">imagecrop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Box cropping parameters (left, top, right, bottom).&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">imagecrop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Box cropping parameters (left, top, right, bottom).'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -716,10 +716,10 @@
 <span class="normal">16</span>
 <span class="normal">17</span>
 <span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CropImageConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Configuration model for crop data.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Configuration model for crop data."""</span>
 
     <span class="n">crop</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Box cropping parameters (left, top, right, bottom).&quot;</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Box cropping parameters (left, top, right, bottom)."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -739,7 +739,7 @@
 
 
 <h3 id="oteapi.strategies.filter.crop_filter.CropImageConfig.crop" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">crop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Box cropping parameters (left, top, right, bottom).&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">crop</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Box cropping parameters (left, top, right, bottom).'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -821,27 +821,27 @@
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CropImageFilter</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Strategy for cropping an image.</span>
+<span class="w">    </span><span class="sd">"""Strategy for cropping an image.</span>
 
 <span class="sd">    **Registers strategies**:</span>
 
-<span class="sd">    - `(&quot;filterType&quot;, &quot;filter/crop&quot;)`</span>
+<span class="sd">    - `("filterType", "filter/crop")`</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">filter_config</span><span class="p">:</span> <span class="n">CropImageFilterConfig</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CropFilterContent</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Initialize strategy and return a dictionary."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Crop filter requires crop configuration.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Crop filter requires crop configuration."</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">CropFilterContent</span><span class="p">(</span>
             <span class="n">imagecrop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Execute strategy and return a dictionary"""</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -898,7 +898,7 @@
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute strategy and return a dictionary&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Execute strategy and return a dictionary"""</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -930,9 +930,9 @@
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CropFilterContent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize strategy and return a dictionary.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Initialize strategy and return a dictionary."""</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Crop filter requires crop configuration.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Crop filter requires crop configuration."</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">CropFilterContent</span><span class="p">(</span>
         <span class="n">imagecrop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filter_config</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">crop</span><span class="p">,</span>
@@ -989,14 +989,14 @@
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CropImageFilterConfig</span><span class="p">(</span><span class="n">FilterConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Crop filter strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Crop filter strategy filter config."""</span>
 
-    <span class="n">filterType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;filter/crop&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;filter/crop&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;filterType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">filterType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"filter/crop"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"filter/crop"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"filterType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">CropImageConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Image crop filter strategy-specific configuration.&quot;</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Image crop filter strategy-specific configuration."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1016,7 +1016,7 @@
 
 
 <h3 id="oteapi.strategies.filter.crop_filter.CropImageFilterConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Image crop filter strategy-specific configuration.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Image crop filter strategy-specific configuration.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1037,7 +1037,7 @@
 
 
 <h3 id="oteapi.strategies.filter.crop_filter.CropImageFilterConfig.filterType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">filterType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;filter/crop&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;filterType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">filterType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'filter/crop'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">FilterConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'filterType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

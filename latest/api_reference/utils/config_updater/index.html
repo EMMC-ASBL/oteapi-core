@@ -567,34 +567,34 @@ an exception will be raised.</p>
     <span class="n">session</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">config</span><span class="p">:</span> <span class="n">GenericConfig</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Update the configuration attributes of a GenericConfig object</span>
 <span class="sd">    using values from a session. If a key already exists in the</span>
-<span class="sd">    config&#39;s configuration and has a different value from the session,</span>
+<span class="sd">    config's configuration and has a different value from the session,</span>
 <span class="sd">    an exception will be raised.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        session (Dict): A session containing configuration attributes.</span>
 <span class="sd">        config (GenericConfig): A GenericConfig object to be updated.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="c1"># Determine which keys to update</span>
     <span class="n">keys_to_update</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys_to_update</span><span class="p">:</span>
         <span class="k">if</span> <span class="p">(</span>
-            <span class="c1"># &quot;configuration&quot; in config</span>
+            <span class="c1"># "configuration" in config</span>
             <span class="n">key</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">configuration</span>
             <span class="ow">and</span> <span class="n">session</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">!=</span> <span class="n">config</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Key &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; in config has different value than in session.&quot;</span>
+                <span class="sa">f</span><span class="s2">"Key '</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">' in config has different value than in session."</span>
             <span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">config</span><span class="o">.</span><span class="n">configuration</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">session</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Failed to update key &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; in the config. Reason: </span><span class="si">{</span><span class="n">error</span><span class="si">!s}</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">"Failed to update key '</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">' in the config. Reason: </span><span class="si">{</span><span class="n">error</span><span class="si">!s}</span><span class="s2">"</span>
             <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">error</span>
 </code></pre></div></td></tr></table></div>
             </details>

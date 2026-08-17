@@ -1129,12 +1129,12 @@ Here, an example snippet is shown using <a href="https://setuptools.pypa.io/">se
 <span class="n">setup</span><span class="p">(</span>
     <span class="c1"># ...,</span>
     <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;oteapi.download&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span><span class="p">,</span>
+        <span class="s2">"oteapi.download"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload"</span><span class="p">,</span>
+            <span class="s2">"my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve"</span><span class="p">,</span>
         <span class="p">],</span>
-        <span class="s2">&quot;oteapi.parse&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span><span class="p">,</span>
+        <span class="s2">"oteapi.parse"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">"my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse"</span><span class="p">,</span>
         <span class="p">]</span>
     <span class="p">},</span>
 <span class="p">)</span>
@@ -1143,19 +1143,19 @@ Here, an example snippet is shown using <a href="https://setuptools.pypa.io/">se
 <p>Use custom files that are later parsed and used in a <code>setup.py</code> file.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">entry_points</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">oteapi.download</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.p2p</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.mongo</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"my_plugin.p2p</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload"</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"my_plugin.mongo</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoRetrieve"</span>
 <span class="w">  </span><span class="nt">oteapi.parse</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;my_plugin.application/vnd.mongo+json</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoParse&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"my_plugin.application/vnd.mongo+json</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">my_plugin.strategies.mongo:MongoParse"</span>
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;entry_points&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;oteapi.download&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve&quot;</span>
+<span class="w">  </span><span class="nt">"entry_points"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"oteapi.download"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"my_plugin.p2p = my_plugin.strategies.download.peer_2_peer:Peer2PeerDownload"</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">"my_plugin.mongo = my_plugin.strategies.mongo:MongoRetrieve"</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;oteapi.parse&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">      </span><span class="s2">&quot;my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse&quot;</span>
+<span class="w">    </span><span class="nt">"oteapi.parse"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="s2">"my_plugin.application/vnd.mongo+json = my_plugin.strategies.mongo:MongoParse"</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>

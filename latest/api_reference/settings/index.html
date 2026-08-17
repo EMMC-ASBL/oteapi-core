@@ -513,20 +513,20 @@ instance.</p>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OteApiCoreSettings</span><span class="p">(</span><span class="n">BaseSettings</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic configuration for the oteapi-core.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Basic configuration for the oteapi-core."""</span>
 
     <span class="n">expose_secrets</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">False</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;Whether `SecretStr` in `pydantic` should be exposed or not.</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"""Whether `SecretStr` in `pydantic` should be exposed or not.</span>
 
 <span class="s2">!!! warning</span>
 <span class="s2">    Depending on the configuration and user management of the services</span>
 <span class="s2">    using oteapi-core, secrets might be readable by other users when serialized!</span>
 <span class="s2">    This especially takes place when then models and configs are put into the cache.</span>
 <span class="s2">    Hence be careful while using this option in production.</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="s2">"""</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">&quot;OTEAPI_&quot;</span><span class="p">)</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">SettingsConfigDict</span><span class="p">(</span><span class="n">env_prefix</span><span class="o">=</span><span class="s2">"OTEAPI_"</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 

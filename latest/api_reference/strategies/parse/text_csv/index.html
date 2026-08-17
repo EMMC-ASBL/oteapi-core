@@ -905,7 +905,7 @@
 
 
 <h2 id="oteapi.strategies.parse.text_csv.CSVDialect" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">CSVDialect</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;CSVDialect&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">{(</span><span class="n">dialect</span><span class="o">.</span><span class="n">upper</span><span class="p">()):</span> <span class="n">dialect</span> <span class="k">for</span> <span class="n">dialect</span> <span class="ow">in</span> <span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())},</span> <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">CSVDialect</span> <span class="o">=</span> <span class="n">Enum</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">'CSVDialect'</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">{</span><span class="n">dialect</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span> <span class="n">dialect</span> <span class="k">for</span> <span class="n">dialect</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">()},</span> <span class="n">module</span><span class="o">=</span><span class="vm">__name__</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
@@ -991,40 +991,40 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">250</span>
 <span class="normal">251</span>
 <span class="normal">252</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CSVConfig</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse-specific Configuration Data Model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""CSV parse-specific Configuration Data Model."""</span>
 
     <span class="c1"># Resource config</span>
     <span class="n">downloadUrl</span><span class="p">:</span> <span class="n">HostlessAnyUrl</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;downloadUrl&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"downloadUrl"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;text/csv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;text/csv&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;mediaType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">mediaType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"text/csv"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"text/csv"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"mediaType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="c1"># CSV parse strategy-specific configuration</span>
     <span class="n">datacache_config</span><span class="p">:</span> <span class="n">DataCacheConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Configurations for the data cache for storing the downloaded file &quot;</span>
-            <span class="s2">&quot;content.&quot;</span>
+            <span class="s2">"Configurations for the data cache for storing the downloaded file "</span>
+            <span class="s2">"content."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">dialect</span><span class="p">:</span> <span class="n">DialectFormatting</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">DialectFormatting</span><span class="p">(),</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Dialect and formatting parameters. See [the Python docs]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv-fmt-params) for more &quot;</span>
-            <span class="s2">&quot;information.&quot;</span>
+            <span class="s2">"Dialect and formatting parameters. See [the Python docs]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv-fmt-params) for more "</span>
+            <span class="s2">"information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">reader</span><span class="p">:</span> <span class="n">ReaderConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="n">ReaderConfig</span><span class="p">(),</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;CSV DictReader configuration parameters. See [the Python docs]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.DictReader) for more &quot;</span>
-            <span class="s2">&quot;information.&quot;</span>
+            <span class="s2">"CSV DictReader configuration parameters. See [the Python docs]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.DictReader) for more "</span>
+            <span class="s2">"information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1045,7 +1045,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVConfig.datacache_config" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">datacache_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Configurations for the data cache for storing the downloaded file content.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">datacache_config</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Configurations for the data cache for storing the downloaded file content.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1066,7 +1066,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVConfig.dialect" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">dialect</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">DialectFormatting</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Dialect and formatting parameters. See [the Python docs](https://docs.python.org/3/library/csv.html#csv-fmt-params) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">dialect</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">DialectFormatting</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Dialect and formatting parameters. See [the Python docs](https://docs.python.org/3/library/csv.html#csv-fmt-params) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1087,7 +1087,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVConfig.downloadUrl" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">downloadUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;downloadUrl&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">downloadUrl</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'downloadUrl'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1108,7 +1108,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVConfig.mediaType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">mediaType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;text/csv&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;mediaType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">mediaType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'text/csv'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ResourceConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'mediaType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1129,7 +1129,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVConfig.reader" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">reader</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ReaderConfig</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;CSV DictReader configuration parameters. See [the Python docs](https://docs.python.org/3/library/csv.html#csv.DictReader) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">reader</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">ReaderConfig</span><span class="p">(),</span> <span class="n">description</span><span class="o">=</span><span class="s1">'CSV DictReader configuration parameters. See [the Python docs](https://docs.python.org/3/library/csv.html#csv.DictReader) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1190,10 +1190,10 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">270</span>
 <span class="normal">271</span>
 <span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CSVParseContent</span><span class="p">(</span><span class="n">AttrDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for returning values from CSV Parse.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Class for returning values from CSV Parse."""</span>
 
     <span class="n">content</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Content of the CSV document.&quot;</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Content of the CSV document."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1213,7 +1213,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVParseContent.content" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">content</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Content of the CSV document.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">content</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Content of the CSV document.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1349,48 +1349,48 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">355</span>
 <span class="normal">356</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CSVParseStrategy</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse strategy for CSV files.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parse strategy for CSV files."""</span>
 
     <span class="n">parse_config</span><span class="p">:</span> <span class="n">CSVParserConfig</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Initialize."""</span>
         <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CSVParseContent</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Parse CSV."""</span>
         <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
 
         <span class="c1"># Download the file</span>
         <span class="n">download_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-        <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">download_config</span><span class="p">[</span><span class="s2">"configuration"</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">"download"</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span><span class="p">:</span>
             <span class="n">cache_key</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span>
-        <span class="k">elif</span> <span class="s2">&quot;key&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
-            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s2">"key"</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">"key"</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No data cache key provided to the downloaded content&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"No data cache key provided to the downloaded content"</span><span class="p">)</span>
 
         <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_path</span><span class="p">:</span>
             <span class="n">kwargs</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span>
-                <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">,</span> <span class="s2">&quot;quoting&quot;</span><span class="p">},</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span>
+                <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"base"</span><span class="p">,</span> <span class="s2">"quoting"</span><span class="p">},</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span>
             <span class="p">)</span>
 
             <span class="n">dialect</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">base</span>
             <span class="k">if</span> <span class="n">dialect</span><span class="p">:</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;dialect&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">value</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"dialect"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">value</span>
             <span class="n">quoting</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">quoting</span>
             <span class="k">if</span> <span class="n">quoting</span><span class="p">:</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;quoting&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quoting</span><span class="o">.</span><span class="n">csv_constant</span><span class="p">()</span>
+                <span class="n">kwargs</span><span class="p">[</span><span class="s2">"quoting"</span><span class="p">]</span> <span class="o">=</span> <span class="n">quoting</span><span class="o">.</span><span class="n">csv_constant</span><span class="p">()</span>
 
             <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
             <span class="k">with</span> <span class="n">csvfile_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
-                <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
                 <span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
             <span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
                 <span class="n">csvreader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1413,7 +1413,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
                         <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                         <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
                         <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                        <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                        <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">)</span>
                     <span class="p">)</span>
                     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
                 <span class="p">]</span>
@@ -1553,39 +1553,39 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">354</span>
 <span class="normal">355</span>
 <span class="normal">356</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CSVParseContent</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse CSV.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Parse CSV."""</span>
     <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_config</span><span class="o">.</span><span class="n">configuration</span>
 
     <span class="c1"># Download the file</span>
     <span class="n">download_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-    <span class="n">download_config</span><span class="p">[</span><span class="s2">&quot;configuration&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">&quot;download&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">download_config</span><span class="p">[</span><span class="s2">"configuration"</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">create_strategy</span><span class="p">(</span><span class="s2">"download"</span><span class="p">,</span> <span class="n">download_config</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span><span class="p">:</span>
         <span class="n">cache_key</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="o">.</span><span class="n">accessKey</span>
-    <span class="k">elif</span> <span class="s2">&quot;key&quot;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
-        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="s2">"key"</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s2">"key"</span><span class="p">]</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;No data cache key provided to the downloaded content&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"No data cache key provided to the downloaded content"</span><span class="p">)</span>
 
     <span class="n">cache</span> <span class="o">=</span> <span class="n">DataCache</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">datacache_config</span><span class="p">)</span>
 
     <span class="k">with</span> <span class="n">cache</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile_path</span><span class="p">:</span>
         <span class="n">kwargs</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span>
-            <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;base&quot;</span><span class="p">,</span> <span class="s2">&quot;quoting&quot;</span><span class="p">},</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span>
+            <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"base"</span><span class="p">,</span> <span class="s2">"quoting"</span><span class="p">},</span> <span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
 
         <span class="n">dialect</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">base</span>
         <span class="k">if</span> <span class="n">dialect</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;dialect&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"dialect"</span><span class="p">]</span> <span class="o">=</span> <span class="n">dialect</span><span class="o">.</span><span class="n">value</span>
         <span class="n">quoting</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">dialect</span><span class="o">.</span><span class="n">quoting</span>
         <span class="k">if</span> <span class="n">quoting</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;quoting&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">quoting</span><span class="o">.</span><span class="n">csv_constant</span><span class="p">()</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">"quoting"</span><span class="p">]</span> <span class="o">=</span> <span class="n">quoting</span><span class="o">.</span><span class="n">csv_constant</span><span class="p">()</span>
 
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude_unset</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
         <span class="k">with</span> <span class="n">csvfile_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
-            <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">newline</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
             <span class="n">encoding</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
         <span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
             <span class="n">csvreader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1608,7 +1608,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
                     <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                     <span class="k">if</span> <span class="p">(</span><span class="n">value</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="n">value</span> <span class="o">!=</span> <span class="n">csvreader</span><span class="o">.</span><span class="n">restval</span>
-                    <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;nan&quot;</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"nan"</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
             <span class="p">]</span>
@@ -1649,7 +1649,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">281</span>
 <span class="normal">282</span>
 <span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttrDict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Initialize."""</span>
     <span class="k">return</span> <span class="n">AttrDict</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1703,14 +1703,14 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CSVParserConfig</span><span class="p">(</span><span class="n">ParserConfig</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV parse strategy filter config.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""CSV parse strategy filter config."""</span>
 
-    <span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;parser/csv&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;parser/csv&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">&quot;parserType&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+    <span class="n">parserType</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"parser/csv"</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="s2">"parser/csv"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s2">"parserType"</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">configuration</span><span class="p">:</span> <span class="n">CSVConfig</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;CSV parse strategy-specific configuration.&quot;</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"CSV parse strategy-specific configuration."</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1730,7 +1730,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVParserConfig.configuration" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;CSV parse strategy-specific configuration.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">configuration</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'CSV parse strategy-specific configuration.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1751,7 +1751,7 @@ and will thus depend on the currently loaded and used Python interpreter.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.CSVParserConfig.parserType" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">parserType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;parser/csv&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="p">(</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">&#39;parserType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">))</span></code>
+            <code class="highlight language-python"><span class="n">parserType</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'parser/csv'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ParserConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="p">[</span><span class="s1">'parserType'</span><span class="p">]</span><span class="o">.</span><span class="n">description</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -1933,7 +1933,7 @@ this model.</p>
 <span class="normal">173</span>
 <span class="normal">174</span>
 <span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DialectFormatting</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dialect and formatting parameters for CSV.</span>
+<span class="w">    </span><span class="sd">"""Dialect and formatting parameters for CSV.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv-fmt-params)</span>
 <span class="sd">    for more information.</span>
@@ -1942,21 +1942,21 @@ this model.</p>
 <span class="sd">        As `Dialect.lineterminator` is hardcoded in `csv.reader`, it is left out of</span>
 <span class="sd">        this model.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">base</span><span class="p">:</span> <span class="n">CSVDialect</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;A specific CSV dialect, e.g., &#39;excel&#39;. Any other parameters here will &quot;</span>
-            <span class="s2">&quot;overwrite the preset dialect parameters for the specified dialect.&quot;</span>
+            <span class="s2">"A specific CSV dialect, e.g., 'excel'. Any other parameters here will "</span>
+            <span class="s2">"overwrite the preset dialect parameters for the specified dialect."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">delimiter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;A one-character string used to separate fields. &quot;</span>
-            <span class="s2">&quot;See [the Python docs entry](https://docs.python.org/3/library/csv.html&quot;</span>
-            <span class="s2">&quot;#csv.Dialect.delimiter) for more information.&quot;</span>
+            <span class="s2">"A one-character string used to separate fields. "</span>
+            <span class="s2">"See [the Python docs entry](https://docs.python.org/3/library/csv.html"</span>
+            <span class="s2">"#csv.Dialect.delimiter) for more information."</span>
         <span class="p">),</span>
         <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1964,34 +1964,34 @@ this model.</p>
     <span class="n">doublequote</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Controls how instances of [`quotechar`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] &quot;</span>
-            <span class="s2">&quot;appearing inside a field should themselves be quoted. When `True`, the &quot;</span>
-            <span class="s2">&quot;character is doubled. When `False`, the [`escapechar`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] &quot;</span>
-            <span class="s2">&quot;is used as a prefix to the [`quotechar`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.quotechar]. &quot;</span>
-            <span class="s2">&quot;See [the Python docs entry]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.Dialect.doublequote) &quot;</span>
-            <span class="s2">&quot;for more information.&quot;</span>
+            <span class="s2">"Controls how instances of [`quotechar`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] "</span>
+            <span class="s2">"appearing inside a field should themselves be quoted. When `True`, the "</span>
+            <span class="s2">"character is doubled. When `False`, the [`escapechar`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] "</span>
+            <span class="s2">"is used as a prefix to the [`quotechar`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.quotechar]. "</span>
+            <span class="s2">"See [the Python docs entry]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.Dialect.doublequote) "</span>
+            <span class="s2">"for more information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">escapechar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;A one-character string used by the writer to escape the [`delimiter`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] if &quot;</span>
-            <span class="s2">&quot;[`quoting`][oteapi.strategies.parse.text_csv.DialectFormatting.quoting] &quot;</span>
-            <span class="s2">&quot;is set to [`QUOTE_NONE`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONE] and the &quot;</span>
-            <span class="s2">&quot;[`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.&quot;</span>
-            <span class="s2">&quot;quotechar] if [`doublequote`][oteapi.strategies.parse.text_csv.&quot;</span>
-            <span class="s2">&quot;DialectFormatting.doublequote] is `False`. On reading, the &quot;</span>
-            <span class="s2">&quot;[`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting.&quot;</span>
-            <span class="s2">&quot;escapechar] removes any special meaning from the following character. &quot;</span>
-            <span class="s2">&quot;See [the Python docs entry]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.Dialect.escapechar) &quot;</span>
-            <span class="s2">&quot;for more information.&quot;</span>
+            <span class="s2">"A one-character string used by the writer to escape the [`delimiter`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] if "</span>
+            <span class="s2">"[`quoting`][oteapi.strategies.parse.text_csv.DialectFormatting.quoting] "</span>
+            <span class="s2">"is set to [`QUOTE_NONE`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONE] and the "</span>
+            <span class="s2">"[`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting."</span>
+            <span class="s2">"quotechar] if [`doublequote`][oteapi.strategies.parse.text_csv."</span>
+            <span class="s2">"DialectFormatting.doublequote] is `False`. On reading, the "</span>
+            <span class="s2">"[`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting."</span>
+            <span class="s2">"escapechar] removes any special meaning from the following character. "</span>
+            <span class="s2">"See [the Python docs entry]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.Dialect.escapechar) "</span>
+            <span class="s2">"for more information."</span>
         <span class="p">),</span>
         <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -1999,13 +1999,13 @@ this model.</p>
     <span class="n">quotechar</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;A one-character string used to quote fields containing special &quot;</span>
-            <span class="s2">&quot;characters, such as the [`delimiter`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] or &quot;</span>
-            <span class="s2">&quot;[`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.&quot;</span>
-            <span class="s2">&quot;quotechar], or which contain new-line characters. See &quot;</span>
-            <span class="s2">&quot;[the Python docs entry](https://docs.python.org/3/library/csv.html&quot;</span>
-            <span class="s2">&quot;#csv.Dialect.quotechar) for more information.&quot;</span>
+            <span class="s2">"A one-character string used to quote fields containing special "</span>
+            <span class="s2">"characters, such as the [`delimiter`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] or "</span>
+            <span class="s2">"[`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting."</span>
+            <span class="s2">"quotechar], or which contain new-line characters. See "</span>
+            <span class="s2">"[the Python docs entry](https://docs.python.org/3/library/csv.html"</span>
+            <span class="s2">"#csv.Dialect.quotechar) for more information."</span>
         <span class="p">),</span>
         <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -2013,42 +2013,42 @@ this model.</p>
     <span class="n">quoting</span><span class="p">:</span> <span class="n">QuoteConstants</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;Controls when quotes should be generated by the writer and recognised by &quot;</span>
-            <span class="s2">&quot;the reader. It can take on any of the `QUOTE_*` constants (see section &quot;</span>
-            <span class="s2">&quot;[Module Contents](https://docs.python.org/3/library/csv.html&quot;</span>
-            <span class="s2">&quot;#csv-contents)). See [the Python docs entry]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.Dialect.quoting) &quot;</span>
-            <span class="s2">&quot;for more information.&quot;</span>
+            <span class="s2">"Controls when quotes should be generated by the writer and recognised by "</span>
+            <span class="s2">"the reader. It can take on any of the `QUOTE_*` constants (see section "</span>
+            <span class="s2">"[Module Contents](https://docs.python.org/3/library/csv.html"</span>
+            <span class="s2">"#csv-contents)). See [the Python docs entry]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.Dialect.quoting) "</span>
+            <span class="s2">"for more information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">skipinitialspace</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;When `True`, whitespace immediately following the [`delimiter`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] is &quot;</span>
-            <span class="s2">&quot;ignored. See [the Python docs entry]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.Dialect.skipinitialspace)&quot;</span>
-            <span class="s2">&quot; for more information.&quot;</span>
+            <span class="s2">"When `True`, whitespace immediately following the [`delimiter`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] is "</span>
+            <span class="s2">"ignored. See [the Python docs entry]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.Dialect.skipinitialspace)"</span>
+            <span class="s2">" for more information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;When `True`, raise exception [Error]&quot;</span>
-            <span class="s2">&quot;(https://docs.python.org/3/library/csv.html#csv.Error) on bad CSV input. &quot;</span>
-            <span class="s2">&quot;See [the Python docs entry](https://docs.python.org/3/library/csv.html&quot;</span>
-            <span class="s2">&quot;#csv.Dialect.strict) for more information.&quot;</span>
+            <span class="s2">"When `True`, raise exception [Error]"</span>
+            <span class="s2">"(https://docs.python.org/3/library/csv.html#csv.Error) on bad CSV input. "</span>
+            <span class="s2">"See [the Python docs entry](https://docs.python.org/3/library/csv.html"</span>
+            <span class="s2">"#csv.Dialect.strict) for more information."</span>
         <span class="p">),</span>
     <span class="p">)</span>
 
-    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"base"</span><span class="p">)</span>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validate_dialect_base</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Ensure the given `base` dialect is registered locally."""</span>
         <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">():</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. &quot;</span>
-                <span class="sa">f</span><span class="s2">&quot;Registered dialects: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. "</span>
+                <span class="sa">f</span><span class="s2">"Registered dialects: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())</span><span class="si">}</span><span class="s2">."</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
@@ -2069,7 +2069,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.base" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">base</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A specific CSV dialect, e.g., &#39;excel&#39;. Any other parameters here will overwrite the preset dialect parameters for the specified dialect.&quot;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">base</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"A specific CSV dialect, e.g., 'excel'. Any other parameters here will overwrite the preset dialect parameters for the specified dialect."</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2090,7 +2090,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.delimiter" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">delimiter</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A one-character string used to separate fields. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.delimiter) for more information.&#39;</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">delimiter</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A one-character string used to separate fields. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.delimiter) for more information.'</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2111,7 +2111,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.doublequote" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">doublequote</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Controls how instances of [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] appearing inside a field should themselves be quoted. When `True`, the character is doubled. When `False`, the [`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] is used as a prefix to the [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar]. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.doublequote) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">doublequote</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Controls how instances of [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] appearing inside a field should themselves be quoted. When `True`, the character is doubled. When `False`, the [`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] is used as a prefix to the [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar]. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.doublequote) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2132,7 +2132,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.escapechar" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">escapechar</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A one-character string used by the writer to escape the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] if [`quoting`][oteapi.strategies.parse.text_csv.DialectFormatting.quoting] is set to [`QUOTE_NONE`][oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONE] and the [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] if [`doublequote`][oteapi.strategies.parse.text_csv.DialectFormatting.doublequote] is `False`. On reading, the [`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] removes any special meaning from the following character. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.escapechar) for more information.&#39;</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">escapechar</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A one-character string used by the writer to escape the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] if [`quoting`][oteapi.strategies.parse.text_csv.DialectFormatting.quoting] is set to [`QUOTE_NONE`][oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONE] and the [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar] if [`doublequote`][oteapi.strategies.parse.text_csv.DialectFormatting.doublequote] is `False`. On reading, the [`escapechar`][oteapi.strategies.parse.text_csv.DialectFormatting.escapechar] removes any special meaning from the following character. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.escapechar) for more information.'</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2153,7 +2153,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.quotechar" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">quotechar</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;A one-character string used to quote fields containing special characters, such as the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] or [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar], or which contain new-line characters. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.quotechar) for more information.&#39;</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">quotechar</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'A one-character string used to quote fields containing special characters, such as the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] or [`quotechar`][oteapi.strategies.parse.text_csv.DialectFormatting.quotechar], or which contain new-line characters. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.quotechar) for more information.'</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2174,7 +2174,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.quoting" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">quoting</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Controls when quotes should be generated by the writer and recognised by the reader. It can take on any of the `QUOTE_*` constants (see section [Module Contents](https://docs.python.org/3/library/csv.html#csv-contents)). See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.quoting) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">quoting</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Controls when quotes should be generated by the writer and recognised by the reader. It can take on any of the `QUOTE_*` constants (see section [Module Contents](https://docs.python.org/3/library/csv.html#csv-contents)). See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.quoting) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2195,7 +2195,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.skipinitialspace" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">skipinitialspace</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;When `True`, whitespace immediately following the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] is ignored. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.skipinitialspace) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">skipinitialspace</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'When `True`, whitespace immediately following the [`delimiter`][oteapi.strategies.parse.text_csv.DialectFormatting.delimiter] is ignored. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.skipinitialspace) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2216,7 +2216,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.DialectFormatting.strict" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">strict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;When `True`, raise exception [Error](https://docs.python.org/3/library/csv.html#csv.Error) on bad CSV input. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.strict) for more information.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">strict</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'When `True`, raise exception [Error](https://docs.python.org/3/library/csv.html#csv.Error) on bad CSV input. See [the Python docs entry](https://docs.python.org/3/library/csv.html#csv.Dialect.strict) for more information.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2264,14 +2264,14 @@ this model.</p>
 <span class="normal">172</span>
 <span class="normal">173</span>
 <span class="normal">174</span>
-<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;base&quot;</span><span class="p">)</span>
+<span class="normal">175</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@field_validator</span><span class="p">(</span><span class="s2">"base"</span><span class="p">)</span>
 <span class="nd">@classmethod</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">validate_dialect_base</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ensure the given `base` dialect is registered locally.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Ensure the given `base` dialect is registered locally."""</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">():</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;Registered dialects: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">value</span><span class="si">!r}</span><span class="s2"> is not a known registered CSV dialect. "</span>
+            <span class="sa">f</span><span class="s2">"Registered dialects: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv</span><span class="o">.</span><span class="n">list_dialects</span><span class="p">())</span><span class="si">}</span><span class="s2">."</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="n">value</span>
 </code></pre></div></td></tr></table></div>
@@ -2332,15 +2332,15 @@ this model.</p>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QuoteConstants</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV module `QUOTE_*` constants.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""CSV module `QUOTE_*` constants."""</span>
 
-    <span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_ALL&quot;</span>
-    <span class="n">QUOTE_MINIMAL</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_MINIMAL&quot;</span>
-    <span class="n">QUOTE_NONUMERIC</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_NONNUMERIC&quot;</span>
-    <span class="n">QUOTE_NONE</span> <span class="o">=</span> <span class="s2">&quot;QUOTE_NONE&quot;</span>
+    <span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s2">"QUOTE_ALL"</span>
+    <span class="n">QUOTE_MINIMAL</span> <span class="o">=</span> <span class="s2">"QUOTE_MINIMAL"</span>
+    <span class="n">QUOTE_NONUMERIC</span> <span class="o">=</span> <span class="s2">"QUOTE_NONNUMERIC"</span>
+    <span class="n">QUOTE_NONE</span> <span class="o">=</span> <span class="s2">"QUOTE_NONE"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Return the CSV lib equivalent constant."""</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">,</span>
@@ -2365,7 +2365,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_ALL" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s1">&#39;QUOTE_ALL&#39;</span></code>
+            <code class="highlight language-python"><span class="n">QUOTE_ALL</span> <span class="o">=</span> <span class="s1">'QUOTE_ALL'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2386,7 +2386,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_MINIMAL" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">QUOTE_MINIMAL</span> <span class="o">=</span> <span class="s1">&#39;QUOTE_MINIMAL&#39;</span></code>
+            <code class="highlight language-python"><span class="n">QUOTE_MINIMAL</span> <span class="o">=</span> <span class="s1">'QUOTE_MINIMAL'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2407,7 +2407,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONE" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">QUOTE_NONE</span> <span class="o">=</span> <span class="s1">&#39;QUOTE_NONE&#39;</span></code>
+            <code class="highlight language-python"><span class="n">QUOTE_NONE</span> <span class="o">=</span> <span class="s1">'QUOTE_NONE'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2428,7 +2428,7 @@ this model.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.QuoteConstants.QUOTE_NONUMERIC" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">QUOTE_NONUMERIC</span> <span class="o">=</span> <span class="s1">&#39;QUOTE_NONNUMERIC&#39;</span></code>
+            <code class="highlight language-python"><span class="n">QUOTE_NONUMERIC</span> <span class="o">=</span> <span class="s1">'QUOTE_NONNUMERIC'</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2471,7 +2471,7 @@ this model.</p>
 <span class="normal">38</span>
 <span class="normal">39</span>
 <span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">csv_constant</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the CSV lib equivalent constant.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Return the CSV lib equivalent constant."""</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_ALL</span><span class="p">,</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">:</span> <span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">,</span>
@@ -2558,40 +2558,40 @@ for more information.</p>
 <span class="normal">211</span>
 <span class="normal">212</span>
 <span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ReaderConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;CSV DictReader configuration parameters.</span>
+<span class="w">    </span><span class="sd">"""CSV DictReader configuration parameters.</span>
 
 <span class="sd">    See [the Python docs](https://docs.python.org/3/library/csv.html#csv.DictReader)</span>
 <span class="sd">    for more information.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">fieldnames</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;List of headers. If not set, the values in the first row of the CSV file &quot;</span>
-            <span class="s2">&quot;will be used as the field names.&quot;</span>
+            <span class="s2">"List of headers. If not set, the values in the first row of the CSV file "</span>
+            <span class="s2">"will be used as the field names."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">restkey</span><span class="p">:</span> <span class="n">Hashable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;If a row has more fields than [`fieldnames`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the &quot;</span>
-            <span class="s2">&quot;remaining data is put in a list and stored with the field name specified &quot;</span>
-            <span class="s2">&quot;by [`restkey`][oteapi.strategies.parse.text_csv.ReaderConfig.restkey].&quot;</span>
+            <span class="s2">"If a row has more fields than [`fieldnames`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the "</span>
+            <span class="s2">"remaining data is put in a list and stored with the field name specified "</span>
+            <span class="s2">"by [`restkey`][oteapi.strategies.parse.text_csv.ReaderConfig.restkey]."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">restval</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
         <span class="kc">None</span><span class="p">,</span>
         <span class="n">description</span><span class="o">=</span><span class="p">(</span>
-            <span class="s2">&quot;If a non-blank row has fewer fields than the length of [`fieldnames`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the missing &quot;</span>
-            <span class="s2">&quot;values are filled-in with the value of [`restval`]&quot;</span>
-            <span class="s2">&quot;[oteapi.strategies.parse.text_csv.ReaderConfig.restval].&quot;</span>
+            <span class="s2">"If a non-blank row has fewer fields than the length of [`fieldnames`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the missing "</span>
+            <span class="s2">"values are filled-in with the value of [`restval`]"</span>
+            <span class="s2">"[oteapi.strategies.parse.text_csv.ReaderConfig.restval]."</span>
         <span class="p">),</span>
     <span class="p">)</span>
     <span class="n">encoding</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
-        <span class="s2">&quot;utf8&quot;</span><span class="p">,</span>
-        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The file encoding.&quot;</span><span class="p">,</span>
+        <span class="s2">"utf8"</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">"The file encoding."</span><span class="p">,</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -2611,7 +2611,7 @@ for more information.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.ReaderConfig.encoding" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">encoding</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The file encoding.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">encoding</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="s1">'utf8'</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'The file encoding.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2632,7 +2632,7 @@ for more information.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">fieldnames</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;List of headers. If not set, the values in the first row of the CSV file will be used as the field names.&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">fieldnames</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'List of headers. If not set, the values in the first row of the CSV file will be used as the field names.'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2653,7 +2653,7 @@ for more information.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.ReaderConfig.restkey" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">restkey</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;If a row has more fields than [`fieldnames`][oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the remaining data is put in a list and stored with the field name specified by [`restkey`][oteapi.strategies.parse.text_csv.ReaderConfig.restkey].&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">restkey</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'If a row has more fields than [`fieldnames`][oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the remaining data is put in a list and stored with the field name specified by [`restkey`][oteapi.strategies.parse.text_csv.ReaderConfig.restkey].'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -2674,7 +2674,7 @@ for more information.</p>
 
 
 <h3 id="oteapi.strategies.parse.text_csv.ReaderConfig.restval" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">restval</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;If a non-blank row has fewer fields than the length of [`fieldnames`][oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the missing values are filled-in with the value of [`restval`][oteapi.strategies.parse.text_csv.ReaderConfig.restval].&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">restval</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'If a non-blank row has fewer fields than the length of [`fieldnames`][oteapi.strategies.parse.text_csv.ReaderConfig.fieldnames], the missing values are filled-in with the value of [`restval`][oteapi.strategies.parse.text_csv.ReaderConfig.restval].'</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
